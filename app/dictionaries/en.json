@@ -14,6 +14,7 @@
     ],
     "contact": "Contact me",
     "languages": "Languages",
+    "theme": "Theme",
     "languagesOptions": [
       {
         "name": "English",
@@ -395,6 +396,7 @@
       "artboardName": "Passion",
       "bigQuote": {
         "textScroller": "Passion for Code",
+        "velocityScroller": 0.2,
         "quote": {
           "lineOne": "Coding is",
           "lineTwo": "my life"

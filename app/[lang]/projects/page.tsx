@@ -56,7 +56,7 @@ const Portfolio = () => {
         </section>
       </TailwindGrid>
 
-      <section className='w-full flex justify-center items-center content-center pb-10 border-b border-white'>
+      <section className='w-full flex justify-center items-center content-center pb-10 border-b border-border'>
         <FilterCategories
           search={search}
           setSearch={setSearch}

@@ -4,37 +4,34 @@
 /* Webkit (Chrome, Safari) */
 ::-webkit-scrollbar {
   width: 10px;
-  /* height: 10px; */
-  background-color: #27272A;
+  background-color: rgb(var(--scrollbar-bg));
 }
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: #00BB31;
+  background-color: rgb(var(--scrollbar-thumb));
 }
 
 /* Mozilla (Firefox) */
 scrollbar {
   width: 10px;
-  /* height: 10px; */
-  background-color: #27272A;
+  background-color: rgb(var(--scrollbar-bg));
 }
 
 scrollbar thumb {
   border-radius: 10px;
-  background-color: #00BB31;
+  background-color: rgb(var(--scrollbar-thumb));
 }
 
 /* Microsoft (Edge, Internet Explorer) */
 scrollbar {
   width: 10px;
-  /* height: 10px; */
-  background-color: #27272A;
+  background-color: rgb(var(--scrollbar-bg));
 }
 
 scrollbar thumb {
   border-radius: 10px;
-  background-color: #00BB31;
+  background-color: rgb(var(--scrollbar-thumb));
 }
 
 /* Universal (todos los navegadores) */
@@ -42,15 +39,14 @@ scrollbar thumb {
 scrollbar,
 *::-ms-scrollbar {
   width: 10px;
-  /* height: 10px; */
-  background-color: #27272A;
+  background-color: rgb(var(--scrollbar-bg));
 }
 
 ::-webkit-scrollbar-thumb,
 scrollbar thumb,
 *::-ms-scrollbar-thumb {
   border-radius: 10px;
-  background-color: #00BB31;
+  background-color: rgb(var(--scrollbar-thumb));
 }
 
 
@@ -61,10 +57,40 @@ scrollbar thumb,
 
 
 @layer base {
+  /* Variables para tema light */
+  :root {
+    --background: 255 255 255; /* Blanco */
+    --foreground: 15 15 15; /* Negro para texto */
+    --card: 250 250 250; /* Gris muy muy claro casi blanco */
+    --card-foreground: 15 15 15; /* Negro para texto en tarjetas */
+    --border: 229 231 235; /* Gris claro para bordes */
+    --muted: 248 248 248; /* Gris muy claro para backgrounds secundarios */
+    --muted-foreground: 15 15 15; /* Negro para texto secundario en light mode */
+    --accent: 243 244 246;
+    --accent-foreground: 15 15 15;
+    --scrollbar-bg: 243 244 246; /* Gris claro */
+    --scrollbar-thumb: 0 187 49; /* Primary color */
+  }
+
+  /* Variables para tema dark */
+  .dark {
+    --background: 15 15 15; /* Casi negro */
+    --foreground: 250 250 250; /* Casi blanco */
+    --card: 24 24 27; /* Zinc-900 */
+    --card-foreground: 250 250 250;
+    --border: 39 39 42; /* Zinc-800 */
+    --muted: 39 39 42; /* Zinc-800 */
+    --muted-foreground: 161 161 170; /* Zinc-400 */
+    --accent: 39 39 42;
+    --accent-foreground: 250 250 250;
+    --scrollbar-bg: 39 39 42; /* Zinc-800 */
+    --scrollbar-thumb: 0 187 49; /* Primary color */
+  }
+
   html {
     font-family: Satoshi, system-ui, sans-serif;
-    background-color: #0F0F0F;
-    color: white;
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
     overflow-y: scroll;
     scroll-behavior: smooth;
   }

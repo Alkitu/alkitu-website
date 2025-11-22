@@ -4,14 +4,14 @@ import { motion } from 'framer-motion'
 function PrimaryButton ({ text, icon = 'download', textLeft = false }) {
   return (
     <motion.button
-      whileHover={{ scale: 1.03 }}
-      whileTap={{ scale: 0.93 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
       transition={{ duration: 0.2 }}
-      className={`${icon === 'medium' ? 'hover:text-zinc-900 bg-zinc-900' : 'hover:text-zinc-950 bg-zinc-950/40'} group  self-stretch cursor-pointer justify-center items-center inline-flex lg:min-w-[172px] w-full lg:w-[20vw]   rounded-md border border-primary text-primary  backdrop-blur-lg bg-clip-padding backdrop-filter hover:bg-primary  h-12 gap-2`}
+      className={`${icon === 'medium' ? 'bg-card dark:bg-zinc-900' : 'bg-primary'} group  self-stretch cursor-pointer justify-center items-center inline-flex lg:min-w-[172px] w-full lg:w-[20vw]   rounded-md border border-primary ${icon === 'medium' ? 'text-foreground dark:text-primary' : 'text-zinc-950'}  h-12 gap-2`}
     >
       <div className="justify-center items-center gap-4 px-4 flex ">
         {textLeft && (
-          <p className=" text-left  text-[2.8vw] md:text-[min(1vw,22px)]   group-hover:text-zinc-800   font-bold uppercase mx-auto">
+          <p className=" text-left  text-[2.8vw] md:text-[min(1vw,22px)] font-bold uppercase mx-auto">
             {text}
           </p>
         )}
@@ -20,7 +20,7 @@ function PrimaryButton ({ text, icon = 'download', textLeft = false }) {
             <svg
               viewBox="0 0 15 20"
               xmlns="http://www.w3.org/2000/svg"
-              className="h-full aspect-square fill-primary group-hover:fill-zinc-950 "
+              className="h-full aspect-square fill-zinc-950"
             >
               <g id="Group">
                 <path

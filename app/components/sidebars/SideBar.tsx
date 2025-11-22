@@ -53,21 +53,20 @@ function SideBar({ text }) {
   if (!dataSections || dataSections.length === 0) return null;
 
   return (
-    <div className="col-span-1 col-start-1 col-end-2 h-[100dvh] fixed w-1/12  top-0 z-50 border-r box-border border-zinc-500 bg-zinc-950/40 backdrop-blur-lg bg-clip-padding backdrop-filter opacity-75 hidden lg:block">
+    <div className="col-span-1 col-start-1 col-end-2 h-[100dvh] fixed w-1/12  top-0 z-50 border-r box-border border-border bg-background/40 backdrop-blur-lg bg-clip-padding backdrop-filter opacity-75 hidden lg:block">
       <ul className="w-full h-full z-50 flex items-center   justify-center flex-col gap-y-10">
         {dataSections.map((section, index) => (
-          <motion.li
+          <li
             key={index}
-            whileHover={{ scale: 1.1 }}
             onClick={() => scrollToSection(section.id)}
             className="relative cursor-pointer mt-2 first:mt-0 flex items-center justify-start mx-auto"
           >
             <svg
               className={`${
                 activeSection && activeSection.id === section.id
-                  ? "fill-primary"
-                  : "fill-white"
-              } w-2 h-2 hover:fill-primary transition-colors duration-500`}
+                  ? "fill-primary w-3 h-3"
+                  : "fill-foreground dark:fill-white w-2 h-2"
+              } hover:fill-primary hover:scale-125 transition-all duration-300 cursor-pointer`}
               onMouseEnter={() => setHoveredSection(section.id)}
               onMouseLeave={() => setHoveredSection(null)}
             >
@@ -76,7 +75,7 @@ function SideBar({ text }) {
             <AnimatePresence>
               {hoveredSection === section.id && (
                 <motion.div
-                  className="text-white text-sm text-left flex absolute left-4 bg-zinc-700 px-2 py-1 rounded-md z-50 opacity-100"
+                  className="text-foreground text-sm text-left flex absolute left-4 bg-card dark:bg-zinc-700 px-2 py-1 rounded-md z-50 opacity-100"
                   initial={{ x: 20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   exit={{ x: 20, opacity: 0 }}
@@ -86,7 +85,7 @@ function SideBar({ text }) {
                 </motion.div>
               )}
             </AnimatePresence>
-          </motion.li>
+          </li>
         ))}
       </ul>
     </div>

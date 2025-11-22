@@ -2,7 +2,7 @@ import "../../styles/globals.css";
 import { Locale, i18n } from "@/i18n.config";
 import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
-import { TranslationsProvider } from "../context/TranslationContext";
+import Providers from "../components/providers/Providers";
 import en from "@/app/dictionaries/en.json";
 import es from "@/app/dictionaries/es.json";
 
@@ -23,17 +23,37 @@ export default async function RootLayout({
   const initialTranslations = translations[lang];
   
   return (
-    <html lang={lang}>
-      {/* <Head /> */}
-      <body className=" text-zinc-100 font-body grid grid-cols-1" suppressHydrationWarning>
-        <TranslationsProvider initialLocale={lang} initialTranslations={initialTranslations}>
+    <html lang={lang} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const theme = localStorage.getItem('theme') || 'system';
+                  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                  const resolvedTheme = theme === 'system' ? systemTheme : theme;
+
+                  if (resolvedTheme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body className="bg-background text-foreground font-body grid grid-cols-1" suppressHydrationWarning>
+        <Providers locale={lang} initialTranslations={initialTranslations}>
           <NavBar />
           <main className="max-w-full mt-20 pt-8 w-[100vw] flex flex-col items-center justify-center relative">
             {children}
           </main>
           <Footer />
           {/* <CookiesButton /> */}
-        </TranslationsProvider>
+        </Providers>
       </body>
     </html>
   );

@@ -1,4 +1,5 @@
 import { useRive } from "@rive-app/react-canvas";
+import { useEffect, useMemo, memo } from "react";
 
 type RiveAnimationProps = {
   artboardName?: string;
@@ -6,23 +7,31 @@ type RiveAnimationProps = {
   hover?: boolean;
 };
 
-export const RiveAnimation = ({
+export const RiveAnimation = memo(({
   hoverAnimationName = "Hover",
   artboardName = "Design",
   hover = false,
 }: RiveAnimationProps) => {
-  const { rive, RiveComponent } = useRive({
+  const riveConfig = useMemo(() => ({
     src: "/rive/web_portfolio.riv",
     autoplay: true,
     artboard: artboardName,
-  });
+  }), [artboardName]);
 
-  if (hover && rive) rive.play(hoverAnimationName);
-  if (!hover && rive) rive.play("Loop");
+  const { rive, RiveComponent } = useRive(riveConfig);
+
+  useEffect(() => {
+    if (!rive) return;
+
+    const animationName = hover ? hoverAnimationName : "Loop";
+    rive.play(animationName);
+  }, [rive, hover, hoverAnimationName]);
 
   return (
     <div className="w-full h-full flex justify-center items-center">
       <RiveComponent className="h-[80%] w-full md:h-full" />
     </div>
   );
-};
+});
+
+RiveAnimation.displayName = 'RiveAnimation';

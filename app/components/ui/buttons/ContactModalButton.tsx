@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useTranslationContext } from "../../../context/TranslationContext";
+import { Button } from "../../atomic/atoms/button";
 import ModalContact from "../modals/modalContact";
 
 function ContactModalButton({ className, setModalOpenNavbar }) {
@@ -14,18 +15,15 @@ function ContactModalButton({ className, setModalOpenNavbar }) {
 
   return (
     <>
-      <motion.button
-        className={
-          className ||
-          "self-center b text-primary  border  border-primary font-bold rounded-md bg-zinc-950/30 hover:text-zinc-950 hover:bg-primary px-4 h-8 uppercase"
-        }
-        whileHover={{ scale: 1.03 }}
-        whileTap={{ scale: 0.93 }}
+      <Button
+        variant='primary'
+        size='sm'
+        className={className || "self-center"}
         onClick={open}
       >
-        {translations?.menu?.contact || 'Contacto'}
-      </motion.button>
-      <AnimatePresence mode="wait" initial={false} onExitComplete={close}>
+        {translations?.menu?.contact || "Contacto"}
+      </Button>
+      <AnimatePresence mode='wait' initial={false} onExitComplete={close}>
         {modalOpen && <ModalContact handleClose={close} />}
       </AnimatePresence>
     </>

@@ -5,7 +5,7 @@ import ProjectCard from "../../card/ProjectCard";
 import TailwindGrid from "../../grid/TailwindGrid";
 import ResponsiveList from "../../list/ResponsiveList";
 import ParallaxText from "../../slider/ParallaxText";
-import SecondaryButton from "../../ui/buttons/SecondaryButton";
+import { Button } from "../../atomic/atoms/button";
 import FlexCarousel from "../../ui/carousel/flex-carousel/FlexCarousel";
 import { useLocalizedPath } from "@/app/hooks/useLocalizedPath";
 
@@ -20,7 +20,9 @@ function ProjectsPreview({ text }) {
 
   // Randomize after hydration on client side only
   useEffect(() => {
-    const randomStart = Math.floor(Math.random() * Math.max(0, text.portfolio.projects.length - 6));
+    const randomStart = Math.floor(
+      Math.random() * Math.max(0, text.portfolio.projects.length - 6)
+    );
     const randomEnd = Math.min(randomStart + 6, text.portfolio.projects.length);
     setContentStart(randomStart);
     setContentEnd(randomEnd);
@@ -34,31 +36,25 @@ function ProjectsPreview({ text }) {
   }));
 
   return (
-    <div className="relative flex-col flex col-span-full  bg-yellow-500/0 ">
+    <div className='relative flex-col flex col-span-full  bg-yellow-500/0 '>
       <TailwindGrid fullSize>
-        <section className="absolute self-center overflow-hidden max-w-full -z-50 -top-[17vw] md:-top-[11vw] lg:-top-[8.5vw] left-0 ">
+        <section className='absolute self-center overflow-hidden max-w-full -z-50 -top-[17vw] md:-top-[11vw] lg:-top-[8.5vw] left-0 '>
           <ParallaxText baseVelocity={-0.05}>
             {previewProjects.textScroller}
           </ParallaxText>
         </section>
       </TailwindGrid>
-      <div className="col-span-full max-w-full flex flex-col justify-center content-center items-center">
+      <div className='col-span-full max-w-full flex flex-col justify-center content-center items-center'>
         <TailwindGrid>
-          <h3
-            className="col-span-full lg:col-start-2 text-start text-[7vw] leading-[8vw] md:text-[4.8vw] md:leading-[4.8vw] lg:text-[3vw] lg:leading-[3vw] font-black z-40 pointer-events-none"
-            style={{
-              textShadow:
-                "-1px -1px 0 #0F0F0F, 1px -1px 0 #0F0F0F, -1px 1px 0 #0F0F0F, 1px 1px 0 #0F0F0F",
-            }}
-          >
+          <h3 className='col-span-full lg:col-start-2 text-start text-[7vw] leading-[8vw] md:text-[4.8vw] md:leading-[4.8vw] lg:text-[3vw] lg:leading-[3vw] font-black z-50 pointer-events-none relative'>
             {previewProjects.title}
-            <span className=" md:hidden">
+            <span className=' md:hidden'>
               <br />
             </span>
-            <span className="text-primary">{previewProjects.titlePrimary}</span>
+            <span className='text-primary'>{previewProjects.titlePrimary}</span>
           </h3>
-          <div className="self-center md:pb-9 md:pt-5 col-start-1 lg:col-start-2 col-end-5 md:col-end-9 lg:col-end-13 w-full flex flex-col">
-            <div className="hidden md:block">
+          <div className='self-center md:pb-9 md:pt-5 col-start-1 lg:col-start-2 col-end-5 md:col-end-9 lg:col-end-13 w-full flex flex-col'>
+            <div className='hidden md:block'>
               <ResponsiveList tablet={3}>
                 {text.portfolio.projects &&
                   projects[0]
@@ -71,27 +67,26 @@ function ProjectsPreview({ text }) {
           </div>
         </TailwindGrid>
       </div>
-      <div className="block md:hidden pb-7 pt-5">
+      <div className='block md:hidden pb-7 pt-5'>
         {projectImages && (
           <FlexCarousel
             dataCards={projectImages}
             width={70}
             reduceGap={15}
-            key="image"
-            type="image"
+            key='image'
+            type='image'
           />
         )}
       </div>
       <TailwindGrid>
-        <div className="flex justify-center items-center col-span-full lg:col-start-2 my-auto">
-          <Link href={localizedPath('/projects?category=All&page=1')}>
-            <SecondaryButton
-              className={
-                "text-center  hover:bg-white hover:text-zinc-950  text-md py-3 px-5 md:text-[min(2vw,22px)]    font-bold uppercase self-center md:px-[min(3vw,2.5rem)] md:py-[min(0.5vw,2rem)] border border-white  rounded-full"
-              }
+        <div className='flex justify-center items-center col-span-full lg:col-start-2 my-auto'>
+          <Link href={localizedPath("/projects?category=All&page=1")}>
+            <Button
+              variant='primary'
+              className='text-center text-md py-3 px-5 md:text-[min(2vw,22px)] md:px-[min(3vw,2.5rem)] md:py-[min(0.5vw,2rem)] rounded-full'
             >
               {previewProjects.button}
-            </SecondaryButton>
+            </Button>
           </Link>
         </div>
       </TailwindGrid>

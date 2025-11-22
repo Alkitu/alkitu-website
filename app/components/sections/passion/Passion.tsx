@@ -21,7 +21,7 @@ function Passion({ text }) {
                   {passionData.titlePrimary}
                 </span>
               </h3>
-              <p className="max-w-full text-center md:text-left text-slate-50 md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] font-normal tracking-tight">
+              <p className="max-w-full text-center md:text-left text-foreground dark:text-slate-50 md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] font-normal tracking-tight">
                 {passionData.description}
               </p>
             </div>

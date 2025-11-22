@@ -7,6 +7,7 @@ import ContactModalButton from "../../ui/buttons/ContactModalButton.tsx";
 import LanguaguesSwitch from "../../ui/switch/languaguesSwitch.jsx";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import SelectTheme from "../select-theme/SelectTheme";
 
 const MainMenu = ({ isOpen, toggleOpen, setModalOpenNavbar }) => {
   const { translations, locale } = useTranslationContext();
@@ -68,11 +69,11 @@ const MainMenu = ({ isOpen, toggleOpen, setModalOpenNavbar }) => {
                     className={`relative items-center    tracking-wider rounded-md w-full  ${
                       currentPathname === route.pathname
                         ? "text-primary"
-                        : "text-zinc-100  hover:scale-105 hover:text-primary transition-all"
+                        : "text-foreground  hover:scale-105 hover:text-primary transition-all"
                     }`}
                   >
                     <motion.div
-                      className="justify-center hover:bg-zinc-800 py-5 w-full "
+                      className="justify-center hover:bg-muted dark:hover:bg-zinc-800 py-5 w-full "
                       whileTap={{ scale: 0.9 }}
                     >
                       <div className="w-full flex flex-row gap-5  mx-auto pl-5">
@@ -83,7 +84,7 @@ const MainMenu = ({ isOpen, toggleOpen, setModalOpenNavbar }) => {
                           alt="Projects folder icon"
                           className=" fill-zinc-300 h-6 w-6 col-span-1   "
                         />
-                        <p className="text-zinc-100 text-xl tracking-wider col-span-10 col-start-3 h-full">
+                        <p className="text-foreground text-xl tracking-wider col-span-10 col-start-3 h-full">
                           {route.name}
                         </p>
                       </div>
@@ -102,7 +103,7 @@ const MainMenu = ({ isOpen, toggleOpen, setModalOpenNavbar }) => {
                       className="flex h-6 w-6 self-center items-center justify-center col-span-1 fill-zinc-300 col-start-1 lg:col-start-2"
                     />
 
-                    <p className="text-zinc-100 text-xl tracking-wider col-span-9 col-start-3 h-full">
+                    <p className="text-foreground text-xl tracking-wider col-span-9 col-start-3 h-full">
                       {translations?.menu?.languages}
                     </p>
                   </div>
@@ -110,6 +111,23 @@ const MainMenu = ({ isOpen, toggleOpen, setModalOpenNavbar }) => {
                     <p className=" text-lg tracking-wider ">ES</p>
                     <LanguaguesSwitch className="w-16" />
                     <p className=" text-lg tracking-wider">EN</p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-12 py-5 px-5 border-t border-border">
+                  <div className="col-span-12 flex items-center gap-4">
+                    <Image
+                      priority
+                      src="/icons/navbar/Translate.svg"
+                      width={24}
+                      height={24}
+                      alt="Theme icon"
+                      className="h-6 w-6"
+                    />
+                    <p className="text-foreground text-xl tracking-wider flex-1">
+                      {translations?.menu?.theme || 'Theme'}
+                    </p>
+                    <SelectTheme />
                   </div>
                 </div>
               </div>

@@ -26,7 +26,7 @@ function Skills({ text }) {
                 className="text-start text-[7vw] leading-[8vw] md:text-[4.8vw] md:leading-[4.8vw] lg:text-[3vw] lg:leading-[3vw] font-black z-40 pointer-events-none"
                 style={{
                   textShadow:
-                    "-1px -1px 0 #0F0F0F, 1px -1px 0 #0F0F0F, -1px 1px 0 #0F0F0F, 1px 1px 0 #0F0F0F",
+                    "-1px -1px 0 rgb(var(--background)), 1px -1px 0 rgb(var(--background)), -1px 1px 0 rgb(var(--background)), 1px 1px 0 rgb(var(--background))",
                 }}
               >
                 {dataSkills.title}
@@ -47,7 +47,7 @@ function Skills({ text }) {
           </TailwindGrid>
         </section>
         <TailwindGrid fullSize>
-          <section className="col-span-12 self-center overflow-hidden max-w-full z-20 mt-9">
+          <section className="col-span-12 self-center overflow-hidden max-w-full z-20 mt-9 pointer-events-none">
             <ParallaxIcon baseVelocity={-0.2}>
               <div className=" justify-start items-center gap-8  inline-flex ">
                 {dataSkills.firstLine &&
@@ -57,7 +57,7 @@ function Skills({ text }) {
               </div>
             </ParallaxIcon>
           </section>
-          <section className="col-span-12 self-center overflow-hidden max-w-full z-20 mb-[3vw] md:mb-[5vw] mt-[6vw] md:mt-[1vw]">
+          <section className="col-span-12 self-center overflow-hidden max-w-full z-20 mb-[3vw] md:mb-[5vw] mt-[6vw] md:mt-[1vw] pointer-events-none">
             <ParallaxIcon baseVelocity={0.2}>
               <div className=" justify-start items-center gap-8 inline-flex  ">
                 {dataSkills.secondLine &&
@@ -77,17 +77,22 @@ export default Skills;
 
 function SkillsItems({ skill }) {
   return (
-    <div className=" group flex-col justify-center items-center gap-2 inline-flex  ">
-      <div className="w-[20vw] h-[20vw] md:w-[16vw] md:h-[16vw] lg:w-[8vw] lg:h-[8vw] relative bg-stone-950  rounded-xl s hadow-inner flex-col justify-center items-center flex">
+    <div className=" group flex-col justify-center items-center gap-2 inline-flex pointer-events-none">
+      <div className="w-[20vw] h-[20vw] md:w-[16vw] md:h-[16vw] lg:w-[8vw] lg:h-[8vw] relative bg-white dark:bg-stone-950 rounded-xl shadow-sm shadow-zinc-200 dark:shadow-md dark:shadow-black border border-zinc-50 dark:border-transparent flex-col justify-center items-center flex pointer-events-none">
         <Image
           src={skill.src}
           width={50}
           height={50}
           alt="skill"
-          className="max-w-10/12  object-cover group-hover:scale-125 transition-all duration-200 z-30"
+          className="max-w-10/12 object-cover group-hover:scale-125 transition-all duration-200 z-30 pointer-events-none brightness-0 dark:brightness-100"
         />
       </div>
-      <p className=" text-center text-xs lg:text-[#0F0F0F] text-[0.60vw] font-bold uppercase tracking-wide group-hover:scale-125 transition-all duration-200 ">
+      <p
+        className="text-center text-xs text-[0.60vw] font-bold uppercase tracking-wide group-hover:scale-125 transition-all duration-200 pointer-events-none"
+        style={{
+          color: "rgb(var(--background))",
+        }}
+      >
         {skill.name}
       </p>
     </div>

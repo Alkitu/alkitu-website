@@ -62,13 +62,14 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
    * dynamically generated number of children.
    */
   return (
-    <div className="overflow-hidden whitespace-nowrap flex flex-nowrap opacity-20 pointer-events-none ">
+    <div className="overflow-hidden whitespace-nowrap flex flex-nowrap opacity-20 pointer-events-none">
       <motion.div
-        className="flex flex-nowrap whitespace-nowrap text-[30vw] md:text-[18vw] lg:text-[13vw] font-black uppercase  text-stone-950 "
+        className="flex flex-nowrap whitespace-nowrap text-[30vw] md:text-[18vw] lg:text-[13vw] font-black uppercase"
         style={{
           x,
+          color: "rgb(var(--background))",
           textShadow:
-            "-1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white",
+            "rgb(var(--foreground)) -1px -1px 0px, rgb(var(--foreground)) 1px -1px 0px, rgb(var(--foreground)) -1px 1px 0px, rgb(var(--foreground)) 1px 1px 0px",
         }}
       >
         <span className="block px-6">{children} </span>

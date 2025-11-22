@@ -29,10 +29,10 @@ function DynamicListItem({ category, index, boxPositions, handleClick }) {
               : "md:h-60 lg:h-64 -bottom-2"
           } ${
             hover ? "opacity-50" : "opacity-0"
-          } absolute w-full  bg-gradient-to-b from-primary to-primary rounded-lg blur transition duration-200 hidden lg:block `}
+          } absolute w-full  bg-gradient-to-b from-zinc-300 to-zinc-300 dark:from-primary dark:to-primary rounded-lg blur transition duration-200 hidden lg:block `}
         />
         <div
-          className={`  w-full mx-auto relative  bg-zinc-900  rounded-3xl flex-col content-center items-center justify-center  cursor-pointer  ${
+          className={`  w-full mx-auto relative  bg-white dark:bg-zinc-900 shadow-sm shadow-zinc-200 dark:shadow-md dark:shadow-black border border-zinc-50 dark:border-transparent  rounded-3xl flex-col content-center items-center justify-center  cursor-pointer  ${
             boxPositions[index] === 1
               ? "lg:h-68  py-[3.77rem]"
               : "lg:h-60 py-11"
@@ -62,7 +62,7 @@ function DynamicListItem({ category, index, boxPositions, handleClick }) {
             <h3
               className={`${
                 boxPositions[index] === 1 ? "lg:text-[2vw]" : "lg:text-[1.7vw] md:hidden lg:inline"
-              } text-center  text-[6vw] md:text-[3.8vw] font-black uppercase m-auto w-full`}
+              } text-center  text-[6vw] md:text-[3.8vw] font-black uppercase m-auto w-full text-foreground`}
             >
               {category.name.split("").map((word, wordIndex) => {
                 if (word === "_") return <span key={wordIndex}> </span>;
@@ -81,7 +81,7 @@ function DynamicListItem({ category, index, boxPositions, handleClick }) {
                   mass: 0.1,
                   delay: 0.25,
                 }}
-                className="mx-auto text-center mt-5 px-10 max-w-full md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] font-normal tracking-tight"
+                className="mx-auto text-center mt-5 px-10 max-w-full md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] font-normal tracking-tight text-foreground"
               >
                 {category.summary}
               </motion.p>

@@ -61,8 +61,8 @@ export default function FilterCategories({
       >
         {draggable === true && (
           <div className="absolute z-30 right-0 top-0 w-full flex justify-between  pointer-events-none opacity-90">
-            <div className="w-[20%] from-[#0F0F0F] via-[#0F0F0F] via-10% md:via-10% to-transparent to-80% md:to-20% bg-gradient-to-r h-12 pointer-events-none" />
-            <div className="w-[20%] from-[#0F0F0F] via-[#0F0F0F] via-10% md:via-10% to-transparent to-80% md:to-20% bg-gradient-to-l h-12 pointer-events-none" />
+            <div className="w-[20%] from-background via-background via-10% md:via-10% to-transparent to-80% md:to-20% bg-gradient-to-r h-12 pointer-events-none" />
+            <div className="w-[20%] from-background via-background via-10% md:via-10% to-transparent to-80% md:to-20% bg-gradient-to-l h-12 pointer-events-none" />
           </div>
         )}
         <motion.div
@@ -88,7 +88,7 @@ export default function FilterCategories({
             className={`w-20 ml-8 mr-2 ${
               search === "All"
                 ? "transition-all text-primary border-primary border font-normal tracking-wider rounded-full py-2 px-4 uppercase"
-                : "transition-all hover:text-primary hover:border-primary border-white border text-white font-normal tracking-wider rounded-full py-2 px-4  uppercase"
+                : "transition-all hover:text-primary hover:border-primary border-foreground border text-foreground font-normal tracking-wider rounded-full py-2 px-4  uppercase"
             }`}
             id="All"
             onClick={handleClick}
@@ -105,7 +105,7 @@ export default function FilterCategories({
                   className={`mx-2 last:mr-8 flex items-center ${
                     search === category.name
                       ? "transition-all text-primary border-primary border font-normal tracking-wider rounded-full py-2 px-4 uppercase "
-                      : "transition-all hover:text-primary hover:border-primary border-white border text-white font-normal tracking-wider rounded-full py-2 px-4  uppercase"
+                      : "transition-all hover:text-primary hover:border-primary border-foreground border text-foreground font-normal tracking-wider rounded-full py-2 px-4  uppercase"
                   }`}
                   id={category.name}
                   onClick={handleClick}

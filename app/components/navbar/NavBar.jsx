@@ -11,6 +11,7 @@ import BackdropLeftToRigth from "../ui/backdrop/BackdropLeftToRigth";
 import ContactModalButton from "../ui/buttons/ContactModalButton";
 import ModalContact from "../ui/modals/modalContact";
 import { usePathname } from "next/navigation";
+import SelectTheme from "./select-theme/SelectTheme";
 
 const sidebarVariants = {
   open: {
@@ -90,7 +91,7 @@ export default function NavBar() {
             damping: 30,
           }}
           exit={{ y: "-5rem" }}
-          className={`h-20 w-full fixed top-0 left-0 z-50 bg-zinc-950/40 backdrop-blur-lg shadow-l`}
+          className={`h-20 w-full fixed top-0 left-0 z-50 bg-background/40 backdrop-blur-lg shadow-l border-b border-border/50`}
         >
           <TailwindGrid fullSize>
             <div className="w-full lg:w-11/12 absolute top-0 right-0 col-span-full flex justify-end">
@@ -109,13 +110,9 @@ export default function NavBar() {
                     </motion.p>
                   </Link>
                 </div>
-                <div className="hidden lg:flex">
+                <div className="hidden lg:flex items-center">
                   {routes.map((route) => (
-                    <motion.div
-                      className="flex justify-center px-4"
-                      key={route.pathname}
-                      whileTap={{ scale: 0.9 }}
-                    >
+                    <div className="flex justify-center items-center px-4" key={route.pathname}>
                       <Link
                         href={
                           route.pathname === "/projects"
@@ -124,18 +121,21 @@ export default function NavBar() {
                         }
                         className={
                           currentPathname === route.pathname
-                            ? "self-center flex items-center text-primary font-bold rounded-md px-4 h-8 uppercase"
-                            : "self-center flex items-center text-zinc-100 hover:scale-105 hover:text-primary transition-all font-bold rounded-md px-4 h-8 uppercase"
+                            ? "flex items-center text-primary font-bold px-4 h-8 uppercase"
+                            : "flex items-center text-foreground font-bold px-4 h-8 uppercase cursor-pointer hover:scale-105 hover:text-primary active:scale-95 transition-all"
                         }
                       >
                         {route.name}
                       </Link>
-                    </motion.div>
+                    </div>
                   ))}
-                  <div className="flex justify-center px-4">
+                  <div className="flex justify-center items-center px-4">
                     <ContactModalButton />
                   </div>
-                  <div className="flex justify-center pr-8 pl-4">
+                  <div className="flex justify-center items-center px-2">
+                    <SelectTheme />
+                  </div>
+                  <div className="flex justify-center items-center pr-8 pl-2">
                     <SelectLanguage />
                   </div>
                 </div>
@@ -153,7 +153,7 @@ export default function NavBar() {
                     {isOpen && (
                       <BackdropLeftToRigth onClick={() => toggleOpen()}>
                         <motion.div
-                          className={`fixed h-[100dvh] top-0 right-0 bottom-0 bg-[#121212] ${
+                          className={`fixed h-[100dvh] top-0 right-0 bottom-0 bg-background border-l border-border ${
                             isOpen && "flex"
                           } max-w-full min-w-[300px] overflow-hidden`}
                           initial="closed"

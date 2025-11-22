@@ -27,15 +27,14 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
     if (showFullDescription) {
       return (
         <>
-          <p className="items-center justify-center text-center px-6 py-5 bg-zinc-900 rounded-2xl shadow flex flex-col gap-y-2 mx-auto md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] font-normal tracking-tight">
+          <p className="max-w-full md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] font-normal tracking-tight">
             {container.description}
           </p>
           <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="text-primary font-normal underline md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw]  cursor-pointer z-30 p-2"
+            className="text-primary font-normal underline md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] cursor-pointer z-30 p-2"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={toggleDescription}
-            dragListener={false}
           >
             Read Less
           </motion.button>
@@ -52,11 +51,10 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
             {truncatedDescription}...
           </p>
           <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="text-primary font-normal underline md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw]  cursor-pointer z-30 p-2"
+            className="text-primary font-normal underline md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] cursor-pointer z-30 p-2"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={toggleDescription}
-            dragListener={false}
           >
             Read More
           </motion.button>
@@ -68,7 +66,7 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
   return (
     <motion.div
       layout="position"
-      className="items-center justify-center text-center bg-zinc-900 rounded-xl shadow flex flex-col gap-y-2 mx-auto  px-[8%] py-[5%]"
+      className="items-center justify-center text-center bg-card dark:bg-zinc-900 rounded-xl shadow flex flex-col gap-y-2 mx-auto  px-[8%] py-[5%]"
     >
       {container.url && (
         <Link
@@ -102,7 +100,7 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
       <h4 className="text-center md:text-[1.8vw] lg:text-[1.6vw] 2xl:text-[1.2vw] font-bold">
         {container.name}
       </h4>
-      <h5 className="text-zinc-400 text-xs md:text-[1.4vw] lg:text-[1.2vw] 2xl:text-[0.8vw] font-medium">
+      <h5 className="text-muted-foreground text-xs md:text-[1.4vw] lg:text-[1.2vw] 2xl:text-[0.8vw] font-medium">
         {container.position}
       </h5>
       <motion.div

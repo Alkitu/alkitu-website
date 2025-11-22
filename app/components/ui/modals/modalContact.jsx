@@ -32,7 +32,7 @@ const ModalContact = ({ handleClose }) => {
   return (
     <BackdropUpToDown onClick={handleClose}>
       <motion.div
-        className=" w-[clamp(90%,700px,90px)] md:max-w-lg m-auto py-2 px-8 rounded-xl flex flex-col justify-between items-center shadow bg-zinc-800 "
+        className=" w-[clamp(90%,700px,90px)] md:max-w-lg m-auto py-2 px-8 rounded-xl flex flex-col justify-between items-center shadow bg-card dark:bg-zinc-800 "
         variants={dropIn}
         initial="closed"
         animate="open"

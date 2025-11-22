@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useTranslationContext } from '../../../context/TranslationContext'
+import { useDropdown } from '../../../context/DropdownContext'
 import { deleteCookie, setCookie } from 'cookies-next'
 
 const itemVariants = {
@@ -10,19 +11,21 @@ const itemVariants = {
     y: 0,
     transition: {
       type: 'spring',
-      stiffness: 400,
-      damping: 40,
-      staggerChildren: 1
+      stiffness: 300,
+      damping: 25,
+      mass: 0.8,
+      staggerChildren: 0.05
     }
   }),
   closed: {
-    y: 50,
+    y: 20,
     opacity: 0,
     transition: {
       type: 'spring',
-      stiffness: 400,
-      damping: 40,
-      staggerChildren: 1,
+      stiffness: 300,
+      damping: 25,
+      mass: 0.8,
+      staggerChildren: 0.05,
       staggerDirection: -1
     }
   }
@@ -31,27 +34,34 @@ const itemVariants = {
 const mobileNavbar = {
   open: {
     clipPath: 'inset(0% 0% 0% 0% round 10px)',
+    opacity: 1,
+    scale: 1,
     transition: {
       type: 'spring',
-      bounce: 0,
-      duration: 0.7,
-      delayChildren: 0.3,
+      stiffness: 300,
+      damping: 30,
+      mass: 0.8,
+      delayChildren: 0.1,
       staggerChildren: 0.05
     }
   },
   closed: {
     clipPath: 'inset(10% 50% 90% 50% round 10px)',
+    opacity: 0,
+    scale: 0.95,
     transition: {
       type: 'spring',
-      bounce: 0,
-      duration: 0.3
+      stiffness: 300,
+      damping: 30,
+      mass: 0.8
     }
   }
 }
 
 export default function SelectLanguage () {
   const { translations, setLocale, locale } = useTranslationContext()
-  const [isOpen, setIsOpen] = useState(false)
+  const { activeDropdown, toggleDropdown } = useDropdown()
+  const isOpen = activeDropdown === 'language'
   const [selectedCategory, setSelectedCategory] = useState(
     translations?.menu?.currentLanguage || locale.toUpperCase()
   )
@@ -70,8 +80,8 @@ export default function SelectLanguage () {
       <motion.button
         whileHover={{ scale: 1.03, fill: '#00BB31' }}
         whileTap={{ scale: 0.97 }}
-        onClick={() => setIsOpen((isOpen) => !isOpen)}
-        className="relative cursor-pointer w-full flex justify-between items-center text-left fill-white"
+        onClick={() => toggleDropdown('language')}
+        className="relative cursor-pointer w-full flex justify-between items-center text-left fill-foreground"
       >
         <div className="self-center">
           {/* <svg
@@ -122,7 +132,7 @@ export default function SelectLanguage () {
             </g>
           </svg>
         </div>
-        <p className="fs-6 fw-normal text-zinc-100  mx-2 font-bold uppercase">
+        <p className="fs-6 fw-normal text-foreground  mx-2 font-bold uppercase">
           {selectedCategory || 'Language'}
         </p>
         <motion.div
@@ -142,7 +152,7 @@ export default function SelectLanguage () {
           >
             <path
               d="M1 1L7 7L13 1"
-              stroke={isOpen ? 'rgb(0 187 49)' : 'rgb(244 244 245)'}
+              stroke={isOpen ? 'rgb(0 187 49)' : 'currentColor'}
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -156,7 +166,7 @@ export default function SelectLanguage () {
             {/* <div className={`self-end h-0 w-0  border-l-transparent border-r-8 border-r-transparent  border-t-transparent ${isOpen ? '' : 'hidden'} border-solid border-[10px] border-zinc-700 right-12 bottom-4 z-50 absolute`}></div> */}
             <motion.ul
               variants={mobileNavbar}
-              className={`select-list w-28 absolute bg-zinc-700 text-zinc-100 top-16  list-none m-0 flex flex-col right-8 ${
+              className={`select-list w-32 absolute bg-zinc-50 dark:bg-zinc-700 text-foreground top-16  list-none m-0 flex flex-col right-8 shadow-lg rounded-md ${
                 isOpen ? 'p-2 scale-1' : 'hidden scale-0'
               }`}
               exit="closed"
@@ -176,22 +186,40 @@ export default function SelectLanguage () {
                   languageOptions.map((category, index) => (
                     <motion.li
                       key={index}
-                      className="text-center text-md last:border-b-0 border-b-2  font-medium  first:pb-2 last:pt-2  flex-row w-full content-center justify-center cursor-pointer"
-                      whileHover={{ color: '#C7D1DA', fontSize: '18px' }}
-                      whileTap={{ color: '#C7D1DA', fontSize: '14px' }}
+                      className="text-center text-md last:border-b-0 border-b-2  font-medium  first:pb-2 last:pt-2  flex-row w-full content-center cursor-pointer flex items-center justify-between gap-2 px-2"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                       variants={itemVariants}
                       initial="closed"
                       animate={isOpen ? 'open' : 'closed'}
                       exit="closed"
                       value={category.id}
                       onClick={() => {
-                        setIsOpen(false)
+                        toggleDropdown(null)
                         setLocale(category.pathname)
                         // Redirect to the new locale
                         window.location.href = `/${category.pathname}`
                       }}
                     >
-                      {category.name}
+                      <span className={locale === category.pathname ? 'text-primary font-bold' : ''}>{category.name}</span>
+                      {locale === category.pathname && (
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="text-primary"
+                        >
+                          <path
+                            d="M16.6667 5L7.50004 14.1667L3.33337 10"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      )}
                     </motion.li>
                   ))}
               </AnimatePresence>
