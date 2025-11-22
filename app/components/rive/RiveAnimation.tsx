@@ -12,7 +12,7 @@ export const RiveAnimation = ({
   hover = false,
 }: RiveAnimationProps) => {
   const { rive, RiveComponent } = useRive({
-    src: "/web_portfolio.riv",
+    src: "/rive/web_portfolio.riv",
     autoplay: true,
     artboard: artboardName,
   });

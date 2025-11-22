@@ -3,9 +3,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
 function SideBar({ text }) {
-  const dataSections = text.home.sections;
+  const dataSections = text?.home?.sections || [];
   const [hoveredSection, setHoveredSection] = useState(null);
-  const [activeSection, setActiveSection] = useState(dataSections[0]);
+  const [activeSection, setActiveSection] = useState(dataSections[0] || null);
 
   const scrollToSection = (id) => {
     const target = document.getElementById(id);
@@ -20,12 +20,14 @@ function SideBar({ text }) {
   };
 
   useEffect(() => {
+    if (!dataSections || dataSections.length === 0) return;
+
     const handleScroll = () => {
       let closestDistance = Infinity;
       let closestSection = null;
 
       dataSections.forEach((section) => {
-        const target = document.getElementById(section.id); // Cambio aquí para obtener el elemento por su ID
+        const target = document.getElementById(section.id);
 
         if (target) {
           const rect = target.getBoundingClientRect();
@@ -34,7 +36,7 @@ function SideBar({ text }) {
 
           if (distance < closestDistance) {
             closestDistance = distance;
-            closestSection = target;
+            closestSection = section; // Guardar el objeto section, no el elemento DOM
           }
         }
       });
@@ -46,7 +48,9 @@ function SideBar({ text }) {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [dataSections]);
+
+  if (!dataSections || dataSections.length === 0) return null;
 
   return (
     <div className="col-span-1 col-start-1 col-end-2 h-[100dvh] fixed w-1/12  top-0 z-50 border-r box-border border-zinc-500 bg-zinc-950/40 backdrop-blur-lg bg-clip-padding backdrop-filter opacity-75 hidden lg:block">

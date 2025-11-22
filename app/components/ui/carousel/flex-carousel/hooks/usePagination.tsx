@@ -14,6 +14,15 @@ type PaginationResult = {
 
 
 export function usePagination(initialData: Item[]): PaginationResult {
+  // Guard against null/undefined data
+  if (!initialData || !Array.isArray(initialData)) {
+    return {
+      data: [],
+      centerOrder: 0,
+      paginate: () => {},
+    };
+  }
+
   const processedData = initialData.map((item, index) => ({
     ...item,
     order: typeof item.order !== "undefined" ? item.order : index + 1,

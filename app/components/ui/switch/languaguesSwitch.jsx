@@ -1,10 +1,10 @@
-import { LanguageContext } from '../../../context/languageContext'
+import { useTranslationContext } from "../../../context/TranslationContext"
 import { deleteCookie, setCookie } from 'cookies-next'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useContext, useState } from 'react'
 
 export default function LanguaguesSwitch ({ className }) {
-  const { setLanguageCookie, text } = useContext(LanguageContext)
+  const { setLanguageCookie, text } = useContext(useTranslationContext)
   const [isOn, setIsOn] = useState(text.menu.currentLanguage === 'EN')
   return (
     <>

@@ -1,9 +1,12 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Suspense } from "react";
+import { useTranslationContext } from "../../context/TranslationContext";
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, priority = false }) => {
+  const { locale } = useTranslationContext();
   const itemVariants = {
     hidden: { opacity: 0, scale: 0 },
     show: { opacity: 1, scale: 1 },
@@ -21,15 +24,15 @@ const ProjectCard = ({ project }) => {
       className="rounded-2xl overflow-hidden dark:bg-gray-700 "
     >
       <Link
-        href={"projects/" + project.url}
+        href={`/${locale}/projects/${project.url}`}
         className="group aspect-video w-full overflow-hidden rounded-2xl lg:opacity-75 hover:opacity-100 bg-gray-200 dark:bg-gray-700 relative"
         key={project.url}
       >
         <Suspense
           fallback={
-            <div class="flex items-center justify-center w-full h-48 bg-gray-300 rounded sm:w-96 dark:bg-gray-700">
+            <div className="flex items-center justify-center w-full h-48 bg-gray-300 rounded sm:w-96 dark:bg-gray-700">
               <svg
-                class="w-10 h-10 text-gray-200 dark:text-gray-600"
+                className="w-10 h-10 text-gray-200 dark:text-gray-600"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -45,9 +48,10 @@ const ProjectCard = ({ project }) => {
             src={project.image}
             width={1080}
             height={720}
-            alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
+            alt={project.title || "Project image"}
             className="w-full aspect-video object-cover object-center group-hover:opacity-100 transition-all rounded-2xl bg-gray-700  "
             blurDataURL={project.image}
+            priority={priority}
           />
         </Suspense>
       </Link>

@@ -1,23 +1,30 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProjectCard from "../../card/ProjectCard";
 import TailwindGrid from "../../grid/TailwindGrid";
 import ResponsiveList from "../../list/ResponsiveList";
 import ParallaxText from "../../slider/ParallaxText";
 import SecondaryButton from "../../ui/buttons/SecondaryButton";
 import FlexCarousel from "../../ui/carousel/flex-carousel/FlexCarousel";
+import { useLocalizedPath } from "@/app/hooks/useLocalizedPath";
 
 function ProjectsPreview({ text }) {
   const projects = useState(text.portfolio.projects);
   const previewProjects = text.home.projectsPreviewSection;
+  const localizedPath = useLocalizedPath();
 
-  const [contentStart, setContentStart] = useState(
-    Math.floor(Math.random() * (text.portfolio.projects.length - 6))
-  );
-  const [contentEnd, setContentEnd] = useState(
-    Math.min(contentStart + 6, text.portfolio.projects.length)
-  );
+  // Start with first 6 projects to avoid hydration mismatch
+  const [contentStart, setContentStart] = useState(0);
+  const [contentEnd, setContentEnd] = useState(6);
+
+  // Randomize after hydration on client side only
+  useEffect(() => {
+    const randomStart = Math.floor(Math.random() * Math.max(0, text.portfolio.projects.length - 6));
+    const randomEnd = Math.min(randomStart + 6, text.portfolio.projects.length);
+    setContentStart(randomStart);
+    setContentEnd(randomEnd);
+  }, [text.portfolio.projects.length]);
 
   // Extracting images for the carousel
   const projectImages = text.portfolio.projects.slice(0, 6).map((project) => ({
@@ -30,7 +37,7 @@ function ProjectsPreview({ text }) {
     <div className="relative flex-col flex col-span-full  bg-yellow-500/0 ">
       <TailwindGrid fullSize>
         <section className="absolute self-center overflow-hidden max-w-full -z-50 -top-[17vw] md:-top-[11vw] lg:-top-[8.5vw] left-0 ">
-          <ParallaxText baseVelocity={-0.2}>
+          <ParallaxText baseVelocity={-0.05}>
             {previewProjects.textScroller}
           </ParallaxText>
         </section>
@@ -77,7 +84,7 @@ function ProjectsPreview({ text }) {
       </div>
       <TailwindGrid>
         <div className="flex justify-center items-center col-span-full lg:col-start-2 my-auto">
-          <Link href="/projects?category=All&page=1">
+          <Link href={localizedPath('/projects?category=All&page=1')}>
             <SecondaryButton
               className={
                 "text-center  hover:bg-white hover:text-zinc-950  text-md py-3 px-5 md:text-[min(2vw,22px)]    font-bold uppercase self-center md:px-[min(3vw,2.5rem)] md:py-[min(0.5vw,2rem)] border border-white  rounded-full"

@@ -1,11 +1,11 @@
 "use client";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { LanguageContext } from "../../../context/languageContext";
+import { useTranslationContext } from "../../../context/TranslationContext";
 import ModalContact from "../modals/modalContact";
 
 function ContactModalButton({ className, setModalOpenNavbar }) {
-  const { text } = useContext(LanguageContext);
+  const { translations } = useTranslationContext();
   const [modalOpen, setModalOpen] = useState(false);
   const close = () =>
     setModalOpenNavbar ? setModalOpenNavbar(false) : setModalOpen(false);
@@ -23,7 +23,7 @@ function ContactModalButton({ className, setModalOpenNavbar }) {
         whileTap={{ scale: 0.93 }}
         onClick={open}
       >
-        {text?.menu.contact}
+        {translations?.menu?.contact || 'Contacto'}
       </motion.button>
       <AnimatePresence mode="wait" initial={false} onExitComplete={close}>
         {modalOpen && <ModalContact handleClose={close} />}

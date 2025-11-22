@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import useScreenWidth from "@/app/components/ui/carousel/flex-carousel/hooks/useScreenWitdh";
 import TailwindGrid from "../../grid/TailwindGrid";
 import ResponsiveList from "../../list/ResponsiveList";
@@ -10,6 +11,11 @@ function Testimonials({ text }) {
   const dataTestimonials = text.home.testimonialsSection;
   const screenCenter = useScreenWidth();
   const screenWidth = useScreenWidth();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
     <div className="relative col-span-full max-w-full  bg-orange-500/0 pb-[14vw] md:pb-[7vw] lg:pb-[9vw]">
@@ -54,7 +60,7 @@ function Testimonials({ text }) {
       </div>
 
       <div className="inline md:hidden">
-        {screenCenter && (
+        {isMounted && screenCenter && (
           <FlexCarousel
             dataCards={dataTestimonials.testimonials}
             width={70}

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sync:projects": "node lib/projects/sync-to-dictionaries.js"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.4.0",
@@ -14,9 +15,9 @@
     "cookies-next": "2.1.2",
     "framer-motion": "^10.16.16",
     "negotiator": "^0.6.3",
-    "next": "14.0.3",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "next": "^16.0.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.0.4",

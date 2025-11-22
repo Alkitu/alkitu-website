@@ -1,27 +1,27 @@
 'use client'
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 function useElementWidth(ref) {
   const [elementWidth, setElementWidth] = useState(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const element = ref.current;
-    if (element) {
-      const rect = element.getBoundingClientRect();
-      setElementWidth(rect.width);
-    }
+    if (!element) return;
 
-    const handleResize = () => {
+    const updateWidth = () => {
       const rect = element.getBoundingClientRect();
       setElementWidth(rect.width);
     };
 
-    window.addEventListener("resize", handleResize);
+    // Initial measurement
+    updateWidth();
+
+    window.addEventListener("resize", updateWidth);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", updateWidth);
     };
-  }, [ref, elementWidth]);
+  }, [ref]);
 
   return elementWidth;
 }

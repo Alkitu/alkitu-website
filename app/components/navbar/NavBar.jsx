@@ -1,10 +1,10 @@
 "use client";
-import { useRef, React, useContext, useState, useEffect } from "react";
+import { useRef, React, useState, useEffect } from "react";
 import { AnimatePresence, motion, useCycle } from "framer-motion";
 import { ToggleMenu } from "./toggle-menu/ToggleMenu";
 import MainMenu from "./main-menu/MainMenu";
 import TailwindGrid from "../grid/TailwindGrid";
-import { LanguageContext } from "../../context/languageContext";
+import { useTranslationContext } from "../../context/TranslationContext";
 import Link from "next/link.js";
 import SelectLanguage from "./select-language/selectLanguage";
 import BackdropLeftToRigth from "../ui/backdrop/BackdropLeftToRigth";
@@ -36,13 +36,13 @@ const sidebarVariants = {
 };
 
 export default function NavBar() {
-  const { text } = useContext(LanguageContext);
+  const { translations, locale } = useTranslationContext();
   const [isOpen, toggleOpen] = useCycle(false, true);
   const containerRef = useRef(null);
   const [modalOpenNavbar, setModalOpenNavbar] = useState(false);
   const close = () => setModalOpenNavbar(false);
   const open = () => setModalOpenNavbar(true);
-  const routes = text.menu.routes;
+  const routes = translations?.menu?.routes || [];
   const currentPathname = usePathname();
 
   const [isScrollingDown, setIsScrollingDown] = useState(false);
@@ -96,7 +96,7 @@ export default function NavBar() {
             <div className="w-full lg:w-11/12 absolute top-0 right-0 col-span-full flex justify-end">
               <div className="flex h-20 justify-between w-full lg:w-12/12 self-end">
                 <div className="ml-8 col-span-2 flex justify-center items-center">
-                  <Link href="/" className="flex items-center cursor-pointer">
+                  <Link href={`/${locale}`} className="flex items-center cursor-pointer">
                     <motion.p
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
@@ -119,8 +119,8 @@ export default function NavBar() {
                       <Link
                         href={
                           route.pathname === "/projects"
-                            ? "/projects?category=All&page=1"
-                            : route.pathname
+                            ? `/${locale}/projects?category=All&page=1`
+                            : `/${locale}${route.pathname}`
                         }
                         className={
                           currentPathname === route.pathname

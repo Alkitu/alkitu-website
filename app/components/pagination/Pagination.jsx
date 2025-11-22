@@ -1,6 +1,9 @@
+"use client";
 import Link from 'next/link'
+import { useTranslationContext } from '../../context/TranslationContext'
 
 function Pagination ({ search, totalPagination, currentPage, setCurrentPage }) {
+  const { locale } = useTranslationContext();
   const scrollToTop = () => {
     window.scrollTo({ top: 150, behavior: 'smooth' })
   }
@@ -9,7 +12,7 @@ function Pagination ({ search, totalPagination, currentPage, setCurrentPage }) {
     <nav className="flex justify-center items-center space-x-2">
       <Link
         className={`p-4 inline-flex items-center gap-2 rounded-md ${currentPage === 1 ? 'pointer-events-none opacity-25' : 'hover:text-primary'}`}
-        href={'projects' + '?' + 'category=' + search + '&' + 'page=' + (Number(currentPage) - 1)}
+        href={`/${locale}/projects?category=${search}&page=${Number(currentPage) - 1}`}
         onClick={() => {
           setCurrentPage(Number(currentPage) - 1)
           scrollToTop()
@@ -22,7 +25,7 @@ function Pagination ({ search, totalPagination, currentPage, setCurrentPage }) {
         <Link
           key={i + 1}
           className={`font-extrabold w-10 h-10 p-4 inline-flex items-center text-sm  rounded-full ${currentPage === i + 1 ? 'bg-primary  text-zinc-900' : 'hover:border hover:border-primary hover:text-primary'}`}
-          href={'projects' + '?' + 'category=' + search + '&' + 'page=' + (i + 1) }
+          href={`/${locale}/projects?category=${search}&page=${i + 1}`}
           onClick={() => {
             setCurrentPage(i + 1)
             scrollToTop()
@@ -33,7 +36,7 @@ function Pagination ({ search, totalPagination, currentPage, setCurrentPage }) {
       ))}
 
       <Link
-        href={'projects' + '?' + 'category=' + search + '&' + 'page=' + (Number(currentPage) + 1) }
+        href={`/${locale}/projects?category=${search}&page=${Number(currentPage) + 1}`}
         className={`p-4 inline-flex items-center gap-2 rounded-md ${currentPage === totalPagination ? 'pointer-events-none opacity-25 ' : 'hover:text-primary'}`}
         onClick={() => {
           setCurrentPage(Number(currentPage) + 1)

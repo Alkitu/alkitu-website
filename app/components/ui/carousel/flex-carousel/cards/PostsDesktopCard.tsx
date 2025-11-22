@@ -45,13 +45,19 @@ function PostsDesktopCard({
       className="max-h-fit w-full justify-between items-center  text-center bg-zinc-900 rounded-xl shadow flex flex-col gap-y-2 mx-auto "
     >
       <div className="w-full aspect-video bg-zinc-800 rounded-tl-xl rounded-tr-xl justify-center items-center inline-flex">
-        <Image
-          width={1080}
-          height={1080}
-          className="w-full aspect-video  rounded-tl-xl rounded-tr-xl justify-center items-center inline-flex object-cover"
-          src={container.thumbnail}
-          alt={container.title}
-        />
+        {container.thumbnail ? (
+          <Image
+            width={1080}
+            height={1080}
+            className="w-full aspect-video  rounded-tl-xl rounded-tr-xl justify-center items-center inline-flex object-cover"
+            src={container.thumbnail}
+            alt={container.title || "Post thumbnail"}
+          />
+        ) : (
+          <div className="w-full aspect-video bg-zinc-700 rounded-tl-xl rounded-tr-xl flex items-center justify-center">
+            <span className="text-zinc-500 text-sm">No image available</span>
+          </div>
+        )}
       </div>
 
       <div className="h-full items-center flex flex-col justify-center gap-y-2 mx-auto px-[8%] py-[5%] ">

@@ -1,11 +1,14 @@
+"use client";
 import Link from "next/link";
 import TailwindGrid from "../../grid/TailwindGrid";
 import PrimaryButton from "../../ui/buttons/PrimaryButton";
 import SecondaryButton from "../../ui/buttons/SecondaryButton";
 import HeroImage from "./HeroImage";
+import { useLocalizedPath } from "@/app/hooks/useLocalizedPath";
 
 function Hero({ text }) {
   const hero = text.home.heroSection;
+  const localizedPath = useLocalizedPath();
 
   return (
     <TailwindGrid>
@@ -46,7 +49,7 @@ function Hero({ text }) {
           <a href={hero.files.src} download={hero.files.name} className="w-full lg:w-auto">
             <PrimaryButton text={hero.buttons.primary} />
           </a>
-          <Link href="/projects?category=All&page=1" className="w-full">
+          <Link href={localizedPath('/projects?category=All&page=1')} className="w-full">
             <SecondaryButton>{hero.buttons.secondary}</SecondaryButton>
           </Link>
         </div>

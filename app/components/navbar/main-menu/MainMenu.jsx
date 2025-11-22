@@ -1,7 +1,7 @@
 "use client";
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { LanguageContext } from "../../../context/languageContext";
+import { useTranslationContext } from "../../../context/TranslationContext";
 import Link from "next/link.js";
 import ContactModalButton from "../../ui/buttons/ContactModalButton.tsx";
 import LanguaguesSwitch from "../../ui/switch/languaguesSwitch.jsx";
@@ -9,10 +9,10 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 const MainMenu = ({ isOpen, toggleOpen, setModalOpenNavbar }) => {
-  const { text } = useContext(LanguageContext);
+  const { translations, locale } = useTranslationContext();
   const ref = useRef(null);
   // const isInView = useInView(ref, { once: false })
-  const routes = text.menu.routes;
+  const routes = translations?.menu?.routes || [];
   const currentPathname = usePathname();
 
   const itemVariants = {
@@ -62,8 +62,8 @@ const MainMenu = ({ isOpen, toggleOpen, setModalOpenNavbar }) => {
                     key={route.pathname}
                     href={
                       route.pathname === "/projects"
-                        ? "/projects?category=All&page=1"
-                        : route.pathname
+                        ? `/${locale}/projects?category=All&page=1`
+                        : `/${locale}${route.pathname}`
                     }
                     className={`relative items-center    tracking-wider rounded-md w-full  ${
                       currentPathname === route.pathname
@@ -103,7 +103,7 @@ const MainMenu = ({ isOpen, toggleOpen, setModalOpenNavbar }) => {
                     />
 
                     <p className="text-zinc-100 text-xl tracking-wider col-span-9 col-start-3 h-full">
-                      {text.menu.languages}
+                      {translations?.menu?.languages}
                     </p>
                   </div>
                   <div className="flex col-span-9 col-start-3  my-5 gap-x-2 items-center">

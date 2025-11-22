@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useContext, useState } from "react";
 import BackdropUpToDown from "../backdrop/BackdropUpToDown";
 import AnimatedSwitch from "../switch/animatedSwitch";
-import { LanguageContext } from "../../../context/languageContext";
+import { useTranslationContext } from "../../../context/TranslationContext"
 import Image from "next/image";
 
 const dropIn = {
@@ -27,7 +27,7 @@ const dropIn = {
 };
 
 const ModalCookies = ({ modalOpen, handleClose }) => {
-  const { text } = useContext(LanguageContext);
+  const { translations } = useTranslationContext();
 
   return (
     <BackdropUpToDown onClick={handleClose}>

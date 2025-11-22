@@ -39,7 +39,7 @@ function PostsCard({ container }: PostsCardProps) {
       layout="position"
       className=" w-full justify-between items-center  text-center bg-zinc-900 rounded-xl shadow flex flex-col gap-y-2 mt-7 "
     >
-      {container.thumbnail && container.title && (
+      {container.thumbnail && container.title ? (
         <>
           <div className="w-full aspect-video bg-zinc-800 rounded-tl-xl rounded-tr-xl justify-center items-center inline-flex">
             <Image
@@ -73,6 +73,10 @@ function PostsCard({ container }: PostsCardProps) {
             )}
           </div>
         </>
+      ) : (
+        <div className="w-full aspect-video bg-zinc-700 rounded-xl flex items-center justify-center">
+          <span className="text-zinc-500 text-sm">No content available</span>
+        </div>
       )}
     </motion.div>
   );

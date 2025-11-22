@@ -1,7 +1,7 @@
 'use client'
-import { LanguageContext } from '../../../context/languageContext'
+import { useTranslationContext } from "../../../context/TranslationContext"
 import { AnimatePresence, motion } from 'framer-motion'
-import { useContext, useEffect, useState } from 'react'
+import { useState } from 'react'
 import BackdropUpToDown from '../backdrop/BackdropUpToDown'
 import SocialButtons from '../contact/SocialButtons'
 
@@ -27,7 +27,7 @@ const dropIn = {
 }
 
 const ModalContact = ({ handleClose }) => {
-  const { text } = useContext(LanguageContext)
+  const { translations } = useTranslationContext()
 
   return (
     <BackdropUpToDown onClick={handleClose}>
@@ -40,7 +40,7 @@ const ModalContact = ({ handleClose }) => {
         onClick={(event) => event.stopPropagation()}
         key="modal"
       >
-        <ModalContent text={text} handleClose={handleClose} />
+        <ModalContent text={translations} handleClose={handleClose} />
       </motion.div>
     </BackdropUpToDown>
   )
@@ -62,29 +62,10 @@ function ModalContent ({ text, handleClose }) {
 
     // Copy the email address to the clipboard
     navigator.clipboard.writeText(emailAddress)
+
+    // Show copied message
+    open()
   }
-
-  useEffect(() => {
-    const copy = document.getElementById('copyButton')
-
-    // eslint-disable-next-line no-unused-vars, no-undef
-    const doCopy = bodymovin.loadAnimation({
-      container: copy,
-      remderer: 'svg',
-      loop: false,
-      autoplay: false,
-      path: '/icons/copy.json',
-      mode: 'cursor'
-    })
-
-    copy.addEventListener('mouseenter', (e) => {
-      doCopy.goToAndPlay(0)
-    })
-    copy.addEventListener('click', (e) => {
-      doCopy.goToAndPlay(0)
-      open()
-    })
-  }, [])
 
   return (
     <div className="w-full rounded-xl">
@@ -166,17 +147,34 @@ function ModalContent ({ text, handleClose }) {
             </div>
 
             <div className="col-span-9 md:col-span-8 bg-zinc-900 flex items-center justify-center h-10  rounded-r-lg content-center  ">
-              <div
-                className="w-8 h-8 mx-2 overflow-hidden  cursor-pointer"
-                id="copyButton"
+              <motion.button
+                className="w-8 h-8 mx-2 flex items-center justify-center cursor-pointer hover:scale-110 transition-transform"
                 onClick={handleCopy}
-              />
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                aria-label="Copy email"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="text-zinc-100"
+                >
+                  <path
+                    d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </motion.button>
               <input
                 id="emailInput"
                 className="w-full outline-none bg-transparent font-medium  h-full sm:tracking-widest uppercase text-sm sm:text-lg"
                 type="text"
                 placeholder="email address"
                 value={text.contact.email}
+                readOnly
               />
             </div>
           </div>

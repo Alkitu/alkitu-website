@@ -1,46 +1,50 @@
 "use client";
-import { LanguageContext } from "@/app/context/languageContext";
+import { useTranslations, useTranslationContext } from "@/app/context/TranslationContext";
 import Link from "next/link";
-import React, { useContext } from "react";
+import React from "react";
 import ContactModalButton from "../ui/buttons/ContactModalButton";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import TailwindGrid from "../grid/TailwindGrid";
 
 function Footer() {
-  const { text } = useContext(LanguageContext);
+  const { translations, locale } = useTranslationContext();
+  const footerData = translations?.footer;
+
+  if (!footerData?.socials) return null;
 
   return (
     <TailwindGrid fullSize>
       <div className="col-span-full lg:col-start-2 min-h-[400px] flex-col justify-center items-center gap-y-10 inline-flex  pt-20 ">
         <div className="flex flex-wrap gap-x-2 gap-y-4   2xl:w-2/12   justify-center items-center">
-          {text &&
-            text.footer.socials.map((social, index) => (
-              <div
-                className={`flex justify-center min-h-9 min-w-9 items-center h-8 shadow  rounded-full w-1/6 ${
-                  social.hidden && "hidden"
-                }`}
-                key={index + social.name}
-              >
-                <motion.button
-                  whileTap={{ scale: 0.9 }}
-                  whileHover={{ scale: 1.1 }}
-                  className="group bg-white cursor-pointer hover:bg-zinc-700 rounded-full transition-all"
-                  onClick={() => window.open(social.url, "_blank")}
+          {footerData.socials?.map((social, index) => (
+              social.icon && social.url && (
+                <div
+                  className={`flex justify-center min-h-9 min-w-9 items-center h-8 shadow  rounded-full w-1/6 ${
+                    social.hidden && "hidden"
+                  }`}
+                  key={index + social.name}
                 >
-                  <Image
-                    width={40}
-                    height={40}
-                    alt={social.name}
-                    src={social.icon}
-                    className="w-8 h-8 group-hover:invert cursor-pointer"
-                  />
-                </motion.button>
-              </div>
+                  <motion.button
+                    whileTap={{ scale: 0.9 }}
+                    whileHover={{ scale: 1.1 }}
+                    className="group bg-white cursor-pointer hover:bg-zinc-700 rounded-full transition-all"
+                    onClick={() => window.open(social.url, "_blank")}
+                  >
+                    <Image
+                      width={40}
+                      height={40}
+                      alt={social.name || "Social icon"}
+                      src={social.icon}
+                      className="w-8 h-8 group-hover:invert cursor-pointer"
+                    />
+                  </motion.button>
+                </div>
+              )
             ))}
         </div>
         <div className="justify-start items-start gap-10 inline-flex ">
-          {text?.footer.routes.map((route) => (
+          {footerData.routes?.map((route) => (
             <motion.div
               className="flex justify-center px-4"
               key={route.pathname}
@@ -49,8 +53,8 @@ function Footer() {
               <Link
                 href={
                   route.pathname === "/projects"
-                    ? "/projects?category=All&page=1"
-                    : route.pathname
+                    ? `/${locale}/projects?category=All&page=1`
+                    : `/${locale}${route.pathname}`
                 }
                 className="self-center flex items-center hover:scale-105 hover:text-primary transition-all text-white text-base font-normal"
               >
@@ -66,7 +70,7 @@ function Footer() {
 
         <div className="w-full h-[0px]  border-zinc-500 border-t"></div>
         <p className="text-xs font-light pb-10 capitalize">
-          {text?.footer.website} {text?.footer.rights}
+          {footerData.website} {footerData.rights}
         </p>
       </div>
     </TailwindGrid>

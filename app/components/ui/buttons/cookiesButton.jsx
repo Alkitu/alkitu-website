@@ -3,7 +3,7 @@ import { useContext, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
-import { LanguageContext } from '@/app/context/languageContext'
+import { useTranslationContext } from "../../../context/TranslationContext"
 
 const DynamicModalCookies = dynamic(() => import('../modals/modalCookies'), {
   ssr: false,
@@ -14,7 +14,7 @@ export default function CookiesButton () {
   const [modalOpen, setModalOpen] = useState(false)
   const close = () => setModalOpen(false)
   const open = () => setModalOpen(true)
-  const { text } = useContext(LanguageContext);
+  const { translations } = useTranslationContext();
 
   return (
     <>

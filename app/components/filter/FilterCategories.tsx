@@ -1,7 +1,7 @@
 "use client";
-import { LanguageContext } from "../../context/languageContext";
-import { useDragControls, useMotionValue, motion } from "framer-motion";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useTranslationContext } from "../../context/TranslationContext"
+import { useMotionValue, motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import useScreenWidth from "../ui/carousel/flex-carousel/hooks/useScreenWitdh";
 import useElementWidth from "@/app/hooks/useElementWidth";
@@ -19,23 +19,25 @@ export default function FilterCategories({
   className,
   setCurrentPage,
 }: FilterCategories_Props) {
-  const { text } = useContext(LanguageContext);
+  const { translations, locale } = useTranslationContext();
   const categoriesRef = useRef(null);
   const constraintsRef = useRef(null);
-  const controls = useDragControls();
   const screenWidth = useScreenWidth();
   const categoriesWidth = useElementWidth(categoriesRef);
   const [draggable, setDraggable] = useState(false);
+  const x = useMotionValue(0);
 
   useEffect(() => {
-    if (screenWidth >= 1700 && categoriesWidth > 1700) {
-      setDraggable(true);
-    } else {
-      setDraggable(false);
+    // Draggable should be true when categories are wider than screen
+    const shouldBeDraggable = categoriesWidth > screenWidth;
+
+    if (shouldBeDraggable !== draggable) {
+      setDraggable(shouldBeDraggable);
+      // Reset position when draggable state changes
+      x.set(0);
     }
 
-    console.log(screenWidth, categoriesWidth, draggable);
-    return () => {};
+    console.log('screenWidth:', screenWidth, 'categoriesWidth:', categoriesWidth, 'draggable:', shouldBeDraggable);
   }, [categoriesWidth, screenWidth]);
 
   const handleClick = (event) => {
@@ -44,25 +46,20 @@ export default function FilterCategories({
     setCurrentPage(1);
   };
 
-  function startDrag(event) {
-    controls.start(event);
-  }
-
   return (
     <>
       <motion.div
-        onPointerDown={startDrag}
         ref={constraintsRef}
         className={`${
           draggable
-            ? "justify-center hover:cursor-default focus:cursor-grabbing target:cursor-grabbing"
-            : "justify-start hover:cursor-grab"
-        } h-12 flex  overflow-hidden relative w-screen justify-start items-center content-center  ${className}`}
+            ? "justify-start"
+            : "justify-center"
+        } h-12 flex  overflow-hidden relative w-screen items-center content-center  ${className}`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        {draggable === false && (
+        {draggable === true && (
           <div className="absolute z-30 right-0 top-0 w-full flex justify-between  pointer-events-none opacity-90">
             <div className="w-[20%] from-[#0F0F0F] via-[#0F0F0F] via-10% md:via-10% to-transparent to-80% md:to-20% bg-gradient-to-r h-12 pointer-events-none" />
             <div className="w-[20%] from-[#0F0F0F] via-[#0F0F0F] via-10% md:via-10% to-transparent to-80% md:to-20% bg-gradient-to-l h-12 pointer-events-none" />
@@ -70,27 +67,24 @@ export default function FilterCategories({
         )}
         <motion.div
           ref={categoriesRef}
-          dragPropagation
-          key={screenWidth + 1}
-          drag={draggable ? false : "x"}
+          drag={draggable ? "x" : false}
           dragConstraints={constraintsRef}
-          dragControls={controls}
           dragElastic={0}
-          style={{ x: 0 }}
+          style={{ x, cursor: draggable ? "grab" : "default" }}
           dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
           id="categories"
           className={`h-12 flex flex-row justify-start items-center text-center  relative   ${
-            draggable ? "self-center" : "self-start pl-[10%]"
+            draggable ? "self-start pl-[10%]" : "self-center"
           } `}
-          onDragEnd={(event, info) => {
+          onDragEnd={(_event, info) => {
             if (info.offset.x >= categoriesWidth) {
               alert("yes");
             }
           }}
-          whileTap={{ cursor: draggable ? "default" : "grabbing" }}
+          whileDrag={{ cursor: "grabbing" }}
         >
           <Link
-            href={"projects" + "?" + "category=" + "All" + "&" + "page=" + 1}
+            href={`/${locale}/projects?category=All&page=1`}
             className={`w-20 ml-8 mr-2 ${
               search === "All"
                 ? "transition-all text-primary border-primary border font-normal tracking-wider rounded-full py-2 px-4 uppercase"
@@ -102,19 +96,11 @@ export default function FilterCategories({
             All
           </Link>
 
-          {text &&
-            text.portfolio.categories.map((category, i) => {
+          {translations &&
+            translations.portfolio.categories.map((category: { name: string }) => {
               return (
                 <Link
-                  href={
-                    "projects" +
-                    "?" +
-                    "category=" +
-                    category.name +
-                    "&" +
-                    "page=" +
-                    1
-                  }
+                  href={`/${locale}/projects?category=${category.name}&page=1`}
                   key={category.name}
                   className={`mx-2 last:mr-8 flex items-center ${
                     search === category.name
@@ -124,15 +110,15 @@ export default function FilterCategories({
                   id={category.name}
                   onClick={handleClick}
                 >
-                  {category.name.split("").map((word, index) => {
-                    if (word === "_") {
+                  {category.name.split("").map((char: string, index: number) => {
+                    if (char === "_") {
                       return (
-                        <span key={word + index} className="text-transparent">
-                          {word}
+                        <span key={index} className="text-transparent">
+                          {char}
                         </span>
                       );
                     }
-                    return <span key={word + index}>{word}</span>;
+                    return <span key={index}>{char}</span>;
                   })}
                 </Link>
               );

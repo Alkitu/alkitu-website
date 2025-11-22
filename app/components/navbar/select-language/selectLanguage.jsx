@@ -1,7 +1,7 @@
 'use client'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { LanguageContext } from '../../../context/languageContext'
+import { useTranslationContext } from '../../../context/TranslationContext'
 import { deleteCookie, setCookie } from 'cookies-next'
 
 const itemVariants = {
@@ -50,16 +50,16 @@ const mobileNavbar = {
 }
 
 export default function SelectLanguage () {
-  const { text, setLanguageCookie } = useContext(LanguageContext)
+  const { translations, setLocale, locale } = useTranslationContext()
   const [isOpen, setIsOpen] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState(
-    text.menu.currentLanguage
+    translations?.menu?.currentLanguage || locale.toUpperCase()
   )
-  const languageOptions = text.menu.languagesOptions
+  const languageOptions = translations?.menu?.languagesOptions || []
 
   useEffect(() => {
-    setSelectedCategory(text.menu.currentLanguage)
-  }, [text])
+    setSelectedCategory(translations?.menu?.currentLanguage || locale.toUpperCase())
+  }, [translations, locale])
 
   return (
     <motion.nav
@@ -186,9 +186,9 @@ export default function SelectLanguage () {
                       value={category.id}
                       onClick={() => {
                         setIsOpen(false)
-                        deleteCookie('language')
-                        setCookie('language', category.pathname)
-                        setLanguageCookie(category.pathname)
+                        setLocale(category.pathname)
+                        // Redirect to the new locale
+                        window.location.href = `/${category.pathname}`
                       }}
                     >
                       {category.name}
