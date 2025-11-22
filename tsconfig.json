@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    },
+  },
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx"
+, "app/components/list/ResponsiveList.tsx", "app/components/slider/TextSlider.tsx", "app/placeholders/ImageStaticPlaceholderBlur.jsx", "next.config.js", "app/[lang]/components/Header.tsx", "app/components/rive/RiveAnimation.tsx", "app/components/svg/menu-icons/HomeIcons.jsx"  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
