@@ -12,6 +12,7 @@ import { ContactModalButton } from "@/app/components/atomic/molecules/contact-bu
 import { ModalContact } from "@/app/components/atomic/molecules/modal";
 import { usePathname } from "next/navigation";
 import { SelectTheme } from "@/app/components/atomic/molecules/select-theme";
+import { Logo } from "@/app/components/atomic/atoms/logo";
 
 const sidebarVariants = {
   open: {
@@ -97,18 +98,7 @@ export default function NavBar() {
             <div className="w-full lg:w-11/12 absolute top-0 right-0 col-span-full flex justify-end">
               <div className="flex h-20 justify-between w-full lg:w-12/12 self-end">
                 <div className="ml-8 col-span-2 flex justify-center items-center">
-                  <Link href={`/${locale}`} className="flex items-center cursor-pointer">
-                    <motion.p
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="font-main_regular text-3xl font-bold"
-                    >
-                      <span className="text-primary">&lt;</span>
-                      <span className="hidden md:inline">LuisUrdaneta</span>
-                      <span className="md:hidden">Luis</span>
-                      <span className="text-primary">/&gt;</span>
-                    </motion.p>
-                  </Link>
+                  <Logo locale={locale} size="lg" />
                 </div>
                 <div className="hidden lg:flex items-center">
                   {routes.map((route) => (

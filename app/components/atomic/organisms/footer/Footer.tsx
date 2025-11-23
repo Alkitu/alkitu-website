@@ -6,6 +6,7 @@ import { ContactModalButton } from "@/app/components/atomic/molecules/contact-bu
 import Image from "next/image";
 import TailwindGrid from "@/app/components/atomic/templates/grid";
 import { usePathname } from "next/navigation";
+import { Logo } from "@/app/components/atomic/atoms/logo";
 
 function Footer() {
   const { translations, locale } = useTranslationContext();
@@ -19,7 +20,13 @@ function Footer() {
 
   return (
     <TailwindGrid fullSize>
-      <div className={`col-span-full ${isHomePage ? 'lg:col-start-2' : ''} min-h-[400px] flex-col justify-center items-center gap-y-10 inline-flex  pt-20 `}>
+      <div className={`col-span-full ${isHomePage ? 'lg:col-start-2' : ''} min-h-[400px] flex-col justify-center items-center gap-y-10 inline-flex pt-20 bg-zinc-900 dark:bg-zinc-900 text-white dark:text-white`}>
+        {/* Logo */}
+        <div className="flex justify-center items-center mb-6">
+          <Logo locale={locale} size="lg" />
+        </div>
+
+        {/* Social Icons */}
         <div className="flex flex-wrap gap-x-2 gap-y-4   2xl:w-2/12   justify-center items-center">
           {footerData.socials?.map((social, index) => (
               social.icon && social.url && (
@@ -30,7 +37,7 @@ function Footer() {
                   key={index + social.name}
                 >
                   <button
-                    className="group bg-white cursor-pointer hover:bg-zinc-700 rounded-full transition-all shadow hover:scale-110 active:scale-90"
+                    className="group bg-transparent cursor-pointer hover:scale-110 active:scale-90 rounded-full transition-all"
                     onClick={() => window.open(social.url, "_blank")}
                   >
                     <Image
@@ -38,7 +45,10 @@ function Footer() {
                       height={40}
                       alt={social.name || "Social icon"}
                       src={social.icon}
-                      className="w-8 h-8 group-hover:invert cursor-pointer"
+                      className="w-8 h-8 cursor-pointer"
+                      style={{
+                        filter: 'brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%)'
+                      }}
                     />
                   </button>
                 </div>
@@ -54,7 +64,7 @@ function Footer() {
                   ? `/${locale}/projects?category=All&page=1`
                   : `/${locale}${route.pathname}`
               }
-              className="flex justify-center px-4 self-center items-center text-foreground dark:text-white text-base font-normal cursor-pointer hover:scale-105 hover:text-primary active:scale-95 transition-all"
+              className="flex justify-center px-4 self-center items-center text-white dark:text-white text-base font-normal cursor-pointer hover:scale-105 hover:text-primary active:scale-95 transition-all"
             >
               {route.name}
             </Link>
@@ -65,8 +75,8 @@ function Footer() {
           setModalOpenNavbar={undefined}
         />
 
-        <div className="w-full h-[0px]  border-zinc-500 border-t"></div>
-        <p className="text-xs font-light pb-10 capitalize">
+        <div className="w-full h-[0px] border-zinc-700 dark:border-zinc-300 border-t"></div>
+        <p className="text-xs font-light pb-10 capitalize text-white dark:text-white">
           {footerData.website} {footerData.rights}
         </p>
       </div>
