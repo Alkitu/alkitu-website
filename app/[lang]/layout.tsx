@@ -49,7 +49,7 @@ export default async function RootLayout({
       <body className="bg-background text-foreground font-body grid grid-cols-1" suppressHydrationWarning>
         <Providers locale={lang} initialTranslations={initialTranslations}>
           <NavBar />
-          <main className="max-w-full mt-20 pt-8 w-[100vw] flex flex-col items-center justify-center relative">
+          <main className="max-w-full mt-20 w-[100vw] flex flex-col items-center justify-center relative overflow-visible">
             {children}
           </main>
           <Footer />

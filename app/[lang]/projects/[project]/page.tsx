@@ -37,8 +37,8 @@ function Project() {
   }, [isExpanded, dataProject.description]);
 
   return (
-    <div className='lg:flex  w-screen'>
-      <section className='w-full lg:w-[60%] lg:min-h-[50vh]  relative overflow-hidden flex  justify-center items-center pt-20 pb-[2vw] lg:pt-0 lg:pb-0'>
+    <div className='lg:flex  w-screen  max-w-full'>
+      <section className='w-full lg:w-[60%]   lg:min-h-[50vh]  relative overflow-hidden flex  justify-center items-center pt-20 pb-[2vw] lg:pt-0 lg:pb-0'>
         <div className=' lg:w-4/5 z-10 '>
           <Carousel
             numbers={false}
