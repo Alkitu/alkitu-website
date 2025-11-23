@@ -47,7 +47,7 @@ function ProjectsPreview({ text }) {
       <div className='col-span-full max-w-full flex flex-col justify-center content-center items-center'>
         <TailwindGrid>
           <h3 className='col-span-full lg:col-start-2 text-start text-[7vw] leading-[8vw] md:text-[4.8vw] md:leading-[4.8vw] lg:text-[3vw] lg:leading-[3vw] font-black z-50 pointer-events-none relative'>
-            {previewProjects.title}
+            {previewProjects.title}{' '}
             <span className=' md:hidden'>
               <br />
             </span>

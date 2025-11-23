@@ -190,6 +190,9 @@
     "categoriesSection": {
       "title": "I will be your Swiss Army knife in the digital world",
       "subtitle": "I could be your favorite ",
+      "textScroller": "Discover Vibes",
+      "velocityScroller": -0.2,
+      "carrouselKey": "category",
       "categories": [
         {
           "order": 1,
@@ -205,7 +208,7 @@
           "url": "/projects?category=Graphic_Design&page=1",
           "icon": "/icons/designer.svg",
           "artboardName": "Design",
-          "summary": "Since 2017, I have gained experience working as a graphic designer, which has allowed me to apply my knowledge to UX/UI web design."
+          "summary": "With a solid experience of more than 3 years as a web designer, I have enhanced this skill thanks to my knowledge acquired since 2017 in graphic design."
         },
         {
           "order": 3,
@@ -219,9 +222,9 @@
     },
     "projectsPreviewSection": {
       "textScroller": "Selected Projects",
-      "title": "Check my",
-      "titlePrimary": "Work",
-      "button": "See all projects"
+      "title": "Take a look at",
+      "titlePrimary": "my projects...",
+      "button": "CHECK ALL PROJECTS"
     },
     "blogSection": {
       "textScroller": "Latest Posts",
@@ -235,10 +238,14 @@
       "velocityScroller": -0.2,
       "quote": {
         "lineOne": "Web dev is my love",
-        "lineTwo": "video games are my passion"
+        "lineTwo": "videogames my passion"
       }
     },
     "skillsSection": {
+      "title": "Do you need one of",
+      "titlePrimary": "my tools?",
+      "textScroller": "Developer Big To",
+      "velocityScroller": -0.2,
       "firstLine": [
         {
           "name": "Illustrator",
@@ -390,16 +397,16 @@
       ]
     },
     "passionSection": {
-      "title": "My",
-      "titlePrimary": "Passion",
-      "description": "I love creating things that live on the internet.",
+      "title": "But why ",
+      "titlePrimary": "Video Games?",
+      "description": "Once upon a time, there was a passionate developer named Luis Urdaneta. With a heart full of creativity and a mind brimming with ideas, Luis embarked on a journey into the world of game development. Through dedication and skill, he crafted immersive digital experiences that captivated players and transported them to new realms of excitement.",
       "artboardName": "Passion",
       "bigQuote": {
-        "textScroller": "Passion for Code",
-        "velocityScroller": 0.2,
+        "textScroller": "The Power Of Passion",
+        "velocityScroller": -0.2,
         "quote": {
-          "lineOne": "Coding is",
-          "lineTwo": "my life"
+          "lineOne": "Web dev is my love",
+          "lineTwo": "videogames my passion"
         }
       }
     },

@@ -191,6 +191,9 @@
     "categoriesSection": {
       "title": "I will be your Swiss Army knife in the digital world",
       "subtitle": "Podría ser tu próximo especialisa en ",
+      "textScroller": "Descubre Vibras",
+      "velocityScroller": -0.2,
+      "carrouselKey": "category",
       "categories": [
         {
           "order": 1,
@@ -206,7 +209,7 @@
           "url": "/projects?category=Graphic_Design&page=1",
           "icon": "/icons/designer.svg",
           "artboardName": "Design",
-          "summary": "Desde 2017, he acumulado experiencia trabajando como diseñador gráfico, lo que me ha permitido aplicar mis conocimientos al diseño web UX/UI."
+          "summary": "Con una sólida experiencia de más de 3 años como diseñador web, he potenciado esta destreza gracias a mis conocimientos adquiridos desde el año 2017 en diseño gráfico."
         },
         {
           "order": 3,
@@ -220,9 +223,9 @@
     },
     "projectsPreviewSection": {
       "textScroller": "Proyectos Seleccionados",
-      "title": "Échale un vistazo a ",
+      "title": "Échale un vistazo a",
       "titlePrimary": "mis Proyectos...",
-      "button": "Ver más proyectos"
+      "button": "VER MÁS PROYECTOS"
     },
     "blogSection": {
       "textScroller": "Últimas Publicaciones",
@@ -239,6 +242,10 @@
       }
     },
     "skillsSection": {
+      "title": "¿Necesitas una de",
+      "titlePrimary": "mis herramientas?",
+      "textScroller": "Desarrollador Grande Hacia",
+      "velocityScroller": -0.2,
       "firstLine": [
         {
           "name": "Illustrator",

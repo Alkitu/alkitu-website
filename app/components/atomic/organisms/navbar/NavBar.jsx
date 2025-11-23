@@ -83,6 +83,7 @@ export default function NavBar() {
     <AnimatePresence mode="wait">
       {!isScrollingDown && (
         <motion.nav
+          key="navbar"
           initial={{ y: "-5rem", opacity: 0 }}
           animate={{ y: "0rem", opacity: 1 }}
           transition={{
@@ -91,7 +92,7 @@ export default function NavBar() {
             stiffness: 100,
             damping: 30,
           }}
-          exit={{ y: "-5rem" }}
+          exit={{ y: "-5rem", opacity: 0 }}
           className={`h-20 w-full fixed top-0 left-0 z-50 bg-background/40 backdrop-blur-lg shadow-l border-b border-border/50`}
         >
           <TailwindGrid fullSize>
