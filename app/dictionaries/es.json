@@ -1099,6 +1099,19 @@
     "email": "luiseum95@gmail.com",
     "copied": "Copiado 😎!"
   },
+  "blog": {
+    "title": "BLOG",
+    "description": "PUBLICACIONES, ARTÍCULOS, TUTORIALES Y RECURSOS SOBRE DESARROLLO WEB, DISEÑO Y MARKETING DIGITAL",
+    "all": "Todos",
+    "recent": "Recientes",
+    "emprendimiento": "Emprendimiento",
+    "desarrolloWeb": "Desarrollo Web",
+    "publicidad": "Publicidad",
+    "disenoGrafico": "Diseño Gráfico",
+    "socialMedia": "Social Media",
+    "marketing": "Marketing",
+    "otrasPublicaciones": "Otras Publicaciones"
+  },
   "settings": {
     "cookiesButton": "Cookies",
     "header": "Configuración",

@@ -83,6 +83,7 @@ npm run sync:projects
 ```
 
 Este comando:
+
 - Lee `seed.json`
 - Extrae categorías únicas
 - Actualiza `en.json` y `es.json`
@@ -95,16 +96,19 @@ La estructura actual está diseñada para facilitar la migración a Prisma + Mon
 ### Cambios necesarios:
 
 1. **Instalar Prisma**
+
    ```bash
    npm install prisma @prisma/client
    npx prisma init
    ```
 
 2. **Definir schema**
+
    - Crear `prisma/schema.prisma`
    - Definir modelo `Project`
 
 3. **Actualizar data-access.ts**
+
    - Reemplazar lecturas de JSON con queries de Prisma
    - Mantener la misma interfaz de funciones
    - Solo agregar `async/await`
@@ -137,17 +141,20 @@ La estructura actual está diseñada para facilitar la migración a Prisma + Mon
 ## 🎨 Ventajas de esta arquitectura
 
 1. **Separación de responsabilidades**
+
    - Datos: `seed.json`
    - Tipos: `types.ts`
    - Lógica: `data-access.ts`
    - UI: Componentes React
 
 2. **Mantenibilidad**
+
    - Una sola fuente de verdad
    - Sincronización automática
    - Scripts documentados
 
 3. **Escalabilidad**
+
    - Preparado para MongoDB
    - Fácil agregar nuevos campos
    - Type-safe

@@ -1,15 +1,15 @@
 import { Locale } from "@/i18n.config";
-import { SideBar } from "../components/atomic/organisms/sidebar";
+import { SideBar } from "../components/organisms/sidebar";
 import { getDictionary } from "@/lib/dictionary";
-import TailwindGrid from "@/app/components/atomic/templates/grid";
-import { PostPreviews } from "../components/atomic/organisms/blog-section";
-import { Category } from "../components/atomic/organisms/category-section";
-import { Hero } from "../components/atomic/organisms/hero-section";
-import { Passion } from "../components/atomic/organisms/passion-section";
-import { ProjectsPreview } from "../components/atomic/organisms/projects-section";
-import { BigQuote } from "../components/atomic/organisms/quote-section";
-import { Skills } from "../components/atomic/organisms/skills-section";
-import { Testimonials } from "../components/atomic/organisms/testimonials-section";
+import TailwindGrid from "@/app/components/templates/grid";
+import { PostPreviews } from "../components/organisms/blog-section";
+import { Category } from "../components/organisms/category-section";
+import { Hero } from "../components/organisms/hero-section";
+import { Passion } from "../components/organisms/passion-section";
+import { ProjectsPreview } from "../components/organisms/projects-section";
+import { BigQuote } from "../components/organisms/quote-section";
+import { Skills } from "../components/organisms/skills-section";
+import { Testimonials } from "../components/organisms/testimonials-section";
 
 export default async function Home({
   params,

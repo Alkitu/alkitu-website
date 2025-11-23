@@ -5,7 +5,7 @@
 Basado en la metodología de Atomic Design, organizaremos los componentes en niveles:
 
 ```
-app/components/atomic/
+app/components/
 ├── atoms/           # Elementos básicos e indivisibles
 ├── molecules/       # Grupos de átomos que funcionan juntos
 ├── organisms/       # Grupos de moléculas que forman secciones
@@ -15,22 +15,26 @@ app/components/atomic/
 ---
 
 ## 🔹 ATOMS (Átomos)
-*Componentes básicos e indivisibles. No pueden descomponerse más sin perder su función.*
+
+_Componentes básicos e indivisibles. No pueden descomponerse más sin perder su función._
 
 ### ✅ Botones
+
 - [x] **Button** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/atoms/button/`
+
+  - **Ubicación actual**: `app/components/atoms/button/`
   - **Estado**: Completamente migrado con 5 variantes
   - **Archivos**: `Button.tsx`, `button.type.ts`, `index.ts`, `README.md`
 
 - [x] **ThemeToggle** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/atoms/theme-toggle/`
+  - **Ubicación actual**: `app/components/atoms/theme-toggle/`
   - **Estado**: Migrado exitosamente
   - **Descripción**: Botón para cambiar entre tema claro/oscuro/system
 
 ### 🎭 Loaders/Spinners
+
 - [x] **Spinner** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/atoms/spinner/`
+  - **Ubicación actual**: `app/components/atoms/spinner/`
   - **Estado**: Migrado con 4 componentes
   - **Archivos**:
     - `dotsLoader.tsx` - Loader con puntos y animación de círculo expansivo
@@ -39,8 +43,9 @@ app/components/atomic/
     - `textsLoader.jsx` - Loader con animación de texto
 
 ### ✨ Iconos y SVG
+
 - [x] **Symbol** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/atoms/symbol/`
+  - **Ubicación actual**: `app/components/atoms/symbol/`
   - **Estado**: Migrado completamente
   - **Archivos**:
     - `Symbol.tsx` - Componente de símbolos animados (x, circle, triangle, square)
@@ -51,11 +56,14 @@ app/components/atomic/
 ---
 
 ## 🔹 MOLECULES (Moléculas)
-*Combinaciones de átomos que trabajan juntos como una unidad.*
+
+_Combinaciones de átomos que trabajan juntos como una unidad._
 
 ### 🎴 Cards
+
 - [x] **Card** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/molecules/card/`
+
+  - **Ubicación actual**: `app/components/molecules/card/`
   - **Estado**: Migrado completamente
   - **Archivos**:
     - `ProjectCard.jsx` - Card para proyectos con imagen y hover
@@ -64,34 +72,39 @@ app/components/atomic/
     - `CategoryCardClickMove.tsx` - Card con movimiento al click
 
 - [ ] **TestimonialsCard**
+
   - **Ubicación actual**: `app/components/ui/carousel/flex-carousel/cards/TestimonialsCard.tsx`
-  - **Ubicación final**: `app/components/atomic/molecules/testimonials-card/`
+  - **Ubicación final**: `app/components/molecules/testimonials-card/`
   - **Descripción**: Card para testimonios
 
 - [ ] **PostCard**
+
   - **Ubicación actual**: `app/components/ui/carousel/flex-carousel/cards/PostsCard.tsx`
-  - **Ubicación final**: `app/components/atomic/molecules/post-card/`
+  - **Ubicación final**: `app/components/molecules/post-card/`
   - **Descripción**: Card para posts de blog
 
 - [ ] **ImageCard**
   - **Ubicación actual**: `app/components/ui/carousel/flex-carousel/cards/ImageCard.tsx`
-  - **Ubicación final**: `app/components/atomic/molecules/image-card/`
+  - **Ubicación final**: `app/components/molecules/image-card/`
   - **Descripción**: Card simple de imagen
 
 ### 🔘 Selectors
+
 - [x] **SelectLanguage** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/molecules/select-language/`
+
+  - **Ubicación actual**: `app/components/molecules/select-language/`
   - **Estado**: Migrado con imports arreglados
   - **Descripción**: Dropdown de selección de idioma
 
 - [x] **SelectTheme** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/molecules/select-theme/`
+  - **Ubicación actual**: `app/components/molecules/select-theme/`
   - **Estado**: Migrado con imports arreglados
   - **Descripción**: Dropdown de selección de tema
 
 ### 🎚️ Switch Components
+
 - [x] **Switch** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/molecules/switch/`
+  - **Ubicación actual**: `app/components/molecules/switch/`
   - **Estado**: Migrado completamente con 3 componentes
   - **Archivos**:
     - `basicSwitch.jsx` - Switch básico on/off
@@ -101,8 +114,9 @@ app/components/atomic/
   - **Imports arreglados**: TranslationContext paths actualizados
 
 ### 🎬 Backdrops
+
 - [x] **Backdrop** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/molecules/backdrop/`
+  - **Ubicación actual**: `app/components/molecules/backdrop/`
   - **Estado**: Migrado completamente con 2 componentes
   - **Archivos**:
     - `BackdropLeftToRigth.tsx` - Backdrop con animación de izquierda a derecha
@@ -111,8 +125,9 @@ app/components/atomic/
   - **Nota**: Archivo mantiene typo en nombre pero export es correcto
 
 ### 🪟 Modals
+
 - [x] **Modal** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/molecules/modal/`
+  - **Ubicación actual**: `app/components/molecules/modal/`
   - **Estado**: Migrado completamente con 2 modales
   - **Archivos**:
     - `modalContact.jsx` - Modal de contacto con formulario de email
@@ -121,8 +136,10 @@ app/components/atomic/
   - **Imports arreglados**: TranslationContext, Backdrop, AnimatedSwitch, SocialButtons paths actualizados
 
 ### 🎨 UI Components
+
 - [x] **ContactModalButton** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/molecules/contact-button/`
+
+  - **Ubicación actual**: `app/components/molecules/contact-button/`
   - **Estado**: Migrado completamente
   - **Descripción**: Botón que abre el modal de contacto
   - **Exports**: Named export via index.ts
@@ -130,7 +147,8 @@ app/components/atomic/
   - **Dependencias atómicas**: Button, ModalContact
 
 - [x] **SocialButton** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/molecules/social-button/`
+
+  - **Ubicación actual**: `app/components/molecules/social-button/`
   - **Estado**: Migrado completamente
   - **Archivos**:
     - `SocialButtons.jsx` - Componente de botones de redes sociales (WhatsApp, LinkedIn, Instagram, Twitter, Telegram)
@@ -138,7 +156,8 @@ app/components/atomic/
   - **Usado en**: modalContact, projects/[project]/page.tsx
 
 - [x] **ArrowButton** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/molecules/arrow-button/`
+
+  - **Ubicación actual**: `app/components/molecules/arrow-button/`
   - **Estado**: Migrado completamente
   - **Archivos**:
     - `ArrowButton.jsx` - Botón de flecha animado para carousels
@@ -146,7 +165,7 @@ app/components/atomic/
   - **Usado en**: Carousel.jsx
 
 - [x] **CookiesButton** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/molecules/cookies-button/`
+  - **Ubicación actual**: `app/components/molecules/cookies-button/`
   - **Estado**: Migrado y reparado (múltiples bugs corregidos)
   - **Archivos**:
     - `CookiesButton.tsx` - Botón flotante para configuración de cookies
@@ -160,8 +179,9 @@ app/components/atomic/
     4. Scripts con estrategias correctas: `beforeInteractive` para lottie.js, `lazyOnload` para scripts.js
 
 ### ✨ Animated Text
+
 - [x] **AnimatedText** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/molecules/animated-text/`
+  - **Ubicación actual**: `app/components/molecules/animated-text/`
   - **Estado**: Migrado completamente con estructura de subdirectorios
   - **Archivos**:
     - `wordsAnimation.jsx` - Animación de palabras
@@ -174,8 +194,9 @@ app/components/atomic/
   - **Usado en**: textsLoader.jsx
 
 ### 🎯 Rive Animations
+
 - [x] **RiveAnimation** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/molecules/rive-animation/`
+  - **Ubicación actual**: `app/components/molecules/rive-animation/`
   - **Estado**: Migrado completamente
   - **Archivos**:
     - `RiveAnimation.tsx` - Componente principal de animaciones Rive con hover
@@ -186,11 +207,14 @@ app/components/atomic/
 ---
 
 ## 🔹 ORGANISMS (Organismos)
-*Secciones complejas formadas por moléculas y átomos.*
+
+_Secciones complejas formadas por moléculas y átomos._
 
 ### 📊 Navigation
+
 - [x] **NavBar** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/organisms/navbar/`
+
+  - **Ubicación actual**: `app/components/organisms/navbar/`
   - **Estado**: Migrado completamente con toda su estructura
   - **Archivos**:
     - `NavBar.jsx` - Componente principal de navegación
@@ -203,7 +227,8 @@ app/components/atomic/
   - **Imports arreglados**: Todos los paths a absolute paths, agregado 'use client' al hook
 
 - [x] **SideBar** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/organisms/sidebar/`
+
+  - **Ubicación actual**: `app/components/organisms/sidebar/`
   - **Estado**: Migrado completamente
   - **Archivos**:
     - `SideBar.tsx` - Sidebar de navegación con scroll tracking y tooltips animados
@@ -212,12 +237,14 @@ app/components/atomic/
   - **Características**: Detección automática de sección activa basada en scroll, tooltips con AnimatePresence
 
 - [x] **Footer** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/organisms/footer/`
+  - **Ubicación actual**: `app/components/organisms/footer/`
   - **Estado**: Migrado con imports arreglados
 
 ### 🎠 Carousels
+
 - [x] **FlexCarousel** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/organisms/flex-carousel/`
+
+  - **Ubicación actual**: `app/components/organisms/flex-carousel/`
   - **Estado**: Migrado completamente con toda su estructura
   - **Archivos** (13 total):
     - `FlexCarousel.tsx` - Componente principal del carousel flexible
@@ -239,7 +266,7 @@ app/components/atomic/
   - **Nota**: PostsCard y PostsDesktopCard usan PrimaryButton legacy temporalmente
 
 - [x] **BasicCarousel** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/organisms/carousel/basic-carousel/`
+  - **Ubicación actual**: `app/components/organisms/carousel/basic-carousel/`
   - **Estado**: Migrado completamente
   - **Archivos** (4 total):
     - `BasicCarousel.jsx` - Carousel básico con animaciones
@@ -251,8 +278,10 @@ app/components/atomic/
   - **Dependencias atómicas**: ArrowButton
 
 ### 📄 Sections
+
 - [x] **HeroSection** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/organisms/hero-section/`
+
+  - **Ubicación actual**: `app/components/organisms/hero-section/`
   - **Estado**: Migrado completamente
   - **Archivos** (4 total):
     - `Hero.tsx` - Componente principal del hero
@@ -264,7 +293,8 @@ app/components/atomic/
   - **Dependencias atómicas**: Button, TailwindGrid
 
 - [x] **SkillsSection** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/organisms/skills-section/`
+
+  - **Ubicación actual**: `app/components/organisms/skills-section/`
   - **Estado**: Migrado completamente
   - **Archivos**:
     - `Skills.tsx` - Sección de habilidades con parallax
@@ -273,7 +303,8 @@ app/components/atomic/
   - **Dependencias**: DotFollower, ParallaxIcon, ParallaxText
 
 - [x] **ProjectsPreviewSection** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/organisms/projects-section/`
+
+  - **Ubicación actual**: `app/components/organisms/projects-section/`
   - **Estado**: Migrado completamente
   - **Archivos**:
     - `ProjectsPreview.tsx` - Vista previa de proyectos con carousel
@@ -282,7 +313,8 @@ app/components/atomic/
   - **Dependencias atómicas**: Button, ProjectCard, TailwindGrid, FlexCarousel, ResponsiveList, ParallaxText
 
 - [x] **PassionSection** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/organisms/passion-section/`
+
+  - **Ubicación actual**: `app/components/organisms/passion-section/`
   - **Estado**: Migrado completamente
   - **Archivos** (4 total):
     - `Passion.tsx` - Componente principal de passion
@@ -294,7 +326,8 @@ app/components/atomic/
   - **Dependencias atómicas**: BigQuote, RiveAnimation, TailwindGrid
 
 - [x] **TestimonialsSection** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/organisms/testimonials-section/`
+
+  - **Ubicación actual**: `app/components/organisms/testimonials-section/`
   - **Estado**: Migrado completamente
   - **Archivos**:
     - `Testimonials.tsx` - Sección de testimonios con carousel
@@ -303,7 +336,8 @@ app/components/atomic/
   - **Dependencias**: FlexCarousel, useScreenWidth, ParallaxText, ResponsiveList
 
 - [x] **CategorySection** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/organisms/category-section/`
+
+  - **Ubicación actual**: `app/components/organisms/category-section/`
   - **Estado**: Migrado completamente
   - **Archivos** (2 total):
     - `Category.tsx` - Sección de categorías con carousel
@@ -313,7 +347,8 @@ app/components/atomic/
   - **Dependencias**: FlexCarousel, useScreenWidth, DynamicList, ParallaxText
 
 - [x] **BlogSection** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/organisms/blog-section/`
+
+  - **Ubicación actual**: `app/components/organisms/blog-section/`
   - **Estado**: Migrado completamente
   - **Archivos**:
     - `PostPreviews.tsx` - Vista previa de posts del blog
@@ -322,7 +357,7 @@ app/components/atomic/
   - **Dependencias**: FlexCarousel, PostsDesktopCard, ResponsiveList, ParallaxText, apiMedium
 
 - [x] **QuoteSection** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/organisms/quote-section/`
+  - **Ubicación actual**: `app/components/organisms/quote-section/`
   - **Estado**: Migrado completamente
   - **Archivos**:
     - `BigQuote.tsx` - Cita grande con animaciones
@@ -331,8 +366,10 @@ app/components/atomic/
   - **Dependencias**: TailwindGrid, ParallaxText
 
 ### 🗂️ Lists & Filters
+
 - [x] **ResponsiveList** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/organisms/responsive-list/`
+
+  - **Ubicación actual**: `app/components/organisms/responsive-list/`
   - **Estado**: Migrado completamente
   - **Archivos** (5 total):
     - `ResponsiveList.tsx` - Lista responsiva principal
@@ -344,7 +381,8 @@ app/components/atomic/
   - **Usado en**: ProjectsPreview.tsx, Category.tsx, projects/page.tsx
 
 - [x] **FilterCategories** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/organisms/filter-categories/`
+
+  - **Ubicación actual**: `app/components/organisms/filter-categories/`
   - **Estado**: Migrado completamente
   - **Archivos**:
     - `FilterCategories.tsx` - Filtro de categorías con drag
@@ -353,7 +391,7 @@ app/components/atomic/
   - **Dependencias**: useScreenWidth (flex-carousel hook), useElementWidth, TranslationContext
 
 - [x] **Pagination** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/organisms/pagination/`
+  - **Ubicación actual**: `app/components/organisms/pagination/`
   - **Estado**: Migrado completamente
   - **Archivos**:
     - `Pagination.jsx` - Paginación para listas
@@ -362,8 +400,9 @@ app/components/atomic/
   - **Dependencias**: TranslationContext
 
 ### 🖱️ Interactive Components
+
 - [x] **DotFollower** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/organisms/dot-follower/`
+  - **Ubicación actual**: `app/components/organisms/dot-follower/`
   - **Estado**: Migrado completamente
   - **Archivos**:
     - `DotFollower.tsx` - Cursor personalizado que sigue el mouse
@@ -371,8 +410,9 @@ app/components/atomic/
   - **Usado en**: Skills.tsx
 
 ### 🎢 Sliders & Parallax
+
 - [x] **Sliders** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/organisms/sliders/`
+  - **Ubicación actual**: `app/components/organisms/sliders/`
   - **Estado**: Migrado completamente (3 archivos agrupados)
   - **Archivos**:
     - `ParallaxText.tsx` - Texto con efecto parallax
@@ -387,11 +427,13 @@ app/components/atomic/
 ---
 
 ## 🔹 TEMPLATES (Plantillas)
-*Layouts y estructuras de página completas.*
+
+_Layouts y estructuras de página completas._
 
 ### 🏗️ Layouts
+
 - [x] **TailwindGrid** ✓ MIGRADO
-  - **Ubicación actual**: `app/components/atomic/templates/grid/`
+  - **Ubicación actual**: `app/components/templates/grid/`
   - **Estado**: Migrado completamente con exports duales
   - **Descripción**: Sistema de grid base de 12 columnas
 
@@ -400,6 +442,7 @@ app/components/atomic/
 ## 📦 INFRAESTRUCTURA (Fuera de Atomic Design)
 
 ### Context & Providers
+
 - **Ubicación**: `app/context/`
 - **Razón**: Contextos y providers de React, infraestructura de la aplicación
 - **Archivos**:
@@ -409,6 +452,7 @@ app/components/atomic/
   - `Providers.tsx` - Wrapper que combina todos los providers para layout.tsx
 
 ### Hooks Personalizados
+
 - **Ubicación**: `app/hooks/`
 - **Archivos**:
   - `useMediumPosts.ts` - Hook para fetch de posts de Medium (migrado desde /api)
@@ -422,6 +466,7 @@ app/components/atomic/
 ## 📊 RESUMEN DE ESTADO ACTUAL
 
 ### ✅ Componentes Migrados (32 grupos)
+
 1. Button (atoms/button)
 2. ThemeToggle (atoms/theme-toggle)
 3. Spinner/Loaders (atoms/spinner) - 4 archivos
@@ -467,6 +512,7 @@ app/components/atomic/
 **TEMPLATES**: 0 pendientes (todos migrados)
 
 ### 📈 Progreso Total
+
 - **Migrados**: 32 grupos / ~88 archivos
 - **Componentes legacy eliminados**: 4 archivos
 - **Hooks migrados**: 1 (useMediumPosts)
@@ -478,6 +524,7 @@ app/components/atomic/
 ## 🎯 Plan de Migración Priorizado
 
 ### Fase 1 - Foundation (COMPLETADA ✓)
+
 - [x] Button
 - [x] ThemeToggle
 - [x] Spinner/Loaders
@@ -485,6 +532,7 @@ app/components/atomic/
 - [x] Footer
 
 ### Fase 2 - Core Molecules (COMPLETADA ✓)
+
 1. [x] Switch components
 2. [x] Backdrop components
 3. [x] Modal components
@@ -492,18 +540,21 @@ app/components/atomic/
 5. [ ] Cards pendientes (Testimonials, Post, Image) - OPCIONAL para siguiente fase
 
 ### Fase 3 - Animations & Effects (COMPLETADA ✓)
+
 1. [x] RiveAnimation (2 archivos)
 2. [x] AnimatedText (6 archivos con subdirectorios)
 3. [x] SocialButton
 4. [x] ArrowButton
 
 ### Fase 4 - Complex Organisms (COMPLETADA ✓)
+
 1. [x] NavBar completo (5 archivos)
 2. [x] SideBar
 3. [x] FlexCarousel (13 archivos - componente principal, 8 cards, drag container, 3 hooks)
 4. [x] BasicCarousel (4 archivos)
 
 ### Fase 5 - Sections (COMPLETADA ✓)
+
 1. [x] HeroSection (4 archivos)
 2. [x] SkillsSection
 3. [x] ProjectsPreviewSection
@@ -514,12 +565,14 @@ app/components/atomic/
 8. [x] QuoteSection
 
 ### Fase 6 - Lists & Filters (COMPLETADA ✓)
+
 1. [x] ResponsiveList (5 archivos - ResponsiveList, DynamicList, DynamicListItem, NewDynamicList, useBoxClick)
 2. [x] FilterCategories
 3. [x] Pagination
 4. [x] DotFollower
 
 ### Fase 7 - Sliders & Interactive (COMPLETADA ✓)
+
 1. [x] ParallaxText
 2. [x] TextSlider
 3. [x] ParallaxIcons
@@ -529,6 +582,7 @@ app/components/atomic/
 ## ⚠️ NOTAS IMPORTANTES
 
 ### Reglas de Migración
+
 1. **Usar rutas absolutas** - Todos los imports deben usar `@/app/...`
 2. **Crear index.ts** - Cada carpeta debe exportar sus componentes
 3. **Mantener funcionalidad** - No cambiar comportamiento al migrar
@@ -537,6 +591,7 @@ app/components/atomic/
 6. **TypeScript** - Preferir .tsx sobre .jsx cuando sea posible
 
 ### Componentes que ya usan Atomic
+
 - Hero → usa Button y TailwindGrid
 - ProjectsPreview → usa Button, ProjectCard y TailwindGrid
 - ContactModalButton → usa Button
@@ -545,6 +600,7 @@ app/components/atomic/
 - FlexCarousel → usa TailwindGrid
 
 ### Imports Arreglados
+
 - SelectLanguage → TranslationContext, DropdownContext
 - SelectTheme → ThemeContext, DropdownContext
 - Footer → ContactModalButton (atomic molecules)
@@ -578,6 +634,7 @@ app/components/atomic/
 ✅ **Todas las fases han sido completadas exitosamente**
 
 La migración a Atomic Design ha sido finalizada. Todos los componentes están organizados siguiendo la metodología:
+
 - **Atoms**: Button, ThemeToggle, Spinner/Loaders
 - **Molecules**: Cards, SelectLanguage, SelectTheme, Switch, Backdrop, Modal, ContactButton, RiveAnimation, AnimatedText, SocialButton, ArrowButton
 - **Organisms**: Footer, NavBar, SideBar, Carousels, Sections, Lists, Filters, Interactive, Sliders
@@ -586,11 +643,13 @@ La migración a Atomic Design ha sido finalizada. Todos los componentes están o
 ### 📋 Próximos Pasos Recomendados
 
 1. **Optimizaciones Opcionales**:
+
    - Convertir PostsCard y PostsDesktopCard para usar el Button atómico en vez de PrimaryButton legacy
    - Migrar componentes de cards individuales a molecules/card si se requiere mayor granularidad
    - Convertir archivos .jsx a .tsx para mejor type safety
 
 2. **Documentación**:
+
    - Crear guías de uso para cada componente atómico
    - Documentar patrones de composición comunes
    - Añadir ejemplos de uso en Storybook (opcional)
@@ -605,13 +664,16 @@ La migración a Atomic Design ha sido finalizada. Todos los componentes están o
 ## 🧹 LIMPIEZA DE COMPONENTES LEGACY (Completada)
 
 ### Archivos Eliminados
+
 1. **SecondaryButton.tsx** - No usado, duplicado de Button atomic variant="secondary"
 2. **floatingSoundButton.jsx** - No usado, funcionalidad no implementada
 3. **PrimaryButton.jsx** - Legacy, reemplazado por Button atomic en PostsCard y PostsDesktopCard
 4. **cookiesButton.jsx** - Migrado y reparado a CookiesButton.tsx en atomic/molecules
 
 ### Componentes Migrados Fuera de Atomic
+
 **useMediumPosts Hook:**
+
 - **Ubicación anterior**: `/app/components/api/apiMedium.ts`
 - **Ubicación actual**: `/app/hooks/useMediumPosts.ts`
 - **Cambios**: Renombrado de `apiMedium()` → `useMediumPosts()`
@@ -619,6 +681,7 @@ La migración a Atomic Design ha sido finalizada. Todos los componentes están o
 - **Usado en**: PostPreviews.tsx
 
 ### Directorios Eliminados
+
 - `/app/components/ui/` - Todos los componentes migrados o eliminados
 - `/app/components/svg/` - Symbol migrado a atomic/atoms
 - `/app/components/api/` - apiMedium migrado a /hooks
@@ -630,19 +693,25 @@ La migración a Atomic Design ha sido finalizada. Todos los componentes están o
 - `/app/components/slider/` - Migrados a atomic/organisms/sliders
 
 ### PostsCard y PostsDesktopCard - Refactorizados
+
 **Antes:**
+
 ```jsx
 import PrimaryButton from "@/app/components/ui/buttons/PrimaryButton";
-<PrimaryButton text={"Go to Medium"} icon="medium" textLeft />
+<PrimaryButton text={"Go to Medium"} icon='medium' textLeft />;
 ```
 
 **Después:**
+
 ```tsx
-import { Button } from "@/app/components/atomic/atoms/button";
-<Button variant="primary" size="md">Go to Medium</Button>
+import { Button } from "@/app/components/atoms/button";
+<Button variant='primary' size='md'>
+  Go to Medium
+</Button>;
 ```
 
 **Beneficios:**
+
 - Usa componente atomic consistente con el resto de la app
 - API más simple y clara (children en lugar de text prop)
 - Elimina dependencia de componente legacy

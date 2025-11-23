@@ -1,4 +1,4 @@
-import TailwindGrid from "@/app/components/atomic/templates/grid";
+import TailwindGrid from "@/app/components/templates/grid";
 
 const filteredData = [
   "ALL",

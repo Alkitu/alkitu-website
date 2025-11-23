@@ -1,8 +1,8 @@
 import "../../styles/globals.css";
 import { Locale, i18n } from "@/i18n.config";
-import { NavBar } from "../components/atomic/organisms/navbar";
-import { Footer } from "../components/atomic/organisms/footer";
-import { CookiesButton } from "../components/atomic/molecules/cookies-button";
+import { NavBar } from "../components/organisms/navbar";
+import { Footer } from "../components/organisms/footer";
+import { CookiesButton } from "../components/molecules/cookies-button";
 import Providers from "../context/Providers";
 import en from "@/app/dictionaries/en.json";
 import es from "@/app/dictionaries/es.json";
@@ -22,7 +22,7 @@ export default async function RootLayout({
 }) {
   const { lang } = await params;
   const initialTranslations = translations[lang];
-  
+
   return (
     <html lang={lang} suppressHydrationWarning>
       <head>
@@ -46,10 +46,13 @@ export default async function RootLayout({
           }}
         />
       </head>
-      <body className="bg-background text-foreground font-body grid grid-cols-1" suppressHydrationWarning>
+      <body
+        className='bg-background text-foreground font-body grid grid-cols-1'
+        suppressHydrationWarning
+      >
         <Providers locale={lang} initialTranslations={initialTranslations}>
           <NavBar />
-          <main className="max-w-full mt-20 w-[100vw] flex flex-col items-center justify-center relative overflow-visible">
+          <main className='max-w-full mt-20 w-[100vw] flex flex-col items-center justify-center relative overflow-visible'>
             {children}
           </main>
           <Footer />

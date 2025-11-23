@@ -1,16 +1,16 @@
 "use client";
 import { Suspense, useContext, useEffect, useState } from "react";
-import { FilterCategories } from "../../components/atomic/organisms/filter-categories";
+import { FilterCategories } from "../../components/organisms/filter-categories";
 import { useTranslationContext } from "../../context/TranslationContext";
-import { ProjectCard } from "../../components/atomic/molecules/card";
-import { ResponsiveList } from "@/app/components/atomic/organisms/responsive-list";
-import { Pagination } from "../../components/atomic/organisms/pagination";
+import { ProjectCard } from "../../components/molecules/card";
+import { ResponsiveList } from "@/app/components/organisms/responsive-list";
+import { Pagination } from "../../components/organisms/pagination";
 // import getMovies from "@/utils/getMovies"
 // import { MoviesType } from "@/utils/MovieTypes"
 // import Image from 'next/image'
 import { useSearchParams } from "next/navigation";
-import useScreenWidth from "@/app/components/atomic/organisms/flex-carousel/hooks/useScreenWitdh";
-import TailwindGrid from "@/app/components/atomic/templates/grid";
+import useScreenWidth from "@/app/components/organisms/flex-carousel/hooks/useScreenWitdh";
+import TailwindGrid from "@/app/components/templates/grid";
 import { AnimatePresence } from "framer-motion";
 
 // This component passed as a fallback to the Suspense boundary
@@ -26,7 +26,9 @@ const Portfolio = () => {
   const searchParams = useSearchParams();
   const [search, setSearch] = useState(searchParams.get("category"));
   const [projects, setProjects] = useState(translations.portfolio.projects);
-  const [totalPages, setTotalPages] = useState(translations.portfolio.projects.length);
+  const [totalPages, setTotalPages] = useState(
+    translations.portfolio.projects.length
+  );
   const [totalPagination, setTotalPagination] = useState(1);
   const [currentPage, setCurrentPage] = useState<number>(
     Number(searchParams.get("page"))
