@@ -1,8 +1,9 @@
 import "../../styles/globals.css";
 import { Locale, i18n } from "@/i18n.config";
-import NavBar from "../components/navbar/NavBar";
-import Footer from "../components/footer/Footer";
-import Providers from "../components/providers/Providers";
+import { NavBar } from "../components/atomic/organisms/navbar";
+import { Footer } from "../components/atomic/organisms/footer";
+import { CookiesButton } from "../components/atomic/molecules/cookies-button";
+import Providers from "../context/Providers";
 import en from "@/app/dictionaries/en.json";
 import es from "@/app/dictionaries/es.json";
 
@@ -52,7 +53,7 @@ export default async function RootLayout({
             {children}
           </main>
           <Footer />
-          {/* <CookiesButton /> */}
+          <CookiesButton />
         </Providers>
       </body>
     </html>

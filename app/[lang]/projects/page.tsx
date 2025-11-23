@@ -1,16 +1,16 @@
 "use client";
 import { Suspense, useContext, useEffect, useState } from "react";
-import FilterCategories from "../../components/filter/FilterCategories";
+import { FilterCategories } from "../../components/atomic/organisms/filter-categories";
 import { useTranslationContext } from "../../context/TranslationContext";
-import ProjectCard from "../../components/card/ProjectCard";
-import ResponsiveList from "../../components/list/ResponsiveList";
-import Pagination from "../../components/pagination/Pagination";
+import { ProjectCard } from "../../components/atomic/molecules/card";
+import { ResponsiveList } from "@/app/components/atomic/organisms/responsive-list";
+import { Pagination } from "../../components/atomic/organisms/pagination";
 // import getMovies from "@/utils/getMovies"
 // import { MoviesType } from "@/utils/MovieTypes"
 // import Image from 'next/image'
 import { useSearchParams } from "next/navigation";
-import useScreenWidth from "../../components/ui/carousel/flex-carousel/hooks/useScreenWitdh";
-import TailwindGrid from "../../components/grid/TailwindGrid";
+import useScreenWidth from "@/app/components/atomic/organisms/flex-carousel/hooks/useScreenWitdh";
+import TailwindGrid from "@/app/components/atomic/templates/grid";
 import { AnimatePresence } from "framer-motion";
 
 // This component passed as a fallback to the Suspense boundary

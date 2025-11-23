@@ -1,7 +1,7 @@
 "use client";
-import TextSlider from "@/app/components/slider/TextSlider";
-import SocialButtons from "@/app/components/ui/contact/SocialButtons";
-import Carousel from "@/app/components/ui/carousel/Carousel";
+import { TextSlider } from "@/app/components/atomic/organisms/sliders";
+import { SocialButtons } from "@/app/components/atomic/molecules/social-button";
+import { Carousel } from "@/app/components/atomic/organisms/carousel/basic-carousel";
 import { useTranslationContext } from "../../../context/TranslationContext";
 import { useContext, useState, useEffect } from "react";
 import Link from "next/link";

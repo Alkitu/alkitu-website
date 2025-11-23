@@ -1091,6 +1091,11 @@
     "email": "luiseum95@gmail.com",
     "copied": "Copyed 😎!"
   },
+  "settings": {
+    "cookiesButton": "Cookies",
+    "header": "Settings",
+    "description": "Manage your cookie preferences and customize your experience"
+  },
   "navigation": {
     "home": "Home",
     "about": "About"
