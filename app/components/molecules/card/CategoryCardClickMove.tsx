@@ -57,7 +57,7 @@ function CategoryCard({ category, className, index, wordIndex, setIndex }) {
         } absolute w-full -bottom-2 bg-gradient-to-b from-primary to-primary rounded-lg blur transition duration-200 `}
       />
       <div
-        className={`  w-[98%] mx-auto relative  bg-card dark:bg-zinc-900  rounded-3xl flex-col content-center items-center justify-center  cursor-pointer  ${
+        className={`  w-[98%] mx-auto relative  bg-white dark:bg-zinc-900  rounded-3xl flex-col content-center items-center justify-center  cursor-pointer  ${
           wordIndex === index ? "  py-[3.77rem]" : "h-2/3 py-11"
         }`}
         onMouseEnter={() => {
@@ -79,13 +79,13 @@ function CategoryCard({ category, className, index, wordIndex, setIndex }) {
           <RiveAnimation hover={hover} artboardName={category.artboardName} />
         </div>
         <div>
-          <h3 className='text-center h-full text-xl font-black uppercase m-auto w-full '>
+          <h3 className='text-center h-full text-xl font-black uppercase m-auto w-full text-foreground'>
             {category.name.split("").map((word, index) => {
               if (word === "_") return <span key={word + index}> </span>;
               return <span key={word + index}>{word}</span>;
             })}
           </h3>
-          {isCenterCard && <p className='mx-auto text-center mt-5'>hola</p>}
+          {isCenterCard && <p className='mx-auto text-center mt-5 text-foreground'>hola</p>}
         </div>
       </div>
     </motion.div>

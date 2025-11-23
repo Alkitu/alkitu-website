@@ -53,7 +53,8 @@ export default function BlogHero({ featuredPost, recentPosts, locale }: BlogHero
         className="relative"
         variants={featuredVariants}
         initial="hidden"
-        animate="show"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
         transition={{ type: "spring", damping: 25, stiffness: 200 }}
       >
         <motion.div
@@ -103,7 +104,8 @@ export default function BlogHero({ featuredPost, recentPosts, locale }: BlogHero
           className="space-y-6"
           variants={recentContainerVariants}
           initial="hidden"
-          animate="show"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
         >
           {recentPosts.map((post) => (
             <motion.div

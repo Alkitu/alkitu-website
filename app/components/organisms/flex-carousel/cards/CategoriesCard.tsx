@@ -19,7 +19,7 @@ function CategoriesCard({ container, centerOrder }) {
         className='w-full relative group items-end flex text-center rounded-3xl content-center justify-center mt-7'
       >
         <div
-          className='w-full max-w-full mx-auto relative bg-zinc-900 rounded-3xl flex-col content-center items-center justify-center cursor-pointer py-11'
+          className='w-full max-w-full mx-auto relative bg-white dark:bg-zinc-900 rounded-3xl flex-col content-center items-center justify-center cursor-pointer py-11'
           onMouseDown={() => setHover(true)}
           onMouseUp={() => setHover(false)}
         >
@@ -30,7 +30,7 @@ function CategoriesCard({ container, centerOrder }) {
             />
           </motion.div>
           <motion.div>
-            <h3 className='text-center text-xl font-black uppercase m-auto w-full '>
+            <h3 className='text-center text-xl font-black uppercase m-auto w-full text-foreground'>
               {container?.name?.split("").map((word, wordIndex) => {
                 if (word === "_") return <span key={wordIndex}> </span>;
                 return <span key={wordIndex}>{word}</span>;
@@ -48,7 +48,7 @@ function CategoriesCard({ container, centerOrder }) {
                 mass: 0.1,
                 delay: 0.25,
               }}
-              className='mx-auto text-center mt-5 px-10 max-w-full text-md md:text-[1.4vw] lg:text-[1.2vw] 2xl:text-[0.8vw] font-normal tracking-tight'
+              className='mx-auto text-center mt-5 px-10 max-w-full text-md md:text-[1.4vw] lg:text-[1.2vw] 2xl:text-[0.8vw] font-normal tracking-tight text-foreground'
             >
               {container?.summary}
             </motion.p>

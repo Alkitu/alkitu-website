@@ -1,8 +1,9 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { getCookie, setCookie } from 'cookies-next';
 
-export type Theme = 'light' | 'dark' | 'system';
+export type Theme = 'light' | 'dark';
 
 interface ThemeContextType {
   theme: Theme;
@@ -12,70 +13,68 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+const COOKIE_NAME = 'theme';
+const COOKIE_MAX_AGE = 365 * 24 * 60 * 60; // 1 year
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('system');
-  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('dark');
+  const [theme, setTheme] = useState<Theme>('light');
+  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light');
   const [mounted, setMounted] = useState(false);
 
-  // Obtener el tema del sistema
-  const getSystemTheme = (): 'light' | 'dark' => {
+  // Detectar el tema del sistema
+  const getSystemTheme = (): Theme => {
     if (typeof window !== 'undefined') {
       return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
-    return 'dark';
+    return 'light';
   };
 
-  // Inicializar el tema desde localStorage o sistema
+  // Inicializar el tema desde cookie o detectar sistema en primera visita
   useEffect(() => {
     setMounted(true);
-    const storedTheme = localStorage.getItem('theme') as Theme | null;
+    const savedTheme = getCookie(COOKIE_NAME) as Theme | undefined;
 
-    if (storedTheme) {
-      setTheme(storedTheme);
+    if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark')) {
+      // Cookie existe - usar ese valor
+      setTheme(savedTheme);
+      setResolvedTheme(savedTheme);
     } else {
-      setTheme('system');
+      // Primera visita - detectar tema del sistema y guardarlo en cookie
+      const systemTheme = getSystemTheme();
+      setTheme(systemTheme);
+      setResolvedTheme(systemTheme);
+      setCookie(COOKIE_NAME, systemTheme, {
+        maxAge: COOKIE_MAX_AGE,
+        path: '/',
+        sameSite: 'strict',
+      });
     }
   }, []);
 
-  // Actualizar el tema resuelto cuando cambie el tema o la preferencia del sistema
+  // Aplicar el tema al documento cuando cambie
   useEffect(() => {
     if (!mounted) return;
 
-    const updateResolvedTheme = () => {
-      const newResolvedTheme = theme === 'system' ? getSystemTheme() : theme;
-      setResolvedTheme(newResolvedTheme);
-
-      // Aplicar la clase al documento
-      if (newResolvedTheme === 'dark') {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    };
-
-    updateResolvedTheme();
-
-    // Escuchar cambios en la preferencia del sistema
-    if (theme === 'system') {
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      const handleChange = () => updateResolvedTheme();
-
-      mediaQuery.addEventListener('change', handleChange);
-      return () => mediaQuery.removeEventListener('change', handleChange);
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
     }
+
+    setResolvedTheme(theme);
   }, [theme, mounted]);
 
-  // Guardar el tema en localStorage cuando cambie
+  // Guardar el tema en cookie cuando el usuario lo cambie
   const handleSetTheme = (newTheme: Theme) => {
     setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
+    setCookie(COOKIE_NAME, newTheme, {
+      maxAge: COOKIE_MAX_AGE,
+      path: '/',
+      sameSite: 'strict',
+    });
   };
 
-  // Prevenir flash de contenido sin estilo
-  if (!mounted) {
-    return <>{children}</>;
-  }
-
+  // Siempre proveer el contexto, incluso antes de montar
   return (
     <ThemeContext.Provider value={{ theme, setTheme: handleSetTheme, resolvedTheme }}>
       {children}
@@ -91,9 +90,9 @@ export function useTheme() {
     if (typeof window === 'undefined') {
       // Durante SSR, retornar valores por defecto
       return {
-        theme: 'system' as Theme,
+        theme: 'light' as Theme,
         setTheme: () => {},
-        resolvedTheme: 'dark' as 'light' | 'dark',
+        resolvedTheme: 'light' as 'light' | 'dark',
       };
     }
     throw new Error('useTheme must be used within a ThemeProvider');

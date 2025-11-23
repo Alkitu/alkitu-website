@@ -62,7 +62,8 @@ export default function BlogGrid({ posts, locale, categoryTitle, columns = 4 }: 
         className={`grid ${gridCols[columns]} gap-6`}
         variants={containerVariants}
         initial="hidden"
-        animate="show"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
       >
         {posts.map((post) => (
           <motion.div

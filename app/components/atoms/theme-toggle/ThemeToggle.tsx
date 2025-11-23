@@ -19,13 +19,11 @@ export default function ThemeToggle() {
   }
 
   const toggleTheme = () => {
-    // Ciclo: system -> light -> dark -> system
-    if (theme === 'system') {
-      setTheme('light');
-    } else if (theme === 'light') {
+    // Alternar entre light y dark
+    if (theme === 'light') {
       setTheme('dark');
     } else {
-      setTheme('system');
+      setTheme('light');
     }
   };
 
@@ -34,27 +32,10 @@ export default function ThemeToggle() {
       onClick={toggleTheme}
       className="relative w-10 h-10 rounded-lg bg-card border border-border hover:bg-accent transition-colors duration-200 flex items-center justify-center group"
       aria-label="Toggle theme"
-      title={`Current: ${theme === 'system' ? `System (${resolvedTheme})` : theme}`}
+      title={`Current: ${theme}`}
     >
       {/* Icono del tema actual */}
       <div className="relative w-5 h-5">
-        {theme === 'system' && (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="w-5 h-5 text-foreground"
-          >
-            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-            <line x1="8" y1="21" x2="16" y2="21" />
-            <line x1="12" y1="17" x2="12" y2="21" />
-          </svg>
-        )}
-
         {theme === 'light' && (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -97,7 +78,7 @@ export default function ThemeToggle() {
       {/* Indicador pequeño del tema siguiente */}
       <div className="absolute -bottom-1 -right-1 w-3 h-3 rounded-full bg-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
         <span className="text-[8px] font-bold text-white">
-          {theme === 'system' ? 'L' : theme === 'light' ? 'D' : 'S'}
+          {theme === 'light' ? 'D' : 'L'}
         </span>
       </div>
     </button>

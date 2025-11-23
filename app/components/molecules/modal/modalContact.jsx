@@ -32,7 +32,7 @@ const ModalContact = ({ handleClose }) => {
   return (
     <BackdropUpToDown onClick={handleClose}>
       <motion.div
-        className=' w-[clamp(90%,700px,90px)] md:max-w-lg m-auto py-2 px-8 rounded-xl flex flex-col justify-between items-center shadow bg-card dark:bg-zinc-800 '
+        className='z-[70] w-[clamp(90%,700px,90px)] md:max-w-lg m-auto py-2 px-8 rounded-xl flex flex-col justify-between items-center shadow bg-white dark:bg-zinc-900 '
         variants={dropIn}
         initial='closed'
         animate='open'
@@ -70,16 +70,16 @@ function ModalContent({ text, handleClose }) {
   return (
     <div className='w-full rounded-xl'>
       {/* <!--MODAL HEADER--> */}
-      <div className='flex justify-between items center border-b border-gray-200 py-3'>
+      <div className='flex justify-between items center border-b border-border py-3'>
         <div className='flex items-center justify-center'>
-          <p className='text-xl text-zinc-100 font-medium uppercase '>
+          <p className='text-xl text-foreground font-medium uppercase '>
             {text.contact.title}
           </p>
         </div>
         <motion.div
-          className='bg-gray-300 cursor-pointer hover:text-gray-300 font-sans text-gray-500 w-9 h-9 flex items-center justify-center rounded-full'
+          className='bg-zinc-200 dark:bg-zinc-700 cursor-pointer hover:text-gray-300 font-sans text-gray-500 w-9 h-9 flex items-center justify-center rounded-full'
           onClick={handleClose}
-          whileHover={{ backgroundColor: "rgb(107 114 128)", scale: 1.1 }}
+          whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
           <svg
@@ -100,7 +100,7 @@ function ModalContent({ text, handleClose }) {
       <div className='my-4'>
         <SocialButtons text={text} />
         <div className='flex justify-between mt-4'>
-          <p className='text-md'>{text.contact.emailAddressParagraph}</p>
+          <p className='text-md text-foreground'>{text.contact.emailAddressParagraph}</p>
           <div className='flex items-center justify-center'>
             <AnimatePresence initial={false} mode='wait'>
               {copied && (
@@ -109,7 +109,7 @@ function ModalContent({ text, handleClose }) {
                   animate={{ opacity: 1 }}
                   onAnimationComplete={() => close()}
                   exit={{ opacity: 0, transition: { duration: 1, delay: 1 } }}
-                  className='text-sm text-center'
+                  className='text-sm text-center text-foreground'
                   transition={{
                     duration: 1,
                     type: "spring",
@@ -129,7 +129,7 @@ function ModalContent({ text, handleClose }) {
           {/* RECORDAR DE PREGUNTAR A UN PROFE */}
 
           <div className='col-span-12 grid-cols-11 md:grid-cols-9 grid '>
-            <div className='col-span-2 md:col-span-1 flex h-10 items-center justify-center rounded-l-lg  border-zinc-300 bg-zinc-300  fill-black'>
+            <div className='col-span-2 md:col-span-1 flex h-10 items-center justify-center rounded-l-lg border-zinc-300 dark:border-zinc-600 bg-zinc-300 dark:bg-zinc-700 fill-black'>
               <div className='w-6 h-6 max-w-8 flex items-center justify-center shadow-xl min-w-6'>
                 <svg
                   width='20'
@@ -146,7 +146,7 @@ function ModalContent({ text, handleClose }) {
               </div>
             </div>
 
-            <div className='col-span-9 md:col-span-8 bg-zinc-900 flex items-center justify-center h-10  rounded-r-lg content-center  '>
+            <div className='col-span-9 md:col-span-8 bg-zinc-900 dark:bg-zinc-800 flex items-center justify-center h-10  rounded-r-lg content-center  '>
               <motion.button
                 className='w-8 h-8 mx-2 flex items-center justify-center cursor-pointer hover:scale-110 transition-transform'
                 onClick={handleCopy}
@@ -170,7 +170,7 @@ function ModalContent({ text, handleClose }) {
               </motion.button>
               <input
                 id='emailInput'
-                className='w-full outline-none bg-transparent font-medium  h-full sm:tracking-widest uppercase text-sm sm:text-lg'
+                className='w-full outline-none bg-transparent font-medium h-full sm:tracking-widest uppercase text-sm sm:text-lg text-zinc-100'
                 type='text'
                 placeholder='email address'
                 value={text.contact.email}

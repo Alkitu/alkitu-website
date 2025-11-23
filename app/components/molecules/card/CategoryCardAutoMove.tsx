@@ -25,7 +25,7 @@ function CategoryCardAutoMove({ category, className, index, wordIndex }) {
         } absolute w-full -bottom-2 bg-gradient-to-b from-primary to-primary rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200`}
       ></div>
       <div
-        className={`  w-[98%] mx-auto relative  bg-card dark:bg-zinc-900  rounded-3xl flex-col content-center items-center justify-center   ${
+        className={`  w-[98%] mx-auto relative  bg-white dark:bg-zinc-900  rounded-3xl flex-col content-center items-center justify-center   ${
           wordIndex === index ? "h-68  py-[3.77rem]" : "h-60 py-11"
         }`}
       >
@@ -39,7 +39,7 @@ function CategoryCardAutoMove({ category, className, index, wordIndex }) {
           }`}
           alt="Follow us on Twitter"
         />
-        <p className="text-center h-full text-xl font-black uppercase m-auto w-full ">
+        <p className="text-center h-full text-xl font-black uppercase m-auto w-full text-foreground">
           {category.name.split("").map((word, index) => {
             if (word === "_") return <span key={word + index}> </span>;
             return <span key={word + index}>{word}</span>;

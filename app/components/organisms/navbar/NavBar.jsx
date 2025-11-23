@@ -11,7 +11,8 @@ import { BackdropLeftToRight } from "@/app/components/molecules/backdrop";
 import { ContactModalButton } from "@/app/components/molecules/contact-button";
 import { ModalContact } from "@/app/components/molecules/modal";
 import { usePathname } from "next/navigation";
-import { SelectTheme } from "@/app/components/molecules/select-theme";
+// import { SelectTheme } from "@/app/components/molecules/select-theme";
+import { ThemeToggleButton } from "@/app/components/molecules/theme-toggle";
 import { Logo } from "@/app/components/atoms/logo";
 
 const sidebarVariants = {
@@ -127,7 +128,7 @@ export default function NavBar() {
                     <ContactModalButton />
                   </div>
                   <div className='flex justify-center items-center px-2'>
-                    <SelectTheme />
+                    <ThemeToggleButton />
                   </div>
                   <div className='flex justify-center items-center pr-8 pl-2'>
                     <SelectLanguage />
@@ -137,7 +138,7 @@ export default function NavBar() {
                   initial={false}
                   animate={isOpen ? "open" : "closed"}
                   ref={containerRef}
-                  className='lg:hidden h-20'
+                  className='lg:hidden h-20 ' 
                 >
                   <AnimatePresence
                     initial={false}
@@ -147,7 +148,7 @@ export default function NavBar() {
                     {isOpen && (
                       <BackdropLeftToRight onClick={() => toggleOpen()}>
                         <motion.div
-                          className={`fixed h-[100dvh] top-0 right-0 bottom-0 bg-background border-l border-border ${
+                          className={`fixed h-[100dvh] top-0 right-0 bottom-0  bg-white dark:bg-black  ${
                             isOpen && "flex"
                           } max-w-full min-w-[300px] overflow-hidden`}
                           initial='closed'

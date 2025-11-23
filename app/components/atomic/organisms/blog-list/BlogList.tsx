@@ -55,7 +55,8 @@ export default function BlogList({ posts, locale, categoryTitle }: BlogListProps
         className="space-y-8"
         variants={containerVariants}
         initial="hidden"
-        animate="show"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
       >
         {posts.map((post) => (
           <motion.div

@@ -5,11 +5,21 @@
     "routes": [
       {
         "name": "Inicio",
-        "pathname": "/"
+        "pathname": "/",
+        "iconLight": "/icons/navbar/Home-light.svg",
+        "iconDark": "/icons/navbar/Home-dark.svg"
       },
       {
         "name": "Proyectos",
-        "pathname": "/projects"
+        "pathname": "/projects",
+        "iconLight": "/icons/navbar/Folder-light.svg",
+        "iconDark": "/icons/navbar/Folder-dark.svg"
+      },
+      {
+        "name": "Blog",
+        "pathname": "/blog",
+        "iconLight": "/icons/navbar/Blog-light.svg",
+        "iconDark": "/icons/navbar/Blog-dark.svg"
       }
     ],
     "contact": "Contáctame",

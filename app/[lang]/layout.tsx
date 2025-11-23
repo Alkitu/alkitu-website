@@ -31,11 +31,22 @@ export default async function RootLayout({
             __html: `
               (function() {
                 try {
-                  const theme = localStorage.getItem('theme') || 'system';
-                  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                  const resolvedTheme = theme === 'system' ? systemTheme : theme;
+                  // Read theme from cookie
+                  const getCookie = (name) => {
+                    const value = document.cookie.match('(^|;)\\\\s*' + name + '\\\\s*=\\\\s*([^;]+)');
+                    return value ? value.pop() : null;
+                  };
 
-                  if (resolvedTheme === 'dark') {
+                  let theme = getCookie('theme');
+
+                  // If no cookie, detect system theme and set cookie
+                  if (!theme) {
+                    theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                    document.cookie = 'theme=' + theme + '; path=/; max-age=31536000; SameSite=Strict';
+                  }
+
+                  // Apply theme
+                  if (theme === 'dark') {
                     document.documentElement.classList.add('dark');
                   } else {
                     document.documentElement.classList.remove('dark');

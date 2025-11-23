@@ -37,7 +37,7 @@ const ModalCookies = ({ modalOpen, handleClose }) => {
         initial='closed'
         animate='open'
         exit='closed'
-        className='w-[clamp(550px,50%,75vw)] md:max-w-2xl max-w-sm  m-auto py-2 px-8 rounded-xl flex flex-col justify-between items-center shadow bg-zinc-800  '
+        className='w-[clamp(550px,50%,75vw)] md:max-w-2xl max-w-sm  m-auto py-2 px-8 rounded-xl flex flex-col justify-between items-center shadow bg-white dark:bg-zinc-900  '
         key='modalCookies'
       >
         <ModalContent
@@ -58,16 +58,16 @@ function ModalContent({ translations, handleClose, modalOpen }) {
   return (
     <div className="'w-full rounded-xl flex flex-col ">
       {/* <!--MODAL HEADER--> */}
-      <div className='flex justify-between items center border-b border-gray-200 py-3'>
+      <div className='flex justify-between items center border-b border-border py-3'>
         <div className='flex flex-col items-center justify-center'>
-          <p className=' text-xl text-zinc-100 font-medium uppercase '>
+          <p className=' text-xl text-foreground font-medium uppercase '>
             {translations?.settings?.header || "Settings"}
           </p>
         </div>
         <motion.div
-          className='bg-gray-300 cursor-pointer hover:text-gray-300 font-sans text-gray-500 w-9 h-9 flex items-center justify-center rounded-full'
+          className='bg-zinc-200 dark:bg-zinc-700 cursor-pointer hover:text-gray-300 font-sans text-gray-500 w-9 h-9 flex items-center justify-center rounded-full'
           onClick={handleClose}
-          whileHover={{ backgroundColor: "rgb(107 114 128)", scale: 1.1 }}
+          whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
           <svg
@@ -94,7 +94,7 @@ function ModalContent({ translations, handleClose, modalOpen }) {
           />
         </div>
 
-        <p className='text-lg font-medium text-center'>
+        <p className='text-lg font-medium text-center text-foreground'>
           {translations?.settings?.description ||
             "Manage your cookie preferences"}
         </p>

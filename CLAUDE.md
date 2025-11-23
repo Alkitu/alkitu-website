@@ -129,15 +129,105 @@ The app uses a custom theme system with light/dark modes:
 - Organisms: Complex sections (navbar, footer, hero, skills, etc.)
 - Templates: Page layouts
 - **Import paths**: `import { ComponentName } from "@/app/components/atoms/component-name"`
+- **IMPORTANT**: All organism components MUST use TailwindGrid for layout consistency
+  - Import: `import TailwindGrid from '@/app/components/templates/grid'`
+  - Wrap content in `<TailwindGrid>` and use grid columns: `col-span-full lg:col-start-3 lg:col-end-13`
+  - Example: PageHeader, PostHero, all section components
 
 **Working with Rive animations:**
 - Assets stored in `public/rive/`
 - Use `RiveAnimation` component with props: `artboardName`, `hoverAnimationName`, `hover`
 
-**Framer Motion patterns:**
-- Navbar uses `AnimatePresence` with `key` prop for exit animations
-- `ParallaxText` component for scrolling background text with outline effect
-- Always include `key` prop when using `AnimatePresence` for conditional rendering
+**Framer Motion animation patterns:**
+
+This project uses **viewport-based animations** as the standard approach. Animations should trigger when elements scroll into view, not on page load.
+
+**Core Animation Pattern:**
+```tsx
+// Standard viewport-based animation setup
+const cardVariants = {
+  hidden: { opacity: 0, /* + transform */ },
+  show: { opacity: 1, /* + transform reset */ }
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,  // Delay between child animations
+      delayChildren: 0.2     // Initial delay before first child
+    }
+  }
+};
+
+<motion.div
+  variants={containerVariants}
+  initial="hidden"
+  whileInView="show"
+  viewport={{ once: true, amount: 0.2 }}
+>
+  {items.map((item) => (
+    <motion.div
+      key={item.id}
+      variants={cardVariants}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ type: "spring", damping: 30, stiffness: 300 }}
+    >
+      {/* Content */}
+    </motion.div>
+  ))}
+</motion.div>
+```
+
+**Viewport Configuration:**
+- `once: true` - Animation plays only once (won't re-trigger on scroll)
+- `amount: 0.2` - Animation triggers when 20% of element is visible
+- Always use `whileInView` instead of `animate` for scroll-triggered animations
+
+**Animation Variants by Component Type:**
+
+1. **Grid Layouts** (e.g., BlogGrid, ProjectGrid):
+   - Entry: `scale: 0.8 → 1` with `opacity: 0 → 1`
+   - Stagger: `0.1s` between children
+   - Hover: `scale: 1.05`
+   - Creates pop-in effect for card grids
+
+2. **List Layouts** (e.g., BlogList):
+   - Entry: `x: -20 → 0` with `opacity: 0 → 1` (slide from left)
+   - Stagger: `0.15s` between children (longer than grid)
+   - Hover: `scale: 1.02, x: 5` (subtle lift with slide)
+   - Creates horizontal slide effect for vertical lists
+
+3. **Hero/Featured Sections** (e.g., BlogHero):
+   - Featured: `y: 30 → 0` with `opacity: 0 → 1` (slide from bottom)
+   - Hover: `scale: 1.03, y: -5` (lift effect)
+   - Recent/Side: `x: 20 → 0` with `opacity: 0 → 1` (slide from right)
+   - Stagger delay: `0.3s` before children start
+
+**Spring Physics Values:**
+- Standard cards: `damping: 30, stiffness: 300`
+- Hero sections: `damping: 25, stiffness: 200`
+- Always use `type: "spring"` for natural motion
+
+**Interaction States:**
+- `whileHover`: Scale effects (1.02-1.05) with optional transforms
+- `whileTap`: Scale down (0.95-0.98) for tactile feedback
+- Apply to individual cards, not containers
+
+**AnimatePresence Usage:**
+- Use `mode="wait"` for content that should wait for exit before entering
+- Always include unique `key` props on children for proper exit animations
+- Wrap conditional rendering (e.g., filtered content)
+- Example: BlogContent wraps category filtering with AnimatePresence
+
+**Best Practices:**
+- Remove CSS `transition` classes when using Framer Motion (they conflict)
+- Use variants for cleaner animation orchestration
+- Container animations should only handle stagger, not transforms
+- Individual items handle their own transforms and interactions
+- Consistent physics values across similar component types
 
 **Logo components:**
 - `Logo`: Text-based LuisUrdaneta logo with Tailwind animations (hover:scale-110)
