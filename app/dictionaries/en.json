@@ -190,7 +190,7 @@
     "categoriesSection": {
       "title": "I will be your Swiss Army knife in the digital world",
       "subtitle": "I could be your favorite ",
-      "textScroller": "Discover Vibes",
+      "textScroller": "Your next choice",
       "velocityScroller": -0.2,
       "carrouselKey": "category",
       "categories": [
@@ -221,7 +221,7 @@
       ]
     },
     "projectsPreviewSection": {
-      "textScroller": "Selected Projects",
+      "textScroller": "Enjoy my projects",
       "title": "Take a look at",
       "titlePrimary": "my projects...",
       "button": "CHECK ALL PROJECTS"
@@ -244,7 +244,7 @@
     "skillsSection": {
       "title": "Do you need one of",
       "titlePrimary": "my tools?",
-      "textScroller": "Developer Big To",
+      "textScroller": "The best tools",
       "velocityScroller": -0.2,
       "firstLine": [
         {
@@ -411,7 +411,7 @@
       }
     },
     "testimonialsSection": {
-      "textScroller": "What People Say",
+      "textScroller": "Listen to my community",
       "velocityScroller": 0.2,
       "title": "Client",
       "titlePrimary": "Testimonials",

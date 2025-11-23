@@ -191,7 +191,7 @@
     "categoriesSection": {
       "title": "I will be your Swiss Army knife in the digital world",
       "subtitle": "Podría ser tu próximo especialisa en ",
-      "textScroller": "Descubre Vibras",
+      "textScroller": "Tu mejore elección",
       "velocityScroller": -0.2,
       "carrouselKey": "category",
       "categories": [
@@ -222,7 +222,7 @@
       ]
     },
     "projectsPreviewSection": {
-      "textScroller": "Proyectos Seleccionados",
+      "textScroller": "Descubre mis proyectos",
       "title": "Échale un vistazo a",
       "titlePrimary": "mis Proyectos...",
       "button": "VER MÁS PROYECTOS"
@@ -244,7 +244,7 @@
     "skillsSection": {
       "title": "¿Necesitas una de",
       "titlePrimary": "mis herramientas?",
-      "textScroller": "Desarrollador Grande Hacia",
+      "textScroller": "Las mejores herramientas",
       "velocityScroller": -0.2,
       "firstLine": [
         {
@@ -411,7 +411,7 @@
       }
     },
     "testimonialsSection": {
-      "textScroller": "Lo Que Dicen",
+      "textScroller": "Escucha a mi comunidad",
       "velocityScroller": 0.2,
       "title": "Testimonios de",
       "titlePrimary": "Clientes",

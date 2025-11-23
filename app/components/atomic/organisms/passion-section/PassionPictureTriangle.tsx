@@ -43,11 +43,7 @@ function PassionPictureTriangle({
         />
         <Link href={"https://alkitu.com/gousty"} target="_blank">
           <button
-            style={{
-              boxShadow:
-                "0px 0px 20px 0px #6b21a8"
-            }}
-            className="flex justify-center items-center px-[4vw] py-[1vw] lg:px-[2vw] lg:py-[0.5vw]  absolute -bottom-10   bg-gradient-to-r from-primary via-zinc-800 to-purple-800 rounded-[33px] left-1/2 -translate-x-1/2   border-[1.5vw] md:border-[1vw] lg:border-[0.75vw] border-black uppercase font-black self-center text-center md:self-start md:text-start text-[6vw]  md:text-[2.8vw]  lg:text-[2.5vw] whitespace-nowrap"
+            className="flex justify-center items-center px-[4vw] py-[1vw] lg:px-[2vw] lg:py-[0.5vw] absolute -bottom-10 bg-primary rounded-[33px] left-1/2 -translate-x-1/2 border-[1.5vw] md:border-[1vw] lg:border-[0.75vw] border-black uppercase font-black self-center text-center md:self-start md:text-start text-[6vw] md:text-[2.8vw] lg:text-[2.5vw] whitespace-nowrap text-black hover:scale-110 hover:shadow-[0px_0px_25px_5px_rgba(0,187,49,0.8)] transition-all duration-300"
           >
             Play Game
           </button>
