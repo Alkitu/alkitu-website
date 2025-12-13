@@ -1,7 +1,7 @@
 "use client";
 import { useState, useMemo } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
 type TestimonialsDesktopCardProps = {
@@ -23,12 +23,54 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
     setShowFullDescription((prev) => !prev);
   };
 
-  // Memoize truncated description to avoid recalculating on every render
-  const truncatedDescription = useMemo(() => {
+  // Memoize all words and split into visible and additional
+  const { visibleWords, additionalWords } = useMemo(() => {
     const wordsLimit = 40;
-    const wordsArray = container.description.split(" ");
-    return wordsArray.slice(0, wordsLimit).join(" ");
+    const allWords = container.description.split(" ");
+    const visible = allWords.slice(0, wordsLimit);
+    const additional = allWords.slice(wordsLimit);
+    return { visibleWords: visible, additionalWords: additional };
   }, [container.description]);
+
+  // Animation variants for additional words only
+  const additionalWordsVariants = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.015,
+        delayChildren: 0.05
+      }
+    },
+    exit: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.01, // Slower exit - 10ms between words
+        staggerDirection: -1 // Remove from end to start
+      }
+    }
+  };
+
+  const wordVariants = {
+    hidden: {
+      opacity: 0,
+      y: 5
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.15
+      }
+    },
+    exit: {
+      opacity: 0,
+      y: -5,
+      transition: {
+        duration: 0.12 // Slower fade out
+      }
+    }
+  };
 
   return (
     <motion.div
@@ -37,8 +79,10 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
       transition={{
         layout: {
           type: "spring",
-          damping: 25,
-          stiffness: 200
+          damping: 35,
+          stiffness: 130,
+          mass: 1.0,
+          restDelta: 0.01
         }
       }}
       style={{ willChange: "height" }}
@@ -94,26 +138,64 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
         transition={{
           layout: {
             type: "spring",
-            damping: 25,
-            stiffness: 200
+            damping: 35,
+            stiffness: 130,
+            mass: 1.0,
+            restDelta: 0.01
           }
         }}
         style={{ willChange: "height" }}
         className="w-full"
       >
-        <motion.p
-          layout
-          className="max-w-full md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] font-normal tracking-tight"
-        >
-          {showFullDescription
-            ? container.description
-            : `${truncatedDescription}...`}
-        </motion.p>
+        <p className="max-w-full md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] font-normal tracking-tight">
+          {/* Always visible words - no animation */}
+          {visibleWords.map((word, index) => (
+            <span key={`visible-${index}`} className="inline-block mr-[0.25em]">
+              {word}
+            </span>
+          ))}
+          {/* Additional words - animated */}
+          <AnimatePresence initial={false}>
+            {showFullDescription && (
+              <motion.span
+                key="additional-words"
+                variants={additionalWordsVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="inline-block"
+              >
+                {additionalWords.map((word, index) => (
+                  <motion.span
+                    key={`additional-${index}`}
+                    variants={wordVariants}
+                    className="inline-block mr-[0.25em]"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </motion.span>
+            )}
+          </AnimatePresence>
+          {/* Ellipsis when truncated */}
+          {!showFullDescription && (
+            <span className="inline-block">...</span>
+          )}
+        </p>
         <motion.button
-          layout="position"
-          className="text-primary font-normal underline md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] cursor-pointer z-30 p-2"
+          layout
+          className="text-primary font-normal underline md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] cursor-pointer z-30 p-2 self-start"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          transition={{
+            layout: {
+              type: "spring",
+              damping: 35,
+              stiffness: 130,
+              mass: 1.0,
+              restDelta: 0.01
+            }
+          }}
           onClick={toggleDescription}
         >
           {showFullDescription ? "Read Less" : "Read More"}

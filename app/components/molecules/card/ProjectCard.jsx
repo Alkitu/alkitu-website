@@ -14,6 +14,7 @@ const ProjectCard = ({ project, priority = false }) => {
 
   return (
     <motion.div
+      layout
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       transition={{ type: "spring", damping: 30, stiffness: 300 }}

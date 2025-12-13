@@ -21,6 +21,7 @@ function ResponsiveList({
     <>
       <div className={className}>
         <motion.div
+          layout
           initial={{ opacity: 0, y: 0, scale: 0 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{
