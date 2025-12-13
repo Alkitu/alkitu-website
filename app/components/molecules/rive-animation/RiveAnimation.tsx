@@ -1,3 +1,4 @@
+"use client";
 import { useRive, RuntimeLoader } from "@rive-app/react-canvas";
 import { useEffect } from "react";
 import riveWASMResource from '@rive-app/canvas/rive.wasm';
