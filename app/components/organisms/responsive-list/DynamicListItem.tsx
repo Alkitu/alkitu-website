@@ -4,6 +4,7 @@ import { RiveAnimation } from "@/app/components/molecules/rive-animation";
 
 function DynamicListItem({ category, index, boxPositions, handleClick }) {
   const [hover, setHover] = useState(false);
+  const isCenterCard = boxPositions[index] === 1;
 
   return (
     <>
@@ -37,15 +38,12 @@ function DynamicListItem({ category, index, boxPositions, handleClick }) {
               ? "lg:min-h-68  py-[3.77rem]"
               : "lg:h-60 py-11"
           }`}
-          onMouseEnter={() => {
-            setHover(true);
-          }}
-          onMouseLeave={() => {
-            setHover(false);
-          }}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
           onClick={() => handleClick(index)}
         >
           <motion.div
+            layout
             className={
               boxPositions[index] === 1
                 ? "h-56 max-h-full max-w-full aspect-square mx-auto "
@@ -55,7 +53,7 @@ function DynamicListItem({ category, index, boxPositions, handleClick }) {
             <RiveAnimation
               hover={hover}
               artboardName={category.artboardName}
-              key={boxPositions[index]}
+              key={category.name}
             />
           </motion.div>
           <motion.div>

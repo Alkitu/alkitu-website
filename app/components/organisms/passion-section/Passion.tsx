@@ -1,5 +1,4 @@
 import TailwindGrid from "@/app/components/templates/grid";
-import { RiveAnimation } from "@/app/components/molecules/rive-animation";
 import { BigQuote } from "@/app/components/organisms/quote-section";
 import PassionImage from "@/app/components/organisms/passion-section/PassionImage";
 

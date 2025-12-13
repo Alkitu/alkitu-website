@@ -15,7 +15,7 @@ function DynamicList({ setWordCategory, categories }) {
       >
         {categories.map((category, index) => (
           <DynamicListItem
-            key={index}
+            key={category.name}
             category={category}
             index={index}
             boxPositions={boxPositions}

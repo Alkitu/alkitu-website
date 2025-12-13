@@ -21,15 +21,11 @@ function NewDynamicList({ className, index, category, wordIndex, setIndex }) {
       }}
       layout
       className={`relative w-[1/2] group items-end flex  ${className}
-        ${isCenterCard ? "col-span-5 " : "col-span-3"} 
+        ${isCenterCard ? "col-span-5 " : "col-span-3"}
         `}
       onClick={() => handleClick(indexPosition[index])}
-      onMouseEnter={() => {
-        setHover(true);
-      }}
-      onMouseLeave={() => {
-        setHover(false);
-      }}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
     >
       <div
         className={`${isCenterCard ? "h-full mb-2 " : "h-2/3 mb-2 "} ${
@@ -41,9 +37,16 @@ function NewDynamicList({ className, index, category, wordIndex, setIndex }) {
           isCenterCard ? "  py-[3.77rem]" : "h-2/3 py-11"
         }`}
       >
-        <div className='h-56 max-h-full max-w-full aspect-square mx-auto'>
-          <RiveAnimation hover={hover} artboardName={category.artboardName} />
-        </div>
+        <motion.div
+          layout
+          className='h-56 max-h-full max-w-full aspect-square mx-auto'
+        >
+          <RiveAnimation
+            hover={hover}
+            artboardName={category.artboardName}
+            key={category.name}
+          />
+        </motion.div>
         <div>
           <h3 className='text-center h-full text-xl font-black uppercase m-auto w-full '>
             {category.name.split("").map((word, index) => {
