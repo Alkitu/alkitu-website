@@ -37,6 +37,7 @@ export default function Carousel({
   className,
   immagesArray,
   longCard,
+  projectId,
 }) {
   const [page, setPage] = useState(initialIndex);
   const images = immagesArray;
@@ -46,6 +47,7 @@ export default function Carousel({
   const paginationThumbnails = thumbnails || false;
   const imageRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const [isHovering, setIsHovering] = useState(false);
 
   const handleClickAfter = useCallback(() => {
     if (page >= images.length - 1) {
@@ -64,11 +66,12 @@ export default function Carousel({
   }, [images.length, page]);
 
   useEffect(() => {
+    if (isHovering) return;
     const interval = setInterval(() => {
       handleClickAfter();
-    }, 5000);
+    }, 8000);
     return () => clearInterval(interval);
-  }, [handleClickAfter, page]);
+  }, [handleClickAfter, page, isHovering]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -94,6 +97,8 @@ export default function Carousel({
             ? "max-h-[667px] h-[667px] justify-center content-start items-start"
             : " justify-center items-center"
         }`}
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
       >
         <div className='w-full h-full absolute   top-0 left-0 opacity-25 bg-gray-700 -z-20' />
 
@@ -133,6 +138,8 @@ export default function Carousel({
                     alt={image}
                     ref={imageRef}
                     src={image}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    priority={index === 0}
                     className={`pointer-events-none top-0 h-full w-full ${
                       longCard
                         ? "absolute object-scale-down"
@@ -231,7 +238,8 @@ export default function Carousel({
                     alt={image}
                     ref={imageRef}
                     src={image}
-                    className={`w-full h-full rounded lg:rounded-md object-cover border-2  ${
+                    loading="lazy"
+                    className={`w-full h-full rounded lg:rounded-md object-cover border-2 transition-all duration-300 ${
                       isCurrent
                         ? "border-primary"
                         : "border-white/50 hover:border-primary"

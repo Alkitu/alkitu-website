@@ -22,12 +22,12 @@ function ResponsiveList({
       <div className={className}>
         <motion.div
           layout
-          initial={{ opacity: 0, y: 0, scale: 0 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{
             duration: 0.5,
-            staggerChildren: 5,
-            delayChildren: 2.5,
+            staggerChildren: 0.1,
+            delayChildren: 0.2,
           }}
           className={`gap-4  md:gap-6  lg:gap-6 grid gap-y-10 content-center justify-center
           ${mobile === 1 && `grid-cols-1`} 

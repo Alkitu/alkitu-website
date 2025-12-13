@@ -8,7 +8,7 @@ import { useTranslationContext } from "@/app/context/TranslationContext";
 const ProjectCard = ({ project, priority = false }) => {
   const { locale } = useTranslationContext();
   const itemVariants = {
-    hidden: { opacity: 0, scale: 0 },
+    hidden: { opacity: 0, scale: 0.8 },
     show: { opacity: 1, scale: 1 },
   };
 
@@ -17,11 +17,12 @@ const ProjectCard = ({ project, priority = false }) => {
       layout
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      transition={{ type: "spring", damping: 30, stiffness: 300 }}
       variants={itemVariants}
       initial="hidden"
-      animate="show"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
       exit="hidden"
+      transition={{ type: "spring", damping: 30, stiffness: 300 }}
       className="rounded-2xl overflow-hidden dark:bg-gray-700 "
     >
       <Link
@@ -31,9 +32,9 @@ const ProjectCard = ({ project, priority = false }) => {
       >
         <Suspense
           fallback={
-            <div className="flex items-center justify-center w-full h-48 bg-gray-300 rounded sm:w-96 dark:bg-gray-700">
+            <div className="flex items-center justify-center w-full aspect-video bg-gray-300 rounded-2xl dark:bg-gray-700 animate-pulse">
               <svg
-                className="w-10 h-10 text-gray-200 dark:text-gray-600"
+                className="w-10 h-10 text-gray-200 dark:text-gray-600 animate-pulse"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -44,15 +45,16 @@ const ProjectCard = ({ project, priority = false }) => {
             </div>
           }
         >
-          <div className="w-full h-full absolute bg-gray-700  top-0 left-0 animate-pulse -z-20"/>
+          <div className="w-full h-full absolute bg-gray-700 top-0 left-0 -z-20"/>
           <Image
             src={project.image}
             width={1080}
             height={720}
             alt={project.title || "Project image"}
-            className="w-full aspect-video object-cover object-center group-hover:opacity-100 transition-all rounded-2xl bg-gray-700  "
-            blurDataURL={project.image}
-            priority={priority}
+            className="w-full aspect-video object-cover object-center group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
+            loading={priority ? "eager" : "lazy"}
+            placeholder="blur"
+            blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA4MCIgaGVpZ2h0PSI3MjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwODAlIiBoZWlnaHQ9IjcyMCIgZmlsbD0iIzMzMyIvPjwvc3ZnPg=="
           />
         </Suspense>
       </Link>

@@ -38,14 +38,14 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.015,
-        delayChildren: 0.05
+        staggerChildren: 0.008, // Faster stagger - 8ms between words
+        delayChildren: 0.03
       }
     },
     exit: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.01, // Slower exit - 10ms between words
+        staggerChildren: 0.006, // Even faster exit - 6ms between words
         staggerDirection: -1 // Remove from end to start
       }
     }
@@ -54,20 +54,25 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
   const wordVariants = {
     hidden: {
       opacity: 0,
-      y: 5
+      y: 3,
+      scale: 0.95
     },
     visible: {
       opacity: 1,
       y: 0,
+      scale: 1,
       transition: {
-        duration: 0.15
+        duration: 0.12,
+        ease: [0.4, 0, 0.2, 1] // Custom easeInOut
       }
     },
     exit: {
       opacity: 0,
-      y: -5,
+      y: -3,
+      scale: 0.95,
       transition: {
-        duration: 0.12 // Slower fade out
+        duration: 0.1,
+        ease: [0.4, 0, 0.2, 1]
       }
     }
   };
@@ -78,11 +83,8 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
       initial={false}
       transition={{
         layout: {
-          type: "spring",
-          damping: 35,
-          stiffness: 130,
-          mass: 1.0,
-          restDelta: 0.01
+          duration: 0.5,
+          ease: [0.4, 0, 0.2, 1] // Custom easeInOut curve for smooth, natural motion
         }
       }}
       style={{ willChange: "height" }}
@@ -132,75 +134,50 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
       >
         {container.position}
       </motion.h5>
-      <motion.div
-        layout
-        initial={false}
-        transition={{
-          layout: {
-            type: "spring",
-            damping: 35,
-            stiffness: 130,
-            mass: 1.0,
-            restDelta: 0.01
-          }
-        }}
-        style={{ willChange: "height" }}
-        className="w-full"
-      >
-        <p className="max-w-full md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] font-normal tracking-tight">
-          {/* Always visible words - no animation */}
-          {visibleWords.map((word, index) => (
-            <span key={`visible-${index}`} className="inline-block mr-[0.25em]">
-              {word}
-            </span>
-          ))}
-          {/* Additional words - animated */}
-          <AnimatePresence initial={false}>
-            {showFullDescription && (
-              <motion.span
-                key="additional-words"
-                variants={additionalWordsVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                className="inline-block"
-              >
-                {additionalWords.map((word, index) => (
-                  <motion.span
-                    key={`additional-${index}`}
-                    variants={wordVariants}
-                    className="inline-block mr-[0.25em]"
-                  >
-                    {word}
-                  </motion.span>
-                ))}
-              </motion.span>
-            )}
-          </AnimatePresence>
-          {/* Ellipsis when truncated */}
-          {!showFullDescription && (
-            <span className="inline-block">...</span>
+      <p className="max-w-full md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] font-normal tracking-tight">
+        {/* Always visible words - no animation */}
+        {visibleWords.map((word, index) => (
+          <span key={`visible-${index}`} className="inline-block mr-[0.25em]">
+            {word}
+          </span>
+        ))}
+        {/* Additional words - animated */}
+        <AnimatePresence initial={false}>
+          {showFullDescription && (
+            <motion.span
+              key="additional-words"
+              variants={additionalWordsVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="inline-block"
+            >
+              {additionalWords.map((word, index) => (
+                <motion.span
+                  key={`additional-${index}`}
+                  variants={wordVariants}
+                  className="inline-block mr-[0.25em]"
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </motion.span>
           )}
-        </p>
+        </AnimatePresence>
+        {/* Ellipsis when truncated */}
+        {!showFullDescription && (
+          <span className="inline-block">... </span>
+        )}
+        {/* Inline button */}
         <motion.button
-          layout
-          className="text-primary font-normal underline md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] cursor-pointer z-30 p-2 self-start"
+          className="text-primary font-normal underline md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] cursor-pointer"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          transition={{
-            layout: {
-              type: "spring",
-              damping: 35,
-              stiffness: 130,
-              mass: 1.0,
-              restDelta: 0.01
-            }
-          }}
           onClick={toggleDescription}
         >
           {showFullDescription ? "Read Less" : "Read More"}
         </motion.button>
-      </motion.div>
+      </p>
     </motion.div>
   );
 }

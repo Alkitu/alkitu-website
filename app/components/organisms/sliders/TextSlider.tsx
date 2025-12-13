@@ -48,16 +48,26 @@ function TextSlider({ children, velocity, reverse }: IconsSliderProps) {
 
   return (
     <>
-      <div className="w-full -rotate-90 origin-top-right absolute -left-48 top-0 pointer-events-none">
+      <motion.div
+        className="w-full -rotate-90 origin-top-right absolute -left-48 top-0 pointer-events-none"
+        initial={{ opacity: 0, y: 0 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+      >
         <motion.div
-          className="whitespace-nowrap z-100 w-dvh text flex "
+          className="whitespace-nowrap z-100 w-dvh text flex"
           ref={sliderContentRef}
-          animate={{
-            translateX: [
-              reverse ? -sliderContentWidth : 0,
-              reverse ? 0 : -sliderContentWidth * 2,
-            ],
-          }}
+          initial={false}
+          animate={
+            sliderContentWidth > 0
+              ? {
+                  translateX: [
+                    reverse ? -sliderContentWidth : 0,
+                    reverse ? 0 : -sliderContentWidth * 2,
+                  ],
+                }
+              : {}
+          }
           transition={{
             ease: "linear",
             duration: velocity ? velocity : 15,
@@ -66,10 +76,10 @@ function TextSlider({ children, velocity, reverse }: IconsSliderProps) {
           }}
         >
           <p className="text-zinc-800/40 text-[135px] font-black">
-            {new Array(50).fill(0).map((_, i) => content)}
+            {new Array(20).fill(0).map((_, i) => content)}
           </p>
         </motion.div>
-      </div>
+      </motion.div>
     </>
   );
 }

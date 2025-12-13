@@ -37,9 +37,14 @@ function Project() {
   }, [isExpanded, dataProject.description]);
 
   return (
-    <div className='lg:flex  w-screen  max-w-full'>
-      <section className='w-full lg:w-[60%]   lg:min-h-[50vh]  relative overflow-hidden flex  justify-center items-center pt-20 pb-[2vw] lg:pt-0 lg:pb-0'>
-        <div className=' lg:w-4/5 z-10 '>
+    <div className='lg:flex w-screen max-w-full min-h-screen'>
+      <section className='w-full lg:w-[60%] lg:min-h-[50vh] relative overflow-hidden flex justify-center items-center pt-20 pb-[2vw] lg:pt-0 lg:pb-0'>
+        <motion.div
+          className='lg:w-4/5 z-10 w-full'
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           <Carousel
             numbers={false}
             bullets={false}
@@ -48,12 +53,18 @@ function Project() {
             longCard={false}
             className='mx-5 px-5 py-10'
             immagesArray={dataProject.gallery}
+            projectId={projectId}
           />
-        </div>
+        </motion.div>
         <TextSlider />
       </section>
-      <section className='w-full lg:w-[40%] lg:min-h-dvh bg-zinc-300 text-zinc-800 flex-row justify-center items-center  px-11 flex py-14 lg:py-36'>
-        <div className='my-auto'>
+      <section className='w-full lg:w-[40%] lg:min-h-dvh bg-zinc-300 text-zinc-800 flex-row justify-center items-center px-11 flex py-14 lg:py-36'>
+        <motion.div
+          className='my-auto w-full'
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+        >
           <div className='border-l px-5 border-zinc-800 flex flex-col '>
             <h1 className='text-stone-900 text-3xl font-black uppercase '>
               {dataProject.title}
@@ -76,33 +87,28 @@ function Project() {
               </h2>
             </div>
           </div>
-          <div className='my-3 text-justify text-sm font-medium mt-5 whitespace-pre-wrap '>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <AnimatePresence>
-                <motion.p
-                  key={isExpanded.toString()}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0, transition: { duration: 0 } }}
-                  transition={{ duration: 0.5 }}
-                  className=''
+          <div className='my-3 text-justify text-sm font-medium mt-5 whitespace-pre-wrap'>
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={isExpanded.toString()}
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className=''
+              >
+                {displayedDescription}{" "}
+                <motion.button
+                  onClick={toggleExpand}
+                  className='text-gray-200 bg-gray-600 border border-gray-900 px-2 py-1 my-1 rounded-full text-xs hover:text-gray-200/75 transition-colors duration-200 ease-in-out ml-2 mb-2 '
+                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", damping: 20, stiffness: 400 }}
                 >
-                  {displayedDescription}{" "}
-                  <motion.button
-                    onClick={toggleExpand}
-                    className='text-gray-200   bg-gray-600 border border-gray-900 px-2 py-1 my-1 rounded-full text-xs hover:text-gray-200/75 transition duration-300 ease-in-out ml-2 mb-2 '
-                    whileTap={{ scale: 0.9 }}
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    {isExpanded ? "Read Less ˄" : "Read More ˅"}
-                  </motion.button>
-                </motion.p>
-              </AnimatePresence>
-            </motion.div>
+                  {isExpanded ? "Read Less ˄" : "Read More ˅"}
+                </motion.button>
+              </motion.p>
+            </AnimatePresence>
           </div>
           {dataProject.urls &&
             dataProject.urls.map((item, index) => (
@@ -149,7 +155,7 @@ function Project() {
           <div className='mt-5 '>
             <SocialButtons text={translations} />
           </div>
-        </div>
+        </motion.div>
       </section>
     </div>
   );
