@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -23,59 +23,36 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
     setShowFullDescription((prev) => !prev);
   };
 
-  const renderDescription = () => {
-    if (showFullDescription) {
-      return (
-        <>
-          <p className="max-w-full md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] font-normal tracking-tight">
-            {container.description}
-          </p>
-          <motion.button
-            className="text-primary font-normal underline md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] cursor-pointer z-30 p-2"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={toggleDescription}
-          >
-            Read Less
-          </motion.button>
-        </>
-      );
-    } else {
-      const wordsLimit = 40; // Set the number of words you want to show initially
-      const wordsArray = container.description.split(" ");
-      const truncatedDescription = wordsArray.slice(0, wordsLimit).join(" ");
-
-      return (
-        <>
-          <p className="max-w-full md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] font-normal tracking-tight">
-            {truncatedDescription}...
-          </p>
-          <motion.button
-            className="text-primary font-normal underline md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] cursor-pointer z-30 p-2"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={toggleDescription}
-          >
-            Read More
-          </motion.button>
-        </>
-      );
-    }
-  };
+  // Memoize truncated description to avoid recalculating on every render
+  const truncatedDescription = useMemo(() => {
+    const wordsLimit = 40;
+    const wordsArray = container.description.split(" ");
+    return wordsArray.slice(0, wordsLimit).join(" ");
+  }, [container.description]);
 
   return (
     <motion.div
-      layout="position"
-      className="items-center justify-center text-center bg-card dark:bg-zinc-900 rounded-xl shadow flex flex-col gap-y-2 mx-auto  px-[8%] py-[5%]"
+      layout
+      initial={false}
+      transition={{
+        layout: {
+          type: "spring",
+          damping: 25,
+          stiffness: 200
+        }
+      }}
+      style={{ willChange: "height" }}
+      className="items-center justify-center text-center bg-card dark:bg-zinc-900 rounded-xl shadow flex flex-col gap-y-2 mx-auto px-[8%] py-[5%]"
     >
       {container.url && (
         <Link
-          href={container.url} // Reemplaza esta URL con la URL correcta de tu perfil de LinkedIn
+          href={container.url}
           target="_blank"
           rel="noopener noreferrer"
           className="-mb-8 self-end"
         >
           <motion.button
+            layout="position"
             whileTap={{ scale: 0.9 }}
             whileHover={{ scale: 1.1 }}
             className="group bg-white cursor-pointer hover:bg-zinc-700 rounded-full transition-all"
@@ -90,25 +67,57 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
           </motion.button>
         </Link>
       )}
-      <Image
-        className="rounded-full pointer-events-none w-3/12 aspect-square object-cover"
-        width={360}
-        height={360}
-        alt={`${container.order}`}
-        src={container.src}
-      />
-      <h4 className="text-center md:text-[1.8vw] lg:text-[1.6vw] 2xl:text-[1.2vw] font-bold">
-        {container.name}
-      </h4>
-      <h5 className="text-muted-foreground text-xs md:text-[1.4vw] lg:text-[1.2vw] 2xl:text-[0.8vw] font-medium">
-        {container.position}
-      </h5>
-      <motion.div
+      <motion.div layout="preserve-aspect">
+        <Image
+          className="rounded-full pointer-events-none w-3/12 aspect-square object-cover mx-auto"
+          width={360}
+          height={360}
+          alt={`${container.order}`}
+          src={container.src}
+        />
+      </motion.div>
+      <motion.h4
         layout="position"
-        layoutId={container.name}
-        transition={{ duration: 0.25 }}
+        className="text-center md:text-[1.8vw] lg:text-[1.6vw] 2xl:text-[1.2vw] font-bold"
       >
-        {renderDescription()}
+        {container.name}
+      </motion.h4>
+      <motion.h5
+        layout="position"
+        className="text-muted-foreground text-xs md:text-[1.4vw] lg:text-[1.2vw] 2xl:text-[0.8vw] font-medium"
+      >
+        {container.position}
+      </motion.h5>
+      <motion.div
+        layout
+        initial={false}
+        transition={{
+          layout: {
+            type: "spring",
+            damping: 25,
+            stiffness: 200
+          }
+        }}
+        style={{ willChange: "height" }}
+        className="w-full"
+      >
+        <motion.p
+          layout
+          className="max-w-full md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] font-normal tracking-tight"
+        >
+          {showFullDescription
+            ? container.description
+            : `${truncatedDescription}...`}
+        </motion.p>
+        <motion.button
+          layout="position"
+          className="text-primary font-normal underline md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] cursor-pointer z-30 p-2"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={toggleDescription}
+        >
+          {showFullDescription ? "Read Less" : "Read More"}
+        </motion.button>
       </motion.div>
     </motion.div>
   );
