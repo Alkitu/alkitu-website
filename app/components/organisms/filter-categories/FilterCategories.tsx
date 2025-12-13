@@ -66,8 +66,8 @@ export default function FilterCategories({
       >
         {draggable === true && (
           <div className='absolute z-30 right-0 top-0 w-full flex justify-between  pointer-events-none opacity-90'>
-            <div className='w-[20%] from-background via-background via-10% md:via-10% to-transparent to-80% md:to-20% bg-gradient-to-r h-12 pointer-events-none' />
-            <div className='w-[20%] from-background via-background via-10% md:via-10% to-transparent to-80% md:to-20% bg-gradient-to-l h-12 pointer-events-none' />
+            <div className='w-[20%] from-background via-background via-10% md:via-10% to-transparent to-80% md:to-20% bg-linear-to-r h-12 pointer-events-none' />
+            <div className='w-[20%] from-background via-background via-10% md:via-10% to-transparent to-80% md:to-20% bg-linear-to-l h-12 pointer-events-none' />
           </div>
         )}
         <motion.div

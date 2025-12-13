@@ -73,7 +73,7 @@ export default Skills;
 function SkillsItems({ skill }) {
   return (
     <div className=' group flex-col justify-center items-center gap-2 inline-flex pointer-events-none'>
-      <div className='w-[20vw] h-[20vw] md:w-[16vw] md:h-[16vw] lg:w-[8vw] lg:h-[8vw] relative bg-white dark:bg-stone-950 rounded-xl shadow-sm shadow-zinc-200 dark:shadow-md dark:shadow-black border border-zinc-50 dark:border-transparent flex-col justify-center items-center flex pointer-events-none'>
+      <div className='w-[20vw] h-[20vw] md:w-[16vw] md:h-[16vw] lg:w-[8vw] lg:h-[8vw] relative bg-white dark:bg-stone-950 rounded-xl shadow-xs shadow-zinc-200 dark:shadow-md dark:shadow-black border border-zinc-50 dark:border-transparent flex-col justify-center items-center flex pointer-events-none'>
         <Image
           src={skill.src}
           width={50}

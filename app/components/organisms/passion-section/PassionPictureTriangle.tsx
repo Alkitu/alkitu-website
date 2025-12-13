@@ -31,7 +31,7 @@ function PassionPictureTriangle({
           WebkitClipPath: "url(#my-clip-path)",
           clipPath: "url(#my-clip-path)",
         }}
-        className="w-full h-full  bg-gradient-to-b from-primary to-green-800  group-hover:-rotate-90 flex items-center align-middle justify-center aspect-square z-40"
+        className="w-full h-full  bg-linear-to-b from-primary to-green-800 flex items-center align-middle justify-center aspect-square z-40"
       />
       <div className="w-full h-full max-w-full max-h-full aspect-square mx-auto absolute -top-10 object-contain left-[2vw]">
         <Image

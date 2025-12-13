@@ -30,6 +30,27 @@ const nextConfig = {
       },
     ],
   },
+  webpack: (config) => {
+    // Add support for .riv files as assets
+    config.module.rules.push({
+      test: /\.riv$/i,
+      type: 'asset/resource',
+    });
+
+    // Add support for .wasm files (required for Rive runtime)
+    config.module.rules.push({
+      test: /\.wasm$/i,
+      type: 'asset/resource',
+    });
+
+    // Enable WebAssembly experiments
+    config.experiments = {
+      ...config.experiments,
+      asyncWebAssembly: true,
+    };
+
+    return config;
+  },
 };
 
 module.exports = nextConfig;

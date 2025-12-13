@@ -80,10 +80,10 @@ export default function BlinkWordsChangers({
           stiffness: 300,
           damping: 24,
         }}
-        className="uppercase items-center bg- h-[100dvh] w-full invite-place text-6xl md:text-8xl lg:text-9xl inline-block relative  overflow-hidden min-h-[60px] text-center "
+        className="uppercase items-center bg- h-dvh w-full invite-place text-6xl md:text-8xl lg:text-9xl inline-block relative  overflow-hidden min-h-[60px] text-center "
       >
         <motion.strong
-          className="invite-place bg-red- h-[100dvh] items-center text-6xl md:text-8xl lg:text-9xl font-main_bold inline-block relative w-[max-content] self-baseline mt-2 px-2"
+          className="invite-place bg-red- h-dvh items-center text-6xl md:text-8xl lg:text-9xl font-main_bold inline-block relative w-max self-baseline mt-2 px-2"
           variants={variants}
           initial="initial"
           animate="enter"

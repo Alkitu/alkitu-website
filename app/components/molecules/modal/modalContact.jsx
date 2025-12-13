@@ -12,7 +12,6 @@ const dropIn = {
       type: "spring",
       damping: 25,
       stiffness: 500,
-      when: "beforeChildren",
     },
   },
   closed: {
@@ -21,7 +20,6 @@ const dropIn = {
       type: "spring",
       damping: 25,
       stiffness: 500,
-      when: "afterChildren",
     },
   },
 };
@@ -32,7 +30,7 @@ const ModalContact = ({ handleClose }) => {
   return (
     <BackdropUpToDown onClick={handleClose}>
       <motion.div
-        className='z-[70] w-[clamp(90%,700px,90px)] md:max-w-lg m-auto py-2 px-8 rounded-xl flex flex-col justify-between items-center shadow bg-white dark:bg-zinc-900 '
+        className='z-70 w-[clamp(90%,700px,90px)] md:max-w-lg m-auto py-2 px-8 rounded-xl flex flex-col justify-between items-center shadow bg-white dark:bg-zinc-900 '
         variants={dropIn}
         initial='closed'
         animate='open'

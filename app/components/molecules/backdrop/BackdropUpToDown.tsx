@@ -8,20 +8,18 @@ const BackdropUpToDown = ({ children, onClick }) => {
       y: "0vh",
       opacity: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 25,
         stiffness: 500,
-        when: "beforeChildren",
       },
     },
     closed: {
       y: "-100dvh",
       opacity: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 25,
         stiffness: 500,
-        when: "afterChildren",
       },
     },
   };
@@ -46,7 +44,7 @@ const BackdropUpToDown = ({ children, onClick }) => {
     <>
       <motion.div
         onClick={onClick}
-        className="z-[70] fixed top-0 left-0 h-[100dvh] w-full bg-zinc-950/80 "
+        className="z-70 fixed top-0 left-0 h-dvh w-full bg-zinc-950/80 "
         variants={fadeIn}
         initial="closed"
         animate="open"
@@ -54,7 +52,7 @@ const BackdropUpToDown = ({ children, onClick }) => {
       ></motion.div>
       <motion.div
         onClick={onClick}
-        className="z-[70] fixed top-0 left-0 h-[100dvh] w-full  flex items-center justify-center"
+        className="z-70 fixed top-0 left-0 h-dvh w-full  flex items-center justify-center"
         variants={dropIn}
         initial="closed"
         animate="open"

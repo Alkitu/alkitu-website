@@ -71,7 +71,7 @@ export default function BlogGrid({ posts, locale, categoryTitle, columns = 4 }: 
             variants={cardVariants}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+            transition={{ type: "spring" as const, damping: 30, stiffness: 300 }}
           >
             <Link
               href={`/${locale}/blog/${post.slug}`}

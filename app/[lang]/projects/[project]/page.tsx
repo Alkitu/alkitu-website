@@ -52,7 +52,7 @@ function Project() {
         </div>
         <TextSlider />
       </section>
-      <section className='w-full lg:w-[40%] lg:min-h-[100dvh] bg-zinc-300 text-zinc-800 flex-row justify-center items-center  px-11 flex py-14 lg:py-36'>
+      <section className='w-full lg:w-[40%] lg:min-h-dvh bg-zinc-300 text-zinc-800 flex-row justify-center items-center  px-11 flex py-14 lg:py-36'>
         <div className='my-auto'>
           <div className='border-l px-5 border-zinc-800 flex flex-col '>
             <h1 className='text-stone-900 text-3xl font-black uppercase '>

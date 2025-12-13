@@ -11,7 +11,7 @@ function CategoriesCard({ container, centerOrder }) {
       <motion.div
         layout
         transition={{
-          type: "spring",
+          type: "spring" as const,
           damping: 100,
           stiffness: 1000,
           mass: 0.1,
@@ -42,7 +42,7 @@ function CategoriesCard({ container, centerOrder }) {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0 }}
               transition={{
-                type: "spring",
+                type: "spring" as const,
                 damping: 100,
                 stiffness: 1000,
                 mass: 0.1,

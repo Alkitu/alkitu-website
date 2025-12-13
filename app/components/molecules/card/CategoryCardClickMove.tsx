@@ -39,7 +39,7 @@ function CategoryCard({ category, className, index, wordIndex, setIndex }) {
   return (
     <motion.div
       layout
-      transition={{ type: "spring", damping: 100, stiffness: 1000, mass: 0.1 }}
+      transition={{ type: "spring" as const, damping: 100, stiffness: 1000, mass: 0.1 }}
       className={`relative w-[1/2] group items-end flex  ${className}
         ${isCenterCard && "col-span-5 "} 
         ${isCenterCard && index === 0 && "order-8 col-span-3"} 
@@ -54,7 +54,7 @@ function CategoryCard({ category, className, index, wordIndex, setIndex }) {
       <div
         className={`${wordIndex === index ? "h-full mb-2" : "h-2/3 mb-2"} ${
           hover ? "opacity-50" : "opacity-0"
-        } absolute w-full -bottom-2 bg-gradient-to-b from-primary to-primary rounded-lg blur transition duration-200 `}
+        } absolute w-full -bottom-2 bg-linear-to-b from-primary to-primary rounded-lg blur transition duration-200 `}
       />
       <div
         className={`  w-[98%] mx-auto relative  bg-white dark:bg-zinc-900  rounded-3xl flex-col content-center items-center justify-center  cursor-pointer  ${

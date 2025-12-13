@@ -12,7 +12,6 @@ const dropIn = {
       type: "spring",
       damping: 25,
       stiffness: 500,
-      when: "beforeChildren",
     },
   },
   closed: {
@@ -21,7 +20,6 @@ const dropIn = {
       type: "spring",
       damping: 25,
       stiffness: 500,
-      when: "afterChildren",
     },
   },
 };

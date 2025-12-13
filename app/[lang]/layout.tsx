@@ -24,7 +24,7 @@ export default async function RootLayout({
   const initialTranslations = translations[lang];
 
   return (
-    <html lang={lang} suppressHydrationWarning>
+    <html lang={lang} suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -63,7 +63,7 @@ export default async function RootLayout({
       >
         <Providers locale={lang} initialTranslations={initialTranslations}>
           <NavBar />
-          <main className='max-w-full mt-20 w-[100vw] flex flex-col items-center justify-center relative overflow-visible'>
+          <main className='max-w-full mt-20 w-screen flex flex-col items-center justify-center relative overflow-visible'>
             {children}
           </main>
           <Footer />

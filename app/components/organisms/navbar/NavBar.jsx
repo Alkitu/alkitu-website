@@ -23,7 +23,6 @@ const sidebarVariants = {
       stiffness: 40,
       restDelta: 1,
       duration: 5,
-      when: "beforeChildren",
     },
   },
   closed: {
@@ -33,7 +32,6 @@ const sidebarVariants = {
       stiffness: 40,
       restDelta: 1,
       duration: 5,
-      when: "afterChildren",
     },
   },
 };
@@ -148,7 +146,7 @@ export default function NavBar() {
                     {isOpen && (
                       <BackdropLeftToRight onClick={() => toggleOpen()}>
                         <motion.div
-                          className={`fixed h-[100dvh] top-0 right-0 bottom-0  bg-white dark:bg-black  ${
+                          className={`fixed h-dvh top-0 right-0 bottom-0  bg-white dark:bg-black  ${
                             isOpen && "flex"
                           } max-w-full min-w-[300px] overflow-hidden`}
                           initial='closed'

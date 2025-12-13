@@ -7,7 +7,6 @@ const containerVariants = {
   },
   animate: {
     transition: {
-      when: "beforeChildren",
       staggerChildren: 0.1,
     },
   },
@@ -41,7 +40,7 @@ const DotsWaveLoader = ({ count = 5, className, setLoading }) => {
       variants={containerVariants}
       initial="initial"
       animate="animate"
-      className={`flex bg-zinc-900 gap-4 items-center justify-center h-[100dvh] mx-auto overflow-hidden relative  ${className}`}
+      className={`flex bg-zinc-900 gap-4 items-center justify-center h-dvh mx-auto overflow-hidden relative  ${className}`}
     >
       {Array(count)
         .fill(null)

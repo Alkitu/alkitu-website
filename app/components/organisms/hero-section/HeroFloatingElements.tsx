@@ -24,7 +24,7 @@ function HeroFloatingElements() {
       opacity: 1,
       scale: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 20,
         stiffness: 400,
       },
@@ -33,7 +33,7 @@ function HeroFloatingElements() {
       opacity: 0,
       scale: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 20,
         stiffness: 400,
       },
@@ -88,7 +88,7 @@ function HeroFloatingElements() {
       </motion.div>
       <motion.div
         variants={child}
-        className='absolute bottom-[55vw] right-[0vw] md:bottom-[18vw] md:-right-[5vw] lg:bottom-[25vw] lg:-right-[7vw]  z-30'
+        className='absolute bottom-[55vw] right-0 md:bottom-[18vw] md:-right-[5vw] lg:bottom-[25vw] lg:-right-[7vw]  z-30'
       >
         <div className='relative w-[7vw] h-[7vw] md:w-[4vw] md:h-[4vw] lg:w-[4.5vw] lg:h-[4.5vw] '>
           <Symbol

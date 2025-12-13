@@ -27,7 +27,6 @@ function ResponsiveList({
             duration: 0.5,
             staggerChildren: 5,
             delayChildren: 2.5,
-            when: "beforeChildren",
           }}
           className={`gap-4  md:gap-6  lg:gap-6 grid gap-y-10 content-center justify-center
           ${mobile === 1 && `grid-cols-1`} 

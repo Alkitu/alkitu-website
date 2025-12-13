@@ -53,7 +53,7 @@ function SideBar({ text }) {
   if (!dataSections || dataSections.length === 0) return null;
 
   return (
-    <div className="col-span-1 col-start-1 col-end-2 h-[100dvh] fixed w-1/12  top-0 z-40 border-r box-border border-border bg-background/40 backdrop-blur-lg bg-clip-padding backdrop-filter opacity-75 hidden lg:block">
+    <div className="col-span-1 col-start-1 col-end-2 h-dvh fixed w-1/12  top-0 z-40 border-r box-border border-border bg-background/40 backdrop-blur-lg bg-clip-padding backdrop-filter opacity-75 hidden lg:block">
       <ul className="w-full h-full z-40 flex items-center   justify-center flex-col gap-y-10">
         {dataSections.map((section, index) => (
           <li

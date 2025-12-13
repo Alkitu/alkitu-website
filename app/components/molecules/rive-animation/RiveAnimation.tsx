@@ -1,5 +1,9 @@
-import { useRive } from "@rive-app/react-canvas";
-import { useEffect, useMemo, memo } from "react";
+import { useRive, RuntimeLoader } from "@rive-app/react-canvas";
+import { useEffect } from "react";
+import riveWASMResource from '@rive-app/canvas/rive.wasm';
+
+// Set WASM URL for better reliability and faster load times
+RuntimeLoader.setWasmUrl(riveWASMResource);
 
 type RiveAnimationProps = {
   artboardName?: string;
@@ -7,18 +11,16 @@ type RiveAnimationProps = {
   hover?: boolean;
 };
 
-export const RiveAnimation = memo(({
+export const RiveAnimation = ({
   hoverAnimationName = "Hover",
   artboardName = "Design",
   hover = false,
 }: RiveAnimationProps) => {
-  const riveConfig = useMemo(() => ({
-    src: "/rive/web_portfolio.riv",
+  const { rive, RiveComponent } = useRive({
+    src: "/assets/rive/web_portfolio_two.riv",
     autoplay: true,
     artboard: artboardName,
-  }), [artboardName]);
-
-  const { rive, RiveComponent } = useRive(riveConfig);
+  });
 
   useEffect(() => {
     if (!rive) return;
@@ -32,6 +34,4 @@ export const RiveAnimation = memo(({
       <RiveComponent className="h-[80%] w-full md:h-full" />
     </div>
   );
-});
-
-RiveAnimation.displayName = 'RiveAnimation';
+};

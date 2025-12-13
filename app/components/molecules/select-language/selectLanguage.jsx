@@ -162,7 +162,7 @@ export default function SelectLanguage () {
       <AnimatePresence mode="wait" initial={false} onExitComplete={() => null}>
         {isOpen && (
           <>
-            {/* <div className={`self-end h-0 w-0  border-l-transparent border-r-8 border-r-transparent  border-t-transparent ${isOpen ? '' : 'hidden'} border-solid border-[10px] border-zinc-700 right-12 bottom-4 z-50 absolute`}></div> */}
+            {/* <div className={`self-end h-0 w-0  border-l-transparent border-r-8 border-r-transparent  border-t-transparent ${isOpen ? '' : 'hidden'} border-solid border-10 border-zinc-700 right-12 bottom-4 z-50 absolute`}></div> */}
             <motion.ul
               variants={mobileNavbar}
               className={`select-list w-32 absolute bg-zinc-50 dark:bg-zinc-700 text-foreground top-16  list-none m-0 flex flex-col right-8 shadow-lg rounded-md ${

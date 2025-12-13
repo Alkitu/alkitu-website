@@ -55,15 +55,15 @@ export default function BlogHero({ featuredPost, recentPosts, locale }: BlogHero
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ type: "spring", damping: 25, stiffness: 200 }}
+        transition={{ type: "spring" as const, damping: 25, stiffness: 200 }}
       >
         <motion.div
           whileHover={{ scale: 1.03, y: -5 }}
           whileTap={{ scale: 0.98 }}
-          transition={{ type: "spring", damping: 25, stiffness: 200 }}
+          transition={{ type: "spring" as const, damping: 25, stiffness: 200 }}
         >
           <Link href={`/${locale}/blog/${featuredPost.slug}`} className="group block">
-            <div className="relative w-full aspect-[4/3] overflow-hidden rounded-lg">
+            <div className="relative w-full aspect-4/3 overflow-hidden rounded-lg">
               <Image
                 src={featuredPost.image}
                 alt={featuredPost.title}
@@ -113,14 +113,14 @@ export default function BlogHero({ featuredPost, recentPosts, locale }: BlogHero
               variants={recentCardVariants}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              transition={{ type: "spring" as const, damping: 30, stiffness: 300 }}
             >
               <Link
                 href={`/${locale}/blog/${post.slug}`}
                 className="group flex gap-4 hover:bg-muted/30 p-3 rounded-lg"
               >
                 {/* Post Image */}
-                <div className="relative w-24 h-24 flex-shrink-0 overflow-hidden rounded-md">
+                <div className="relative w-24 h-24 shrink-0 overflow-hidden rounded-md">
                   <Image
                     src={post.image}
                     alt={post.title}

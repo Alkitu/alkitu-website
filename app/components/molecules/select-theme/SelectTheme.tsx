@@ -10,7 +10,7 @@ const itemVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      type: 'spring',
+      type: 'spring' as const,
       stiffness: 300,
       damping: 25,
       mass: 0.8,
@@ -21,7 +21,7 @@ const itemVariants = {
     y: 20,
     opacity: 0,
     transition: {
-      type: 'spring',
+      type: 'spring' as const,
       stiffness: 300,
       damping: 25,
       mass: 0.8,
@@ -37,7 +37,7 @@ const mobileNavbar = {
     opacity: 1,
     scale: 1,
     transition: {
-      type: 'spring',
+      type: 'spring' as const,
       stiffness: 300,
       damping: 30,
       mass: 0.8,
@@ -50,7 +50,7 @@ const mobileNavbar = {
     opacity: 0,
     scale: 0.95,
     transition: {
-      type: 'spring',
+      type: 'spring' as const,
       stiffness: 300,
       damping: 30,
       mass: 0.8

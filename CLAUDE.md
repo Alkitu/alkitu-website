@@ -95,7 +95,7 @@ app/components/
   - Custom font families: Hiruko (Regular, Bold, Black, Light)
   - CSS variables for theme colors: `--background`, `--foreground`, `--card`, `--border`, etc.
 - **Animations**:
-  - Rive animations via `@rive-app/react-canvas` (assets in `public/rive/`)
+  - Rive animations via `@rive-app/react-canvas` (assets in `public/assets/rive/`)
   - Framer Motion for transitions and scroll animations
 - **React Version**: React 19.2.0 with legacy-peer-deps for compatibility
 
@@ -135,8 +135,11 @@ The app uses a custom theme system with light/dark modes:
   - Example: PageHeader, PostHero, all section components
 
 **Working with Rive animations:**
-- Assets stored in `public/rive/`
+- Assets stored in `public/assets/rive/`
 - Use `RiveAnimation` component with props: `artboardName`, `hoverAnimationName`, `hover`
+- Default source path: `/assets/rive/web_portfolio_two.riv` (107KB complete version)
+- **WASM Preloading**: The component uses `RuntimeLoader.setWasmUrl()` to preload the WASM runtime for better reliability and faster load times
+- Webpack is configured to handle `.wasm` files as assets with `asyncWebAssembly` enabled
 
 **Framer Motion animation patterns:**
 

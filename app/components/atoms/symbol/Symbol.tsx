@@ -58,7 +58,7 @@ function Symbol({
               animate={{ scale: reverse ? [1.15, 0.9] : [0.9, 1.15] }}
               transition={{
                 duration: 5,
-                type: "spring",
+                type: "spring" as const,
                 damping: 5,
                 stiffness: 300,
                 restDelta: 0.5,

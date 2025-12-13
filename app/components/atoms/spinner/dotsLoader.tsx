@@ -7,7 +7,6 @@ const containerVariants = {
   },
   animate: {
     transition: {
-      when: "beforeChildren",
       staggerChildren: 0.1,
     },
   },
@@ -25,7 +24,7 @@ const DotsLoader = ({ count = 5, className, setLoading }: DotsLoaderProps) => {
       variants={containerVariants}
       initial="initial"
       animate="animate"
-      className={`flex bg-zinc-900 gap-4 items-center justify-center h-[100dvh] mx-auto overflow-hidden relative  ${className}`}
+      className={`flex bg-zinc-900 gap-4 items-center justify-center h-dvh mx-auto overflow-hidden relative  ${className}`}
     >
       <motion.div
         className="absolute"
@@ -41,7 +40,7 @@ const DotsLoader = ({ count = 5, className, setLoading }: DotsLoaderProps) => {
           height: "450vw",
           width: "450vw",
           transition: {
-            type: "spring",
+            type: "spring" as const,
             duration: 5,
             delay: 2,
             bounce: 0.25,
@@ -60,7 +59,7 @@ const DotsLoader = ({ count = 5, className, setLoading }: DotsLoaderProps) => {
         animate={{
           y: 0,
           transition: {
-            type: "spring",
+            type: "spring" as const,
             duration: 2,
             bounce: 0.25,
           },

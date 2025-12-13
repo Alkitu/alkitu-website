@@ -85,7 +85,7 @@ function Footer() {
           setModalOpenNavbar={undefined}
         />
 
-        <div className='w-full h-[0px] border-zinc-700 dark:border-zinc-300 border-t'></div>
+        <div className='w-full h-0 border-zinc-700 dark:border-zinc-300 border-t'></div>
         <p className='text-xs font-light pb-10 capitalize text-white dark:text-white'>
           {footerData.website} {footerData.rights}
         </p>

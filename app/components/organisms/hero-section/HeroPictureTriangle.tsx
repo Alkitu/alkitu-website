@@ -1,8 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import headPicture from "@/public/images/cabeza.webp";
-import bodyPicture from "@/public/images/cuerpo-completo.webp";
 
 type HeroPictureTriangleProps = {
   srcBody?: string;
@@ -15,6 +13,7 @@ function HeroPictureTriangle({ srcBody, srcHead }: HeroPictureTriangleProps) {
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1, delay: 0.5 }}
+      className="cursor-none pointer-events-none relative"
     >
       <motion.div
         initial={{ rotate: 0 }}
@@ -30,7 +29,7 @@ function HeroPictureTriangle({ srcBody, srcHead }: HeroPictureTriangleProps) {
           WebkitClipPath: "url(#my-clip-path)",
           clipPath: "url(#my-clip-path)",
         }}
-        className="w-full h-full  bg-gradient-to-b from-primary to-green-800  group-hover:-rotate-90 flex items-center align-middle justify-center aspect-square z-40"
+        className="w-full h-full bg-linear-to-b from-primary to-green-800 flex items-center align-middle justify-center aspect-square z-40"
       >
         <motion.div
           initial={{ rotate: 0 }}
@@ -41,27 +40,25 @@ function HeroPictureTriangle({ srcBody, srcHead }: HeroPictureTriangleProps) {
             ease: "easeInOut",
             repeatType: "reverse",
           }}
-          className="w-full h-full   group-hover:rotate-90 absolute cursor-none pointer-events-none"
+          className="w-full h-full absolute"
         >
           <Image
             fill
-            src={srcBody ? srcBody : bodyPicture}
+            src={srcBody || "/images/cuerpo-completo.webp"}
             alt="Luis"
             sizes="contain"
-            className="w-full h-full object-contain  cursor-none pointer-events-none"
+            className="w-full h-full object-contain "
             priority
-            placeholder="blur"
             loading="eager"
           />
         </motion.div>
       </motion.div>
       <Image
         fill
-        src={srcHead ? srcHead : headPicture}
+        src={srcHead || "/images/cabeza.webp"}
         alt="Luis "
         sizes="contain"
-        className="w-full h-full object-contain absolute top-0 cursor-none pointer-events-none"
-        placeholder="blur"
+        className="w-full h-full object-contain absolute top-0"
         loading="eager"
         />
       <svg className="svg absolute w-0 h-0 ">

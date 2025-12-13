@@ -40,7 +40,7 @@ function Hero({ text }) {
             {hero.quote}
           </p>
           <div className='bg-white w-5/12 lg:w-3/12 h-[0.1rem] ' />
-          <p className='text-[min(1rem,,3.16vw)] lg:text-[1.2vw] font-medium uppercase  w-11/12 md:w-10/12  lg:w-2/3 '>
+          <p className='text-[min(1rem,_,_3.16vw)] lg:text-[1.2vw] font-medium uppercase  w-11/12 md:w-10/12  lg:w-2/3 '>
             {hero.description}
           </p>
         </div>

@@ -64,14 +64,14 @@ export default function BlogList({ posts, locale, categoryTitle }: BlogListProps
             variants={cardVariants}
             whileHover={{ scale: 1.02, x: 5 }}
             whileTap={{ scale: 0.98 }}
-            transition={{ type: "spring", damping: 25, stiffness: 250 }}
+            transition={{ type: "spring" as const, damping: 25, stiffness: 250 }}
           >
             <Link
               href={`/${locale}/blog/${post.slug}`}
               className="group flex flex-col md:flex-row gap-6 hover:bg-muted/20 p-4 rounded-lg"
             >
               {/* Post Image */}
-              <div className="relative w-full md:w-64 h-48 md:h-40 flex-shrink-0 overflow-hidden rounded-lg">
+              <div className="relative w-full md:w-64 h-48 md:h-40 shrink-0 overflow-hidden rounded-lg">
                 <Image
                   src={post.image}
                   alt={post.title}

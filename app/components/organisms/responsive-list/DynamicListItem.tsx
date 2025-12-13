@@ -10,7 +10,7 @@ function DynamicListItem({ category, index, boxPositions, handleClick }) {
       <motion.div
         layout
         transition={{
-          type: "spring",
+          type: "spring" as const,
           damping: 100,
           stiffness: 1000,
           mass: 0.1,
@@ -29,12 +29,12 @@ function DynamicListItem({ category, index, boxPositions, handleClick }) {
               : "md:h-60 lg:h-64 -bottom-2"
           } ${
             hover ? "opacity-50" : "opacity-0"
-          } absolute w-full  bg-gradient-to-b from-zinc-300 to-zinc-300 dark:from-primary dark:to-primary rounded-lg blur transition duration-200 hidden lg:block `}
+          } absolute w-full  bg-linear-to-b from-zinc-300 to-zinc-300 dark:from-primary dark:to-primary rounded-lg blur transition duration-200 hidden lg:block `}
         />
         <div
-          className={`  w-full mx-auto relative  bg-white dark:bg-zinc-900 shadow-sm shadow-zinc-200 dark:shadow-md dark:shadow-black border border-zinc-50 dark:border-transparent  rounded-3xl flex-col content-center items-center justify-center  cursor-pointer  ${
+          className={`  w-full mx-auto relative  bg-white dark:bg-zinc-900 shadow-xs shadow-zinc-200 dark:shadow-md dark:shadow-black border border-zinc-50 dark:border-transparent  rounded-3xl flex-col content-center items-center justify-center  cursor-pointer  ${
             boxPositions[index] === 1
-              ? "lg:h-68  py-[3.77rem]"
+              ? "lg:min-h-68  py-[3.77rem]"
               : "lg:h-60 py-11"
           }`}
           onMouseEnter={() => {
@@ -77,7 +77,7 @@ function DynamicListItem({ category, index, boxPositions, handleClick }) {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0 }}
                 transition={{
-                  type: "spring",
+                  type: "spring" as const,
                   damping: 100,
                   stiffness: 1000,
                   mass: 0.1,

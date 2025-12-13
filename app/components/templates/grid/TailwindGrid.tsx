@@ -22,84 +22,84 @@ function TailwindGrid({
           {show && (
             <div className="gap-4 grid-cols-4  md:gap-6 md:grid-cols-8 lg:gap-6  lg:grid-cols-12 grid absolute w-full -z-50  justify-center">
               <div
-                className={`h-[100dvh] text-center text-zinc-900 col-span-1 ${
+                className={`h-dvh text-center text-zinc-900 col-span-1 ${
                   color || "bg-blue-200/20"
                 }`}
               >
                 1
               </div>
               <div
-                className={`h-[100dvh] text-center text-zinc-900 col-span-1 ${
+                className={`h-dvh text-center text-zinc-900 col-span-1 ${
                   color || "bg-blue-200/20"
                 }`}
               >
                 2
               </div>
               <div
-                className={`h-[100dvh] text-center text-zinc-900 col-span-1 ${
+                className={`h-dvh text-center text-zinc-900 col-span-1 ${
                   color || "bg-blue-200/20"
                 }`}
               >
                 3
               </div>
               <div
-                className={`h-[100dvh] text-center text-zinc-900 col-span-1 ${
+                className={`h-dvh text-center text-zinc-900 col-span-1 ${
                   color || "bg-blue-200/20"
                 }`}
               >
                 4
               </div>
               <div
-                className={`hidden md:block h-[100dvh] text-center text-zinc-900 col-span-1 ${
+                className={`hidden md:block h-dvh text-center text-zinc-900 col-span-1 ${
                   color || "bg-blue-200/20"
                 }`}
               >
                 5
               </div>
               <div
-                className={`hidden md:block h-[100dvh] text-center text-zinc-900 col-span-1 ${
+                className={`hidden md:block h-dvh text-center text-zinc-900 col-span-1 ${
                   color || "bg-blue-200/20"
                 }`}
               >
                 6
               </div>
               <div
-                className={`hidden md:block h-[100dvh] text-center text-zinc-900 col-span-1 ${
+                className={`hidden md:block h-dvh text-center text-zinc-900 col-span-1 ${
                   color || "bg-blue-200/20"
                 }`}
               >
                 7
               </div>
               <div
-                className={`hidden md:block h-[100dvh] text-center text-zinc-900 col-span-1 ${
+                className={`hidden md:block h-dvh text-center text-zinc-900 col-span-1 ${
                   color || "bg-blue-200/20"
                 }`}
               >
                 8
               </div>
               <div
-                className={`hidden lg:block h-[100dvh] text-center text-zinc-900 col-span-1 ${
+                className={`hidden lg:block h-dvh text-center text-zinc-900 col-span-1 ${
                   color || "bg-blue-200/20"
                 }`}
               >
                 9
               </div>
               <div
-                className={`hidden lg:block h-[100dvh] text-center text-zinc-900 col-span-1 ${
+                className={`hidden lg:block h-dvh text-center text-zinc-900 col-span-1 ${
                   color || "bg-blue-200/20"
                 }`}
               >
                 10
               </div>
               <div
-                className={`hidden lg:block h-[100dvh] text-center text-zinc-900 col-span-1 ${
+                className={`hidden lg:block h-dvh text-center text-zinc-900 col-span-1 ${
                   color || "bg-blue-200/20"
                 }`}
               >
                 11
               </div>
               <div
-                className={` hidden lg:block h-[100dvh] text-center  text-zinc-900 col-span-1 ${
+                className={` hidden lg:block h-dvh text-center  text-zinc-900 col-span-1 ${
                   color || "bg-blue-200/20"
                 }`}
               >

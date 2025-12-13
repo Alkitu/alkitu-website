@@ -50,7 +50,6 @@ const MainMenu = ({ isOpen, toggleOpen, setModalOpenNavbar }) => {
         damping: 40,
         staggerChildren: 1 * i,
         delayChildren: 0.75 * i,
-        when: "beforeChildren",
         staggerDirection: 1,
       },
     }),
@@ -63,7 +62,6 @@ const MainMenu = ({ isOpen, toggleOpen, setModalOpenNavbar }) => {
         damping: 40,
         staggerChildren: 1,
         staggerDirection: -1,
-        when: "afterChildren",
       },
     },
   };

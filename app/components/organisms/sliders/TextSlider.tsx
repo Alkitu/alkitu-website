@@ -50,7 +50,7 @@ function TextSlider({ children, velocity, reverse }: IconsSliderProps) {
     <>
       <div className="w-full -rotate-90 origin-top-right absolute -left-48 top-0 pointer-events-none">
         <motion.div
-          className="whitespace-nowrap z-100 w-[100dvh] text flex "
+          className="whitespace-nowrap z-100 w-dvh text flex "
           ref={sliderContentRef}
           animate={{
             translateX: [
@@ -59,13 +59,13 @@ function TextSlider({ children, velocity, reverse }: IconsSliderProps) {
             ],
           }}
           transition={{
-            type: "linear",
+            ease: "linear",
             duration: velocity ? velocity : 15,
             repeat: Infinity,
             repeatType: "reverse",
           }}
         >
-          <p className="text-zinc-800 text-opacity-40 text-[135px] font-black">
+          <p className="text-zinc-800/40 text-[135px] font-black">
             {new Array(50).fill(0).map((_, i) => content)}
           </p>
         </motion.div>

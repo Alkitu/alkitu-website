@@ -19,9 +19,9 @@ function DotFollower() {
 
   return (
     <div className=" ">
-      <motion.div className="h-[3vw] absolute top-0 w-full bg-gradient-to-b from-[#FFF] dark:from-[#0F0F0F] to-transparent pointer-events-none mix-blend-color" />
+      <motion.div className="h-[3vw] absolute top-0 w-full bg-linear-to-b from-[#FFF] dark:from-[#0F0F0F] to-transparent pointer-events-none mix-blend-color" />
       <Box />
-      <motion.div className="h-[3vw] absolute bottom-0 w-full bg-gradient-to-b from-transparent to-[#FFF] dark:to-[#0F0F0F] pointer-events-none mix-blend-luminosity" />
+      <motion.div className="h-[3vw] absolute bottom-0 w-full bg-linear-to-b from-transparent to-[#FFF] dark:to-[#0F0F0F] pointer-events-none mix-blend-luminosity" />
     </div>
   );
 }
@@ -79,7 +79,7 @@ const Box = () => {
 
   return (
     <motion.div
-      className="w-full h-full   mix-blend-overlay hidden items-center  lg:flex justify-center absolute top-0 left-0 bottom-0 -right-0 m-0 p-0 z-20"
+      className="w-full h-full   mix-blend-overlay hidden items-center  lg:flex justify-center absolute top-0 left-0 bottom-0 right-0 m-0 p-0 z-20"
       ref={boxRef}
       onMouseMove={(e) => handleMouseMove(e)}
       onMouseEnter={() => setIsHovered(true)}

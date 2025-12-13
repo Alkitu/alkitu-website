@@ -11,7 +11,7 @@ const itemVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      type: 'spring',
+      type: 'spring' as const,
       stiffness: 400,
       damping: 40,
     }
@@ -20,7 +20,7 @@ const itemVariants = {
     y: 50,
     opacity: 0,
     transition: {
-      type: 'spring',
+      type: 'spring' as const,
       stiffness: 400,
       damping: 40,
     }
@@ -31,7 +31,7 @@ const dropdownVariants = {
   open: {
     clipPath: 'inset(0% 0% 0% 0% round 10px)',
     transition: {
-      type: 'spring',
+      type: 'spring' as const,
       bounce: 0,
       duration: 0.7,
       delayChildren: 0.3,
@@ -41,7 +41,7 @@ const dropdownVariants = {
   closed: {
     clipPath: 'inset(10% 50% 90% 50% round 10px)',
     transition: {
-      type: 'spring',
+      type: 'spring' as const,
       bounce: 0,
       duration: 0.3
     }

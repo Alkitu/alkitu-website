@@ -34,7 +34,7 @@ function DragContainer({
           // transition={{ type: "spring", stiffness: 400, damping: 45, mass: 0.5 }}
           transition={{
             duration: 0.75,
-            ease: [0.16, 1, 0.3, 1],
+            ease: [0.16, 1, 0.3, 1] as const,
           }}
           style={{
             order: container.order,
@@ -88,7 +88,7 @@ function DragContainer({
           // transition={{ type: "spring", stiffness: 400, damping: 45, mass: 0.5 }}
           transition={{
             duration: 0.75,
-            ease: [0.16, 1, 0.3, 1],
+            ease: [0.16, 1, 0.3, 1] as const,
           }}
           style={{
             order: container.order,

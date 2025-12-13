@@ -1,60 +1,7 @@
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,301,701,300,501,401,901,400,2&display=swap');
+@import 'tailwindcss';
 
-
-/* Webkit (Chrome, Safari) */
-::-webkit-scrollbar {
-  width: 10px;
-  background-color: rgb(var(--scrollbar-bg));
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: rgb(var(--scrollbar-thumb));
-}
-
-/* Mozilla (Firefox) */
-scrollbar {
-  width: 10px;
-  background-color: rgb(var(--scrollbar-bg));
-}
-
-scrollbar thumb {
-  border-radius: 10px;
-  background-color: rgb(var(--scrollbar-thumb));
-}
-
-/* Microsoft (Edge, Internet Explorer) */
-scrollbar {
-  width: 10px;
-  background-color: rgb(var(--scrollbar-bg));
-}
-
-scrollbar thumb {
-  border-radius: 10px;
-  background-color: rgb(var(--scrollbar-thumb));
-}
-
-/* Universal (todos los navegadores) */
-::-webkit-scrollbar,
-scrollbar,
-*::-ms-scrollbar {
-  width: 10px;
-  background-color: rgb(var(--scrollbar-bg));
-}
-
-::-webkit-scrollbar-thumb,
-scrollbar thumb,
-*::-ms-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: rgb(var(--scrollbar-thumb));
-}
-
-
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+@config '../tailwind.config.js';
 
 @layer base {
   /* Variables para tema light */
@@ -93,5 +40,16 @@ scrollbar thumb,
     color: rgb(var(--foreground));
     overflow-y: scroll;
     scroll-behavior: smooth;
+  }
+
+  /* Scrollbar styles */
+  ::-webkit-scrollbar {
+    width: 10px;
+    background-color: rgb(var(--scrollbar-bg));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgb(var(--scrollbar-thumb));
   }
 }
