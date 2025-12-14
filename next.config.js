@@ -49,6 +49,11 @@ const nextConfig = {
       asyncWebAssembly: true,
     };
 
+    // Externalize geoip-lite to prevent bundling issues with data files
+    config.externals.push({
+      'geoip-lite': 'commonjs geoip-lite',
+    });
+
     return config;
   },
 };

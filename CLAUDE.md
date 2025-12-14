@@ -29,6 +29,13 @@ npm run sync:projects    # Sync project data to dictionaries (node lib/projects/
 - `.npmrc` with `legacy-peer-deps=true` is required for React 19 + @rive-app/react-canvas compatibility
 - Do not remove this file
 
+**Middleware not executing in Next.js 16:**
+- **CRITICAL**: Next.js 16 requires middleware to use **named export**, not default export
+- Use `export async function middleware(request, event)` instead of `export default function middleware(...)`
+- Known issues with `proxy.ts` in Next.js 16.0.10 ([Issue #86122](https://github.com/vercel/next.js/issues/86122), [Issue #85243](https://github.com/vercel/next.js/issues/85243))
+- Workaround: Use `middleware.ts` with named export until proxy.ts bugs are resolved
+- Middleware won't execute on statically cached pages - use `export const dynamic = 'force-dynamic'` in layouts/pages if needed
+
 ## Architecture Overview
 
 This is a **Next.js 16** portfolio website with internationalization (i18n) support for English and Spanish. The project uses the **App Router** with **React 19** and follows **Atomic Design** principles.
@@ -256,3 +263,333 @@ const containerVariants = {
 **Git workflow:**
 - Include co-authorship: `Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>`
 - Add Claude Code attribution in commits when appropriate
+
+## Analytics System
+
+The project includes a complete analytics tracking system built with Supabase and RESTful APIs.
+
+### Architecture
+
+**Components:**
+- `VisitTracker` (`app/components/analytics/VisitTracker.tsx`) - Client-side tracking component
+- RESTful API endpoints with Zod validation
+- Supabase database with RLS policies
+- Middleware-based session fingerprinting
+
+**Database Tables:**
+- `sessions` - User sessions with fingerprinting (1-hour window)
+- `page_views` - Individual page views with entry/exit times
+
+### API Endpoints
+
+All analytics endpoints follow RESTful standards with Zod validation:
+
+```typescript
+POST   /api/analytics/sessions          // Create or update session
+POST   /api/analytics/page-views        // Create page view
+PATCH  /api/analytics/page-views/[id]   // Update page view with exit time
+GET    /api/translations?lang={lang}    // Get translations for locale
+```
+
+### VisitTracker Implementation
+
+The `VisitTracker` component:
+- Uses `fetch()` to call RESTful endpoints (not direct Supabase)
+- Reads `session_fingerprint` cookie from middleware
+- Tracks page views on route changes
+- Updates exit time and duration on navigation
+- Uses `navigator.sendBeacon()` for reliable unload tracking
+- Skips tracking for `/admin` routes
+
+**Usage:**
+```tsx
+import { VisitTracker } from '@/app/components/analytics';
+
+// In layout.tsx
+<VisitTracker />
+```
+
+### RLS Policies
+
+Supabase tables use Row Level Security with policies for `anon` role:
+
+```sql
+-- Sessions table
+CREATE POLICY "anon_insert_sessions" ON sessions FOR INSERT TO anon WITH CHECK (true);
+CREATE POLICY "anon_select_sessions" ON sessions FOR SELECT TO anon USING (true);
+CREATE POLICY "anon_update_sessions" ON sessions FOR UPDATE TO anon USING (true) WITH CHECK (true);
+
+-- Page views table
+CREATE POLICY "anon_insert_page_views" ON page_views FOR INSERT TO anon WITH CHECK (true);
+CREATE POLICY "anon_select_page_views" ON page_views FOR SELECT TO anon USING (true);
+CREATE POLICY "anon_update_page_views" ON page_views FOR UPDATE TO anon USING (true) WITH CHECK (true);
+```
+
+**Important:** SELECT policies are required for `RETURNING` clauses in INSERT/UPDATE operations.
+
+### Session Fingerprinting
+
+The `withTrackingMiddleware` generates session fingerprints:
+- Cookie: `session_fingerprint` (1-hour expiry, `httpOnly: false` for client access)
+- Generated from IP + User Agent + timestamp + random
+- Middleware sets cookie on all public routes (excludes `/admin`, `/api`, static files)
+
+## API Standards
+
+All API endpoints follow a consistent pattern with Zod validation and standardized responses.
+
+### Standard API Pattern
+
+```typescript
+import { NextRequest } from 'next/server';
+import { z } from 'zod';
+import { ApiSuccess, ApiError } from '@/lib/api/response';
+
+// 1. Define Zod schema
+const Schema = z.object({
+  field: z.string().min(1, 'Field is required'),
+  // ... more fields
+});
+
+// 2. Export async function
+export async function METHOD(request: NextRequest) {
+  try {
+    const body = await request.json();
+
+    // 3. Validate with Zod
+    const validationResult = Schema.safeParse(body);
+    if (!validationResult.success) {
+      return ApiError.validationError(validationResult.error);
+    }
+
+    const validatedData = validationResult.data;
+
+    // 4. Business logic
+    const result = await doSomething(validatedData);
+
+    // 5. Return success
+    return ApiSuccess.created(result, 'Success message');
+  } catch (error) {
+    console.error('Error:', error);
+    return ApiError.internal('Error message', error);
+  }
+}
+```
+
+### ApiSuccess Helpers
+
+Located in `lib/api/response.ts`:
+
+```typescript
+ApiSuccess.ok(data, message)        // 200 OK
+ApiSuccess.created(data, message)   // 201 Created
+```
+
+Response format:
+```json
+{
+  "success": true,
+  "message": "Success message",
+  "data": { /* your data */ },
+  "meta": {
+    "timestamp": "2025-12-14T00:00:00.000Z"
+  }
+}
+```
+
+### ApiError Helpers
+
+```typescript
+ApiError.badRequest(message)                    // 400 Bad Request
+ApiError.notFound(message)                      // 404 Not Found
+ApiError.validationError(zodError)              // 400 with Zod errors
+ApiError.database(message, dbError)             // 500 Database Error
+ApiError.internal(message, error)               // 500 Internal Error
+```
+
+Response format:
+```json
+{
+  "success": false,
+  "error": {
+    "code": "ERROR_CODE",
+    "message": "Error message",
+    "details": [/* optional validation details */],
+    "timestamp": "2025-12-14T00:00:00.000Z"
+  }
+}
+```
+
+### Zod Validation Best Practices
+
+- Always use `safeParse()` for validation
+- Return `ApiError.validationError(result.error)` on failure
+- Use Zod for all request validation (query params, body, path params)
+- Define schemas near the endpoint or in separate schema files
+
+**Example schemas:**
+```typescript
+// Query params
+const QuerySchema = z.object({
+  lang: z.enum(['en', 'es']),
+  page: z.coerce.number().int().positive().optional()
+});
+
+// UUID validation
+const uuidSchema = z.string().uuid();
+
+// Nested objects
+const UserSchema = z.object({
+  name: z.string().min(1),
+  email: z.string().email(),
+  settings: z.object({
+    theme: z.enum(['light', 'dark'])
+  })
+});
+```
+
+## Supabase Integration
+
+### Client Types
+
+**1. Server Client** (`lib/supabase/server.ts`)
+- For server components and API routes
+- Manages auth cookies with SSR
+- Use for authenticated operations
+
+```typescript
+import { createClient } from '@/lib/supabase/server';
+
+const supabase = await createClient();
+```
+
+**2. Analytics Client** (`lib/supabase/analytics.ts`)
+- For analytics tracking only
+- Always uses `anon` role (no session management)
+- Use in analytics API endpoints
+
+```typescript
+import { createAnalyticsClient } from '@/lib/supabase/analytics';
+
+const supabase = createAnalyticsClient();
+```
+
+**3. Browser Client** (`lib/supabase/client.ts`)
+- For client components
+- Manages auth state in browser
+
+```typescript
+import { createClient } from '@/lib/supabase/client';
+
+const supabase = createClient();
+```
+
+### When to Use Each Client
+
+| Use Case | Client Type |
+|----------|------------|
+| Analytics API endpoints | `createAnalyticsClient()` |
+| Auth operations | `createClient()` (server/browser) |
+| Admin operations | `createClient()` (server) |
+| Public data fetching | Any client with proper RLS |
+
+## shadcn/ui Components
+
+The project uses shadcn/ui components for consistent UI patterns.
+
+### Installed Components
+
+Located in `components/ui/`:
+- `avatar.tsx` - User avatar component
+- `dropdown-menu.tsx` - Dropdown menus
+
+### Adding New Components
+
+```bash
+npx shadcn@latest add [component-name]
+```
+
+### Usage Example
+
+```tsx
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+
+<Avatar>
+  <AvatarImage src="/avatar.jpg" alt="User" />
+  <AvatarFallback>UN</AvatarFallback>
+</Avatar>
+```
+
+## Middleware Stack
+
+The project uses a custom middleware chain pattern in `middleware/chain.ts`.
+
+**IMPORTANT**: Next.js 16 requires middleware to use **named export**, not default export.
+
+### Middleware Order
+
+```typescript
+// middleware.ts - Next.js 16 requires NAMED EXPORT
+export async function middleware(request: NextRequest, event: NextFetchEvent) {
+  const handler = chain([
+    withSupabaseMiddleware,    // 1. Refresh Supabase auth session (all routes)
+    withAuthMiddleware,        // 2. Protect admin routes (only /admin/*)
+    withI18nMiddleware,        // 3. i18n routing (exclude /admin)
+    withTrackingMiddleware,    // 4. Track visits (exclude /admin and /api)
+  ]);
+
+  return handler(request, event);
+}
+
+export const config = {
+  matcher: [
+    '/((?!_next/static|_next/image|favicon.ico).*)',
+  ],
+};
+```
+
+### Adding New Middleware
+
+```typescript
+// middleware/withMyMiddleware.ts
+export function withMyMiddleware(next: NextMiddleware): NextMiddleware {
+  return async function middleware(request: NextRequest, event: NextFetchEvent) {
+    // Your logic here
+    const response = await next(request, event);
+    // Modify response if needed
+    return response;
+  };
+}
+
+// Add to chain in middleware.ts
+export async function middleware(request: NextRequest, event: NextFetchEvent) {
+  const handler = chain([
+    withI18nMiddleware,
+    withMyMiddleware,  // Add here
+    withTrackingMiddleware,
+    // ...
+  ]);
+
+  return handler(request, event);
+}
+```
+
+### Middleware Responsibilities
+
+**withI18nMiddleware:**
+- Detects locale from cookie/headers
+- Redirects to localized routes
+- Sets `NEXT_LOCALE` cookie
+
+**withTrackingMiddleware:**
+- Generates session fingerprints
+- Sets `session_fingerprint` cookie
+- Skips `/admin`, `/api`, and static files
+
+**withSupabaseMiddleware:**
+- Updates Supabase auth cookies
+- Required for SSR auth
+
+**withAuthMiddleware:**
+- Protects `/admin` routes
+- Redirects to `/admin/login` if not authenticated

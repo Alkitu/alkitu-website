@@ -1,0 +1,3290 @@
+{
+  "countries": [
+    {
+      "code": "AF",
+      "name": "Afganistán",
+      "emoji": "🇦🇫",
+      "states": []
+    },
+    {
+      "code": "AX",
+      "name": "Åland",
+      "emoji": "🇦🇽",
+      "states": []
+    },
+    {
+      "code": "AL",
+      "name": "Albania",
+      "emoji": "🇦🇱",
+      "states": []
+    },
+    {
+      "code": "DE",
+      "name": "Alemania",
+      "emoji": "🇩🇪",
+      "states": []
+    },
+    {
+      "code": "AD",
+      "name": "Andorra",
+      "emoji": "🇦🇩",
+      "states": []
+    },
+    {
+      "code": "AO",
+      "name": "Angola",
+      "emoji": "🇦🇴",
+      "states": []
+    },
+    {
+      "code": "AI",
+      "name": "Anguila",
+      "emoji": "🇦🇮",
+      "states": []
+    },
+    {
+      "code": "AQ",
+      "name": "Antártida",
+      "emoji": "🇦🇶",
+      "states": []
+    },
+    {
+      "code": "AG",
+      "name": "Antigua y Barbuda",
+      "emoji": "🇦🇬",
+      "states": []
+    },
+    {
+      "code": "SA",
+      "name": "Arabia Saudita",
+      "emoji": "🇸🇦",
+      "states": []
+    },
+    {
+      "code": "DZ",
+      "name": "Argelia",
+      "emoji": "🇩🇿",
+      "states": []
+    },
+    {
+      "code": "AR",
+      "name": "Argentina",
+      "emoji": "🇦🇷",
+      "states": [
+        {
+          "code": "BA",
+          "name": "Buenos Aires"
+        },
+        {
+          "code": "CA",
+          "name": "Catamarca"
+        },
+        {
+          "code": "CH",
+          "name": "Chaco"
+        },
+        {
+          "code": "CT",
+          "name": "Chubut"
+        },
+        {
+          "code": "CB",
+          "name": "Córdoba"
+        },
+        {
+          "code": "CR",
+          "name": "Corrientes"
+        },
+        {
+          "code": "ER",
+          "name": "Entre Ríos"
+        },
+        {
+          "code": "FO",
+          "name": "Formosa"
+        },
+        {
+          "code": "JY",
+          "name": "Jujuy"
+        },
+        {
+          "code": "LP",
+          "name": "La Pampa"
+        },
+        {
+          "code": "LR",
+          "name": "La Rioja"
+        },
+        {
+          "code": "MZ",
+          "name": "Mendoza"
+        },
+        {
+          "code": "MI",
+          "name": "Misiones"
+        },
+        {
+          "code": "NQ",
+          "name": "Neuquén"
+        },
+        {
+          "code": "RN",
+          "name": "Río Negro"
+        },
+        {
+          "code": "SA",
+          "name": "Salta"
+        },
+        {
+          "code": "SJ",
+          "name": "San Juan"
+        },
+        {
+          "code": "SL",
+          "name": "San Luis"
+        },
+        {
+          "code": "SC",
+          "name": "Santa Cruz"
+        },
+        {
+          "code": "SF",
+          "name": "Santa Fe"
+        },
+        {
+          "code": "SE",
+          "name": "Santiago del Estero"
+        },
+        {
+          "code": "TF",
+          "name": "Tierra del Fuego"
+        },
+        {
+          "code": "TU",
+          "name": "Tucumán"
+        }
+      ]
+    },
+    {
+      "code": "AM",
+      "name": "Armenia",
+      "emoji": "🇦🇲",
+      "states": []
+    },
+    {
+      "code": "AW",
+      "name": "Aruba",
+      "emoji": "🇦🇼",
+      "states": []
+    },
+    {
+      "code": "AU",
+      "name": "Australia",
+      "emoji": "🇦🇺",
+      "states": []
+    },
+    {
+      "code": "AT",
+      "name": "Austria",
+      "emoji": "🇦🇹",
+      "states": []
+    },
+    {
+      "code": "AZ",
+      "name": "Azerbaiyán",
+      "emoji": "🇦🇿",
+      "states": []
+    },
+    {
+      "code": "BS",
+      "name": "Bahamas",
+      "emoji": "🇧🇸",
+      "states": []
+    },
+    {
+      "code": "BD",
+      "name": "Bangladés",
+      "emoji": "🇧🇩",
+      "states": []
+    },
+    {
+      "code": "BB",
+      "name": "Barbados",
+      "emoji": "🇧🇧",
+      "states": []
+    },
+    {
+      "code": "BH",
+      "name": "Baréin",
+      "emoji": "🇧🇭",
+      "states": []
+    },
+    {
+      "code": "BE",
+      "name": "Bélgica",
+      "emoji": "🇧🇪",
+      "states": []
+    },
+    {
+      "code": "BZ",
+      "name": "Belice",
+      "emoji": "🇧🇿",
+      "states": []
+    },
+    {
+      "code": "BJ",
+      "name": "Benín",
+      "emoji": "🇧🇯",
+      "states": []
+    },
+    {
+      "code": "BM",
+      "name": "Bermudas",
+      "emoji": "🇧🇲",
+      "states": []
+    },
+    {
+      "code": "BY",
+      "name": "Bielorrusia",
+      "emoji": "🇧🇾",
+      "states": []
+    },
+    {
+      "code": "MM",
+      "name": "Birmania",
+      "emoji": "🇲🇲",
+      "states": []
+    },
+    {
+      "code": "BO",
+      "name": "Bolivia",
+      "emoji": "🇧🇴",
+      "states": [
+        {
+          "code": "H",
+          "name": "Chuquisaca"
+        },
+        {
+          "code": "C",
+          "name": "Cochabamba"
+        },
+        {
+          "code": "B",
+          "name": "El Beni"
+        },
+        {
+          "code": "L",
+          "name": "La Paz"
+        },
+        {
+          "code": "O",
+          "name": "Oruro"
+        },
+        {
+          "code": "N",
+          "name": "Pando"
+        },
+        {
+          "code": "P",
+          "name": "Potosí"
+        },
+        {
+          "code": "S",
+          "name": "Santa Cruz"
+        },
+        {
+          "code": "T",
+          "name": "Tarija"
+        }
+      ]
+    },
+    {
+      "code": "BQ",
+      "name": "Bonaire, San Eustaquio y Saba",
+      "emoji": "🇧🇶",
+      "states": []
+    },
+    {
+      "code": "BA",
+      "name": "Bosnia y Herzegovina",
+      "emoji": "🇧🇦",
+      "states": []
+    },
+    {
+      "code": "BW",
+      "name": "Botsuana",
+      "emoji": "🇧🇼",
+      "states": []
+    },
+    {
+      "code": "BR",
+      "name": "Brasil",
+      "emoji": "🇧🇷",
+      "states": [
+        {
+          "code": "AC",
+          "name": "Acre"
+        },
+        {
+          "code": "AL",
+          "name": "Alagoas"
+        },
+        {
+          "code": "AP",
+          "name": "Amapá"
+        },
+        {
+          "code": "AM",
+          "name": "Amazonas"
+        },
+        {
+          "code": "BA",
+          "name": "Bahía"
+        },
+        {
+          "code": "CE",
+          "name": "Ceará"
+        },
+        {
+          "code": "DF",
+          "name": "Distrito Federal"
+        },
+        {
+          "code": "ES",
+          "name": "Espírito Santo"
+        },
+        {
+          "code": "GO",
+          "name": "Goiás"
+        },
+        {
+          "code": "MA",
+          "name": "Maranhão"
+        },
+        {
+          "code": "MT",
+          "name": "Mato Grosso"
+        },
+        {
+          "code": "MS",
+          "name": "Mato Grosso do Sul"
+        },
+        {
+          "code": "MG",
+          "name": "Minas Gerais"
+        },
+        {
+          "code": "PA",
+          "name": "Pará"
+        },
+        {
+          "code": "PB",
+          "name": "Paraíba"
+        },
+        {
+          "code": "PR",
+          "name": "Paraná"
+        },
+        {
+          "code": "PE",
+          "name": "Pernambuco"
+        },
+        {
+          "code": "PI",
+          "name": "Piauí"
+        },
+        {
+          "code": "RJ",
+          "name": "Río de Janeiro"
+        },
+        {
+          "code": "RN",
+          "name": "Río Grande do Norte"
+        },
+        {
+          "code": "RS",
+          "name": "Río Grande do Sul"
+        },
+        {
+          "code": "RO",
+          "name": "Rondônia"
+        },
+        {
+          "code": "RR",
+          "name": "Roraima"
+        },
+        {
+          "code": "SC",
+          "name": "Santa Catarina"
+        },
+        {
+          "code": "SP",
+          "name": "São Paulo"
+        },
+        {
+          "code": "SE",
+          "name": "Sergipe"
+        },
+        {
+          "code": "TO",
+          "name": "Tocantins"
+        }
+      ]
+    },
+    {
+      "code": "BN",
+      "name": "Brunéi",
+      "emoji": "🇧🇳",
+      "states": []
+    },
+    {
+      "code": "BG",
+      "name": "Bulgaria",
+      "emoji": "🇧🇬",
+      "states": []
+    },
+    {
+      "code": "BF",
+      "name": "Burkina Faso",
+      "emoji": "🇧🇫",
+      "states": []
+    },
+    {
+      "code": "BI",
+      "name": "Burundi",
+      "emoji": "🇧🇮",
+      "states": []
+    },
+    {
+      "code": "BT",
+      "name": "Bután",
+      "emoji": "🇧🇹",
+      "states": []
+    },
+    {
+      "code": "CV",
+      "name": "Cabo Verde",
+      "emoji": "🇨🇻",
+      "states": []
+    },
+    {
+      "code": "KH",
+      "name": "Camboya",
+      "emoji": "🇰🇭",
+      "states": []
+    },
+    {
+      "code": "CM",
+      "name": "Camerún",
+      "emoji": "🇨🇲",
+      "states": []
+    },
+    {
+      "code": "CA",
+      "name": "Canadá",
+      "emoji": "🇨🇦",
+      "states": []
+    },
+    {
+      "code": "QA",
+      "name": "Catar",
+      "emoji": "🇶🇦",
+      "states": []
+    },
+    {
+      "code": "TD",
+      "name": "Chad",
+      "emoji": "🇹🇩",
+      "states": []
+    },
+    {
+      "code": "CL",
+      "name": "Chile",
+      "emoji": "🇨🇱",
+      "states": [
+        {
+          "code": "AI",
+          "name": "Aisén"
+        },
+        {
+          "code": "AN",
+          "name": "Antofagasta"
+        },
+        {
+          "code": "AP",
+          "name": "Arica y Parinacota"
+        },
+        {
+          "code": "AT",
+          "name": "Atacama"
+        },
+        {
+          "code": "BI",
+          "name": "Biobío"
+        },
+        {
+          "code": "CO",
+          "name": "Coquimbo"
+        },
+        {
+          "code": "AR",
+          "name": "La Araucanía"
+        },
+        {
+          "code": "LI",
+          "name": "Libertador General Bernardo O'Higgins"
+        },
+        {
+          "code": "LL",
+          "name": "Los Lagos"
+        },
+        {
+          "code": "LR",
+          "name": "Los Ríos"
+        },
+        {
+          "code": "MA",
+          "name": "Magallanes"
+        },
+        {
+          "code": "ML",
+          "name": "Maule"
+        },
+        {
+          "code": "NB",
+          "name": "Ñuble"
+        },
+        {
+          "code": "RM",
+          "name": "Región Metropolitana"
+        },
+        {
+          "code": "TA",
+          "name": "Tarapacá"
+        },
+        {
+          "code": "VS",
+          "name": "Valparaíso"
+        }
+      ]
+    },
+    {
+      "code": "CN",
+      "name": "China",
+      "emoji": "🇨🇳",
+      "states": []
+    },
+    {
+      "code": "CY",
+      "name": "Chipre",
+      "emoji": "🇨🇾",
+      "states": []
+    },
+    {
+      "code": "CO",
+      "name": "Colombia",
+      "emoji": "🇨🇴",
+      "states": [
+        {
+          "code": "AMA",
+          "name": "Amazonas"
+        },
+        {
+          "code": "ANT",
+          "name": "Antioquia"
+        },
+        {
+          "code": "ARA",
+          "name": "Arauca"
+        },
+        {
+          "code": "ATL",
+          "name": "Atlántico"
+        },
+        {
+          "code": "BOL",
+          "name": "Bolívar"
+        },
+        {
+          "code": "BOY",
+          "name": "Boyacá"
+        },
+        {
+          "code": "CAL",
+          "name": "Caldas"
+        },
+        {
+          "code": "CAQ",
+          "name": "Caquetá"
+        },
+        {
+          "code": "CAS",
+          "name": "Casanare"
+        },
+        {
+          "code": "CAU",
+          "name": "Cauca"
+        },
+        {
+          "code": "CES",
+          "name": "Cesar"
+        },
+        {
+          "code": "CHO",
+          "name": "Chocó"
+        },
+        {
+          "code": "COR",
+          "name": "Córdoba"
+        },
+        {
+          "code": "CUN",
+          "name": "Cundinamarca"
+        },
+        {
+          "code": "DC",
+          "name": "Distrito Capital"
+        },
+        {
+          "code": "GUA",
+          "name": "Guainía"
+        },
+        {
+          "code": "GUV",
+          "name": "Guaviare"
+        },
+        {
+          "code": "HUI",
+          "name": "Huila"
+        },
+        {
+          "code": "LAG",
+          "name": "La Guajira"
+        },
+        {
+          "code": "MAG",
+          "name": "Magdalena"
+        },
+        {
+          "code": "MET",
+          "name": "Meta"
+        },
+        {
+          "code": "NAR",
+          "name": "Nariño"
+        },
+        {
+          "code": "NSA",
+          "name": "Norte de Santander"
+        },
+        {
+          "code": "PUT",
+          "name": "Putumayo"
+        },
+        {
+          "code": "QUI",
+          "name": "Quindío"
+        },
+        {
+          "code": "RIS",
+          "name": "Risaralda"
+        },
+        {
+          "code": "SAP",
+          "name": "San Andrés y Providencia"
+        },
+        {
+          "code": "SAN",
+          "name": "Santander"
+        },
+        {
+          "code": "SUC",
+          "name": "Sucre"
+        },
+        {
+          "code": "TOL",
+          "name": "Tolima"
+        },
+        {
+          "code": "VAC",
+          "name": "Valle del Cauca"
+        },
+        {
+          "code": "VAU",
+          "name": "Vaupés"
+        },
+        {
+          "code": "VID",
+          "name": "Vichada"
+        }
+      ]
+    },
+    {
+      "code": "KM",
+      "name": "Comoras",
+      "emoji": "🇰🇲",
+      "states": []
+    },
+    {
+      "code": "KP",
+      "name": "Corea del Norte",
+      "emoji": "🇰🇵",
+      "states": []
+    },
+    {
+      "code": "KR",
+      "name": "Corea del Sur",
+      "emoji": "🇰🇷",
+      "states": []
+    },
+    {
+      "code": "CI",
+      "name": "Costa de Marfil",
+      "emoji": "🇨🇮",
+      "states": []
+    },
+    {
+      "code": "CR",
+      "name": "Costa Rica",
+      "emoji": "🇨🇷",
+      "states": [
+        {
+          "code": "A",
+          "name": "Alajuela"
+        },
+        {
+          "code": "C",
+          "name": "Cartago"
+        },
+        {
+          "code": "G",
+          "name": "Guanacaste"
+        },
+        {
+          "code": "H",
+          "name": "Heredia"
+        },
+        {
+          "code": "L",
+          "name": "Limón"
+        },
+        {
+          "code": "P",
+          "name": "Puntarenas"
+        },
+        {
+          "code": "SJ",
+          "name": "San José"
+        }
+      ]
+    },
+    {
+      "code": "HR",
+      "name": "Croacia",
+      "emoji": "🇭🇷",
+      "states": []
+    },
+    {
+      "code": "CU",
+      "name": "Cuba",
+      "emoji": "🇨🇺",
+      "states": []
+    },
+    {
+      "code": "CW",
+      "name": "Curazao",
+      "emoji": "🇨🇼",
+      "states": []
+    },
+    {
+      "code": "DK",
+      "name": "Dinamarca",
+      "emoji": "🇩🇰",
+      "states": []
+    },
+    {
+      "code": "DM",
+      "name": "Dominica",
+      "emoji": "🇩🇲",
+      "states": []
+    },
+    {
+      "code": "EC",
+      "name": "Ecuador",
+      "emoji": "🇪🇨",
+      "states": [
+        {
+          "code": "A",
+          "name": "Azuay"
+        },
+        {
+          "code": "B",
+          "name": "Bolívar"
+        },
+        {
+          "code": "F",
+          "name": "Cañar"
+        },
+        {
+          "code": "C",
+          "name": "Carchi"
+        },
+        {
+          "code": "H",
+          "name": "Chimborazo"
+        },
+        {
+          "code": "X",
+          "name": "Cotopaxi"
+        },
+        {
+          "code": "O",
+          "name": "El Oro"
+        },
+        {
+          "code": "E",
+          "name": "Esmeraldas"
+        },
+        {
+          "code": "W",
+          "name": "Galápagos"
+        },
+        {
+          "code": "G",
+          "name": "Guayas"
+        },
+        {
+          "code": "I",
+          "name": "Imbabura"
+        },
+        {
+          "code": "L",
+          "name": "Loja"
+        },
+        {
+          "code": "R",
+          "name": "Los Ríos"
+        },
+        {
+          "code": "M",
+          "name": "Manabí"
+        },
+        {
+          "code": "S",
+          "name": "Morona Santiago"
+        },
+        {
+          "code": "N",
+          "name": "Napo"
+        },
+        {
+          "code": "D",
+          "name": "Orellana"
+        },
+        {
+          "code": "Y",
+          "name": "Pastaza"
+        },
+        {
+          "code": "P",
+          "name": "Pichincha"
+        },
+        {
+          "code": "SE",
+          "name": "Santa Elena"
+        },
+        {
+          "code": "SD",
+          "name": "Santo Domingo de los Tsáchilas"
+        },
+        {
+          "code": "U",
+          "name": "Sucumbíos"
+        },
+        {
+          "code": "T",
+          "name": "Tungurahua"
+        },
+        {
+          "code": "Z",
+          "name": "Zamora Chinchipe"
+        }
+      ]
+    },
+    {
+      "code": "EG",
+      "name": "Egipto",
+      "emoji": "🇪🇬",
+      "states": []
+    },
+    {
+      "code": "SV",
+      "name": "El Salvador",
+      "emoji": "🇸🇻",
+      "states": [
+        {
+          "code": "AH",
+          "name": "Ahuachapán"
+        },
+        {
+          "code": "CA",
+          "name": "Cabañas"
+        },
+        {
+          "code": "CH",
+          "name": "Chalatenango"
+        },
+        {
+          "code": "CU",
+          "name": "Cuscatlán"
+        },
+        {
+          "code": "LI",
+          "name": "La Libertad"
+        },
+        {
+          "code": "PA",
+          "name": "La Paz"
+        },
+        {
+          "code": "UN",
+          "name": "La Unión"
+        },
+        {
+          "code": "MO",
+          "name": "Morazán"
+        },
+        {
+          "code": "SM",
+          "name": "San Miguel"
+        },
+        {
+          "code": "SS",
+          "name": "San Salvador"
+        },
+        {
+          "code": "SV",
+          "name": "San Vicente"
+        },
+        {
+          "code": "SA",
+          "name": "Santa Ana"
+        },
+        {
+          "code": "SO",
+          "name": "Sonsonate"
+        },
+        {
+          "code": "US",
+          "name": "Usulután"
+        }
+      ]
+    },
+    {
+      "code": "AE",
+      "name": "Emiratos Árabes Unidos",
+      "emoji": "🇦🇪",
+      "states": []
+    },
+    {
+      "code": "ER",
+      "name": "Eritrea",
+      "emoji": "🇪🇷",
+      "states": []
+    },
+    {
+      "code": "SK",
+      "name": "Eslovaquia",
+      "emoji": "🇸🇰",
+      "states": []
+    },
+    {
+      "code": "SI",
+      "name": "Eslovenia",
+      "emoji": "🇸🇮",
+      "states": []
+    },
+    {
+      "code": "ES",
+      "name": "España",
+      "emoji": "🇪🇸",
+      "states": [
+        {
+          "code": "AN",
+          "name": "Andalucía"
+        },
+        {
+          "code": "AR",
+          "name": "Aragón"
+        },
+        {
+          "code": "AS",
+          "name": "Asturias"
+        },
+        {
+          "code": "IB",
+          "name": "Islas Baleares"
+        },
+        {
+          "code": "CN",
+          "name": "Islas Canarias"
+        },
+        {
+          "code": "CB",
+          "name": "Cantabria"
+        },
+        {
+          "code": "CL",
+          "name": "Castilla y León"
+        },
+        {
+          "code": "CM",
+          "name": "Castilla-La Mancha"
+        },
+        {
+          "code": "CT",
+          "name": "Cataluña"
+        },
+        {
+          "code": "CE",
+          "name": "Ceuta"
+        },
+        {
+          "code": "EX",
+          "name": "Extremadura"
+        },
+        {
+          "code": "GA",
+          "name": "Galicia"
+        },
+        {
+          "code": "RI",
+          "name": "La Rioja"
+        },
+        {
+          "code": "MD",
+          "name": "Madrid"
+        },
+        {
+          "code": "ML",
+          "name": "Melilla"
+        },
+        {
+          "code": "MC",
+          "name": "Murcia"
+        },
+        {
+          "code": "NC",
+          "name": "Navarra"
+        },
+        {
+          "code": "PV",
+          "name": "País Vasco"
+        },
+        {
+          "code": "VC",
+          "name": "Comunidad Valenciana"
+        }
+      ]
+    },
+    {
+      "code": "US",
+      "name": "Estados Unidos",
+      "emoji": "🇺🇸",
+      "states": [
+        {
+          "code": "AL",
+          "name": "Alabama"
+        },
+        {
+          "code": "AK",
+          "name": "Alaska"
+        },
+        {
+          "code": "AZ",
+          "name": "Arizona"
+        },
+        {
+          "code": "AR",
+          "name": "Arkansas"
+        },
+        {
+          "code": "CA",
+          "name": "California"
+        },
+        {
+          "code": "CO",
+          "name": "Colorado"
+        },
+        {
+          "code": "CT",
+          "name": "Connecticut"
+        },
+        {
+          "code": "DE",
+          "name": "Delaware"
+        },
+        {
+          "code": "FL",
+          "name": "Florida"
+        },
+        {
+          "code": "GA",
+          "name": "Georgia"
+        },
+        {
+          "code": "HI",
+          "name": "Hawaii"
+        },
+        {
+          "code": "ID",
+          "name": "Idaho"
+        },
+        {
+          "code": "IL",
+          "name": "Illinois"
+        },
+        {
+          "code": "IN",
+          "name": "Indiana"
+        },
+        {
+          "code": "IA",
+          "name": "Iowa"
+        },
+        {
+          "code": "KS",
+          "name": "Kansas"
+        },
+        {
+          "code": "KY",
+          "name": "Kentucky"
+        },
+        {
+          "code": "LA",
+          "name": "Louisiana"
+        },
+        {
+          "code": "ME",
+          "name": "Maine"
+        },
+        {
+          "code": "MD",
+          "name": "Maryland"
+        },
+        {
+          "code": "MA",
+          "name": "Massachusetts"
+        },
+        {
+          "code": "MI",
+          "name": "Michigan"
+        },
+        {
+          "code": "MN",
+          "name": "Minnesota"
+        },
+        {
+          "code": "MS",
+          "name": "Mississippi"
+        },
+        {
+          "code": "MO",
+          "name": "Missouri"
+        },
+        {
+          "code": "MT",
+          "name": "Montana"
+        },
+        {
+          "code": "NE",
+          "name": "Nebraska"
+        },
+        {
+          "code": "NV",
+          "name": "Nevada"
+        },
+        {
+          "code": "NH",
+          "name": "New Hampshire"
+        },
+        {
+          "code": "NJ",
+          "name": "New Jersey"
+        },
+        {
+          "code": "NM",
+          "name": "New Mexico"
+        },
+        {
+          "code": "NY",
+          "name": "New York"
+        },
+        {
+          "code": "NC",
+          "name": "North Carolina"
+        },
+        {
+          "code": "ND",
+          "name": "North Dakota"
+        },
+        {
+          "code": "OH",
+          "name": "Ohio"
+        },
+        {
+          "code": "OK",
+          "name": "Oklahoma"
+        },
+        {
+          "code": "OR",
+          "name": "Oregon"
+        },
+        {
+          "code": "PA",
+          "name": "Pennsylvania"
+        },
+        {
+          "code": "RI",
+          "name": "Rhode Island"
+        },
+        {
+          "code": "SC",
+          "name": "South Carolina"
+        },
+        {
+          "code": "SD",
+          "name": "South Dakota"
+        },
+        {
+          "code": "TN",
+          "name": "Tennessee"
+        },
+        {
+          "code": "TX",
+          "name": "Texas"
+        },
+        {
+          "code": "UT",
+          "name": "Utah"
+        },
+        {
+          "code": "VT",
+          "name": "Vermont"
+        },
+        {
+          "code": "VA",
+          "name": "Virginia"
+        },
+        {
+          "code": "WA",
+          "name": "Washington"
+        },
+        {
+          "code": "WV",
+          "name": "West Virginia"
+        },
+        {
+          "code": "WI",
+          "name": "Wisconsin"
+        },
+        {
+          "code": "WY",
+          "name": "Wyoming"
+        }
+      ]
+    },
+    {
+      "code": "EE",
+      "name": "Estonia",
+      "emoji": "🇪🇪",
+      "states": []
+    },
+    {
+      "code": "ET",
+      "name": "Etiopía",
+      "emoji": "🇪🇹",
+      "states": []
+    },
+    {
+      "code": "PH",
+      "name": "Filipinas",
+      "emoji": "🇵🇭",
+      "states": []
+    },
+    {
+      "code": "FI",
+      "name": "Finlandia",
+      "emoji": "🇫🇮",
+      "states": []
+    },
+    {
+      "code": "FJ",
+      "name": "Fiyi",
+      "emoji": "🇫🇯",
+      "states": []
+    },
+    {
+      "code": "FR",
+      "name": "Francia",
+      "emoji": "🇫🇷",
+      "states": []
+    },
+    {
+      "code": "GA",
+      "name": "Gabón",
+      "emoji": "🇬🇦",
+      "states": []
+    },
+    {
+      "code": "GM",
+      "name": "Gambia",
+      "emoji": "🇬🇲",
+      "states": []
+    },
+    {
+      "code": "GE",
+      "name": "Georgia",
+      "emoji": "🇬🇪",
+      "states": []
+    },
+    {
+      "code": "GH",
+      "name": "Ghana",
+      "emoji": "🇬🇭",
+      "states": []
+    },
+    {
+      "code": "GI",
+      "name": "Gibraltar",
+      "emoji": "🇬🇮",
+      "states": []
+    },
+    {
+      "code": "GD",
+      "name": "Granada",
+      "emoji": "🇬🇩",
+      "states": []
+    },
+    {
+      "code": "GR",
+      "name": "Grecia",
+      "emoji": "🇬🇷",
+      "states": []
+    },
+    {
+      "code": "GL",
+      "name": "Groenlandia",
+      "emoji": "🇬🇱",
+      "states": []
+    },
+    {
+      "code": "GP",
+      "name": "Guadalupe",
+      "emoji": "🇬🇵",
+      "states": []
+    },
+    {
+      "code": "GU",
+      "name": "Guam",
+      "emoji": "🇬🇺",
+      "states": []
+    },
+    {
+      "code": "GT",
+      "name": "Guatemala",
+      "emoji": "🇬🇹",
+      "states": [
+        {
+          "code": "AV",
+          "name": "Alta Verapaz"
+        },
+        {
+          "code": "BV",
+          "name": "Baja Verapaz"
+        },
+        {
+          "code": "CM",
+          "name": "Chimaltenango"
+        },
+        {
+          "code": "CQ",
+          "name": "Chiquimula"
+        },
+        {
+          "code": "PR",
+          "name": "El Progreso"
+        },
+        {
+          "code": "ES",
+          "name": "Escuintla"
+        },
+        {
+          "code": "GU",
+          "name": "Guatemala"
+        },
+        {
+          "code": "HU",
+          "name": "Huehuetenango"
+        },
+        {
+          "code": "IZ",
+          "name": "Izabal"
+        },
+        {
+          "code": "JA",
+          "name": "Jalapa"
+        },
+        {
+          "code": "JU",
+          "name": "Jutiapa"
+        },
+        {
+          "code": "PE",
+          "name": "Petén"
+        },
+        {
+          "code": "QZ",
+          "name": "Quetzaltenango"
+        },
+        {
+          "code": "QC",
+          "name": "Quiché"
+        },
+        {
+          "code": "RE",
+          "name": "Retalhuleu"
+        },
+        {
+          "code": "SA",
+          "name": "Sacatepéquez"
+        },
+        {
+          "code": "SM",
+          "name": "San Marcos"
+        },
+        {
+          "code": "SR",
+          "name": "Santa Rosa"
+        },
+        {
+          "code": "SO",
+          "name": "Sololá"
+        },
+        {
+          "code": "SU",
+          "name": "Suchitepéquez"
+        },
+        {
+          "code": "TO",
+          "name": "Totonicapán"
+        },
+        {
+          "code": "ZA",
+          "name": "Zacapa"
+        }
+      ]
+    },
+    {
+      "code": "GF",
+      "name": "Guayana Francesa",
+      "emoji": "🇬🇫",
+      "states": []
+    },
+    {
+      "code": "GG",
+      "name": "Guernsey",
+      "emoji": "🇬🇬",
+      "states": []
+    },
+    {
+      "code": "GN",
+      "name": "Guinea",
+      "emoji": "🇬🇳",
+      "states": []
+    },
+    {
+      "code": "GQ",
+      "name": "Guinea Ecuatorial",
+      "emoji": "🇬🇶",
+      "states": []
+    },
+    {
+      "code": "GW",
+      "name": "Guinea-Bisáu",
+      "emoji": "🇬🇼",
+      "states": []
+    },
+    {
+      "code": "GY",
+      "name": "Guyana",
+      "emoji": "🇬🇾",
+      "states": []
+    },
+    {
+      "code": "HT",
+      "name": "Haití",
+      "emoji": "🇭🇹",
+      "states": []
+    },
+    {
+      "code": "HN",
+      "name": "Honduras",
+      "emoji": "🇭🇳",
+      "states": [
+        {
+          "code": "AT",
+          "name": "Atlántida"
+        },
+        {
+          "code": "CH",
+          "name": "Choluteca"
+        },
+        {
+          "code": "CL",
+          "name": "Colón"
+        },
+        {
+          "code": "CM",
+          "name": "Comayagua"
+        },
+        {
+          "code": "CP",
+          "name": "Copán"
+        },
+        {
+          "code": "CR",
+          "name": "Cortés"
+        },
+        {
+          "code": "EP",
+          "name": "El Paraíso"
+        },
+        {
+          "code": "FM",
+          "name": "Francisco Morazán"
+        },
+        {
+          "code": "GD",
+          "name": "Gracias a Dios"
+        },
+        {
+          "code": "IN",
+          "name": "Intibucá"
+        },
+        {
+          "code": "IB",
+          "name": "Islas de la Bahía"
+        },
+        {
+          "code": "LP",
+          "name": "La Paz"
+        },
+        {
+          "code": "LE",
+          "name": "Lempira"
+        },
+        {
+          "code": "OC",
+          "name": "Ocotepeque"
+        },
+        {
+          "code": "OL",
+          "name": "Olancho"
+        },
+        {
+          "code": "SB",
+          "name": "Santa Bárbara"
+        },
+        {
+          "code": "VA",
+          "name": "Valle"
+        },
+        {
+          "code": "YO",
+          "name": "Yoro"
+        }
+      ]
+    },
+    {
+      "code": "HK",
+      "name": "Hong Kong",
+      "emoji": "🇭🇰",
+      "states": []
+    },
+    {
+      "code": "HU",
+      "name": "Hungría",
+      "emoji": "🇭🇺",
+      "states": []
+    },
+    {
+      "code": "IN",
+      "name": "India",
+      "emoji": "🇮🇳",
+      "states": []
+    },
+    {
+      "code": "ID",
+      "name": "Indonesia",
+      "emoji": "🇮🇩",
+      "states": []
+    },
+    {
+      "code": "IQ",
+      "name": "Irak",
+      "emoji": "🇮🇶",
+      "states": []
+    },
+    {
+      "code": "IR",
+      "name": "Irán",
+      "emoji": "🇮🇷",
+      "states": []
+    },
+    {
+      "code": "IE",
+      "name": "Irlanda",
+      "emoji": "🇮🇪",
+      "states": []
+    },
+    {
+      "code": "BV",
+      "name": "Isla Bouvet",
+      "emoji": "🇧🇻",
+      "states": []
+    },
+    {
+      "code": "IM",
+      "name": "Isla de Man",
+      "emoji": "🇮🇲",
+      "states": []
+    },
+    {
+      "code": "CX",
+      "name": "Isla de Navidad",
+      "emoji": "🇨🇽",
+      "states": []
+    },
+    {
+      "code": "NF",
+      "name": "Isla Norfolk",
+      "emoji": "🇳🇫",
+      "states": []
+    },
+    {
+      "code": "IS",
+      "name": "Islandia",
+      "emoji": "🇮🇸",
+      "states": []
+    },
+    {
+      "code": "KY",
+      "name": "Islas Caimán",
+      "emoji": "🇰🇾",
+      "states": []
+    },
+    {
+      "code": "CC",
+      "name": "Islas Cocos",
+      "emoji": "🇨🇨",
+      "states": []
+    },
+    {
+      "code": "CK",
+      "name": "Islas Cook",
+      "emoji": "🇨🇰",
+      "states": []
+    },
+    {
+      "code": "FO",
+      "name": "Islas Feroe",
+      "emoji": "🇫🇴",
+      "states": []
+    },
+    {
+      "code": "GS",
+      "name": "Islas Georgias del Sur y Sandwich del Sur",
+      "emoji": "🇬🇸",
+      "states": []
+    },
+    {
+      "code": "HM",
+      "name": "Islas Heard y McDonald",
+      "emoji": "🇭🇲",
+      "states": []
+    },
+    {
+      "code": "FK",
+      "name": "Islas Malvinas",
+      "emoji": "🇫🇰",
+      "states": []
+    },
+    {
+      "code": "MP",
+      "name": "Islas Marianas del Norte",
+      "emoji": "🇲🇵",
+      "states": []
+    },
+    {
+      "code": "MH",
+      "name": "Islas Marshall",
+      "emoji": "🇲🇭",
+      "states": []
+    },
+    {
+      "code": "PN",
+      "name": "Islas Pitcairn",
+      "emoji": "🇵🇳",
+      "states": []
+    },
+    {
+      "code": "SB",
+      "name": "Islas Salomón",
+      "emoji": "🇸🇧",
+      "states": []
+    },
+    {
+      "code": "TC",
+      "name": "Islas Turcas y Caicos",
+      "emoji": "🇹🇨",
+      "states": []
+    },
+    {
+      "code": "UM",
+      "name": "Islas Ultramarinas Menores de los Estados Unidos",
+      "emoji": "🇺🇲",
+      "states": []
+    },
+    {
+      "code": "VG",
+      "name": "Islas Vírgenes Británicas",
+      "emoji": "🇻🇬",
+      "states": []
+    },
+    {
+      "code": "VI",
+      "name": "Islas Vírgenes de los Estados Unidos",
+      "emoji": "🇻🇮",
+      "states": []
+    },
+    {
+      "code": "IL",
+      "name": "Israel",
+      "emoji": "🇮🇱",
+      "states": []
+    },
+    {
+      "code": "IT",
+      "name": "Italia",
+      "emoji": "🇮🇹",
+      "states": []
+    },
+    {
+      "code": "JM",
+      "name": "Jamaica",
+      "emoji": "🇯🇲",
+      "states": []
+    },
+    {
+      "code": "JP",
+      "name": "Japón",
+      "emoji": "🇯🇵",
+      "states": []
+    },
+    {
+      "code": "JE",
+      "name": "Jersey",
+      "emoji": "🇯🇪",
+      "states": []
+    },
+    {
+      "code": "JO",
+      "name": "Jordania",
+      "emoji": "🇯🇴",
+      "states": []
+    },
+    {
+      "code": "KZ",
+      "name": "Kazajistán",
+      "emoji": "🇰🇿",
+      "states": []
+    },
+    {
+      "code": "KE",
+      "name": "Kenia",
+      "emoji": "🇰🇪",
+      "states": []
+    },
+    {
+      "code": "KG",
+      "name": "Kirguistán",
+      "emoji": "🇰🇬",
+      "states": []
+    },
+    {
+      "code": "KI",
+      "name": "Kiribati",
+      "emoji": "🇰🇮",
+      "states": []
+    },
+    {
+      "code": "KW",
+      "name": "Kuwait",
+      "emoji": "🇰🇼",
+      "states": []
+    },
+    {
+      "code": "LA",
+      "name": "Laos",
+      "emoji": "🇱🇦",
+      "states": []
+    },
+    {
+      "code": "LS",
+      "name": "Lesoto",
+      "emoji": "🇱🇸",
+      "states": []
+    },
+    {
+      "code": "LV",
+      "name": "Letonia",
+      "emoji": "🇱🇻",
+      "states": []
+    },
+    {
+      "code": "LB",
+      "name": "Líbano",
+      "emoji": "🇱🇧",
+      "states": []
+    },
+    {
+      "code": "LR",
+      "name": "Liberia",
+      "emoji": "🇱🇷",
+      "states": []
+    },
+    {
+      "code": "LY",
+      "name": "Libia",
+      "emoji": "🇱🇾",
+      "states": []
+    },
+    {
+      "code": "LI",
+      "name": "Liechtenstein",
+      "emoji": "🇱🇮",
+      "states": []
+    },
+    {
+      "code": "LT",
+      "name": "Lituania",
+      "emoji": "🇱🇹",
+      "states": []
+    },
+    {
+      "code": "LU",
+      "name": "Luxemburgo",
+      "emoji": "🇱🇺",
+      "states": []
+    },
+    {
+      "code": "MO",
+      "name": "Macao",
+      "emoji": "🇲🇴",
+      "states": []
+    },
+    {
+      "code": "MK",
+      "name": "Macedonia del Norte",
+      "emoji": "🇲🇰",
+      "states": []
+    },
+    {
+      "code": "MG",
+      "name": "Madagascar",
+      "emoji": "🇲🇬",
+      "states": []
+    },
+    {
+      "code": "MY",
+      "name": "Malasia",
+      "emoji": "🇲🇾",
+      "states": []
+    },
+    {
+      "code": "MW",
+      "name": "Malaui",
+      "emoji": "🇲🇼",
+      "states": []
+    },
+    {
+      "code": "MV",
+      "name": "Maldivas",
+      "emoji": "🇲🇻",
+      "states": []
+    },
+    {
+      "code": "ML",
+      "name": "Mali",
+      "emoji": "🇲🇱",
+      "states": []
+    },
+    {
+      "code": "MT",
+      "name": "Malta",
+      "emoji": "🇲🇹",
+      "states": []
+    },
+    {
+      "code": "MA",
+      "name": "Marruecos",
+      "emoji": "🇲🇦",
+      "states": []
+    },
+    {
+      "code": "MQ",
+      "name": "Martinica",
+      "emoji": "🇲🇶",
+      "states": []
+    },
+    {
+      "code": "MU",
+      "name": "Mauricio",
+      "emoji": "🇲🇺",
+      "states": []
+    },
+    {
+      "code": "MR",
+      "name": "Mauritania",
+      "emoji": "🇲🇷",
+      "states": []
+    },
+    {
+      "code": "YT",
+      "name": "Mayotte",
+      "emoji": "🇾🇹",
+      "states": []
+    },
+    {
+      "code": "MX",
+      "name": "México",
+      "emoji": "🇲🇽",
+      "states": [
+        {
+          "code": "AGU",
+          "name": "Aguascalientes"
+        },
+        {
+          "code": "BCN",
+          "name": "Baja California"
+        },
+        {
+          "code": "BCS",
+          "name": "Baja California Sur"
+        },
+        {
+          "code": "CAM",
+          "name": "Campeche"
+        },
+        {
+          "code": "CHP",
+          "name": "Chiapas"
+        },
+        {
+          "code": "CHH",
+          "name": "Chihuahua"
+        },
+        {
+          "code": "CMX",
+          "name": "Ciudad de México"
+        },
+        {
+          "code": "COA",
+          "name": "Coahuila"
+        },
+        {
+          "code": "COL",
+          "name": "Colima"
+        },
+        {
+          "code": "DUR",
+          "name": "Durango"
+        },
+        {
+          "code": "GUA",
+          "name": "Guanajuato"
+        },
+        {
+          "code": "GRO",
+          "name": "Guerrero"
+        },
+        {
+          "code": "HID",
+          "name": "Hidalgo"
+        },
+        {
+          "code": "JAL",
+          "name": "Jalisco"
+        },
+        {
+          "code": "MEX",
+          "name": "Estado de México"
+        },
+        {
+          "code": "MIC",
+          "name": "Michoacán"
+        },
+        {
+          "code": "MOR",
+          "name": "Morelos"
+        },
+        {
+          "code": "NAY",
+          "name": "Nayarit"
+        },
+        {
+          "code": "NLE",
+          "name": "Nuevo León"
+        },
+        {
+          "code": "OAX",
+          "name": "Oaxaca"
+        },
+        {
+          "code": "PUE",
+          "name": "Puebla"
+        },
+        {
+          "code": "QUE",
+          "name": "Querétaro"
+        },
+        {
+          "code": "ROO",
+          "name": "Quintana Roo"
+        },
+        {
+          "code": "SLP",
+          "name": "San Luis Potosí"
+        },
+        {
+          "code": "SIN",
+          "name": "Sinaloa"
+        },
+        {
+          "code": "SON",
+          "name": "Sonora"
+        },
+        {
+          "code": "TAB",
+          "name": "Tabasco"
+        },
+        {
+          "code": "TAM",
+          "name": "Tamaulipas"
+        },
+        {
+          "code": "TLA",
+          "name": "Tlaxcala"
+        },
+        {
+          "code": "VER",
+          "name": "Veracruz"
+        },
+        {
+          "code": "YUC",
+          "name": "Yucatán"
+        },
+        {
+          "code": "ZAC",
+          "name": "Zacatecas"
+        }
+      ]
+    },
+    {
+      "code": "FM",
+      "name": "Micronesia",
+      "emoji": "🇫🇲",
+      "states": []
+    },
+    {
+      "code": "MD",
+      "name": "Moldavia",
+      "emoji": "🇲🇩",
+      "states": []
+    },
+    {
+      "code": "MC",
+      "name": "Mónaco",
+      "emoji": "🇲🇨",
+      "states": []
+    },
+    {
+      "code": "MN",
+      "name": "Mongolia",
+      "emoji": "🇲🇳",
+      "states": []
+    },
+    {
+      "code": "ME",
+      "name": "Montenegro",
+      "emoji": "🇲🇪",
+      "states": []
+    },
+    {
+      "code": "MS",
+      "name": "Montserrat",
+      "emoji": "🇲🇸",
+      "states": []
+    },
+    {
+      "code": "MZ",
+      "name": "Mozambique",
+      "emoji": "🇲🇿",
+      "states": []
+    },
+    {
+      "code": "NA",
+      "name": "Namibia",
+      "emoji": "🇳🇦",
+      "states": []
+    },
+    {
+      "code": "NR",
+      "name": "Nauru",
+      "emoji": "🇳🇷",
+      "states": []
+    },
+    {
+      "code": "NP",
+      "name": "Nepal",
+      "emoji": "🇳🇵",
+      "states": []
+    },
+    {
+      "code": "NI",
+      "name": "Nicaragua",
+      "emoji": "🇳🇮",
+      "states": [
+        {
+          "code": "AN",
+          "name": "Atlántico Norte"
+        },
+        {
+          "code": "AS",
+          "name": "Atlántico Sur"
+        },
+        {
+          "code": "BO",
+          "name": "Boaco"
+        },
+        {
+          "code": "CA",
+          "name": "Carazo"
+        },
+        {
+          "code": "CI",
+          "name": "Chinandega"
+        },
+        {
+          "code": "CO",
+          "name": "Chontales"
+        },
+        {
+          "code": "ES",
+          "name": "Estelí"
+        },
+        {
+          "code": "GR",
+          "name": "Granada"
+        },
+        {
+          "code": "JI",
+          "name": "Jinotega"
+        },
+        {
+          "code": "LE",
+          "name": "León"
+        },
+        {
+          "code": "MD",
+          "name": "Madriz"
+        },
+        {
+          "code": "MN",
+          "name": "Managua"
+        },
+        {
+          "code": "MS",
+          "name": "Masaya"
+        },
+        {
+          "code": "MT",
+          "name": "Matagalpa"
+        },
+        {
+          "code": "NS",
+          "name": "Nueva Segovia"
+        },
+        {
+          "code": "RI",
+          "name": "Rivas"
+        },
+        {
+          "code": "SJ",
+          "name": "Río San Juan"
+        }
+      ]
+    },
+    {
+      "code": "NE",
+      "name": "Níger",
+      "emoji": "🇳🇪",
+      "states": []
+    },
+    {
+      "code": "NG",
+      "name": "Nigeria",
+      "emoji": "🇳🇬",
+      "states": []
+    },
+    {
+      "code": "NU",
+      "name": "Niue",
+      "emoji": "🇳🇺",
+      "states": []
+    },
+    {
+      "code": "NO",
+      "name": "Noruega",
+      "emoji": "🇳🇴",
+      "states": []
+    },
+    {
+      "code": "NC",
+      "name": "Nueva Caledonia",
+      "emoji": "🇳🇨",
+      "states": []
+    },
+    {
+      "code": "NZ",
+      "name": "Nueva Zelanda",
+      "emoji": "🇳🇿",
+      "states": []
+    },
+    {
+      "code": "OM",
+      "name": "Omán",
+      "emoji": "🇴🇲",
+      "states": []
+    },
+    {
+      "code": "NL",
+      "name": "Países Bajos",
+      "emoji": "🇳🇱",
+      "states": []
+    },
+    {
+      "code": "PK",
+      "name": "Pakistán",
+      "emoji": "🇵🇰",
+      "states": []
+    },
+    {
+      "code": "PW",
+      "name": "Palaos",
+      "emoji": "🇵🇼",
+      "states": []
+    },
+    {
+      "code": "PS",
+      "name": "Palestina",
+      "emoji": "🇵🇸",
+      "states": []
+    },
+    {
+      "code": "PA",
+      "name": "Panamá",
+      "emoji": "🇵🇦",
+      "states": [
+        {
+          "code": "1",
+          "name": "Bocas del Toro"
+        },
+        {
+          "code": "4",
+          "name": "Chiriquí"
+        },
+        {
+          "code": "2",
+          "name": "Coclé"
+        },
+        {
+          "code": "3",
+          "name": "Colón"
+        },
+        {
+          "code": "5",
+          "name": "Darién"
+        },
+        {
+          "code": "EM",
+          "name": "Emberá"
+        },
+        {
+          "code": "6",
+          "name": "Herrera"
+        },
+        {
+          "code": "KY",
+          "name": "Guna Yala"
+        },
+        {
+          "code": "7",
+          "name": "Los Santos"
+        },
+        {
+          "code": "NB",
+          "name": "Ngäbe-Buglé"
+        },
+        {
+          "code": "8",
+          "name": "Panamá"
+        },
+        {
+          "code": "10",
+          "name": "Panamá Oeste"
+        },
+        {
+          "code": "9",
+          "name": "Veraguas"
+        }
+      ]
+    },
+    {
+      "code": "PG",
+      "name": "Papúa Nueva Guinea",
+      "emoji": "🇵🇬",
+      "states": []
+    },
+    {
+      "code": "PY",
+      "name": "Paraguay",
+      "emoji": "🇵🇾",
+      "states": [
+        {
+          "code": "16",
+          "name": "Alto Paraguay"
+        },
+        {
+          "code": "10",
+          "name": "Alto Paraná"
+        },
+        {
+          "code": "13",
+          "name": "Amambay"
+        },
+        {
+          "code": "ASU",
+          "name": "Asunción"
+        },
+        {
+          "code": "19",
+          "name": "Boquerón"
+        },
+        {
+          "code": "5",
+          "name": "Caaguazú"
+        },
+        {
+          "code": "6",
+          "name": "Caazapá"
+        },
+        {
+          "code": "14",
+          "name": "Canindeyú"
+        },
+        {
+          "code": "11",
+          "name": "Central"
+        },
+        {
+          "code": "1",
+          "name": "Concepción"
+        },
+        {
+          "code": "3",
+          "name": "Cordillera"
+        },
+        {
+          "code": "4",
+          "name": "Guairá"
+        },
+        {
+          "code": "7",
+          "name": "Itapúa"
+        },
+        {
+          "code": "8",
+          "name": "Misiones"
+        },
+        {
+          "code": "9",
+          "name": "Paraguarí"
+        },
+        {
+          "code": "15",
+          "name": "Presidente Hayes"
+        },
+        {
+          "code": "2",
+          "name": "San Pedro"
+        },
+        {
+          "code": "12",
+          "name": "Ñeembucú"
+        }
+      ]
+    },
+    {
+      "code": "PE",
+      "name": "Perú",
+      "emoji": "🇵🇪",
+      "states": [
+        {
+          "code": "AMA",
+          "name": "Amazonas"
+        },
+        {
+          "code": "ANC",
+          "name": "Áncash"
+        },
+        {
+          "code": "APU",
+          "name": "Apurímac"
+        },
+        {
+          "code": "ARE",
+          "name": "Arequipa"
+        },
+        {
+          "code": "AYA",
+          "name": "Ayacucho"
+        },
+        {
+          "code": "CAJ",
+          "name": "Cajamarca"
+        },
+        {
+          "code": "CAL",
+          "name": "Callao"
+        },
+        {
+          "code": "CUS",
+          "name": "Cusco"
+        },
+        {
+          "code": "HUV",
+          "name": "Huancavelica"
+        },
+        {
+          "code": "HUC",
+          "name": "Huánuco"
+        },
+        {
+          "code": "ICA",
+          "name": "Ica"
+        },
+        {
+          "code": "JUN",
+          "name": "Junín"
+        },
+        {
+          "code": "LAL",
+          "name": "La Libertad"
+        },
+        {
+          "code": "LAM",
+          "name": "Lambayeque"
+        },
+        {
+          "code": "LIM",
+          "name": "Lima"
+        },
+        {
+          "code": "LOR",
+          "name": "Loreto"
+        },
+        {
+          "code": "MDD",
+          "name": "Madre de Dios"
+        },
+        {
+          "code": "MOQ",
+          "name": "Moquegua"
+        },
+        {
+          "code": "PAS",
+          "name": "Pasco"
+        },
+        {
+          "code": "PIU",
+          "name": "Piura"
+        },
+        {
+          "code": "PUN",
+          "name": "Puno"
+        },
+        {
+          "code": "SAM",
+          "name": "San Martín"
+        },
+        {
+          "code": "TAC",
+          "name": "Tacna"
+        },
+        {
+          "code": "TUM",
+          "name": "Tumbes"
+        },
+        {
+          "code": "UCA",
+          "name": "Ucayali"
+        }
+      ]
+    },
+    {
+      "code": "PF",
+      "name": "Polinesia Francesa",
+      "emoji": "🇵🇫",
+      "states": []
+    },
+    {
+      "code": "PL",
+      "name": "Polonia",
+      "emoji": "🇵🇱",
+      "states": []
+    },
+    {
+      "code": "PT",
+      "name": "Portugal",
+      "emoji": "🇵🇹",
+      "states": []
+    },
+    {
+      "code": "PR",
+      "name": "Puerto Rico",
+      "emoji": "🇵🇷",
+      "states": []
+    },
+    {
+      "code": "GB",
+      "name": "Reino Unido",
+      "emoji": "🇬🇧",
+      "states": []
+    },
+    {
+      "code": "EH",
+      "name": "República Árabe Saharaui Democrática",
+      "emoji": "🇪🇭",
+      "states": []
+    },
+    {
+      "code": "CF",
+      "name": "República Centroafricana",
+      "emoji": "🇨🇫",
+      "states": []
+    },
+    {
+      "code": "CZ",
+      "name": "República Checa",
+      "emoji": "🇨🇿",
+      "states": []
+    },
+    {
+      "code": "CG",
+      "name": "República del Congo",
+      "emoji": "🇨🇬",
+      "states": []
+    },
+    {
+      "code": "CD",
+      "name": "República Democrática del Congo",
+      "emoji": "🇨🇩",
+      "states": []
+    },
+    {
+      "code": "DO",
+      "name": "República Dominicana",
+      "emoji": "🇩🇴",
+      "states": [
+        {
+          "code": "01",
+          "name": "Distrito Nacional"
+        },
+        {
+          "code": "02",
+          "name": "Azua"
+        },
+        {
+          "code": "03",
+          "name": "Baoruco"
+        },
+        {
+          "code": "04",
+          "name": "Barahona"
+        },
+        {
+          "code": "05",
+          "name": "Dajabón"
+        },
+        {
+          "code": "06",
+          "name": "Duarte"
+        },
+        {
+          "code": "07",
+          "name": "Elías Piña"
+        },
+        {
+          "code": "08",
+          "name": "El Seibo"
+        },
+        {
+          "code": "09",
+          "name": "Espaillat"
+        },
+        {
+          "code": "10",
+          "name": "Independencia"
+        },
+        {
+          "code": "11",
+          "name": "La Altagracia"
+        },
+        {
+          "code": "12",
+          "name": "La Romana"
+        },
+        {
+          "code": "13",
+          "name": "La Vega"
+        },
+        {
+          "code": "14",
+          "name": "María Trinidad Sánchez"
+        },
+        {
+          "code": "15",
+          "name": "Monte Cristi"
+        },
+        {
+          "code": "16",
+          "name": "Pedernales"
+        },
+        {
+          "code": "17",
+          "name": "Peravia"
+        },
+        {
+          "code": "18",
+          "name": "Puerto Plata"
+        },
+        {
+          "code": "19",
+          "name": "Hermanas Mirabal"
+        },
+        {
+          "code": "20",
+          "name": "Samaná"
+        },
+        {
+          "code": "21",
+          "name": "San Cristóbal"
+        },
+        {
+          "code": "22",
+          "name": "San José de Ocoa"
+        },
+        {
+          "code": "23",
+          "name": "San Juan"
+        },
+        {
+          "code": "24",
+          "name": "San Pedro de Macorís"
+        },
+        {
+          "code": "25",
+          "name": "Sánchez Ramírez"
+        },
+        {
+          "code": "26",
+          "name": "Santiago"
+        },
+        {
+          "code": "27",
+          "name": "Santiago Rodríguez"
+        },
+        {
+          "code": "28",
+          "name": "Santo Domingo"
+        },
+        {
+          "code": "29",
+          "name": "Valverde"
+        },
+        {
+          "code": "30",
+          "name": "Monseñor Nouel"
+        },
+        {
+          "code": "31",
+          "name": "Monte Plata"
+        },
+        {
+          "code": "32",
+          "name": "Hato Mayor"
+        }
+      ]
+    },
+    {
+      "code": "RE",
+      "name": "Reunión",
+      "emoji": "🇷🇪",
+      "states": []
+    },
+    {
+      "code": "RW",
+      "name": "Ruanda",
+      "emoji": "🇷🇼",
+      "states": []
+    },
+    {
+      "code": "RO",
+      "name": "Rumania",
+      "emoji": "🇷🇴",
+      "states": []
+    },
+    {
+      "code": "RU",
+      "name": "Rusia",
+      "emoji": "🇷🇺",
+      "states": []
+    },
+    {
+      "code": "WS",
+      "name": "Samoa",
+      "emoji": "🇼🇸",
+      "states": []
+    },
+    {
+      "code": "AS",
+      "name": "Samoa Americana",
+      "emoji": "🇦🇸",
+      "states": []
+    },
+    {
+      "code": "BL",
+      "name": "San Bartolomé",
+      "emoji": "🇧🇱",
+      "states": []
+    },
+    {
+      "code": "KN",
+      "name": "San Cristóbal y Nieves",
+      "emoji": "🇰🇳",
+      "states": []
+    },
+    {
+      "code": "SM",
+      "name": "San Marino",
+      "emoji": "🇸🇲",
+      "states": []
+    },
+    {
+      "code": "MF",
+      "name": "San Martín",
+      "emoji": "🇲🇫",
+      "states": []
+    },
+    {
+      "code": "SX",
+      "name": "San Martín",
+      "emoji": "🇸🇽",
+      "states": []
+    },
+    {
+      "code": "PM",
+      "name": "San Pedro y Miquelón",
+      "emoji": "🇵🇲",
+      "states": []
+    },
+    {
+      "code": "VC",
+      "name": "San Vicente y las Granadinas",
+      "emoji": "🇻🇨",
+      "states": []
+    },
+    {
+      "code": "SH",
+      "name": "Santa Elena, Ascensión y Tristán de Acuña",
+      "emoji": "🇸🇭",
+      "states": []
+    },
+    {
+      "code": "LC",
+      "name": "Santa Lucía",
+      "emoji": "🇱🇨",
+      "states": []
+    },
+    {
+      "code": "ST",
+      "name": "Santo Tomé y Príncipe",
+      "emoji": "🇸🇹",
+      "states": []
+    },
+    {
+      "code": "SN",
+      "name": "Senegal",
+      "emoji": "🇸🇳",
+      "states": []
+    },
+    {
+      "code": "RS",
+      "name": "Serbia",
+      "emoji": "🇷🇸",
+      "states": []
+    },
+    {
+      "code": "SC",
+      "name": "Seychelles",
+      "emoji": "🇸🇨",
+      "states": []
+    },
+    {
+      "code": "SL",
+      "name": "Sierra Leona",
+      "emoji": "🇸🇱",
+      "states": []
+    },
+    {
+      "code": "SG",
+      "name": "Singapur",
+      "emoji": "🇸🇬",
+      "states": []
+    },
+    {
+      "code": "SY",
+      "name": "Siria",
+      "emoji": "🇸🇾",
+      "states": []
+    },
+    {
+      "code": "SO",
+      "name": "Somalia",
+      "emoji": "🇸🇴",
+      "states": []
+    },
+    {
+      "code": "LK",
+      "name": "Sri Lanka",
+      "emoji": "🇱🇰",
+      "states": []
+    },
+    {
+      "code": "SZ",
+      "name": "Suazilandia",
+      "emoji": "🇸🇿",
+      "states": []
+    },
+    {
+      "code": "ZA",
+      "name": "Sudáfrica",
+      "emoji": "🇿🇦",
+      "states": []
+    },
+    {
+      "code": "SD",
+      "name": "Sudán",
+      "emoji": "🇸🇩",
+      "states": []
+    },
+    {
+      "code": "SS",
+      "name": "Sudán del Sur",
+      "emoji": "🇸🇸",
+      "states": []
+    },
+    {
+      "code": "SE",
+      "name": "Suecia",
+      "emoji": "🇸🇪",
+      "states": []
+    },
+    {
+      "code": "CH",
+      "name": "Suiza",
+      "emoji": "🇨🇭",
+      "states": []
+    },
+    {
+      "code": "SR",
+      "name": "Surinam",
+      "emoji": "🇸🇷",
+      "states": []
+    },
+    {
+      "code": "SJ",
+      "name": "Svalbard y Jan Mayen",
+      "emoji": "🇸🇯",
+      "states": []
+    },
+    {
+      "code": "TH",
+      "name": "Tailandia",
+      "emoji": "🇹🇭",
+      "states": []
+    },
+    {
+      "code": "TW",
+      "name": "Taiwán (República de China)",
+      "emoji": "🇹🇼",
+      "states": []
+    },
+    {
+      "code": "TZ",
+      "name": "Tanzania",
+      "emoji": "🇹🇿",
+      "states": []
+    },
+    {
+      "code": "TJ",
+      "name": "Tayikistán",
+      "emoji": "🇹🇯",
+      "states": []
+    },
+    {
+      "code": "IO",
+      "name": "Territorio Británico del Océano Índico",
+      "emoji": "🇮🇴",
+      "states": []
+    },
+    {
+      "code": "TF",
+      "name": "Tierras Australes y Antárticas Francesas",
+      "emoji": "🇹🇫",
+      "states": []
+    },
+    {
+      "code": "TL",
+      "name": "Timor Oriental",
+      "emoji": "🇹🇱",
+      "states": []
+    },
+    {
+      "code": "TG",
+      "name": "Togo",
+      "emoji": "🇹🇬",
+      "states": []
+    },
+    {
+      "code": "TK",
+      "name": "Tokelau",
+      "emoji": "🇹🇰",
+      "states": []
+    },
+    {
+      "code": "TO",
+      "name": "Tonga",
+      "emoji": "🇹🇴",
+      "states": []
+    },
+    {
+      "code": "TT",
+      "name": "Trinidad y Tobago",
+      "emoji": "🇹🇹",
+      "states": []
+    },
+    {
+      "code": "TN",
+      "name": "Túnez",
+      "emoji": "🇹🇳",
+      "states": []
+    },
+    {
+      "code": "TM",
+      "name": "Turkmenistán",
+      "emoji": "🇹🇲",
+      "states": []
+    },
+    {
+      "code": "TR",
+      "name": "Turquía",
+      "emoji": "🇹🇷",
+      "states": []
+    },
+    {
+      "code": "TV",
+      "name": "Tuvalu",
+      "emoji": "🇹🇻",
+      "states": []
+    },
+    {
+      "code": "UA",
+      "name": "Ucrania",
+      "emoji": "🇺🇦",
+      "states": []
+    },
+    {
+      "code": "UG",
+      "name": "Uganda",
+      "emoji": "🇺🇬",
+      "states": []
+    },
+    {
+      "code": "UY",
+      "name": "Uruguay",
+      "emoji": "🇺🇾",
+      "states": [
+        {
+          "code": "AR",
+          "name": "Artigas"
+        },
+        {
+          "code": "CA",
+          "name": "Canelones"
+        },
+        {
+          "code": "CL",
+          "name": "Cerro Largo"
+        },
+        {
+          "code": "CO",
+          "name": "Colonia"
+        },
+        {
+          "code": "DU",
+          "name": "Durazno"
+        },
+        {
+          "code": "FS",
+          "name": "Flores"
+        },
+        {
+          "code": "FD",
+          "name": "Florida"
+        },
+        {
+          "code": "LA",
+          "name": "Lavalleja"
+        },
+        {
+          "code": "MA",
+          "name": "Maldonado"
+        },
+        {
+          "code": "MO",
+          "name": "Montevideo"
+        },
+        {
+          "code": "PA",
+          "name": "Paysandú"
+        },
+        {
+          "code": "RN",
+          "name": "Río Negro"
+        },
+        {
+          "code": "RV",
+          "name": "Rivera"
+        },
+        {
+          "code": "RO",
+          "name": "Rocha"
+        },
+        {
+          "code": "SA",
+          "name": "Salto"
+        },
+        {
+          "code": "SJ",
+          "name": "San José"
+        },
+        {
+          "code": "SO",
+          "name": "Soriano"
+        },
+        {
+          "code": "TA",
+          "name": "Tacuarembó"
+        },
+        {
+          "code": "TT",
+          "name": "Treinta y Tres"
+        }
+      ]
+    },
+    {
+      "code": "UZ",
+      "name": "Uzbekistán",
+      "emoji": "🇺🇿",
+      "states": []
+    },
+    {
+      "code": "VU",
+      "name": "Vanuatu",
+      "emoji": "🇻🇺",
+      "states": []
+    },
+    {
+      "code": "VA",
+      "name": "Vaticano, Ciudad del",
+      "emoji": "🇻🇦",
+      "states": []
+    },
+    {
+      "code": "VE",
+      "name": "Venezuela",
+      "emoji": "🇻🇪",
+      "states": [
+        {
+          "code": "Z",
+          "name": "Amazonas"
+        },
+        {
+          "code": "B",
+          "name": "Anzoátegui"
+        },
+        {
+          "code": "C",
+          "name": "Apure"
+        },
+        {
+          "code": "D",
+          "name": "Aragua"
+        },
+        {
+          "code": "E",
+          "name": "Barinas"
+        },
+        {
+          "code": "F",
+          "name": "Bolívar"
+        },
+        {
+          "code": "G",
+          "name": "Carabobo"
+        },
+        {
+          "code": "H",
+          "name": "Cojedes"
+        },
+        {
+          "code": "Y",
+          "name": "Delta Amacuro"
+        },
+        {
+          "code": "W",
+          "name": "Dependencias Federales"
+        },
+        {
+          "code": "A",
+          "name": "Distrito Capital"
+        },
+        {
+          "code": "I",
+          "name": "Falcón"
+        },
+        {
+          "code": "J",
+          "name": "Guárico"
+        },
+        {
+          "code": "X",
+          "name": "La Guaira"
+        },
+        {
+          "code": "K",
+          "name": "Lara"
+        },
+        {
+          "code": "L",
+          "name": "Mérida"
+        },
+        {
+          "code": "M",
+          "name": "Miranda"
+        },
+        {
+          "code": "N",
+          "name": "Monagas"
+        },
+        {
+          "code": "O",
+          "name": "Nueva Esparta"
+        },
+        {
+          "code": "P",
+          "name": "Portuguesa"
+        },
+        {
+          "code": "R",
+          "name": "Sucre"
+        },
+        {
+          "code": "S",
+          "name": "Táchira"
+        },
+        {
+          "code": "T",
+          "name": "Trujillo"
+        },
+        {
+          "code": "U",
+          "name": "Yaracuy"
+        },
+        {
+          "code": "V",
+          "name": "Zulia"
+        }
+      ]
+    },
+    {
+      "code": "VN",
+      "name": "Vietnam",
+      "emoji": "🇻🇳",
+      "states": []
+    },
+    {
+      "code": "WF",
+      "name": "Wallis y Futuna",
+      "emoji": "🇼🇫",
+      "states": []
+    },
+    {
+      "code": "YE",
+      "name": "Yemen",
+      "emoji": "🇾🇪",
+      "states": []
+    },
+    {
+      "code": "DJ",
+      "name": "Yibuti",
+      "emoji": "🇩🇯",
+      "states": []
+    },
+    {
+      "code": "ZM",
+      "name": "Zambia",
+      "emoji": "🇿🇲",
+      "states": []
+    },
+    {
+      "code": "ZW",
+      "name": "Zimbabue",
+      "emoji": "🇿🇼",
+      "states": []
+    }
+  ]
+}

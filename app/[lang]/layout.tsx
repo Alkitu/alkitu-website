@@ -10,6 +10,10 @@ import es from "@/app/dictionaries/es.json";
 
 const translations = { en, es };
 
+// Force dynamic rendering to ensure middleware executes on every request
+// This is required for analytics tracking to work properly
+export const dynamic = 'force-dynamic';
+
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 }
