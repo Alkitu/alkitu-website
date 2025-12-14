@@ -1145,5 +1145,20 @@
       "title": "About Us",
       "description": "This is the about page"
     }
+  },
+  "admin": {
+    "users": {
+      "title": "Users",
+      "description": "Manage platform users",
+      "table": {
+        "id": "ID",
+        "email": "Email",
+        "createdAt": "Created At",
+        "lastSignIn": "Last Sign In",
+        "actions": "Actions"
+      },
+      "noUsers": "No users found",
+      "loading": "Loading users..."
+    }
   }
 }

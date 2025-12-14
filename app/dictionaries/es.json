@@ -1146,5 +1146,20 @@
       "title": "Acerca de nosotros",
       "description": "Esta es la página Acerca de"
     }
+  },
+  "admin": {
+    "users": {
+      "title": "Usuarios",
+      "description": "Administrar usuarios de la plataforma",
+      "table": {
+        "id": "ID",
+        "email": "Correo Electrónico",
+        "createdAt": "Fecha de Creación",
+        "lastSignIn": "Último Inicio de Sesión",
+        "actions": "Acciones"
+      },
+      "noUsers": "No se encontraron usuarios",
+      "loading": "Cargando usuarios..."
+    }
   }
 }
