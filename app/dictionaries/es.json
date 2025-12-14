@@ -1159,7 +1159,37 @@
         "actions": "Acciones"
       },
       "noUsers": "No se encontraron usuarios",
-      "loading": "Cargando usuarios..."
+      "loading": "Cargando usuarios...",
+      "detail": {
+        "title": "Detalles del Usuario",
+        "backToList": "Volver a Usuarios",
+        "edit": "Editar Usuario",
+        "generalInfo": "Información General",
+        "fullName": "Nombre Completo",
+        "email": "Correo Electrónico",
+        "userId": "ID de Usuario",
+        "createdAt": "Fecha de Creación",
+        "lastLogin": "Último Inicio de Sesión"
+      },
+      "edit": {
+        "title": "Editar Usuario",
+        "backToDetail": "Volver a Detalles",
+        "save": "Guardar Cambios",
+        "cancel": "Cancelar",
+        "generalInfo": "Información General",
+        "fullName": "Nombre Completo",
+        "email": "Correo Electrónico",
+        "security": "Seguridad",
+        "changePassword": "Cambiar Contraseña",
+        "newPassword": "Nueva Contraseña",
+        "confirmPassword": "Confirmar Contraseña",
+        "passwordHint": "Dejar vacío para mantener la contraseña actual",
+        "passwordMismatch": "Las contraseñas no coinciden",
+        "passwordMinLength": "La contraseña debe tener al menos 6 caracteres",
+        "saving": "Guardando...",
+        "success": "Usuario actualizado correctamente",
+        "error": "Error al actualizar usuario"
+      }
     }
   }
 }

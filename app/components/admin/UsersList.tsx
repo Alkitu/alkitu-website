@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,7 +20,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { Search, Filter, X, User } from "lucide-react";
+import { Search, Filter, X, User, Eye } from "lucide-react";
 
 interface AdminUser {
   id: string;
@@ -42,6 +43,8 @@ export function UsersList() {
   // Filters
   const [searchEmail, setSearchEmail] = useState('');
   const [showFilters, setShowFilters] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     fetchUsers();
@@ -246,6 +249,9 @@ export function UsersList() {
                   <th className="p-4 text-left text-sm font-medium text-muted-foreground">
                     Rol
                   </th>
+                  <th className="p-4 text-left text-sm font-medium text-muted-foreground">
+                    Acciones
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -279,6 +285,16 @@ export function UsersList() {
                       <span className="inline-flex items-center rounded-full px-2 py-1 text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
                         Admin
                       </span>
+                    </td>
+                    <td className="p-4">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => router.push(`/admin/users/${user.id}`)}
+                      >
+                        <Eye className="h-4 w-4 mr-2" />
+                        Ver
+                      </Button>
                     </td>
                   </tr>
                 ))}

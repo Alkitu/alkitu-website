@@ -36,6 +36,12 @@ export default async function AdminRootLayout({
     redirect('/auth/login?error=unauthorized');
   }
 
+  // Update last_login_at timestamp
+  await supabase
+    .from('admin_users')
+    .update({ last_login_at: new Date().toISOString() })
+    .eq('id', user.id);
+
   return (
     <html lang="es" suppressHydrationWarning>
       <head>

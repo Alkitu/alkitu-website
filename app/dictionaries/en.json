@@ -1158,7 +1158,37 @@
         "actions": "Actions"
       },
       "noUsers": "No users found",
-      "loading": "Loading users..."
+      "loading": "Loading users...",
+      "detail": {
+        "title": "User Details",
+        "backToList": "Back to Users",
+        "edit": "Edit User",
+        "generalInfo": "General Information",
+        "fullName": "Full Name",
+        "email": "Email",
+        "userId": "User ID",
+        "createdAt": "Created At",
+        "lastLogin": "Last Login"
+      },
+      "edit": {
+        "title": "Edit User",
+        "backToDetail": "Back to Details",
+        "save": "Save Changes",
+        "cancel": "Cancel",
+        "generalInfo": "General Information",
+        "fullName": "Full Name",
+        "email": "Email",
+        "security": "Security",
+        "changePassword": "Change Password",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm Password",
+        "passwordHint": "Leave empty to keep current password",
+        "passwordMismatch": "Passwords do not match",
+        "passwordMinLength": "Password must be at least 6 characters",
+        "saving": "Saving...",
+        "success": "User updated successfully",
+        "error": "Error updating user"
+      }
     }
   }
 }
