@@ -2,19 +2,25 @@
 import { motion } from "framer-motion";
 import DragContainer from "@/app/components/organisms/flex-carousel/drag-container/DragContainer";
 import TailwindGrid from "@/app/components/templates/grid";
-import { useCarousel } from "@/app/components/organisms/flex-carousel/hooks/useCarousel";
+import { useCarousel } from "@/app/hooks";
 import CardsIndex from "@/app/components/organisms/flex-carousel/cards/CardsIndex";
+
+interface CarouselItem {
+  order: number;
+  src?: string;
+  [key: string]: unknown;
+}
 
 type FlexCarouselProps = {
   width?: number;
   reduceGap?: number;
-  dataCards?: any[];
+  dataCards?: Record<string, unknown>[];
   className?: string;
   type?: "classic" | "image" | "testimonial" | "category" | "post";
-  data?: any[]; // Instead of children prop, use data prop directly.
-  boxPositions?: any[];
-  handleClick?: any;
-  setWordCategory?: any;
+  data?: Record<string, unknown>[];
+  boxPositions?: unknown[];
+  handleClick?: (page: CarouselItem, index: number) => void;
+  setWordCategory?: React.Dispatch<React.SetStateAction<number>>;
 };
 
 // Main Function
@@ -34,21 +40,21 @@ function FlexCarousel({
     handlePagerClick,
     itemWidth,
     containerWidth,
-  } = useCarousel(dataCards, reduceGap);
+  } = useCarousel(dataCards ?? [], reduceGap);
 
   const handleClick = (
     page: { order: number; src?: string },
     index: number
   ) => {
     handlePagerClick(page.order);
-    if (type === "category") {
-      setWordCategory(index - 1);
+    if (type === "category" && setWordCategory) {
+      setWordCategory?.(index - 1);
     }
   };
 
   const handleCategoryWord = (direction) => {
     if (type === "category") {
-      setWordCategory((prev) => {
+      setWordCategory?.((prev) => {
         if (prev >= 2 && direction === 1) return prev;
         if (prev <= 0 && direction === -1) return prev;
         return prev + direction;
@@ -61,9 +67,9 @@ function FlexCarousel({
       <TailwindGrid fullSize>
         <motion.div
           style={{
-            paddingLeft: containerWidth <= 360 ? 0 : `${(100 - width) / 2}%`,
-            paddingRight: containerWidth <= 360 ? 0 : `${(100 - width) / 2}%`,
-            gap: containerWidth <= 360 ? 0 : `${10 / reduceGap}%`,
+            paddingLeft: (containerWidth ?? 0) <= 360 ? 0 : `${(100 - width) / 2}%`,
+            paddingRight: (containerWidth ?? 0) <= 360 ? 0 : `${(100 - width) / 2}%`,
+            gap: (containerWidth ?? 0) <= 360 ? 0 : `${10 / reduceGap}%`,
             willChange: "contents",
             minWidth: 360,
           }}
@@ -74,7 +80,7 @@ function FlexCarousel({
           {data.map((container, index) => {
             return (
               <DragContainer
-                key={itemWidth + index}
+                key={(itemWidth ?? 0) + index}
                 containers={data}
                 container={container}
                 paginate={paginate}
@@ -83,8 +89,8 @@ function FlexCarousel({
                 className={className}
                 index={index}
                 width={width}
-                itemWidth={itemWidth}
-                containerWidth={containerWidth}
+                itemWidth={itemWidth ?? 0}
+                containerWidth={containerWidth ?? 0}
               >
                 {CardsIndex &&
                   CardsIndex.filter((Card) => Card.id === type).map(

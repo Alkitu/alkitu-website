@@ -4,11 +4,12 @@ import { ThemeProvider } from '@/app/context/ThemeContext';
 import { TranslationsProvider } from '@/app/context/TranslationContext';
 import { DropdownProvider } from '@/app/context/DropdownContext';
 import { Locale } from '@/i18n.config';
+import { Translations } from '@/app/types/translations';
 
 interface ProvidersProps {
   children: React.ReactNode;
   locale: Locale;
-  initialTranslations: any;
+  initialTranslations: Translations;
 }
 
 export default function Providers({ children, locale, initialTranslations }: ProvidersProps) {

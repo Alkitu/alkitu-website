@@ -11,11 +11,12 @@ import { AnimatePresence, motion } from "framer-motion";
 function Project() {
   const { translations, locale } = useTranslationContext();
   const currentPathname = usePathname().replace(/^\/[^/]+\/projects\//, "");
-  const project = translations.portfolio.projects.find(
-    (project) => project.url === currentPathname
+  const portfolio = translations.portfolio as any;
+  const project = portfolio.projects.find(
+    (project: any) => project.url === currentPathname
   );
   const projectId = project.id ? project.id : 0;
-  const dataProject = translations.portfolio.projects[projectId - 1];
+  const dataProject = portfolio.projects[projectId - 1];
 
   // State for managing description expand/collapse
   const [isExpanded, setIsExpanded] = useState(false);
@@ -153,7 +154,7 @@ function Project() {
               ))}
           </div>
           <div className='mt-5 '>
-            <SocialButtons text={translations} />
+            <SocialButtons text={translations as any} />
           </div>
         </motion.div>
       </section>

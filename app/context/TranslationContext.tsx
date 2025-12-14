@@ -57,14 +57,14 @@ export function TranslationsProvider({
     (key: string, params?: Record<string, string | number>, namespace?: string): string => {
       const fullKey = namespace ? `${namespace}.${key}` : key;
       const keys = fullKey.split(".");
-      let current: any = translations;
+      let current: Record<string, unknown> | unknown = translations;
 
       for (const k of keys) {
-        if (current[k] === undefined) {
+        if (typeof current !== 'object' || current === null || !(k in current)) {
           console.warn(`Translation key not found: ${fullKey}`);
           return fullKey;
         }
-        current = current[k];
+        current = (current as Record<string, unknown>)[k];
       }
 
       if (typeof current !== "string") {

@@ -9,13 +9,15 @@ type IconsSliderProps = {
 };
 
 function TextSlider({ children, velocity, reverse }: IconsSliderProps) {
-  const sliderContentRef = useRef(null);
+  const sliderContentRef = useRef<HTMLDivElement>(null);
   const [sliderWidth, setSliderWidth] = useState(0);
   const [sliderContentWidth, setSliderContentWidth] = useState(0);
 
   useLayoutEffect(() => {
     const sliderContentElement = sliderContentRef.current;
-    const sliderElement = sliderContentElement.parentNode;
+    if (!sliderContentElement) return;
+    const sliderElement = sliderContentElement.parentNode as HTMLElement;
+    if (!sliderElement) return;
     const handleResize = () => {
       setSliderWidth(sliderElement.offsetWidth);
       setSliderContentWidth(sliderContentElement.offsetWidth);
@@ -28,13 +30,15 @@ function TextSlider({ children, velocity, reverse }: IconsSliderProps) {
   useEffect(() => {
     const sliderContentElement = sliderContentRef.current;
     const interval = setInterval(() => {
-      if (sliderContentWidth > sliderWidth) {
+      if (sliderContentElement && sliderContentWidth > sliderWidth) {
         sliderContentElement.style.transform = `translateX(-${sliderContentWidth}px)`;
         sliderContentElement.style.transition = "none";
 
         setTimeout(() => {
-          sliderContentElement.style.transform = "translateX(0px)";
-          sliderContentElement.style.transition = "30s linear";
+          if (sliderContentElement) {
+            sliderContentElement.style.transform = "translateX(0px)";
+            sliderContentElement.style.transition = "30s linear";
+          }
         }, 100);
       }
     }, 10000);

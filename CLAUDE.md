@@ -45,15 +45,16 @@ The app uses a **dual i18n approach**:
 2. **Client-side i18n** via React Context
    - `TranslationsProvider` in `app/context/TranslationContext.tsx` wraps the app
    - Client components use `useTranslations()` or `useTranslationContext()` hooks
-   - Translation files: `locales/en/common.json` and `locales/es/common.json`
+   - Translation files: `app/dictionaries/{locale}.json` (same as server-side)
    - API endpoint `/api/translations` dynamically loads translations when locale changes
 
-3. **Middleware-based routing** (`proxy.ts`)
+3. **Middleware-based routing** (`middleware/withI18nMiddleware.ts`)
    - Custom middleware chain pattern in `middleware/chain.ts`
    - `withI18nMiddleware` handles locale detection and routing
    - Redirects `/` to `/{locale}` based on `NEXT_LOCALE` cookie
    - Automatically prefixes paths with locale if missing
-   - **Default locale: `en`** (configured in `i18n.config.ts`)
+   - **Default locale: `es`** (configured in `withI18nMiddleware.ts` as `DEFAULT_LOCALE`)
+   - **Note**: `i18n.config.ts` shows `defaultLocale: 'en'` but middleware uses `es`
    - Supported locales: `['en', 'es']`
 
 ### Component Architecture (Atomic Design)
@@ -69,7 +70,7 @@ app/components/
 │   └── ...
 ├── molecules/         # Composed atoms (cards, selectors, modals)
 │   ├── select-theme/  # Theme selector dropdown
-│   ├── select-language/ # Language selector dropdown
+│   ├── rive-animation/  # Rive animation wrapper component
 │   ├── card/          # Project cards
 │   └── ...
 ├── organisms/         # Complex composed components
@@ -78,12 +79,19 @@ app/components/
 │   ├── hero-section/
 │   ├── skills-section/
 │   ├── projects-section/
+│   ├── blog-content/   # Blog post content wrapper
+│   ├── blog-grid/      # Grid layout for blog posts
+│   ├── blog-list/      # List layout for blog posts
+│   ├── blog-hero/      # Featured blog post hero
+│   ├── page-header/    # Page header component
 │   └── ...
 └── templates/         # Page layouts
     └── grid/          # TailwindGrid wrapper
 ```
 
-**IMPORTANT:** There is NO `app/components/atomic/` folder. Components are directly under `atoms/`, `molecules/`, `organisms/`, and `templates/`.
+**Component Organization:**
+- All components follow the pattern: `app/components/{atoms|molecules|organisms|templates}/component-name/`
+- Each component folder contains its main file and an `index.ts` barrel export
 
 ### Key Configuration
 
@@ -104,15 +112,17 @@ app/components/
 The app uses a custom theme system with light/dark modes:
 
 - **Theme Context**: `app/context/ThemeContext.tsx` provides `useTheme()` hook
-- **Theme values**: `'light'`, `'dark'`, or `'system'`
+- **Theme values**: `'light'` or `'dark'` (no system option - auto-detects on first visit)
+- **First visit behavior**: Detects system theme and saves to cookie
 - **Components**: Use `resolvedTheme` from context to get actual theme (light/dark)
 - **Logo switching**: `AlkituLogo` component switches between light/dark SVG versions based on theme
+- **SSR handling**: Theme script in `layout.tsx` prevents flash of unstyled content
 
 ### Important Patterns
 
 **Adding new translations:**
 - Server-side: Update `app/dictionaries/{locale}.json`
-- Client-side: Update `locales/{locale}/common.json`
+- Client-side: Uses same files via API endpoint
 - Access server-side: `const text = await getDictionary(lang); text.home.title`
 - Access client-side: `const t = useTranslations(); t('home.title')`
 - **Spacing**: When splitting text between `title` and `titlePrimary`, add `{' '}` in JSX to ensure proper spacing
@@ -136,10 +146,11 @@ The app uses a custom theme system with light/dark modes:
 
 **Working with Rive animations:**
 - Assets stored in `public/assets/rive/`
-- Use `RiveAnimation` component with props: `artboardName`, `hoverAnimationName`, `hover`
-- Default source path: `/assets/rive/web_portfolio_two.riv` (107KB complete version)
+- Use `RiveAnimation` component from `app/components/molecules/rive-animation/`
+- Props: `artboardName`, `hoverAnimationName`, `hover`
+- Default source: `/assets/rive/web_portfolio.riv`
 - **WASM Preloading**: The component uses `RuntimeLoader.setWasmUrl()` to preload the WASM runtime for better reliability and faster load times
-- Webpack is configured to handle `.wasm` files as assets with `asyncWebAssembly` enabled
+- Webpack is configured to handle `.wasm` and `.riv` files as assets with `asyncWebAssembly` enabled
 
 **Framer Motion animation patterns:**
 
@@ -243,5 +254,5 @@ const containerVariants = {
 - Avoid inline styles; prefer Tailwind classes
 
 **Git workflow:**
-- Include co-authorship: `Co-Authored-By: Claude <noreply@anthropic.com>`
+- Include co-authorship: `Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>`
 - Add Claude Code attribution in commits when appropriate

@@ -7,7 +7,7 @@ import { ResponsiveList } from "@/app/components/organisms/responsive-list";
 import { ParallaxText } from "@/app/components/organisms/sliders";
 import { Button } from "@/app/components/atoms/button";
 import { FlexCarousel } from "@/app/components/organisms/flex-carousel";
-import { useLocalizedPath } from "@/app/hooks/useLocalizedPath";
+import { useLocalizedPath } from "@/app/hooks";
 
 function ProjectsPreview({ text }) {
   const projects = useState(text.portfolio.projects);

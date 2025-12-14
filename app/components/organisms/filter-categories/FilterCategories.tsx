@@ -3,8 +3,7 @@ import { useTranslationContext } from "@/app/context/TranslationContext";
 import { useMotionValue, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import useScreenWidth from "@/app/components/organisms/flex-carousel/hooks/useScreenWitdh";
-import useElementWidth from "@/app/hooks/useElementWidth";
+import { useScreenWidth, useElementWidth } from "@/app/hooks";
 
 type FilterCategories_Props = {
   search: string;
@@ -29,7 +28,7 @@ export default function FilterCategories({
 
   useEffect(() => {
     // Draggable should be true when categories are wider than screen
-    const shouldBeDraggable = categoriesWidth > screenWidth;
+    const shouldBeDraggable = (categoriesWidth ?? 0) > screenWidth;
 
     if (shouldBeDraggable !== draggable) {
       setDraggable(shouldBeDraggable);
@@ -82,7 +81,7 @@ export default function FilterCategories({
             draggable ? "self-start pl-[10%]" : "self-center"
           } `}
           onDragEnd={(_event, info) => {
-            if (info.offset.x >= categoriesWidth) {
+            if (info.offset.x >= (categoriesWidth ?? 0)) {
               alert("yes");
             }
           }}

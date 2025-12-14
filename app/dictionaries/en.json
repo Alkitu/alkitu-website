@@ -1121,6 +1121,12 @@
     "marketing": "Marketing",
     "otrasPublicaciones": "Other Publications"
   },
+  "common": {
+    "language": "Language",
+    "loading": "Loading...",
+    "previous": "Previous",
+    "next": "Next"
+  },
   "settings": {
     "cookiesButton": "Cookies",
     "header": "Settings",

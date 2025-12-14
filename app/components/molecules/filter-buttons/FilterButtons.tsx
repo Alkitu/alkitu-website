@@ -2,8 +2,7 @@
 
 import { useMotionValue, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import useScreenWidth from "@/app/components/organisms/flex-carousel/hooks/useScreenWitdh";
-import useElementWidth from "@/app/hooks/useElementWidth";
+import { useScreenWidth, useElementWidth } from "@/app/hooks";
 
 interface FilterButton {
   id: string;
@@ -24,16 +23,16 @@ export default function FilterButtons({
   onFilterChange,
   className = "",
 }: FilterButtonsProps) {
-  const categoriesRef = useRef(null);
-  const constraintsRef = useRef(null);
+  const categoriesRef = useRef<HTMLDivElement>(null);
+  const constraintsRef = useRef<HTMLDivElement>(null);
   const screenWidth = useScreenWidth();
-  const categoriesWidth = useElementWidth(categoriesRef);
+  const categoriesWidth = useElementWidth(categoriesRef as React.RefObject<HTMLElement>);
   const [draggable, setDraggable] = useState(false);
   const x = useMotionValue(0);
 
   useEffect(() => {
     // Draggable should be true when categories are wider than screen
-    const shouldBeDraggable = categoriesWidth > screenWidth;
+    const shouldBeDraggable = (categoriesWidth ?? 0) > screenWidth;
 
     if (shouldBeDraggable !== draggable) {
       setDraggable(shouldBeDraggable);

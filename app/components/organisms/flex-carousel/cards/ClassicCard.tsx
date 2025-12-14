@@ -89,7 +89,7 @@ function TestimonialsDesktopCard({
         width={700}
         height={700}
         alt={`${container.order}`}
-        src={container.src}
+        src={container.src || 'https://via.placeholder.com/700'}
       />
       <h4 className="text-center text-white md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] font-bold">
         {container.name}

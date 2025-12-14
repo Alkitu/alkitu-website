@@ -3,6 +3,7 @@ import { Locale, i18n } from "@/i18n.config";
 import { NavBar } from "../components/organisms/navbar";
 import { Footer } from "../components/organisms/footer";
 import { CookiesButton } from "../components/molecules/cookies-button";
+import { VisitTracker } from "../components/analytics";
 import Providers from "../context/Providers";
 import en from "@/app/dictionaries/en.json";
 import es from "@/app/dictionaries/es.json";
@@ -18,9 +19,10 @@ export default async function RootLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ lang: Locale }>;
+  params: Promise<{ lang: string }>;
 }) {
-  const { lang } = await params;
+  const { lang: rawLang } = await params;
+  const lang = rawLang as Locale;
   const initialTranslations = translations[lang];
 
   return (
@@ -62,6 +64,7 @@ export default async function RootLayout({
         suppressHydrationWarning
       >
         <Providers locale={lang} initialTranslations={initialTranslations}>
+          <VisitTracker />
           <NavBar />
           <main className='max-w-full mt-20 w-screen flex flex-col items-center justify-center relative overflow-visible'>
             {children}

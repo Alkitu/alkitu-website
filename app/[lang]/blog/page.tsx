@@ -1,6 +1,6 @@
 import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionary";
-import { BlogContent } from "@/app/components/atomic/organisms/blog-content";
+import { BlogContent } from "@/app/components/organisms/blog-content";
 import blogData from "@/app/data/blog-posts.json";
 
 export default async function BlogPage({

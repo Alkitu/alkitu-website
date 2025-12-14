@@ -1,13 +1,18 @@
 import { NextMiddleware, NextResponse } from 'next/server';
 
 const DEFAULT_LOCALE = 'es';
-const SUPPORTED_LOCALES = ['es', 'en'];
+const SUPPORTED_LOCALES = ['en', 'es'];
 const COOKIE_NAME = 'NEXT_LOCALE';
 
 export function withI18nMiddleware(next: NextMiddleware): NextMiddleware {
   return async function middleware(request, event) {
     const { pathname, search } = request.nextUrl;
     let currentLocale = request.cookies.get(COOKIE_NAME)?.value || DEFAULT_LOCALE;
+
+    // EXCLUDE admin routes from i18n processing
+    if (pathname.startsWith('/admin')) {
+      return next(request, event);
+    }
 
     // Si es una ruta de API o archivos estáticos, continuar
     if (

@@ -1,7 +1,7 @@
 "use client";
 import { useState, useMemo } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import Link from "next/link";
 
 type TestimonialsDesktopCardProps = {
@@ -26,7 +26,7 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
   // Memoize all words and split into visible and additional
   const { visibleWords, additionalWords } = useMemo(() => {
     const wordsLimit = 40;
-    const allWords = container.description.split(" ");
+    const allWords = (container.description || "").split(" ");
     const visible = allWords.slice(0, wordsLimit);
     const additional = allWords.slice(wordsLimit);
     return { visibleWords: visible, additionalWords: additional };
@@ -51,7 +51,7 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
     }
   };
 
-  const wordVariants = {
+  const wordVariants: Variants = {
     hidden: {
       opacity: 0,
       y: 3,
@@ -63,7 +63,7 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
       scale: 1,
       transition: {
         duration: 0.12,
-        ease: [0.4, 0, 0.2, 1] // Custom easeInOut
+        ease: [0.4, 0, 0.2, 1] as const // Custom easeInOut
       }
     },
     exit: {
@@ -72,7 +72,7 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
       scale: 0.95,
       transition: {
         duration: 0.1,
-        ease: [0.4, 0, 0.2, 1]
+        ease: [0.4, 0, 0.2, 1] as const
       }
     }
   };
@@ -84,7 +84,7 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
       transition={{
         layout: {
           duration: 0.5,
-          ease: [0.4, 0, 0.2, 1] // Custom easeInOut curve for smooth, natural motion
+          ease: [0.4, 0, 0.2, 1] as const // Custom easeInOut curve for smooth, natural motion
         }
       }}
       style={{ willChange: "height" }}
@@ -106,8 +106,8 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
             <Image
               width={40}
               height={40}
-              alt={container.name}
-              src={container.icon}
+              alt={container.name ?? "Testimonial Icon"}
+              src={container.icon ?? ""}
               className="w-8 h-8 group-hover:invert cursor-pointer"
             />
           </motion.button>
@@ -119,7 +119,7 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
           width={360}
           height={360}
           alt={`${container.order}`}
-          src={container.src}
+          src={container.src ?? ""}
         />
       </motion.div>
       <motion.h4
@@ -155,7 +155,7 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
               {additionalWords.map((word, index) => (
                 <motion.span
                   key={`additional-${index}`}
-                  variants={wordVariants}
+                  variants={wordVariants as any}
                   className="inline-block mr-[0.25em]"
                 >
                   {word}

@@ -4,7 +4,7 @@ import TailwindGrid from "@/app/components/templates/grid";
 import { DynamicList } from "@/app/components/organisms/responsive-list";
 import { ParallaxText } from "@/app/components/organisms/sliders";
 import { FlexCarousel } from "@/app/components/organisms/flex-carousel";
-import useScreenWidth from "@/app/components/organisms/flex-carousel/hooks/useScreenWitdh";
+import { useScreenWidth } from "@/app/hooks";
 import CategoryTitleChanger from "@/app/components/organisms/category-section/CategoryTitleChanger";
 
 function Category({ text }) {

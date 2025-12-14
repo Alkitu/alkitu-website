@@ -73,13 +73,15 @@ function PostsDesktopCard({ container }: PostsDesktopCardProps) {
             limit={25}
             showFullDescription
           />
-          <Link href={container.link} key={container.title} target='_blank'>
-            <div className='mt-4 mb-2 inline-flex'>
-              <Button variant='primary' size='md'>
-                Go to Medium
-              </Button>
-            </div>
-          </Link>
+          {container.link && (
+            <Link href={container.link} key={container.title} target='_blank'>
+              <div className='mt-4 mb-2 inline-flex'>
+                <Button variant='primary' size='md'>
+                  Go to Medium
+                </Button>
+              </div>
+            </Link>
+          )}
         </motion.div>
       </div>
     </motion.div>
@@ -101,7 +103,7 @@ function ParagrapHTML({
     : wordsArray.slice(0, limit).join(" ");
 
   const transformHTML = (htmlContent) => {
-    const elements = [];
+    const elements: any[] = [];
     const regex = /<(\w+)>(.*?)<\/\1>/g;
     let match;
     let currentIndex = 0;

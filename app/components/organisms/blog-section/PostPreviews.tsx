@@ -5,13 +5,18 @@ import { ParallaxText } from "@/app/components/organisms/sliders";
 import { FlexCarousel } from "@/app/components/organisms/flex-carousel";
 import React from "react";
 import PostsDesktopCard from "@/app/components/organisms/flex-carousel/cards/PostsDesktopCard";
-import { useMediumPosts } from "@/app/hooks/useMediumPosts";
+import { useMediumPosts, type MediumPost } from "@/app/hooks";
+import { Translations } from "@/app/types/translations";
 
-function PostPreviews({ text }) {
+interface PostPreviewsProps {
+  text: Translations;
+}
+
+function PostPreviews({ text }: PostPreviewsProps) {
   const dataBlogSection = text.home.blogSection;
   const { posts, isLoading } = useMediumPosts();
 
-  let processedPostData = [];
+  let processedPostData: MediumPost[] = [];
   if (posts && posts.length > 0) {
     processedPostData = posts.slice(0, 3);
   }
@@ -62,7 +67,7 @@ function PostPreviews({ text }) {
       {!isLoading && (
         <div className='inline md:hidden'>
           <FlexCarousel
-            dataCards={processedPostData}
+            dataCards={processedPostData as any}
             width={70}
             reduceGap={15}
             key='post'

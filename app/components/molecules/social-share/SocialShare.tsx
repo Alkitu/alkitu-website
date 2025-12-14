@@ -116,7 +116,7 @@ export default function SocialShare({ url, title, description, className = "" }:
       </button>
 
       {/* Native Share (if available) */}
-      {typeof navigator !== 'undefined' && navigator.share && (
+      {typeof navigator !== 'undefined' && (navigator as any).share && (
         <button
           onClick={handleNativeShare}
           className="p-2 rounded-full border border-border hover:bg-muted transition-colors"

@@ -3,7 +3,7 @@ import Link from "next/link";
 import TailwindGrid from "@/app/components/templates/grid";
 import { Button } from "@/app/components/atoms/button";
 import HeroImage from "@/app/components/organisms/hero-section/HeroImage";
-import { useLocalizedPath } from "@/app/hooks/useLocalizedPath";
+import { useLocalizedPath } from "@/app/hooks";
 
 function Hero({ text }) {
   const hero = text.home.heroSection;

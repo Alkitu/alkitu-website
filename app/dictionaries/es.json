@@ -1122,23 +1122,29 @@
     "marketing": "Marketing",
     "otrasPublicaciones": "Otras Publicaciones"
   },
+  "common": {
+    "language": "Idioma",
+    "loading": "Cargando...",
+    "previous": "Anterior",
+    "next": "Siguiente"
+  },
   "settings": {
     "cookiesButton": "Cookies",
     "header": "Configuración",
     "description": "Administra tus preferencias de cookies y personaliza tu experiencia"
   },
   "navigation": {
-    "home": "Startseite",
-    "about": "Über"
+    "home": "Inicio",
+    "about": "Acerca de"
   },
   "page": {
     "home": {
-      "title": "Willkommen bei NextJs i18n",
-      "description": "Internationalisierung im NextJs 13 App-Router"
+      "title": "Bienvenido a NextJs i18n",
+      "description": "Internacionalización en NextJs 13 App Router"
     },
     "about": {
-      "title": "Über uns",
-      "description": "Dies ist die About-Seite"
+      "title": "Acerca de nosotros",
+      "description": "Esta es la página Acerca de"
     }
   }
 }

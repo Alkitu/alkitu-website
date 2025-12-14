@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import useMousePosition from "@/app/hooks/useMousePosition";
+import { useMousePosition } from "@/app/hooks";
 
 function DotFollower() {
   const [isHovered, setIsHovered] = useState(false);
@@ -12,7 +12,7 @@ function DotFollower() {
   const maskStyle = {
     WebkitMaskImage: "url('../../public/mask.svg')",
     WebkitMaskRepeat: "no-repeat",
-    WebkitMaskPosition: `${x - size / 2}px ${y - size / 2}px`,
+    WebkitMaskPosition: `${(x ?? 0) - size / 2}px ${(y ?? 0) - size / 2}px`,
     WebkitMaskSize: `${size}px`,
     background: "#ec4e39", // Este color se puede ajustar usando clases de Tailwind si es estático
   };

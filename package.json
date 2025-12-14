@@ -11,18 +11,32 @@
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.6.2",
+    "@radix-ui/react-collapsible": "^1.1.12",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-label": "^2.1.8",
+    "@radix-ui/react-separator": "^1.1.8",
+    "@radix-ui/react-slot": "^1.2.4",
+    "@radix-ui/react-tooltip": "^1.2.8",
     "@rive-app/react-canvas": "^4.24.0",
+    "@supabase/ssr": "^0.8.0",
+    "@supabase/supabase-js": "^2.87.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "cookies-next": "^6.1.1",
     "framer-motion": "^12.23.26",
     "lucide-react": "^0.561.0",
     "negotiator": "^1.0.0",
     "next": "^16.0.10",
     "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "react-dom": "^19.2.3",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^4.1.13"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^16.0.10",
     "@tailwindcss/postcss": "^4.1.18",
+    "@types/negotiator": "^0.6.4",
     "@types/node": "^25.0.1",
     "@types/react": "^19.2.7",
     "@typescript-eslint/eslint-plugin": "^8.49.0",
@@ -40,8 +54,10 @@
     "i18next-resources-for-ts": "^2.0.0",
     "locize-cli": "^11.1.0",
     "postcss": "^8.5.6",
+    "shadcn": "^3.6.1",
     "tailwindcss": "^4.1.18",
     "ts-api-utils": "^2.1.0",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }

@@ -21,7 +21,7 @@ export const RiveAnimation = memo(({
     src: "/assets/rive/web_portfolio.riv",
     autoplay: true,
     artboard: artboardName,
-    onLoadError: (error: any) => console.log("ERROR LOADING RIVE:", error),
+    onLoadError: (error: unknown) => console.log("ERROR LOADING RIVE:", error),
     onLoad: () => console.log("LOADED RIVE SUCCESSFULLY"),
   }), [artboardName]);
 

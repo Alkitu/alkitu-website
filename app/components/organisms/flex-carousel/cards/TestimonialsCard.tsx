@@ -133,8 +133,8 @@ function TestimonialsCard({ container, centerOrder }: TestimonialsCardProps) {
                 <Image
                   width={32}
                   height={32}
-                  alt={container.name}
-                  src={container.icon}
+                  alt={container.name ?? "Testimonial Icon"}
+                  src={container.icon ?? ""}
                   className="w-8 h-8 group-hover:invert cursor-pointer"
                 />
               </motion.button>
@@ -146,7 +146,7 @@ function TestimonialsCard({ container, centerOrder }: TestimonialsCardProps) {
             width={80}
             height={80}
             alt={`${container.order}`}
-            src={container.src}
+            src={container.src || ""}
           />
           <h4 className="text-center text-lg md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] font-bold">
             {container.name}

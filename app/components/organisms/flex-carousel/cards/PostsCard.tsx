@@ -99,7 +99,7 @@ function ParagrapHTML({
     : wordsArray.slice(0, limit).join(" ");
 
   const transformHTML = (htmlContent) => {
-    const elements = [];
+    const elements: (string | React.ReactNode)[] = [];
     const regex = /<(\w+)>(.*?)<\/\1>/g;
     let match;
     let currentIndex = 0;

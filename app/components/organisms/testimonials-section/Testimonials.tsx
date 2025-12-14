@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import useScreenWidth from "@/app/components/organisms/flex-carousel/hooks/useScreenWitdh";
+import { useScreenWidth } from "@/app/hooks";
 import TailwindGrid from "@/app/components/templates/grid";
 import { ResponsiveList } from "@/app/components/organisms/responsive-list";
 import { ParallaxText } from "@/app/components/organisms/sliders";
