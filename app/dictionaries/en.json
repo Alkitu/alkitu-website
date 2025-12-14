@@ -22,7 +22,7 @@
         "iconDark": "/icons/navbar/Blog-dark.svg"
       }
     ],
-    "contact": "Contact me",
+    "contact": "Contact Us",
     "languages": "Languages",
     "theme": "Theme",
     "languagesOptions": [
@@ -851,6 +851,7 @@
             "fallback": "",
             "active": true,
             "url": "http://clinicadysdental.com"
+
           }
         ],
         "url": "proyect_10"
@@ -1190,5 +1191,91 @@
         "error": "Error updating user"
       }
     }
-  }
+  },
+  "about": {
+    "hero": {
+      "title": "Agencia Digital en España",
+      "text": "Alkitu es una agencia digital que se fundó a inicios del 2020 en la ciudad de Valencia (España) por un par de “geeks” emprendedores apasionados por las nuevas tendencias tecnológicas. Somos una agencia especializada en marketing, diseño gráfico, desarrollo de aplicaciones y páginas Web.",
+      "founders": [
+        {
+           "name": "Luis Urdaneta",
+           "role": "Founder",
+           "image": "/images/about/Luis-Urdaneta-Foto-Perfil-Cuadrada-150x150.webp" 
+        },
+        {
+           "name": "José Hernández",
+           "role": "Co-founder",
+           "image": "/images/about/Foto-Perfil-Jose-150x150.webp"
+        }
+      ]
+    },
+    "origin": {
+      "title": "¿Cómo fue el origen de Alkitu?",
+      "p1": "Teniendo en cuenta las diferentes situaciones y los cambios inminentes generados por la pandemia (COVID-19), muchas empresas se vieron obligadas a rediseñar sus estrategias y a contemplar el proceso de digitalización como una alternativa para mantenerse activos en el mercado.",
+      "p2": "Partiendo de esto y para el caso de nosotros, vimos una oportunidad interesante que nos permitió unir tres cosas, la pasión por el mundo digital, las demandas actuales y el ánimo de apoyar a los empresarios en la “nueva normalidad”.",
+      "p3": "No es fácil anteponerse a la adversidad, pero estamos seguros que estos escenarios permiten sacar lo mejor de cada uno de nosotros. Los cambios no son fáciles, pero nuestra intención es crear una comunidad de Alkianos donde podamos ser un equipo de valientes con competencias, habilidades, vocación y disciplina que se apoya para hacer grandes cosas."
+    },
+    "principles": {
+      "title": "ALKITU PRINCIPLES",
+      "items": [
+        {
+          "title": "Passion",
+          "description": "Our work is a life choice, we want to transmit security, confidence, commitment and excellence. We like what we do and in each project we strive to exceed our clients' expectations.",
+          "icon": "/icons/about/Alkitu-Valores-Pasion.svg"
+        },
+        {
+          "title": "Innovation",
+          "description": "We adapt to the use of new technologies, we constantly update ourselves on new market trends and offer solutions using resources and technological innovations.",
+          "icon": "/icons/about/Alkitu-Valores-Innovacion.svg"
+        },
+        {
+          "title": "Community",
+          "description": "Our clients, work team, allies and the community in general are our most valuable network. We work to positively influence our environment and be a reference of support, solidarity and brotherhood.",
+          "icon": "/icons/about/Alkitu-Valores-Comunidad.svg"
+        },
+        {
+          "title": "Customer Service",
+          "description": "We care about solving our clients' problems proactively, we anticipate future needs and focus on satisfying them quickly in the best possible way.",
+          "icon": "/icons/about/Alkitu-Valores-Serv.-Al-Cliente.svg"
+        }
+      ]
+    },
+    "missionVision": {
+      "items": [
+        {
+          "title": "Mission",
+          "description": "Make the digital world accompany our clients' business strategies by offering them a personalized service according to their needs."
+        },
+        {
+          "title": "Vision",
+          "description": "To be the chosen company for our innovative digital solutions and our personalized customer service. In addition to being recognized as a work team with potential, human quality and professionalism."
+        }
+      ]
+    },
+    "team": {
+      "title": "EL EQUIPO ESTRELLA",
+      "members": [
+        {
+          "name": "Luis Urdaneta",
+          "role": "- El viajero -",
+          "image": "/images/about/Luis-Urdaneta-Foto-Perfil-Sin-Gafas-en-Valencia-768x533.webp"
+        },
+        {
+          "name": "José Hernández",
+          "role": "- El atleta -",
+          "image": "/images/about/Jose-Hernandez-Foto-Perfil-en-Valencia-768x533.webp"
+        },
+        {
+          "name": "Francisco Matute",
+          "role": "- El aventurero -",
+          "image": "/images/about/Francisco-Matute-Foto-Perfil-768x533.webp"
+        },
+        {
+          "name": "Valeria Urdaneta",
+          "role": "- La artista -",
+          "image": "/images/about/Valeria-Urdaneta-Foto-Perfil-con-Cuadros-768x533.webp"
+        }
+      ]
+    }
 }
+  }

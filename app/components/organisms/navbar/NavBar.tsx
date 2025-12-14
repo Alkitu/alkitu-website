@@ -12,7 +12,7 @@ import { ContactModalButton } from "@/app/components/molecules/contact-button";
 import { ModalContact } from "@/app/components/molecules/modal";
 import { usePathname } from "next/navigation";
 import { ThemeToggleButton } from "@/app/components/molecules/theme-toggle";
-import { Logo } from "@/app/components/atoms/logo";
+import { AlkituLogo } from "@/app/components/atoms/alkitu-logo";
 
 interface Route {
   name: string;
@@ -103,7 +103,7 @@ export default function NavBar() {
             <div className='w-full lg:w-11/12 absolute top-0 right-0 col-span-full flex justify-end'>
               <div className='flex h-20 justify-between w-full lg:w-12/12 self-end'>
                 <div className='ml-8 col-span-2 flex justify-center items-center'>
-                  <Logo locale={locale} size='lg' />
+                  <AlkituLogo locale={locale} width={150} height={60} />
                 </div>
                 <div className='hidden lg:flex items-center'>
                   {routes.map((route: Route) => (
@@ -188,6 +188,10 @@ export default function NavBar() {
           </TailwindGrid>
         </motion.nav>
       )}
+      {/* Modal de contacto para desktop y mobile */}
+      <AnimatePresence initial={false} mode='wait'>
+        {modalOpenNavbar && <ModalContact handleClose={close} />}
+      </AnimatePresence>
     </AnimatePresence>
   );
 }

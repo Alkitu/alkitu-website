@@ -22,7 +22,7 @@
         "iconDark": "/icons/navbar/Blog-dark.svg"
       }
     ],
-    "contact": "Contáctame",
+    "contact": "Contactanos",
     "languages": "Lenguajes",
     "theme": "Tema",
     "languagesOptions": [
@@ -403,6 +403,22 @@
           "name": "Photoshop",
           "src": "/icons/skills/Photoshop.svg",
           "order": 15
+        }
+      ]
+    },
+    "hero": {
+      "title": "Agencia Digital en España",
+      "text": "Alkitu es una agencia digital que se fundó a inicios del 2020 en la ciudad de Valencia (España) por un par de “geeks” emprendedores apasionados por las nuevas tendencias tecnológicas. Somos una agencia especializada en marketing, diseño gráfico, desarrollo de aplicaciones y páginas Web.",
+      "founders": [
+        {
+           "name": "Luis Urdaneta",
+           "role": "Fundador",
+           "image": "/images/team/luis-circle.png" 
+        },
+        {
+           "name": "José Hernández",
+           "role": "Co-fundador",
+           "image": "/images/team/jose-circle.png"
         }
       ]
     },
@@ -1190,6 +1206,92 @@
         "success": "Usuario actualizado correctamente",
         "error": "Error al actualizar usuario"
       }
+    }
+  },
+  "about": {
+    "hero": {
+      "title": "Agencia Digital en España",
+      "text": "Alkitu es una agencia digital que se fundó a inicios del 2020 en la ciudad de Valencia (España) por un par de “geeks” emprendedores apasionados por las nuevas tendencias tecnológicas. Somos una agencia especializada en marketing, diseño gráfico, desarrollo de aplicaciones y páginas Web.",
+      "founders": [
+        {
+           "name": "Luis Urdaneta",
+           "role": "Founder",
+           "image": "/images/about/Luis-Urdaneta-Foto-Perfil-Cuadrada-150x150.webp" 
+        },
+        {
+           "name": "José Hernández",
+           "role": "Co-founder",
+           "image": "/images/about/Foto-Perfil-Jose-150x150.webp"
+        }
+      ]
+    },
+    "origin": {
+      "title": "¿Cómo fue el origen de Alkitu?",
+      "p1": "Teniendo en cuenta las diferentes situaciones y los cambios inminentes generados por la pandemia (COVID-19), muchas empresas se vieron obligadas a rediseñar sus estrategias y a contemplar el proceso de digitalización como una alternativa para mantenerse activos en el mercado.",
+      "p2": "Partiendo de esto y para el caso de nosotros, vimos una oportunidad interesante que nos permitió unir tres cosas, la pasión por el mundo digital, las demandas actuales y el ánimo de apoyar a los empresarios en la “nueva normalidad”.",
+      "p3": "No es fácil anteponerse a la adversidad, pero estamos seguros que estos escenarios permiten sacar lo mejor de cada uno de nosotros. Los cambios no son fáciles, pero nuestra intención es crear una comunidad de Alkianos donde podamos ser un equipo de valientes con competencias, habilidades, vocación y disciplina que se apoya para hacer grandes cosas."
+    },
+    "principles": {
+      "title": "LOS PRINCIPIOS DE ALKITU",
+      "items": [
+        {
+          "title": "Pasión",
+          "description": "Nuestro trabajo es una elección de vida, deseamos trasmitir seguridad, confianza, compromiso y excelencia. Nos gusta lo que hacemos y en cada proyecto nos esforzamos por superar las expectativas de nuestros clientes.",
+          "icon": "/icons/about/Alkitu-Valores-Pasion.svg"
+        },
+        {
+          "title": "Innovación",
+          "description": "Nos adaptamos al uso de nuevas tecnologías, nos actualizamos constantemente en las nuevas tendencias del mercado y ofrecemos soluciones mediante el uso de recursos e innovaciones tecnológicas.",
+          "icon": "/icons/about/Alkitu-Valores-Innovacion.svg"
+        },
+        {
+          "title": "Comunidad",
+          "description": "Nuestros clientes, equipo de trabajo, aliados y la comunidad en general son nuestra red más valiosa. Trabajamos para influir positivamente en nuestro entorno y ser una referencia de apoyo, solidaridad y hermandad.",
+          "icon": "/icons/about/Alkitu-Valores-Comunidad.svg"
+        },
+        {
+          "title": "Servicio al Cliente",
+          "description": "Nos preocupamos por resolver los problemas de nuestros clientes de forma propositiva, nos anticipamos a futuras necesidades y nos enfocamos en satisfacerlas rápidamente de la mejor manera posible.",
+          "icon": "/icons/about/Alkitu-Valores-Serv.-Al-Cliente.svg"
+        }
+      ]
+    },
+    "missionVision": {
+      "items": [
+        {
+          "title": "Misión",
+          "description": "Hacer que el mundo digital acompañe las estrategias de negocio de nuestros clientes ofreciéndoles un servicio personalizado acorde a sus necesidades."
+        },
+        {
+          "title": "Visión",
+          "description": "Ser la empresa elegida por nuestras soluciones digitales innovadoras y nuestro servicio al cliente personalizado. Además de ser reconocidos como un equipo de trabajo con potencial, calidad humana y profesionalismo."
+        }
+      ]
+    },
+    "team": {
+      "title": "EL EQUIPO ESTRELLA",
+      "members": [
+        {
+          "name": "Luis Urdaneta",
+          "role": "- El viajero -",
+          "image": "/images/about/Luis-Urdaneta-Foto-Perfil-Sin-Gafas-en-Valencia-768x533.webp"
+        },
+        {
+          "name": "José Hernández",
+          "role": "- El atleta -",
+          "image": "/images/about/Jose-Hernandez-Foto-Perfil-en-Valencia-768x533.webp"
+        },
+        {
+          "name": "Francisco Matute",
+          "role": "- El aventurero -",
+          "image": "/images/about/Francisco-Matute-Foto-Perfil-768x533.webp"
+        },
+        {
+          "name": "Valeria Urdaneta",
+          "role": "- La artista -",
+          "image": "/images/about/Valeria-Urdaneta-Foto-Perfil-con-Cuadros-768x533.webp"
+        }
+      ]
     }
   }
 }
