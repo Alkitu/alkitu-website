@@ -11,10 +11,10 @@ const PageViewUpdateSchema = z.object({
 });
 
 /**
- * PATCH /api/analytics/page-views/[id]
- * Update page view with exit time and time on page
+ * Shared handler for updating page views
+ * Supports both PATCH (standard) and POST (for navigator.sendBeacon)
  */
-export async function PATCH(
+async function updatePageView(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
@@ -64,4 +64,27 @@ export async function PATCH(
     console.error('Page view update API error:', error);
     return ApiError.internal('Failed to process page view update', error);
   }
+}
+
+/**
+ * PATCH /api/analytics/page-views/[id]
+ * Update page view with exit time and time on page
+ */
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  return updatePageView(request, { params });
+}
+
+/**
+ * POST /api/analytics/page-views/[id]
+ * Update page view with exit time and time on page
+ * Supports navigator.sendBeacon which only allows POST method
+ */
+export async function POST(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  return updatePageView(request, { params });
 }
