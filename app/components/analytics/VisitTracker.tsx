@@ -2,11 +2,13 @@
 
 import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
-import { createClient } from '@/lib/supabase/client';
 
+/**
+ * VisitTracker component
+ * Tracks page views and sessions using RESTful analytics endpoints
+ */
 export function VisitTracker() {
   const pathname = usePathname();
-  const supabase = createClient();
   const currentPageViewIdRef = useRef<string | null>(null);
   const pageEntryTimeRef = useRef<Date | null>(null);
 
@@ -18,92 +20,70 @@ export function VisitTracker() {
     }
 
     const trackPageView = async () => {
-      // Update exit time for previous page view
-      if (currentPageViewIdRef.current && pageEntryTimeRef.current) {
-        const timeOnPage = Math.floor((Date.now() - pageEntryTimeRef.current.getTime()) / 1000);
+      try {
+        // Update exit time for previous page view
+        if (currentPageViewIdRef.current && pageEntryTimeRef.current) {
+          const timeOnPage = Math.floor((Date.now() - pageEntryTimeRef.current.getTime()) / 1000);
 
-        await supabase
-          .from('page_views')
-          .update({
-            exit_time: new Date().toISOString(),
-            time_on_page_seconds: timeOnPage,
-          })
-          .eq('id', currentPageViewIdRef.current);
-      }
+          await fetch(`/api/analytics/page-views/${currentPageViewIdRef.current}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ timeOnPage }),
+          });
+        }
 
-      // Get session fingerprint from cookie
-      const sessionFingerprint = document.cookie
-        .split('; ')
-        .find(row => row.startsWith('session_fingerprint='))
-        ?.split('=')[1];
+        // Get session fingerprint from cookie
+        const sessionFingerprint = document.cookie
+          .split('; ')
+          .find(row => row.startsWith('session_fingerprint='))
+          ?.split('=')[1];
 
-      if (!sessionFingerprint) {
-        console.warn('No session fingerprint found');
-        return;
-      }
-
-      // Get or create session
-      let { data: session, error: sessionError } = await supabase
-        .from('sessions')
-        .select('id')
-        .eq('session_fingerprint', sessionFingerprint)
-        .gte('last_activity_at', new Date(Date.now() - 60 * 60 * 1000).toISOString()) // Active in last hour
-        .single();
-
-      if (sessionError || !session) {
-        // Create new session
-        const { data: newSession, error: createError } = await supabase
-          .from('sessions')
-          .insert({
-            session_fingerprint: sessionFingerprint,
-            ip_address: null, // Will be set by server
-            user_agent: navigator.userAgent,
-          })
-          .select('id')
-          .single();
-
-        if (createError) {
-          console.error('Error creating session:', createError);
+        if (!sessionFingerprint) {
+          console.warn('No session fingerprint found');
           return;
         }
 
-        session = newSession;
-      } else {
-        // Update existing session activity
-        await supabase
-          .from('sessions')
-          .update({
-            last_activity_at: new Date().toISOString(),
-          })
-          .eq('id', session.id);
+        // Create or update session
+        const sessionResponse = await fetch('/api/analytics/sessions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sessionFingerprint }),
+        });
+
+        if (!sessionResponse.ok) {
+          console.error('Error creating/updating session:', await sessionResponse.text());
+          return;
+        }
+
+        const { data: sessionData } = await sessionResponse.json();
+        const sessionId = sessionData.session.id;
+
+        // Extract locale from pathname
+        const locale = pathname.split('/')[1] || 'es';
+
+        // Create new page view
+        const pageViewResponse = await fetch('/api/analytics/page-views', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            sessionId,
+            pagePath: pathname,
+            locale,
+            referrer: document.referrer,
+          }),
+        });
+
+        if (!pageViewResponse.ok) {
+          console.error('Error creating page view:', await pageViewResponse.text());
+          return;
+        }
+
+        const { data: pageViewData } = await pageViewResponse.json();
+        currentPageViewIdRef.current = pageViewData.pageView.id;
+        pageEntryTimeRef.current = new Date();
+      } catch (error) {
+        console.error('Error tracking page view:', error);
       }
-
-      // Extract locale from pathname
-      const locale = pathname.split('/')[1] || 'es';
-
-      // Create new page view
-      const { data: pageView, error: pageViewError } = await supabase
-        .from('page_views')
-        .insert({
-          session_id: session.id,
-          page_path: pathname,
-          locale: locale,
-          referrer: document.referrer,
-          entry_time: new Date().toISOString(),
-        })
-        .select('id')
-        .single();
-
-      if (pageViewError) {
-        console.error('Error creating page view:', pageViewError);
-        return;
-      }
-
-      currentPageViewIdRef.current = pageView.id;
-      pageEntryTimeRef.current = new Date();
-
-      // Update session total page views
-      await supabase.rpc('increment_session_page_views', { session_id: session.id });
     };
 
     trackPageView();
@@ -113,13 +93,25 @@ export function VisitTracker() {
       if (document.visibilityState === 'hidden' && currentPageViewIdRef.current && pageEntryTimeRef.current) {
         const timeOnPage = Math.floor((Date.now() - pageEntryTimeRef.current.getTime()) / 1000);
 
-        await supabase
-          .from('page_views')
-          .update({
-            exit_time: new Date().toISOString(),
-            time_on_page_seconds: timeOnPage,
-          })
-          .eq('id', currentPageViewIdRef.current);
+        // Use sendBeacon for reliability when page is unloading
+        const data = JSON.stringify({ timeOnPage });
+        const blob = new Blob([data], { type: 'application/json' });
+
+        // Try sendBeacon first (more reliable for unload events)
+        const sent = navigator.sendBeacon(
+          `/api/analytics/page-views/${currentPageViewIdRef.current}`,
+          blob
+        );
+
+        // Fallback to fetch if sendBeacon is not supported
+        if (!sent) {
+          fetch(`/api/analytics/page-views/${currentPageViewIdRef.current}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: data,
+            keepalive: true,
+          }).catch(err => console.error('Error updating page view on exit:', err));
+        }
       }
     };
 
@@ -129,7 +121,7 @@ export function VisitTracker() {
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, [pathname, supabase]);
+  }, [pathname]);
 
   return null; // This component doesn't render anything
 }

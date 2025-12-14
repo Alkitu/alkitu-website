@@ -1,39 +1,26 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { BarChart3, Home, Users, LogOut, Settings } from "lucide-react"
-import { useRouter } from "next/navigation"
-import { createClient } from "@/lib/supabase/client"
-
+import * as React from "react";
+import { BarChart3, Home, Users, FileText, Settings2 } from "lucide-react";
+import { NavMain, type NavItem } from "@/app/components/admin/nav-main";
+import { NavUser } from "@/app/components/admin/nav-user";
 import {
   Sidebar,
   SidebarContent,
-  SidebarGroup,
+  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-  SidebarFooter,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 interface AdminSidebarProps extends React.ComponentProps<typeof Sidebar> {
   userEmail: string;
 }
 
 export function AdminSidebar({ userEmail, ...props }: AdminSidebarProps) {
-  const router = useRouter()
-  const supabase = createClient()
-  const [isLoggingOut, setIsLoggingOut] = React.useState(false)
-
-  const handleSignOut = async () => {
-    setIsLoggingOut(true)
-    await supabase.auth.signOut()
-    router.push('/admin/login')
-    router.refresh()
-  }
-
-  const navItems = [
+  const navItems: NavItem[] = [
     {
       title: "Dashboard",
       url: "/admin/dashboard",
@@ -41,19 +28,53 @@ export function AdminSidebar({ userEmail, ...props }: AdminSidebarProps) {
     },
     {
       title: "Analytics",
-      url: "/admin/dashboard#analytics",
+      url: "/admin/analytics",
       icon: BarChart3,
+      items: [
+        {
+          title: "Resumen",
+          url: "/admin/dashboard#analytics",
+        },
+        {
+          title: "Sesiones",
+          url: "/admin/dashboard#sessions",
+        },
+        {
+          title: "Páginas",
+          url: "/admin/dashboard#pages",
+        },
+      ],
     },
     {
-      title: "Sesiones",
-      url: "/admin/dashboard#sessions",
-      icon: Users,
+      title: "Contenido",
+      url: "/admin/content",
+      icon: FileText,
+      items: [
+        {
+          title: "Blog",
+          url: "/admin/content/blog",
+        },
+        {
+          title: "Proyectos",
+          url: "/admin/content/projects",
+        },
+      ],
     },
-  ]
+    {
+      title: "Configuración",
+      url: "/admin/settings",
+      icon: Settings2,
+    },
+  ];
+
+  const user = {
+    email: userEmail,
+    name: "Admin",
+  };
 
   return (
     <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
+      <SidebarHeader className="h-14 lg:h-[60px] py-0 m-auto w-full">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
@@ -63,7 +84,9 @@ export function AdminSidebar({ userEmail, ...props }: AdminSidebarProps) {
                 </div>
                 <div className="flex flex-col gap-0.5 leading-none">
                   <span className="font-semibold">Alkitu Analytics</span>
-                  <span className="text-xs text-muted-foreground">Admin Dashboard</span>
+                  <span className="text-xs text-muted-foreground">
+                    Admin Dashboard
+                  </span>
                 </div>
               </a>
             </SidebarMenuButton>
@@ -72,47 +95,14 @@ export function AdminSidebar({ userEmail, ...props }: AdminSidebarProps) {
       </SidebarHeader>
 
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarMenu>
-            {navItems.map((item) => (
-              <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton asChild>
-                  <a href={item.url}>
-                    <item.icon className="size-4" />
-                    <span>{item.title}</span>
-                  </a>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            ))}
-          </SidebarMenu>
-        </SidebarGroup>
+        <NavMain items={navItems} />
       </SidebarContent>
 
       <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton size="lg" className="cursor-default">
-              <Settings className="size-4" />
-              <div className="flex flex-col gap-0.5 leading-none">
-                <span className="font-semibold text-xs">{userEmail}</span>
-                <span className="text-xs text-muted-foreground">Admin</span>
-              </div>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              onClick={handleSignOut}
-              disabled={isLoggingOut}
-              className="text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950/20"
-            >
-              <LogOut className="size-4" />
-              <span>{isLoggingOut ? 'Cerrando sesión...' : 'Cerrar sesión'}</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+        <NavUser user={user} />
       </SidebarFooter>
 
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }

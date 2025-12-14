@@ -42,11 +42,12 @@ export function withTrackingMiddleware(next: NextMiddleware): NextMiddleware {
     }
 
     // Set session fingerprint cookie (1 hour expiry for session tracking)
+    // Note: httpOnly is false to allow client-side analytics tracking
     nextResponse.cookies.set('session_fingerprint', sessionFingerprint, {
       path: '/',
       maxAge: 60 * 60, // 1 hour
       sameSite: 'strict',
-      httpOnly: true,
+      httpOnly: false,
     });
 
     // Add tracking headers for client-side to read
