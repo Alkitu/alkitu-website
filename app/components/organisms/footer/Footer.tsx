@@ -65,7 +65,7 @@ function Footer() {
               )
           )}
         </div>
-        <div className='justify-start items-start gap-10 inline-flex '>
+        <div className='justify-start items-start gap-10 inline-flex  '>
           {footerData.routes?.map((route) => (
             <Link
               key={route.pathname}
@@ -81,7 +81,7 @@ function Footer() {
           ))}
         </div>
         <ContactModalButton
-          className='text-center text-black text-base font-bold px-7 py-2 bg-primary rounded-3xl border border-primary justify-center items-center gap-2.5 inline-flex hover:shadow-primary/50 hover:shadow-md '
+          className='text-center text-black text-base font-bold px-7 py-2 bg-primary rounded-3xl border !border-primary justify-center items-center gap-2.5 inline-flex hover:shadow-primary/50 hover:shadow-md '
           setModalOpenNavbar={undefined}
         />
 

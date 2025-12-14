@@ -129,7 +129,7 @@ export default function NavBar() {
                   ))}
                   <div className='flex justify-center items-center px-4'>
                     <ContactModalButton
-                      className='text-center text-primary text-base font-bold bg-transparent justify-center items-center gap-2.5 inline-flex'
+                      className='text-center text-primary bg-primary text-base font-bold !border-primary justify-center items-center gap-2.5 inline-flex'
                       setModalOpenNavbar={setModalOpenNavbar}
                     />
                   </div>
