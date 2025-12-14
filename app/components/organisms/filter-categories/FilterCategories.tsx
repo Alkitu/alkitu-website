@@ -4,12 +4,15 @@ import { useMotionValue, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useScreenWidth, useElementWidth } from "@/app/hooks";
+import type { Category } from "@/lib/types";
 
 type FilterCategories_Props = {
   search: string;
   className: string;
   setCurrentPage: (search: number) => void;
   setSearch: (search: string) => void;
+  categories?: Category[];
+  locale: string;
 };
 
 export default function FilterCategories({
@@ -17,8 +20,11 @@ export default function FilterCategories({
   setSearch,
   className,
   setCurrentPage,
+  categories = [],
+  locale: localeProp,
 }: FilterCategories_Props) {
-  const { translations, locale } = useTranslationContext();
+  const { translations } = useTranslationContext();
+  const locale = localeProp;
   const categoriesRef = useRef(null);
   const constraintsRef = useRef(null);
   const screenWidth = useScreenWidth();
@@ -100,37 +106,35 @@ export default function FilterCategories({
             All
           </Link>
 
-          {translations &&
-            translations.portfolio.categories.map(
-              (category: { name: string }) => {
-                return (
-                  <Link
-                    href={`/${locale}/projects?category=${category.name}&page=1`}
-                    key={category.name}
-                    className={`mx-2 last:mr-8 flex items-center ${
-                      search === category.name
-                        ? "transition-all text-primary border-primary border font-normal tracking-wider rounded-full py-2 px-4 uppercase "
-                        : "transition-all hover:text-primary hover:border-primary border-foreground border text-foreground font-normal tracking-wider rounded-full py-2 px-4  uppercase"
-                    }`}
-                    id={category.name}
-                    onClick={handleClick}
-                  >
-                    {category.name
-                      .split("")
-                      .map((char: string, index: number) => {
-                        if (char === "_") {
-                          return (
-                            <span key={index} className='text-transparent'>
-                              {char}
-                            </span>
-                          );
-                        }
-                        return <span key={index}>{char}</span>;
-                      })}
-                  </Link>
-                );
-              }
-            )}
+          {categories.map((category: Category) => {
+            const categoryName = locale === 'es' ? category.name_es : category.name_en;
+            return (
+              <Link
+                href={`/${locale}/projects?category=${category.slug}&page=1`}
+                key={category.id}
+                className={`mx-2 last:mr-8 flex items-center ${
+                  search === category.slug
+                    ? "transition-all text-primary border-primary border font-normal tracking-wider rounded-full py-2 px-4 uppercase "
+                    : "transition-all hover:text-primary hover:border-primary border-foreground border text-foreground font-normal tracking-wider rounded-full py-2 px-4  uppercase"
+                }`}
+                id={category.slug}
+                onClick={handleClick}
+              >
+                {categoryName
+                  .split("")
+                  .map((char: string, index: number) => {
+                    if (char === "_") {
+                      return (
+                        <span key={index} className='text-transparent'>
+                          {char}
+                        </span>
+                      );
+                    }
+                    return <span key={index}>{char}</span>;
+                  })}
+              </Link>
+            );
+          })}
         </motion.div>
       </motion.div>
     </>

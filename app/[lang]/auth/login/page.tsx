@@ -53,10 +53,15 @@ function LoginForm() {
       }
 
       // Update last login
-      await supabase
+      const { error: updateError } = await supabase
         .from('admin_users')
         .update({ last_login_at: new Date().toISOString() })
         .eq('id', data.user.id);
+
+      if (updateError) {
+        console.error('Error updating last_login_at:', updateError);
+        // Don't block login for this error, just log it
+      }
 
       router.push(redirectTo);
       router.refresh();

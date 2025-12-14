@@ -3,27 +3,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 import { Suspense } from "react";
-import { useTranslationContext } from "@/app/context/TranslationContext";
-
-interface Project {
-  id: number;
-  url: string;
-  image: string;
-  title: string;
-}
+import type { ProjectWithCategories } from "@/lib/types";
 
 interface ProjectCardProps {
-  project: Project;
+  project: ProjectWithCategories;
   priority?: boolean;
+  locale?: string;
 }
 
-export default function ProjectCard({ project, priority = false }: ProjectCardProps) {
-  const { locale } = useTranslationContext();
+export default function ProjectCard({ project, priority = false, locale = 'en' }: ProjectCardProps) {
 
   const itemVariants: Variants = {
     hidden: { opacity: 0, scale: 0.8 },
     show: { opacity: 1, scale: 1 },
   };
+
+  const title = locale === 'es' ? project.title_es : project.title_en;
 
   return (
     <motion.div
@@ -39,9 +34,9 @@ export default function ProjectCard({ project, priority = false }: ProjectCardPr
       className="rounded-2xl overflow-hidden dark:bg-gray-700"
     >
       <Link
-        href={`/${locale}/projects/${project.url}`}
+        href={`/${locale}/projects/${project.slug}`}
         className="group aspect-video w-full overflow-hidden rounded-2xl lg:opacity-75 hover:opacity-100 bg-gray-200 dark:bg-gray-700 relative"
-        key={project.url}
+        key={project.slug}
       >
         <Suspense
           fallback={
@@ -63,7 +58,7 @@ export default function ProjectCard({ project, priority = false }: ProjectCardPr
             src={project.image}
             width={1080}
             height={720}
-            alt={project.title || "Project image"}
+            alt={title || "Project image"}
             className="w-full aspect-video object-cover object-center group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
             loading={priority ? "eager" : "lazy"}
             placeholder="blur"

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Dashboard from '@/app/components/admin/Dashboard';
+import { UpdateLastLogin } from '@/app/components/admin';
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import Providers from '@/app/context/Providers';
@@ -36,12 +37,6 @@ export default async function AdminRootLayout({
     redirect('/auth/login?error=unauthorized');
   }
 
-  // Update last_login_at timestamp
-  await supabase
-    .from('admin_users')
-    .update({ last_login_at: new Date().toISOString() })
-    .eq('id', user.id);
-
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
@@ -75,6 +70,7 @@ export default async function AdminRootLayout({
       </head>
       <body className="bg-background text-foreground font-body" suppressHydrationWarning>
         <Providers locale="es" initialTranslations={es}>
+            <UpdateLastLogin />
             <Dashboard
               userEmail={adminUser.email}
               userName={adminUser.full_name}

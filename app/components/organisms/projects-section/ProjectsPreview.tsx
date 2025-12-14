@@ -8,31 +8,55 @@ import { ParallaxText } from "@/app/components/organisms/sliders";
 import { Button } from "@/app/components/atoms/button";
 import { FlexCarousel } from "@/app/components/organisms/flex-carousel";
 import { useLocalizedPath } from "@/app/hooks";
+import { useTranslationContext } from "@/app/context/TranslationContext";
+import type { ProjectWithCategories } from "@/lib/types";
 
 function ProjectsPreview({ text }) {
-  const projects = useState(text.portfolio.projects);
+  const { locale } = useTranslationContext();
   const previewProjects = text.home.projectsPreviewSection;
   const localizedPath = useLocalizedPath();
 
-  // Start with first 6 projects to avoid hydration mismatch
+  // State for projects from database
+  const [projects, setProjects] = useState<ProjectWithCategories[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // For display
   const [contentStart, setContentStart] = useState(0);
   const [contentEnd, setContentEnd] = useState(6);
 
-  // Randomize after hydration on client side only
+  // Fetch projects from database
   useEffect(() => {
-    const randomStart = Math.floor(
-      Math.random() * Math.max(0, text.portfolio.projects.length - 6)
-    );
-    const randomEnd = Math.min(randomStart + 6, text.portfolio.projects.length);
-    setContentStart(randomStart);
-    setContentEnd(randomEnd);
-  }, [text.portfolio.projects.length]);
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('/api/projects?limit=20');
+        const data = await response.json();
+
+        if (data.success) {
+          setProjects(data.data.projects);
+
+          // Randomize selection after fetching
+          const randomStart = Math.floor(
+            Math.random() * Math.max(0, data.data.projects.length - 6)
+          );
+          const randomEnd = Math.min(randomStart + 6, data.data.projects.length);
+          setContentStart(randomStart);
+          setContentEnd(randomEnd);
+        }
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
 
   // Extracting images for the carousel
-  const projectImages = text.portfolio.projects.slice(0, 6).map((project) => ({
-    order: project.id,
+  const projectImages = projects.slice(0, 6).map((project) => ({
+    order: project.legacy_id || 0,
     src: project.image,
-    url: project.url,
+    url: project.slug,
   }));
 
   return (
@@ -54,21 +78,33 @@ function ProjectsPreview({ text }) {
             <span className='text-primary'>{previewProjects.titlePrimary}</span>
           </h3>
           <div className='self-center md:pb-9 md:pt-5 col-start-1 lg:col-start-2 col-end-5 md:col-end-9 lg:col-end-13 w-full flex flex-col'>
-            <div className='hidden md:block'>
-              <ResponsiveList tablet={3}>
-                {text.portfolio.projects &&
-                  projects[0]
+            {loading ? (
+              <div className="hidden md:flex justify-center items-center min-h-[20vh]">
+                <div className="text-center">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+                  <p className="text-muted-foreground">Loading projects...</p>
+                </div>
+              </div>
+            ) : (
+              <div className='hidden md:block'>
+                <ResponsiveList tablet={3}>
+                  {projects
                     .slice(contentStart, contentEnd)
                     .map((project) => (
-                      <ProjectCard key={project.url} project={project} />
+                      <ProjectCard
+                        key={project.id}
+                        project={project}
+                        locale={locale}
+                      />
                     ))}
-              </ResponsiveList>
-            </div>
+                </ResponsiveList>
+              </div>
+            )}
           </div>
         </TailwindGrid>
       </div>
       <div className='block md:hidden pb-7 pt-5'>
-        {projectImages && (
+        {!loading && projectImages.length > 0 && (
           <FlexCarousel
             dataCards={projectImages}
             width={70}
