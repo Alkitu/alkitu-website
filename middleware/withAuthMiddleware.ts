@@ -1,7 +1,7 @@
 import { NextMiddleware, NextResponse } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
 
-const PUBLIC_ADMIN_PATHS = ['/admin/login'];
+const PUBLIC_ADMIN_PATHS = ['/auth/login'];
 
 export function withAuthMiddleware(next: NextMiddleware): NextMiddleware {
   return async function middleware(request, event) {
@@ -38,7 +38,7 @@ export function withAuthMiddleware(next: NextMiddleware): NextMiddleware {
 
     // Redirect to login if not authenticated
     if (!user || error) {
-      const loginUrl = new URL('/admin/login', request.url);
+      const loginUrl = new URL('/auth/login', request.url);
       loginUrl.searchParams.set('redirectTo', pathname);
       return NextResponse.redirect(loginUrl);
     }
@@ -52,7 +52,7 @@ export function withAuthMiddleware(next: NextMiddleware): NextMiddleware {
 
     if (!adminUser || adminError) {
       // User is authenticated but not an admin
-      return NextResponse.redirect(new URL('/admin/login?error=unauthorized', request.url));
+      return NextResponse.redirect(new URL('/auth/login?error=unauthorized', request.url));
     }
 
     // Handle /admin redirect to /admin/dashboard

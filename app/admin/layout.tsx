@@ -22,7 +22,7 @@ export default async function AdminRootLayout({
   const { data: { user }, error } = await supabase.auth.getUser();
 
   if (!user || error) {
-    redirect('/admin/login');
+    redirect('/auth/login');
   }
 
   // Check admin status
@@ -33,7 +33,7 @@ export default async function AdminRootLayout({
     .single();
 
   if (!adminUser) {
-    redirect('/admin/login?error=unauthorized');
+    redirect('/auth/login?error=unauthorized');
   }
 
   return (

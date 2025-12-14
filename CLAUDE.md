@@ -593,4 +593,4 @@ export async function proxy(request: NextRequest, event: NextFetchEvent) {
 
 **withAuthMiddleware:**
 - Protects `/admin` routes
-- Redirects to `/admin/login` if not authenticated
+- Redirects to `/auth/login` if not authenticated
