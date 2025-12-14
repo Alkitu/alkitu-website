@@ -27,7 +27,6 @@
     "clsx": "^2.1.1",
     "cookies-next": "^6.1.1",
     "framer-motion": "^12.23.26",
-    "geoip-lite": "^1.4.10",
     "lucide-react": "^0.561.0",
     "negotiator": "^1.0.0",
     "next": "^16.0.10",
@@ -41,7 +40,6 @@
   "devDependencies": {
     "@next/eslint-plugin-next": "^16.0.10",
     "@tailwindcss/postcss": "^4.1.18",
-    "@types/geoip-lite": "^1.4.4",
     "@types/negotiator": "^0.6.4",
     "@types/node": "^25.0.1",
     "@types/react": "^19.2.7",
