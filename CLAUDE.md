@@ -29,12 +29,12 @@ npm run sync:projects    # Sync project data to dictionaries (node lib/projects/
 - `.npmrc` with `legacy-peer-deps=true` is required for React 19 + @rive-app/react-canvas compatibility
 - Do not remove this file
 
-**Middleware not executing in Next.js 16:**
-- **CRITICAL**: Next.js 16 requires middleware to use **named export**, not default export
-- Use `export async function middleware(request, event)` instead of `export default function middleware(...)`
-- Known issues with `proxy.ts` in Next.js 16.0.10 ([Issue #86122](https://github.com/vercel/next.js/issues/86122), [Issue #85243](https://github.com/vercel/next.js/issues/85243))
-- Workaround: Use `middleware.ts` with named export until proxy.ts bugs are resolved
-- Middleware won't execute on statically cached pages - use `export const dynamic = 'force-dynamic'` in layouts/pages if needed
+**Proxy configuration in Next.js 16:**
+- **IMPORTANT**: Next.js 16 renamed `middleware.ts` to `proxy.ts` to better reflect its purpose
+- Use `export async function proxy(request, event)` as the named export
+- The proxy file uses **Node.js runtime only** (Edge runtime not supported)
+- Proxy won't execute on statically cached pages - use `export const dynamic = 'force-dynamic'` in layouts/pages if needed
+- Learn more: [Next.js Proxy Documentation](https://nextjs.org/docs/app/api-reference/file-conventions/proxy)
 
 ## Architecture Overview
 
@@ -55,8 +55,9 @@ The app uses a **dual i18n approach**:
    - Translation files: `app/dictionaries/{locale}.json` (same as server-side)
    - API endpoint `/api/translations` dynamically loads translations when locale changes
 
-3. **Middleware-based routing** (`middleware/withI18nMiddleware.ts`)
+3. **Proxy-based routing** (`middleware/withI18nMiddleware.ts`)
    - Custom middleware chain pattern in `middleware/chain.ts`
+   - Executed via `proxy.ts` in Next.js 16
    - `withI18nMiddleware` handles locale detection and routing
    - Redirects `/` to `/{locale}` based on `NEXT_LOCALE` cookie
    - Automatically prefixes paths with locale if missing
@@ -520,17 +521,17 @@ import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 </Avatar>
 ```
 
-## Middleware Stack
+## Proxy Stack
 
-The project uses a custom middleware chain pattern in `middleware/chain.ts`.
+The project uses a custom middleware chain pattern in `middleware/chain.ts` executed via `proxy.ts`.
 
-**IMPORTANT**: Next.js 16 requires middleware to use **named export**, not default export.
+**IMPORTANT**: Next.js 16 renamed `middleware.ts` to `proxy.ts` with a named `proxy` export.
 
-### Middleware Order
+### Proxy Configuration
 
 ```typescript
-// middleware.ts - Next.js 16 requires NAMED EXPORT
-export async function middleware(request: NextRequest, event: NextFetchEvent) {
+// proxy.ts - Next.js 16 proxy convention
+export async function proxy(request: NextRequest, event: NextFetchEvent) {
   const handler = chain([
     withSupabaseMiddleware,    // 1. Refresh Supabase auth session (all routes)
     withAuthMiddleware,        // 2. Protect admin routes (only /admin/*)
@@ -548,7 +549,7 @@ export const config = {
 };
 ```
 
-### Adding New Middleware
+### Adding New Middleware to the Chain
 
 ```typescript
 // middleware/withMyMiddleware.ts
@@ -561,8 +562,8 @@ export function withMyMiddleware(next: NextMiddleware): NextMiddleware {
   };
 }
 
-// Add to chain in middleware.ts
-export async function middleware(request: NextRequest, event: NextFetchEvent) {
+// Add to chain in proxy.ts
+export async function proxy(request: NextRequest, event: NextFetchEvent) {
   const handler = chain([
     withI18nMiddleware,
     withMyMiddleware,  // Add here
