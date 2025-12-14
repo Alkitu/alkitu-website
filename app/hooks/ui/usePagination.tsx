@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 type Item = {
+  id?: string | number;
   order: number;
   src?: string;
 };

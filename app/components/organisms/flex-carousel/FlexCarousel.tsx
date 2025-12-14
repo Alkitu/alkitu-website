@@ -6,6 +6,7 @@ import { useCarousel } from "@/app/hooks";
 import CardsIndex from "@/app/components/organisms/flex-carousel/cards/CardsIndex";
 
 interface CarouselItem {
+  id?: string | number;
   order: number;
   src?: string;
   [key: string]: unknown;
