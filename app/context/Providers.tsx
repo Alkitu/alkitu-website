@@ -3,6 +3,7 @@
 import { ThemeProvider } from '@/app/context/ThemeContext';
 import { TranslationsProvider } from '@/app/context/TranslationContext';
 import { DropdownProvider } from '@/app/context/DropdownContext';
+import { Toaster } from '@/app/components/ui/toaster';
 import { Locale } from '@/i18n.config';
 import { Translations } from '@/app/types/translations';
 
@@ -18,6 +19,7 @@ export default function Providers({ children, locale, initialTranslations }: Pro
       <TranslationsProvider initialLocale={locale} initialTranslations={initialTranslations}>
         <DropdownProvider>
           {children}
+          <Toaster />
         </DropdownProvider>
       </TranslationsProvider>
     </ThemeProvider>

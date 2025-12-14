@@ -52,7 +52,7 @@ export function AdminSidebar({ userEmail, ...props }: AdminSidebarProps) {
   ]
 
   return (
-    <Sidebar {...props}>
+    <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>

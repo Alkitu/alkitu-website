@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { TrackingEventSchema } from '@/app/schemas/tracking';
-import { ZodError } from 'zod';
+import { ApiSuccess, ApiError } from '@/lib/api/response';
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,14 +12,7 @@ export async function POST(request: NextRequest) {
     const validationResult = TrackingEventSchema.safeParse(body);
 
     if (!validationResult.success) {
-      const errors = validationResult.error.issues.map(err => ({
-        field: err.path.join('.'),
-        message: err.message,
-      }));
-      return NextResponse.json({
-        error: 'Validation failed',
-        details: errors
-      }, { status: 400 });
+      return ApiError.validationError(validationResult.error);
     }
 
     const { sessionFingerprint, action } = validationResult.data;
@@ -52,7 +45,7 @@ export async function POST(request: NextRequest) {
           .single();
 
         if (createError) {
-          return NextResponse.json({ error: createError.message }, { status: 500 });
+          return ApiError.database('Failed to create session', createError);
         }
 
         session = newSession;
@@ -80,10 +73,10 @@ export async function POST(request: NextRequest) {
         .single();
 
       if (pageViewError) {
-        return NextResponse.json({ error: pageViewError.message }, { status: 500 });
+        return ApiError.database('Failed to create page view', pageViewError);
       }
 
-      return NextResponse.json({ success: true, pageViewId: pageView.id });
+      return ApiSuccess.created({ pageViewId: pageView.id }, 'Page view tracked successfully');
     }
 
     if (action === 'page_exit') {
@@ -98,16 +91,16 @@ export async function POST(request: NextRequest) {
         .eq('id', pageViewId);
 
       if (error) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        return ApiError.database('Failed to update page view', error);
       }
 
-      return NextResponse.json({ success: true });
+      return ApiSuccess.ok(null, 'Page exit tracked successfully');
     }
 
     // This should never be reached due to discriminated union validation
-    return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
+    return ApiError.badRequest('Invalid action type');
   } catch (error) {
     console.error('Tracking error:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return ApiError.internal('Failed to process tracking event', error);
   }
 }

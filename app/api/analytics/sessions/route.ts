@@ -1,6 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase/server';
+import { NextRequest } from 'next/server';
+import { createAnalyticsClient } from '@/lib/supabase/analytics';
 import { z } from 'zod';
+import { ApiSuccess, ApiError } from '@/lib/api/response';
 
 /**
  * Schema for session creation/update
@@ -15,21 +16,14 @@ const SessionSchema = z.object({
  */
 export async function POST(request: NextRequest) {
   try {
-    const supabase = await createClient();
+    const supabase = createAnalyticsClient();
     const body = await request.json();
 
     // Validate request
     const validationResult = SessionSchema.safeParse(body);
 
     if (!validationResult.success) {
-      const errors = validationResult.error.issues.map(err => ({
-        field: err.path.join('.'),
-        message: err.message,
-      }));
-      return NextResponse.json({
-        error: 'Validation failed',
-        details: errors
-      }, { status: 400 });
+      return ApiError.validationError(validationResult.error);
     }
 
     const { sessionFingerprint } = validationResult.data;
@@ -62,13 +56,10 @@ export async function POST(request: NextRequest) {
 
       if (createError) {
         console.error('Error creating session:', createError);
-        return NextResponse.json({ error: createError.message }, { status: 500 });
+        return ApiError.database('Failed to create session', createError);
       }
 
-      return NextResponse.json({
-        session: newSession,
-        created: true
-      }, { status: 201 });
+      return ApiSuccess.created({ session: newSession }, 'Session created successfully');
     }
 
     // Update existing session
@@ -84,15 +75,12 @@ export async function POST(request: NextRequest) {
 
     if (updateError) {
       console.error('Error updating session:', updateError);
-      return NextResponse.json({ error: updateError.message }, { status: 500 });
+      return ApiError.database('Failed to update session', updateError);
     }
 
-    return NextResponse.json({
-      session: updatedSession,
-      created: false
-    }, { status: 200 });
+    return ApiSuccess.ok({ session: updatedSession }, 'Session updated successfully');
   } catch (error) {
     console.error('Session API error:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return ApiError.internal('Failed to process session request', error);
   }
 }

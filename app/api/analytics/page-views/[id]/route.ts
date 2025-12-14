@@ -1,6 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase/server';
+import { NextRequest } from 'next/server';
+import { createAnalyticsClient } from '@/lib/supabase/analytics';
 import { z } from 'zod';
+import { ApiSuccess, ApiError } from '@/lib/api/response';
 
 /**
  * Schema for page view update
@@ -18,7 +19,7 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const supabase = await createClient();
+    const supabase = createAnalyticsClient();
     const { id } = await params;
     const body = await request.json();
 
@@ -27,23 +28,14 @@ export async function PATCH(
     const uuidValidation = uuidSchema.safeParse(id);
 
     if (!uuidValidation.success) {
-      return NextResponse.json({
-        error: 'Invalid page view ID format'
-      }, { status: 400 });
+      return ApiError.badRequest('Invalid page view ID format');
     }
 
     // Validate request body
     const validationResult = PageViewUpdateSchema.safeParse(body);
 
     if (!validationResult.success) {
-      const errors = validationResult.error.issues.map(err => ({
-        field: err.path.join('.'),
-        message: err.message,
-      }));
-      return NextResponse.json({
-        error: 'Validation failed',
-        details: errors
-      }, { status: 400 });
+      return ApiError.validationError(validationResult.error);
     }
 
     const { timeOnPage } = validationResult.data;
@@ -61,19 +53,15 @@ export async function PATCH(
 
     if (updateError) {
       if (updateError.code === 'PGRST116') {
-        return NextResponse.json({
-          error: 'Page view not found'
-        }, { status: 404 });
+        return ApiError.notFound('Page view not found');
       }
       console.error('Error updating page view:', updateError);
-      return NextResponse.json({ error: updateError.message }, { status: 500 });
+      return ApiError.database('Failed to update page view', updateError);
     }
 
-    return NextResponse.json({
-      pageView
-    }, { status: 200 });
+    return ApiSuccess.ok({ pageView }, 'Page view updated successfully');
   } catch (error) {
     console.error('Page view update API error:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return ApiError.internal('Failed to process page view update', error);
   }
 }

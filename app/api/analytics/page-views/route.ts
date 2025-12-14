@@ -1,6 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase/server';
+import { NextRequest } from 'next/server';
+import { createAnalyticsClient } from '@/lib/supabase/analytics';
 import { z } from 'zod';
+import { ApiSuccess, ApiError } from '@/lib/api/response';
 
 /**
  * Schema for page view creation
@@ -18,21 +19,14 @@ const PageViewSchema = z.object({
  */
 export async function POST(request: NextRequest) {
   try {
-    const supabase = await createClient();
+    const supabase = createAnalyticsClient();
     const body = await request.json();
 
     // Validate request
     const validationResult = PageViewSchema.safeParse(body);
 
     if (!validationResult.success) {
-      const errors = validationResult.error.issues.map(err => ({
-        field: err.path.join('.'),
-        message: err.message,
-      }));
-      return NextResponse.json({
-        error: 'Validation failed',
-        details: errors
-      }, { status: 400 });
+      return ApiError.validationError(validationResult.error);
     }
 
     const { sessionId, pagePath, locale, referrer } = validationResult.data;
@@ -45,9 +39,7 @@ export async function POST(request: NextRequest) {
       .single();
 
     if (sessionError || !session) {
-      return NextResponse.json({
-        error: 'Session not found'
-      }, { status: 404 });
+      return ApiError.notFound('Session not found');
     }
 
     // Create page view
@@ -64,14 +56,12 @@ export async function POST(request: NextRequest) {
 
     if (pageViewError) {
       console.error('Error creating page view:', pageViewError);
-      return NextResponse.json({ error: pageViewError.message }, { status: 500 });
+      return ApiError.database('Failed to create page view', pageViewError);
     }
 
-    return NextResponse.json({
-      pageView
-    }, { status: 201 });
+    return ApiSuccess.created({ pageView }, 'Page view created successfully');
   } catch (error) {
     console.error('Page view API error:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return ApiError.internal('Failed to process page view request', error);
   }
 }
