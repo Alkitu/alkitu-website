@@ -70,8 +70,22 @@ export function useElementRect<T extends HTMLElement = HTMLElement>(
     // Update on window resize
     window.addEventListener('resize', updateRect);
 
+    // Use ResizeObserver to detect when element content changes
+    // This fixes the issue where categories load after mount and resize isn't triggered
+    let resizeObserver: ResizeObserver | null = null;
+
+    if (typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(() => {
+        updateRect();
+      });
+      resizeObserver.observe(element);
+    }
+
     return () => {
       window.removeEventListener('resize', updateRect);
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
     };
   }, [ref]);
 

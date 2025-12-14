@@ -16,6 +16,7 @@ import {
   FolderKanban,
   Users,
   Settings,
+  Tags,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -47,6 +48,12 @@ const data = {
       title: "Proyectos",
       url: "/admin/projects",
       icon: FolderKanban,
+      items: [],
+    },
+    {
+      title: "Categorías",
+      url: "/admin/project-categories",
+      icon: Tags,
       items: [],
     },
     {

@@ -109,6 +109,18 @@ export interface UpdateProjectInput {
   category_ids?: string[];
 }
 
+export interface CreateProjectCategoryInput {
+  name_en: string;
+  name_es: string;
+  slug?: string; // Auto-generated from name_en if not provided
+}
+
+export interface UpdateProjectCategoryInput {
+  name_en?: string;
+  name_es?: string;
+  slug?: string;
+}
+
 /**
  * Filter and query types
  */

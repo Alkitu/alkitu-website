@@ -33,8 +33,14 @@ export default function FilterCategories({
   const x = useMotionValue(0);
 
   useEffect(() => {
+    // Only calculate when we have valid measurements
+    // categoriesWidth will be null initially until ResizeObserver measures the element
+    if (categoriesWidth === null || categoriesWidth === 0) {
+      return;
+    }
+
     // Draggable should be true when categories are wider than screen
-    const shouldBeDraggable = (categoriesWidth ?? 0) > screenWidth;
+    const shouldBeDraggable = categoriesWidth > screenWidth;
 
     if (shouldBeDraggable !== draggable) {
       setDraggable(shouldBeDraggable);
@@ -50,7 +56,7 @@ export default function FilterCategories({
       "draggable:",
       shouldBeDraggable
     );
-  }, [categoriesWidth, screenWidth]);
+  }, [categoriesWidth, screenWidth, categories.length]);
 
   const handleClick = (event) => {
     const { id } = event.currentTarget;
@@ -108,6 +114,9 @@ export default function FilterCategories({
 
           {categories.map((category: Category) => {
             const categoryName = locale === 'es' ? category.name_es : category.name_en;
+            // Replace underscores with spaces for display
+            const displayName = categoryName.replace(/_/g, ' ');
+
             return (
               <Link
                 href={`/${locale}/projects?category=${category.slug}&page=1`}
@@ -120,18 +129,7 @@ export default function FilterCategories({
                 id={category.slug}
                 onClick={handleClick}
               >
-                {categoryName
-                  .split("")
-                  .map((char: string, index: number) => {
-                    if (char === "_") {
-                      return (
-                        <span key={index} className='text-transparent'>
-                          {char}
-                        </span>
-                      );
-                    }
-                    return <span key={index}>{char}</span>;
-                  })}
+                {displayName}
               </Link>
             );
           })}
