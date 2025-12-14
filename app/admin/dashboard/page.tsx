@@ -1,27 +1,24 @@
-import { createClient } from '@/lib/supabase/server';
-import { redirect } from 'next/navigation';
-import { AnalyticsDashboard } from '@/app/components/admin/AnalyticsDashboard';
+import { AnalyticsStats } from '@/app/components/admin/AnalyticsStats';
+import { SessionsList } from '@/app/components/admin/SessionsList';
 
-export default async function AdminDashboard() {
-  const supabase = await createClient();
+export default function AdminDashboard() {
+  return (
+    <>
+      {/* Stats Overview */}
+      <section id="analytics">
+        <h2 className="text-2xl font-bold text-foreground mb-4">
+          Estadísticas Generales
+        </h2>
+        <AnalyticsStats />
+      </section>
 
-  // Check authentication
-  const { data: { user }, error } = await supabase.auth.getUser();
-
-  if (!user || error) {
-    redirect('/admin/login');
-  }
-
-  // Check admin status
-  const { data: adminUser } = await supabase
-    .from('admin_users')
-    .select('*')
-    .eq('id', user.id)
-    .single();
-
-  if (!adminUser) {
-    redirect('/admin/login?error=unauthorized');
-  }
-
-  return <AnalyticsDashboard user={adminUser} />;
+      {/* Sessions List */}
+      <section id="sessions">
+        <h2 className="text-2xl font-bold text-foreground mb-4">
+          Sesiones de Usuario
+        </h2>
+        <SessionsList />
+      </section>
+    </>
+  );
 }
