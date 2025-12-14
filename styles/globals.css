@@ -30,14 +30,14 @@
   --color-input: rgb(var(--input));
   --color-ring: rgb(var(--ring));
 
-  --color-sidebar: rgb(var(--sidebar));
-  --color-sidebar-foreground: rgb(var(--sidebar-foreground));
-  --color-sidebar-primary: rgb(var(--sidebar-primary));
-  --color-sidebar-primary-foreground: rgb(var(--sidebar-primary-foreground));
-  --color-sidebar-accent: rgb(var(--sidebar-accent));
-  --color-sidebar-accent-foreground: rgb(var(--sidebar-accent-foreground));
-  --color-sidebar-border: rgb(var(--sidebar-border));
-  --color-sidebar-ring: rgb(var(--sidebar-ring));
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
@@ -94,14 +94,14 @@
     --ring: 0 187 49; /* primary color */
 
     /* Sidebar colors */
-    --sidebar: 250 250 250;
-    --sidebar-foreground: 15 15 15;
-    --sidebar-primary: 0 187 49;
-    --sidebar-primary-foreground: 255 255 255;
-    --sidebar-accent: 243 244 246;
-    --sidebar-accent-foreground: 15 15 15;
-    --sidebar-border: 229 231 235;
-    --sidebar-ring: 0 187 49;
+    --sidebar: hsl(0 0% 98%);
+    --sidebar-foreground: hsl(240 5.3% 26.1%);
+    --sidebar-primary: hsl(240 5.9% 10%);
+    --sidebar-primary-foreground: hsl(0 0% 98%);
+    --sidebar-accent: hsl(240 4.8% 95.9%);
+    --sidebar-accent-foreground: hsl(240 5.9% 10%);
+    --sidebar-border: hsl(220 13% 91%);
+    --sidebar-ring: hsl(217.2 91.2% 59.8%);
 
     /* Radius */
     --radius: 0.625rem;
@@ -136,14 +136,14 @@
     --ring: 0 187 49;
 
     /* Sidebar colors dark */
-    --sidebar: 24 24 27;
-    --sidebar-foreground: 250 250 250;
-    --sidebar-primary: 0 187 49;
-    --sidebar-primary-foreground: 255 255 255;
-    --sidebar-accent: 39 39 42;
-    --sidebar-accent-foreground: 250 250 250;
-    --sidebar-border: 39 39 42;
-    --sidebar-ring: 0 187 49;
+    --sidebar: hsl(240 5.9% 10%);
+    --sidebar-foreground: hsl(240 4.8% 95.9%);
+    --sidebar-primary: hsl(224.3 76.3% 48%);
+    --sidebar-primary-foreground: hsl(0 0% 100%);
+    --sidebar-accent: hsl(240 3.7% 15.9%);
+    --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
+    --sidebar-border: hsl(240 3.7% 15.9%);
+    --sidebar-ring: hsl(217.2 91.2% 59.8%);
   }
 
   html {
@@ -164,54 +164,12 @@
     border-radius: 10px;
     background-color: rgb(var(--scrollbar-thumb));
   }
-}
 
   /* Utilidades de Tailwind v4 */
   * {
     @apply border-border outline-ring/50;
   }
 
-  body {
-    @apply bg-background text-foreground;
-  }
-
-  :root {
-  --sidebar: hsl(0 0% 98%);
-  --sidebar-foreground: hsl(240 5.3% 26.1%);
-  --sidebar-primary: hsl(240 5.9% 10%);
-  --sidebar-primary-foreground: hsl(0 0% 98%);
-  --sidebar-accent: hsl(240 4.8% 95.9%);
-  --sidebar-accent-foreground: hsl(240 5.9% 10%);
-  --sidebar-border: hsl(220 13% 91%);
-  --sidebar-ring: hsl(217.2 91.2% 59.8%);
-}
-
-  .dark {
-  --sidebar: hsl(240 5.9% 10%);
-  --sidebar-foreground: hsl(240 4.8% 95.9%);
-  --sidebar-primary: hsl(224.3 76.3% 48%);
-  --sidebar-primary-foreground: hsl(0 0% 100%);
-  --sidebar-accent: hsl(240 3.7% 15.9%);
-  --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
-  --sidebar-border: hsl(240 3.7% 15.9%);
-  --sidebar-ring: hsl(217.2 91.2% 59.8%);
-}
-
-  @theme inline {
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-}
-
-  @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
   body {
     @apply bg-background text-foreground;
   }

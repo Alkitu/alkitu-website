@@ -5,9 +5,9 @@ import { withI18nMiddleware } from './middleware/withI18nMiddleware';
 import { withTrackingMiddleware } from './middleware/withTrackingMiddleware';
 import { NextRequest, NextFetchEvent } from 'next/server';
 
-// IMPORTANT: Next.js 16 requires NAMED EXPORT, not default export
-// Using "export async function middleware" instead of "export default"
-export async function middleware(request: NextRequest, event: NextFetchEvent) {
+// IMPORTANT: Next.js 16 renamed middleware.ts to proxy.ts
+// Using "export async function proxy" as the new convention
+export async function proxy(request: NextRequest, event: NextFetchEvent) {
   const handler = chain([
     withSupabaseMiddleware,    // 1. Refresh Supabase auth session (all routes)
     withAuthMiddleware,        // 2. Protect admin routes (only /admin/*)
