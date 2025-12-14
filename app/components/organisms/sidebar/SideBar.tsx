@@ -2,12 +2,22 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
-function SideBar({ text }) {
-  const dataSections = text?.home?.sections || [];
-  const [hoveredSection, setHoveredSection] = useState(null);
-  const [activeSection, setActiveSection] = useState(dataSections[0] || null);
 
-  const scrollToSection = (id) => {
+interface Section {
+  id: string;
+  name: string;
+}
+
+interface SideBarProps {
+  sections: Section[];
+}
+
+function SideBar({ sections }: SideBarProps) {
+  const dataSections = sections || [];
+  const [hoveredSection, setHoveredSection] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState<Section | null>(dataSections[0] || null);
+
+  const scrollToSection = (id: string) => {
     const target = document.getElementById(id);
     if (target) {
       const yOffset = window.innerHeight / 2;
@@ -24,7 +34,7 @@ function SideBar({ text }) {
 
     const handleScroll = () => {
       let closestDistance = Infinity;
-      let closestSection = null;
+      let closestSection: Section | null = null;
 
       dataSections.forEach((section) => {
         const target = document.getElementById(section.id);

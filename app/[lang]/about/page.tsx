@@ -18,12 +18,20 @@ export default async function AboutPage({
   return (
     <>
       <TailwindGrid fullSize>
-         <SideBar text={text} />
+         <SideBar sections={text?.about?.sections} />
          <div className="col-span-full flex flex-col">
-            <AboutHero dictionary={text} />
-            <AboutOrigin dictionary={text} />
-            <AboutPrinciples dictionary={text} />
-            <AboutTeam dictionary={text} />
+            <div id="about-hero">
+               <AboutHero dictionary={text} />
+            </div>
+            <div id="about-origin">
+               <AboutOrigin dictionary={text} />
+            </div>
+            <div id="about-principles">
+               <AboutPrinciples dictionary={text} />
+            </div>
+            <div id="about-team">
+               <AboutTeam dictionary={text} />
+            </div>
          </div>
       </TailwindGrid>
     </>

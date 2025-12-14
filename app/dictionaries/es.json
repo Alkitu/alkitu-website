@@ -1209,6 +1209,24 @@
     }
   },
   "about": {
+    "sections": [
+      {
+        "id": "about-hero",
+        "name": "Inicio"
+      },
+      {
+        "id": "about-origin",
+        "name": "Origen"
+      },
+      {
+        "id": "about-principles",
+        "name": "Principios"
+      },
+      {
+        "id": "about-team",
+        "name": "Equipo"
+      }
+    ],
     "hero": {
       "title": "Agencia Digital en España",
       "text": "Alkitu es una agencia digital que se fundó a inicios del 2020 en la ciudad de Valencia (España) por un par de “geeks” emprendedores apasionados por las nuevas tendencias tecnológicas. Somos una agencia especializada en marketing, diseño gráfico, desarrollo de aplicaciones y páginas Web.",
