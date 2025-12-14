@@ -114,7 +114,7 @@ function FlexCarousel({
               className={`w-2 h-2 rounded-full mx-2 my-0 cursor-pointer bg-neutral-500 last:hidden first:hidden z-10 ${
                 page.order === centerOrder ? "bg-primary" : "bg-neutral-500"
               }`}
-              key={page.order}
+              key={page.id || page.order || index}
               onClick={() => handleClick(page, index)}
             />
           ))}

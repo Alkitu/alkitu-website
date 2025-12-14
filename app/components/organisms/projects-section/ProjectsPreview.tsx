@@ -17,12 +17,8 @@ function ProjectsPreview({ text }) {
   const localizedPath = useLocalizedPath();
 
   // State for projects from database
-  const [projects, setProjects] = useState<ProjectWithCategories[]>([]);
+  const [displayProjects, setDisplayProjects] = useState<ProjectWithCategories[]>([]);
   const [loading, setLoading] = useState(true);
-
-  // For display
-  const [contentStart, setContentStart] = useState(0);
-  const [contentEnd, setContentEnd] = useState(6);
 
   // Fetch projects from database
   useEffect(() => {
@@ -32,15 +28,16 @@ function ProjectsPreview({ text }) {
         const data = await response.json();
 
         if (data.success) {
-          setProjects(data.data.projects);
+          const allProjects = data.data.projects;
 
-          // Randomize selection after fetching
+          // Randomize selection
           const randomStart = Math.floor(
-            Math.random() * Math.max(0, data.data.projects.length - 6)
+            Math.random() * Math.max(0, allProjects.length - 6)
           );
-          const randomEnd = Math.min(randomStart + 6, data.data.projects.length);
-          setContentStart(randomStart);
-          setContentEnd(randomEnd);
+          const randomEnd = Math.min(randomStart + 6, allProjects.length);
+
+          // Set only the projects we want to display
+          setDisplayProjects(allProjects.slice(randomStart, randomEnd));
         }
       } catch (error) {
         console.error('Error fetching projects:', error);
@@ -53,8 +50,9 @@ function ProjectsPreview({ text }) {
   }, []);
 
   // Extracting images for the carousel
-  const projectImages = projects.slice(0, 6).map((project) => ({
-    order: project.legacy_id || 0,
+  const projectImages = displayProjects.map((project, index) => ({
+    id: project.id,
+    order: index + 1,
     src: project.image,
     url: project.slug,
   }));
@@ -88,15 +86,13 @@ function ProjectsPreview({ text }) {
             ) : (
               <div className='hidden md:block'>
                 <ResponsiveList tablet={3}>
-                  {projects
-                    .slice(contentStart, contentEnd)
-                    .map((project) => (
-                      <ProjectCard
-                        key={project.id}
-                        project={project}
-                        locale={locale}
-                      />
-                    ))}
+                  {displayProjects.map((project) => (
+                    <ProjectCard
+                      key={project.id}
+                      project={project}
+                      locale={locale}
+                    />
+                  ))}
                 </ResponsiveList>
               </div>
             )}
