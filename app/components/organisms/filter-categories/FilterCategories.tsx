@@ -1,7 +1,7 @@
 "use client";
 import { useTranslationContext } from "@/app/context/TranslationContext";
 import { useMotionValue, motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import Link from "next/link";
 import { useScreenWidth, useElementWidth } from "@/app/hooks";
 import type { Category } from "@/lib/types";
@@ -26,11 +26,29 @@ export default function FilterCategories({
   const { translations } = useTranslationContext();
   const locale = localeProp;
   const categoriesRef = useRef(null);
-  const constraintsRef = useRef(null);
   const screenWidth = useScreenWidth();
   const categoriesWidth = useElementWidth(categoriesRef);
   const [draggable, setDraggable] = useState(false);
   const x = useMotionValue(0);
+
+  // Calculate drag constraints dynamically based on current dimensions
+  const dragConstraints = useMemo(() => {
+    if (!draggable || !categoriesWidth || !screenWidth) {
+      return { left: 0, right: 0 };
+    }
+
+    // Account for the 10% padding on left side when draggable
+    const paddingLeft = screenWidth * 0.1;
+    const availableWidth = screenWidth - paddingLeft;
+
+    // Left constraint is negative (how far it can scroll left)
+    const leftLimit = -(categoriesWidth - availableWidth);
+
+    return {
+      left: leftLimit < 0 ? leftLimit : 0,
+      right: 0
+    };
+  }, [draggable, categoriesWidth, screenWidth]);
 
   useEffect(() => {
     // Only calculate when we have valid measurements
@@ -58,6 +76,21 @@ export default function FilterCategories({
     );
   }, [categoriesWidth, screenWidth, categories.length]);
 
+  // Adjust position when constraints change to prevent going out of bounds
+  useEffect(() => {
+    if (!draggable) return;
+
+    const currentX = x.get();
+    const { left, right } = dragConstraints;
+
+    // If current position is beyond the new constraints, adjust it
+    if (currentX < left) {
+      x.set(left);
+    } else if (currentX > right) {
+      x.set(right);
+    }
+  }, [dragConstraints, draggable, x]);
+
   const handleClick = (event) => {
     const { id } = event.currentTarget;
     setSearch(id);
@@ -67,7 +100,6 @@ export default function FilterCategories({
   return (
     <>
       <motion.div
-        ref={constraintsRef}
         className={`${
           draggable ? "justify-start" : "justify-center"
         } h-12 flex  overflow-hidden relative w-screen items-center content-center  ${className}`}
@@ -84,7 +116,7 @@ export default function FilterCategories({
         <motion.div
           ref={categoriesRef}
           drag={draggable ? "x" : false}
-          dragConstraints={constraintsRef}
+          dragConstraints={dragConstraints}
           dragElastic={0}
           style={{ x, cursor: draggable ? "grab" : "default" }}
           dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
@@ -101,7 +133,7 @@ export default function FilterCategories({
         >
           <Link
             href={`/${locale}/projects?category=All&page=1`}
-            className={`w-20 ml-8 mr-2 ${
+            className={`w-20 ml-8 mr-2 whitespace-nowrap ${
               search === "All"
                 ? "transition-all text-primary border-primary border font-normal tracking-wider rounded-full py-2 px-4 uppercase"
                 : "transition-all hover:text-primary hover:border-primary border-foreground border text-foreground font-normal tracking-wider rounded-full py-2 px-4  uppercase"
@@ -121,7 +153,7 @@ export default function FilterCategories({
               <Link
                 href={`/${locale}/projects?category=${category.slug}&page=1`}
                 key={category.id}
-                className={`mx-2 last:mr-8 flex items-center ${
+                className={`mx-2 last:mr-8 flex items-center whitespace-nowrap ${
                   search === category.slug
                     ? "transition-all text-primary border-primary border font-normal tracking-wider rounded-full py-2 px-4 uppercase "
                     : "transition-all hover:text-primary hover:border-primary border-foreground border text-foreground font-normal tracking-wider rounded-full py-2 px-4  uppercase"
