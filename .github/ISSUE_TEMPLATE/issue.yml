@@ -1,0 +1,89 @@
+name: ❓ Question / Issue
+description: Ask a question or discuss an issue
+title: "[QUESTION] "
+labels: ["question", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Pregunta o Consulta
+        Haz una pregunta sobre el proyecto o discute un tema.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: ❓ Pregunta
+      description: Describe tu pregunta o el tema a discutir
+      placeholder: |
+        ¿Cuál es la mejor forma de implementar autenticación de múltiples factores en el admin panel?
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: 🎯 Contexto
+      description: Información relevante para entender la pregunta
+      placeholder: |
+        - Estamos evaluando agregar 2FA para mejorar seguridad
+        - Actualmente usamos solo email/password con Supabase Auth
+        - Necesitamos mantener compatibilidad con flujo actual
+    validations:
+      required: true
+
+  - type: textarea
+    id: attempted
+    attributes:
+      label: 🔍 Soluciones Intentadas
+      description: Qué has intentado o investigado (si aplica)
+      placeholder: |
+        - Investigué Supabase Auth MFA (beta)
+        - Consideré usar authenticator apps (Google Authenticator)
+        - Revisé documentación de Next.js auth patterns
+    validations:
+      required: false
+
+  - type: textarea
+    id: options
+    attributes:
+      label: 💡 Opciones Consideradas
+      description: Diferentes enfoques o alternativas que estás evaluando
+      placeholder: |
+        **Opción 1:** Usar Supabase Auth MFA (beta)
+        - Pros: Integración nativa, menos código custom
+        - Contras: Still in beta, limited documentation
+
+        **Opción 2:** Implementar custom con TOTP
+        - Pros: Control total, stable libraries
+        - Contras: Más trabajo, más superficie de ataque
+    validations:
+      required: false
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: 🏷️ Categoría
+      options:
+        - 🏗️ Architecture / Design
+        - 🔒 Security
+        - ⚡ Performance
+        - 🌐 i18n / Localization
+        - 🎨 UI/UX
+        - 📊 Database / Data
+        - 🧪 Testing
+        - 🚀 Deployment
+        - 📚 Documentation
+        - 🔧 Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: references
+    attributes:
+      label: 📚 Referencias
+      description: Links relevantes, documentación, ejemplos
+      placeholder: |
+        - [Supabase MFA Docs](https://supabase.com/docs/guides/auth/auth-mfa)
+        - [OWASP MFA Guidelines](https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html)
+    validations:
+      required: false

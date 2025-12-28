@@ -1,0 +1,121 @@
+name: 🐛 Bug Report
+description: Report a bug or unexpected behavior
+title: "[BUG] "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Reporte de Bug
+        Describe un error o comportamiento inesperado en el sistema.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 📝 Descripción del Bug
+      description: Describe claramente qué está fallando
+      placeholder: |
+        El sistema muestra un error 500 al intentar crear un proyecto en el admin panel.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 🔄 Pasos para Reproducir
+      description: Lista los pasos exactos para reproducir el error
+      placeholder: |
+        1. Ir a `/admin/projects`
+        2. Hacer click en "Crear Proyecto"
+        3. Llenar el formulario con datos válidos
+        4. Hacer click en "Guardar"
+        5. Observar error 500
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: ✅ Comportamiento Esperado
+      description: Qué debería pasar
+      placeholder: |
+        El proyecto debería crearse exitosamente y aparecer en la lista.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: ❌ Comportamiento Actual
+      description: Qué está pasando realmente
+      placeholder: |
+        Se muestra un error 500 y no se crea el proyecto.
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: 🖥️ Entorno
+      description: Información del ambiente donde ocurre el bug
+      placeholder: |
+        - **Browser:** Chrome 120
+        - **OS:** macOS 14.2
+        - **Environment:** Production / Development
+        - **URL:** https://alkitu.com/admin/projects
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 📋 Logs / Errores
+      description: Copia cualquier mensaje de error de la consola o logs del servidor
+      placeholder: |
+        ```
+        Error: Failed to insert project
+        at /api/admin/projects/route.ts:45
+        ```
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: 📸 Screenshots
+      description: Capturas de pantalla del error (si aplica)
+      placeholder: |
+        ![Screenshot](url)
+    validations:
+      required: false
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: 🎯 Severidad
+      options:
+        - 🔴 Critical - Sistema inoperable
+        - 🟠 High - Funcionalidad principal afectada
+        - 🟡 Medium - Funcionalidad secundaria afectada
+        - 🟢 Low - Problema cosmético o menor
+    validations:
+      required: true
+
+  - type: textarea
+    id: technical-context
+    attributes:
+      label: 🔧 Contexto Técnico
+      description: Información técnica adicional que pueda ayudar
+      placeholder: |
+        **Posible causa:**
+        - Validación de Zod fallando
+
+        **Archivos relacionados:**
+        - `app/api/admin/projects/route.ts`
+        - `lib/validations/project.ts`
+
+        **Impacto:**
+        - Usuarios no pueden crear proyectos
+        - Bloquea workflow de administración
+    validations:
+      required: false

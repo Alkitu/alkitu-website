@@ -1,0 +1,139 @@
+name: ⚡ Enhancement
+description: Improve existing functionality or feature
+title: "[ENHANCEMENT] "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Mejora de Funcionalidad Existente
+        Propone una mejora o optimización a una feature que ya existe.
+
+  - type: textarea
+    id: current-state
+    attributes:
+      label: 📌 Estado Actual
+      description: Cómo funciona la feature actualmente
+      placeholder: |
+        El filtro de categorías en la página de proyectos muestra todas las categorías en una lista horizontal que se desborda en móvil.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-improvement
+    attributes:
+      label: ✨ Mejora Propuesta
+      description: Qué quieres mejorar y cómo
+      placeholder: |
+        **Propuesta:**
+        Convertir el filtro en un dropdown/select en móvil y mantener lista horizontal en desktop.
+
+        **Beneficios:**
+        - Mejor UX en móvil
+        - Menos scroll horizontal
+        - Más espacio para contenido
+    validations:
+      required: true
+
+  - type: textarea
+    id: user-value
+    attributes:
+      label: 🎯 Valor para el Usuario
+      description: Cómo impacta esta mejora a los usuarios
+      placeholder: |
+        - Usuarios móviles (60% del tráfico) tendrán mejor experiencia
+        - Reducción de friction en navegación
+        - Mejor accessibility (keyboard navigation)
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: ✅ Criterios de Aceptación
+      description: Qué debe cumplir la mejora
+      placeholder: |
+        - [ ] En móvil (<768px) muestra dropdown
+        - [ ] En desktop (≥768px) mantiene lista horizontal
+        - [ ] Funcionalidad de filtrado se mantiene igual
+        - [ ] Animaciones smooth en transición
+        - [ ] Tests actualizados
+    validations:
+      required: true
+
+  - type: textarea
+    id: technical-approach
+    attributes:
+      label: 🔧 Enfoque Técnico
+      description: Cómo implementarías esta mejora
+      placeholder: |
+        **Archivos a modificar:**
+        - `app/components/organisms/filter-categories/FilterCategories.tsx`
+        - `app/components/molecules/category-select/CategorySelect.tsx` (new)
+
+        **Approach:**
+        1. Crear componente CategorySelect
+        2. Usar media queries o useMediaQuery hook
+        3. Renderizar condicionalmente basado en viewport
+        4. Mantener estado de filtro compartido
+
+        **Consideraciones:**
+        - Mantener misma API props
+        - SSR compatible
+        - Accesibilidad (ARIA labels)
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 🎯 Prioridad
+      options:
+        - 🔴 Critical (P0)
+        - 🟠 High (P1)
+        - 🟡 Medium (P2)
+        - 🟢 Low (P3)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: enhancement-type
+    attributes:
+      label: 🏷️ Tipo de Mejora
+      options:
+        - 🎨 UI/UX Improvement
+        - ⚡ Performance Optimization
+        - ♿ Accessibility Enhancement
+        - 📱 Mobile Experience
+        - 🔒 Security Hardening
+        - 🌐 i18n/Localization
+        - 🧹 Code Quality
+      multiple: false
+    validations:
+      required: true
+
+  - type: textarea
+    id: mockups
+    attributes:
+      label: 🎨 Diseño/Mockups
+      description: Wireframes, screenshots, o descripción visual
+      placeholder: |
+        **Mobile:**
+        [Mockup dropdown]
+
+        **Desktop:**
+        [Mantener diseño actual]
+    validations:
+      required: false
+
+  - type: textarea
+    id: metrics
+    attributes:
+      label: 📊 Métricas de Éxito
+      description: Cómo medir el impacto de la mejora
+      placeholder: |
+        - Reducción de bounce rate en móvil
+        - Aumento de clicks en filtros
+        - Mejora en Core Web Vitals (CLS)
+    validations:
+      required: false

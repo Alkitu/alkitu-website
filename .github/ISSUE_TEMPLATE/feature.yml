@@ -1,0 +1,94 @@
+name: 🚀 Feature Request
+description: Propose a new feature or enhancement
+title: "[FEATURE] "
+labels: ["feature", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Nueva Funcionalidad
+        Propone una nueva feature con contexto de producto y especificaciones técnicas.
+
+  - type: textarea
+    id: user-story
+    attributes:
+      label: 📖 User Story
+      description: Historia de usuario en formato Gherkin
+      placeholder: |
+        **Como** [rol de usuario]
+        **Quiero** [objetivo]
+        **Para** [beneficio/valor]
+
+        **Escenario:** [Título del escenario]
+        **Dado que** [contexto inicial]
+        **Cuando** [acción del usuario]
+        **Entonces** [resultado esperado]
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: 🎯 Contexto de Producto
+      description: Por qué es importante esta feature
+      placeholder: |
+        - Problema que resuelve
+        - Impacto esperado (métricas, usuarios afectados)
+        - Prioridad de negocio
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: ✅ Criterios de Aceptación
+      description: Qué debe cumplir la feature para considerarse completa
+      placeholder: |
+        - [ ] Criterio 1
+        - [ ] Criterio 2
+        - [ ] Tests implementados
+        - [ ] Documentación actualizada
+    validations:
+      required: true
+
+  - type: textarea
+    id: technical-specs
+    attributes:
+      label: 🔧 Especificaciones Técnicas
+      description: Implementación técnica sugerida
+      placeholder: |
+        **Archivos a modificar:**
+        - `app/...`
+
+        **Nuevas dependencias:**
+        - None / [paquete]
+
+        **Consideraciones:**
+        - i18n: Sí/No
+        - Analytics: Sí/No
+        - Database changes: Sí/No
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 🎯 Prioridad
+      options:
+        - 🔴 Critical (P0)
+        - 🟠 High (P1)
+        - 🟡 Medium (P2)
+        - 🟢 Low (P3)
+    validations:
+      required: true
+
+  - type: textarea
+    id: mockups
+    attributes:
+      label: 🎨 Diseño/Mockups
+      description: Links a Figma, screenshots, o descripción visual
+      placeholder: |
+        [Link a Figma]
+        ![Screenshot](url)
+    validations:
+      required: false
