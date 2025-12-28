@@ -31,9 +31,9 @@ function PassionPictureTriangle({
           WebkitClipPath: "url(#my-clip-path)",
           clipPath: "url(#my-clip-path)",
         }}
-        className="w-full h-full  bg-linear-to-b from-primary to-green-800 flex items-center align-middle justify-center aspect-square z-40"
+        className=" w-full h-full  bg-linear-to-b from-primary to-green-800 flex items-center align-middle justify-center aspect-square z-40"
       />
-      <div className="w-full h-full max-w-full max-h-full aspect-square mx-auto absolute -top-10 object-contain left-[2vw]">
+      <div className="pointer-events-none w-full h-full max-w-full max-h-full aspect-square mx-auto absolute -top-10 object-contain left-[2vw]">
         <Image
           fill
           src={headPicture}
@@ -43,7 +43,7 @@ function PassionPictureTriangle({
         />
         <Link href={"https://alkitu.com/gousty"} target="_blank">
           <button
-            className=" flex justify-center items-center px-[4vw] py-[1vw] lg:px-[2vw] lg:py-[0.5vw] absolute -bottom-10 bg-primary rounded-[33px] left-1/2 -translate-x-1/2 border-[1.5vw] md:border-[1vw] lg:border-[0.75vw] !border-black uppercase font-black self-center text-center md:self-start md:text-start text-[6vw] md:text-[2.8vw] lg:text-[2.5vw] whitespace-nowrap text-black hover:scale-110 hover:shadow-[0px_0px_25px_5px_rgba(0,187,49,0.8)] transition-all duration-300"
+            className="pointer-events-auto flex justify-center items-center px-[4vw] py-[1vw] lg:px-[2vw] lg:py-[0.5vw] absolute -bottom-10 bg-primary rounded-[33px] left-1/2 -translate-x-1/2 border-[1.5vw] md:border-[1vw] lg:border-[0.75vw] !border-black uppercase font-black self-center text-center md:self-start md:text-start text-[6vw] md:text-[2.8vw] lg:text-[2.5vw] whitespace-nowrap text-black hover:scale-110 hover:shadow-[0px_0px_25px_5px_rgba(0,187,49,0.8)] transition-all duration-300"
           >
             Play Game
           </button>

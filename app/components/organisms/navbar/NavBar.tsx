@@ -8,8 +8,6 @@ import { useTranslationContext } from "@/app/context/TranslationContext";
 import Link from "next/link.js";
 import { SelectLanguage } from "@/app/components/molecules/select-language";
 import { BackdropLeftToRight } from "@/app/components/molecules/backdrop";
-import { ContactModalButton } from "@/app/components/molecules/contact-button";
-import { ModalContact } from "@/app/components/molecules/modal";
 import { usePathname } from "next/navigation";
 import { ThemeToggleButton } from "@/app/components/molecules/theme-toggle";
 import { AlkituLogo } from "@/app/components/atoms/alkitu-logo";
@@ -46,9 +44,6 @@ export default function NavBar() {
   const { translations, locale } = useTranslationContext();
   const [isOpen, toggleOpen] = useCycle(false, true);
   const containerRef = useRef(null);
-  const [modalOpenNavbar, setModalOpenNavbar] = useState(false);
-  const close = () => setModalOpenNavbar(false);
-  const open = () => setModalOpenNavbar(true);
   const routes = translations?.menu?.routes || [];
   const currentPathname = usePathname();
 
@@ -127,12 +122,6 @@ export default function NavBar() {
                       </Link>
                     </div>
                   ))}
-                  <div className='flex justify-center items-center px-4'>
-                    <ContactModalButton
-                      className='text-center text-primary bg-primary text-base font-bold !border-primary justify-center items-center gap-2.5 inline-flex'
-                      setModalOpenNavbar={setModalOpenNavbar}
-                    />
-                  </div>
                   <div className='flex justify-center items-center px-2'>
                     <ThemeToggleButton />
                   </div>
@@ -146,11 +135,7 @@ export default function NavBar() {
                   ref={containerRef}
                   className='lg:hidden h-20'
                 >
-                  <AnimatePresence
-                    initial={false}
-                    mode='wait'
-                    onExitComplete={() => modalOpenNavbar && open()}
-                  >
+                  <AnimatePresence initial={false} mode='wait'>
                     {isOpen && (
                       <BackdropLeftToRight onClick={() => toggleOpen()}>
                         <motion.div
@@ -165,21 +150,10 @@ export default function NavBar() {
                           layoutId='sidebar'
                           onClick={(e) => e.stopPropagation()}
                         >
-                          <MainMenu
-                            isOpen={isOpen}
-                            setModalOpenNavbar={setModalOpenNavbar}
-                            toggleOpen={toggleOpen}
-                          />
+                          <MainMenu isOpen={isOpen} toggleOpen={toggleOpen} />
                         </motion.div>
                       </BackdropLeftToRight>
                     )}
-                  </AnimatePresence>
-                  <AnimatePresence
-                    initial={false}
-                    mode='wait'
-                    onExitComplete={() => modalOpenNavbar && open()}
-                  >
-                    {modalOpenNavbar && <ModalContact handleClose={close} />}
                   </AnimatePresence>
                   <ToggleMenu isOpen={isOpen} toggle={() => toggleOpen()} />
                 </motion.nav>
@@ -188,10 +162,6 @@ export default function NavBar() {
           </TailwindGrid>
         </motion.nav>
       )}
-      {/* Modal de contacto para desktop y mobile */}
-      <AnimatePresence initial={false} mode='wait'>
-        {modalOpenNavbar && <ModalContact handleClose={close} />}
-      </AnimatePresence>
     </AnimatePresence>
   );
 }

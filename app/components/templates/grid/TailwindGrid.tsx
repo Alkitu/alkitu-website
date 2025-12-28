@@ -3,6 +3,7 @@ type TailwindGridProps = {
   show?: boolean;
   fullSize?: boolean;
   className?: string;
+  alignItems?: 'start' | 'center' | 'end' | 'stretch';
 };
 
 function TailwindGrid({
@@ -10,6 +11,7 @@ function TailwindGrid({
   show,
   className,
   fullSize,
+  alignItems = 'center',
 }: TailwindGridProps) {
   const color = className;
 
@@ -112,7 +114,7 @@ function TailwindGrid({
       <section
         className={` ${
           !fullSize && "px-4 md:px-6 lg:px-8"
-        } min-w-[360px] w-full   gap-4 grid-cols-4  md:gap-6 md:grid-cols-8 lg:gap-6  lg:grid-cols-12 grid relative  items-center justify-center`}
+        } min-w-[360px] w-full   gap-4 grid-cols-4  md:gap-6 md:grid-cols-8 lg:gap-6  lg:grid-cols-12 grid relative  items-${alignItems} justify-center`}
       >
         {children}
       </section>

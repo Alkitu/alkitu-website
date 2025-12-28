@@ -88,7 +88,7 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
         }
       }}
       style={{ willChange: "height" }}
-      className="items-center justify-center text-center bg-card dark:bg-zinc-900 rounded-xl shadow flex flex-col gap-y-2 mx-auto px-[8%] py-[5%]"
+      className="items-center justify-center text-center bg-zinc-50 dark:bg-zinc-900 rounded-xl shadow flex flex-col gap-y-2 mx-auto px-[8%] py-[5%]"
     >
       {container.url && (
         <Link

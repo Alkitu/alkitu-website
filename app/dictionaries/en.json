@@ -10,6 +10,12 @@
         "iconDark": "/icons/navbar/Home-dark.svg"
       },
       {
+        "name": "About",
+        "pathname": "/about",
+        "iconLight": "/icons/navbar/About-light.svg",
+        "iconDark": "/icons/navbar/About-dark.svg"
+      },
+      {
         "name": "Projects",
         "pathname": "/projects",
         "iconLight": "/icons/navbar/Folder-light.svg",
@@ -20,6 +26,12 @@
         "pathname": "/blog",
         "iconLight": "/icons/navbar/Blog-light.svg",
         "iconDark": "/icons/navbar/Blog-dark.svg"
+      },
+      {
+        "name": "Contact",
+        "pathname": "/contact",
+        "iconLight": "/icons/navbar/Contact-light.svg",
+        "iconDark": "/icons/navbar/Contact-dark.svg"
       }
     ],
     "contact": "Contact Us",
@@ -1107,7 +1119,50 @@
     },
     "emailAddressParagraph": "Or send me an email:",
     "email": "luiseum95@gmail.com",
-    "copied": "Copyed 😎!"
+    "copied": "Copied 😎!",
+    "hero": {
+      "title": "Let's Work",
+      "titlePrimary": "Together",
+      "subtitle": "Whether you have a project in mind or just want to say hello, I'd love to hear from you.",
+      "textScroller": "CONTACT · CONTACTO · CONNECT · REACH OUT · "
+    },
+    "form": {
+      "nameLabel": "Your Name",
+      "namePlaceholder": "John Doe",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "john@example.com",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "Project Inquiry",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Tell me about your project...",
+      "submitButton": "Send Message",
+      "submittingButton": "Sending...",
+      "successMessage": "Message sent successfully!",
+      "successSubtext": "I'll get back to you soon.",
+      "errors": {
+        "nameRequired": "Name is required",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email",
+        "subjectRequired": "Subject is required",
+        "messageRequired": "Message is required",
+        "messageMinLength": "Message must be at least 10 characters"
+      }
+    },
+    "info": {
+      "email": "Email",
+      "linkedin": "LinkedIn",
+      "twitter": "Twitter",
+      "github": "GitHub",
+      "availabilityTitle": "Available for work",
+      "availabilityText": "I'm currently accepting new projects and collaborations.",
+      "responseTimeTitle": "24h",
+      "responseTimeText": "Average response time"
+    },
+    "success": {
+      "title": "Thanks",
+      "message": "Your message has been successfully sent. I'll get back to you within 24 hours.",
+      "closeButton": "Close"
+    }
   },
   "blog": {
     "title": "BLOG",

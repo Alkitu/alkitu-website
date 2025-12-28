@@ -57,7 +57,14 @@ export default function AboutPrinciples({ dictionary }: AboutPrinciplesProps) {
                              <h3 className="text-4xl font-bold mb-6 text-zinc-900 dark:text-white">{item.title}</h3>
                              
                              {/* Underline */}
-                             <div className="w-24 h-1 bg-green-500 mb-8 rounded-full" />
+                             {/* Underline */}
+                             <motion.div 
+                               initial={{ width: 0 }}
+                               whileInView={{ width: 96 }} // w-24 = 96px
+                               viewport={{ once: true }}
+                               transition={{ duration: 0.8, ease: "easeOut" }}
+                               className="h-1 bg-green-500 mb-8 rounded-full" 
+                             />
 
                              <p className="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
                                  {item.description}
@@ -113,7 +120,14 @@ export default function AboutPrinciples({ dictionary }: AboutPrinciplesProps) {
                             <h3 className="text-xl font-bold mb-2">{item.title}</h3>
                             
                             {/* Green Separator Line */}
-                            <div className="w-16 h-1 bg-green-500 mb-4 rounded-full" />
+                            {/* Green Separator Line */}
+                            <motion.div 
+                               initial={{ width: 0 }}
+                               whileInView={{ width: 64 }} // w-16 = 64px
+                               viewport={{ once: true }}
+                               transition={{ duration: 0.8, ease: "easeOut" }}
+                               className="h-1 bg-green-500 mb-4 rounded-full" 
+                            />
 
                             {/* Description */}
                             <p className="text-sm text-gray-300 leading-relaxed font-light">

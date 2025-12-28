@@ -8,11 +8,15 @@ import { Translations } from "@/app/types/translations";
 
 interface ModalContactProps {
   handleClose: () => void;
+  variant?: 'form' | 'success';
+  senderName?: string;
 }
 
 interface ModalContentProps {
   text: Translations;
   handleClose: () => void;
+  variant?: 'form' | 'success';
+  senderName?: string;
 }
 
 const dropIn: Variants = {
@@ -34,7 +38,7 @@ const dropIn: Variants = {
   },
 };
 
-export default function ModalContact({ handleClose }: ModalContactProps) {
+export default function ModalContact({ handleClose, variant = 'form', senderName }: ModalContactProps) {
   const { translations } = useTranslationContext();
 
   return (
@@ -48,13 +52,13 @@ export default function ModalContact({ handleClose }: ModalContactProps) {
         onClick={(event) => event.stopPropagation()}
         key='modal'
       >
-        <ModalContent text={translations} handleClose={handleClose} />
+        <ModalContent text={translations} handleClose={handleClose} variant={variant} senderName={senderName} />
       </motion.div>
     </BackdropUpToDown>
   );
 }
 
-function ModalContent({ text, handleClose }: ModalContentProps) {
+function ModalContent({ text, handleClose, variant = 'form', senderName }: ModalContentProps) {
   const [copied, setCopied] = useState(false);
   const close = () => setCopied(false);
   const open = () => setCopied(true);
@@ -71,6 +75,43 @@ function ModalContent({ text, handleClose }: ModalContentProps) {
     }
   };
 
+  // Success variant
+  if (variant === 'success') {
+    return (
+      <div className='w-full rounded-xl py-8'>
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          className="text-center"
+        >
+          <div className="w-20 h-20 mx-auto mb-6 rounded-full 
+                          bg-primary/20 flex items-center justify-center">
+            <span className="text-5xl">✓</span>
+          </div>
+          <h2 className="text-3xl font-black mb-4 text-foreground">
+            {text?.contact?.success?.title || 'Thanks'},{' '}
+            <span className="text-primary">{senderName}</span>!
+          </h2>
+          <p className="text-muted-foreground mb-8">
+            {text?.contact?.success?.message || 
+              "Your message has been successfully sent. I'll get back to you within 24 hours."}
+          </p>
+          <motion.button
+            onClick={handleClose}
+            className="bg-primary text-zinc-950 border border-primary hover:shadow-primary/50 hover:shadow-md
+                       h-12 px-4 inline-flex items-center justify-center gap-2 font-bold uppercase rounded-md 
+                       transition-all cursor-pointer hover:scale-105 active:scale-95"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {text?.contact?.success?.closeButton || 'Close'}
+          </motion.button>
+        </motion.div>
+      </div>
+    );
+  }
+
+  // Form variant (original content)
   return (
     <div className='w-full rounded-xl'>
       {/* MODAL HEADER */}

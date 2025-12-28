@@ -10,6 +10,12 @@
         "iconDark": "/icons/navbar/Home-dark.svg"
       },
       {
+        "name": "Acerca de",
+        "pathname": "/about",
+        "iconLight": "/icons/navbar/About-light.svg",
+        "iconDark": "/icons/navbar/About-dark.svg"
+      },
+      {
         "name": "Proyectos",
         "pathname": "/projects",
         "iconLight": "/icons/navbar/Folder-light.svg",
@@ -20,6 +26,12 @@
         "pathname": "/blog",
         "iconLight": "/icons/navbar/Blog-light.svg",
         "iconDark": "/icons/navbar/Blog-dark.svg"
+      },
+      {
+        "name": "Contacto",
+        "pathname": "/contact",
+        "iconLight": "/icons/navbar/Contact-light.svg",
+        "iconDark": "/icons/navbar/Contact-dark.svg"
       }
     ],
     "contact": "Contactanos",

@@ -4,7 +4,6 @@ import { AnimatePresence, motion, Variants } from "framer-motion";
 import { useTranslationContext } from "@/app/context/TranslationContext";
 import { useTheme } from "@/app/context/ThemeContext";
 import Link from "next/link.js";
-import { ContactModalButton } from "@/app/components/molecules/contact-button";
 import { LanguagesSwitch } from "@/app/components/molecules/switch";
 import { usePathname } from "next/navigation";
 import { ThemeToggleButton } from "@/app/components/molecules/theme-toggle";
@@ -20,7 +19,6 @@ interface Route {
 interface MainMenuProps {
   isOpen: boolean;
   toggleOpen: () => void;
-  setModalOpenNavbar: (value: boolean) => void;
 }
 
 const getRouteIcon = (pathname: string): ReactNode => {
@@ -28,6 +26,12 @@ const getRouteIcon = (pathname: string): ReactNode => {
     '/': (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path d="M3.33325 17.5V7.5L9.99992 2.5L16.6666 7.5V17.5H11.6666V11.6667H8.33325V17.5H3.33325Z" />
+      </svg>
+    ),
+    '/about': (
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="10" cy="6" r="3"/>
+        <path d="M5 17.5C5 14.1863 7.68629 11.5 11 11.5H9C12.3137 11.5 15 14.1863 15 17.5H5Z"/>
       </svg>
     ),
     '/projects': (
@@ -39,13 +43,19 @@ const getRouteIcon = (pathname: string): ReactNode => {
       <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 2C2.89543 2 2 2.89543 2 4V16C2 17.1046 2.89543 18 4 18H16C17.1046 18 18 17.1046 18 16V4C18 2.89543 17.1046 2 16 2H4ZM5 6H15V8H5V6ZM5 10H15V12H5V10ZM5 14H11V16H5V14Z"/>
       </svg>
+    ),
+    '/contact': (
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2.5 5.83333C2.5 5.1701 3.03976 4.63034 3.70299 4.63034H16.297C16.9602 4.63034 17.5 5.1701 17.5 5.83333V14.1667C17.5 14.8299 16.9602 15.3697 16.297 15.3697H3.70299C3.03976 15.3697 2.5 14.8299 2.5 14.1667V5.83333Z"/>
+        <path d="M2.5 5.83333L10 10.8333L17.5 5.83333" stroke="white" strokeWidth="1.2"/>
+      </svg>
     )
   };
 
-  return icons[pathname] || icons['/projects'];
+  return icons[pathname] || icons['/'];
 };
 
-export default function MainMenu({ isOpen, toggleOpen, setModalOpenNavbar }: MainMenuProps) {
+export default function MainMenu({ isOpen, toggleOpen }: MainMenuProps) {
   const { translations, locale } = useTranslationContext();
   const { resolvedTheme } = useTheme();
   const ref = useRef(null);
@@ -162,12 +172,6 @@ export default function MainMenu({ isOpen, toggleOpen, setModalOpenNavbar }: Mai
                     <ThemeToggleButton />
                   </div>
                 </div>
-              </div>
-              <div className='h-full flex pb-10' onClick={toggleOpen}>
-                <ContactModalButton
-                  setModalOpenNavbar={setModalOpenNavbar}
-                  className='text-center px-7 self-end border border-primary justify-center items-center gap-2.5 inline-flex hover:shadow-primary/50 hover:shadow-md w-full rounded-3xl bg-primary col-span-10 uppercase text-zinc-900 tracking-wider font-extrabold text-lg py-3'
-                />
               </div>
             </div>
           </div>

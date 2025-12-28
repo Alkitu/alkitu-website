@@ -55,7 +55,13 @@ export default function AboutOrigin({ dictionary }: AboutOriginProps) {
                     >
                         <h2 className="text-3xl md:text-5xl font-bold leading-tight relative inline-block">
                             {title}
-                            <div className="absolute -bottom-2 left-0 w-1/3 h-1 bg-primary rounded-full" />
+                            <motion.div 
+                                initial={{ width: 0 }}
+                                whileInView={{ width: "33%" }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8, ease: "easeOut" }}
+                                className="absolute -bottom-2 left-0 h-1 bg-primary rounded-full" 
+                            />
                         </h2>
                         <div className="space-y-6 text-lg text-zinc-300 font-light leading-relaxed text-justify">
                             <p>{p1}</p>

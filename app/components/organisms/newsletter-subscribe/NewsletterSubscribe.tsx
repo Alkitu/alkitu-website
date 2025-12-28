@@ -83,13 +83,20 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          {/* Title */}
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-4 uppercase tracking-wide">
-            {t.title}
-          </h2>
+          <div className="flex flex-col items-center gap-2 mb-6">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white uppercase tracking-wide">
+              {t.title}
+            </h2>
 
-          {/* Green line */}
-          <div className="w-full h-px bg-primary mb-6" />
+            {/* Green line */}
+            <motion.div 
+              initial={{ width: 0 }}
+              whileInView={{ width: "100%" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="w-full h-1 bg-primary rounded-full" 
+            />
+          </div>
 
           {/* Subtitle */}
           <p className="text-white text-sm md:text-base mb-8 uppercase tracking-wider">
@@ -107,6 +114,7 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
                 placeholder={t.placeholder}
                 className="w-full md:w-96 px-4 py-3 bg-white text-black rounded focus:outline-none focus:ring-2 focus:ring-primary"
                 required
+                suppressHydrationWarning
               />
 
               {/* Submit Button */}
@@ -127,6 +135,7 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
                 checked={accepted}
                 onChange={(e) => setAccepted(e.target.checked)}
                 className="w-4 h-4 accent-primary cursor-pointer"
+                suppressHydrationWarning
               />
               <label htmlFor="privacy-policy" className="cursor-pointer">
                 {t.privacy}{' '}
