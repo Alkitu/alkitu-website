@@ -20,7 +20,7 @@ function CategoryTitleChanger({ name, subtitle }) {
 
   return (
     <h2
-      className="xl:text-[3.vw] 2xl:text-[3vw] text-start text-[7vw] leading-[8vw] md:text-[4.8vw] md:leading-[4.8vw] lg:text-[3vw] lg:leading-[3vw] font-black"
+      className="header-section text-start"
       key={name}
     >
       {subtitle}

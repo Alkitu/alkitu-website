@@ -52,11 +52,10 @@ export default function AboutPrinciples({ dictionary }: AboutPrinciplesProps) {
                             className="bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 p-10 shadow-xl flex flex-col items-center text-center relative overflow-hidden group"
                          >
                              {/* Top Green Line */}
-                             <div className="w-full h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent absolute top-0 left-0 opacity-50 group-hover:opacity-100 transition-opacity" />
+                             <div className="w-full h-1 bg-linear-to-r from-transparent via-green-500 to-transparent absolute top-0 left-0 opacity-50 group-hover:opacity-100 transition-opacity" />
 
-                             <h3 className="text-4xl font-bold mb-6 text-zinc-900 dark:text-white">{item.title}</h3>
+                             <h3 className="header-section mb-6 text-zinc-900 dark:text-white">{item.title}</h3>
                              
-                             {/* Underline */}
                              {/* Underline */}
                              <motion.div 
                                initial={{ width: 0 }}
@@ -66,7 +65,7 @@ export default function AboutPrinciples({ dictionary }: AboutPrinciplesProps) {
                                className="h-1 bg-green-500 mb-8 rounded-full" 
                              />
 
-                             <p className="text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                             <p className="text-body-default text-zinc-600 dark:text-zinc-300 leading-relaxed">
                                  {item.description}
                              </p>
                          </motion.div>
@@ -92,7 +91,7 @@ export default function AboutPrinciples({ dictionary }: AboutPrinciplesProps) {
                     className="text-center mb-16"
                 >
                     <div className="inline-block bg-white px-8 py-3 transform -skew-x-12 mb-8">
-                         <h2 className="text-2xl md:text-3xl font-bold text-black uppercase tracking-widest transform skew-x-12">
+                         <h2 className="header-section text-black uppercase tracking-widest transform skew-x-12">
                             {title}
                          </h2>
                     </div>
@@ -117,7 +116,7 @@ export default function AboutPrinciples({ dictionary }: AboutPrinciplesProps) {
                             </div>
 
                             {/* Title */}
-                            <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                            <h3 className="header-tertiary mb-2 text-white">{item.title}</h3>
                             
                             {/* Green Separator Line */}
                             {/* Green Separator Line */}
@@ -130,7 +129,7 @@ export default function AboutPrinciples({ dictionary }: AboutPrinciplesProps) {
                             />
 
                             {/* Description */}
-                            <p className="text-sm text-gray-300 leading-relaxed font-light">
+                            <p className="text-body-inverse text-gray-300 leading-relaxed">
                                 {item.description}
                             </p>
                         </motion.div>

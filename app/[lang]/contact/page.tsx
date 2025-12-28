@@ -11,6 +11,7 @@ import type { ContactFormData } from '@/app/components/molecules/contact-form';
 import { StickyInteractiveImage } from '@/app/components/atoms/sticky-image';
 import { CommunityBanner } from '@/app/components/molecules/community-banner';
 import NewsletterSubscribe from '@/app/components/organisms/newsletter-subscribe/NewsletterSubscribe';
+import { PageHeader } from '@/app/components/organisms/page-header';
 
 export default function Contact() {
   const { translations, locale } = useTranslationContext();
@@ -53,44 +54,22 @@ export default function Contact() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8 }}
-          className="col-span-full w-full pt-20 md:pt-24 lg:pt-32"
+          className="col-span-full w-full"
         >
           {/* Header Section */}
-          <section id="contact-hero" className="w-full text-center pb-12 md:pb-20 px-4">
-             <div className="flex flex-col items-center gap-2 mb-6">
-               <motion.h1 
-                 initial={{ opacity: 0, y: 30 }}
-                 animate={{ opacity: 1, y: 0 }}
-                 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase text-foreground text-center"
-               >
-                 CONTACTO <span className="text-primary">ALKITU</span>
-               </motion.h1>
-               <motion.div
-                 initial={{ width: 0 }}
-                 animate={{ width: "100%" }}
-                 transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-                 className="w-full max-w-sm md:max-w-md h-1 bg-primary rounded-full"
-               />
-             </div>
-             <motion.p 
-               initial={{ opacity: 0 }}
-               animate={{ opacity: 1 }}
-               transition={{ delay: 0.5 }}
-               className="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-muted-foreground mb-6"
-             >
-               MÁS QUE UN ESTUDIO Y UNA AGENCIA, SOMOS UNA COMUNIDAD
-             </motion.p>
-             <motion.p 
-               initial={{ opacity: 0 }}
-               animate={{ opacity: 1 }}
-               transition={{ delay: 0.6 }}
-               className="max-w-3xl mx-auto text-sm md:text-base text-foreground/80 leading-relaxed px-4"
-             >
-               Todas las comunidades necesitan comunicarse e interactuar constantemente. En Alkitu queremos escucharte, conocer tus comentarios y apoyar tus proyectos.
-               <br /><br />
-               ¡Así que no lo pienses más, escríbenos o mejor aún, únete al mundo Alkitu!
-             </motion.p>
-          </section>
+          <div id="contact-hero"className='mb-12' >
+            <PageHeader
+              title="CONTACTO"
+              subtitle="MÁS QUE UN ESTUDIO Y UNA AGENCIA, SOMOS UNA COMUNIDAD"
+              text={
+                <>
+                  Todas las comunidades necesitan comunicarse e interactuar constantemente. En Alkitu queremos escucharte, conocer tus comentarios y apoyar tus proyectos.
+                  <br /><br />
+                  ¡Así que no lo pienses más, escríbenos o mejor aún, únete al mundo Alkitu!
+                </>
+              }
+            />
+          </div>
   
           {/* Main Form Section with Sticky Image */}
           <section id="contact-form" className="relative w-full bg-black py-12 md:py-20">
@@ -98,7 +77,7 @@ export default function Contact() {
               {/* Left: Contact Form */}
               <div className="col-start-1 col-end-5 md:col-start-1 md:col-end-9 lg:col-start-2 lg:col-end-7 z-10 mb-12 lg:mb-0">
                  <div className="bg-white dark:bg-zinc-900 p-6 md:p-8 lg:p-12 rounded-2xl shadow-xl border border-border/50">
-                   <h3 className="text-2xl font-bold text-black dark:text-white mb-2 text-center lg:text-left">Déjanos tu mensaje:</h3>
+                   <h3 className="header-tertiary text-black dark:text-white mb-2 text-center lg:text-left leading-tight">Déjanos tu mensaje:</h3>
                    <motion.div 
                      initial={{ width: 0 }}
                      whileInView={{ width: 96 }} // w-24 = 96px

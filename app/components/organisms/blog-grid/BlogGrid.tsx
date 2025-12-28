@@ -52,7 +52,7 @@ export default function BlogGrid({ posts, locale, categoryTitle, columns = 4 }: 
       {categoryTitle && (
         <div className="mb-8">
           <p className="text-sm text-muted-foreground mb-2">El Proyecto digital</p>
-          <h2 className="text-2xl lg:text-3xl font-black text-foreground">
+          <h2 className="header-section text-foreground">
             {categoryTitle}
           </h2>
         </div>
@@ -97,7 +97,7 @@ export default function BlogGrid({ posts, locale, categoryTitle, columns = 4 }: 
                   <span className="text-xs text-muted-foreground">{post.readTime}</span>
                 </div>
 
-                <h3 className="text-base lg:text-lg font-bold text-foreground group-hover:text-primary mb-2 line-clamp-2">
+                <h3 className="header-tertiary text-foreground group-hover:text-primary mb-2 line-clamp-2">
                   {post.title}
                 </h3>
 

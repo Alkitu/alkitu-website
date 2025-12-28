@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import TailwindGrid from "@/app/components/templates/grid/TailwindGrid";
+import { PageHeader } from "../page-header";
 
 type AboutHeroProps = {
   dictionary: any;
@@ -23,16 +24,18 @@ export default function AboutHero({ dictionary }: AboutHeroProps) {
            transition={{ duration: 0.6 }}
            className="flex-1 text-center lg:text-left"
         >
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] mb-4 text-zinc-500">Agencia Digital en España</p>
-          <h1 className="text-5xl md:text-7xl font-bold mb-8 text-zinc-900 dark:text-white tracking-tight">
-             Alk<span className="text-primary">i</span>tu
-          </h1>
-           
-          <div className="mb-12">
-             <p className="text-lg md:text-xl text-zinc-600 dark:text-zinc-300 leading-relaxed font-medium">
-                {text}
-             </p>
-          </div>
+          <PageHeader
+            title={
+              <>
+                ¡HOLA, SOMOS <span className="text-primary">ALKITU!</span>
+              </>
+            }
+            subtitle="Agencia Digital en España"
+            text={text}
+            align="left"
+            disableGridWrapper
+            className="mb-12"
+          />
 
            {/* Founders Section - Updated styling */}
            <div className="flex flex-row gap-8 justify-center lg:justify-start items-center">
@@ -48,7 +51,7 @@ export default function AboutHero({ dictionary }: AboutHeroProps) {
                            className="object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                      </div>
-                     <h3 className="text-lg font-bold text-zinc-900 dark:text-white">{founder.name}</h3>
+                     <h3 className="header-tertiary text-zinc-900 dark:text-white">{founder.name}</h3>
                      <p className="text-sm text-primary font-medium uppercase tracking-wide">{founder.role}</p>
                   </div>
               ))}
@@ -62,7 +65,7 @@ export default function AboutHero({ dictionary }: AboutHeroProps) {
             transition={{ delay: 0.2, duration: 0.6 }}
             className="flex-1 w-full"
         >
-            <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-zinc-100 dark:border-zinc-800">
+            <div className="relative w-full aspect-4/3 rounded-2xl overflow-hidden shadow-2xl border border-zinc-100 dark:border-zinc-800">
                 <Image 
                     src="/images/about/Alkitu-Fundadores-Trabajando.webp" 
                     alt="Fundadores Alkitu Trabajando" 

@@ -174,3 +174,44 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  /* Body Text */
+  .text-body-default {
+    @apply font-medium md:text-[1.2vw] lg:text-[1.1vw] 2xl:text-[0.8vw];
+  }
+
+  .text-body-inverse {
+    @apply font-medium md:text-[1.2vw] lg:text-[1.1vw] 2xl:text-[0.9vw];
+  }
+
+  /* Headers */
+  .header-hero {
+    @apply font-black tracking-tight text-[10vw] md:text-[6.5vw] lg:text-[5.5vw] leading-none;
+  }
+
+  .header-section {
+    @apply font-black text-[7vw] leading-[8vw] md:text-[4.8vw] md:leading-[4.8vw] lg:text-[3vw] lg:leading-[3vw];
+  }
+
+  .header-secondary {
+    @apply font-bold md:w-8/12 lg:w-full text-[min(1.25rem,6.33vw)] lg:text-[1.5vw] max-w-[80%];
+  }
+
+  .header-secondary-alt {
+    @apply font-medium uppercase w-11/12 md:w-10/12 lg:w-2/3 text-[min(1rem,3.16vw)] lg:text-[1.2vw];
+  }
+
+  .header-tertiary {
+    @apply font-bold text-[5vw] md:text-[2vw] lg:text-[1.25vw];
+  }
+
+  /* Special */
+  .text-mega {
+    @apply font-black uppercase text-[30vw] md:text-[18vw] lg:text-[13vw];
+  }
+
+  .text-interactive {
+    @apply font-normal md:text-[1.2vw] lg:text-[1.1vw] 2xl:text-[0.8vw] hover:underline cursor-pointer;
+  }
+}

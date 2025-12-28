@@ -45,7 +45,7 @@ export default function BlogList({ posts, locale, categoryTitle }: BlogListProps
       {categoryTitle && (
         <div className="mb-8">
           <p className="text-sm text-muted-foreground mb-2">El Mundo de negocios</p>
-          <h2 className="text-2xl lg:text-3xl font-black text-foreground">
+          <h2 className="header-section text-foreground">
             {categoryTitle}
           </h2>
         </div>
@@ -90,7 +90,7 @@ export default function BlogList({ posts, locale, categoryTitle }: BlogListProps
                   <span className="text-xs text-muted-foreground">{post.date}</span>
                 </div>
 
-                <h3 className="text-xl lg:text-2xl font-bold text-foreground group-hover:text-primary mb-3">
+                <h3 className="header-tertiary text-foreground group-hover:text-primary mb-3">
                   {post.title}
                 </h3>
 

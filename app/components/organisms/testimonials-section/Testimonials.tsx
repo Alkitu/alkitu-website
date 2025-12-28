@@ -28,7 +28,7 @@ function Testimonials({ text }) {
       </TailwindGrid>
       <div className='col-span-full max-w-full flex flex-col justify-center content-center items-center'>
         <TailwindGrid>
-          <h3 className='col-span-full lg:col-start-2 text-start text-[7vw] leading-[8vw] md:text-[4.8vw] md:leading-[4.8vw] lg:text-[3vw] lg:leading-[3vw] font-black z-40 pointer-events-none'>
+          <h3 className='header-section col-span-full lg:col-start-2 text-start z-40 pointer-events-none'>
             {dataTestimonials.title}
             <span className='md:hidden'>
               <br />

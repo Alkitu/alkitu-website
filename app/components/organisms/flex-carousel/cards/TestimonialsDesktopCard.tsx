@@ -134,7 +134,7 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
       >
         {container.position}
       </motion.h5>
-      <p className="max-w-full md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] font-normal tracking-tight">
+      <p className="max-w-full md:text-[1.2vw] lg:text-[1.1vw] 2xl:text-[0.8vw] font-normal tracking-tight">
         {/* Always visible words - no animation */}
         {visibleWords.map((word, index) => (
           <span key={`visible-${index}`} className="inline-block mr-[0.25em]">
@@ -169,8 +169,10 @@ function TestimonialsDesktopCard({ container }: TestimonialsDesktopCardProps) {
           <span className="inline-block">... </span>
         )}
         {/* Inline button */}
+        <br />
+
         <motion.button
-          className="text-primary font-normal underline md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] cursor-pointer"
+          className="mt-2 text-primary font-normal underline md:text-[1.2vw] lg:text-[1.1vw] 2xl:text-[0.8vw] cursor-pointer"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={toggleDescription}

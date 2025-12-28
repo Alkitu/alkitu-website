@@ -84,8 +84,9 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
           className="text-center"
         >
           <div className="flex flex-col items-center gap-2 mb-6">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white uppercase tracking-wide">
-              {t.title}
+            <h2 className="header-section text-white tracking-wide leading-tight">
+              SUSCRÍBETE A <br />
+              NUESTROS <span className="text-primary">BOLETINES</span>
             </h2>
 
             {/* Green line */}
@@ -99,7 +100,7 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
           </div>
 
           {/* Subtitle */}
-          <p className="text-white text-sm md:text-base mb-8 uppercase tracking-wider">
+          <p className="header-secondary-alt text-white mb-8 mx-auto">
             {t.subtitle}
           </p>
 

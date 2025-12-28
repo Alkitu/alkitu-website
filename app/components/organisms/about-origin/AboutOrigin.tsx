@@ -25,7 +25,7 @@ export default function AboutOrigin({ dictionary }: AboutOriginProps) {
                         viewport={{ once: true }}
                         className="relative order-2 lg:order-1"
                     >
-                        <div className="relative w-full aspect-[4/5] lg:aspect-video rounded-2xl overflow-hidden shadow-2xl border border-zinc-800 bg-zinc-900 group">
+                        <div className="relative w-full aspect-4/5 lg:aspect-video rounded-2xl overflow-hidden shadow-2xl border border-zinc-800 bg-zinc-900 group">
                              {/* Decorative Element */}
                              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-3xl rounded-full -z-10" />
                              
@@ -42,7 +42,7 @@ export default function AboutOrigin({ dictionary }: AboutOriginProps) {
                              </video>
                              
                              {/* Overlay gradient */}
-                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                             <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
                         </div>
                     </motion.div>
 
@@ -53,7 +53,7 @@ export default function AboutOrigin({ dictionary }: AboutOriginProps) {
                         viewport={{ once: true }}
                         className="space-y-8 order-1 lg:order-2"
                     >
-                        <h2 className="text-3xl md:text-5xl font-bold leading-tight relative inline-block">
+                        <h2 className="header-section text-white leading-tight relative inline-block">
                             {title}
                             <motion.div 
                                 initial={{ width: 0 }}
@@ -63,7 +63,7 @@ export default function AboutOrigin({ dictionary }: AboutOriginProps) {
                                 className="absolute -bottom-2 left-0 h-1 bg-primary rounded-full" 
                             />
                         </h2>
-                        <div className="space-y-6 text-lg text-zinc-300 font-light leading-relaxed text-justify">
+                        <div className="space-y-6 text-body-inverse text-zinc-300 leading-relaxed text-justify">
                             <p>{p1}</p>
                             <p>{p2}</p>
                             <p>{p3}</p>

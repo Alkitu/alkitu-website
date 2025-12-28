@@ -77,10 +77,10 @@ export default function BlogHero({ featuredPost, recentPosts, locale }: BlogHero
             </div>
 
             <div className="mt-6">
-              <h2 className="text-3xl lg:text-4xl font-black text-foreground group-hover:text-primary mb-4">
+              <h2 className="header-section text-foreground group-hover:text-primary mb-4 leading-tight">
                 {featuredPost.title}
               </h2>
-              <p className="text-foreground/70 text-base lg:text-lg mb-4">
+              <p className="text-body-default text-foreground/70 mb-4">
                 {featuredPost.excerpt}
               </p>
               <span className="text-primary font-bold uppercase text-sm hover:underline">
@@ -95,7 +95,7 @@ export default function BlogHero({ featuredPost, recentPosts, locale }: BlogHero
       <div>
         <div className="mb-6">
           <p className="text-sm text-muted-foreground mb-2">Novedades</p>
-          <h3 className="text-2xl lg:text-3xl font-black text-foreground">
+          <h3 className="header-section text-foreground">
             Publicaciones recientes
           </h3>
         </div>
@@ -131,7 +131,7 @@ export default function BlogHero({ featuredPost, recentPosts, locale }: BlogHero
 
                 {/* Post Content */}
                 <div className="flex-1 min-w-0">
-                  <h4 className="font-bold text-foreground group-hover:text-primary mb-2 line-clamp-2">
+                  <h4 className="header-tertiary text-foreground group-hover:text-primary mb-2 line-clamp-2">
                     {post.title}
                   </h4>
                   <p className="text-xs text-muted-foreground line-clamp-2">

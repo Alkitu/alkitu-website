@@ -22,7 +22,7 @@ function Skills({ text }) {
         <section className='relative max-w-full  pt-[8.25vw] w-full flex flex-col justify-center content-center items-center'>
           <TailwindGrid>
             <div className=' self-center lg:col-start-2  col-span-full lg:col-span-11  w-full  flex flex-col'>
-              <h3 className='text-start text-[7vw] leading-[8vw] md:text-[4.8vw] md:leading-[4.8vw] lg:text-[3vw] lg:leading-[3vw] font-black z-40 pointer-events-none'>
+              <h3 className='header-section text-start z-40 pointer-events-none'>
                 {dataSkills.title}
                 <span className='md:hidden'>
                   <br />

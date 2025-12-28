@@ -21,18 +21,19 @@ function Hero({ text }) {
             <span className='text-primary'>{hero.subtitle.after}</span>
           </p>
           <h1
+            className="header-hero"
             style={{
               textShadow:
                 "-0.40px -0.40px 0 #0F0F0F, 0.40px -0.40px 0 #0F0F0F, -0.40px 0.40px 0 #0F0F0F, 0.40px 0.40px 0 #0F0F0F",
             }}
           >
-            <span className='font-black pr-[min(3rem,1.5vw)] md:pr-3 xl:pr-4 leading-[3.5vw]  text-[min(3rem,9.5vw)] md:leading-[2.5vw] md:text-[5vw] lg:text-[5.3vw]  xl:text-[5.4vw] 2xl:text-[5.5vw] '>
+            <span className='pr-[min(3rem,1.5vw)] md:pr-3 xl:pr-4'>
               {hero.title.before}
             </span>
-            <span className='text-primary font-black leading-[3.5vw]  text-[min(3rem,9.5vw)] md:leading-[2.5vw] md:text-[5vw] lg:text-[5.3vw] xl:text-[5.4vw] 2xl:text-[5.5vw] pr-2 '>
+            <span className='text-primary pr-2 '>
               {hero.title.name}
             </span>
-            <span className='text-primary font-black leading-[3.5vw]  text-[min(3rem,9.5vw)] md:leading-[2.5vw] md:text-[5vw] lg:text-[5.3vw] xl:text-[5.4vw] 2xl:text-[5.5vw] '>
+            <span className='text-primary '>
               {hero.title.lastname}
             </span>
           </h1>

@@ -32,7 +32,7 @@ function PostPreviews({ text }: PostPreviewsProps) {
       <div className='col-span-full max-w-full   flex flex-col justify-center content-center items-center '>
         <TailwindGrid>
           <div className=' self-center  col-start-1 lg:col-start-2 col-end-5 md:col-end-9 lg:col-end-13 w-full  flex flex-col'>
-            <h3 className='text-start text-[7vw] leading-[8vw] md:text-[4.8vw] md:leading-[4.8vw] lg:text-[3vw] lg:leading-[3vw] font-black'>
+            <h3 className='header-section text-start'>
               {dataBlogSection.title}
               <span className='md:hidden'>
                 <br />

@@ -16,22 +16,22 @@ export default function CommunityBanner() {
         <div className="col-span-full lg:col-start-2 lg:col-span-11 relative">
           
           {/* Bordered Container with Title as Legend - Dark Theme */}
-          <div className="relative w-full mt-12">
+          <div className="relative w-full flex flex-col items-center">
             
             {/* Title Legend */}
-            <div className="absolute -top-5 md:-top-7 left-1/2 -translate-x-1/2 bg-zinc-100 px-6 md:px-10 z-10 whitespace-nowrap border-[3px] border-black">
+            <div className="z-20 bg-zinc-100 px-4 md:px-10 border-[3px] border-black text-center w-[90%] md:w-auto flex justify-center items-center shadow-lg mb-8">
                <motion.h2 
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="text-lg md:text-3xl font-black uppercase text-black tracking-wider"
+                className="header-section uppercase text-black tracking-wider leading-tight py-2"
               >
-                ¿QUIERES SER PARTE DE NUESTRA <span className="text-green-500">COMUNIDAD</span>?
+                ¿QUIERES SER PARTE DE NUESTRA <span className="text-primary">COMUNIDAD</span>?
               </motion.h2>
             </div>
 
             {/* Content Box - Black Background */}
-            <div className="  border-[3px] border-black p-8 md:p-16 bg-black text-white rounded-none§ relative shadow-2xl">
+            <div className="w-full border-[3px] border-black px-6 py-8 md:p-16 bg-black text-white relative shadow-2xl z-10">
             
             <div className=" grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8 items-center">
               {/* Left: Contact Info */}
@@ -42,8 +42,8 @@ export default function CommunityBanner() {
                 transition={{ delay: 0.1 }}
                 className="flex flex-col items-center lg:items-center text-center space-y-4 order-2 lg:order-1"
               >
-              <div className="flex flex-col items-center lg:items-center text-center space-y-2 mb-2">
-                  <h3 className="text-xl font-bold uppercase tracking-widest text-white">Contáctanos</h3>
+              <div className="w-full flex flex-col items-center lg:items-center text-center space-y-2 mb-2">
+                  <h3 className="header-secondary-alt font-bold tracking-widest text-white">Contáctanos</h3>
                   {/* Green Pill Separator */}
                   <motion.div 
                     initial={{ width: 0 }}
@@ -53,8 +53,8 @@ export default function CommunityBanner() {
                     className="h-1 bg-green-500 mb-2 rounded-full" 
                   />
                 </div>
-                <div className="flex flex-col gap-3 items-center text-gray-300 text-sm font-medium">
-                  <p className="max-w-[280px] font-light">
+                <div className="flex flex-col gap-3 items-center text-gray-300 text-body-inverse">
+                  <p className="max-w-[280px] font-medium ">
                     Puedes escribirnos 24/7 y aunque no tenemos ubicación física (por el momento), siempre estaremos cerca.
                   </p>
                   <div className="flex flex-col gap-2 mt-2">
@@ -104,8 +104,8 @@ export default function CommunityBanner() {
                 transition={{ delay: 0.1 }}
                 className="flex flex-col items-center lg:items-center text-center space-y-4 order-3"
               >
-                <div className="flex flex-col items-center lg:items-center text-center space-y-2 mb-2">
-                  <h3 className="text-xl font-bold uppercase tracking-widest text-white">Redes Sociales</h3>
+                <div className="w-full flex flex-col items-center lg:items-center text-center space-y-2 mb-2">
+                  <h3 className="header-secondary-alt font-bold tracking-widest text-white">Redes Sociales</h3>
                   {/* Green Pill Separator */}
                   <motion.div 
                     initial={{ width: 0 }}
@@ -116,7 +116,7 @@ export default function CommunityBanner() {
                   />
                 </div>
 
-                <p className="text-gray-300 max-w-[280px] text-sm font-medium font-light">
+                <p className="text-gray-300 max-w-[280px] text-body-inverse font-light">
                   Síguenos en redes sociales y participa como miembro de nuestra comunidad:
                 </p>
                 <div className="flex gap-3 flex-wrap justify-center">

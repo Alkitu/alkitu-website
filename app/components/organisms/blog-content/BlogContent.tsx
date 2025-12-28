@@ -130,7 +130,7 @@ export default function BlogContent({ posts, categories, locale, title, descript
       {/* Page Header with Title, Description, and Filters */}
       <PageHeader
         title={title}
-        description={description}
+        subtitle={description}
         filters={filters}
         activeFilter={selectedCategory}
         onFilterChange={setSelectedCategory}
@@ -279,7 +279,7 @@ export default function BlogContent({ posts, categories, locale, title, descript
 
               {/* Otras Publicaciones */}
               <div className="mb-16">
-                <h2 className="text-2xl lg:text-3xl font-black text-foreground mb-8">
+                <h2 className="header-section text-foreground mb-8 text-center lg:text-left">
                   {translations.otrasPublicaciones}
                 </h2>
                 <BlogGrid
