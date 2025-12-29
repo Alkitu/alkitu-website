@@ -9,9 +9,9 @@ export default function HeroPhones() {
   const { x, y } = useMouseParallax();
 
   return (
-    <div className="relative w-full h-auto aspect-462/312">
+    <div className="relative w-full h-auto aspect-462/312 ">
       {/* Layer 1: Background Hero SVG */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 ">
         <Image
           src="/images/hero/alkitu-hero.svg"
           alt="Hero Background"

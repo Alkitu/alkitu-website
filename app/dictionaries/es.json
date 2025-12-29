@@ -188,25 +188,20 @@
       }
     ],
     "heroSection": {
-      "subtitle": {
-        "before": "<",
-        "text": "HolaMundo",
-        "after": "/>"
-      },
       "title": {
-        "before": "Soy",
-        "name": "Luis",
-        "lastname": "Urdaneta"
+        "part1": "Potenciando tu",
+        "part2": "Transformación",
+        "part3": "Digital"
       },
-      "quote": "Desarrollador Web FullStack, Diseñador Gráfico, Marketing Digital",
-      "description": "Hago que las empresas y los proyectos digitales funcionen mejor. Alcanzan todo su potencial gracias a mis competencias multidisciplinares.",
+      "subtitle": "Desarrollo, Automatización y Creatividad Integrada",
+      "description": "Desarrollo de aplicaciones, sitios web responsivos, automatizaciones inteligentes e IA con marketing estratégico, publicidad, branding y diseño gráfico. Creamos soluciones inteligentes y personalizadas para elevar tu negocio en el ámbito digital.",
       "buttons": {
-        "primary": "Descargar CV",
+        "primary": "Contáctanos",
         "secondary": "Proyectos"
       },
       "files": {
-        "src": "/cv.pdf",
-        "name": "CV.pdf"
+        "src": "/contact",
+        "name": ""
       },
       "image": "https://picsum.photos/600/300"
     },

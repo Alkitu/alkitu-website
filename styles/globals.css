@@ -187,7 +187,7 @@
 
   /* Headers */
   .header-hero {
-    @apply font-black tracking-tight text-[10vw] md:text-[6.5vw] lg:text-[5.5vw] leading-none;
+    @apply font-black tracking-tight text-[8.5vw] md:text-[5vw] lg:text-[4vw] leading-none;
   }
 
   .header-section {

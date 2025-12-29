@@ -154,6 +154,249 @@ function HeroFloatingElements() {
           />
         </div>
       </motion.div>
+
+      {/* NEW ELEMENTS BOTTOM */}
+      <motion.div
+        variants={child}
+        className='absolute -bottom-[5vw] right-[10vw] md:-bottom-[4vw] md:right-[5vw] lg:-bottom-[5vw] lg:right-[8vw]'
+      >
+        <div className='relative w-[4vw] h-[4vw] md:w-[2.5vw] md:h-[2.5vw] lg:w-[3vw] lg:h-[3vw] '>
+          <Symbol
+            className='stroke-primary w-full h-full'
+            delay={1.2}
+            type='triangle'
+            size={1}
+          />
+        </div>
+      </motion.div>
+
+      <motion.div
+        variants={child}
+        className='absolute -bottom-[2vw] left-[5vw] md:-bottom-[2vw] md:left-[2vw] lg:-bottom-[3vw] lg:-left-[1vw] z-30'
+      >
+        <div className='relative w-[5vw] h-[5vw] md:w-[3vw] md:h-[3vw] lg:w-[3.5vw] lg:h-[3.5vw] '>
+           <Symbol
+            className='stroke-zinc-700 w-full h-full'
+            delay={0.8}
+            type='x'
+            size={1.1}
+            reverse
+          />
+        </div>
+      </motion.div>
+
+      <motion.div
+        variants={child}
+        className='absolute bottom-[5vw] -right-[5vw] md:bottom-[0vw] md:-right-[2vw] lg:bottom-[2vw] lg:-right-[4vw] z-20'
+      >
+        <div className='relative w-[3.5vw] h-[3.5vw] md:w-[2.5vw] md:h-[2.5vw] lg:w-[3vw] lg:h-[3vw] '>
+           <Symbol
+            className='stroke-zinc-800 dark:stroke-zinc-500 w-full h-full'
+            delay={1.6}
+            type='circle'
+            size={0.9}
+          />
+        </div>
+      </motion.div>
+
+      {/* EVEN MORE ELEMENTS BOTTOM */}
+       <motion.div
+        variants={child}
+        className='absolute -bottom-[8vw] right-[25vw] md:-bottom-[6vw] md:right-[15vw] lg:-bottom-[8vw] lg:right-[18vw]'
+      >
+        <div className='relative w-[3vw] h-[3vw] md:w-[2vw] md:h-[2vw] lg:w-[2.5vw] lg:h-[2.5vw] '>
+          <Symbol
+            className='stroke-zinc-400 w-full h-full'
+            delay={1.4}
+            type='square'
+            size={0.8}
+            reverse
+          />
+        </div>
+      </motion.div>
+
+      <motion.div
+        variants={child}
+        className='absolute -bottom-[6vw] -left-[5vw] md:-bottom-[5vw] md:-left-[2vw] lg:-bottom-[6vw] lg:-left-[4vw] z-30'
+      >
+        <div className='relative w-[4vw] h-[4vw] md:w-[2.5vw] md:h-[2.5vw] lg:w-[3vw] lg:h-[3vw] '>
+           <Symbol
+            className='stroke-primary w-full h-full'
+            delay={1.0}
+            type='triangle'
+            size={1.1}
+          />
+        </div>
+      </motion.div>
+
+       <motion.div
+        variants={child}
+        className='absolute bottom-0 right-[40%] md:bottom-[2vw] md:right-[35%] lg:bottom-[1vw] lg:right-[40%] -z-10'
+      >
+        <div className='relative w-[2.5vw] h-[2.5vw] md:w-[1.5vw] md:h-[1.5vw] lg:w-[2vw] lg:h-[2vw] '>
+           <Symbol
+            className='stroke-zinc-300 dark:stroke-zinc-700 w-full h-full'
+            delay={1.8}
+            type='x'
+            size={0.7}
+          />
+        </div>
+      </motion.div>
+
+      {/* FILLER ELEMENTS */}
+      <motion.div
+        variants={child}
+        className='absolute top-[15vw] left-[15vw] md:top-[5vw] md:left-[18vw] lg:top-[5vw] lg:left-[18vw] -z-20'
+      >
+        <div className='relative w-[2vw] h-[2vw] md:w-[1.25vw] md:h-[1.25vw] lg:w-[1.5vw] lg:h-[1.5vw] '>
+           <Symbol
+            className='stroke-primary w-full h-full'
+            delay={2.0}
+            type='circle'
+            size={0.6}
+          />
+        </div>
+      </motion.div>
+
+       <motion.div
+        variants={child}
+        className='absolute bottom-[30vw] -right-[2vw] md:bottom-[10vw] md:-right-[1vw] lg:bottom-[15vw] lg:-right-[2vw] z-10'
+      >
+        <div className='relative w-[3vw] h-[3vw] md:w-[1.5vw] md:h-[1.5vw] lg:w-[2vw] lg:h-[2vw] '>
+           <Symbol
+            className='stroke-zinc-400 w-full h-full'
+            delay={1.1}
+            type='triangle'
+            size={0.8}
+            reverse
+          />
+        </div>
+      </motion.div>
+
+      <motion.div
+        variants={child}
+        className='absolute top-[40vw] -left-[2vw] md:top-[12vw] md:left-[2vw] lg:top-[15vw] lg:left-[1vw] -z-10'
+      >
+         <div className='relative w-[2.5vw] h-[2.5vw] md:w-[1.5vw] md:h-[1.5vw] lg:w-[1.75vw] lg:h-[1.75vw] '>
+           <Symbol
+            className='stroke-zinc-500 w-full h-full'
+            delay={1.9}
+            type='square'
+            size={0.7}
+          />
+        </div>
+      </motion.div>
+
+      {/* REQUESTED SPECIFIC ZONES */}
+      
+      {/* 1. Top Left */}
+      <motion.div
+        variants={child}
+        className='absolute -top-[5vw] left-[5vw] md:-top-[2vw] md:-left-[3vw] lg:-top-[3vw] lg:-left-[4vw] z-20'
+      >
+        <div className='relative w-[3.5vw] h-[3.5vw] md:w-[2vw] md:h-[2vw] lg:w-[2.5vw] lg:h-[2.5vw] '>
+           <Symbol
+            className='stroke-primary w-full h-full'
+            delay={1.3}
+            type='x'
+            size={0.9}
+          />
+        </div>
+      </motion.div>
+
+      {/* 2. Top Center */}
+      <motion.div
+        variants={child}
+        className='absolute -top-[8vw] left-[40%] md:-top-[5vw] md:left-[35%] lg:-top-[6vw] lg:left-[30%] -z-10'
+      >
+        <div className='relative w-[2.5vw] h-[2.5vw] md:w-[1.5vw] md:h-[1.5vw] lg:w-[1.75vw] lg:h-[1.75vw] '>
+           <Symbol
+            className='stroke-zinc-400 w-full h-full'
+            delay={1.7}
+            type='circle'
+            size={0.7}
+          />
+        </div>
+      </motion.div>
+
+      {/* 3. Left Middle */}
+       <motion.div
+        variants={child}
+        className='absolute top-[50%] -left-[10vw] md:top-[45%] md:-left-[6vw] lg:top-[40%] lg:-left-[8vw] z-10'
+      >
+        <div className='relative w-[4vw] h-[4vw] md:w-[2.25vw] md:h-[2.25vw] lg:w-[2.75vw] lg:h-[2.75vw] '>
+           <Symbol
+            className='stroke-zinc-800 dark:stroke-zinc-400 w-full h-full'
+            delay={0.9}
+            type='triangle'
+            size={1.0}
+            reverse
+          />
+        </div>
+      </motion.div>
+
+      {/* 4. Bottom Left (Outer) */}
+      <motion.div
+        variants={child}
+        className='absolute bottom-[10vw] -left-[8vw] md:bottom-[5vw] md:-left-[5vw] lg:bottom-[2vw] lg:-left-[7vw] -z-10'
+      >
+        <div className='relative w-[3vw] h-[3vw] md:w-[1.75vw] md:h-[1.75vw] lg:w-[2vw] lg:h-[2vw] '>
+           <Symbol
+            className='stroke-primary w-full h-full'
+            delay={1.5}
+            type='square'
+            size={0.8}
+          />
+        </div>
+      </motion.div>
+
+      {/* USER ANNOTATED ZONES */}
+      
+      {/* 1. Top Center/Left (Green Squiggle Top) */}
+      <motion.div
+        variants={child}
+        className='absolute -top-[2vw] left-[25%] md:-top-[6vw] md:left-[22%] lg:-top-[7vw] lg:left-[15%] z-10'
+      >
+        <div className='relative w-[2.5vw] h-[2.5vw] md:w-[1.5vw] md:h-[1.5vw] lg:w-[2vw] lg:h-[2vw] '>
+           <Symbol
+             className='stroke-primary w-full h-full' 
+             delay={1.2}
+             type='triangle'
+             size={0.9}
+             reverse
+           />
+        </div>
+      </motion.div>
+
+      {/* 2. Bottom Left (Green Squiggle Bottom Left) */}
+       <motion.div
+        variants={child}
+        className='absolute bottom-[20vw] -left-[12vw] md:bottom-[15vw] md:-left-[8vw] lg:bottom-[10vw] lg:-left-[10vw] -z-20'
+      >
+        <div className='relative w-[4vw] h-[4vw] md:w-[2.5vw] md:h-[2.5vw] lg:w-[3vw] lg:h-[3vw] '>
+           <Symbol
+            className='stroke-zinc-300 dark:stroke-zinc-600 w-full h-full' 
+            delay={1.6}
+            type='circle'
+            size={0.8}
+          />
+        </div>
+      </motion.div>
+
+      {/* 3. Bottom Center (Green Squiggle Bottom Center) */}
+      <motion.div
+        variants={child}
+        className='absolute -bottom-[8vw] left-[35%] md:-bottom-[5vw] md:left-[30%] lg:-bottom-[6vw] lg:left-[35%]'
+      >
+        <div className='relative w-[3vw] h-[3vw] md:w-[2vw] md:h-[2vw] lg:w-[2.5vw] lg:h-[2.5vw] '>
+           <Symbol
+            className='stroke-primary w-full h-full'
+            delay={1.4}
+            type='x'
+            size={1.0}
+          />
+        </div>
+      </motion.div>
     </motion.div>
   );
 }

@@ -188,25 +188,20 @@
       }
     ],
     "heroSection": {
-      "subtitle": {
-        "before": "<",
-        "text": "HelloWorld",
-        "after": "/>"
-      },
       "title": {
-        "before": "I’m",
-        "name": "Luis",
-        "lastname": "Urdaneta"
+        "part1": "Empowering",
+        "part2": "Your Digital",
+        "part3": "Transformation"
       },
-      "quote": "FullStack Web Developer, Graphic Designer, Digital Marketing",
-      "description": "I help businesses to improve their communication, digitalization and connection with their brand.",
+      "subtitle": "Development, Automation, and Integrated Creativity",
+      "description": "Application development, responsive websites, intelligent automations and AI with strategic marketing, advertising, branding, and graphic design. We craft smart, personalized solutions to elevate your business in the digital realm.",
       "buttons": {
-        "primary": "Download CV",
+        "primary": "Contact Us",
         "secondary": "Projects"
       },
       "files": {
-        "src": "/cv.pdf",
-        "name": "CV.pdf"
+        "src": "/contact",
+        "name": ""
       }
     },
     "categoriesSection": {
