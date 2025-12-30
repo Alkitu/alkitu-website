@@ -21,27 +21,25 @@ function DynamicListItem({ category, index, boxPositions, handleClick }) {
           boxPositions[index] === 1
             ? "col-span-full md:col-span-4 lg:col-span-5"
             : "col-span-full md:col-span-2 lg:col-span-3"
-        } relative  group items-end flex px-4 text-center  rounded-3xl content-center  justify-center   `}
+        } relative group items-end flex px-4 text-center rounded-3xl content-center justify-center cursor-pointer`}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+        onClick={() => handleClick(index)}
       >
         <div
-          className={`${
-            boxPositions[index] === 1
-              ? "h-[105%] -top-[2.5%]"
-              : "md:h-60 lg:h-64 -bottom-2 "
-          } ${
-            hover ? "opacity-50" : "opacity-0"
-          } absolute  w-full  bg-linear-to-b from-zinc-300 to-zinc-300 dark:from-primary dark:to-primary rounded-lg blur transition duration-200 hidden lg:block `}
-        />
-        <div
-          className={`  w-full mx-auto relative  bg-white dark:bg-zinc-900 shadow-xs shadow-zinc-200 dark:shadow-md dark:shadow-black border border-zinc-50 dark:border-transparent  rounded-3xl flex-col content-center items-center justify-center  cursor-pointer  ${
-            boxPositions[index] === 1
-              ? "lg:min-h-68  py-[3.77rem] px-[2vw]"
-              : "h-fit py-11 px-[2vw]"
-          }`}
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-          onClick={() => handleClick(index)}
+          className={`w-full mx-auto relative bg-white dark:bg-zinc-900 shadow-xs shadow-zinc-200 dark:shadow-md dark:shadow-black border border-zinc-50 dark:border-transparent rounded-3xl flex-col content-center items-center justify-center
+            ${
+              boxPositions[index] === 1
+                ? "lg:min-h-68 py-[3.77rem] px-[2vw]"
+                : "h-fit py-11 px-[2vw]"
+            }`}
         >
+          {/* Glow effect - controlled by hover state */}
+          <div
+            className={`absolute inset-0 -z-10 rounded-3xl blur-xl transition-opacity duration-200 bg-linear-to-b from-zinc-300 to-zinc-300 dark:from-primary dark:to-primary hidden lg:block ${
+              hover ? "opacity-50" : "opacity-0"
+            }`}
+          />
           <motion.div
             layout
             className={

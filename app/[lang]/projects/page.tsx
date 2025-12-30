@@ -1,6 +1,6 @@
 "use client";
 import { Suspense, useEffect, useState } from "react";
-import { FilterCategories } from "../../components/organisms/filter-categories";
+import { FilterCategories, FilterCategoriesSkeleton } from "../../components/organisms/filter-categories";
 import { useTranslationContext } from "../../context/TranslationContext";
 import { ProjectCard } from "../../components/molecules/card";
 import { ResponsiveList } from "@/app/components/organisms/responsive-list";
@@ -30,6 +30,7 @@ const Portfolio = () => {
   const [projects, setProjects] = useState<ProjectWithCategories[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
+  const [categoriesLoading, setCategoriesLoading] = useState(true);
 
   // Pagination state
   const [search, setSearch] = useState(searchParams.get("category") || "All");
@@ -44,6 +45,7 @@ const Portfolio = () => {
   // Fetch categories
   useEffect(() => {
     const fetchCategories = async () => {
+      setCategoriesLoading(true);
       try {
         const response = await fetch('/api/categories');
         const data = await response.json();
@@ -52,6 +54,8 @@ const Portfolio = () => {
         }
       } catch (error) {
         console.error('Error fetching categories:', error);
+      } finally {
+        setCategoriesLoading(false);
       }
     };
 
@@ -98,15 +102,19 @@ const Portfolio = () => {
       />
 
       <section className='w-full flex justify-center items-center content-center pb-10 border-b border-border'>
-        <FilterCategories
-          search={search}
-          setSearch={setSearch}
-          className=""
-          setCurrentPage={setCurrentPage}
-          key={screenWidth}
-          categories={categories}
-          locale={locale}
-        />
+        {categoriesLoading ? (
+          <FilterCategoriesSkeleton />
+        ) : (
+          <FilterCategories
+            search={search}
+            setSearch={setSearch}
+            className=""
+            setCurrentPage={setCurrentPage}
+            key={screenWidth}
+            categories={categories}
+            locale={locale}
+          />
+        )}
       </section>
 
       <TailwindGrid>
