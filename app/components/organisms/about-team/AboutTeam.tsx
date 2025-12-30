@@ -29,7 +29,7 @@ export default function AboutTeam({ dictionary }: AboutTeamProps) {
     <TailwindGrid>
       <div className="col-span-full lg:col-start-2 lg:col-span-11 py-16">
          <div className="w-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-4 md:px-12 py-4 mb-12 shadow-sm relative">
-            <h2 className="header-section text-center uppercase tracking-widest text-zinc-800 dark:text-200">
+            <h2 className="header-section text-center uppercase tracking-widest dark:text-white text-zinc-800 dark:text-200">
                 {title}
             </h2>
              {/* Decorative lines often seen in the design */}
