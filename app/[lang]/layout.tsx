@@ -33,6 +33,7 @@ export default async function RootLayout({
     <html lang={lang} suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
         <script
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
