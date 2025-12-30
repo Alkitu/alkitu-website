@@ -49,10 +49,11 @@ export default function AboutTeam({ dictionary }: AboutTeamProps) {
                     <div className="relative w-full aspect-3/4 overflow-hidden rounded-lg mb-4 shadow-md bg-zinc-100 dark:bg-zinc-800">
                         {/* Placeholder logic */}
                          <div className="absolute inset-0 flex items-center justify-center text-zinc-300 font-bold text-4xl">?</div>
-                        <Image 
-                            src={member.image} 
+                        <Image
+                            src={member.image}
                             alt={member.name}
                             fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                             className="object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                     </div>

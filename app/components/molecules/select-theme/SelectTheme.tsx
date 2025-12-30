@@ -174,9 +174,10 @@ function SelectThemeContent() {
           </svg>
         </motion.div>
       </motion.button>
-      <AnimatePresence mode="wait" initial={false} onExitComplete={() => null}>
+      <AnimatePresence initial={false}>
         {isOpen && (
           <motion.ul
+            key="theme-dropdown"
             variants={mobileNavbar}
             className={`select-list w-36 absolute bg-zinc-50 dark:bg-zinc-700 text-foreground top-16 list-none m-0 flex flex-col right-8 shadow-lg rounded-md ${
               isOpen ? 'p-2 scale-1' : 'hidden scale-0'
@@ -189,44 +190,42 @@ function SelectThemeContent() {
               pointerEvents: isOpen ? 'auto' : 'none'
             }}
           >
-            <AnimatePresence mode="wait" initial={false} onExitComplete={() => null}>
-              {themeOptions.map((option, index) => (
-                <motion.li
-                  key={option.value}
-                  className="text-center text-md last:border-b-0 border-b-2 font-medium first:pb-2 last:pt-2 flex-row w-full content-center cursor-pointer flex items-center justify-between gap-2 px-2"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  variants={itemVariants}
-                  initial="closed"
-                  animate={isOpen ? 'open' : 'closed'}
-                  exit="closed"
-                  onClick={() => {
-                    toggleDropdown(null);
-                    setTheme(option.value);
-                  }}
-                >
-                  <span className={theme === option.value ? 'text-primary font-bold' : ''}>{option.name}</span>
-                  {theme === option.value && (
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 20 20"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="text-primary"
-                    >
-                      <path
-                        d="M16.6667 5L7.50004 14.1667L3.33337 10"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  )}
-                </motion.li>
-              ))}
-            </AnimatePresence>
+            {themeOptions.map((option, index) => (
+              <motion.li
+                key={option.value}
+                className="text-center text-md last:border-b-0 border-b-2 font-medium first:pb-2 last:pt-2 flex-row w-full content-center cursor-pointer flex items-center justify-between gap-2 px-2"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                variants={itemVariants}
+                initial="closed"
+                animate={isOpen ? 'open' : 'closed'}
+                exit="closed"
+                onClick={() => {
+                  toggleDropdown(null);
+                  setTheme(option.value);
+                }}
+              >
+                <span className={theme === option.value ? 'text-primary font-bold' : ''}>{option.name}</span>
+                {theme === option.value && (
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="text-primary"
+                  >
+                    <path
+                      d="M16.6667 5L7.50004 14.1667L3.33337 10"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                )}
+              </motion.li>
+            ))}
           </motion.ul>
         )}
       </AnimatePresence>

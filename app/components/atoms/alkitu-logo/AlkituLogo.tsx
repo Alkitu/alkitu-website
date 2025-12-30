@@ -28,9 +28,10 @@ export default function AlkituLogo({
         src={logoSrc}
         alt="Alkitu Logo"
         width={200}
-        height={height}
+        height={60}
         priority
-        style={{ width: 'auto', height: 'auto', maxHeight: height }}
+        unoptimized
+        style={{ width: 'auto', height: height }}
       />
     </Link>
   );

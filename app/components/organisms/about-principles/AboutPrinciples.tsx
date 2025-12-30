@@ -111,7 +111,13 @@ export default function AboutPrinciples({ dictionary }: AboutPrinciplesProps) {
                             {/* Icon Container - White Square with Glow */}
                             <div className="w-40 h-40 bg-white rounded-lg flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-transform hover:scale-105 duration-300">
                                 <div className="relative w-24 h-24">
-                                     <Image src={item.icon} alt={item.title} fill className="object-contain" />
+                                     <Image
+                                        src={item.icon}
+                                        alt={item.title}
+                                        fill
+                                        sizes="96px"
+                                        className="object-contain"
+                                     />
                                 </div>
                             </div>
 
