@@ -183,8 +183,16 @@
         "name": "Pasión"
       },
       {
+        "id": "contact-section",
+        "name": "Contacto"
+      },
+      {
         "id": "testimonials-section",
         "name": "Testimonios"
+      },
+      {
+        "id": "brands-section",
+        "name": "Marcas"
       }
     ],
     "heroSection": {
@@ -500,7 +508,6 @@
         }
       ]
     },
-
     "passionSection": {
       "title": "¿Por qué ",
       "titlePrimary": "videojuegos?",

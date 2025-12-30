@@ -183,8 +183,16 @@
         "name": "Passion"
       },
       {
+        "id": "contact-section",
+        "name": "Contact"
+      },
+      {
         "id": "testimonials-section",
         "name": "Testimonials"
+      },
+      {
+        "id": "brands-section",
+        "name": "Brands"
       }
     ],
     "heroSection": {
