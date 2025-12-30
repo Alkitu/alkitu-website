@@ -22,16 +22,17 @@ export default function StickyInteractiveImage() {
   const y = useTransform(smoothProgress, [0, 1], [0, 200]);
   
   return (
-    <div ref={containerRef} className="relative w-full h-full min-h-[500px] lg:min-h-[800px] flex justify-center">
+    <div ref={containerRef} className="relative w-full h-full min-h-[500px] lg:min-h-[800px] flex justify-center" style={{ position: 'relative' }}>
       <div className="sticky top-[15vh] w-full perspective-1000">
-        <motion.div 
+        <motion.div
           style={{ scale, rotate, y }}
           className="relative w-full aspect-[4/5] rounded-tl-[100px] rounded-br-[100px] overflow-hidden shadow-2xl origin-center"
         >
           <Image
-            src="/images/about/Valeria-Urdaneta-Pintada-sobre-unos-Cuadros.webp"
+            src="/images/alkitu-office.png"
             alt="Creative Team"
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
             className="object-cover"
             priority
           />

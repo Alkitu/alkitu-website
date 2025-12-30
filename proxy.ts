@@ -21,12 +21,8 @@ export async function proxy(request: NextRequest, event: NextFetchEvent) {
 // Matcher config to run on all routes except Next.js internals
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     */
-    '/((?!_next/static|_next/image|favicon.ico).*)',
+
+    // Incluir todas las rutas excepto assets y API
+    '/((?!api|_next|.*\\.).*)',
   ],
 };

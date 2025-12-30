@@ -206,42 +206,46 @@
       "image": "https://picsum.photos/600/300"
     },
     "categoriesSection": {
-      "title": "I will be your Swiss Army knife in the digital world",
-      "subtitle": "Podría ser tu próximo especialisa en ",
-      "textScroller": "Tu mejore elección",
+      "title": "Explora nuestros pilares de innovación y experiencia digital, diseñados para transformar tu marca y expandir tu presencia online.",
+      "subtitle": "Tu próximo equipo de ",
+      "titlePrimary": "Servicios",
+      "textScroller": "Nuestros Servicios",
       "velocityScroller": -0.2,
       "carrouselKey": "category",
       "categories": [
         {
           "order": 1,
-          "name": "Programación",
+          "name": "DESARROLLO DIGITAL Y AUTOMATIZACIONES",
+          "shortName": "Desarrollo",
           "url": "/projects?category=Web_Developer&page=1",
           "icon": "/icons/web_developer.svg",
           "artboardName": "Web",
-          "summary": "Hace más de un año, ingresé al bootcamp de Desarrollo Web FullStack de IronHack, donde adquirí experiencia en el entorno MERN, sentando las bases para mi trabajo en diversos proyectos como desarrollador."
+          "summary": "Creamos soluciones tecnológicas de vanguardia, incluyendo desarrollo de aplicaciones personalizadas, diseño web responsivo y automatizaciones inteligentes. Aprovechando la IA donde es aplicable, optimizamos procesos para impulsar la eficiencia de tu negocio."
         },
         {
           "order": 2,
-          "name": "Diseño",
+          "name": "BRANDING Y DISEÑO GRÁFICO",
+          "shortName": "Diseño",
           "url": "/projects?category=Graphic_Design&page=1",
           "icon": "/icons/designer.svg",
           "artboardName": "Design",
-          "summary": "Con una sólida experiencia de más de 3 años como diseñador web, he potenciado esta destreza gracias a mis conocimientos adquiridos desde el año 2017 en diseño gráfico."
+          "summary": "Creamos identidades visuales que resuenan. Desde el diseño de logotipos hasta guías de marca completas, nuestro equipo asegura que tu marca se destaque con gráficos consistentes y de alta calidad en todos los medios."
         },
         {
           "order": 3,
-          "name": "Marketing",
+          "name": "MARKETING Y PUBLICIDAD",
+          "shortName": "Marketing",
           "url": "/projects?category=Marketing&page=1",
           "icon": "/icons/marketing.svg",
           "artboardName": "Marketing",
-          "summary": "Soy Google Partner y egresado en Comercio Exterior. Mi trayectoria incluye diferentes certificaciones oficiales y experiencias internacionales como especialista en Marketing Digital."
+          "summary": "Implementamos estrategias de marketing basadas en datos para hacer crecer tu audiencia. Nuestras soluciones publicitarias están diseñadas para maximizar el ROI y llegar eficazmente a tu mercado objetivo."
         }
       ]
     },
     "projectsPreviewSection": {
-      "textScroller": "Descubre mis proyectos",
+      "textScroller": "Descubre nuestros proyectos",
       "title": "Échale un vistazo a",
-      "titlePrimary": "mis Proyectos...",
+      "titlePrimary": "nuestros Proyectos...",
       "button": "VER MÁS PROYECTOS"
     },
     "blogSection": {
@@ -252,15 +256,16 @@
       "button": "Ver todas las publicaciones"
     },
     "bigQuoteSection": {
-      "textScroller": "El Poder de la Pasión",
+      "textScroller": "Hazlo a lo Grande",
+      "velocityScroller": 0.2,
       "quote": {
-        "lineOne": "Desarrollar es mi amor",
-        "lineTwo": "los videojuegos son mi pasión"
+        "lineOne": "Desarrollamos, automatizamos y diseñamos",
+        "lineTwo": "– todo en un solo lugar"
       }
     },
     "skillsSection": {
       "title": "¿Necesitas una de",
-      "titlePrimary": "mis herramientas?",
+      "titlePrimary": "nuestras herramientas?",
       "textScroller": "Las mejores herramientas",
       "velocityScroller": -0.2,
       "firstLine": [
@@ -438,13 +443,13 @@
         "textScroller": "El Poder de la Pasión",
         "velocityScroller": -0.2,
         "quote": {
-          "lineOne": "Desarrollar es mi amor",
-          "lineTwo": "los videojuegos son mi pasión"
+          "lineOne": "El desarrollo es nuestro amor",
+          "lineTwo": "lo digital nuestra pasión"
         }
       }
     },
     "testimonialsSection": {
-      "textScroller": "Escucha a mi comunidad",
+      "textScroller": "Escucha a nuestra comunidad",
       "velocityScroller": 0.2,
       "title": "Testimonios de",
       "titlePrimary": "Clientes",
@@ -1318,5 +1323,52 @@
         }
       ]
     }
+  },
+  "contactPage": {
+    "header": {
+      "title": "CONTÁCTANOS",
+      "subtitle": "¿Tienes un proyecto en mente?",
+      "text": "¿Necesitas orientación experta en desarrollo, automatización o branding? Estamos aquí para ayudar. Ya sea que tengas preguntas, ideas o quieras colaborar, contáctanos y creemos algo increíble juntos."
+    },
+    "form": {
+      "title": "Déjanos tu mensaje:",
+      "nameLabel": "Tu Nombre",
+      "namePlaceholder": "Juan Pérez",
+      "emailLabel": "Correo Electrónico",
+      "emailPlaceholder": "juan@ejemplo.com",
+      "subjectLabel": "Asunto",
+      "subjectPlaceholder": "Consulta de Proyecto",
+      "messageLabel": "Mensaje",
+      "messagePlaceholder": "Cuéntame sobre tu proyecto...",
+      "submitButton": "Enviar Mensaje",
+      "submittingButton": "Enviando...",
+      "successMessage": "¡Mensaje enviado con éxito!",
+      "successSubtext": "Te responderé pronto."
+    },
+    "communityBanner": {
+      "titlePart1": "¿QUIERES SER PARTE DE NUESTRA",
+      "titleHighlight": "COMUNIDAD?",
+      "contactBox": {
+        "title": "Contáctanos",
+        "text": "Puedes escribirnos 24/7, trabajamos de forma remota aunque nos ubicamos en Valencia España, siempre estaremos cerca."
+      },
+      "socialBox": {
+        "title": "Redes Sociales",
+        "text": "Síguenos en redes sociales y participa como miembro de nuestra comunidad:"
+      }
+    }
+  },
+  "newsletterSection": {
+    "titleLine1": "SUSCRÍBETE A",
+    "titleLine2": "NUESTROS",
+    "titleHighlight": "BOLETINES",
+    "subtitle": "RECIBE INFORMACIÓN CON NOVEDADES, PROMOCIONES Y EVENTOS DE LA COMUNIDAD ALKIANA",
+    "placeholder": "Escribe aquí tu correo electrónico",
+    "button": "Subscribirse",
+    "privacy": "He leído y acepto la",
+    "privacyLink": "política de privacidad",
+    "success": "¡Gracias por suscribirte!",
+    "error": "Por favor, acepta la política de privacidad",
+    "invalidEmail": "Por favor, introduce un email válido"
   }
 }

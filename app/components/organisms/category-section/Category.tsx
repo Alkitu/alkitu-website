@@ -34,7 +34,7 @@ function Category({ text }) {
         <div className='self-center lg:col-start-2  col-span-full lg:col-span-11  w-full  flex flex-col'>
           <CategoryTitleChanger
             key={currentWord.name}
-            name={currentWord.name}
+            name={currentWord.shortName}
             subtitle={dataCategoriesSection.subtitle}
           />
         </div>

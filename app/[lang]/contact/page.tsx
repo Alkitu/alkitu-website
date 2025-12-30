@@ -59,15 +59,9 @@ export default function Contact() {
           {/* Header Section */}
           <div id="contact-hero"className='mb-12' >
             <PageHeader
-              title="CONTACTO"
-              subtitle="MÁS QUE UN ESTUDIO Y UNA AGENCIA, SOMOS UNA COMUNIDAD"
-              text={
-                <>
-                  Todas las comunidades necesitan comunicarse e interactuar constantemente. En Alkitu queremos escucharte, conocer tus comentarios y apoyar tus proyectos.
-                  <br /><br />
-                  ¡Así que no lo pienses más, escríbenos o mejor aún, únete al mundo Alkitu!
-                </>
-              }
+              title={translations?.contactPage?.header?.title}
+              subtitle={translations?.contactPage?.header?.subtitle}
+              text={translations?.contactPage?.header?.text}
             />
           </div>
   
@@ -77,7 +71,7 @@ export default function Contact() {
               {/* Left: Contact Form */}
               <div className="col-start-1 col-end-5 md:col-start-1 md:col-end-9 lg:col-start-2 lg:col-end-7 z-10 mb-12 lg:mb-0">
                  <div className="bg-white dark:bg-zinc-900 p-6 md:p-8 lg:p-12 rounded-2xl shadow-xl border border-border/50">
-                   <h3 className="header-tertiary text-black dark:text-white mb-2 text-center lg:text-left leading-tight">Déjanos tu mensaje:</h3>
+                   <h3 className="header-tertiary text-black dark:text-white mb-2 text-center lg:text-left leading-tight">{translations?.contactPage?.form?.title}</h3>
                    <motion.div 
                      initial={{ width: 0 }}
                      whileInView={{ width: 96 }} // w-24 = 96px

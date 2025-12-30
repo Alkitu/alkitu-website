@@ -1,9 +1,480 @@
 "use client";
 import { useInView, motion } from "framer-motion";
 import { useRef } from "react";
-import { Symbol } from "@/app/components/atoms/symbol";
+import { Symbol, SymbolSize } from "@/app/components/atoms/symbol";
 
-function HeroFloatingElements() {
+interface FloatingElementConfig {
+  id: string;
+  type: "x" | "circle" | "triangle" | "square";
+  variant?: "primary" | "negative" | "zinc";
+  size?: SymbolSize;
+  delay?: number;
+  reverse?: boolean;
+  wrapperClassName: string;
+  order: number; // For animation sequence
+  zIndex: number; // For layering
+}
+
+const FLOATING_ELEMENTS: FloatingElementConfig[] = [
+  // --- INNER RIPPLE (Order 0-10) ---
+  {
+    id: "TopRight.triangle-inner",
+    type: "triangle",
+    variant: "negative",
+    size: "xs",
+    delay: 0.4,
+    order: 0,
+    zIndex: 10,
+    wrapperClassName: "block absolute top-[15%] right-[15%] md:top-[15%] md:right-[8vw] lg:right-[10vw]",
+  },
+  {
+    id: "TopLeft.triangle-large",
+    type: "triangle",
+    variant: "negative",
+    size: "lg",
+    delay: 0.5,
+    order: 1,
+    zIndex: 0,
+    wrapperClassName: "block absolute -top-[5vw] left-[10%] md:-top-[10vw] md:left-[41%]",
+  },
+  {
+    id: "TopLeft.circle-inner",
+    type: "circle",
+    variant: "zinc",
+    size: "xs",
+    delay: 0.6,
+    order: 2,
+    zIndex: -10,
+    wrapperClassName: "hidden md:block absolute md:-top-[6vw] md:left-[30%]",
+  },
+  {
+    id: "TopLeft.square-inner",
+    type: "square",
+    variant: "primary",
+    size: "sm",
+    delay: 0.6,
+    reverse: true,
+    order: 3,
+    zIndex: 10,
+    wrapperClassName: "block absolute top-[10%] left-[30%] md:-top-[2vw] md:left-[42%]",
+  },
+
+  {
+    id: "TopLeft.x-inner",
+    type: "x",
+    variant: "zinc",
+    size: "lg",
+    delay: 0.7,
+    reverse: true,
+    order: 5,
+    zIndex: 10,
+    wrapperClassName: "block absolute top-[0%] -right-[10%] md:-top-[5vw] md:left-[55%]",
+  },
+  {
+    id: "TopLeft.circle-mid",
+    type: "circle",
+    variant: "zinc",
+    size: "xl",
+    delay: 0.7,
+    order: 6,
+    zIndex: 10,
+    wrapperClassName: "hidden md:block absolute md:-top-[5vw] md:left-[25%]",
+  },
+  {
+    id: "TopLeft.triangle-mid",
+    type: "triangle",
+    variant: "negative",
+    size: "md",
+    delay: 0.7,
+    reverse: true,
+    order: 7,
+    zIndex: -40,
+    wrapperClassName: "hidden md:block absolute md:top-[2vw] md:left-[9vw]",
+  },
+  {
+    id: "BottomLeft.x-inner",
+    type: "x",
+    variant: "primary",
+    size: "lg",
+    delay: 0.8,
+    order: 8,
+    zIndex: 30,
+    wrapperClassName: "hidden md:block absolute bottom-[40%] left-[8%] md:bottom-[17vw] md:-left-[2.5vw]",
+  },
+  {
+    id: "BottomLeft.triangle-inner",
+    type: "triangle",
+    variant: "negative",
+    size: "md",
+    delay: 0.8,
+    reverse: true,
+    order: 9,
+    zIndex: 10,
+    wrapperClassName: "hidden md:block absolute md:top-[18vw] md:-left-[0vw]",
+  },
+  {
+    id: "TopRight.circle-inner",
+    type: "circle",
+    variant: "negative",
+    size: "sm",
+    delay: 0.8,
+    order: 10,
+    zIndex: 10,
+    wrapperClassName: "hidden md:block absolute md:-top-[6vw] md:left-[65%]",
+  },
+
+  // --- MID ZONE (Order 11-20) ---
+  {
+    id: "BottomLeft.circle-inner",
+    type: "circle",
+    variant: "negative",
+    size: "md",
+    delay: 0.9,
+    order: 11,
+    zIndex: 0,
+    wrapperClassName: "block absolute bottom-[15%] left-[10%] md:bottom-[20vw] md:left-[6vw]",
+  },
+  {
+    id: "TopLeft.square-outer",
+    type: "square",
+    variant: "zinc",
+    size: "xs",
+    delay: 0.9,
+    order: 12,
+    zIndex: -10,
+    wrapperClassName: "hidden md:block absolute md:top-[15vw] md:left-[1vw]",
+  },
+  {
+    id: "BottomRight.x-inner",
+    type: "x",
+    variant: "primary",
+    size: "md",
+    delay: 1.0,
+    reverse: true,
+    order: 13,
+    zIndex: 0,
+    wrapperClassName: "block absolute bottom-[15%] -right-[30%] md:bottom-[18vw] md:right-[2vw]",
+  },
+  {
+    id: "BottomLeft.circle-mid",
+    type: "circle",
+    variant: "primary",
+    size: "sm",
+    delay: 1.0,
+    order: 14,
+    zIndex: 10,
+    wrapperClassName: "hidden md:block absolute md:bottom-[35%] md:left-[28%]",
+  },
+  {
+    id: "BottomRight.triangle-inner",
+    type: "triangle",
+    variant: "zinc",
+    size: "sm",
+    delay: 1.1,
+    reverse: true,
+    order: 15,
+    zIndex: 10,
+    wrapperClassName: "hidden md:block absolute md:bottom-[15vw] md:right-[6vw]",
+  },
+  {
+    id: "BottomRight.circle-inner",
+    type: "circle",
+    variant: "zinc",
+    size: "xl",
+    delay: 1.2,
+    reverse: true,
+    order: 16,
+    zIndex: 10,
+    wrapperClassName: "hidden md:block absolute md:-bottom-[2vw] md:right-[15vw]",
+  },
+  {
+    id: "TopRight.square-inner",
+    type: "square",
+    variant: "zinc",
+    size: "lg",
+    delay: 1.2,
+    order: 17,
+    zIndex: 30,
+    wrapperClassName: "hidden md:block absolute md:top-[0.5vw] md:right-[3.75vw]",
+  },
+  {
+    id: "BottomRight.square-inner",
+    type: "square",
+    variant: "negative",
+    size: "sm",
+    delay: 1.2,
+    order: 18,
+    zIndex: 30,
+    wrapperClassName: "block absolute -bottom-[10%] -right-[30%] md:bottom-[2vw] md:right-[1vw]",
+  },
+  {
+    id: "TopLeft.triangle-annotated",
+    type: "triangle",
+    variant: "negative",
+    size: "sm",
+    delay: 1.3,
+    reverse: true,
+    order: 19,
+    zIndex: 10,
+    wrapperClassName: "hidden md:block absolute md:-top-[7vw] md:left-[15%]",
+  },
+  {
+    id: "BottomRight.square-mid",
+    type: "square",
+    variant: "negative",
+    size: "xl",
+    delay: 1.3,
+    reverse: true,
+    order: 20,
+    zIndex: 10,
+    wrapperClassName: "hidden md:block absolute md:bottom-[10vw] md:-right-[1vw]",
+  },
+
+  // --- OUTER ZONE (Order 21-41) ---
+  {
+    id: "TopLeft.circle-outer",
+    type: "circle",
+    variant: "primary",
+    size: "xs",
+    delay: 1.4,
+    order: 21,
+    zIndex: -20,
+    wrapperClassName: "hidden md:block absolute md:top-[5vw] md:left-[18vw]",
+  },
+  {
+    id: "BottomLeft.x-center",
+    type: "x",
+    variant: "primary",
+    size: "sm",
+    delay: 1.5,
+    order: 22,
+    zIndex: 0,
+    wrapperClassName: "hidden md:block absolute -bottom-[15%] left-[35%] md:-bottom-[6vw] md:left-[35%]",
+  },
+  {
+    id: "BottomLeft.triangle-large",
+    type: "triangle",
+    variant: "zinc",
+    size: "xl",
+    delay: 1.5,
+    reverse: true,
+    order: 23,
+    zIndex: -10,
+    wrapperClassName: "hidden md:block absolute md:bottom-[22%] md:left-[10%]",
+  },
+  {
+    id: "TopLeft.x-outer",
+    type: "x",
+    variant: "primary",
+    size: "sm",
+    delay: 1.5,
+    order: 24,
+    zIndex: 20,
+    wrapperClassName: "hidden md:block absolute md:-top-[3vw] md:-left-[4vw]",
+  },
+  {
+    id: "BottomLeft.x-outer-mid",
+    type: "x",
+    variant: "zinc",
+    size: "md",
+    delay: 1.6,
+    reverse: true,
+    order: 25,
+    zIndex: 30,
+    wrapperClassName: "hidden md:block absolute md:-bottom-[3vw] md:-left-[1vw]",
+  },
+  {
+    id: "BottomLeft.square-center-primary",
+    type: "square",
+    variant: "primary",
+    size: "sm",
+    delay: 1.6,
+    order: 26,
+    zIndex: 20,
+    wrapperClassName: "block absolute bottom-[-10%] left-[10%] md:bottom-[4%] md:left-[10%]",
+  },
+  {
+    id: "BottomLeft.circle-center-right",
+    type: "circle",
+    variant: "negative",
+    size: "md",
+    delay: 1.7,
+    order: 27,
+    zIndex: 20,
+    wrapperClassName: "hidden md:block absolute md:top-[2vw] md:left-[0%]",
+  },
+  {
+    id: "BottomLeft.triangle-outer-primary",
+    type: "triangle",
+    variant: "primary",
+    size: "md",
+    delay: 1.7,
+    order: 28,
+    zIndex: 30,
+    wrapperClassName: "hidden md:block absolute md:-bottom-[6vw] md:-left-[4vw]",
+  },
+  {
+    id: "TopRight.circle-corner",
+    type: "circle",
+    variant: "negative",
+    size: "md",
+    delay: 1.8,
+    order: 29,
+    zIndex: 20,
+    wrapperClassName: "block absolute top-[30%] -right-[20%] md:right-[2vw] md:-top-[4vw]",
+  },
+  {
+    id: "BottomLeft.square-outer-primary",
+    type: "square",
+    variant: "primary",
+    size: "sm",
+    delay: 1.8,
+    order: 30,
+    zIndex: -10,
+    wrapperClassName: "hidden md:block absolute md:bottom-[2vw] md:-left-[7vw]",
+  },
+  {
+    id: "BottomLeft.x-outer-annotated",
+    type: "x",
+    variant: "zinc",
+    size: "md",
+    delay: 1.9,
+    order: 31,
+    zIndex: -10,
+    wrapperClassName: "hidden md:block absolute md:bottom-[18vw] md:left-[16%]",
+  },
+  {
+    id: "BottomRight.triangle-corner",
+    type: "triangle",
+    variant: "primary",
+    size: "md",
+    delay: 1.9,
+    order: 32,
+    zIndex: 0,
+    wrapperClassName: "block absolute -bottom-[5%] right-[15%] md:-bottom-[5vw] md:right-[8vw]",
+  },
+  {
+    id: "TopLeft.square-corner",
+    type: "square",
+    variant: "primary",
+    size: "lg",
+    delay: 2.0,
+    reverse: true,
+    order: 33,
+    zIndex: 30,
+    wrapperClassName: "hidden md:block absolute md:-top-[2.5vw] md:left-[5vw]",
+  },
+  {
+    id: "BottomLeft.triangle-extra",
+    type: "triangle",
+    variant: "primary",
+    size: "sm",
+    delay: 2.0,
+    reverse: true,
+    order: 34,
+    zIndex: 10,
+    wrapperClassName: "hidden md:block absolute md:bottom-[8vw] md:left-[12%]",
+  },
+  {
+    id: "BottomRight.square-outer",
+    type: "square",
+    variant: "negative",
+    size: "sm",
+    delay: 2.0,
+    reverse: true,
+    order: 35,
+    zIndex: 0,
+    wrapperClassName: "hidden md:block absolute md:-bottom-[8vw] md:right-[18vw]",
+  },
+  {
+    id: "BottomLeft.square-edge-zinc",
+    type: "square",
+    variant: "zinc",
+    size: "xl",
+    delay: 2.1,
+    reverse: true,
+    order: 36,
+    zIndex: 10,
+    wrapperClassName: "hidden md:block absolute md:-bottom-[6vw] md:left-[12%]",
+  },
+  {
+    id: "BottomRight.square-edge",
+    type: "square",
+    variant: "zinc",
+    size: "sm",
+    delay: 2.1, 
+    reverse: true,
+    order: 37,
+    zIndex: -10,
+    wrapperClassName: "hidden md:block absolute md:bottom-[5vw] md:right-[30%]",
+  },
+  {
+    id: "BottomLeft.circle-edge-primary",
+    type: "circle",
+    variant: "primary",
+    size: "xl",
+    delay: 2.2,
+    reverse: true,
+    order: 38,
+    zIndex: 10,
+    wrapperClassName: "hidden md:block absolute md:bottom-[10vw] lg:bottom-[6vw] md:-left-[6vw]",
+  },
+  {
+    id: "TopRight.triangle-corner",
+    type: "triangle",
+    variant: "primary",
+    size: "xl",
+    delay: 2.2,
+    order: 39,
+    zIndex: 30,
+    wrapperClassName: "hidden md:block absolute md:-top-[13vw] lg:-top-[4.5vw] md:right-[7vw]",
+  },
+  {
+    id: "BottomLeft.circle-far-outer",
+    type: "circle",
+    variant: "zinc",
+    size: "sm",
+    delay: 2.3,
+    order: 40,
+    zIndex: 0,
+    wrapperClassName: "hidden md:block absolute md:-bottom-[8vw] md:right-[1vw]",
+  },
+  {
+    id: "BottomLeft.square-inner",
+    type: "square",
+    variant: "zinc",
+    size: "lg",
+    delay: 0.8,
+    reverse: true,
+    order: 41,
+    zIndex: 10,
+    wrapperClassName: "hidden md:block absolute md:top-[13vw] md:left-[0vw]",
+  },
+    {
+    id: "BottomRight.x-far-outer",
+    type: "x",
+    variant: "negative",
+    size: "lg",
+    delay: 2.3,
+    order: 42,
+    zIndex: 0,
+    wrapperClassName: "hidden md:block absolute md:-bottom-[6vw] md:right-[1vw]",
+  },
+      {
+    id: "BottomRight.x-far-outer-center",
+    type: "x",
+    variant: "zinc",
+    size: "sm",
+    delay: 2.3,
+    order: 43,
+    zIndex: 0,
+    wrapperClassName: "hidden md:block absolute md:-bottom-[6vw] md:right-[15vw]",
+  }
+];
+
+const SORTED_ELEMENTS = [...FLOATING_ELEMENTS].sort((a, b) => a.order - b.order);
+
+function HeroFloatingElements({ debug }: { debug?: boolean }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false });
 
@@ -14,7 +485,7 @@ function HeroFloatingElements() {
       transition: {
         staggerChildren: 0.15,
         delayChildren: 0.1 * i,
-        staggerDirection: -1,
+        staggerDirection: 1,
       },
     }),
   };
@@ -39,6 +510,7 @@ function HeroFloatingElements() {
       },
     },
   };
+
   return (
     <motion.div
       variants={container}
@@ -46,386 +518,26 @@ function HeroFloatingElements() {
       animate={isInView ? "visible" : "hidden"}
       ref={ref}
     >
-      <motion.div
-        variants={child}
-        className='-right-[5vw] top-[35vw]  absolute md:-top-[3.5vw] md:right-[1.5vw] lg:-top-[4.5vw] lg:right-[3vw] z-30'
-      >
-        <div className='relative w-[12vw] h-[12vw] md:w-[4.5vw] md:h-[4.5vw] lg:w-[5vw] lg:h-[5vw] '>
+      {SORTED_ELEMENTS.map((el) => (
+        <motion.div 
+          key={el.id} 
+          variants={child} 
+          className={el.wrapperClassName}
+          style={{ zIndex: el.zIndex }}
+        >
           <Symbol
-            className='stroke-primary w-full h-full'
-            delay={0.5}
-            type='triangle'
-            size={1}
+            id={el.order + "." + el.id}
+            debug={debug}
+            type={el.type}
+            variant={el.variant}
+            size={el.size}
+            delay={el.delay}
+            reverse={el.reverse}
           />
-        </div>
-      </motion.div>
-      <motion.div
-        variants={child}
-        className='hidden md:block absolute md:-right-[2vw] md:top-[2.5vw] lg:top-[0.5vw] lg:-right-[0.75vw]  z-30'
-      >
-        <div className='relative w-[3.75vw] h-[3.75vw] lg:w-[4.5vw] lg:h-[4.5vw] '>
-          <Symbol
-            className='stroke-zinc-700  w-full h-full'
-            delay={0.25}
-            type='square'
-            size={0.8}
-          />
-        </div>
-      </motion.div>
-      <motion.div
-        variants={child}
-        className='hidden md:block absolute md:bottom-[12vw] md:-right-[2vw] lg:bottom-[20vw] lg:-right-[2vw]'
-      >
-        <div className='relative w-[2.75vw] h-[2.75vw] lg:w-[3.5vw] lg:h-[3.5vw] '>
-          <Symbol
-            className='stroke-zinc-700  w-full h-full'
-            delay={1}
-            type='x'
-            size={1.2}
-            reverse
-          />
-        </div>
-      </motion.div>
-      <motion.div
-        variants={child}
-        className='absolute bottom-[55vw] right-0 md:bottom-[18vw] md:-right-[5vw] lg:bottom-[25vw] lg:-right-[7vw]  z-30'
-      >
-        <div className='relative w-[7vw] h-[7vw] md:w-[4vw] md:h-[4vw] lg:w-[4.5vw] lg:h-[4.5vw] '>
-          <Symbol
-            className='stroke-zinc-700  md:stroke-primary w-full h-full'
-            delay={0}
-            type='circle'
-            size={1.25}
-          />
-        </div>
-      </motion.div>
-      <motion.div
-        variants={child}
-        className='absolute  bottom-[55vw] left-[8vw]  md:bottom-[21.5vw] md:-left-[2.5vw] lg:bottom-[17vw] lg:-left-[2.5vw] z-30'
-      >
-        <div className='relative w-[8vw] h-[8vw] md:w-[4.25vw] md:h-[4.25vw]  lg:w-[4.5vw] lg:h-[4.5vw] '>
-          <Symbol
-            className='stroke-primary w-full h-full '
-            delay={0}
-            type='x'
-            size={1.25}
-          />
-        </div>
-      </motion.div>
-      <motion.div
-        variants={child}
-        className='hidden md:block absolute md:bottom-[20vw] md:left-[5.5vw] lg:bottom-[20vw] lg:left-[6vw] '
-      >
-        <div className='relative w-[1.75vw] h-[1.75vw] lg:w-[2.75vw] lg:h-[2.75vw] '>
-          <Symbol
-            className='stroke-zinc-900 w-full h-full'
-            delay={1}
-            type='circle'
-            size={1.5}
-          />
-        </div>
-      </motion.div>
-      <motion.div
-        variants={child}
-        className=' md:block absolute -left-[5vw] top-[30vw] md:-top-[2.5vw] md:left-[5vw] lg:-top-[2.5vw] lg:left-[5vw] z-30'
-      >
-        <div className='relative w-[9vw] h-[9vw] md:w-[4vw] md:h-[4vw] lg:w-[4.5vw] lg:h-[4.5vw] '>
-          <Symbol
-            className='stroke-zinc-700 md:stroke-primary  w-full h-full'
-            delay={0.75}
-            type='square'
-            size={1.2}
-            reverse
-          />
-        </div>
-      </motion.div>
-
-      <motion.div
-        variants={child}
-        className='hidden md:block absolute md:top-[2vw] md:left-[9vw] lg:top-[2vw] lg:left-[9vw] -z-40'
-      >
-        <div className='relative w-[3vw] h-[3vw] lg:w-[3.75vw] lg:h-[3.75vw] '>
-          <Symbol
-            className='stroke-zinc-900 w-full h-full'
-            delay={1.5}
-            type='triangle'
-            size={1}
-            reverse
-          />
-        </div>
-      </motion.div>
-
-      {/* NEW ELEMENTS BOTTOM */}
-      <motion.div
-        variants={child}
-        className='absolute -bottom-[5vw] right-[10vw] md:-bottom-[4vw] md:right-[5vw] lg:-bottom-[5vw] lg:right-[8vw]'
-      >
-        <div className='relative w-[4vw] h-[4vw] md:w-[2.5vw] md:h-[2.5vw] lg:w-[3vw] lg:h-[3vw] '>
-          <Symbol
-            className='stroke-primary w-full h-full'
-            delay={1.2}
-            type='triangle'
-            size={1}
-          />
-        </div>
-      </motion.div>
-
-      <motion.div
-        variants={child}
-        className='absolute -bottom-[2vw] left-[5vw] md:-bottom-[2vw] md:left-[2vw] lg:-bottom-[3vw] lg:-left-[1vw] z-30'
-      >
-        <div className='relative w-[5vw] h-[5vw] md:w-[3vw] md:h-[3vw] lg:w-[3.5vw] lg:h-[3.5vw] '>
-           <Symbol
-            className='stroke-zinc-700 w-full h-full'
-            delay={0.8}
-            type='x'
-            size={1.1}
-            reverse
-          />
-        </div>
-      </motion.div>
-
-      <motion.div
-        variants={child}
-        className='absolute bottom-[5vw] -right-[5vw] md:bottom-[0vw] md:-right-[2vw] lg:bottom-[2vw] lg:-right-[4vw] z-20'
-      >
-        <div className='relative w-[3.5vw] h-[3.5vw] md:w-[2.5vw] md:h-[2.5vw] lg:w-[3vw] lg:h-[3vw] '>
-           <Symbol
-            className='stroke-zinc-800 dark:stroke-zinc-500 w-full h-full'
-            delay={1.6}
-            type='circle'
-            size={0.9}
-          />
-        </div>
-      </motion.div>
-
-      {/* EVEN MORE ELEMENTS BOTTOM */}
-       <motion.div
-        variants={child}
-        className='absolute -bottom-[8vw] right-[25vw] md:-bottom-[6vw] md:right-[15vw] lg:-bottom-[8vw] lg:right-[18vw]'
-      >
-        <div className='relative w-[3vw] h-[3vw] md:w-[2vw] md:h-[2vw] lg:w-[2.5vw] lg:h-[2.5vw] '>
-          <Symbol
-            className='stroke-zinc-400 w-full h-full'
-            delay={1.4}
-            type='square'
-            size={0.8}
-            reverse
-          />
-        </div>
-      </motion.div>
-
-      <motion.div
-        variants={child}
-        className='absolute -bottom-[6vw] -left-[5vw] md:-bottom-[5vw] md:-left-[2vw] lg:-bottom-[6vw] lg:-left-[4vw] z-30'
-      >
-        <div className='relative w-[4vw] h-[4vw] md:w-[2.5vw] md:h-[2.5vw] lg:w-[3vw] lg:h-[3vw] '>
-           <Symbol
-            className='stroke-primary w-full h-full'
-            delay={1.0}
-            type='triangle'
-            size={1.1}
-          />
-        </div>
-      </motion.div>
-
-       <motion.div
-        variants={child}
-        className='absolute bottom-0 right-[40%] md:bottom-[2vw] md:right-[35%] lg:bottom-[1vw] lg:right-[40%] -z-10'
-      >
-        <div className='relative w-[2.5vw] h-[2.5vw] md:w-[1.5vw] md:h-[1.5vw] lg:w-[2vw] lg:h-[2vw] '>
-           <Symbol
-            className='stroke-zinc-300 dark:stroke-zinc-700 w-full h-full'
-            delay={1.8}
-            type='x'
-            size={0.7}
-          />
-        </div>
-      </motion.div>
-
-      {/* FILLER ELEMENTS */}
-      <motion.div
-        variants={child}
-        className='absolute top-[15vw] left-[15vw] md:top-[5vw] md:left-[18vw] lg:top-[5vw] lg:left-[18vw] -z-20'
-      >
-        <div className='relative w-[2vw] h-[2vw] md:w-[1.25vw] md:h-[1.25vw] lg:w-[1.5vw] lg:h-[1.5vw] '>
-           <Symbol
-            className='stroke-primary w-full h-full'
-            delay={2.0}
-            type='circle'
-            size={0.6}
-          />
-        </div>
-      </motion.div>
-
-       <motion.div
-        variants={child}
-        className='absolute bottom-[30vw] -right-[2vw] md:bottom-[10vw] md:-right-[1vw] lg:bottom-[15vw] lg:-right-[2vw] z-10'
-      >
-        <div className='relative w-[3vw] h-[3vw] md:w-[1.5vw] md:h-[1.5vw] lg:w-[2vw] lg:h-[2vw] '>
-           <Symbol
-            className='stroke-zinc-400 w-full h-full'
-            delay={1.1}
-            type='triangle'
-            size={0.8}
-            reverse
-          />
-        </div>
-      </motion.div>
-
-      <motion.div
-        variants={child}
-        className='absolute top-[40vw] -left-[2vw] md:top-[12vw] md:left-[2vw] lg:top-[15vw] lg:left-[1vw] -z-10'
-      >
-         <div className='relative w-[2.5vw] h-[2.5vw] md:w-[1.5vw] md:h-[1.5vw] lg:w-[1.75vw] lg:h-[1.75vw] '>
-           <Symbol
-            className='stroke-zinc-500 w-full h-full'
-            delay={1.9}
-            type='square'
-            size={0.7}
-          />
-        </div>
-      </motion.div>
-
-      {/* REQUESTED SPECIFIC ZONES */}
-      
-      {/* 1. Top Left */}
-      <motion.div
-        variants={child}
-        className='absolute -top-[5vw] left-[5vw] md:-top-[2vw] md:-left-[3vw] lg:-top-[3vw] lg:-left-[4vw] z-20'
-      >
-        <div className='relative w-[3.5vw] h-[3.5vw] md:w-[2vw] md:h-[2vw] lg:w-[2.5vw] lg:h-[2.5vw] '>
-           <Symbol
-            className='stroke-primary w-full h-full'
-            delay={1.3}
-            type='x'
-            size={0.9}
-          />
-        </div>
-      </motion.div>
-
-      {/* 2. Top Center */}
-      <motion.div
-        variants={child}
-        className='absolute -top-[8vw] left-[40%] md:-top-[5vw] md:left-[35%] lg:-top-[6vw] lg:left-[30%] -z-10'
-      >
-        <div className='relative w-[2.5vw] h-[2.5vw] md:w-[1.5vw] md:h-[1.5vw] lg:w-[1.75vw] lg:h-[1.75vw] '>
-           <Symbol
-            className='stroke-zinc-400 w-full h-full'
-            delay={1.7}
-            type='circle'
-            size={0.7}
-          />
-        </div>
-      </motion.div>
-
-      {/* 3. Left Middle */}
-       <motion.div
-        variants={child}
-        className='absolute top-[50%] -left-[10vw] md:top-[45%] md:-left-[6vw] lg:top-[40%] lg:-left-[8vw] z-10'
-      >
-        <div className='relative w-[4vw] h-[4vw] md:w-[2.25vw] md:h-[2.25vw] lg:w-[2.75vw] lg:h-[2.75vw] '>
-           <Symbol
-            className='stroke-zinc-800 dark:stroke-zinc-400 w-full h-full'
-            delay={0.9}
-            type='triangle'
-            size={1.0}
-            reverse
-          />
-        </div>
-      </motion.div>
-
-      {/* 4. Bottom Left (Outer) */}
-      <motion.div
-        variants={child}
-        className='absolute bottom-[10vw] -left-[8vw] md:bottom-[5vw] md:-left-[5vw] lg:bottom-[2vw] lg:-left-[7vw] -z-10'
-      >
-        <div className='relative w-[3vw] h-[3vw] md:w-[1.75vw] md:h-[1.75vw] lg:w-[2vw] lg:h-[2vw] '>
-           <Symbol
-            className='stroke-primary w-full h-full'
-            delay={1.5}
-            type='square'
-            size={0.8}
-          />
-        </div>
-      </motion.div>
-
-      {/* USER ANNOTATED ZONES */}
-      
-      {/* 1. Top Center/Left (Green Squiggle Top) */}
-      <motion.div
-        variants={child}
-        className='absolute -top-[2vw] left-[25%] md:-top-[6vw] md:left-[22%] lg:-top-[7vw] lg:left-[15%] z-10'
-      >
-        <div className='relative w-[2.5vw] h-[2.5vw] md:w-[1.5vw] md:h-[1.5vw] lg:w-[2vw] lg:h-[2vw] '>
-           <Symbol
-             className='stroke-primary w-full h-full' 
-             delay={1.2}
-             type='triangle'
-             size={0.9}
-             reverse
-           />
-        </div>
-      </motion.div>
-
-      {/* 2. Bottom Left (Green Squiggle Bottom Left) */}
-       <motion.div
-        variants={child}
-        className='absolute bottom-[20vw] -left-[12vw] md:bottom-[15vw] md:-left-[8vw] lg:bottom-[10vw] lg:-left-[10vw] -z-20'
-      >
-        <div className='relative w-[4vw] h-[4vw] md:w-[2.5vw] md:h-[2.5vw] lg:w-[3vw] lg:h-[3vw] '>
-           <Symbol
-            className='stroke-zinc-300 dark:stroke-zinc-600 w-full h-full' 
-            delay={1.6}
-            type='circle'
-            size={0.8}
-          />
-        </div>
-      </motion.div>
-
-      {/* 3. Bottom Center (Green Squiggle Bottom Center) */}
-      <motion.div
-        variants={child}
-        className='absolute -bottom-[8vw] left-[35%] md:-bottom-[5vw] md:left-[30%] lg:-bottom-[6vw] lg:left-[35%]'
-      >
-        <div className='relative w-[3vw] h-[3vw] md:w-[2vw] md:h-[2vw] lg:w-[2.5vw] lg:h-[2.5vw] '>
-           <Symbol
-            className='stroke-primary w-full h-full'
-            delay={1.4}
-            type='x'
-            size={1.0}
-          />
-        </div>
-      </motion.div>
+        </motion.div>
+      ))}
     </motion.div>
   );
 }
 
 export default HeroFloatingElements;
-
-{
-  /* <AnimatePresence mode="wait">
-        {!clicked && (
-          <motion.div
-            className=" md:block absolute  md:bottom-36 md:-left-16 lg:bottom-4 lg:-left-20 z-30"
-            exit={{ opacity: 0, left: "-60vw" }}
-            transition={{ type: "spring", duration: 1.25 }}
-          >
-            <div
-              className="relative w-[4.5vw] h-[4.5vw]"
-              onClick={() => {
-                setClicked(true);
-              }}
-            >
-              <Symbol
-                className="stroke-primary w-[10vw] h-[10vw] md:w-full md:h-full "
-                delay={0}
-                type="x"
-                size={1.25}
-              />
-            </div>
-            <div className="absolute right-8 top-1/2  translate-y-1/2 w-[50vw] -mt-1 border-dashed  border-2 border-zinc-700 -z-10 hidden lg:block" />
-          </motion.div>
-        )}
-      </AnimatePresence> */
-}

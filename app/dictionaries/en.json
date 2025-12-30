@@ -205,42 +205,46 @@
       }
     },
     "categoriesSection": {
-      "title": "I will be your Swiss Army knife in the digital world",
-      "subtitle": "I could be your favorite ",
-      "textScroller": "Your next choice",
+      "title": "Explore our pillars of innovation and digital expertise, designed to transform your brand and expand your online presence.",
+      "subtitle": "Your next team of ",
+      "titlePrimary": "Services",
+      "textScroller": "Our Services",
       "velocityScroller": -0.2,
       "carrouselKey": "category",
       "categories": [
         {
           "order": 1,
-          "name": "Developer",
+          "name": "DIGITAL DEVELOPMENT & AUTOMATIONS",
+          "shortName": "Developers",
           "url": "/projects?category=Web_Developer&page=1",
           "icon": "/icons/web_developer.svg",
           "artboardName": "Web",
-          "summary": "More than a year ago, I joined IronHack's FullStack Web Development bootcamp, where I gained experience in the MERN environment, laying the foundations for my work in several projects as a developer."
+          "summary": "We deliver cutting-edge technological solutions, including custom application development, responsive web design, and smart automations. Leveraging AI where applicable, we optimize processes to boost your business efficiency."
         },
         {
           "order": 2,
-          "name": "Designer",
+          "name": "BRANDING & GRAPHIC DESIGN",
+          "shortName": "Designers",
           "url": "/projects?category=Graphic_Design&page=1",
           "icon": "/icons/designer.svg",
           "artboardName": "Design",
-          "summary": "With a solid experience of more than 3 years as a web designer, I have enhanced this skill thanks to my knowledge acquired since 2017 in graphic design."
+          "summary": "We craft visual identities that resonate. From logo design to comprehensive branding guidelines, our team ensures your brand stands out with consistent, high-quality graphics across all media."
         },
         {
           "order": 3,
-          "name": "Marketer",
+          "name": "MARKETING & ADVERTISING",
+          "shortName": "Marketers",
           "url": "/projects?category=Marketing&page=1",
           "icon": "/icons/marketing.svg",
           "artboardName": "Marketing",
-          "summary": "I am a Google Partner and a graduate in Foreign Trade. My background includes different official certifications and international experiences as a Digital Marketing specialist."
+          "summary": "We implement data-driven marketing strategies to grow your audience. Our advertising solutions are designed to maximize ROI and effectively reach your target market."
         }
       ]
     },
     "projectsPreviewSection": {
-      "textScroller": "Enjoy my projects",
+      "textScroller": "Enjoy our projects",
       "title": "Take a look at",
-      "titlePrimary": "my projects...",
+      "titlePrimary": "our projects...",
       "button": "CHECK ALL PROJECTS"
     },
     "blogSection": {
@@ -251,16 +255,16 @@
       "button": "See all posts"
     },
     "bigQuoteSection": {
-      "textScroller": "The Power Of Passion",
-      "velocityScroller": -0.2,
+      "textScroller": "Think Big, Make it Big",
+      "velocityScroller": 0.2,
       "quote": {
-        "lineOne": "Web dev is my love",
-        "lineTwo": "videogames my passion"
+        "lineOne": "We develop, automate, and design",
+        "lineTwo": "– all in one place"
       }
     },
     "skillsSection": {
       "title": "Do you need one of",
-      "titlePrimary": "my tools?",
+      "titlePrimary": "our tools?",
       "textScroller": "The best tools",
       "velocityScroller": -0.2,
       "firstLine": [
@@ -422,13 +426,13 @@
         "textScroller": "The Power Of Passion",
         "velocityScroller": -0.2,
         "quote": {
-          "lineOne": "Web dev is my love",
-          "lineTwo": "videogames my passion"
+          "lineOne": "Web dev is our love",
+          "lineTwo": "Digital is our passion"
         }
       }
     },
     "testimonialsSection": {
-      "textScroller": "Listen to my community",
+      "textScroller": "Listen to our community",
       "velocityScroller": 0.2,
       "title": "Client",
       "titlePrimary": "Testimonials",
@@ -517,7 +521,10 @@
       {
         "id": 1,
         "title": "Tangle",
-        "categories": ["Web_Development", "Web_Apps"],
+        "categories": [
+          "Web_Development",
+          "Web_Apps"
+        ],
         "description": "After completing the bootcamp at \"Ironhack,\" I had the opportunity to do remote internships in English for 4 months at an innovative startup based in Amsterdam, the Netherlands. My contribution included executing two projects, with the standout being the creation of a website.\n\nThe initial concept for the website was designed in Figma by another team member. My task was to bring this design to life, selecting the most appropriate stack for the company's needs. Given the prevailing familiarity within the team with the MERN stack, I chose to develop the website using NextJS, aiming to improve its indexing on major browsers.\n\nIt is relevant to note that a few months after the project's completion, REACT announced its recommendation to choose one of the popular React-based frameworks in the community, among which NextJS is included. This fact validates the strategic choice made during the project development, reaffirming the quality and relevance of the selected technology.",
         "about": "Tangle is a university social ecosystem that connects students within the same institution, combating loneliness in the cities across the globe.",
         "tags": [
@@ -555,7 +562,11 @@
       {
         "id": 2,
         "title": "Top Top",
-        "categories": ["Web_Development", "Web_Design", "Web_Apps"],
+        "categories": [
+          "Web_Development",
+          "Web_Design",
+          "Web_Apps"
+        ],
         "description": "In my third project during the Ironhack web development bootcamp, I created a mobile web application that served as a social platform for exploring nearby restaurants, adding them to favorites, and accessing their menus and reservations.\n\nThis work expanded the capabilities of my previous project, which focused on CRUD for digital menus and restaurants, by introducing a new reservations service, significantly enhancing its value for users and establishments. This experience reinforced my ability to design more sophisticated web solutions, showcasing my proficiency in using MVC, React, and libraries like Bootstrap and Framer Motion, gradually solidifying my position as a competent and versatile full-stack developer.",
         "about": "Top Top Restaurants is a mobile web application that redefines the dining experience by allowing users to discover nearby restaurants as if it were a social network, and easily manage reservations.          ",
         "tags": [
@@ -594,7 +605,11 @@
       {
         "id": 3,
         "title": "Big Menu",
-        "categories": ["Web_Development", "Web_Design", "Web_Apps"],
+        "categories": [
+          "Web_Development",
+          "Web_Design",
+          "Web_Apps"
+        ],
         "description": "My second project in the Ironhack web development bootcamp was the creation of a web application designed for digital menu management in restaurants or restaurant chains. This web app allows CRUD operations (Create, Read, Update, Delete) on menus, making it easy for owners to efficiently update and maintain their culinary offerings in real-time.\n\nFor the backend logic, I implemented the Model-View-Controller (MVC) design pattern, enabling a clear and efficient code structure as well as a separation of responsibilities within the application. This architecture was crucial for keeping the project organized and facilitating its scalability.\n\nThis project not only showcases my ability to integrate various technologies in the development of complex web solutions but also demonstrates my understanding of design patterns like MVC for creating structured and maintainable web applications.",
         "about": "Big Menu is a desktop web application for the efficient management of digital menus in restaurants. It enables owners to update their culinary offerings in real-time with simple operations. The MVC architecture ensures organized code and scalability.",
         "tags": [
@@ -641,7 +656,13 @@
         ],
         "description": "In my first project during the web development bootcamp at Ironhack, I took on the challenge of creating a computer game. I used HTML5 and JavaScript to develop the game logic and manipulate objects on the canvas, complemented by CSS3 for the design and layout of the interface. GitHub served as the version control platform, while environment and character graphics were created using Adobe Illustrator. This project not only showcases my ability to combine front-end development with graphic design but also culminates in an interactive game that reflects my competence in integrating web technologies and design tools.\n\nI deeply appreciate Pedro Salazar for his support in the final stage. Together, in just 3 weeks, we fulfilled a childhood dream by creating this video game, while managing other work commitments. Effective task coordination and the ability to work as a team under pressure were crucial in meeting this challenge in such a short time, demonstrating our passion and commitment to the realization of innovative projects.",
         "about": "'Gousty, The Ghost' is a vibrant platformer mini-game set in a dark forest, filled with challenging Slimes. Control Gousty with the keyboard, using his special abilities to confront enemies and overcome levels. An intense adventure awaits you, where strategy and skill are essential.",
-        "tags": ["Adobe_Illustrator", "GitHub", "HTML5", "CSS3", "JavaScript"],
+        "tags": [
+          "Adobe_Illustrator",
+          "GitHub",
+          "HTML5",
+          "CSS3",
+          "JavaScript"
+        ],
         "image": "https://lh3.googleusercontent.com/d/11KXaqoKlk3VYGlavOUXPcLBEk2xJchJA",
         "gallery": [
           "https://lh3.googleusercontent.com/d/11KXaqoKlk3VYGlavOUXPcLBEk2xJchJA",
@@ -706,7 +727,12 @@
       {
         "id": 6,
         "title": "Canastilla",
-        "categories": ["Web_Development", "Web_Design", "Branding", "SEO"],
+        "categories": [
+          "Web_Development",
+          "Web_Design",
+          "Branding",
+          "SEO"
+        ],
         "description": "Gracias a Valeria Urdaneta por su apoyo en el diseño de la web.",
         "about": "",
         "tags": [
@@ -772,7 +798,11 @@
       {
         "id": 8,
         "title": "Funda Manía",
-        "categories": ["Web_Development", "Web_Design", "SEO"],
+        "categories": [
+          "Web_Development",
+          "Web_Design",
+          "SEO"
+        ],
         "description": "description",
         "about": "",
         "tags": [
@@ -841,10 +871,20 @@
       {
         "id": 10,
         "title": "Clínica Diseño y Sonrisas",
-        "categories": ["Web_Development", "Web_Design", "SEO"],
+        "categories": [
+          "Web_Development",
+          "Web_Design",
+          "SEO"
+        ],
         "description": "description",
         "about": "",
-        "tags": ["HTML5", "CSS3", "JavaScript", "WordPress", "Elementor"],
+        "tags": [
+          "HTML5",
+          "CSS3",
+          "JavaScript",
+          "WordPress",
+          "Elementor"
+        ],
         "image": "https://lh3.googleusercontent.com/d/1ytUvXx7WWmc5r7PEMq8aKGIe_KpwZSsh",
         "gallery": [
           "https://lh3.googleusercontent.com/d/1ytUvXx7WWmc5r7PEMq8aKGIe_KpwZSsh",
@@ -858,7 +898,6 @@
             "fallback": "",
             "active": true,
             "url": "http://clinicadysdental.com"
-
           }
         ],
         "url": "proyect_10"
@@ -906,7 +945,12 @@
       {
         "id": 12,
         "title": "Aircrew Aviation",
-        "categories": ["Web_Development", "Web_Design", "SEO", "SEM"],
+        "categories": [
+          "Web_Development",
+          "Web_Design",
+          "SEO",
+          "SEM"
+        ],
         "description": "Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim.",
         "titleTags": "Tags",
         "about": "",
@@ -938,10 +982,19 @@
       {
         "id": 13,
         "title": "Detailcar",
-        "categories": ["Web_Development", "SEO"],
+        "categories": [
+          "Web_Development",
+          "SEO"
+        ],
         "description": "description",
         "about": "",
-        "tags": ["HTML5", "CSS3", "JavaScript", "WordPress", "Elementor"],
+        "tags": [
+          "HTML5",
+          "CSS3",
+          "JavaScript",
+          "WordPress",
+          "Elementor"
+        ],
         "image": "https://lh3.googleusercontent.com/d/17Dyw_OLNuZ_u7iOwmqQBMDO78dJy2EIW",
         "gallery": [
           "https://lh3.googleusercontent.com/d/17Dyw_OLNuZ_u7iOwmqQBMDO78dJy2EIW",
@@ -1004,10 +1057,17 @@
       {
         "id": 15,
         "title": "Ernesto Fuenmayor",
-        "categories": ["Logos", "Branding", "Audiovisuals"],
+        "categories": [
+          "Logos",
+          "Branding",
+          "Audiovisuals"
+        ],
         "description": "description",
         "about": "",
-        "tags": ["Adobe_Illustrator", "Adobe_After_Effects"],
+        "tags": [
+          "Adobe_Illustrator",
+          "Adobe_After_Effects"
+        ],
         "image": "https://lh3.googleusercontent.com/d/1WNH2TApngkV0ECaMPWWZ6nhQpP664hMW",
         "gallery": [
           "https://lh3.googleusercontent.com/d/1WNH2TApngkV0ECaMPWWZ6nhQpP664hMW",
@@ -1028,10 +1088,16 @@
       {
         "id": 16,
         "title": "Ciutat de las Artes y las Ciencias",
-        "categories": ["Web_Design", "UX/UI"],
+        "categories": [
+          "Web_Design",
+          "UX/UI"
+        ],
         "description": "description",
         "about": "",
-        "tags": ["Figma", "Adobe_Premiere"],
+        "tags": [
+          "Figma",
+          "Adobe_Premiere"
+        ],
         "image": "https://lh3.googleusercontent.com/d/1vU5JcpdyKIJteUbMQM0K_VRoRqpGx8pI",
         "gallery": [
           "https://lh3.googleusercontent.com/d/1vU5JcpdyKIJteUbMQM0K_VRoRqpGx8pI",
@@ -1266,14 +1332,14 @@
       "text": "Alkitu es una agencia digital que se fundó a inicios del 2020 en la ciudad de Valencia (España) por un par de “geeks” emprendedores apasionados por las nuevas tendencias tecnológicas. Somos una agencia especializada en marketing, diseño gráfico, desarrollo de aplicaciones y páginas Web.",
       "founders": [
         {
-           "name": "Luis Urdaneta",
-           "role": "Founder",
-           "image": "/images/about/Luis-Urdaneta-Foto-Perfil-Cuadrada-150x150.webp" 
+          "name": "Luis Urdaneta",
+          "role": "Founder",
+          "image": "/images/about/Luis-Urdaneta-Foto-Perfil-Cuadrada-150x150.webp"
         },
         {
-           "name": "José Hernández",
-           "role": "Co-founder",
-           "image": "/images/about/Foto-Perfil-Jose-150x150.webp"
+          "name": "José Hernández",
+          "role": "Co-founder",
+          "image": "/images/about/Foto-Perfil-Jose-150x150.webp"
         }
       ]
     },
@@ -1344,6 +1410,80 @@
           "image": "/images/about/Valeria-Urdaneta-Foto-Perfil-con-Cuadros-768x533.webp"
         }
       ]
+    },
+    "form": {
+      "title": "Leave us a message:",
+      "nameLabel": "Your Name",
+      "namePlaceholder": "John Doe",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "john@example.com",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "Project Inquiry",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Tell me about your project...",
+      "submitButton": "Send Message",
+      "submittingButton": "Sending...",
+      "successMessage": "Message sent successfully!",
+      "successSubtext": "I'll get back to you soon."
+    },
+    "communityBanner": {
+      "titlePart1": "DO YOU WANT TO BE PART OF OUR",
+      "titleHighlight": "COMMUNITY?",
+      "contactBox": {
+        "title": "Contact Us",
+        "text": "You can write to us 24/7. We work remotely although we are based in Valencia Spain, we will always be close."
+      },
+      "socialBox": {
+        "title": "Social Networks",
+        "text": "Follow us on social media and participate as a member of our community:"
+      }
     }
-}
+  },
+  "contactPage": {
+    "header": {
+      "title": "CONTACT US",
+      "subtitle": "Do you have a project in mind?",
+      "text": "Need expert guidance in development, automation, or branding? We are here to help. Whether you have questions, ideas, or want to collaborate, contact us and let's create something amazing together."
+    },
+    "form": {
+      "title": "Leave us a message:",
+      "nameLabel": "Your Name",
+      "namePlaceholder": "John Doe",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "john@example.com",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "Project Inquiry",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Tell me about your project...",
+      "submitButton": "Send Message",
+      "submittingButton": "Sending...",
+      "successMessage": "Message sent successfully!",
+      "successSubtext": "We will reply to you soon."
+    },
+    "communityBanner": {
+      "titlePart1": "WANT TO BE PART OF OUR",
+      "titleHighlight": "COMMUNITY?",
+      "contactBox": {
+        "title": "Contact Us",
+        "text": "You can write to us 24/7. We work remotely although we are based in Valencia Spain, we will always be close."
+      },
+      "socialBox": {
+        "title": "Social Media",
+        "text": "Follow us on social media and participate as a member of our community:"
+      }
+    }
+  },
+  "newsletterSection": {
+    "titleLine1": "SUBSCRIBE TO",
+    "titleLine2": "OUR",
+    "titleHighlight": "NEWSLETTERS",
+    "subtitle": "RECEIVE INFORMATION WITH NEWS, PROMOTIONS AND EVENTS FROM THE ALKIANA COMMUNITY",
+    "placeholder": "Enter your email here",
+    "button": "Subscribe",
+    "privacy": "I have read and accept the",
+    "privacyLink": "privacy policy",
+    "success": "Thanks for subscribing!",
+    "error": "Please accept the privacy policy",
+    "invalidEmail": "Please enter a valid email"
   }
+}

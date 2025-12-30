@@ -16,6 +16,7 @@ Complete guide to the dual i18n architecture supporting English and Spanish thro
 8. [Adding New Locales](#adding-new-locales)
 9. [Best Practices](#best-practices)
 10. [Troubleshooting](#troubleshooting)
+11. [Architecture Decisions & Best Practices](#architecture-decisions--best-practices)
 
 ---
 
@@ -259,34 +260,101 @@ export const getDictionary = async (locale: Locale) => {
 // app/context/TranslationContext.tsx
 'use client';
 
-import { createContext, useContext, ReactNode } from 'react';
+import React, { createContext, useContext, useCallback, useMemo } from 'react';
+import { Translations, TranslationsProviderProps, Locale } from '../types/translations';
 
-type Dictionary = Record<string, any>;
+interface TranslationsContextType {
+  t: (key: string, params?: Record<string, string | number>, namespace?: string) => string;
+  translations: Translations;
+  locale: Locale;
+}
 
-const TranslationsContext = createContext<Dictionary | null>(null);
+const TranslationsContext = createContext<TranslationsContextType | undefined>(undefined);
 
 export function TranslationsProvider({
   children,
+  initialLocale,
   initialTranslations,
-}: {
-  children: ReactNode;
-  initialTranslations: Dictionary;
-}) {
+}: TranslationsProviderProps) {
+  const translations = initialTranslations;
+  const locale = initialLocale;
+
+  const t = useCallback(
+    (key: string, params?: Record<string, string | number>, namespace?: string): string => {
+      const fullKey = namespace ? `${namespace}.${key}` : key;
+      const keys = fullKey.split('.');
+      let current: Record<string, unknown> | unknown = translations;
+
+      for (const k of keys) {
+        if (typeof current !== 'object' || current === null || !(k in current)) {
+          console.warn(`Translation key not found: ${fullKey}`);
+          return fullKey;
+        }
+        current = (current as Record<string, unknown>)[k];
+      }
+
+      if (typeof current !== 'string') {
+        console.warn(`Invalid translation key: ${fullKey}`);
+        return fullKey;
+      }
+
+      // Parameter replacement for dynamic values
+      if (params) {
+        return Object.entries(params).reduce(
+          (acc, [paramKey, paramValue]) =>
+            acc.replace(new RegExp(`{${paramKey}}`, 'g'), String(paramValue)),
+          current
+        );
+      }
+
+      return current;
+    },
+    [translations]
+  );
+
+  const contextValue = useMemo(
+    () => ({ t, translations, locale }),
+    [t, translations, locale]
+  );
+
   return (
-    <TranslationsContext.Provider value={initialTranslations}>
+    <TranslationsContext.Provider value={contextValue}>
       {children}
     </TranslationsContext.Provider>
   );
 }
 
-export function useTranslations() {
+export function useTranslations(namespace?: string) {
   const context = useContext(TranslationsContext);
-  if (!context) {
-    throw new Error('useTranslations must be used within TranslationsProvider');
+  if (context === undefined) {
+    throw new Error('useTranslations must be used within a TranslationsProvider');
+  }
+
+  if (namespace) {
+    return (key: string, params?: Record<string, string | number>) =>
+      context.t(key, params, namespace);
+  }
+
+  return context.t;
+}
+
+export function useTranslationContext() {
+  const context = useContext(TranslationsContext);
+  if (context === undefined) {
+    throw new Error('useTranslationContext must be used within a TranslationsProvider');
   }
   return context;
 }
 ```
+
+**Key Features:**
+
+- **`t()` function**: Intelligent translation function with dot notation support
+- **Namespace support**: `useTranslations('home')` for scoped translations
+- **Parameter replacement**: Dynamic values in translations (e.g., `"Hello {name}"`)
+- **Type-safe**: Full TypeScript support with interfaces
+- **No locale switching**: Locale changes handled by Next.js routing (see Dynamic Locale Switching below)
+- **Performance optimized**: Uses `useCallback` and `useMemo` to prevent unnecessary re-renders
 
 ### Wrapping App
 
@@ -302,7 +370,10 @@ export default async function LocaleLayout({ children, params }) {
   return (
     <html lang={lang}>
       <body>
-        <TranslationsProvider initialTranslations={text}>
+        <TranslationsProvider
+          initialLocale={lang}
+          initialTranslations={text}
+        >
           {children}
         </TranslationsProvider>
       </body>
@@ -312,6 +383,8 @@ export default async function LocaleLayout({ children, params }) {
 ```
 
 ### Usage in Client Components
+
+**Basic usage with `t()` function:**
 
 ```tsx
 'use client';
@@ -323,8 +396,65 @@ export function ClientComponent() {
 
   return (
     <div>
-      <h2>{t.home.hero.title}</h2>
-      <button>{t.common.cta}</button>
+      <h2>{t('home.hero.title')}</h2>
+      <button>{t('common.cta')}</button>
+    </div>
+  );
+}
+```
+
+**With namespace (recommended for organization):**
+
+```tsx
+'use client';
+
+import { useTranslations } from '@/app/context/TranslationContext';
+
+export function HeroSection() {
+  const t = useTranslations('home.hero');
+
+  return (
+    <div>
+      <h2>{t('title')}</h2>
+      <p>{t('subtitle')}</p>
+    </div>
+  );
+}
+```
+
+**With dynamic parameters:**
+
+```tsx
+'use client';
+
+import { useTranslations } from '@/app/context/TranslationContext';
+
+export function WelcomeMessage({ userName }: { userName: string }) {
+  const t = useTranslations();
+
+  return (
+    <div>
+      {/* Translation in JSON: "welcome": "Welcome back, {name}!" */}
+      <p>{t('common.welcome', { name: userName })}</p>
+    </div>
+  );
+}
+```
+
+**Access locale and raw translations:**
+
+```tsx
+'use client';
+
+import { useTranslationContext } from '@/app/context/TranslationContext';
+
+export function LocaleInfo() {
+  const { locale, translations, t } = useTranslationContext();
+
+  return (
+    <div>
+      <p>Current locale: {locale}</p>
+      <p>{t('common.currentLanguage')}</p>
     </div>
   );
 }
@@ -332,21 +462,34 @@ export function ClientComponent() {
 
 ### Dynamic Locale Switching
 
+**Important:** Locale switching is handled entirely through **Next.js routing** using `router.push()`. This approach:
+- Triggers a full page navigation with new locale
+- Server re-renders page with correct translations
+- Middleware updates the `NEXT_LOCALE` cookie automatically
+- No client-side translation fetching needed
+- Maintains SPA feel without full page reload
+
+**Basic implementation:**
+
 ```tsx
 'use client';
 
 import { useRouter, usePathname } from 'next/navigation';
+import { Locale } from '@/i18n.config';
 
 export function LanguageSwitcher() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const switchLocale = (newLocale: 'en' | 'es') => {
-    // Replace locale in pathname
-    const segments = pathname.split('/');
-    segments[1] = newLocale;  // Replace /en/ or /es/
-    const newPath = segments.join('/');
+  const switchLocale = (newLocale: Locale) => {
+    // Get current locale from pathname
+    const currentLocale = pathname.split('/')[1];
 
+    // Remove current locale and add new one
+    const pathWithoutLocale = pathname.replace(`/${currentLocale}`, '') || '/';
+    const newPath = `/${newLocale}${pathWithoutLocale}`;
+
+    // Navigate to new localized path (triggers page re-render)
     router.push(newPath);
   };
 
@@ -358,6 +501,57 @@ export function LanguageSwitcher() {
   );
 }
 ```
+
+**Advanced implementation with UI components (like the project's SelectLanguage):**
+
+```tsx
+'use client';
+
+import { usePathname, useRouter } from 'next/navigation';
+import { useTranslationContext } from '@/app/context/TranslationContext';
+import { Locale } from '@/i18n.config';
+
+export function SelectLanguage() {
+  const { locale, translations } = useTranslationContext();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const languageOptions = translations?.menu?.languagesOptions || [];
+
+  const handleLanguageChange = (newLocale: Locale) => {
+    // Remove current locale from pathname
+    const pathWithoutLocale = pathname.replace(`/${locale}`, '') || '/';
+
+    // Build new URL with new locale
+    const newPath = `/${newLocale}${pathWithoutLocale}`;
+
+    // Use router.push for SPA navigation (no full page reload)
+    router.push(newPath);
+  };
+
+  return (
+    <div>
+      {languageOptions.map((option) => (
+        <button
+          key={option.pathname}
+          onClick={() => handleLanguageChange(option.pathname as Locale)}
+          className={locale === option.pathname ? 'active' : ''}
+        >
+          {option.name}
+        </button>
+      ))}
+    </div>
+  );
+}
+```
+
+**Key Points:**
+- ✅ Use `router.push(newPath)` for client-side navigation
+- ✅ Remove current locale before adding new one
+- ✅ Middleware handles cookie updates automatically
+- ❌ Don't fetch translations on client (server provides them)
+- ❌ Don't manage locale state in client components (use routing)
+- ❌ Don't use `window.location.href` (causes full page reload)
 
 ---
 
@@ -432,7 +626,9 @@ export function withI18nMiddleware(next: NextMiddleware): NextMiddleware {
     response.cookies.set(COOKIE_NAME, currentLocale, {
       path: '/',
       maxAge: 60 * 60 * 24 * 365,  // 1 year
-      sameSite: 'strict',
+      sameSite: 'lax',      // 'lax' allows cookies in navigation GET (strict would block)
+      httpOnly: false,      // Allow client-side access if needed
+      secure: process.env.NODE_ENV === 'production',  // HTTPS only in production
     });
 
     return response;
@@ -687,21 +883,34 @@ const title = text?.home?.hero?.title ?? 'Fallback';
 
 **Solutions:**
 
-1. **Check cookie is being set**
+1. **Verify router.push() is being used (not window.location.href)**
+
+```tsx
+// ✅ Correct - SPA navigation
+router.push(newPath);
+
+// ❌ Wrong - causes full page reload
+window.location.href = newPath;
+```
+
+2. **Check cookie is being set**
 
 ```bash
 # In browser DevTools > Application > Cookies
 # Should see: NEXT_LOCALE = en or es
 ```
 
-2. **Verify middleware is running**
+3. **Verify pathname replacement is correct**
 
 ```typescript
-// Add console.log in withI18nMiddleware.ts
-console.log('Current locale:', currentLocale);
+// Ensure current locale is properly removed before adding new one
+const pathWithoutLocale = pathname.replace(`/${locale}`, '') || '/';
+const newPath = `/${newLocale}${pathWithoutLocale}`;
 ```
 
-3. **Clear browser cache** and cookies
+4. **Check browser console for navigation errors**
+
+5. **Clear browser cache** and cookies
 
 ---
 
@@ -734,11 +943,74 @@ git push
 
 ---
 
+## Architecture Decisions & Best Practices
+
+### Why No Client-Side Translation Fetching?
+
+The current implementation **does not fetch translations on the client side**. Here's why:
+
+**✅ Benefits of Server-Only Translation Loading:**
+
+1. **Single Source of Truth**: Server loads translations once and passes to client via context
+2. **Better Performance**: No additional HTTP requests for translation files
+3. **Simpler Architecture**: Locale switching handled entirely by Next.js routing
+4. **SEO Friendly**: Each locale has dedicated server-rendered URLs
+5. **Type Safety**: TypeScript can validate translation keys at build time
+
+**How Locale Switching Works:**
+
+```
+User clicks language switcher
+    ↓
+router.push('/new-locale/current-path')
+    ↓
+Next.js navigation (no full reload)
+    ↓
+Server Component re-renders with new locale
+    ↓
+getDictionary() loads correct translations
+    ↓
+TranslationsProvider receives new translations
+    ↓
+Client Components re-render with new content
+```
+
+### Removed Components (as of 2024)
+
+The following were **removed during codebase cleanup** as they were unnecessary with the router-based approach:
+
+1. **`/app/api/translations/` API endpoint** - No longer needed; translations provided by server components
+2. **`setLocale()` function in TranslationContext** - Locale changes handled by Next.js routing
+3. **`isLoading` state in TranslationContext** - No async operations in context
+4. **`lib/getTranslations.ts`** - Duplicate of `lib/dictionary.ts`
+
+### Production-Ready Practices
+
+**Middleware:**
+- ✅ No `console.log` statements in production code
+- ✅ Cookie settings optimized (`sameSite: 'lax'`, `httpOnly: false`, `secure` in production)
+- ✅ Proper error handling without exposing internals
+
+**Components:**
+- ✅ Use `router.push()` for locale switching (SPA navigation)
+- ✅ Leverage TypeScript for type-safe translation access
+- ✅ Use `useMemo` and `useCallback` to prevent unnecessary re-renders
+- ✅ Provide fallback values for missing translations
+
+**Translation Files:**
+- ✅ Keep structure consistent between `en.json` and `es.json`
+- ✅ Use semantic keys, not literal text as keys
+- ✅ Extract common translations to `common` namespace
+- ✅ Document parameter placeholders (e.g., `{name}`, `{count}`)
+
+---
+
 ## See Also
 
 - [MIDDLEWARE.md](MIDDLEWARE.md) - Middleware chain details
 - [SETUP.md](SETUP.md) - Initial setup
 - [TROUBLESHOOTING.md](TROUBLESHOOTING.md) - Common issues
+- [ANIMATIONS.md](ANIMATIONS.md) - Framer Motion integration with i18n
 
 ---
 

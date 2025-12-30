@@ -92,7 +92,6 @@ alkitu-website/
 │   │   └── users/          # User management
 │   │
 │   ├── api/                # API routes
-│   │   ├── translations/   # i18n API
 │   │   ├── projects/       # Public project API
 │   │   ├── categories/     # Categories API
 │   │   ├── analytics/      # Tracking endpoints

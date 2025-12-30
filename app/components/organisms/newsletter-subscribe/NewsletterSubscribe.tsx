@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslationContext } from '@/app/context/TranslationContext';
 
 interface NewsletterSubscribeProps {
   locale: string;
@@ -17,32 +18,8 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState('');
 
-  const translations = {
-    es: {
-      title: 'INSCRÍBETE EN NUESTRO BOLETÍN INFORMATIVO',
-      subtitle: 'RECIBE INFORMACIÓN CON NOVEDADES, PROMOCIONES Y EVENTOS DE LA COMUNIDAD ALKIANA',
-      placeholder: 'Escribe aquí tu correo electrónico',
-      button: 'Subscribirse',
-      privacy: 'He leído y acepto la',
-      privacyLink: 'política de privacidad',
-      success: '¡Gracias por suscribirte!',
-      error: 'Por favor, acepta la política de privacidad',
-      invalidEmail: 'Por favor, introduce un email válido',
-    },
-    en: {
-      title: 'SUBSCRIBE TO OUR NEWSLETTER',
-      subtitle: 'RECEIVE INFORMATION WITH NEWS, PROMOTIONS AND EVENTS FROM THE ALKIANA COMMUNITY',
-      placeholder: 'Enter your email address here',
-      button: 'Subscribe',
-      privacy: 'I have read and accept the',
-      privacyLink: 'privacy policy',
-      success: 'Thank you for subscribing!',
-      error: 'Please accept the privacy policy',
-      invalidEmail: 'Please enter a valid email',
-    },
-  };
-
-  const t = translations[locale as keyof typeof translations] || translations.es;
+  const { translations } = useTranslationContext();
+  const t = translations?.newsletterSection;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,13 +28,13 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
     // Validate email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      setMessage(t.invalidEmail);
+      setMessage(t?.invalidEmail || 'Invalid Format');
       return;
     }
 
     // Validate privacy policy acceptance
     if (!accepted) {
-      setMessage(t.error);
+      setMessage(t?.error || 'Error');
       return;
     }
 
@@ -66,7 +43,7 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
     // TODO: Implement actual newsletter subscription logic
     // For now, just simulate a successful subscription
     setTimeout(() => {
-      setMessage(t.success);
+      setMessage(t?.success || 'Success');
       setEmail('');
       setAccepted(false);
       setIsSubmitting(false);
@@ -85,8 +62,8 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
         >
           <div className="flex flex-col items-center gap-2 mb-6">
             <h2 className="header-section text-white tracking-wide leading-tight">
-              SUSCRÍBETE A <br />
-              NUESTROS <span className="text-primary">BOLETINES</span>
+              {t?.titleLine1} <br />
+              {t?.titleLine2} <span className="text-primary">{t?.titleHighlight}</span>
             </h2>
 
             {/* Green line */}
@@ -101,7 +78,7 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
 
           {/* Subtitle */}
           <p className="header-secondary-alt text-white mb-8 mx-auto">
-            {t.subtitle}
+            {t?.subtitle}
           </p>
 
           {/* Form */}
@@ -112,7 +89,7 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder={t.placeholder}
+                placeholder={t?.placeholder}
                 className="w-full md:w-96 px-4 py-3 bg-white text-black rounded focus:outline-none focus:ring-2 focus:ring-primary"
                 required
                 suppressHydrationWarning
@@ -124,7 +101,7 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
                 disabled={isSubmitting}
                 className="px-8 py-3 border-2 border-white text-white font-semibold rounded hover:bg-white hover:text-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed uppercase"
               >
-                {isSubmitting ? '...' : t.button}
+                {isSubmitting ? '...' : t?.button}
               </button>
             </div>
 
@@ -139,14 +116,14 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
                 suppressHydrationWarning
               />
               <label htmlFor="privacy-policy" className="cursor-pointer">
-                {t.privacy}{' '}
+                {t?.privacy}{' '}
                 <a
                   href={`/${locale}/privacy-policy`}
                   className="text-primary hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {t.privacyLink}
+                  {t?.privacyLink}
                 </a>
               </label>
             </div>
@@ -157,7 +134,7 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className={`text-sm ${
-                  message.includes('Gracias') || message.includes('Thank you')
+                  message.includes('Gracias') || message.includes('Thank')
                     ? 'text-primary'
                     : 'text-red-400'
                 }`}

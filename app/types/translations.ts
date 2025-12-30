@@ -72,6 +72,53 @@ export interface Translations {
     previous: string;
     next: string;
   };
+  contactPage: {
+    header: {
+      title: string;
+      subtitle: string;
+      text: string;
+    };
+    form: {
+      title: string;
+      nameLabel: string;
+      namePlaceholder: string;
+      emailLabel: string;
+      emailPlaceholder: string;
+      subjectLabel: string;
+      subjectPlaceholder: string;
+      messageLabel: string;
+      messagePlaceholder: string;
+      submitButton: string;
+      submittingButton: string;
+      successMessage: string;
+      successSubtext: string;
+    };
+    communityBanner: {
+      titlePart1: string;
+      titleHighlight: string;
+      contactBox: {
+        title: string;
+        text: string;
+      };
+      socialBox: {
+        title: string;
+        text: string;
+      };
+    };
+  };
+  newsletterSection: {
+    titleLine1: string;
+    titleLine2: string;
+    titleHighlight: string;
+    subtitle: string;
+    placeholder: string;
+    button: string;
+    privacy: string;
+    privacyLink: string;
+    success: string;
+    error: string;
+    invalidEmail: string;
+  };
   [key: string]: unknown; // Allow dynamic access for nested keys
 }
 

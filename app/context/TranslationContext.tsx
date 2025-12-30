@@ -1,57 +1,23 @@
 "use client";
 
-import React, { createContext, useContext, useState, useCallback, useMemo } from "react";
-import { getCookie, setCookie } from "cookies-next";
+import React, { createContext, useContext, useCallback, useMemo } from "react";
 import { Translations, TranslationsProviderProps, Locale } from "../types/translations";
 
 interface TranslationsContextType {
   t: (key: string, params?: Record<string, string | number>, namespace?: string) => string;
   translations: Translations;
   locale: Locale;
-  setLocale: (locale: Locale) => Promise<void>;
-  isLoading: boolean;
 }
 
 const TranslationsContext = createContext<TranslationsContextType | undefined>(undefined);
-
-const COOKIE_NAME = "NEXT_LOCALE";
-const COOKIE_MAX_AGE = 365 * 24 * 60 * 60; // 1 year
 
 export function TranslationsProvider({
   children,
   initialLocale,
   initialTranslations,
 }: TranslationsProviderProps) {
-  const [translations, setTranslations] = useState<Translations>(initialTranslations);
-  const [locale, setLocaleState] = useState<Locale>(initialLocale);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const setLocale = useCallback(
-    async (newLocale: Locale) => {
-      if (newLocale !== locale) {
-        setIsLoading(true);
-        try {
-          const response = await fetch(`/api/translations?lang=${newLocale}`);
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          const data = await response.json();
-          setTranslations(data);
-          setLocaleState(newLocale);
-          setCookie(COOKIE_NAME, newLocale, {
-            maxAge: COOKIE_MAX_AGE,
-            path: "/",
-          });
-        } catch (error) {
-          console.error("Error loading translations:", error);
-          // Keep current translations on error
-        } finally {
-          setIsLoading(false);
-        }
-      }
-    },
-    [locale]
-  );
+  const translations = initialTranslations;
+  const locale = initialLocale;
 
   const t = useCallback(
     (key: string, params?: Record<string, string | number>, namespace?: string): string => {
@@ -86,8 +52,8 @@ export function TranslationsProvider({
   );
 
   const contextValue = useMemo(
-    () => ({ t, translations, locale, setLocale, isLoading }),
-    [t, translations, locale, setLocale, isLoading]
+    () => ({ t, translations, locale }),
+    [t, translations, locale]
   );
 
   return (

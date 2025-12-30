@@ -6,15 +6,13 @@ import { useTheme } from '@/app/context/ThemeContext';
 
 interface AlkituLogoProps {
   locale?: string;
-  width?: number;
   height?: number;
   className?: string;
 }
 
 export default function AlkituLogo({
   locale = 'en',
-  width = 200,
-  height = 80,
+  height = 60,
   className = ''
 }: AlkituLogoProps) {
   const { resolvedTheme } = useTheme();
@@ -29,9 +27,10 @@ export default function AlkituLogo({
       <Image
         src={logoSrc}
         alt="Alkitu Logo"
-        width={width}
+        width={200}
         height={height}
         priority
+        style={{ width: 'auto', height: 'auto', maxHeight: height }}
       />
     </Link>
   );

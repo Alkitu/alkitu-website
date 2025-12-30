@@ -30,7 +30,7 @@ export default function ContactForm({
   submitButtonTextLoading,
 }: ContactFormProps) {
   const { translations } = useTranslationContext();
-  const contactText = translations?.contact?.form;
+  const contactText = translations?.contactPage?.form;
 
   const {
     formData,

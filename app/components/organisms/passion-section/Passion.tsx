@@ -1,33 +1,10 @@
-import TailwindGrid from "@/app/components/templates/grid";
 import { BigQuote } from "@/app/components/organisms/quote-section";
-import PassionImage from "@/app/components/organisms/passion-section/PassionImage";
 
 function Passion({ text }) {
-  const passionData = text.home.passionSection;
+  const passionData = text.home.bigQuoteSection;
   return (
     <div>
-      <BigQuote text={passionData.bigQuote} />
-      <div className='mt-[7vw] md:mt-[15.5vw] lg:mt-[6.5vw] mb-[3.5vw] md:mb-[7.75vw] lg:mb-0 '>
-        <TailwindGrid>
-          <section className='flex col-start-1  col-end-5 md:col-end-5 lg:col-start-2 lg:col-end-7 w-full h-full order-2 md:order-1 z-30 '>
-            <div className='flex flex-col justify-center items-center gap-4 align-middle'>
-              <h3 className='header-section self-center text-center md:self-start md:text-start'>
-                {passionData.title}
-                <span className='md:hidden'>
-                  <br />
-                </span>
-                <span className='text-primary '>
-                  {passionData.titlePrimary}
-                </span>
-              </h3>
-              <p className='max-w-full text-center md:text-left text-foreground dark:text-slate-50 md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] font-normal tracking-tight'>
-                {passionData.description}
-              </p>
-            </div>
-          </section>
-          <PassionImage artboardName={passionData.artboardName} />
-        </TailwindGrid>
-      </div>
+      <BigQuote text={passionData} />
     </div>
   );
 }

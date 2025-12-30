@@ -27,16 +27,16 @@ function DynamicListItem({ category, index, boxPositions, handleClick }) {
           className={`${
             boxPositions[index] === 1
               ? "h-[105%] -top-[2.5%]"
-              : "md:h-60 lg:h-64 -bottom-2"
+              : "md:h-60 lg:h-64 -bottom-2 "
           } ${
             hover ? "opacity-50" : "opacity-0"
-          } absolute w-full  bg-linear-to-b from-zinc-300 to-zinc-300 dark:from-primary dark:to-primary rounded-lg blur transition duration-200 hidden lg:block `}
+          } absolute  w-full  bg-linear-to-b from-zinc-300 to-zinc-300 dark:from-primary dark:to-primary rounded-lg blur transition duration-200 hidden lg:block `}
         />
         <div
           className={`  w-full mx-auto relative  bg-white dark:bg-zinc-900 shadow-xs shadow-zinc-200 dark:shadow-md dark:shadow-black border border-zinc-50 dark:border-transparent  rounded-3xl flex-col content-center items-center justify-center  cursor-pointer  ${
             boxPositions[index] === 1
-              ? "lg:min-h-68  py-[3.77rem]"
-              : "lg:h-60 py-11"
+              ? "lg:min-h-68  py-[3.77rem] px-[2vw]"
+              : "h-fit py-11 px-[2vw]"
           }`}
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
@@ -47,7 +47,7 @@ function DynamicListItem({ category, index, boxPositions, handleClick }) {
             className={
               boxPositions[index] === 1
                 ? "h-56 max-h-full max-w-full aspect-square mx-auto "
-                : "h-32 max-h-full max-w-full aspect-square mx-auto "
+                : "h-32 max-h-full max-w-full aspect-square mx-auto mb-[1vw] "
             }
           >
             <RiveAnimation
@@ -60,8 +60,8 @@ function DynamicListItem({ category, index, boxPositions, handleClick }) {
             <h3
               className={`${
                 boxPositions[index] === 1
-                  ? "lg:text-[2vw]"
-                  : "lg:text-[1.7vw] md:hidden lg:inline"
+                  ? "lg:text-[1.7vw]"
+                  : "lg:text-[1.2vw] md:hidden lg:inline"
               } text-center  text-[6vw] md:text-[3.8vw] font-black uppercase m-auto w-full text-foreground`}
             >
               {category.name.split("").map((word, wordIndex) => {

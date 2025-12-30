@@ -4,16 +4,16 @@ import Link from "next/link";
 import TailwindGrid from "@/app/components/templates/grid";
 import { Button } from "@/app/components/atoms/button";
 import HeroPhones from "@/app/components/molecules/hero-phones";
-import HeroFloatingElements from "@/app/components/organisms/hero-section/HeroFloatingElements";
 import { useLocalizedPath } from "@/app/hooks";
+import HeroFloatingElements from "./HeroFloatingElements";
 
 function Hero({ text }) {
   const hero = text.home.heroSection;
   const localizedPath = useLocalizedPath();
 
   return (
-    <TailwindGrid>
-      <section className='col-start-1 max-w-full w-full col-end-full md:col-start-1 md:col-end-6 lg:col-start-2 lg:col-end-6 pt-[10vw] md:pt-[8vw] lg:pt-[5vw] order-2 md:order-1 z-30 col-span-full flex flex-col justify-center'>
+  <TailwindGrid fullSize >
+      <section className='col-start-1 max-w-full w-full col-end-full md:col-start-1 md:col-end-6 lg:col-start-2 lg:col-end-6 pt-[8vw] md:pt-[6vw] lg:pt-[3vw] px-4 md:px-6 lg:px-8 order-2 md:order-1 z-30 col-span-full flex flex-col justify-center'>
         <div className='flex-col justify-start items-start gap-6 inline-flex'>
           
           {/* Main Title */}
@@ -74,9 +74,9 @@ function Hero({ text }) {
       </section>
 
       {/* Right Column: HeroPhones */}
-      <section className='col-start-1 col-end-full md:col-start-6 md:col-end-13 lg:col-start-7 lg:col-end-13 order-1 md:order-2 flex items-center justify-center p-4 md:p-0'>
-         <div className="w-full max-w-[500px] lg:max-w-full relative pr-[2vw]">
-            <HeroFloatingElements />
+      <section className='col-start-1 col-end-4 md:col-start-6 md:col-end-13 lg:col-start-7 lg:col-end-13 order-2 md:order-2 flex items-center justify-center p-0 md:p-0'>
+         <div className="w-full lg:max-w-full relative  md:pr-[4vw] mt-12 md:mt-0">
+            <HeroFloatingElements debug={false} />
             <HeroPhones />
          </div>
       </section>

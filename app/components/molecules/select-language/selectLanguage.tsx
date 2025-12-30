@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
 import { useTranslationContext } from '@/app/context/TranslationContext';
 import { useDropdown } from '@/app/context/DropdownContext';
+import { usePathname, useRouter } from 'next/navigation';
 import { Locale } from '@/i18n.config';
 
 interface LanguageOption {
@@ -66,6 +67,8 @@ const mobileNavbar: Variants = {
 export default function SelectLanguage() {
   const { translations, setLocale, locale } = useTranslationContext();
   const { activeDropdown, toggleDropdown } = useDropdown();
+  const pathname = usePathname();
+  const router = useRouter();
   const isOpen = activeDropdown === 'language';
   const [selectedCategory, setSelectedCategory] = useState<string>(
     translations?.menu?.currentLanguage || locale.toUpperCase()
@@ -80,7 +83,7 @@ export default function SelectLanguage() {
     <motion.nav
       initial={false}
       animate={isOpen ? 'open' : 'closed'}
-      className="flex flex-col self-center"
+      className="flex flex-col self-center relative"
     >
       <motion.button
         whileHover={{ scale: 1.03 }}
@@ -135,70 +138,68 @@ export default function SelectLanguage() {
           </svg>
         </motion.div>
       </motion.button>
-      <AnimatePresence mode="wait" initial={false} onExitComplete={() => null}>
+      <AnimatePresence initial={false}>
         {isOpen && (
-          <>
             <motion.ul
+              key="language-dropdown"
               variants={mobileNavbar}
-              className={`select-list w-32 absolute bg-zinc-50 dark:bg-zinc-700 text-foreground top-16 list-none m-0 flex flex-col right-8 shadow-lg rounded-md ${
-                isOpen ? 'p-2 scale-1' : 'hidden scale-0'
-              }`}
+              initial="closed"
+              animate="open"
               exit="closed"
+              className={`select-list w-32 absolute bg-zinc-50 dark:bg-zinc-700 text-foreground top-full mt-2 list-none m-0 flex flex-col right-0 shadow-lg rounded-md z-[100] p-2`}
               style={{
-                clipPath: isOpen
-                  ? 'inset(0% round 0px)'
-                  : 'inset(10% 50% 90% 50% round 10px)',
-                pointerEvents: isOpen ? 'auto' : 'none'
+                pointerEvents: 'auto'
               }}
             >
-              <AnimatePresence
-                mode="wait"
-                initial={false}
-                onExitComplete={() => null}
-              >
-                {languageOptions &&
-                  languageOptions.map((category, index) => (
-                    <motion.li
-                      key={index}
-                      className="text-center text-md last:border-b-0 border-b-2 font-medium first:pb-2 last:pt-2 flex-row w-full content-center cursor-pointer flex items-center justify-between gap-2 px-2"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      variants={itemVariants}
-                      initial="closed"
-                      animate={isOpen ? 'open' : 'closed'}
-                      exit="closed"
-                      onClick={() => {
-                        toggleDropdown(null);
-                        setLocale(category.pathname as Locale);
-                        window.location.href = `/${category.pathname}`;
-                      }}
-                    >
-                      <span className={locale === category.pathname ? 'text-primary font-bold' : ''}>
-                        {category.name}
-                      </span>
-                      {locale === category.pathname && (
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 20 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="text-primary"
-                        >
-                          <path
-                            d="M16.6667 5L7.50004 14.1667L3.33337 10"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      )}
-                    </motion.li>
-                  ))}
-              </AnimatePresence>
+              {languageOptions &&
+                languageOptions.map((category, index) => (
+                  <motion.li
+                    key={index}
+                    className="text-center text-md last:border-b-0 border-b-2 font-medium first:pb-2 last:pt-2 flex-row w-full content-center cursor-pointer flex items-center justify-between gap-2 px-2"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    variants={itemVariants}
+                    initial="closed"
+                    animate={isOpen ? 'open' : 'closed'}
+                    exit="closed"
+                    onClick={() => {
+                      toggleDropdown(null);
+                      const newLocale = category.pathname as Locale;
+
+                      // Remove current locale from pathname to get the base path
+                      const pathWithoutLocale = pathname.replace(`/${locale}`, '') || '/';
+
+                      // Build new URL with new locale
+                      const newPath = `/${newLocale}${pathWithoutLocale}`;
+
+                      // Navigate to new localized path using SPA navigation
+                      router.push(newPath);
+                    }}
+                  >
+                    <span className={locale === category.pathname ? 'text-primary font-bold' : ''}>
+                      {category.name}
+                    </span>
+                    {locale === category.pathname && (
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="text-primary"
+                      >
+                        <path
+                          d="M16.6667 5L7.50004 14.1667L3.33337 10"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    )}
+                  </motion.li>
+                ))}
             </motion.ul>
-          </>
         )}
       </AnimatePresence>
     </motion.nav>

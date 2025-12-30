@@ -26,7 +26,7 @@ export default function CommunityBanner() {
                 viewport={{ once: true }}
                 className="header-section uppercase text-black tracking-wider leading-tight py-2"
               >
-                ¿QUIERES SER PARTE DE NUESTRA <span className="text-primary">COMUNIDAD</span>?
+                {translations?.contactPage?.communityBanner?.titlePart1} <span className="text-primary">{translations?.contactPage?.communityBanner?.titleHighlight}</span>
               </motion.h2>
             </div>
 
@@ -43,7 +43,7 @@ export default function CommunityBanner() {
                 className="flex flex-col items-center lg:items-center text-center space-y-4 order-2 lg:order-1"
               >
               <div className="w-full flex flex-col items-center lg:items-center text-center space-y-2 mb-2">
-                  <h3 className="header-secondary-alt font-bold tracking-widest text-white">Contáctanos</h3>
+                  <h3 className="header-secondary-alt font-bold tracking-widest text-white">{translations?.contactPage?.communityBanner?.contactBox?.title}</h3>
                   {/* Green Pill Separator */}
                   <motion.div 
                     initial={{ width: 0 }}
@@ -55,7 +55,7 @@ export default function CommunityBanner() {
                 </div>
                 <div className="flex flex-col gap-3 items-center text-gray-300 text-body-inverse">
                   <p className="max-w-[280px] font-medium ">
-                    Puedes escribirnos 24/7 y aunque no tenemos ubicación física (por el momento), siempre estaremos cerca.
+                    {translations?.contactPage?.communityBanner?.contactBox?.text}
                   </p>
                   <div className="flex flex-col gap-2 mt-2">
                      <motion.a 
@@ -105,7 +105,7 @@ export default function CommunityBanner() {
                 className="flex flex-col items-center lg:items-center text-center space-y-4 order-3"
               >
                 <div className="w-full flex flex-col items-center lg:items-center text-center space-y-2 mb-2">
-                  <h3 className="header-secondary-alt font-bold tracking-widest text-white">Redes Sociales</h3>
+                  <h3 className="header-secondary-alt font-bold tracking-widest text-white">{translations?.contactPage?.communityBanner?.socialBox?.title}</h3>
                   {/* Green Pill Separator */}
                   <motion.div 
                     initial={{ width: 0 }}
@@ -117,7 +117,7 @@ export default function CommunityBanner() {
                 </div>
 
                 <p className="text-gray-300 max-w-[280px] text-body-inverse font-light">
-                  Síguenos en redes sociales y participa como miembro de nuestra comunidad:
+                  {translations?.contactPage?.communityBanner?.socialBox?.text}
                 </p>
                 <div className="flex gap-3 flex-wrap justify-center">
                    {/* Simple Social Buttons - High Contrast */}
