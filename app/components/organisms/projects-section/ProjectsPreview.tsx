@@ -60,7 +60,7 @@ function ProjectsPreview({ text }) {
   return (
     <div className='relative flex-col flex col-span-full  bg-yellow-500/0 '>
       <TailwindGrid fullSize>
-        <section className='absolute self-center overflow-hidden max-w-full -z-50 -top-[17vw] md:-top-[11vw] lg:-top-[8.5vw] left-0 '>
+        <section className='absolute self-center overflow-hidden w-full max-w-full z-0 -top-[17vw] md:-top-[11vw] lg:-top-[8.5vw] left-0 '>
           <ParallaxText baseVelocity={-0.05}>
             {previewProjects.textScroller}
           </ParallaxText>

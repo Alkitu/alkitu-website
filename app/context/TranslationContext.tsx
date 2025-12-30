@@ -7,6 +7,7 @@ interface TranslationsContextType {
   t: (key: string, params?: Record<string, string | number>, namespace?: string) => string;
   translations: Translations;
   locale: Locale;
+  setLocale: (locale: Locale) => void;
 }
 
 const TranslationsContext = createContext<TranslationsContextType | undefined>(undefined);
@@ -51,9 +52,13 @@ export function TranslationsProvider({
     [translations]
   );
 
+  const setLocale = useCallback((newLocale: Locale) => {
+    document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000; SameSite=Lax`;
+  }, []);
+
   const contextValue = useMemo(
-    () => ({ t, translations, locale }),
-    [t, translations, locale]
+    () => ({ t, translations, locale, setLocale }),
+    [t, translations, locale, setLocale]
   );
 
   return (

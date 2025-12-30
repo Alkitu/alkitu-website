@@ -44,10 +44,12 @@ export default function AboutHero({ dictionary }: AboutHeroProps) {
                      <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-white dark:border-zinc-800 shadow-xl mb-3 relative group">
                         {/* Placeholder logic for circular images */}
                         <div className="absolute inset-0 bg-zinc-200 dark:bg-zinc-700 animate-pulse" />
-                        <Image 
-                           src={founder.image} 
-                           alt={founder.name} 
-                           fill 
+                        <Image
+                           src={founder.image}
+                           alt={founder.name}
+                           fill
+                           sizes="(max-width: 768px) 96px, 128px"
+                           priority={index === 0}
                            className="object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                      </div>
@@ -66,10 +68,12 @@ export default function AboutHero({ dictionary }: AboutHeroProps) {
             className="flex-1 w-full"
         >
             <div className="relative w-full aspect-4/3 rounded-2xl overflow-hidden shadow-2xl border border-zinc-100 dark:border-zinc-800">
-                <Image 
-                    src="/images/about/Alkitu-Fundadores-Trabajando.webp" 
-                    alt="Fundadores Alkitu Trabajando" 
-                    fill 
+                <Image
+                    src="/images/about/Alkitu-Fundadores-Trabajando.webp"
+                    alt="Fundadores Alkitu Trabajando"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    priority
                     className="object-cover"
                 />
             </div>

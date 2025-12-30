@@ -13,7 +13,7 @@ function Brands({ text }: { text: Translations }) {
       <div className='relative w-full overflow-hidden'>
         
         <TailwindGrid fullSize>
-          <section className='absolute self-center overflow-hidden max-w-full -z-50 -top-[9.75vw] md:-top-[2.5vw] lg:top-0 left-0 '>
+          <section className='absolute self-center overflow-hidden w-full max-w-full z-0 -top-[9.75vw] md:-top-[2.5vw] lg:top-0 left-0 '>
             <ParallaxText baseVelocity={dataBrands.velocityScroller}>
               {dataBrands.textScroller}
             </ParallaxText>

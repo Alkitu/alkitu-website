@@ -62,6 +62,7 @@ export default function ContactForm({
       whileInView="visible"
       viewport={{ once: true }}
       className="flex flex-col gap-6 w-full"
+      suppressHydrationWarning
     >
       {/* Name Field */}
       <motion.div variants={itemVariants}>

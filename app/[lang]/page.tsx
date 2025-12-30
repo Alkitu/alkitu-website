@@ -7,10 +7,10 @@ import { Category } from "../components/organisms/category-section";
 import { Hero } from "../components/organisms/hero-section";
 import { Passion } from "../components/organisms/passion-section";
 import { ProjectsPreview } from "../components/organisms/projects-section";
-import { BigQuote } from "../components/organisms/quote-section";
 import { Skills } from "../components/organisms/skills-section";
 import { Testimonials } from "../components/organisms/testimonials-section";
 import { Brands } from "../components/organisms/brands-section";
+import { HomeContact } from "../components/organisms/home-contact-section";
 
 export default async function Home({
   params,
@@ -42,6 +42,9 @@ export default async function Home({
           </div> */}
           <div id='passion-section'>
             <Passion text={text} />
+          </div>
+          <div id='contact-section'>
+            <HomeContact text={text} />
           </div>
           <div id='testimonials-section'>
             <Testimonials text={text} />
