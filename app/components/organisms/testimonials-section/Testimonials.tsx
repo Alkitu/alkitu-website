@@ -18,7 +18,7 @@ function Testimonials({ text }) {
   }, []);
 
   return (
-    <div className='relative col-span-full max-w-full  bg-orange-500/0 pb-[14vw] md:pb-[7vw] lg:pb-[9vw]'>
+    <div className='relative col-span-full max-w-full  bg-orange-500/0 '>
       <TailwindGrid fullSize>
         <section className='absolute pt-5 -z-50 overflow-hidden max-w-full'>
           <ParallaxText baseVelocity={dataTestimonials.velocityScroller}>

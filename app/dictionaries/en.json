@@ -417,6 +417,88 @@
         }
       ]
     },
+    "brandsSection": {
+      "title": "Brands We've",
+      "titlePrimary": "Worked With",
+      "textScroller": "TRUSTED BY AMAZING BRANDS - ",
+      "velocityScroller": -0.2,
+      "firstLine": [
+        {
+          "name": "Aircrew Aviation",
+          "src": "/images/clients/Alkitu-Aircrew-Aviation.png"
+        },
+        {
+          "name": "Canastilla",
+          "src": "/images/clients/Alkitu-Canastilla-.png"
+        },
+        {
+          "name": "Casa Adrian",
+          "src": "/images/clients/Alkitu-Casa-Adriian-1944.png"
+        },
+        {
+          "name": "Clinica LUX",
+          "src": "/images/clients/Alkitu-Clinica-LUX.png"
+        },
+        {
+          "name": "Clinica Dysdental",
+          "src": "/images/clients/Alkitu-Clinicadysdental.png"
+        },
+        {
+          "name": "Detailcar",
+          "src": "/images/clients/Alkitu-Detailcar.png"
+        },
+        {
+          "name": "El Mejor Vidente",
+          "src": "/images/clients/Alkitu-El-Mejor-Vidente.png"
+        },
+        {
+          "name": "Eleale",
+          "src": "/images/clients/Alkitu-Eleale-Cleaning-Services.png"
+        },
+        {
+          "name": "Emprendetec",
+          "src": "/images/clients/Alkitu-Emprendetec.png"
+        }
+      ],
+      "secondLine": [
+        {
+          "name": "Funda Mania",
+          "src": "/images/clients/Alkitu-Funda-Mania.png"
+        },
+        {
+          "name": "Pura Vida",
+          "src": "/images/clients/Alkitu-Gladys-Berrio-PURAVIDA.png"
+        },
+        {
+          "name": "Helayor",
+          "src": "/images/clients/Alkitu-Helayor.png"
+        },
+        {
+          "name": "La Plataforma",
+          "src": "/images/clients/Alkitu-La-Plataforma-Publicitaria-.png"
+        },
+        {
+          "name": "Las Acacias",
+          "src": "/images/clients/Alkitu-Las-Acacias.png"
+        },
+        {
+          "name": "Natur Masajes",
+          "src": "/images/clients/Alkitu-Natur-Masajes.png"
+        },
+        {
+          "name": "Sanjhes",
+          "src": "/images/clients/Alkitu-Sanjhes.png"
+        },
+        {
+          "name": "Transito Bar",
+          "src": "/images/clients/Alkitu-Transito-Bar.png"
+        },
+        {
+          "name": "Vidente Astral",
+          "src": "/images/clients/Alkitu-Vidente-Astral.png"
+        }
+      ]
+    },
     "passionSection": {
       "title": "But why ",
       "titlePrimary": "Video Games?",

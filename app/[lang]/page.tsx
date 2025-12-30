@@ -10,6 +10,7 @@ import { ProjectsPreview } from "../components/organisms/projects-section";
 import { BigQuote } from "../components/organisms/quote-section";
 import { Skills } from "../components/organisms/skills-section";
 import { Testimonials } from "../components/organisms/testimonials-section";
+import { Brands } from "../components/organisms/brands-section";
 
 export default async function Home({
   params,
@@ -44,6 +45,9 @@ export default async function Home({
           </div>
           <div id='testimonials-section'>
             <Testimonials text={text} />
+          </div>
+          <div id='brands-section'>
+            <Brands text={text} />
           </div>
         </div>
       </TailwindGrid>
