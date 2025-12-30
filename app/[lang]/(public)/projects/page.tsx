@@ -1,10 +1,10 @@
 "use client";
 import { Suspense, useEffect, useState } from "react";
-import { FilterCategories, FilterCategoriesSkeleton } from "../../components/organisms/filter-categories";
-import { useTranslationContext } from "../../context/TranslationContext";
-import { ProjectCard } from "../../components/molecules/card";
+import { FilterCategories, FilterCategoriesSkeleton } from "@/app/components/organisms/filter-categories";
+import { useTranslationContext } from "@/app/context/TranslationContext";
+import { ProjectCard } from "@/app/components/molecules/card";
 import { ResponsiveList } from "@/app/components/organisms/responsive-list";
-import { Pagination } from "../../components/organisms/pagination";
+import { Pagination } from "@/app/components/organisms/pagination";
 import { PageHeader } from "@/app/components/organisms/page-header";
 import { useSearchParams } from "next/navigation";
 import { useScreenWidth } from "@/app/hooks";

@@ -1,4 +1,5 @@
 import { chain } from './middleware/chain';
+import { withPathnameHeader } from './middleware/withPathnameHeader';
 import { withSupabaseMiddleware } from './middleware/withSupabaseMiddleware';
 import { withAuthMiddleware } from './middleware/withAuthMiddleware';
 import { withI18nMiddleware } from './middleware/withI18nMiddleware';
@@ -9,6 +10,7 @@ import { NextRequest, NextFetchEvent } from 'next/server';
 // Using "export async function proxy" as the new convention
 export async function proxy(request: NextRequest, event: NextFetchEvent) {
   const handler = chain([
+    withPathnameHeader,        // 0. Add pathname header for layouts
     withSupabaseMiddleware,    // 1. Refresh Supabase auth session (all routes)
     withAuthMiddleware,        // 2. Protect admin routes (only /admin/*)
     withI18nMiddleware,        // 3. i18n routing (exclude /admin)

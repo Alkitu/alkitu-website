@@ -7,6 +7,7 @@ import { VisitTracker } from "../components/analytics";
 import Providers from "../context/Providers";
 import en from "@/app/dictionaries/en.json";
 import es from "@/app/dictionaries/es.json";
+import { headers } from "next/headers";
 
 const translations = { en, es };
 
@@ -28,6 +29,11 @@ export default async function RootLayout({
   const { lang: rawLang } = await params;
   const lang = rawLang as Locale;
   const initialTranslations = translations[lang];
+
+  // Check if we're in admin routes
+  const headersList = await headers();
+  const pathname = headersList.get('x-pathname') || '';
+  const isAdminRoute = pathname.includes('/admin');
 
   return (
     <html lang={lang} suppressHydrationWarning data-scroll-behavior="smooth">
@@ -70,12 +76,12 @@ export default async function RootLayout({
       >
         <Providers locale={lang} initialTranslations={initialTranslations}>
           <VisitTracker />
-          <NavBar />
-          <main className='max-w-full mt-20 w-screen flex flex-col items-center justify-center relative overflow-visible'>
+          {!isAdminRoute && <NavBar />}
+          <main className={isAdminRoute ? 'w-full h-full' : 'max-w-full mt-20 w-screen flex flex-col items-center justify-center relative overflow-visible'}>
             {children}
           </main>
-          <Footer />
-          <CookiesButton />
+          {!isAdminRoute && <Footer />}
+          {!isAdminRoute && <CookiesButton />}
         </Providers>
       </body>
     </html>

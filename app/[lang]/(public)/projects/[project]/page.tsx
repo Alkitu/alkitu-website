@@ -2,7 +2,7 @@
 import { TextSlider } from "@/app/components/organisms/sliders";
 import { SocialButtons } from "@/app/components/molecules/social-button";
 import { Carousel } from "@/app/components/organisms/carousel/basic-carousel";
-import { useTranslationContext } from "../../../context/TranslationContext";
+import { useTranslationContext } from "../../../../context/TranslationContext";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";

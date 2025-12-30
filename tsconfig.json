@@ -48,7 +48,7 @@
     "app/components/slider/TextSlider.tsx",
     "app/placeholders/ImageStaticPlaceholderBlur.jsx",
     "next.config.js",
-    "app/[lang]/components/Header.tsx",
+    "app/[lang]/(public)/components/Header.tsx",
     "app/components/rive/RiveAnimation.tsx",
     "app/components/svg/menu-icons/HomeIcons.jsx",
     ".next/dev/types/**/*.ts"
