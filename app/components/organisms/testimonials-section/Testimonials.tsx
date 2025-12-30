@@ -38,7 +38,7 @@ function Testimonials({ text }) {
               {dataTestimonials.titlePrimary}
             </span>
           </h3>
-          <div className='self-center md:pb-9 md:pt-5 col-start-1 lg:col-start-2 col-end-5 md:col-end-9 lg:col-end-13 w-full flex flex-col hidden md:block'>
+          <div className='self-center md:pb-9 md:pt-5 col-start-1 lg:col-start-2 col-end-5 md:col-end-9 lg:col-end-13 w-full hidden md:flex flex-col'>
             <ResponsiveList
               tablet={3}
               desktop={3}

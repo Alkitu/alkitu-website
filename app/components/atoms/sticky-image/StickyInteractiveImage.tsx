@@ -26,7 +26,7 @@ export default function StickyInteractiveImage() {
       <div className="sticky top-[15vh] w-full perspective-1000">
         <motion.div
           style={{ scale, rotate, y }}
-          className="relative w-full aspect-[4/5] rounded-tl-[100px] rounded-br-[100px] overflow-hidden shadow-2xl origin-center"
+          className="relative w-full aspect-4/5 rounded-tl-[100px] rounded-br-[100px] overflow-hidden shadow-2xl origin-center"
         >
           <Image
             src="/images/alkitu-office.png"
@@ -38,7 +38,7 @@ export default function StickyInteractiveImage() {
           />
           
           {/* Decorative Overlay/Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent pointer-events-none" />
         </motion.div>
       </div>
     </div>

@@ -500,22 +500,7 @@
         }
       ]
     },
-    "hero": {
-      "title": "Agencia Digital en España",
-      "text": "Alkitu es una agencia digital que se fundó a inicios del 2020 en la ciudad de Valencia (España) por un par de “geeks” emprendedores apasionados por las nuevas tendencias tecnológicas. Somos una agencia especializada en marketing, diseño gráfico, desarrollo de aplicaciones y páginas Web.",
-      "founders": [
-        {
-          "name": "Luis Urdaneta",
-          "role": "Fundador",
-          "image": "/images/team/luis-circle.png"
-        },
-        {
-          "name": "José Hernández",
-          "role": "Co-fundador",
-          "image": "/images/team/jose-circle.png"
-        }
-      ]
-    },
+
     "passionSection": {
       "title": "¿Por qué ",
       "titlePrimary": "videojuegos?",
@@ -1385,6 +1370,8 @@
       }
     ],
     "hero": {
+      "greeting": "HOLA,",
+      "agency": "SOMOS ALKITU!",
       "title": "Agencia Digital en España",
       "text": "Alkitu es una agencia digital que se fundó a inicios del 2020 en la ciudad de Valencia (España) por un par de “geeks” emprendedores apasionados por las nuevas tendencias tecnológicas. Somos una agencia especializada en marketing, diseño gráfico, desarrollo de aplicaciones y páginas Web.",
       "founders": [
