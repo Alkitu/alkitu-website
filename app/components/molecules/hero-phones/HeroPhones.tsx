@@ -3,17 +3,24 @@
 import Image from "next/image";
 import { motion, useSpring } from "framer-motion";
 import { useEffect } from "react";
+import { useTheme } from "@/app/context/ThemeContext";
 
 export default function HeroPhones() {
 
   const { x, y } = useMouseParallax();
+  const { resolvedTheme } = useTheme();
+
+  // Seleccionar la imagen según el tema
+  const heroImageSrc = resolvedTheme === 'dark'
+    ? "/images/hero/alkitu-hero-dark.svg"
+    : "/images/hero/alkitu-hero.svg";
 
   return (
     <div className="relative w-full h-auto aspect-462/312 mt-[10vw] md:mt-0 ml-[10.5vw] md:ml-0  md:pr-[10vw] pointer-events-none">
       {/* Layer 1: Background Hero SVG */}
       <div className="absolute inset-0 z-0 ">
         <Image
-          src="/images/hero/alkitu-hero.svg"
+          src={heroImageSrc}
           alt="Hero Background"
           fill
           className="object-contain"

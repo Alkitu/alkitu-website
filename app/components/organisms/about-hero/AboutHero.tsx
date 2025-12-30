@@ -11,7 +11,7 @@ type AboutHeroProps = {
 };
 
 export default function AboutHero({ dictionary }: AboutHeroProps) {
-  const { title, text, founders } = dictionary.about.hero;
+  const { title, text, founders, greeting, agency } = dictionary.about.hero;
 
   return (
     <TailwindGrid>
@@ -27,10 +27,10 @@ export default function AboutHero({ dictionary }: AboutHeroProps) {
           <PageHeader
             title={
               <>
-                ¡HOLA, SOMOS <span className="text-primary">ALKITU!</span>
+                {greeting} <span className="text-primary">{agency}</span>
               </>
             }
-            subtitle="Agencia Digital en España"
+            subtitle={title}
             text={text}
             align="left"
             disableGridWrapper

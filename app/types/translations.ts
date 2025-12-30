@@ -78,6 +78,10 @@ export interface Translations {
       subtitle: string;
       text: string;
     };
+    sections: Array<{
+      id: string;
+      name: string;
+    }>;
     form: {
       title: string;
       nameLabel: string;

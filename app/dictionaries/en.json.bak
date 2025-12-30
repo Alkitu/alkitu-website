@@ -1,22 +1,22 @@
 {
   "menu": {
-    "id": "es",
-    "currentLanguage": "ES",
+    "id": "en",
+    "currentLanguage": "EN",
     "routes": [
       {
-        "name": "Inicio",
+        "name": "Home",
         "pathname": "/",
         "iconLight": "/icons/navbar/Home-light.svg",
         "iconDark": "/icons/navbar/Home-dark.svg"
       },
       {
-        "name": "Acerca de",
+        "name": "About",
         "pathname": "/about",
         "iconLight": "/icons/navbar/About-light.svg",
         "iconDark": "/icons/navbar/About-dark.svg"
       },
       {
-        "name": "Proyectos",
+        "name": "Projects",
         "pathname": "/projects",
         "iconLight": "/icons/navbar/Folder-light.svg",
         "iconDark": "/icons/navbar/Folder-dark.svg"
@@ -28,29 +28,29 @@
         "iconDark": "/icons/navbar/Blog-dark.svg"
       },
       {
-        "name": "Contacto",
+        "name": "Contact",
         "pathname": "/contact",
         "iconLight": "/icons/navbar/Contact-light.svg",
         "iconDark": "/icons/navbar/Contact-dark.svg"
       }
     ],
-    "contact": "Contactanos",
-    "languages": "Lenguajes",
-    "theme": "Tema",
+    "contact": "Contact Us",
+    "languages": "Languages",
+    "theme": "Theme",
     "languagesOptions": [
       {
-        "name": "Inglés",
+        "name": "English",
         "pathname": "en"
       },
       {
-        "name": "Español",
+        "name": "Spanish",
         "pathname": "es"
       }
     ]
   },
   "footer": {
     "website": "© 2023 Luis Urdaneta",
-    "rights": "Todos los derechos reservados",
+    "rights": "All rights reserved",
     "routes": [
       {
         "name": "Home",
@@ -164,109 +164,108 @@
     "sections": [
       {
         "id": "hero-section",
-        "name": "Inicio"
+        "name": "Hero"
       },
       {
         "id": "category-section",
-        "name": "Categorías"
+        "name": "Categories"
       },
       {
         "id": "projects-section",
-        "name": "Proyectos"
+        "name": "Projects"
       },
       {
         "id": "skills-section",
-        "name": "Habilidades"
+        "name": "Skills"
       },
       {
         "id": "passion-section",
-        "name": "Pasión"
+        "name": "Passion"
       },
       {
         "id": "testimonials-section",
-        "name": "Testimonios"
+        "name": "Testimonials"
       }
     ],
     "heroSection": {
       "title": {
-        "part1": "Potenciando tu",
-        "part2": "Transformación",
-        "part3": "Digital"
+        "part1": "Empowering",
+        "part2": "Your Digital",
+        "part3": "Transformation"
       },
-      "subtitle": "Desarrollo, Automatización y Creatividad Integrada",
-      "description": "Desarrollo de aplicaciones, sitios web responsivos, automatizaciones inteligentes e IA con marketing estratégico, publicidad, branding y diseño gráfico. Creamos soluciones inteligentes y personalizadas para elevar tu negocio en el ámbito digital.",
+      "subtitle": "Development, Automation, and Integrated Creativity",
+      "description": "Application development, responsive websites, intelligent automations and AI with strategic marketing, advertising, branding, and graphic design. We craft smart, personalized solutions to elevate your business in the digital realm.",
       "buttons": {
-        "primary": "Contáctanos",
-        "secondary": "Proyectos"
+        "primary": "Contact Us",
+        "secondary": "Projects"
       },
       "files": {
         "src": "/contact",
         "name": ""
-      },
-      "image": "https://picsum.photos/600/300"
+      }
     },
     "categoriesSection": {
-      "title": "Explora nuestros pilares de innovación y experiencia digital, diseñados para transformar tu marca y expandir tu presencia online.",
-      "subtitle": "Tu próximo equipo de ",
-      "titlePrimary": "Servicios",
-      "textScroller": "Nuestros Servicios",
+      "title": "Explore our pillars of innovation and digital expertise, designed to transform your brand and expand your online presence.",
+      "subtitle": "Your next team of ",
+      "titlePrimary": "Services",
+      "textScroller": "Our Services",
       "velocityScroller": -0.2,
       "carrouselKey": "category",
       "categories": [
         {
           "order": 1,
-          "name": "DESARROLLO DIGITAL Y AUTOMATIZACIONES",
-          "shortName": "Desarrollo",
+          "name": "DIGITAL DEVELOPMENT & AUTOMATIONS",
+          "shortName": "Developers",
           "url": "/projects?category=Web_Developer&page=1",
           "icon": "/icons/web_developer.svg",
           "artboardName": "Web",
-          "summary": "Creamos soluciones tecnológicas de vanguardia, incluyendo desarrollo de aplicaciones personalizadas, diseño web responsivo y automatizaciones inteligentes. Aprovechando la IA donde es aplicable, optimizamos procesos para impulsar la eficiencia de tu negocio."
+          "summary": "We deliver cutting-edge technological solutions, including custom application development, responsive web design, and smart automations. Leveraging AI where applicable, we optimize processes to boost your business efficiency."
         },
         {
           "order": 2,
-          "name": "BRANDING Y DISEÑO GRÁFICO",
-          "shortName": "Diseño",
+          "name": "BRANDING & GRAPHIC DESIGN",
+          "shortName": "Designers",
           "url": "/projects?category=Graphic_Design&page=1",
           "icon": "/icons/designer.svg",
           "artboardName": "Design",
-          "summary": "Creamos identidades visuales que resuenan. Desde el diseño de logotipos hasta guías de marca completas, nuestro equipo asegura que tu marca se destaque con gráficos consistentes y de alta calidad en todos los medios."
+          "summary": "We craft visual identities that resonate. From logo design to comprehensive branding guidelines, our team ensures your brand stands out with consistent, high-quality graphics across all media."
         },
         {
           "order": 3,
-          "name": "MARKETING Y PUBLICIDAD",
-          "shortName": "Marketing",
+          "name": "MARKETING & ADVERTISING",
+          "shortName": "Marketers",
           "url": "/projects?category=Marketing&page=1",
           "icon": "/icons/marketing.svg",
           "artboardName": "Marketing",
-          "summary": "Implementamos estrategias de marketing basadas en datos para hacer crecer tu audiencia. Nuestras soluciones publicitarias están diseñadas para maximizar el ROI y llegar eficazmente a tu mercado objetivo."
+          "summary": "We implement data-driven marketing strategies to grow your audience. Our advertising solutions are designed to maximize ROI and effectively reach your target market."
         }
       ]
     },
     "projectsPreviewSection": {
-      "textScroller": "Descubre nuestros proyectos",
-      "title": "Échale un vistazo a",
-      "titlePrimary": "nuestros Proyectos...",
-      "button": "VER MÁS PROYECTOS"
+      "textScroller": "Enjoy our projects",
+      "title": "Take a look at",
+      "titlePrimary": "our projects...",
+      "button": "CHECK ALL PROJECTS"
     },
     "blogSection": {
-      "textScroller": "Últimas Publicaciones",
+      "textScroller": "Latest Posts",
       "velocityScroller": -0.2,
-      "title": "Del",
+      "title": "From the",
       "titlePrimary": "Blog",
-      "button": "Ver todas las publicaciones"
+      "button": "See all posts"
     },
     "bigQuoteSection": {
-      "textScroller": "Hazlo a lo Grande",
+      "textScroller": "Think Big, Make it Big",
       "velocityScroller": 0.2,
       "quote": {
-        "lineOne": "Desarrollamos, automatizamos y diseñamos",
-        "lineTwo": "– todo en un solo lugar"
+        "lineOne": "We develop, automate, and design",
+        "lineTwo": "– all in one place"
       }
     },
     "skillsSection": {
-      "title": "¿Necesitas una de",
-      "titlePrimary": "nuestras herramientas?",
-      "textScroller": "Las mejores herramientas",
+      "title": "Do you need one of",
+      "titlePrimary": "our tools?",
+      "textScroller": "The best tools",
       "velocityScroller": -0.2,
       "firstLine": [
         {
@@ -418,41 +417,25 @@
         }
       ]
     },
-    "hero": {
-      "title": "Agencia Digital en España",
-      "text": "Alkitu es una agencia digital que se fundó a inicios del 2020 en la ciudad de Valencia (España) por un par de “geeks” emprendedores apasionados por las nuevas tendencias tecnológicas. Somos una agencia especializada en marketing, diseño gráfico, desarrollo de aplicaciones y páginas Web.",
-      "founders": [
-        {
-          "name": "Luis Urdaneta",
-          "role": "Fundador",
-          "image": "/images/team/luis-circle.png"
-        },
-        {
-          "name": "José Hernández",
-          "role": "Co-fundador",
-          "image": "/images/team/jose-circle.png"
-        }
-      ]
-    },
     "passionSection": {
-      "title": "¿Por qué ",
-      "titlePrimary": "videojuegos?",
-      "description": "Érase una vez un apasionado desarrollador llamado Luis Urdaneta. Con el corazón lleno de creatividad y la mente rebosante de ideas, Luis se embarcó en un viaje por el mundo del desarrollo de juegos. Con dedicación y habilidad, creó experiencias digitales inmersivas que cautivaron a los jugadores y los transportaron a nuevos reinos de emoción.",
+      "title": "But why ",
+      "titlePrimary": "Video Games?",
+      "description": "Once upon a time, there was a passionate developer named Luis Urdaneta. With a heart full of creativity and a mind brimming with ideas, Luis embarked on a journey into the world of game development. Through dedication and skill, he crafted immersive digital experiences that captivated players and transported them to new realms of excitement.",
       "artboardName": "Passion",
       "bigQuote": {
-        "textScroller": "El Poder de la Pasión",
+        "textScroller": "The Power Of Passion",
         "velocityScroller": -0.2,
         "quote": {
-          "lineOne": "El desarrollo es nuestro amor",
-          "lineTwo": "lo digital nuestra pasión"
+          "lineOne": "Web dev is our love",
+          "lineTwo": "Digital is our passion"
         }
       }
     },
     "testimonialsSection": {
-      "textScroller": "Escucha a nuestra comunidad",
+      "textScroller": "Listen to our community",
       "velocityScroller": 0.2,
-      "title": "Testimonios de",
-      "titlePrimary": "Clientes",
+      "title": "Client",
+      "titlePrimary": "Testimonials",
       "carrouselKey": "testimonials",
       "testimonials": [
         {
@@ -460,7 +443,7 @@
           "src": "/images/testimonials-luis/farooq-khader.jpeg",
           "name": "Farooq Khader",
           "position": "Co-Founder and CTO at Tangle",
-          "description": "Luis es un gran desarrollador web con una increíble atención al detalle. Su afán por la tecnología más innovadora nos impulsó a trasladar nuestro sitio web a una tecnología mejor: NextJS. También se comprometió mucho para que los resultados estuvieran a la altura de la imaginación y satisfacción de nuestro diseñador. Sus técnicas de programación estructurada facilitaron que nuestro equipo interno se hiciera cargo de su trabajo sin problemas. Su paciencia en la colaboración con otros miembros del equipo / freelancers también valió la pena, ahorrando tiempo y esfuerzo para el equipo. Recomiendo encarecidamente a Luis como un gran desarrollador web.",
+          "description": "Luis is a great web developer with amazing attention to detail. His urge for the most innovative technology prompted us to move our website to a better technology - Next.js. He was also very committed to ensuring that the results matched our designer's imagination and satisfaction. His structured programming techniques made it easier for our internal team to take over his work smoothly. His patience in collaborating with other team members/freelancers also paid off, saving time and effort for the team. I highly recommend Luis as a great web developer.",
           "url": "https://www.linkedin.com/in/farooqkhader/",
           "icon": "/icons/footer/linkedin.svg"
         },
@@ -469,7 +452,7 @@
           "src": "/images/testimonials-luis/nacho-escudero.jpeg",
           "name": "Nacho Escudero",
           "position": "Fundador/Jefe de Marketing: La Plataforma Publicitaria",
-          "description": "Luis ha sido una pieza fundamental, que ha conseguido muy buenos resultados aportando valor a la empresa. Es un profesional disciplinado, creativo y muy competitivo. Aunque este bajo presión no pierde su objetivo, siendo resolutivo y aplicando sus conocimientos en cada situación. Ha participado en decisiones muy importantes de planificación y estrategia. Sigue formando parte del equipo como socio colaborador externo.",
+          "description": "Luis has been a key player, who has achieved very good results adding value to the company. He is a disciplined, creative and very competitive professional. Although he is under pressure he does not lose his objective, being decisive and applying his knowledge in every situation. He has participated in very important planning and strategic decisions. He is still part of the team as an external collaborating partner",
           "url": "https://www.linkedin.com/in/nacho-escudero-34858b73/",
           "icon": "/icons/footer/linkedin.svg"
         },
@@ -478,7 +461,7 @@
           "src": "/images/testimonials-luis/leonel-perez.jpeg",
           "name": "Leonel (Krea) Pérez",
           "position": "𝗨𝗜/𝗨𝗫 𝗗𝗲𝘀𝗶𝗴𝗻𝗲𝗿 | 𝗕𝗿𝗮𝗻𝗱𝗶𝗻𝗴 | 𝗪𝗲𝗯/𝗫𝗥 𝗗𝗲𝘃",
-          "description": "Lo que realmente distingue a Luis es su capacidad para centrarse en los detalles; maneja con soltura múltiples áreas de conocimiento, como diseño, desarrollo y marketing. Lo recomiendo como profesional, con él se hace posible la creación de productos digitales, webs llamativas e ideas para destacar tus servicios y productos por internet.",
+          "description": "What really distinguishes Luis is his ability to focus on the details; he is fluent in multiple areas of knowledge, such as design, development and marketing. I recommend him as a professional, with him it is possible to create digital products, eye-catching websites and ideas to highlight your services and products online.",
           "url": "https://www.linkedin.com/in/leonelkrea/",
           "icon": "/icons/footer/linkedin.svg"
         }
@@ -486,8 +469,8 @@
     }
   },
   "portfolio": {
-    "title": "Proyectos",
-    "description": "Más de 10.000 hermosos y modernos trabajos, diseños, ilustraciones y elementos gráficos para iOS",
+    "title": "Projects",
+    "description": "10,000+ beautiful, modern ios work, designs, illustrations, and graphic elements",
     "categories": [
       {
         "id": "webdevelopment",
@@ -539,9 +522,10 @@
         "id": 1,
         "title": "Tangle",
         "categories": [
-          "Web_Development"
+          "Web_Development",
+          "Web_Apps"
         ],
-        "description": "Después de completar el bootcamp en \"Ironhack,\" tuve la oportunidad de realizar prácticas remotas en inglés durante 4 meses en una innovadora startup con sede en Ámsterdam, Países Bajos. Mi contribución incluyó la ejecución de dos proyectos, destacándose entre ellos la creación de una página web.\n\nLa concepción inicial de la página web fue diseñada en Figma por otro miembro del equipo. Mi tarea consistió en llevar a la realidad este diseño, seleccionando el Stack más apropiado para las necesidades de la empresa. Dada la familiaridad predominante en el equipo con el Stack MERN, opté por desarrollar la página web utilizando NextJS, con el objetivo de mejorar su indexación en los principales navegadores.\n\nEs relevante señalar que unos meses después de la finalización del proyecto, REACT anunció su recomendación de elegir uno de los frameworks basados en React populares en la comunidad, entre los cuales se encuentra NextJS. Este hecho valida la elección estratégica realizada durante el desarrollo del proyecto, reafirmando la calidad y pertinencia de la tecnología seleccionada.",
+        "description": "After completing the bootcamp at \"Ironhack,\" I had the opportunity to do remote internships in English for 4 months at an innovative startup based in Amsterdam, the Netherlands. My contribution included executing two projects, with the standout being the creation of a website.\n\nThe initial concept for the website was designed in Figma by another team member. My task was to bring this design to life, selecting the most appropriate stack for the company's needs. Given the prevailing familiarity within the team with the MERN stack, I chose to develop the website using NextJS, aiming to improve its indexing on major browsers.\n\nIt is relevant to note that a few months after the project's completion, REACT announced its recommendation to choose one of the popular React-based frameworks in the community, among which NextJS is included. This fact validates the strategic choice made during the project development, reaffirming the quality and relevance of the selected technology.",
         "about": "Tangle is a university social ecosystem that connects students within the same institution, combating loneliness in the cities across the globe.",
         "tags": [
           "GitHub",
@@ -561,13 +545,13 @@
         ],
         "urls": [
           {
-            "name": "Sitio Web:",
+            "name": "Website",
             "fallback": "",
             "active": true,
             "url": "https://tangle-offline-website.vercel.app"
           },
           {
-            "name": "Repositorio:",
+            "name": "Repository:",
             "fallback": "",
             "active": true,
             "url": "https://github.com/LuisEUM/tangle-offline-website"
@@ -583,8 +567,8 @@
           "Web_Design",
           "Web_Apps"
         ],
-        "description": "En mi tercer proyecto durante el bootcamp de programación web en Ironhack, creé una aplicación web móvil que servía como una plataforma social para explorar restaurantes cercanos, añadirlos a favoritos y acceder a sus menús y reservas.\n\nEste trabajo amplió las capacidades de mi proyecto previo, que se centraba en el CRUD de menús y restaurantes digitales, al introducir un nuevo servicio de reservas, mejorando significativamente su valor para usuarios y establecimientos. Esta experiencia reforzó mi habilidad para diseñar soluciones web más sofisticadas, demostrando mi destreza en el uso de MVC, React y bibliotecas como Bootstrap y Framer Motion, consolidándome cada vez un poco más como un desarrollador full-stack competente y versátil.",
-        "about": "Top Top Restaurants es una aplicación web móvil que redefine la experiencia gastronómica al permitir a los usuarios descubrir restaurantes cercanos como si fuese una red social, y gestionar reservas fácilmente.",
+        "description": "In my third project during the Ironhack web development bootcamp, I created a mobile web application that served as a social platform for exploring nearby restaurants, adding them to favorites, and accessing their menus and reservations.\n\nThis work expanded the capabilities of my previous project, which focused on CRUD for digital menus and restaurants, by introducing a new reservations service, significantly enhancing its value for users and establishments. This experience reinforced my ability to design more sophisticated web solutions, showcasing my proficiency in using MVC, React, and libraries like Bootstrap and Framer Motion, gradually solidifying my position as a competent and versatile full-stack developer.",
+        "about": "Top Top Restaurants is a mobile web application that redefines the dining experience by allowing users to discover nearby restaurants as if it were a social network, and easily manage reservations.          ",
         "tags": [
           "GitHub",
           "MongoDB",
@@ -604,13 +588,13 @@
         ],
         "urls": [
           {
-            "name": "Sitio Web:",
+            "name": "Website",
             "fallback": "",
             "active": true,
             "url": "https://toprestaurant-production.up.railway.app"
           },
           {
-            "name": "Repositorio:",
+            "name": "Repository:",
             "fallback": "",
             "active": true,
             "url": "https://github.com/LuisEUM/TopRestaurant"
@@ -626,16 +610,15 @@
           "Web_Design",
           "Web_Apps"
         ],
-        "description": "Mi segundo proyecto en el bootcamp de programación web de Ironhack fue el desarrollo de una aplicación web diseñada para la gestión de menús digitales para restaurantes o cadenas de restaurantes. Esta web app permite realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre los menús, facilitando a los propietarios la actualización y mantenimiento de sus ofertas culinarias de manera eficiente y en tiempo real.\n\nPara la lógica del backend, implementé el patrón de diseño Modelo Vista Controlador (MVC), lo que permitió una estructuración clara y eficiente del código, así como una separación de responsabilidades dentro de la aplicación. Esta arquitectura fue clave para mantener el proyecto organizado y facilitar su escalabilidad.\n\nEste proyecto no solo refleja mi habilidad para integrar diversas tecnologías en la creación de soluciones web complejas sino que también demuestra mi comprensión de patrones de diseño como MVC para desarrollar aplicaciones web estructuradas y mantenibles.",
-        "about": "Big Menu es una aplicación web para ordenadores que se engarga de la gestión eficiente de menús digitales en restaurantes. Facilita a los dueños la actualización en tiempo real de sus ofertas culinarias con operaciones sencillas.",
+        "description": "My second project in the Ironhack web development bootcamp was the creation of a web application designed for digital menu management in restaurants or restaurant chains. This web app allows CRUD operations (Create, Read, Update, Delete) on menus, making it easy for owners to efficiently update and maintain their culinary offerings in real-time.\n\nFor the backend logic, I implemented the Model-View-Controller (MVC) design pattern, enabling a clear and efficient code structure as well as a separation of responsibilities within the application. This architecture was crucial for keeping the project organized and facilitating its scalability.\n\nThis project not only showcases my ability to integrate various technologies in the development of complex web solutions but also demonstrates my understanding of design patterns like MVC for creating structured and maintainable web applications.",
+        "about": "Big Menu is a desktop web application for the efficient management of digital menus in restaurants. It enables owners to update their culinary offerings in real-time with simple operations. The MVC architecture ensures organized code and scalability.",
         "tags": [
           "GitHub",
           "MongoDB",
           "ExpressJS",
           "NodeJS",
           "Handlebars",
-          "Bootstrap",
-          "Docker"
+          "Bootstrap"
         ],
         "image": "https://lh3.googleusercontent.com/d/1C_ICEORfRBZdiHL83SSLJ4CU-bmOX_xO",
         "gallery": [
@@ -648,13 +631,13 @@
         ],
         "urls": [
           {
-            "name": "Sitio Web:",
+            "name": "Website",
             "fallback": "",
             "active": true,
             "url": "https://menuproject-production.up.railway.app"
           },
           {
-            "name": "Repositorio:",
+            "name": "Repository:",
             "fallback": "",
             "active": true,
             "url": "https://github.com/theBigMenu/menuProject"
@@ -671,8 +654,8 @@
           "Web_Design",
           "Video_Games"
         ],
-        "description": "En mi primer proyecto durante el bootcamp de programación web en Ironhack, tomé el desafío de crear un videojuego para ordenador. Utilicé HTML5 y JavaScript para desarrollar la lógica del juego y manipular objetos en canvas, complementando con CSS3 para el diseño y maquetación de la interfaz. GitHub sirvió como plataforma de control de versiones, mientras que los gráficos de ambiente y personajes fueron creados con Adobe Illustrator. Este proyecto no solo evidencia mi capacidad para combinar desarrollo front-end con diseño gráfico, sino que también culmina en un juego interactivo que refleja mi competencia en integrar tecnologías web y herramientas de diseño.\n\nAgradezco profundamente a Pedro Salazar por su apoyo en la etapa final. Juntos, y en solo 3 semanas, realizamos un sueño de infancia creando este videojuego, mientras manejábamos otros compromisos laborales. La coordinación efectiva de tareas y la capacidad para trabajar en equipo bajo presión fueron fundamentales para cumplir con este desafío en tan corto tiempo, evidenciando nuestra pasión y compromiso por la realización de proyectos innovadores.",
-        "about": "'Gousty, The Ghost' es un vibrante mini-juego de plataforma ambientado en un bosque oscuro, lleno de Slimes desafiantes. Controla a Gousty con el teclado, usando sus habilidades especiales para enfrentarte a los enemigos y superar los niveles. Una aventura intensa te espera, donde estrategia y habilidad son esenciales.",
+        "description": "In my first project during the web development bootcamp at Ironhack, I took on the challenge of creating a computer game. I used HTML5 and JavaScript to develop the game logic and manipulate objects on the canvas, complemented by CSS3 for the design and layout of the interface. GitHub served as the version control platform, while environment and character graphics were created using Adobe Illustrator. This project not only showcases my ability to combine front-end development with graphic design but also culminates in an interactive game that reflects my competence in integrating web technologies and design tools.\n\nI deeply appreciate Pedro Salazar for his support in the final stage. Together, in just 3 weeks, we fulfilled a childhood dream by creating this video game, while managing other work commitments. Effective task coordination and the ability to work as a team under pressure were crucial in meeting this challenge in such a short time, demonstrating our passion and commitment to the realization of innovative projects.",
+        "about": "'Gousty, The Ghost' is a vibrant platformer mini-game set in a dark forest, filled with challenging Slimes. Control Gousty with the keyboard, using his special abilities to confront enemies and overcome levels. An intense adventure awaits you, where strategy and skill are essential.",
         "tags": [
           "Adobe_Illustrator",
           "GitHub",
@@ -690,13 +673,13 @@
         ],
         "urls": [
           {
-            "name": "Sitio Web:",
+            "name": "Website",
             "fallback": "",
             "active": true,
             "url": "https://alkitu.com/gousty"
           },
           {
-            "name": "Repositorio:",
+            "name": "Repository:",
             "fallback": "",
             "active": true,
             "url": "https://github.com/LuisEUM/Gousty_the_ghost"
@@ -733,7 +716,7 @@
         ],
         "urls": [
           {
-            "name": "Sitio Web:",
+            "name": "Website",
             "fallback": "",
             "active": true,
             "url": "https://desiertosaharatrips.com"
@@ -769,7 +752,7 @@
         ],
         "urls": [
           {
-            "name": "Sitio Web:",
+            "name": "Website",
             "fallback": "",
             "active": true,
             "url": "https://canastilla.com.es"
@@ -787,7 +770,7 @@
           "Branding",
           "SEO"
         ],
-        "description": "Empresa estadounidense de limpieza que le gusta proporcionar el 100% de satisfacción a comerciales, residenciales, empresas, y más.",
+        "description": "Cleaning company that likes to provide 100% satisfaction to  commercial, residential, business, and more.",
         "about": "",
         "tags": [
           "HTML5",
@@ -839,7 +822,7 @@
         ],
         "urls": [
           {
-            "name": "Sitio Web:",
+            "name": "Website",
             "fallback": "",
             "active": true,
             "url": "https://funda-mania.com"
@@ -877,7 +860,7 @@
         ],
         "urls": [
           {
-            "name": "Sitio Web:",
+            "name": "Website",
             "fallback": "",
             "active": true,
             "url": "https://elmejorvidente.es"
@@ -911,7 +894,7 @@
         ],
         "urls": [
           {
-            "name": "Sitio Web:",
+            "name": "Website",
             "fallback": "",
             "active": true,
             "url": "http://clinicadysdental.com"
@@ -951,7 +934,7 @@
         ],
         "urls": [
           {
-            "name": "Sitio Web:",
+            "name": "Website",
             "fallback": "",
             "active": true,
             "url": "https://transitobar.es"
@@ -988,8 +971,8 @@
         ],
         "urls": [
           {
-            "name": "Sitio Web:",
-            "fallback": "Proyecto traspasado en enero de 2024.",
+            "name": "Website",
+            "fallback": "Project transferred in january 2024.",
             "active": true,
             "url": "https://aircrewaviation.com"
           }
@@ -1021,7 +1004,7 @@
         ],
         "urls": [
           {
-            "name": "Sitio Web:",
+            "name": "Website",
             "fallback": "",
             "active": true,
             "url": "https://detailcar.es"
@@ -1063,8 +1046,8 @@
         ],
         "urls": [
           {
-            "name": "Sitio Web:",
-            "fallback": "Proyecto detenido por la separación de socios de la empresa.",
+            "name": "Website",
+            "fallback": "Project halted due to the separation of partners from the company.",
             "active": false,
             "url": "https://www.helayorpersonalizacion.net"
           }
@@ -1083,7 +1066,6 @@
         "about": "",
         "tags": [
           "Adobe_Illustrator",
-          "Adobe_PhotoShop",
           "Adobe_After_Effects"
         ],
         "image": "https://lh3.googleusercontent.com/d/1WNH2TApngkV0ECaMPWWZ6nhQpP664hMW",
@@ -1172,8 +1154,8 @@
     ]
   },
   "contact": {
-    "title": "Contacto",
-    "socialNetworksParagraph": "Puedes escribirme en mis redes sociales:",
+    "title": "Contact",
+    "socialNetworksParagraph": "Check my social networks:",
     "socialNetwoks": {
       "whatsApp": {
         "url": "https://wa.link/xrg8go",
@@ -1196,90 +1178,133 @@
         "hidden": true
       }
     },
-    "emailAddressParagraph": "O escríbeme al correo:",
+    "emailAddressParagraph": "Or send me an email:",
     "email": "luiseum95@gmail.com",
-    "copied": "Copiado 😎!"
+    "copied": "Copied 😎!",
+    "hero": {
+      "title": "Let's Work",
+      "titlePrimary": "Together",
+      "subtitle": "Whether you have a project in mind or just want to say hello, I'd love to hear from you.",
+      "textScroller": "CONTACT · CONTACTO · CONNECT · REACH OUT · "
+    },
+    "form": {
+      "nameLabel": "Your Name",
+      "namePlaceholder": "John Doe",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "john@example.com",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "Project Inquiry",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Tell me about your project...",
+      "submitButton": "Send Message",
+      "submittingButton": "Sending...",
+      "successMessage": "Message sent successfully!",
+      "successSubtext": "I'll get back to you soon.",
+      "errors": {
+        "nameRequired": "Name is required",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email",
+        "subjectRequired": "Subject is required",
+        "messageRequired": "Message is required",
+        "messageMinLength": "Message must be at least 10 characters"
+      }
+    },
+    "info": {
+      "email": "Email",
+      "linkedin": "LinkedIn",
+      "twitter": "Twitter",
+      "github": "GitHub",
+      "availabilityTitle": "Available for work",
+      "availabilityText": "I'm currently accepting new projects and collaborations.",
+      "responseTimeTitle": "24h",
+      "responseTimeText": "Average response time"
+    },
+    "success": {
+      "title": "Thanks",
+      "message": "Your message has been successfully sent. I'll get back to you within 24 hours.",
+      "closeButton": "Close"
+    }
   },
   "blog": {
     "title": "BLOG",
-    "description": "PUBLICACIONES, ARTÍCULOS, TUTORIALES Y RECURSOS SOBRE DESARROLLO WEB, DISEÑO Y MARKETING DIGITAL",
-    "all": "Todos",
-    "recent": "Recientes",
-    "emprendimiento": "Emprendimiento",
-    "desarrolloWeb": "Desarrollo Web",
-    "publicidad": "Publicidad",
-    "disenoGrafico": "Diseño Gráfico",
+    "description": "PUBLICATIONS, ARTICLES, TUTORIALS AND RESOURCES ABOUT WEB DEVELOPMENT, DESIGN AND DIGITAL MARKETING",
+    "all": "All",
+    "recent": "Recent",
+    "emprendimiento": "Entrepreneurship",
+    "desarrolloWeb": "Web Development",
+    "publicidad": "Advertising",
+    "disenoGrafico": "Graphic Design",
     "socialMedia": "Social Media",
     "marketing": "Marketing",
-    "otrasPublicaciones": "Otras Publicaciones"
+    "otrasPublicaciones": "Other Publications"
   },
   "common": {
-    "language": "Idioma",
-    "loading": "Cargando...",
-    "previous": "Anterior",
-    "next": "Siguiente"
+    "language": "Language",
+    "loading": "Loading...",
+    "previous": "Previous",
+    "next": "Next"
   },
   "settings": {
     "cookiesButton": "Cookies",
-    "header": "Configuración",
-    "description": "Administra tus preferencias de cookies y personaliza tu experiencia"
+    "header": "Settings",
+    "description": "Manage your cookie preferences and customize your experience"
   },
   "navigation": {
-    "home": "Inicio",
-    "about": "Acerca de"
+    "home": "Home",
+    "about": "About"
   },
   "page": {
     "home": {
-      "title": "Bienvenido a NextJs i18n",
-      "description": "Internacionalización en NextJs 13 App Router"
+      "title": "Welcome to NextJs i18n",
+      "description": "Internationalization in NextJs 13 App router"
     },
     "about": {
-      "title": "Acerca de nosotros",
-      "description": "Esta es la página Acerca de"
+      "title": "About Us",
+      "description": "This is the about page"
     }
   },
   "admin": {
     "users": {
-      "title": "Usuarios",
-      "description": "Administrar usuarios de la plataforma",
+      "title": "Users",
+      "description": "Manage platform users",
       "table": {
         "id": "ID",
-        "email": "Correo Electrónico",
-        "createdAt": "Fecha de Creación",
-        "lastSignIn": "Último Inicio de Sesión",
-        "actions": "Acciones"
+        "email": "Email",
+        "createdAt": "Created At",
+        "lastSignIn": "Last Sign In",
+        "actions": "Actions"
       },
-      "noUsers": "No se encontraron usuarios",
-      "loading": "Cargando usuarios...",
+      "noUsers": "No users found",
+      "loading": "Loading users...",
       "detail": {
-        "title": "Detalles del Usuario",
-        "backToList": "Volver a Usuarios",
-        "edit": "Editar Usuario",
-        "generalInfo": "Información General",
-        "fullName": "Nombre Completo",
-        "email": "Correo Electrónico",
-        "userId": "ID de Usuario",
-        "createdAt": "Fecha de Creación",
-        "lastLogin": "Último Inicio de Sesión"
+        "title": "User Details",
+        "backToList": "Back to Users",
+        "edit": "Edit User",
+        "generalInfo": "General Information",
+        "fullName": "Full Name",
+        "email": "Email",
+        "userId": "User ID",
+        "createdAt": "Created At",
+        "lastLogin": "Last Login"
       },
       "edit": {
-        "title": "Editar Usuario",
-        "backToDetail": "Volver a Detalles",
-        "save": "Guardar Cambios",
-        "cancel": "Cancelar",
-        "generalInfo": "Información General",
-        "fullName": "Nombre Completo",
-        "email": "Correo Electrónico",
-        "security": "Seguridad",
-        "changePassword": "Cambiar Contraseña",
-        "newPassword": "Nueva Contraseña",
-        "confirmPassword": "Confirmar Contraseña",
-        "passwordHint": "Dejar vacío para mantener la contraseña actual",
-        "passwordMismatch": "Las contraseñas no coinciden",
-        "passwordMinLength": "La contraseña debe tener al menos 6 caracteres",
-        "saving": "Guardando...",
-        "success": "Usuario actualizado correctamente",
-        "error": "Error al actualizar usuario"
+        "title": "Edit User",
+        "backToDetail": "Back to Details",
+        "save": "Save Changes",
+        "cancel": "Cancel",
+        "generalInfo": "General Information",
+        "fullName": "Full Name",
+        "email": "Email",
+        "security": "Security",
+        "changePassword": "Change Password",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm Password",
+        "passwordHint": "Leave empty to keep current password",
+        "passwordMismatch": "Passwords do not match",
+        "passwordMinLength": "Password must be at least 6 characters",
+        "saving": "Saving...",
+        "success": "User updated successfully",
+        "error": "Error updating user"
       }
     }
   },
@@ -1287,24 +1312,24 @@
     "sections": [
       {
         "id": "about-hero",
-        "name": "Inicio"
+        "name": "Home"
       },
       {
         "id": "about-origin",
-        "name": "Origen"
+        "name": "Origin"
       },
       {
         "id": "about-principles",
-        "name": "Principios"
+        "name": "Principles"
       },
       {
         "id": "about-team",
-        "name": "Equipo"
+        "name": "Team"
       }
     ],
     "hero": {
-      "title": "Agencia Digital en España",
-      "text": "Alkitu es una agencia digital que se fundó a inicios del 2020 en la ciudad de Valencia (España) por un par de “geeks” emprendedores apasionados por las nuevas tendencias tecnológicas. Somos una agencia especializada en marketing, diseño gráfico, desarrollo de aplicaciones y páginas Web.",
+      "title": "Digital Agency in Spain",
+      "text": "Alkitu is a digital agency founded in early 2020 in the city of Valencia (Spain) by a pair of entrepreneurial \"geeks\" passionate about new technological trends. We are an agency specialized in marketing, graphic design, application development, and web pages.",
       "founders": [
         {
           "name": "Luis Urdaneta",
@@ -1319,32 +1344,32 @@
       ]
     },
     "origin": {
-      "title": "¿Cómo fue el origen de Alkitu?",
-      "p1": "Teniendo en cuenta las diferentes situaciones y los cambios inminentes generados por la pandemia (COVID-19), muchas empresas se vieron obligadas a rediseñar sus estrategias y a contemplar el proceso de digitalización como una alternativa para mantenerse activos en el mercado.",
-      "p2": "Partiendo de esto y para el caso de nosotros, vimos una oportunidad interesante que nos permitió unir tres cosas, la pasión por el mundo digital, las demandas actuales y el ánimo de apoyar a los empresarios en la “nueva normalidad”.",
-      "p3": "No es fácil anteponerse a la adversidad, pero estamos seguros que estos escenarios permiten sacar lo mejor de cada uno de nosotros. Los cambios no son fáciles, pero nuestra intención es crear una comunidad de Alkianos donde podamos ser un equipo de valientes con competencias, habilidades, vocación y disciplina que se apoya para hacer grandes cosas."
+      "title": "How did Alkitu originate?",
+      "p1": "Taking into account the different situations and imminent changes generated by the pandemic (COVID-19), many companies were forced to redesign their strategies and consider the digitalization process as an alternative to remain active in the market.",
+      "p2": "Starting from this and in our case, we saw an interesting opportunity that allowed us to unite three things: passion for the digital world, current demands, and the desire to support entrepreneurs in the \"new normal.\"",
+      "p3": "It is not easy to face adversity, but we are sure that these scenarios allow us to bring out the best in each of us. Changes are not easy, but our intention is to create a community of \"Alkians\" where we can be a team of brave people with competencies, skills, vocation, and discipline who support each other to do great things."
     },
     "principles": {
-      "title": "LOS PRINCIPIOS DE ALKITU",
+      "title": "ALKITU PRINCIPLES",
       "items": [
         {
-          "title": "Pasión",
-          "description": "Nuestro trabajo es una elección de vida, deseamos trasmitir seguridad, confianza, compromiso y excelencia. Nos gusta lo que hacemos y en cada proyecto nos esforzamos por superar las expectativas de nuestros clientes.",
+          "title": "Passion",
+          "description": "Our work is a life choice, we want to transmit security, confidence, commitment and excellence. We like what we do and in each project we strive to exceed our clients' expectations.",
           "icon": "/icons/about/Alkitu-Valores-Pasion.svg"
         },
         {
-          "title": "Innovación",
-          "description": "Nos adaptamos al uso de nuevas tecnologías, nos actualizamos constantemente en las nuevas tendencias del mercado y ofrecemos soluciones mediante el uso de recursos e innovaciones tecnológicas.",
+          "title": "Innovation",
+          "description": "We adapt to the use of new technologies, we constantly update ourselves on new market trends and offer solutions using resources and technological innovations.",
           "icon": "/icons/about/Alkitu-Valores-Innovacion.svg"
         },
         {
-          "title": "Comunidad",
-          "description": "Nuestros clientes, equipo de trabajo, aliados y la comunidad en general son nuestra red más valiosa. Trabajamos para influir positivamente en nuestro entorno y ser una referencia de apoyo, solidaridad y hermandad.",
+          "title": "Community",
+          "description": "Our clients, work team, allies and the community in general are our most valuable network. We work to positively influence our environment and be a reference of support, solidarity and brotherhood.",
           "icon": "/icons/about/Alkitu-Valores-Comunidad.svg"
         },
         {
-          "title": "Servicio al Cliente",
-          "description": "Nos preocupamos por resolver los problemas de nuestros clientes de forma propositiva, nos anticipamos a futuras necesidades y nos enfocamos en satisfacerlas rápidamente de la mejor manera posible.",
+          "title": "Customer Service",
+          "description": "We care about solving our clients' problems proactively, we anticipate future needs and focus on satisfying them quickly in the best possible way.",
           "icon": "/icons/about/Alkitu-Valores-Serv.-Al-Cliente.svg"
         }
       ]
@@ -1352,100 +1377,127 @@
     "missionVision": {
       "items": [
         {
-          "title": "Misión",
-          "description": "Hacer que el mundo digital acompañe las estrategias de negocio de nuestros clientes ofreciéndoles un servicio personalizado acorde a sus necesidades."
+          "title": "Mission",
+          "description": "Make the digital world accompany our clients' business strategies by offering them a personalized service according to their needs."
         },
         {
-          "title": "Visión",
-          "description": "Ser la empresa elegida por nuestras soluciones digitales innovadoras y nuestro servicio al cliente personalizado. Además de ser reconocidos como un equipo de trabajo con potencial, calidad humana y profesionalismo."
+          "title": "Vision",
+          "description": "To be the chosen company for our innovative digital solutions and our personalized customer service. In addition to being recognized as a work team with potential, human quality and professionalism."
         }
       ]
     },
     "team": {
-      "title": "EL EQUIPO ESTRELLA",
+      "title": "THE STAR TEAM",
       "members": [
         {
           "name": "Luis Urdaneta",
-          "role": "- El viajero -",
+          "role": "- The Traveler -",
           "image": "/images/about/Luis-Urdaneta-Foto-Perfil-Sin-Gafas-en-Valencia-768x533.webp"
         },
         {
           "name": "José Hernández",
-          "role": "- El atleta -",
+          "role": "- The Athlete -",
           "image": "/images/about/Jose-Hernandez-Foto-Perfil-en-Valencia-768x533.webp"
         },
         {
           "name": "Francisco Matute",
-          "role": "- El aventurero -",
+          "role": "- The Adventurer -",
           "image": "/images/about/Francisco-Matute-Foto-Perfil-768x533.webp"
         },
         {
           "name": "Valeria Urdaneta",
-          "role": "- La artista -",
+          "role": "- The Artist -",
           "image": "/images/about/Valeria-Urdaneta-Foto-Perfil-con-Cuadros-768x533.webp"
         }
       ]
+    },
+    "form": {
+      "title": "Leave us a message:",
+      "nameLabel": "Your Name",
+      "namePlaceholder": "John Doe",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "john@example.com",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "Project Inquiry",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Tell me about your project...",
+      "submitButton": "Send Message",
+      "submittingButton": "Sending...",
+      "successMessage": "Message sent successfully!",
+      "successSubtext": "I'll get back to you soon."
+    },
+    "communityBanner": {
+      "titlePart1": "DO YOU WANT TO BE PART OF OUR",
+      "titleHighlight": "COMMUNITY?",
+      "contactBox": {
+        "title": "Contact Us",
+        "text": "You can write to us 24/7. We work remotely although we are based in Valencia Spain, we will always be close."
+      },
+      "socialBox": {
+        "title": "Social Networks",
+        "text": "Follow us on social media and participate as a member of our community:"
+      }
     }
   },
   "contactPage": {
     "header": {
-      "title": "CONTÁCTANOS",
-      "subtitle": "¿Tienes un proyecto en mente?",
-      "text": "¿Necesitas orientación experta en desarrollo, automatización o branding? Estamos aquí para ayudar. Ya sea que tengas preguntas, ideas o quieras colaborar, contáctanos y creemos algo increíble juntos."
+      "title": "CONTACT US",
+      "subtitle": "Do you have a project in mind?",
+      "text": "Need expert guidance in development, automation, or branding? We are here to help. Whether you have questions, ideas, or want to collaborate, contact us and let's create something amazing together."
     },
     "sections": [
       {
         "id": "contact-hero",
-        "name": "Inicio"
+        "name": "Home"
       },
       {
         "id": "contact-form",
-        "name": "Formulario"
+        "name": "Form"
       },
       {
         "id": "contact-community",
-        "name": "RRSS"
+        "name": "Social Media"
       }
     ],
     "form": {
-      "title": "Déjanos tu mensaje:",
-      "nameLabel": "Tu Nombre",
-      "namePlaceholder": "Juan Pérez",
-      "emailLabel": "Correo Electrónico",
-      "emailPlaceholder": "juan@ejemplo.com",
-      "subjectLabel": "Asunto",
-      "subjectPlaceholder": "Consulta de Proyecto",
-      "messageLabel": "Mensaje",
-      "messagePlaceholder": "Cuéntame sobre tu proyecto...",
-      "submitButton": "Enviar Mensaje",
-      "submittingButton": "Enviando...",
-      "successMessage": "¡Mensaje enviado con éxito!",
-      "successSubtext": "Te responderé pronto."
+      "title": "Leave us a message:",
+      "nameLabel": "Your Name",
+      "namePlaceholder": "John Doe",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "john@example.com",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "Project Inquiry",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Tell me about your project...",
+      "submitButton": "Send Message",
+      "submittingButton": "Sending...",
+      "successMessage": "Message sent successfully!",
+      "successSubtext": "We will reply to you soon."
     },
     "communityBanner": {
-      "titlePart1": "¿QUIERES SER PARTE DE NUESTRA",
-      "titleHighlight": "COMUNIDAD?",
+      "titlePart1": "WANT TO BE PART OF OUR",
+      "titleHighlight": "COMMUNITY?",
       "contactBox": {
-        "title": "Contáctanos",
-        "text": "Puedes escribirnos 24/7, trabajamos de forma remota aunque nos ubicamos en Valencia España, siempre estaremos cerca."
+        "title": "Contact Us",
+        "text": "You can write to us 24/7. We work remotely although we are based in Valencia Spain, we will always be close."
       },
       "socialBox": {
-        "title": "Redes Sociales",
-        "text": "Síguenos en redes sociales y participa como miembro de nuestra comunidad:"
+        "title": "Social Media",
+        "text": "Follow us on social media and participate as a member of our community:"
       }
     }
   },
   "newsletterSection": {
-    "titleLine1": "SUSCRÍBETE A",
-    "titleLine2": "NUESTROS",
-    "titleHighlight": "BOLETINES",
-    "subtitle": "RECIBE INFORMACIÓN CON NOVEDADES, PROMOCIONES Y EVENTOS DE LA COMUNIDAD ALKIANA",
-    "placeholder": "Escribe aquí tu correo electrónico",
-    "button": "Subscribirse",
-    "privacy": "He leído y acepto la",
-    "privacyLink": "política de privacidad",
-    "success": "¡Gracias por suscribirte!",
-    "error": "Por favor, acepta la política de privacidad",
-    "invalidEmail": "Por favor, introduce un email válido"
+    "titleLine1": "SUBSCRIBE TO",
+    "titleLine2": "OUR",
+    "titleHighlight": "NEWSLETTERS",
+    "subtitle": "RECEIVE INFORMATION WITH NEWS, PROMOTIONS AND EVENTS FROM THE ALKIANA COMMUNITY",
+    "placeholder": "Enter your email here",
+    "button": "Subscribe",
+    "privacy": "I have read and accept the",
+    "privacyLink": "privacy policy",
+    "success": "Thanks for subscribing!",
+    "error": "Please accept the privacy policy",
+    "invalidEmail": "Please enter a valid email"
   }
 }

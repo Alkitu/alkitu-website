@@ -33,19 +33,21 @@ export default function Contact() {
     setSenderName('');
   };
 
-  // Define sidebar sections
+
+  /*
   const sidebarSections = [
     { id: 'contact-hero', name: 'Inicio' },
     { id: 'contact-form', name: 'Formulario' },
     { id: 'contact-community', name: 'RRSS' },
   ];
+  */
 
   return (
     <>
       <TailwindGrid fullSize>
         {/* Sidebar Column */}
         <div className="col-span-1 hidden lg:block relative z-50">
-           <SideBar sections={sidebarSections} />
+           <SideBar sections={translations?.contactPage?.sections} />
         </div>
 
         {/* Main Content Column */}
