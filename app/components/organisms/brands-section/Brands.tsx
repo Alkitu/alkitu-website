@@ -3,7 +3,9 @@ import TailwindGrid from "@/app/components/templates/grid";
 import { ParallaxIcons as ParallaxIcon } from "@/app/components/organisms/sliders";
 import { ParallaxText } from "@/app/components/organisms/sliders";
 
-function Brands({ text }) {
+import { Translations } from "@/app/types/translations";
+
+function Brands({ text }: { text: Translations }) {
   const dataBrands = text.home.brandsSection;
 
   return (
@@ -68,7 +70,7 @@ function Brands({ text }) {
 
 export default Brands;
 
-function BrandsItems({ brand }) {
+function BrandsItems({ brand }: { brand: { name: string; src: string } }) {
   return (
     <div className='group flex-col justify-center items-center gap-2 inline-flex pointer-events-none'>
       <div className='w-[20vw] h-[20vw] md:w-[16vw] md:h-[16vw] lg:w-[8vw] lg:h-[8vw] relative bg-white rounded-xl shadow-xs shadow-zinc-200 border border-zinc-50 flex-col justify-center items-center flex pointer-events-none'>
