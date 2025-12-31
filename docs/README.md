@@ -59,6 +59,7 @@ New to the project? Start here:
 | Document | Description | Topics Covered |
 |----------|-------------|----------------|
 | [GITHUB_WORKFLOW.md](GITHUB_WORKFLOW.md) | GitHub workflow guide | Issue templates, PRs, labels, best practices |
+| [SEO_BLOG_GUIDE.md](SEO_BLOG_GUIDE.md) | SEO blog content creation | Power words, Next.js SEO, metadata, schema markup |
 | [ENVIRONMENT.md](ENVIRONMENT.md) | Environment variables | Required vars, security, Vercel config |
 | [PERFORMANCE.md](PERFORMANCE.md) | Optimization guide | Core Web Vitals, images, caching, ISR |
 | [TESTING.md](TESTING.md) | Testing procedures | Manual testing, future automation |
@@ -92,6 +93,11 @@ New to the project? Start here:
 **Manage content:**
 1. [ADMIN_PANEL.md](ADMIN_PANEL.md) - Use the CMS
 2. [SUPABASE.md](SUPABASE.md) - Database operations
+
+**Create blog content:**
+1. [SEO_BLOG_GUIDE.md](SEO_BLOG_GUIDE.md) - SEO strategy and best practices
+2. [templates/blog-post-template.mdx](templates/blog-post-template.mdx) - Template for new posts
+3. [templates/blog-post-example.mdx](templates/blog-post-example.mdx) - Example implementation
 
 **Optimize performance:**
 1. [PERFORMANCE.md](PERFORMANCE.md) - Optimization strategies
@@ -128,6 +134,21 @@ New to the project? Start here:
 - Troubleshooting workflow issues
 
 **~700 lines** with complete GitHub workflow guidance.
+
+---
+
+### [SEO_BLOG_GUIDE.md](SEO_BLOG_GUIDE.md)
+**SEO-optimized blog content creation**
+
+- Power words strategy for CTR optimization
+- Next.js 16 SEO requirements (generateMetadata, ISR)
+- Core Web Vitals optimization (LCP, CLS, INP)
+- Schema markup (JSON-LD BlogPosting)
+- Bilingual content guidelines (English/Spanish)
+- Blog post templates and examples
+- SEO checklist and best practices
+
+**~500 lines** with comprehensive SEO strategies and code examples.
 
 ---
 
@@ -338,13 +359,13 @@ Found an error or want to improve documentation?
 
 ## 📊 Documentation Stats
 
-- **Total Documents**: 15 files
-- **Total Lines**: ~7,200+ lines
+- **Total Documents**: 16 files
+- **Total Lines**: ~7,700+ lines
 - **Tier 1 (Critical)**: 6 files
-- **Tier 2 (High Priority)**: 5 files
+- **Tier 2 (High Priority)**: 6 files
 - **Tier 3 (Medium Priority)**: 4 files
 
-**Last Updated**: 2025-01-27
+**Last Updated**: 2025-01-30
 
 ---
 

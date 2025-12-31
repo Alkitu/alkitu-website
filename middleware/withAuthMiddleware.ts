@@ -7,8 +7,11 @@ export function withAuthMiddleware(next: NextMiddleware): NextMiddleware {
   return async function middleware(request, event) {
     const { pathname } = request.nextUrl;
 
-    // Only process /admin routes
-    if (!pathname.startsWith('/admin')) {
+    // Only process /admin routes (including localized versions)
+    const isProtected = pathname.startsWith('/admin') || 
+                        pathname.match(/^\/(es|en)\/admin/);
+
+    if (!isProtected) {
       return next(request, event);
     }
 
@@ -17,7 +20,14 @@ export function withAuthMiddleware(next: NextMiddleware): NextMiddleware {
       return next(request, event);
     }
 
-    // Create Supabase client
+    // Create response to hold cookies
+    let response = NextResponse.next({
+      request: {
+        headers: request.headers,
+      },
+    });
+
+    // Create Supabase client with proper cookie handling
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -26,8 +36,10 @@ export function withAuthMiddleware(next: NextMiddleware): NextMiddleware {
           getAll() {
             return request.cookies.getAll();
           },
-          setAll() {
-            // No-op in middleware
+          setAll(cookiesToSet) {
+            cookiesToSet.forEach(({ name, value, options }) => {
+              response.cookies.set(name, value, options);
+            });
           },
         },
       }
@@ -38,9 +50,17 @@ export function withAuthMiddleware(next: NextMiddleware): NextMiddleware {
 
     // Redirect to login if not authenticated
     if (!user || error) {
-      const loginUrl = new URL('/auth/login', request.url);
+      const locale = request.cookies.get('NEXT_LOCALE')?.value || 'es';
+      const loginUrl = new URL(`/${locale}/auth/login`, request.url);
       loginUrl.searchParams.set('redirectTo', pathname);
-      return NextResponse.redirect(loginUrl);
+      const redirectResponse = NextResponse.redirect(loginUrl);
+
+      // Copy Supabase cookies to redirect response
+      response.cookies.getAll().forEach((cookie) => {
+        redirectResponse.cookies.set(cookie.name, cookie.value);
+      });
+
+      return redirectResponse;
     }
 
     // Check if user is admin
@@ -52,14 +72,39 @@ export function withAuthMiddleware(next: NextMiddleware): NextMiddleware {
 
     if (!adminUser || adminError) {
       // User is authenticated but not an admin
-      return NextResponse.redirect(new URL('/auth/login?error=unauthorized', request.url));
+      const locale = request.cookies.get('NEXT_LOCALE')?.value || 'es';
+      const redirectResponse = NextResponse.redirect(new URL(`/${locale}/auth/login?error=unauthorized`, request.url));
+
+      // Copy Supabase cookies to redirect response
+      response.cookies.getAll().forEach((cookie) => {
+        redirectResponse.cookies.set(cookie.name, cookie.value);
+      });
+
+      return redirectResponse;
     }
 
     // Handle /admin redirect to /admin/dashboard
     if (pathname === '/admin') {
-      return NextResponse.redirect(new URL('/admin/dashboard', request.url));
+      const redirectResponse = NextResponse.redirect(new URL('/admin/dashboard', request.url));
+
+      // Copy Supabase cookies to redirect response
+      response.cookies.getAll().forEach((cookie) => {
+        redirectResponse.cookies.set(cookie.name, cookie.value);
+      });
+
+      return redirectResponse;
     }
 
-    return next(request, event);
+    // Continue to next middleware, passing through cookies
+    const nextResponse = await next(request, event);
+
+    if (nextResponse instanceof NextResponse) {
+      response.cookies.getAll().forEach((cookie) => {
+        nextResponse.cookies.set(cookie.name, cookie.value);
+      });
+      return nextResponse;
+    }
+
+    return response;
   };
 }

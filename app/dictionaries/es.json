@@ -1523,5 +1523,117 @@
     "success": "¡Gracias por suscribirte!",
     "error": "Por favor, acepta la política de privacidad",
     "invalidEmail": "Por favor, introduce un email válido"
+  },
+  "profile": {
+    "public": {
+      "notFound": {
+        "title": "Perfil no encontrado",
+        "description": "Este perfil no existe o no está disponible públicamente.",
+        "backButton": "Volver al inicio"
+      },
+      "sections": {
+        "about": "Acerca de",
+        "roles": "Roles",
+        "contact": "Contacto",
+        "links": "Enlaces"
+      },
+      "contactTypes": {
+        "work": "Trabajo",
+        "personal": "Personal"
+      },
+      "emptyState": "Este usuario no ha compartido información pública todavía."
+    },
+    "editor": {
+      "title": "Editar Perfil",
+      "subtitle": "Actualiza tu información personal y controla la privacidad de cada campo.",
+      "tabs": {
+        "basic": "Información Básica",
+        "contact": "Contacto",
+        "social": "Social y Profesional"
+      },
+      "fields": {
+        "photo": {
+          "label": "Foto de Perfil",
+          "uploadButton": "Subir Foto",
+          "changeButton": "Cambiar Foto",
+          "deleteButton": "Eliminar Foto",
+          "uploading": "Subiendo...",
+          "deleting": "Eliminando...",
+          "formats": "Formatos permitidos: JPEG, PNG, WebP, GIF. Tamaño máximo:",
+          "dragDrop": "Arrastra y suelta o haz clic para seleccionar"
+        },
+        "username": {
+          "label": "Nombre de Usuario",
+          "placeholder": "juanperez",
+          "readonly": "El nombre de usuario no se puede cambiar"
+        },
+        "bio": {
+          "label": "Biografía",
+          "placeholder": "Cuéntanos sobre ti...",
+          "charactersCount": "caracteres"
+        },
+        "department": {
+          "label": "Departamento",
+          "placeholder": "ej. Ingeniería, Diseño, Marketing"
+        },
+        "urls": {
+          "label": "URLs",
+          "addButton": "Agregar URL",
+          "nameLabel": "Nombre del enlace",
+          "namePlaceholder": "ej. LinkedIn, GitHub, Portfolio",
+          "urlLabel": "URL",
+          "urlPlaceholder": "https://ejemplo.com",
+          "emptyState": "No hay URLs agregadas. Haz clic en \"Agregar URL\" para comenzar.",
+          "count": "URLs"
+        },
+        "roles": {
+          "label": "Roles",
+          "addButton": "Agregar Rol",
+          "placeholder": "ej. Frontend Developer, Product Manager",
+          "emptyState": "No hay roles agregados. Haz clic en \"Agregar Rol\" para comenzar.",
+          "count": "roles"
+        },
+        "phones": {
+          "label": "Números de Teléfono",
+          "addButton": "Agregar Teléfono",
+          "typeLabel": "Tipo",
+          "numberLabel": "Número",
+          "numberPlaceholder": "ej. +34 612 345 678",
+          "emptyState": "No hay teléfonos agregados. Haz clic en \"Agregar Teléfono\" para comenzar.",
+          "count": "teléfonos"
+        },
+        "emails": {
+          "label": "Correos Electrónicos",
+          "addButton": "Agregar Email",
+          "typeLabel": "Tipo",
+          "emailLabel": "Correo Electrónico",
+          "emailPlaceholder": "ej. usuario@ejemplo.com",
+          "emptyState": "No hay emails agregados. Haz clic en \"Agregar Email\" para comenzar.",
+          "count": "emails"
+        }
+      },
+      "privacy": {
+        "public": "Público",
+        "private": "Privado",
+        "toggle": "Privacidad"
+      },
+      "actions": {
+        "save": "Guardar Cambios",
+        "saving": "Guardando...",
+        "cancel": "Cancelar",
+        "delete": "Eliminar"
+      },
+      "messages": {
+        "saveSuccess": "Perfil actualizado exitosamente",
+        "saveError": "Error al guardar el perfil",
+        "uploadSuccess": "Foto subida exitosamente",
+        "uploadError": "Error al subir la foto",
+        "deleteSuccess": "Foto eliminada exitosamente",
+        "deleteError": "Error al eliminar la foto",
+        "invalidImage": "Solo se permiten archivos de imagen",
+        "fileTooLarge": "El archivo debe ser menor a",
+        "loadError": "Error al cargar el perfil"
+      }
+    }
   }
 }

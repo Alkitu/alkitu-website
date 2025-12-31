@@ -1591,5 +1591,117 @@
     "success": "Thanks for subscribing!",
     "error": "Please accept the privacy policy",
     "invalidEmail": "Please enter a valid email"
+  },
+  "profile": {
+    "public": {
+      "notFound": {
+        "title": "Profile not found",
+        "description": "This profile doesn't exist or is not publicly available.",
+        "backButton": "Back to home"
+      },
+      "sections": {
+        "about": "About",
+        "roles": "Roles",
+        "contact": "Contact",
+        "links": "Links"
+      },
+      "contactTypes": {
+        "work": "Work",
+        "personal": "Personal"
+      },
+      "emptyState": "This user hasn't shared any public information yet."
+    },
+    "editor": {
+      "title": "Edit Profile",
+      "subtitle": "Update your personal information and control the privacy of each field.",
+      "tabs": {
+        "basic": "Basic Information",
+        "contact": "Contact",
+        "social": "Social & Professional"
+      },
+      "fields": {
+        "photo": {
+          "label": "Profile Photo",
+          "uploadButton": "Upload Photo",
+          "changeButton": "Change Photo",
+          "deleteButton": "Delete Photo",
+          "uploading": "Uploading...",
+          "deleting": "Deleting...",
+          "formats": "Allowed formats: JPEG, PNG, WebP, GIF. Max size:",
+          "dragDrop": "Drag and drop or click to select"
+        },
+        "username": {
+          "label": "Username",
+          "placeholder": "johndoe",
+          "readonly": "Username cannot be changed"
+        },
+        "bio": {
+          "label": "Biography",
+          "placeholder": "Tell us about yourself...",
+          "charactersCount": "characters"
+        },
+        "department": {
+          "label": "Department",
+          "placeholder": "e.g. Engineering, Design, Marketing"
+        },
+        "urls": {
+          "label": "URLs",
+          "addButton": "Add URL",
+          "nameLabel": "Link name",
+          "namePlaceholder": "e.g. LinkedIn, GitHub, Portfolio",
+          "urlLabel": "URL",
+          "urlPlaceholder": "https://example.com",
+          "emptyState": "No URLs added. Click \"Add URL\" to start.",
+          "count": "URLs"
+        },
+        "roles": {
+          "label": "Roles",
+          "addButton": "Add Role",
+          "placeholder": "e.g. Frontend Developer, Product Manager",
+          "emptyState": "No roles added. Click \"Add Role\" to start.",
+          "count": "roles"
+        },
+        "phones": {
+          "label": "Phone Numbers",
+          "addButton": "Add Phone",
+          "typeLabel": "Type",
+          "numberLabel": "Number",
+          "numberPlaceholder": "e.g. +1 234 567 8900",
+          "emptyState": "No phones added. Click \"Add Phone\" to start.",
+          "count": "phones"
+        },
+        "emails": {
+          "label": "Email Addresses",
+          "addButton": "Add Email",
+          "typeLabel": "Type",
+          "emailLabel": "Email Address",
+          "emailPlaceholder": "e.g. user@example.com",
+          "emptyState": "No emails added. Click \"Add Email\" to start.",
+          "count": "emails"
+        }
+      },
+      "privacy": {
+        "public": "Public",
+        "private": "Private",
+        "toggle": "Privacy"
+      },
+      "actions": {
+        "save": "Save Changes",
+        "saving": "Saving...",
+        "cancel": "Cancel",
+        "delete": "Delete"
+      },
+      "messages": {
+        "saveSuccess": "Profile updated successfully",
+        "saveError": "Error saving profile",
+        "uploadSuccess": "Photo uploaded successfully",
+        "uploadError": "Error uploading photo",
+        "deleteSuccess": "Photo deleted successfully",
+        "deleteError": "Error deleting photo",
+        "invalidImage": "Only image files are allowed",
+        "fileTooLarge": "File must be smaller than",
+        "loadError": "Error loading profile"
+      }
+    }
   }
 }

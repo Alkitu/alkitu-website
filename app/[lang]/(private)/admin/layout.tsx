@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   description: 'Analytics and visitor tracking dashboard',
 };
 
+/**
+ * Admin Root Layout
+ *
+ * SECURITY: This layout does NOT perform authentication checks.
+ * All /admin/* routes are protected by withAuthMiddleware in proxy.ts.
+ *
+ * This layout:
+ * - Fetches admin user data for UI display only
+ * - Renders Dashboard wrapper component
+ * - Uses fallback values for edge cases
+ */
 export default async function AdminRootLayout({
   children,
 }: {
@@ -16,30 +27,33 @@ export default async function AdminRootLayout({
 }) {
   const supabase = await createClient();
 
-  // Check authentication
-  const { data: { user }, error } = await supabase.auth.getUser();
+  // Fetch user data for UI display (trust middleware for authentication)
+  const { data: { user } } = await supabase.auth.getUser();
 
-  if (!user || error) {
-    redirect('/es/auth/login');
-  }
+  // Fetch admin user data for UI display (trust middleware for auth)
+  let adminUser: {
+    id: string;
+    email: string;
+    full_name: string | null;
+    name: string;
+    role: string;
+  } | null = null;
 
-  // Check admin status
-  const { data: adminUser } = await supabase
-    .from('admin_users')
-    .select('*')
-    .eq('id', user.id)
-    .single();
-
-  if (!adminUser) {
-    redirect('/es/auth/login?error=unauthorized');
+  if (user) {
+    const { data } = await supabase
+      .from('admin_users')
+      .select('id, email, full_name, name, role')
+      .eq('id', user.id)
+      .single();
+    adminUser = data;
   }
 
   return (
     <>
       <UpdateLastLogin />
       <Dashboard
-        userEmail={adminUser.email}
-        userName={adminUser.full_name}
+        userEmail={adminUser?.email || user?.email || 'Unknown User'}
+        userName={adminUser?.full_name || adminUser?.name || 'Admin'}
       >
         {children}
       </Dashboard>

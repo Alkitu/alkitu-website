@@ -17,3 +17,9 @@ export { default as GalleryManager } from './GalleryManager';
 // Project Categories
 export { default as ProjectCategoriesList } from './ProjectCategoriesList';
 export { default as ProjectCategoryFormModal } from './ProjectCategoryFormModal';
+
+// Contact Submissions
+export { ContactSubmissionsList } from './ContactSubmissionsList';
+
+// Email Settings
+export { EmailSettingsForm } from './EmailSettingsForm';

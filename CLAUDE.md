@@ -32,6 +32,7 @@ This file provides guidance to Claude Code when working with code in this reposi
 | **Bugs/Issues** | @docs/TROUBLESHOOTING.md |
 | **Testing** | @docs/TESTING.md |
 | **Initial setup** | @docs/SETUP.md |
+| **Blog content creation** | @docs/SEO_BLOG_GUIDE.md, @docs/templates/blog-post-template.mdx |
 
 ### Complete Documentation Index
 
