@@ -74,6 +74,7 @@ export function ProfileSkillsManager({
     const newSkillEntry: ProfileSkill = {
       skill: trimmed,
       level: newLevel,
+      display_order: skills.length, // Next in sequence
       is_public: true, // Default to public
     };
 

@@ -40,6 +40,7 @@ export function SkillsManager({
 
     const newSkill: ProfileSkill = {
       skill: '',
+      level: 'intermediate', // Default level
       display_order: maxOrder + 1,
       is_public: true,
     };
