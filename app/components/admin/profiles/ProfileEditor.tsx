@@ -289,9 +289,7 @@ export function ProfileEditor({
             </span>
           )}
         </h2>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Actualiza tu información personal y controla la privacidad de cada campo.
-        </p>
+
       </div>
 
       {/* Tabs */}

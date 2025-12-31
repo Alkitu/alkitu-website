@@ -30,6 +30,11 @@ export type AddressType = 'office' | 'home';
 export type LanguageProficiency = 'native' | 'fluent' | 'intermediate' | 'basic';
 
 /**
+ * Skill level
+ */
+export type SkillLevel = 'beginner' | 'intermediate' | 'advanced' | 'expert';
+
+/**
  * Profile visibility setting
  */
 export type ProfileVisibility = 'public' | 'private' | 'team_only';
@@ -66,30 +71,33 @@ export interface ProfileRole {
 
 /**
  * Phone number entry with type and privacy toggle
- * Example: { type: "work", number: "+1234567890", is_public: false }
+ * Example: { type: "work", number: "+1234567890", display_order: 0, is_public: false }
  */
 export interface ProfilePhoneNumber {
   type: ContactType;
   number: string;
+  display_order: number;
   is_public: boolean;
 }
 
 /**
  * Email entry with type and privacy toggle
- * Example: { type: "personal", email: "user@example.com", is_public: true }
+ * Example: { type: "personal", email: "user@example.com", display_order: 0, is_public: true }
  */
 export interface ProfileEmail {
   type: ContactType;
   email: string;
+  display_order: number;
   is_public: boolean;
 }
 
 /**
  * Skill entry with display order and privacy toggle
- * Example: { skill: "React", display_order: 0, is_public: true }
+ * Example: { skill: "React", level: "advanced", display_order: 0, is_public: true }
  */
 export interface ProfileSkill {
   skill: string;
+  level: SkillLevel;
   display_order: number;
   is_public: boolean;
 }
@@ -107,11 +115,12 @@ export interface ProfileLanguage {
 
 /**
  * Address entry with type and privacy toggle
- * Example: { type: "office", address: "123 Main St, City, Country", is_public: false }
+ * Example: { type: "office", address: "123 Main St, City, Country", display_order: 0, is_public: false }
  */
 export interface ProfileAddress {
   type: AddressType;
   address: string;
+  display_order: number;
   is_public: boolean;
 }
 
