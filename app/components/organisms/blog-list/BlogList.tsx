@@ -8,6 +8,7 @@ interface BlogPost {
   id: string;
   title: string;
   slug: string;
+  categorySlug: string; // Add category slug for URL generation
   excerpt: string;
   image: string;
   category: string;
@@ -67,7 +68,7 @@ export default function BlogList({ posts, locale, categoryTitle }: BlogListProps
             transition={{ type: "spring" as const, damping: 25, stiffness: 250 }}
           >
             <Link
-              href={`/${locale}/blog/${post.slug}`}
+              href={`/${locale}/blog/${post.categorySlug}/${post.slug}`}
               className="group flex flex-col md:flex-row gap-6 hover:bg-muted/20 p-4 rounded-lg"
             >
               {/* Post Image */}

@@ -138,7 +138,7 @@ export function ProfileEmailManager({
         <div className="space-y-3">
           {sortedEmails.map((emailItem, index) => (
             <div
-              key={emailItem.display_order}
+              key={index}
               className="rounded-md border border-border bg-background p-4 space-y-3"
             >
               {/* Type Selector */}

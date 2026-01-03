@@ -138,7 +138,7 @@ export function ProfilePhoneManager({
         <div className="space-y-3">
           {sortedPhones.map((phoneItem, index) => (
             <div
-              key={phoneItem.display_order}
+              key={index}
               className="rounded-md border border-border bg-background p-4 space-y-3"
             >
               {/* Type Selector */}

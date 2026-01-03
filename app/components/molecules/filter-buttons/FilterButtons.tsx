@@ -83,16 +83,7 @@ export default function FilterButtons({
             }`}
             onClick={() => handleClick(filter.value)}
           >
-            {filter.label.split("").map((char: string, charIndex: number) => {
-              if (char === "_") {
-                return (
-                  <span key={charIndex} className='text-transparent'>
-                    {char}
-                  </span>
-                );
-              }
-              return <span key={charIndex}>{char}</span>;
-            })}
+            {filter.label.replace(/_/g, ' ')}
           </button>
         ))}
       </motion.div>

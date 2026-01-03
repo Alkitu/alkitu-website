@@ -12,6 +12,7 @@ import { AnimatePresence } from 'framer-motion';
 interface BlogPostRaw {
   id: string;
   slug: string;
+  categorySlug: string; // Add category slug for URL generation
   translations: {
     [key: string]: {
       title: string;
@@ -31,6 +32,7 @@ interface BlogPost {
   id: string;
   title: string;
   slug: string;
+  categorySlug: string; // Add category slug for URL generation
   excerpt: string;
   image: string;
   category: string;
@@ -77,6 +79,7 @@ export default function BlogContent({ posts, categories, locale, title, descript
       ...post,
       title: translation.title,
       excerpt: translation.excerpt,
+      categorySlug: post.categorySlug, // Ensure category slug is passed through
     };
   };
 
@@ -110,8 +113,13 @@ export default function BlogContent({ posts, categories, locale, title, descript
       'desarrollo-web': 'Desarrollo Web',
       'publicidad': 'Publicidad',
       'diseno-grafico': 'Diseño Gráfico',
+      'diseño-ux/ui': 'Diseño UX/UI',
       'social-media': 'Social Media',
-      'marketing': 'Marketing'
+      'marketing': 'Marketing',
+      'marketing-digital': 'Marketing Digital', // Add Marketing Digital mapping
+      'inteligencia-artificial': 'Inteligencia Artificial',
+      'tecnologia': 'Tecnología',
+      'negocio': 'Negocio'
     };
     return categoryMap[slug] || '';
   }

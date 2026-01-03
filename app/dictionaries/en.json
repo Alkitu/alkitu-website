@@ -1289,7 +1289,7 @@
       "submitButton": "Send Message",
       "submittingButton": "Sending...",
       "successMessage": "Message sent successfully!",
-      "successSubtext": "I'll get back to you soon.",
+      "successSubtext": "We will reply to you soon.",
       "errors": {
         "nameRequired": "Name is required",
         "emailRequired": "Email is required",
@@ -1516,7 +1516,7 @@
       "submitButton": "Send Message",
       "submittingButton": "Sending...",
       "successMessage": "Message sent successfully!",
-      "successSubtext": "I'll get back to you soon."
+      "successSubtext": "We will reply to you soon."
     },
     "communityBanner": {
       "titlePart1": "DO YOU WANT TO BE PART OF OUR",

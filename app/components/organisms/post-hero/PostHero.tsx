@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { PostImage } from '@/app/components/molecules/post-image';
 import { SocialShare } from '@/app/components/molecules/social-share';
 import TailwindGrid from '@/app/components/templates/grid';
@@ -9,8 +10,10 @@ import { motion } from 'framer-motion';
 interface PostHeroProps {
   title: string;
   author: string;
+  authorUsername?: string;
+  authorPhotoUrl?: string | null;
   date: string;
-  category: string;
+  categories: string[];
   tags?: string[];
   image: string;
   imageCredit?: string;
@@ -26,8 +29,10 @@ interface PostHeroProps {
 export default function PostHero({
   title,
   author,
+  authorUsername,
+  authorPhotoUrl,
   date,
-  category,
+  categories,
   tags,
   image,
   imageCredit,
@@ -70,29 +75,54 @@ export default function PostHero({
           <div className="max-w-4xl mx-auto px-6">
             {/* Author Avatar */}
             <motion.div variants={itemVariants} className="flex justify-center mb-8">
-            <div className="relative w-20 h-20 rounded-full overflow-hidden bg-muted">
-              <Image
-                src="/images/default-avatar.png"
-                alt={author}
-                fill
-                className="object-cover"
-                onError={(e) => {
-                  // Fallback to default avatar icon if image fails
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
-              {/* Fallback icon */}
-              <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
-                <svg
-                  className="w-10 h-10"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
+              {authorUsername ? (
+                <Link
+                  href={`/${locale}/profile/${authorUsername}`}
+                  className="relative w-20 h-20 rounded-full overflow-hidden bg-muted hover:ring-4 hover:ring-primary/20 transition-all duration-200"
+                  title={`Ver perfil de ${author}`}
                 >
-                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                </svg>
-              </div>
-            </div>
-          </motion.div>
+                  {authorPhotoUrl ? (
+                    <Image
+                      src={authorPhotoUrl}
+                      alt={author}
+                      fill
+                      className="object-cover z-10 relative"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+                      <svg
+                        className="w-10 h-10"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                      </svg>
+                    </div>
+                  )}
+                </Link>
+              ) : (
+                <div className="relative w-20 h-20 rounded-full overflow-hidden bg-muted">
+                  {authorPhotoUrl ? (
+                    <Image
+                      src={authorPhotoUrl}
+                      alt={author}
+                      fill
+                      className="object-cover z-10 relative"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+                      <svg
+                        className="w-10 h-10"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                      </svg>
+                    </div>
+                  )}
+                </div>
+              )}
+            </motion.div>
 
           {/* Title */}
           <motion.h1
@@ -105,25 +135,55 @@ export default function PostHero({
           {/* Metadata */}
           <motion.div variants={itemVariants} className="text-center mb-8">
             <p className="text-foreground/80 mb-2">
-              <span className="font-medium">{locale === 'es' ? 'Por' : 'By'} {author}</span>
+              <span className="font-medium">
+                {locale === 'es' ? 'Por' : 'By'}{' '}
+                {authorUsername ? (
+                  <Link
+                    href={`/${locale}/profile/${authorUsername}`}
+                    className="text-primary hover:underline"
+                  >
+                    {author}
+                  </Link>
+                ) : (
+                  author
+                )}
+              </span>
               {' - '}
               <span>{formattedDate}</span>
             </p>
 
-            {/* Tags */}
+            {/* Categories and Tags */}
             <div className="flex flex-wrap items-center justify-center gap-2">
-              <span className="text-sm text-muted-foreground">
-                {locale === 'es' ? 'Tags' : 'Tags'}:
-              </span>
-              <span className="text-sm text-foreground font-semibold">
-                {category}
-              </span>
-              {tags && tags.map((tag, index) => (
-                <span key={index}>
-                  <span className="text-muted-foreground">, </span>
-                  <span className="text-sm text-foreground">{tag}</span>
-                </span>
-              ))}
+              {/* Categories Display */}
+              {categories && categories.length > 0 && (
+                <>
+                  <span className="text-sm text-muted-foreground">
+                    {locale === 'es' ? (categories.length > 1 ? 'Categorías' : 'Categoría') : (categories.length > 1 ? 'Categories' : 'Category')}:
+                  </span>
+                  {categories.map((category, index) => (
+                    <span key={index} className="text-sm text-foreground font-semibold">
+                      {category}
+                      {index < categories.length - 1 && <span className="text-muted-foreground">, </span>}
+                    </span>
+                  ))}
+                </>
+              )}
+
+              {/* Tags Display */}
+              {tags && tags.length > 0 && (
+                <>
+                  <span className="text-muted-foreground mx-2">|</span>
+                  <span className="text-sm text-muted-foreground">
+                    {locale === 'es' ? 'Tags' : 'Tags'}:
+                  </span>
+                  {tags.map((tag, index) => (
+                    <span key={index} className="text-sm text-foreground">
+                      {tag}
+                      {index < tags.length - 1 && <span className="text-muted-foreground">, </span>}
+                    </span>
+                  ))}
+                </>
+              )}
             </div>
           </motion.div>
 

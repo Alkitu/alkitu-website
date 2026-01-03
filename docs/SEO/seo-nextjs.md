@@ -1,133 +1,200 @@
-A continuación, presento el manual estructurado en formato **Markdown profesional**. Puedes copiar y pegar este contenido directamente en un archivo `.md` (como un `README.md` o una Wiki interna) para que tu equipo lo utilice como estándar de ingeniería.
+Tienes razón. Para que este manual sea realmente una **transcripción completa y unificada**, faltan los detalles técnicos de implementación que el artículo de JSDevSpace menciona explícitamente sobre la **optimización de activos (Assets)** y el manejo de **fuentes/imágenes**, que son pilares del SEO técnico moderno.
+
+Aquí tienes la versión definitiva, integrando los conceptos de rendimiento de Next.js 16 que impactan directamente en el ranking de Google (Core Web Vitals).
 
 ---
 
-# 📘 Manual de Ingeniería: Next.js SEO para Expertos
+# 📘 Manual de Ingeniería: Next.js 16 SEO & Performance (Full-Stack)
 
-> **Propósito:** Protocolo de arquitectura y auditoría para lograr puntuaciones 100/100 en Core Web Vitals y visibilidad máxima en SERP.
+## 1. Configuración de Identidad y Metadatos (Metadata API)
 
----
+Next.js 16 utiliza un sistema de metadatos basado en el sistema de archivos.
 
-## 1. Arquitectura de Infraestructura (Pre-Vuelo)
+### 1.1 Metadatos Base y Redes Sociales
 
-*Antes de publicar el primer artículo, el motor debe estar optimizado.*
+Es obligatorio definir `metadataBase` para que las imágenes de Open Graph (OG) y Twitter se resuelvan correctamente.
 
-### 1.1 Estrategia de Renderizado (The Golden Rule)
+```typescript
+// app/layout.tsx
+import type { Metadata } from 'next';
 
-* **Contenido Editorial:** Debe usar **SSG (Static Site Generation)** o **ISR (Incremental Static Regeneration)**.
-* **Prohibición de CSR:** El cuerpo del artículo y los metadatos **nunca** deben depender de `use client`.
-* **Validación:** Ejecuta `npm run build`. Si las páginas de blog muestran el círculo hueco (λ - Server) en lugar del círculo lleno (○ - Static) o el rayo (⚡ - ISR), la arquitectura es incorrecta.
-
-### 1.2 Configuración Crítica en `next.config.js`
-
-```javascript
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  // Asegura consistencia en las URLs para evitar contenido duplicado
-  trailingSlash: true, 
-  // Optimización de imágenes de dominios externos (CMS)
-  images: {
-    remotePatterns: [{ protocol: 'https', hostname: 'tu-cms.com' }],
-    formats: ['image/avif', 'image/webp'],
+export const metadata: Metadata = {
+  metadataBase: new URL('https://tusitio.com'),
+  title: {
+    default: 'Mi Sitio | Ingeniería de Software',
+    template: '%s | Mi Sitio',
   },
-}
+  description: 'Guía completa sobre desarrollo con Next.js 16',
+  openGraph: {
+    title: 'Mi Sitio',
+    description: 'Descripción optimizada para Facebook/LinkedIn',
+    url: 'https://tusitio.com',
+    siteName: 'Mi Sitio Dev',
+    images: [{ url: '/og-image.png', width: 1200, height: 630 }],
+    locale: 'es_MX',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Mi Sitio',
+    description: 'Descripción para Twitter',
+    images: ['/og-image.png'],
+  },
+};
 
 ```
 
----
+### 1.2 Metadatos Dinámicos (`generateMetadata`)
 
-## 2. Generación de la "Publicación Perfecta"
-
-*Protocolo paso a paso para la creación de contenido.*
-
-### 2.1 Ingeniería del Título (CTR Maximization)
-
-El título HTML debe seguir la regla **80/20**: La palabra clave principal debe estar en el primer 20% del texto.
-
-* **Longitud:** 50-60 caracteres.
-* **Power Words:** Incluir obligatoriamente un disparador psicológico.
-* *Seducción:* "Gratis", "Paso a paso", "Nuevo".
-* *Emoción:* "Secreto", "Prohibido", "Impactante".
-* *Confianza:* "Guía Definitiva", "Certificado", "Oficial".
-
-
-
-### 2.2 Metadatos Dinámicos (`generateMetadata`)
-
-Implementar siempre en `page.tsx` para inyectar datos reales del CMS o Markdown:
+Indispensable para páginas que consumen APIs o CMS.
 
 ```typescript
 export async function generateMetadata({ params }): Promise<Metadata> {
-  const post = await getPost(params.slug);
+  const product = await getProduct(params.id);
   return {
-    title: post.title,
-    description: post.excerpt,
-    alternates: { canonical: `https://tusitio.com/blog/${params.slug}` },
-    openGraph: {
-      type: 'article',
-      publishedTime: post.date,
-      images: [{ url: post.mainImage }],
+    title: product.name,
+    description: product.description,
+    alternates: {
+      canonical: `https://tusitio.com/productos/${params.id}`,
     },
   };
 }
 
 ```
 
-### 2.3 Datos Estructurados (JSON-LD)
+---
 
-No confíes en plugins externos. Inyecta el esquema `BlogPosting` manualmente para habilitar **Rich Snippets**.
+## 2. Optimización de Core Web Vitals (El SEO Invisible)
 
-* **Requisito Google Discover:** Debes declarar un array de imágenes en proporciones 16:9, 4:3 y 1:1.
+Google no solo lee etiquetas, mide la experiencia de usuario. El artículo de JSDevSpace destaca tres componentes:
+
+### 2.1 Next Image (`next/image`)
+
+Evita el **CLS (Cumulative Layout Shift)** y optimiza el **LCP**.
+
+* **Priority:** Usa `priority` en la imagen principal (hero) para que cargue antes que el JavaScript.
+* **Formatos:** Next.js 16 sirve automáticamente WebP o AVIF si el navegador lo soporta.
+
+```tsx
+<Image
+  src="/hero.jpg"
+  alt="Descripción de la imagen"
+  width={800}
+  height={600}
+  priority // Crítico para el LCP
+  placeholder="blur" // Mejora la percepción de carga
+/>
+
+```
+
+### 2.2 Next Font (`next/font`)
+
+Elimina el parpadeo de fuentes (FOUT/FOIT) al auto-alojar las fuentes de Google sin peticiones externas.
+
+```typescript
+// app/layout.tsx
+import { Inter } from 'next/font/google';
+const inter = Inter({ subsets: ['latin'], display: 'swap' });
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="es" className={inter.className}>
+      <body>{children}</body>
+    </html>
+  );
+}
+
+```
 
 ---
 
-## 3. Protocolo de Auditoría Técnica (Deep Dive)
+## 3. Automatización de Archivos de Rastreo
 
-*Cómo auditar una URL de Next.js como un Arquitecto de Software.*
+No crees archivos `.xml` o `.txt` manualmente en la carpeta `public`. Usa archivos `.ts` en la raíz de `/app`.
 
-### 3.1 Verificación de Hidratación y Código Fuente
+### 3.1 `sitemap.ts` (Sitemap Dinámico)
 
-1. Abre la página en el navegador.
-2. Presiona `CTRL + U` (Ver código fuente).
-3. **Búsqueda Crítica:** Busca el texto del primer párrafo.
-* **Pasa:** El texto está en el HTML crudo (Indexable).
-* **Falla:** El texto no aparece (Indica que se renderizó en el cliente; el SEO es nulo).
+```typescript
+import { MetadataRoute } from 'next';
 
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const posts = await fetch('https://api.ejemplo.com/posts').then(res => res.json());
+  
+  const postUrls = posts.map(post => ({
+    url: `https://tusitio.com/blog/${post.slug}`,
+    lastModified: new Date(post.updatedAt),
+  }));
 
+  return [
+    { url: 'https://tusitio.com', lastModified: new Date() },
+    ...postUrls,
+  ];
+}
 
-### 3.2 Auditoría de Core Web Vitals (CWV)
+```
 
-| Métrica | Target | Acción en Next.js |
-| --- | --- | --- |
-| **LCP** (Largest Contentful Paint) | < 2.5s | Usa `priority` en el componente `<Image>` del Hero. |
-| **CLS** (Cumulative Layout Shift) | < 0.1 | Define `width` y `height` o `aspect-ratio` en todas las imágenes. |
-| **INP** (Interaction to Next Paint) | < 200ms | Mueve scripts pesados (GTM, Chat) a Web Workers con `next/script` y `strategy="worker"`. |
+### 3.2 `robots.ts`
 
----
+```typescript
+import { MetadataRoute } from 'next';
 
-## 4. Checklist de Validación Final
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: {
+      userAgent: '*',
+      allow: '/',
+      disallow: '/dashboard/',
+    },
+    sitemap: 'https://tusitio.com/sitemap.xml',
+  };
+}
 
-*Antes de mover a producción, marca cada casilla:*
-
-* [ ] **Canonical:** Etiqueta `<link rel="canonical">` presente y autorreferencial.
-* [ ] **Imágenes:** Todas tienen atributo `alt` descriptivo y no usan etiquetas `<img>` nativas.
-* [ ] **Sitemap:** Localizado en `/sitemap.xml` y generado dinámicamente mediante `sitemap.ts`.
-* [ ] **Robots:** Archivo `/robots.txt` permite el rastreo de `/blog/` y apunta al sitemap.
-* [ ] **Heading Hierarchy:** Un solo `<h1>`, seguido de `<h2>` y `<h3>` en orden lógico.
-* [ ] **Links:** Todos los enlaces internos usan el componente `next/link`.
-* [ ] **Mobile Friendly:** Puntuación superior a 90 en Lighthouse Mobile.
-
----
-
-## 5. Glosario de "Power Words" para Titulares
-
-Utiliza esta tabla para auditar la calidad de los títulos del equipo editorial:
-
-| Categoría | Ejemplo de Palabra | Efecto |
-| --- | --- | --- |
-| **Urgencia** | "Hoy", "Ahora", "Limitado" | Reduce el tiempo de decisión. |
-| **Curiosidad** | "Secreto", "Pocos conocen", "Verdad" | Aumenta el CTR por brecha de información. |
-| **Facilidad** | "Simple", "Guía rápida", "En 5 min" | Atrae a usuarios que buscan soluciones rápidas. |
+```
 
 ---
 
+## 4. Datos Estructurados (Rich Snippets)
+
+Asegura que Google entienda si tu página es un artículo, producto o FAQ usando **JSON-LD**.
+
+```tsx
+export default function Page() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Título del Post",
+    "author": { "@type": "Person", "name": "Admin" }
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <main>...</main>
+    </>
+  );
+}
+
+```
+
+---
+
+## 5. Auditoría Técnica (Manual de Ingeniería)
+
+* **Paso 1: Validación de SSR:** Presiona `CTRL + U`. Si el contenido no está en el HTML plano, el SEO es fallido.
+* **Paso 2: Canonical Tags:** Verifica que cada página tenga su URL canónica para evitar penalizaciones por contenido duplicado.
+* **Paso 3: Lighthouse:** Corre una auditoría en modo incógnito. Busca **100/100** en la categoría SEO.
+
+---
+
+## 6. Estrategia Editorial (Power Words)
+
+Inyecta estas palabras en tus `title` tags para aumentar el CTR:
+
+* **Guía completa**: Para contenido educativo.
+* **Mejores [Año]**: Para listas de productos.
+* **Cómo [Acción]**: Para tutoriales específicos.
+
+---

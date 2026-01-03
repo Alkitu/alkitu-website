@@ -8,12 +8,46 @@ import Providers from "../context/Providers";
 import en from "@/app/dictionaries/en.json";
 import es from "@/app/dictionaries/es.json";
 import { headers } from "next/headers";
+import { Inter } from 'next/font/google';
+import type { Metadata } from 'next';
 
 const translations = { en, es };
+
+// Optimize Google Fonts with next/font (eliminates FOUT/FOIT)
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap', // Critical for avoiding font flash
+  variable: '--font-inter',
+  preload: true,
+});
 
 // Force dynamic rendering to ensure middleware executes on every request
 // This is required for analytics tracking to work properly
 export const dynamic = 'force-dynamic';
+
+// SEO: metadataBase is REQUIRED for Open Graph images to resolve correctly
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://alkitu.com'),
+  title: {
+    default: 'Alkitu | Ingeniería de Software',
+    template: '%s | Alkitu',
+  },
+  description: 'Soluciones de ingeniería de software y desarrollo web con tecnologías modernas',
+  openGraph: {
+    title: 'Alkitu',
+    description: 'Soluciones de ingeniería de software y desarrollo web',
+    url: '/',
+    siteName: 'Alkitu',
+    locale: 'es_ES',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Alkitu',
+    description: 'Soluciones de ingeniería de software y desarrollo web',
+    creator: '@alkitu',
+  },
+};
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));

@@ -35,6 +35,9 @@
     "paths": {
       "@/*": [
         "./*"
+      ],
+      "contentlayer/generated": [
+        "./.contentlayer/generated"
       ]
     },
     "target": "ES2017"
@@ -51,7 +54,8 @@
     "app/[lang]/(public)/components/Header.tsx",
     "app/components/rive/RiveAnimation.tsx",
     "app/components/svg/menu-icons/HomeIcons.jsx",
-    ".next/dev/types/**/*.ts"
+    ".next/dev/types/**/*.ts",
+    ".contentlayer/generated"
   ],
   "exclude": [
     "node_modules"

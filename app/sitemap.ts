@@ -3,6 +3,7 @@ import {
   getProjectsForSitemap,
   generateProjectSitemapEntries,
 } from '@/lib/sitemap-utils';
+import { allBlogPosts } from 'contentlayer/generated';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://alkitu.com';
@@ -40,14 +41,41 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const projects = await getProjectsForSitemap();
   const projectRoutes = generateProjectSitemapEntries(projects, baseUrl, locales);
 
-  // TODO: Add dynamic blog routes when blog is database-driven
-  // const blogPosts = await getBlogPostsForSitemap();
-  // const blogRoutes = generateBlogSitemapEntries(blogPosts, baseUrl, locales);
+  // Generate blog post sitemap entries from Contentlayer
+  const blogPostRoutes = allBlogPosts.map((post) => ({
+    url: `${baseUrl}${post.url}`,
+    lastModified: post.updatedAt ? new Date(post.updatedAt) : new Date(post.date),
+    changeFrequency: 'monthly' as const,
+    priority: post.featured ? 0.9 : 0.7,
+  }));
+
+  // Generate blog category pages (extract unique categories from all posts)
+  const uniqueCategories = Array.from(
+    new Set(
+      allBlogPosts.map((post) =>
+        post.category
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '') // Remove accents
+          .replace(/\s+/g, '-')
+      )
+    )
+  );
+
+  const blogCategoryRoutes = uniqueCategories.flatMap((category) =>
+    locales.map((locale) => ({
+      url: `${baseUrl}/${locale}/blog/${category}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    }))
+  );
 
   return [
     rootRoute,
     ...localeRoutes,
     ...projectRoutes,
-    // ...blogRoutes,  // Uncomment when blog is database-driven
+    ...blogCategoryRoutes,
+    ...blogPostRoutes,
   ];
 }

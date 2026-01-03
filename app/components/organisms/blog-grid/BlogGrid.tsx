@@ -8,6 +8,7 @@ interface BlogPost {
   id: string;
   title: string;
   slug: string;
+  categorySlug: string; // Add category slug for URL generation
   excerpt: string;
   image: string;
   category: string;
@@ -74,7 +75,7 @@ export default function BlogGrid({ posts, locale, categoryTitle, columns = 4 }: 
             transition={{ type: "spring" as const, damping: 30, stiffness: 300 }}
           >
             <Link
-              href={`/${locale}/blog/${post.slug}`}
+              href={`/${locale}/blog/${post.categorySlug}/${post.slug}`}
               className="group block border border-border rounded-lg overflow-hidden hover:shadow-lg hover:border-primary/50"
             >
               {/* Post Image */}

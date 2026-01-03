@@ -257,7 +257,7 @@ export function ProfileLanguagesManager({
         <div className="space-y-2">
           {sortedLanguages.map((lang, index) => (
             <div
-              key={lang.display_order}
+              key={index}
               className="rounded-md border border-border bg-card p-3 space-y-3"
             >
               <div className="flex items-center gap-2">

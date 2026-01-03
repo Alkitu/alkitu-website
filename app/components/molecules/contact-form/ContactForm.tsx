@@ -203,7 +203,7 @@ export default function ContactForm({
             {contactText?.successMessage || 'Message sent successfully!'}
           </p>
           <p className="text-sm text-muted-foreground mt-2">
-            {contactText?.successSubtext || "I'll get back to you soon."}
+            {contactText?.successSubtext || "We will reply to you soon."}
           </p>
         </motion.div>
       )}

@@ -1,325 +1,550 @@
 {
   "posts": [
     {
-      "id": "color-logo-marca",
-      "slug": "color-logo-ideal-marca",
-      "translations": {
-        "es": {
-          "title": "El color de logo ideal para tu marca",
-          "excerpt": "¿Cómo elegir el color ideal para tu emprendimiento o empresa pero no sabes aún cuál escoger? descubre cómo elegir el color del alma y la personalidad indicada tu trabajo con esta publicación."
-        },
-        "en": {
-          "title": "The ideal logo color for your brand",
-          "excerpt": "How to choose the ideal color for your business but you still don't know which one to choose? Discover how to choose the color of the soul and the right personality for your work with this publication."
-        }
-      },
-      "image": "https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=800&h=600&fit=crop",
-      "category": "Diseño Gráfico",
-      "date": "2023-10-15",
-      "author": "Luis Urdaneta",
-      "featured": true,
-      "readTime": "5 min",
-      "lang": ["es", "en"]
-    },
-    {
-      "id": "publicidad-digital-vs-fisica",
-      "slug": "publicidad-digital-vs-fisica",
-      "translations": {
-        "es": {
-          "title": "Publicidad digital vs Publicidad física",
-          "excerpt": "La guerra de la era de la digitalización y muchas sombras que solo existen digitales ¿Una es suficiente o de atrás sectores?"
-        },
-        "en": {
-          "title": "Digital Advertising vs Physical Advertising",
-          "excerpt": "The war of the digitalization era and many shadows that only exist digitally. Is one enough or from behind sectors?"
-        }
-      },
-      "image": "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&h=600&fit=crop",
-      "category": "Publicidad",
-      "date": "2023-10-12",
-      "author": "Luis Urdaneta",
-      "readTime": "4 min",
-      "lang": ["es", "en"]
-    },
-    {
-      "id": "keywords-seo",
-      "slug": "keywords-palabras-claves-seo",
-      "translations": {
-        "es": {
-          "title": "Keywords, las palabras claves del SEO",
-          "excerpt": "Descubrir las palabras que usan los posibles clientes en Google, es sentirte y usar correctamente las keywords. Entiéndas también en resúmil como registrar las claves. Si eres nuevo en el mundo del SEO, esta publicación es esencial para ti."
-        },
-        "en": {
-          "title": "Keywords, the key words of SEO",
-          "excerpt": "Discovering the words that potential customers use on Google is to feel and correctly use keywords. Also understand in summary how to register the keys. If you're new to the world of SEO, this publication is essential for you."
-        }
-      },
-      "image": "https://images.unsplash.com/photo-1562577309-4932fdd64cd1?w=800&h=600&fit=crop",
-      "category": "Marketing",
-      "date": "2023-10-10",
-      "author": "Luis Urdaneta",
-      "readTime": "6 min",
-      "lang": ["es", "en"]
-    },
-    {
-      "id": "hosting-contratar",
-      "slug": "todo-sobre-hosting",
-      "translations": {
-        "es": {
-          "title": "Todo lo que debes saber antes de contratar tu Hosting",
-          "excerpt": "Descubre en esta publicación qué tienes y las características antes de contratar el servicio de hosting o alojamiento."
-        },
-        "en": {
-          "title": "Everything you need to know before hiring your Hosting",
-          "excerpt": "Discover in this publication what you have and the characteristics before contracting the hosting or accommodation service."
-        }
-      },
-      "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop",
-      "category": "Desarrollo Web",
-      "date": "2023-10-08",
-      "author": "Luis Urdaneta",
-      "readTime": "7 min",
-      "lang": ["es", "en"]
-    },
-    {
-      "id": "5-competencias-emprendedor",
-      "slug": "5-competencias-emprendedor",
-      "translations": {
-        "es": {
-          "title": "Las 5 Competencias del Emprendedor",
-          "excerpt": "Aplicar estas competencias hará las competencias que se sueltan desarro en el momento de crear tu emprendimiento pueden ayudarte y orientas para tu negocio o exito."
-        },
-        "en": {
-          "title": "The 5 Entrepreneur Competencies",
-          "excerpt": "Applying these competencies will make the competencies that are released at the time of creating your venture can help and guide you for your business or success."
-        }
-      },
-      "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop",
-      "category": "Emprendimiento",
-      "date": "2023-10-05",
-      "author": "Luis Urdaneta",
-      "readTime": "5 min",
-      "lang": ["es", "en"]
-    },
-    {
       "id": "marketing-4-0",
-      "slug": "como-llegamos-marketing-4-0",
+      "slug": "evolucion-marketing-4-0",
       "translations": {
         "es": {
-          "title": "¿Cómo llegamos al Marketing 4.0?",
-          "excerpt": "El marketing ha tenido diferentes enfoques a lo largo de la historia. Descubre su vida publicación la evolución del marketing. Esto será y lo que fases de un avanza 4.0."
+          "title": "La Guia Definitiva: Del Marketing 1.0 al 4.0",
+          "excerpt": "El marketing ha tenido diferentes enfoques a lo largo de la historia. Descubre en esta publicacion su evolucion, la perspectiva del experto Philip Kotler y lo que depara la version 4.0.",
+          "metaDescription": "Descubre la evolucion del Marketing desde el 1.0 hasta el 4.0 con Philip Kotler. Guia completa con caracteristicas, ejemplos y estrategias probadas. Transforma tu negocio hoy.",
+          "keywords": ["marketing 4.0", "evolucion del marketing", "philip kotler", "marketing digital", "estrategias de marketing", "transformacion digital"],
+          "sections": [
+            {
+              "id": "intro-1",
+              "type": "paragraph",
+              "content": "El marketing ha tenido que ir adaptando sus objetivos a la par de como han ido cambiando las necesidades y las demandas de los clientes. Desde los inicios donde el producto era el rey absoluto, hasta la era actual donde el proposito social marca la diferencia entre las marcas que triunfan y las que desaparecen."
+            },
+            {
+              "id": "intro-2",
+              "type": "callout",
+              "variant": "tip",
+              "content": "Conocer la evolucion del marketing te permite entender por que las estrategias del pasado ya no funcionan y como adaptarte al consumidor moderno."
+            },
+            {
+              "id": "heading-1",
+              "type": "heading",
+              "level": 2,
+              "content": "Los Inicios del Marketing 1.0: La Era del Producto"
+            },
+            {
+              "id": "p-1-1",
+              "type": "paragraph",
+              "content": "Originalmente las personas se conformaban con el primer producto que se les ofrecia y llegasen a necesitar en ese instante. Imaginemos que vivimos en una era antigua, en un pequeno pueblo donde hay un solo panadero. Hoy necesitas un pan, vas a la tienda y te ofrecen uno que esta duro (posiblemente viejo). No lo quieres? Recuerda que tienes que ir a buscar la siguiente panaderia mas cercana de tu pueblo, se encuentra a un dia cabalgando en un camino lleno de posibles amenazas y peligros... Seguro que no quieres el pan duro?"
+            },
+            {
+              "id": "p-1-2",
+              "type": "paragraph",
+              "content": "Ahora han pasado varios anos, ya no solo existe una panaderia en tu pueblo, puedes escoger entre diferentes tiendas y variedades de productos. Y no solo eso! Ahora descubres estos productos en unas cosas llamadas el periodico, la radio y la television."
+            },
+            {
+              "id": "p-1-3",
+              "type": "paragraph",
+              "content": "Desde finales del siglo XIX hasta mediados del siglo XX, el marketing se conoce como la version del marketing 1.0, su enfoque es en base exclusivamente al producto, debido a la poca oferta que existia en el mercado y una alta demanda."
+            },
+            {
+              "id": "heading-1-char",
+              "type": "heading",
+              "level": 3,
+              "content": "Caracteristicas Esenciales del Marketing 1.0"
+            },
+            {
+              "id": "list-1-1",
+              "type": "list",
+              "content": "",
+              "items": [
+                "Ser un marketing centrado en vender productos",
+                "Tener clientes que solo buscaban cubrir sus necesidades basicas",
+                "Pensar que el valor mas importante era el precio",
+                "Usar medios de promocion tradicionales con una comunicacion unilateral"
+              ]
+            },
+            {
+              "id": "heading-2",
+              "type": "heading",
+              "level": 2,
+              "content": "Origen del Marketing 2.0: La Experiencia del Cliente"
+            },
+            {
+              "id": "p-2-1",
+              "type": "paragraph",
+              "content": "Con el pasar del tiempo algo ha cambiado en tu mentalidad, ya no eres un cliente que compra un producto tan solo por su valor economico, ahora te importa mas la experiencia y las emociones que te hacen sentir."
+            },
+            {
+              "id": "p-2-2",
+              "type": "paragraph",
+              "content": "Tu hijo pequeno esta cumpliendo anos y quieres hacerle feliz. A donde lo llevarias? Te dice que le encantan las hamburguesas y los parques infantiles... Que opinas de un lugar llamado McDonalds? Seguro que te suena genial."
+            },
+            {
+              "id": "p-2-3",
+              "type": "paragraph",
+              "content": "Ahora hay muchas marcas que se dieron cuenta de tu nueva necesidad llamada experiencia, piensan en ti mas alla de tan solo el producto y por eso quieren conocer tu opinion para saber lo que realmente es importante para ti."
+            },
+            {
+              "id": "p-2-4",
+              "type": "paragraph",
+              "content": "Con el pasar de los anos la tecnologia ha evolucionado muchisimo. Puedes creer que ahora tienes un telefono movil con internet? A las empresas les encantaria interactuar contigo para saber tu experiencia con ellos."
+            },
+            {
+              "id": "p-2-5",
+              "type": "paragraph",
+              "content": "A mediados y hasta finales del siglo XX surgio el marketing 2.0. Se enfoca en el cliente y sus emociones, debido a que existia una mayor oferta en el mercado lo que genero mas criterios para la eleccion de los productos de los consumidores."
+            },
+            {
+              "id": "heading-2-char",
+              "type": "heading",
+              "level": 3,
+              "content": "Caracteristicas Clave del Marketing 2.0"
+            },
+            {
+              "id": "list-2-1",
+              "type": "list",
+              "content": "",
+              "items": [
+                "Ser un marketing centrado en satisfacer y retener a los consumidores",
+                "Tener clientes con emociones y con mas criterios de eleccion para comprar",
+                "Pensar que el valor mas importante era la persona",
+                "Usar medios de promocion tradicionales con comunicacion unilateral y posteriormente medios interactivos con comunicacion bilateral"
+              ]
+            },
+            {
+              "id": "heading-3",
+              "type": "heading",
+              "level": 2,
+              "content": "El Nacimiento del Marketing 3.0: Los Valores Humanos"
+            },
+            {
+              "id": "p-3-1",
+              "type": "paragraph",
+              "content": "Si entendemos que el nucleo del marketing 1.0 es el producto y del marketing 2.0 es el cliente y su experiencia, el marketing 3.0 tenia que ir mas alla de esos factores. Los marketeros volvieron a preguntarse: Que otra cosa es importante para los clientes? y Que necesidades tienen?"
+            },
+            {
+              "id": "p-3-2",
+              "type": "paragraph",
+              "content": "Con el pasar de unos pocos anos gracias a los avances tecnologicos y al surgimiento de nuevas herramientas (como las redes sociales), los marketeros pudieron conocer cada vez mas a sus clientes. De esa forma se adentraron en su psicologia y descubrieron la respuesta:"
+            },
+            {
+              "id": "quote-3-1",
+              "type": "blockquote",
+              "content": "Somos todos personas. Tenemos diferentes valores y principios, somos humanos, tenemos sentimientos y prioridades como lo pueden ser la familia, la amistad, el amor, la justicia y mas."
+            },
+            {
+              "id": "p-3-3",
+              "type": "paragraph",
+              "content": "Si ves las redes sociales podras ver personas totalmente diferentes bailando, riendo, compartiendo y mucho mas. A inicios del siglo XXI y durante una decada y media surgio el marketing 3.0. Su enfoque principal es dejar de ver al cliente como tan solo un consumidor, comenzaron a verlo como una persona y que tanto ella como la empresa eran parte de una sociedad."
+            },
+            {
+              "id": "heading-3-char",
+              "type": "heading",
+              "level": 3,
+              "content": "Caracteristicas del Marketing 3.0"
+            },
+            {
+              "id": "list-3-1",
+              "type": "list",
+              "content": "",
+              "items": [
+                "Ser un marketing centrado en los valores de las personas y en querer hacer un mundo mejor",
+                "Tener seres humanos (no solo clientes) con mente, corazon y espiritu",
+                "Pensar que el valor mas importante era el ambiente y la comunidad",
+                "Usar medios de promocion interactivos con comunicacion multidireccional"
+              ]
+            },
+            {
+              "id": "heading-4",
+              "type": "heading",
+              "level": 2,
+              "content": "La Nueva Era: El Marketing 4.0 y el Proposito Social"
+            },
+            {
+              "id": "p-4-1",
+              "type": "paragraph",
+              "content": "Bienvenido a la actualidad! Gracias a la globalizacion y a la gran cantidad de informacion que hay en internet, sabes que no muchos han tenido la misma suerte que tu, algunos ninos no tienen calzados para caminar y mucha gente no tiene trabajo ni comida esta noche."
+            },
+            {
+              "id": "p-4-2",
+              "type": "paragraph",
+              "content": "Que opinarias si te digo que por cada 3 euros que gastes en TOMS se donara 1 euro para la elaboracion de zapatillas para estos ninos, o que si comes en Social Bites estas ayudando a muchas personas que vivian en la calle dandoles comida y trabajo? Sentirias que al comprarles un producto a estas empresas haces el mundo un poco mejor?"
+            },
+            {
+              "id": "p-4-3",
+              "type": "paragraph",
+              "content": "Ahora las marcas se dieron cuenta que nosotros y ellas somos parte de una comunidad, que coexistimos y que lo mas importante es trabajar juntos para hacer el mundo un mejor lugar para vivir."
+            },
+            {
+              "id": "callout-4-1",
+              "type": "callout",
+              "variant": "important",
+              "content": "A mediados de la segunda decada del siglo XXI surgio el marketing 4.0. Su principal enfoque es el proposito social."
+            },
+            {
+              "id": "heading-4-kotler",
+              "type": "heading",
+              "level": 3,
+              "content": "El Origen Segun Philip Kotler"
+            },
+            {
+              "id": "p-4-4",
+              "type": "paragraph",
+              "content": "Segun el experto en marketing Philip Kotler: El Marketing 4.0 surge cuando lo offline conoce lo online, el estilo conoce la sustancia y la maquina conoce al humano. Se puede decir que esto se adapta perfectamente a la realidad actual:"
+            },
+            {
+              "id": "list-4-1",
+              "type": "list",
+              "content": "",
+              "items": [
+                "El mundo esta conectado de miles de formas diferentes con las redes sociales, foros en internet, WhatsApp... Solo observa como se pudieron realizar los teletrabajos en consecuencia del COVID-19.",
+                "Cuando realizamos una compra evaluamos muchos factores antes. Quizas no compras un chocolate hecho con aceite de palma o no le compras a empresas de productos cosmeticos que hacen pruebas en animales. Es mas importante para ti tus principios que comprar algo en contra de ellos que sea bueno, bonito, barato o popular.",
+                "Seguramente has sentido alguna vez que la publicidad en internet pareciera que te escuchara, te muestra productos y ofertas en el momento que mas lo necesitabas. Google y las redes sociales tienen algoritmos de aprendizajes tan buenos que se puede creer que en algun momento conoceran mas de ti que tu mismo. Esta informacion se conoce como Big Data."
+              ]
+            },
+            {
+              "id": "heading-4-clients",
+              "type": "heading",
+              "level": 3,
+              "content": "Los Clientes del Marketing 4.0: Expertos en Compras"
+            },
+            {
+              "id": "p-4-5",
+              "type": "paragraph",
+              "content": "Hay una caracteristica nueva de los clientes que ha dado un giro al mercado. Te has fijado de todo lo que haces antes de realizar una compra importante?"
+            },
+            {
+              "id": "list-4-2",
+              "type": "list",
+              "content": "",
+              "items": [
+                "1. Buscar el producto y estudiar todas sus cualidades",
+                "2. Ver opiniones online del producto",
+                "3. Comparar con otros productos similares",
+                "4. Ver opiniones online de esos productos",
+                "5. Preguntar a amigos, familiares o conocidos que puedan conocer de los productos que mas te convencen",
+                "6. Compras el producto y lo pruebas",
+                "7. Compartes tu opinion y puedes llegar a recomendarlo si te gusto"
+              ]
+            },
+            {
+              "id": "p-4-6",
+              "type": "paragraph",
+              "content": "Las personas hemos pasado a ser expertos en compras y nos ayudamos entre todos para obtener mejores resultados. Existe una gran cantidad de informacion en internet que ayuda a los compradores y a los vendedores. Despues de todo, si eres una empresa que obtiene malas criticas de un producto sabras exactamente que hacer para mejorarlo y hacer que guste a tus clientes."
+            },
+            {
+              "id": "heading-4-final",
+              "type": "heading",
+              "level": 3,
+              "content": "Caracteristicas Fundamentales del Marketing 4.0"
+            },
+            {
+              "id": "list-4-3",
+              "type": "list",
+              "content": "",
+              "items": [
+                "Ser un marketing centrado en el proposito social y con marcas que colaboran con la sociedad para un mundo mejor",
+                "Tener marcas y empresas humanas que conectan a nivel emocional",
+                "Pensar que satisfacer las necesidades emocionales del cliente era primordial, aprendiendo por medio de la Big Data para dar mejores resultados personalizados",
+                "Usar medios de promocion omnicanales con comunicacion omnidireccional, implementando estrategias 360 grados"
+              ]
+            },
+            {
+              "id": "heading-conclusion",
+              "type": "heading",
+              "level": 2,
+              "content": "Conclusion: Transforma Tu Estrategia de Marketing"
+            },
+            {
+              "id": "p-conclusion-1",
+              "type": "paragraph",
+              "content": "La evolucion del marketing desde el 1.0 hasta el 4.0 nos muestra una leccion fundamental: las marcas que triunfan son las que saben adaptarse a las necesidades cambiantes de las personas. Hoy, eso significa tener un proposito que va mas alla de solo vender productos."
+            },
+            {
+              "id": "callout-conclusion",
+              "type": "callout",
+              "variant": "tip",
+              "content": "Tu proximo paso: Evalua como tu marca puede contribuir a hacer el mundo un lugar mejor mientras ofreces valor real a tus clientes. Esa es la esencia del Marketing 4.0."
+            },
+            {
+              "id": "p-conclusion-2",
+              "type": "paragraph",
+              "content": "De parte del equipo de Alkitu esperamos que hayas disfrutado de esta cronologia. No olvides de compartir esta publicacion si fue de tu agrado para ayudar a nuestra comunidad y comentarnos tus dudas y opiniones del post para saber que cosas podemos mejorar."
+            }
+          ]
         },
         "en": {
-          "title": "How did we get to Marketing 4.0?",
-          "excerpt": "Marketing has had different approaches throughout history. Discover its life publication the evolution of marketing. This will be and what phases of a 4.0 advance."
+          "title": "The Ultimate Guide: From Marketing 1.0 to 4.0",
+          "excerpt": "Marketing has had different approaches throughout history. Discover in this publication its evolution, expert Philip Kotler's perspective, and what version 4.0 holds in store.",
+          "metaDescription": "Discover the evolution of Marketing from 1.0 to 4.0 with Philip Kotler. Complete guide with characteristics, examples, and proven strategies. Transform your business today.",
+          "keywords": ["marketing 4.0", "marketing evolution", "philip kotler", "digital marketing", "marketing strategies", "digital transformation"],
+          "sections": [
+            {
+              "id": "intro-1",
+              "type": "paragraph",
+              "content": "Marketing has had to adapt its objectives alongside the changing needs and demands of customers. From the early days where the product was the absolute king, to the current era where social purpose makes the difference between brands that succeed and those that disappear."
+            },
+            {
+              "id": "intro-2",
+              "type": "callout",
+              "variant": "tip",
+              "content": "Understanding the evolution of marketing allows you to understand why past strategies no longer work and how to adapt to the modern consumer."
+            },
+            {
+              "id": "heading-1",
+              "type": "heading",
+              "level": 2,
+              "content": "The Beginnings of Marketing 1.0: The Product Era"
+            },
+            {
+              "id": "p-1-1",
+              "type": "paragraph",
+              "content": "Originally, people were satisfied with the first product offered to them that they might need at that moment. Imagine we live in an ancient era, in a small village where there is only one baker. Today you need bread, you go to the store and they offer you one that is hard (possibly old). You don't want it? Remember that you have to go to the next nearest bakery in your village, it is a day's ride away on a road full of possible threats and dangers... Are you sure you don't want the stale bread?"
+            },
+            {
+              "id": "p-1-2",
+              "type": "paragraph",
+              "content": "Now several years have passed, there is no longer just one bakery in your village, you can choose from different stores and varieties of products. And not only that! Now you discover these products in things called the newspaper, the radio, and the television."
+            },
+            {
+              "id": "p-1-3",
+              "type": "paragraph",
+              "content": "From the late 19th century until the mid-20th century, marketing is known as the version of marketing 1.0, its focus is exclusively on the product, due to the low supply that existed in the market and high demand."
+            },
+            {
+              "id": "heading-1-char",
+              "type": "heading",
+              "level": 3,
+              "content": "Essential Characteristics of Marketing 1.0"
+            },
+            {
+              "id": "list-1-1",
+              "type": "list",
+              "content": "",
+              "items": [
+                "Being a marketing focused on selling products",
+                "Having customers who only sought to cover their basic needs",
+                "Thinking that price was the most important value",
+                "Using traditional promotional media with one-way communication"
+              ]
+            },
+            {
+              "id": "heading-2",
+              "type": "heading",
+              "level": 2,
+              "content": "Origin of Marketing 2.0: The Customer Experience"
+            },
+            {
+              "id": "p-2-1",
+              "type": "paragraph",
+              "content": "Over time something has changed in your mindset, you are no longer a customer who buys a product just for its economic value, now you care more about the experience and emotions they make you feel."
+            },
+            {
+              "id": "p-2-2",
+              "type": "paragraph",
+              "content": "Your little son is having a birthday and you want to make him happy. Where would you take him? He tells you he loves hamburgers and playgrounds... What do you think about a place called McDonald's? It surely sounds great."
+            },
+            {
+              "id": "p-2-3",
+              "type": "paragraph",
+              "content": "Now there are many brands that realized your new need called experience, they think of you beyond just the product and that's why they want to know your opinion to understand what is really important to you."
+            },
+            {
+              "id": "p-2-4",
+              "type": "paragraph",
+              "content": "Over the years technology has evolved tremendously. Can you believe you now have a mobile phone with internet? Companies would love to interact with you to know your experience with them."
+            },
+            {
+              "id": "p-2-5",
+              "type": "paragraph",
+              "content": "In the mid to late 20th century, marketing 2.0 emerged. It focuses on the customer and their emotions, because there was a greater supply in the market which generated more criteria for consumers' product choices."
+            },
+            {
+              "id": "heading-2-char",
+              "type": "heading",
+              "level": 3,
+              "content": "Key Characteristics of Marketing 2.0"
+            },
+            {
+              "id": "list-2-1",
+              "type": "list",
+              "content": "",
+              "items": [
+                "Being a marketing focused on satisfying and retaining consumers",
+                "Having customers with emotions and more criteria for purchasing choices",
+                "Thinking that the most important value was the person",
+                "Using traditional promotional media with one-way communication and later interactive media with two-way communication"
+              ]
+            },
+            {
+              "id": "heading-3",
+              "type": "heading",
+              "level": 2,
+              "content": "The Birth of Marketing 3.0: Human Values"
+            },
+            {
+              "id": "p-3-1",
+              "type": "paragraph",
+              "content": "If we understand that the core of marketing 1.0 is the product and marketing 2.0 is the customer and their experience, marketing 3.0 had to go beyond those factors. Marketers asked themselves again: What else is important to customers? And what needs do they have?"
+            },
+            {
+              "id": "p-3-2",
+              "type": "paragraph",
+              "content": "Over the course of a few years, thanks to technological advances and the emergence of new tools (such as social networks), marketers were able to get to know their customers more and more. In this way, they delved into their psychology and discovered the answer:"
+            },
+            {
+              "id": "quote-3-1",
+              "type": "blockquote",
+              "content": "We are all people. We have different values and principles, we are human, we have feelings and priorities such as family, friendship, love, justice and more."
+            },
+            {
+              "id": "p-3-3",
+              "type": "paragraph",
+              "content": "If you look at social networks you will see completely different people dancing, laughing, sharing and much more. At the beginning of the 21st century and for a decade and a half, marketing 3.0 emerged. Its main focus is to stop seeing the customer as just a consumer, they began to see them as a person and that both they and the company were part of a society."
+            },
+            {
+              "id": "heading-3-char",
+              "type": "heading",
+              "level": 3,
+              "content": "Characteristics of Marketing 3.0"
+            },
+            {
+              "id": "list-3-1",
+              "type": "list",
+              "content": "",
+              "items": [
+                "Being a marketing focused on people's values and wanting to make a better world",
+                "Having human beings (not just customers) with mind, heart and spirit",
+                "Thinking that the most important value was the environment and community",
+                "Using interactive promotional media with multidirectional communication"
+              ]
+            },
+            {
+              "id": "heading-4",
+              "type": "heading",
+              "level": 2,
+              "content": "The New Era: Marketing 4.0 and Social Purpose"
+            },
+            {
+              "id": "p-4-1",
+              "type": "paragraph",
+              "content": "Welcome to the present! Thanks to globalization and the vast amount of information on the internet, you know that not many have been as lucky as you, some children do not have shoes to walk in and many people do not have work or food tonight."
+            },
+            {
+              "id": "p-4-2",
+              "type": "paragraph",
+              "content": "What would you think if I told you that for every 3 euros you spend at TOMS, 1 euro will be donated for the production of sneakers for these children, or that if you eat at Social Bites you are helping many people who lived on the street by giving them food and work? Would you feel that by buying a product from these companies you are making the world a little better?"
+            },
+            {
+              "id": "p-4-3",
+              "type": "paragraph",
+              "content": "Now brands have realized that we and they are part of a community, that we coexist and that the most important thing is to work together to make the world a better place to live."
+            },
+            {
+              "id": "callout-4-1",
+              "type": "callout",
+              "variant": "important",
+              "content": "In the middle of the second decade of the 21st century, marketing 4.0 emerged. Its main focus is social purpose."
+            },
+            {
+              "id": "heading-4-kotler",
+              "type": "heading",
+              "level": 3,
+              "content": "The Origin According to Philip Kotler"
+            },
+            {
+              "id": "p-4-4",
+              "type": "paragraph",
+              "content": "According to marketing expert Philip Kotler: Marketing 4.0 emerges when offline meets online, style meets substance and machine meets human. This can be said to adapt perfectly to current reality:"
+            },
+            {
+              "id": "list-4-1",
+              "type": "list",
+              "content": "",
+              "items": [
+                "The world is connected in thousands of different ways with social networks, internet forums, WhatsApp... Just observe how teleworking could be carried out as a result of COVID-19.",
+                "When we make a purchase we evaluate many factors beforehand. Maybe you don't buy chocolate made with palm oil or you don't buy from cosmetic companies that test on animals. Your principles are more important to you than buying something against them that is good, pretty, cheap or popular.",
+                "Surely you have felt at some point that internet advertising seems to listen to you, showing you products and offers at the moment you needed them most. Google and social networks have such good learning algorithms that it can be believed that at some point they will know more about you than yourself. This information is known as Big Data."
+              ]
+            },
+            {
+              "id": "heading-4-clients",
+              "type": "heading",
+              "level": 3,
+              "content": "Marketing 4.0 Customers: Shopping Experts"
+            },
+            {
+              "id": "p-4-5",
+              "type": "paragraph",
+              "content": "There is a new characteristic of customers that has turned the market around. Have you noticed everything you do before making an important purchase?"
+            },
+            {
+              "id": "list-4-2",
+              "type": "list",
+              "content": "",
+              "items": [
+                "1. Search for the product and study all its qualities",
+                "2. See online reviews of the product",
+                "3. Compare with other similar products",
+                "4. See online reviews of those products",
+                "5. Ask friends, family or acquaintances who may know about the products that convince you the most",
+                "6. Buy the product and try it",
+                "7. Share your opinion and you may recommend it if you liked it"
+              ]
+            },
+            {
+              "id": "p-4-6",
+              "type": "paragraph",
+              "content": "People have become shopping experts and we help each other to get better results. There is a great amount of information on the internet that helps buyers and sellers. After all, if you are a company that gets bad reviews for a product you will know exactly what to do to improve it and make your customers like it."
+            },
+            {
+              "id": "heading-4-final",
+              "type": "heading",
+              "level": 3,
+              "content": "Fundamental Characteristics of Marketing 4.0"
+            },
+            {
+              "id": "list-4-3",
+              "type": "list",
+              "content": "",
+              "items": [
+                "Being a marketing focused on social purpose and with brands that collaborate with society for a better world",
+                "Having human brands and companies that connect on an emotional level",
+                "Thinking that satisfying the emotional needs of the customer was essential, learning through Big Data to give better personalized results",
+                "Using omnichannel promotional media with omnidirectional communication, implementing 360-degree strategies"
+              ]
+            },
+            {
+              "id": "heading-conclusion",
+              "type": "heading",
+              "level": 2,
+              "content": "Conclusion: Transform Your Marketing Strategy"
+            },
+            {
+              "id": "p-conclusion-1",
+              "type": "paragraph",
+              "content": "The evolution of marketing from 1.0 to 4.0 teaches us a fundamental lesson: the brands that succeed are those that know how to adapt to the changing needs of people. Today, that means having a purpose that goes beyond just selling products."
+            },
+            {
+              "id": "callout-conclusion",
+              "type": "callout",
+              "variant": "tip",
+              "content": "Your next step: Evaluate how your brand can contribute to making the world a better place while offering real value to your customers. That is the essence of Marketing 4.0."
+            },
+            {
+              "id": "p-conclusion-2",
+              "type": "paragraph",
+              "content": "From the Alkitu team we hope you enjoyed this timeline. Don't forget to share this post if you liked it to help our community and let us know your questions and opinions about the post so we know what we can improve."
+            }
+          ]
         }
       },
-      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop",
+      "imageAlt": "Marketing strategy dashboard showing digital analytics and growth metrics",
       "category": "Marketing",
-      "date": "2023-10-03",
-      "author": "Luis Urdaneta",
-      "readTime": "6 min",
-      "lang": ["es", "en"]
-    },
-    {
-      "id": "transforma-miedo-emprender",
-      "slug": "transforma-miedo-emprender",
-      "translations": {
-        "es": {
-          "title": "Transforma tu miedo para emprender",
-          "excerpt": "Vamos a fondo del tema. Aquello que hace que no tengas altiva de resenir allaz de tus planes propios o tu descubrimiento. Un rol al momento de dar tu primer paso a la documentación de un negocio con perspectiva real."
-        },
-        "en": {
-          "title": "Transform your fear to undertake",
-          "excerpt": "Let's get to the bottom of the topic. That which makes you not have the pride to resent your own plans or your discovery. A role when taking your first step to documenting a business with a real perspective."
-        }
-      },
-      "image": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&h=600&fit=crop",
-      "category": "Emprendimiento",
-      "date": "2023-09-28",
-      "author": "Luis Urdaneta",
-      "readTime": "5 min",
-      "lang": ["es", "en"]
-    },
-    {
-      "id": "5-motivos-emprender",
-      "slug": "5-motivos-emprender",
-      "translations": {
-        "es": {
-          "title": "5 motivos para emprender",
-          "excerpt": "Sin pesos ideales se te morado que no pueden tu pasas del siente más \"no te lo\" y pon de esas cosas. Este fue un momento específico que fue un escritura tutore. Todos estamos en proceso de ir creciendo la capacidad. Te comentaré más allí. Pero puede recitar o emitido de manera descrito en un negado."
-        },
-        "en": {
-          "title": "5 reasons to start a business",
-          "excerpt": "Without ideal weights you are purple that cannot pass you from the feel more \"no you\" and put of those things. This was a specific moment that was a written tutor. We are all in the process of growing capacity. I will tell you more there. But can recite or issued in a described way in a denied."
-        }
-      },
-      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop",
-      "category": "Emprendimiento",
-      "date": "2023-09-25",
-      "author": "Luis Urdaneta",
-      "readTime": "4 min",
-      "lang": ["es", "en"]
-    },
-    {
-      "id": "guia-seo-principiantes",
-      "slug": "guia-seo-principiantes",
-      "translations": {
-        "es": {
-          "title": "Guía SEO para Principiantes",
-          "excerpt": "Aprende los fundamentos del SEO y cómo optimizar tu sitio web para aparecer en los primeros resultados de búsqueda."
-        },
-        "en": {
-          "title": "SEO Guide for Beginners",
-          "excerpt": "Learn the fundamentals of SEO and how to optimize your website to appear in the top search results."
-        }
-      },
-      "image": "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=800&h=600&fit=crop",
-      "category": "Marketing",
-      "date": "2023-09-20",
+      "date": "2020-11-30",
+      "updatedAt": "2025-01-01",
       "author": "Luis Urdaneta",
       "readTime": "8 min",
-      "lang": ["es", "en"]
-    },
-    {
-      "id": "certificados-ssl-tls",
-      "slug": "certificados-ssl-tls-ventajas",
-      "translations": {
-        "es": {
-          "title": "Certificados SSL / TLS y sus ventajas",
-          "excerpt": "Conoce la importancia de los certificados SSL/TLS para la seguridad de tu sitio web y la confianza de tus usuarios."
-        },
-        "en": {
-          "title": "SSL / TLS Certificates and their advantages",
-          "excerpt": "Learn about the importance of SSL/TLS certificates for the security of your website and the trust of your users."
-        }
-      },
-      "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=600&fit=crop",
-      "category": "Desarrollo Web",
-      "date": "2023-09-15",
-      "author": "Luis Urdaneta",
-      "readTime": "6 min",
-      "lang": ["es", "en"]
-    },
-    {
-      "id": "todo-sobre-liderazgo-empresarial",
-      "slug": "liderazgo-empresarial",
-      "translations": {
-        "es": {
-          "title": "Todo lo que debes saber sobre Liderazgo empresarial",
-          "excerpt": "El liderazgo es fundamental para el éxito de cualquier empresa. Descubre las claves para ser un líder efectivo."
-        },
-        "en": {
-          "title": "Everything you need to know about Business Leadership",
-          "excerpt": "Leadership is fundamental to the success of any company. Discover the keys to being an effective leader."
-        }
-      },
-      "image": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop",
-      "category": "Emprendimiento",
-      "date": "2023-09-10",
-      "author": "Luis Urdaneta",
-      "readTime": "7 min",
-      "lang": ["es", "en"]
-    },
-    {
-      "id": "lenguajes-programacion-populares-2023",
-      "slug": "lenguajes-programacion-2023",
-      "translations": {
-        "es": {
-          "title": "Lenguajes de programación más populares del 2023",
-          "excerpt": "Conoce cuáles son los lenguajes de programación más demandados y usados en la industria tecnológica actual."
-        },
-        "en": {
-          "title": "Most popular programming languages of 2023",
-          "excerpt": "Learn about the most demanded and used programming languages in today's technology industry."
-        }
-      },
-      "image": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&h=600&fit=crop",
-      "category": "Desarrollo Web",
-      "date": "2023-09-05",
-      "author": "Luis Urdaneta",
-      "readTime": "5 min",
-      "lang": ["es", "en"]
-    },
-    {
-      "id": "ventajas-desventajas-google-chrome",
-      "slug": "ventajas-desventajas-chrome",
-      "translations": {
-        "es": {
-          "title": "Ventajas y Desventajas del Navegador Google Chrome",
-          "excerpt": "Analiza las características, ventajas y desventajas del navegador más popular del mundo."
-        },
-        "en": {
-          "title": "Advantages and Disadvantages of Google Chrome Browser",
-          "excerpt": "Analyze the characteristics, advantages and disadvantages of the world's most popular browser."
-        }
-      },
-      "image": "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?w=800&h=600&fit=crop",
-      "category": "Desarrollo Web",
-      "date": "2023-08-30",
-      "author": "Luis Urdaneta",
-      "readTime": "4 min",
-      "lang": ["es", "en"]
-    },
-    {
-      "id": "que-son-redes-sociales",
-      "slug": "que-son-redes-sociales",
-      "translations": {
-        "es": {
-          "title": "¿Qué son las redes sociales?",
-          "excerpt": "Entiende el concepto, la evolución y el impacto de las redes sociales en nuestra sociedad moderna."
-        },
-        "en": {
-          "title": "What are social networks?",
-          "excerpt": "Understand the concept, evolution and impact of social networks in our modern society."
-        }
-      },
-      "image": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=600&fit=crop",
-      "category": "Social Media",
-      "date": "2023-08-25",
-      "author": "Luis Urdaneta",
-      "readTime": "5 min",
-      "lang": ["es", "en"]
-    },
-    {
-      "id": "que-es-una-agencia-marketing-digital",
-      "slug": "agencia-marketing-digital",
-      "translations": {
-        "es": {
-          "title": "¿Qué es una agencia de Marketing Digital?",
-          "excerpt": "Descubre qué servicios ofrece una agencia de marketing digital y cómo puede ayudar a tu negocio a crecer."
-        },
-        "en": {
-          "title": "What is a Digital Marketing agency?",
-          "excerpt": "Discover what services a digital marketing agency offers and how it can help your business grow."
-        }
-      },
-      "image": "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop",
-      "category": "Marketing",
-      "date": "2023-08-20",
-      "author": "Luis Urdaneta",
-      "readTime": "6 min",
-      "lang": ["es", "en"]
-    },
-    {
-      "id": "el-origen-del-logo",
-      "slug": "origen-del-logo",
-      "translations": {
-        "es": {
-          "title": "El origen del logo",
-          "excerpt": "Conoce la historia y evolución de los logotipos desde la antigüedad hasta nuestros días."
-        },
-        "en": {
-          "title": "The origin of the logo",
-          "excerpt": "Learn about the history and evolution of logos from ancient times to the present day."
-        }
-      },
-      "image": "https://images.unsplash.com/photo-1626785774625-ddcddc3445e9?w=800&h=600&fit=crop",
-      "category": "Diseño Gráfico",
-      "date": "2023-08-15",
-      "author": "Luis Urdaneta",
-      "readTime": "7 min",
-      "lang": ["es", "en"]
+      "lang": ["es", "en"],
+      "featured": true,
+      "tags": ["Marketing", "Marketing Digital", "Philip Kotler", "Estrategia", "Transformacion Digital", "Emprendimiento"]
     }
   ],
   "categories": [

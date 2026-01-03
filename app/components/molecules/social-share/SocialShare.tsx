@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { Facebook, Twitter, Linkedin, Mail, Send, Share2 } from 'lucide-react';
 
 interface SocialShareProps {
@@ -14,6 +15,13 @@ interface SocialShareProps {
  * Supports: WhatsApp, Facebook, Twitter, Pinterest, LinkedIn, Telegram, Email
  */
 export default function SocialShare({ url, title, description, className = "" }: SocialShareProps) {
+  const [canShare, setCanShare] = useState(false);
+
+  // Check if native share is available (client-side only)
+  useEffect(() => {
+    setCanShare(typeof navigator !== 'undefined' && !!navigator.share);
+  }, []);
+
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
   const encodedDescription = encodeURIComponent(description || title);
@@ -116,7 +124,7 @@ export default function SocialShare({ url, title, description, className = "" }:
       </button>
 
       {/* Native Share (if available) */}
-      {typeof navigator !== 'undefined' && (navigator as any).share && (
+      {canShare && (
         <button
           onClick={handleNativeShare}
           className="p-2 rounded-full border border-border hover:bg-muted transition-colors"

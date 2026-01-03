@@ -138,7 +138,7 @@ export function AddressesManager({
         <div className="space-y-3">
           {sortedAddresses.map((addressItem, index) => (
             <div
-              key={addressItem.display_order}
+              key={index}
               className="rounded-md border border-border bg-background p-4 space-y-3"
             >
               {/* Type Selector */}

@@ -8,6 +8,7 @@ interface BlogPost {
   id: string;
   title: string;
   slug: string;
+  categorySlug: string; // Add category slug for URL generation
   excerpt: string;
   image: string;
   category: string;
@@ -62,7 +63,7 @@ export default function BlogHero({ featuredPost, recentPosts, locale }: BlogHero
           whileTap={{ scale: 0.98 }}
           transition={{ type: "spring" as const, damping: 25, stiffness: 200 }}
         >
-          <Link href={`/${locale}/blog/${featuredPost.slug}`} className="group block">
+          <Link href={`/${locale}/blog/${featuredPost.categorySlug}/${featuredPost.slug}`} className="group block">
             <div className="relative w-full aspect-4/3 overflow-hidden rounded-lg">
               <Image
                 src={featuredPost.image}
@@ -116,7 +117,7 @@ export default function BlogHero({ featuredPost, recentPosts, locale }: BlogHero
               transition={{ type: "spring" as const, damping: 30, stiffness: 300 }}
             >
               <Link
-                href={`/${locale}/blog/${post.slug}`}
+                href={`/${locale}/blog/${post.categorySlug}/${post.slug}`}
                 className="group flex gap-4 hover:bg-muted/30 p-3 rounded-lg"
               >
                 {/* Post Image */}

@@ -1496,7 +1496,7 @@
       "submitButton": "Enviar Mensaje",
       "submittingButton": "Enviando...",
       "successMessage": "¡Mensaje enviado con éxito!",
-      "successSubtext": "Te responderé pronto."
+      "successSubtext": "Te responderemos pronto."
     },
     "communityBanner": {
       "titlePart1": "¿QUIERES SER PARTE DE NUESTRA",
@@ -1544,7 +1544,6 @@
       "emptyState": "Este usuario no ha compartido información pública todavía."
     },
     "editor": {
-      "title": "Editar Perfil",
       "subtitle": "Actualiza tu información personal y controla la privacidad de cada campo.",
       "tabs": {
         "basic": "Información Básica",

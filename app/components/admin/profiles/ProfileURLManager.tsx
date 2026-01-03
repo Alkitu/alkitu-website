@@ -143,7 +143,7 @@ export function ProfileURLManager({
         <div className="space-y-3">
           {sortedUrls.map((urlItem, index) => (
             <div
-              key={urlItem.display_order}
+              key={index}
               className="rounded-md border border-border bg-background p-4 space-y-3"
             >
               {/* URL Name */}

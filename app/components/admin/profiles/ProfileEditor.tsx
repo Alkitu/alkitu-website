@@ -32,6 +32,7 @@ import {
   type ThemePreference,
   type ProfileVisibility,
 } from '@/lib/types/profiles';
+import Link from 'next/link';
 
 interface ProfileEditorProps {
   profileId?: string; // If provided, fetch and edit existing profile
@@ -281,14 +282,17 @@ export function ProfileEditor({
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Header with username */}
       <div className="border-b border-border pb-4">
-        <h2 className="text-2xl font-bold text-foreground">
-          Editar Perfil
           {username && (
-            <span className="ml-2 text-base font-normal text-muted-foreground">
-              @{username}
-            </span>
+            <div className="flex items-center justify-between">
+              <h1 className="ml-2 text-2xl font-bold text-muted-foreground">
+               Saludos @{username}
+              </h1>            
+              <Link href={`/profile/${username}`} className="ml-2 text-sm font-medium text-primary hover:text-foreground">
+                Visitar perfil público
+              </Link>
+            </div>
+
           )}
-        </h2>
 
       </div>
 
