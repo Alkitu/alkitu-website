@@ -53,13 +53,13 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
 
   return (
     <section className="w-full bg-black py-16 md:py-20" id="newsletter-section">
-      <TailwindGrid>
+      <TailwindGrid fullSize>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
-          className="text-center col-span-4 md:col-start-2 md:col-end-8 lg:col-start-4 lg:col-end-10"
+          className="text-center col-span-4 md:col-start-2 md:col-end-8 lg:col-start-5 lg:col-end-10 px-4 md:px-0"
         >
           <div className="flex flex-col items-center gap-2 mb-6">
             <h2 className="header-section text-white tracking-wide leading-tight">
