@@ -118,11 +118,16 @@ export interface Translations {
     subtitle: string;
     placeholder: string;
     button: string;
+    subscribingButton: string;
+    subscribedButton: string;
     privacy: string;
     privacyLink: string;
     success: string;
+    checkEmail: string;
     error: string;
     invalidEmail: string;
+    alreadySubscribed: string;
+    subscribeFailed: string;
   };
   [key: string]: unknown; // Allow dynamic access for nested keys
 }

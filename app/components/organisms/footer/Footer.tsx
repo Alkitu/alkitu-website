@@ -85,7 +85,7 @@ function Footer() {
         </div>
         <Link
           href={`/${locale}/admin`}
-          className='text-center text-black text-base font-bold px-7 py-2 bg-primary rounded-3xl border !border-primary justify-center items-center gap-2.5 inline-flex hover:shadow-primary/50 hover:shadow-md '
+          className='text-center text-black text-base font-bold px-7 py-2 bg-primary rounded-3xl border border-primary! justify-center items-center gap-2.5 inline-flex hover:shadow-primary/50 hover:shadow-md '
         >
           {footerData.adminAccess || "Zona Admin"}
         </Link>

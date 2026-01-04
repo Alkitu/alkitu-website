@@ -1,0 +1,3 @@
+Email,Status,Locale,Created At,Verified At,Unsubscribed At
+playwright-test@example.com,pending,es,2026-01-04T22:23:59.028Z,,
+test@example.com,unsubscribed,es,2026-01-04T22:15:15.908Z,2026-01-04T22:16:40.721Z,2026-01-04T22:19:22.373Z

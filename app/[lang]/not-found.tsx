@@ -24,7 +24,7 @@ export default function NotFound() {
 
                     {/* Left Column: Image */}
                     <div className="w-full md:w-1/2 flex flex-col">
-                        <div className="relative rounded-[2rem] overflow-hidden border-4 border-zinc-950/50 shadow-inner group w-full h-full min-h-[300px] md:min-h-[500px]">
+                        <div className="relative rounded-4xl overflow-hidden border-4 border-zinc-950/50 shadow-inner group w-full h-full min-h-[300px] md:min-h-[500px]">
                             <Image
                                 src="/images/errors/404-general.png"
                                 alt="404 Disconnection"
@@ -33,7 +33,7 @@ export default function NotFound() {
                                 priority
                             />
                             {/* Scanline effect overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent bg-[length:100%_4px] pointer-events-none opacity-20" />
+                            <div className="absolute inset-0 bg-linear-to-b from-transparent via-white/5 to-transparent bg-size-[100%_4px] pointer-events-none opacity-20" />
                         </div>
                     </div>
 

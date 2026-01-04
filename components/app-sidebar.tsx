@@ -20,6 +20,7 @@ import {
   User,
   UserCog,
   Mail,
+  Megaphone,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -78,6 +79,12 @@ const data = {
       title: "Mensajes de Contacto",
       url: "/admin/contact-submissions",
       icon: Mail,
+      items: [],
+    },
+    {
+      title: "Suscriptores del Newsletter",
+      url: "/admin/newsletter-subscribers",
+      icon: Megaphone,
       items: [],
     },
   ],
