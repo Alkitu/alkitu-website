@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAnalyticsClient } from '@/lib/supabase/analytics';
+import { createClient } from '@/lib/supabase/server';
 import { contactFormSchema, type ContactFormData } from '@/lib/schemas/contact';
 import { checkRateLimit } from '@/lib/utils/rate-limiter';
 import { resend, RESEND_CONFIG, getEmailSettings, formatEmailArray } from '@/lib/resend';
@@ -121,13 +122,16 @@ export async function POST(request: NextRequest) {
 
     const formData: ContactFormData = validationResult.data;
 
-    // Create Supabase client (using analytics client for anon role)
-    const supabase = createAnalyticsClient();
+    // Create Supabase client for database operations (using analytics client for anon role)
+    const supabaseAnon = createAnalyticsClient();
+
+    // Get the referrer URL (where the form was submitted from)
+    const formUrl = request.headers.get('referer') || request.headers.get('origin') || 'unknown';
 
     // Insert submission into database
     // Note: We don't use .select() after insert because anon role doesn't have SELECT permission
     // This is intentional for security - users don't need to read back their submission
-    const { error: dbError } = await supabase
+    const { error: dbError } = await supabaseAnon
       .from('contact_submissions')
       .insert({
         name: formData.name,
@@ -137,6 +141,7 @@ export async function POST(request: NextRequest) {
         locale: formData.locale,
         user_agent: userAgent,
         ip_address: ip,
+        form_url: formUrl,
         status: 'pending',
       });
 
@@ -154,8 +159,11 @@ export async function POST(request: NextRequest) {
 
     // Send confirmation emails via RESEND
     try {
+      // Create server client to read email_settings (requires authenticated access)
+      const supabaseServer = await createClient();
+
       // Fetch email settings from database (or use fallback)
-      const emailSettings = await getEmailSettings(supabase);
+      const emailSettings = await getEmailSettings(supabaseServer);
 
       const fromEmail = emailSettings?.from_email || RESEND_CONFIG.fromEmail;
       const toEmails = emailSettings
@@ -163,6 +171,14 @@ export async function POST(request: NextRequest) {
         : [RESEND_CONFIG.fromEmail];
       const ccEmails = emailSettings ? formatEmailArray(emailSettings.cc_emails) : [];
       const bccEmails = emailSettings ? formatEmailArray(emailSettings.bcc_emails) : [];
+
+      console.log('📧 Email Settings:', {
+        found: !!emailSettings,
+        fromEmail,
+        toEmails,
+        ccEmails,
+        bccEmails,
+      });
 
       // 1. Send notification email to admin
       const adminEmailHtml = await render(

@@ -39,6 +39,7 @@ interface ContactSubmission {
   status: 'pending' | 'read' | 'replied' | 'archived';
   user_agent: string | null;
   ip_address: string | null;
+  form_url: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -511,6 +512,22 @@ export function ContactSubmissionsList() {
                   <label className="text-sm font-medium text-muted-foreground">IP</label>
                   <p className="text-sm mt-1 font-mono">{selectedSubmission.ip_address || 'N/A'}</p>
                 </div>
+              </div>
+
+              <div>
+                <label className="text-sm font-medium text-muted-foreground">URL del Formulario</label>
+                <p className="text-xs mt-1 font-mono text-muted-foreground break-all">
+                  {selectedSubmission.form_url ? (
+                    <a
+                      href={selectedSubmission.form_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:underline"
+                    >
+                      {selectedSubmission.form_url}
+                    </a>
+                  ) : 'N/A'}
+                </p>
               </div>
 
               <div>

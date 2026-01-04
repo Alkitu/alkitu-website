@@ -1249,7 +1249,12 @@
     },
     "emailAddressParagraph": "O escríbeme al correo:",
     "email": "info@alkitu.com",
-    "copied": "Copiado 😎!"
+    "copied": "Copiado 😎!",
+    "success": {
+      "title": "¡Gracias",
+      "message": "Tu mensaje ha sido enviado exitosamente. Me pondré en contacto contigo dentro de las próximas 24 horas.",
+      "closeButton": "Cerrar"
+    }
   },
   "blog": {
     "title": "BLOG",
@@ -1490,11 +1495,40 @@
     "subtitle": "RECIBE INFORMACIÓN CON NOVEDADES, PROMOCIONES Y EVENTOS DE LA COMUNIDAD ALKIANA",
     "placeholder": "Escribe aquí tu correo electrónico",
     "button": "Subscribirse",
+    "subscribingButton": "Suscribiendo...",
+    "subscribedButton": "¡Suscrito!",
     "privacy": "He leído y acepto la",
     "privacyLink": "política de privacidad",
     "success": "¡Gracias por suscribirte!",
+    "checkEmail": "Por favor, revisa tu correo electrónico para confirmar tu suscripción",
     "error": "Por favor, acepta la política de privacidad",
-    "invalidEmail": "Por favor, introduce un email válido"
+    "invalidEmail": "Por favor, introduce un email válido",
+    "alreadySubscribed": "Ya estás suscrito a nuestro boletín",
+    "subscribeFailed": "La suscripción falló. Por favor, inténtalo de nuevo más tarde.",
+    "verify": {
+      "loading": "Verificando tu suscripción...",
+      "success": "¡Suscripción verificada!",
+      "successMessage": "Bienvenido al boletín de Alkitu. Pronto comenzarás a recibir nuestras actualizaciones.",
+      "redirecting": "Redirigiendo a la página principal...",
+      "error": "Verificación fallida",
+      "errorInvalidToken": "El enlace de verificación no es válido o ha expirado.",
+      "errorAlreadyVerified": "Esta suscripción ya ha sido verificada.",
+      "goHome": "Ir a la Página Principal"
+    },
+    "unsubscribe": {
+      "title": "Cancelar Suscripción al Boletín",
+      "confirmMessage": "¿Estás seguro de que quieres cancelar tu suscripción a nuestro boletín?",
+      "confirmSubtext": "Ya no recibirás actualizaciones, noticias y promociones de Alkitu.",
+      "confirmButton": "Sí, Cancelar Suscripción",
+      "cancelButton": "Mantener Mi Suscripción",
+      "processing": "Cancelando suscripción...",
+      "success": "Te has dado de baja",
+      "successMessage": "Sentimos verte partir. Puedes volver a suscribirte en cualquier momento visitando nuestro sitio web.",
+      "alreadyUnsubscribed": "Ya te has dado de baja de nuestro boletín.",
+      "error": "Error al cancelar suscripción",
+      "errorMessage": "El enlace de cancelación no es válido. Por favor, contacta con soporte si necesitas ayuda.",
+      "goHome": "Ir a la Página Principal"
+    }
   },
   "profile": {
     "public": {

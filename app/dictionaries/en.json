@@ -1558,11 +1558,40 @@
     "subtitle": "RECEIVE INFORMATION WITH NEWS, PROMOTIONS AND EVENTS FROM THE ALKIANA COMMUNITY",
     "placeholder": "Enter your email here",
     "button": "Subscribe",
+    "subscribingButton": "Subscribing...",
+    "subscribedButton": "Subscribed!",
     "privacy": "I have read and accept the",
     "privacyLink": "privacy policy",
     "success": "Thanks for subscribing!",
+    "checkEmail": "Please check your email to confirm your subscription",
     "error": "Please accept the privacy policy",
-    "invalidEmail": "Please enter a valid email"
+    "invalidEmail": "Please enter a valid email",
+    "alreadySubscribed": "You are already subscribed to our newsletter",
+    "subscribeFailed": "Subscription failed. Please try again later.",
+    "verify": {
+      "loading": "Verifying your subscription...",
+      "success": "Subscription verified!",
+      "successMessage": "Welcome to the Alkitu newsletter. You'll start receiving our updates soon.",
+      "redirecting": "Redirecting to homepage...",
+      "error": "Verification failed",
+      "errorInvalidToken": "The verification link is invalid or has expired.",
+      "errorAlreadyVerified": "This subscription has already been verified.",
+      "goHome": "Go to Homepage"
+    },
+    "unsubscribe": {
+      "title": "Unsubscribe from Newsletter",
+      "confirmMessage": "Are you sure you want to unsubscribe from our newsletter?",
+      "confirmSubtext": "You will no longer receive updates, news, and promotions from Alkitu.",
+      "confirmButton": "Yes, Unsubscribe",
+      "cancelButton": "Keep My Subscription",
+      "processing": "Unsubscribing...",
+      "success": "You have been unsubscribed",
+      "successMessage": "We're sorry to see you go. You can resubscribe anytime by visiting our website.",
+      "alreadyUnsubscribed": "You have already unsubscribed from our newsletter.",
+      "error": "Unsubscribe failed",
+      "errorMessage": "The unsubscribe link is invalid. Please contact support if you need assistance.",
+      "goHome": "Go to Homepage"
+    }
   },
   "profile": {
     "public": {

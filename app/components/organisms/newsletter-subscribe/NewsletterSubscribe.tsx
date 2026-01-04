@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslationContext } from '@/app/context/TranslationContext';
 import TailwindGrid from '@/app/components/templates/grid';
+import { toast } from 'sonner';
 
 interface NewsletterSubscribeProps {
   locale: string;
@@ -17,6 +18,7 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
   const [email, setEmail] = useState('');
   const [accepted, setAccepted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [message, setMessage] = useState('');
 
   const { translations } = useTranslationContext();
@@ -41,14 +43,52 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
 
     setIsSubmitting(true);
 
-    // TODO: Implement actual newsletter subscription logic
-    // For now, just simulate a successful subscription
-    setTimeout(() => {
-      setMessage(t?.success || 'Success');
-      setEmail('');
-      setAccepted(false);
+    try {
+      const response = await fetch('/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email.toLowerCase().trim(),
+          locale: locale as 'en' | 'es',
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Success: Show check email message
+        setIsSuccess(true);
+        setMessage(t?.checkEmail || 'Check your email to confirm');
+        setEmail('');
+        setAccepted(false);
+        toast.success(data.message || t?.success);
+      } else {
+        // Handle different error cases
+        if (response.status === 409) {
+          // Already subscribed
+          setMessage(t?.alreadySubscribed || data.error);
+          toast.error(data.error);
+        } else if (response.status === 429) {
+          // Rate limited
+          const retryAfter = Math.ceil(data.retryAfter / 60); // Convert to minutes
+          const errorMsg = data.details || `Too many requests. Try again in ${retryAfter} minutes.`;
+          setMessage(errorMsg);
+          toast.error(errorMsg);
+        } else {
+          // Other errors
+          setMessage(t?.subscribeFailed || data.error);
+          toast.error(data.error || t?.subscribeFailed);
+        }
+      }
+    } catch (error) {
+      console.error('Newsletter subscription error:', error);
+      setMessage(t?.subscribeFailed || 'An error occurred');
+      toast.error(t?.subscribeFailed || 'An error occurred');
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -99,10 +139,14 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
               {/* Submit Button */}
               <button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || isSuccess}
                 className="px-8 py-3 border-2 border-white text-white font-semibold rounded hover:bg-white hover:text-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed uppercase whitespace-nowrap"
               >
-                {isSubmitting ? '...' : t?.button}
+                {isSuccess
+                  ? t?.subscribedButton || 'Subscribed!'
+                  : isSubmitting
+                    ? t?.subscribingButton || 'Subscribing...'
+                    : t?.button}
               </button>
             </div>
 
@@ -134,8 +178,8 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
               <motion.p
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className={`text-sm ${
-                  message.includes('Gracias') || message.includes('Thank')
+                className={`text-sm font-medium ${
+                  isSuccess
                     ? 'text-primary'
                     : 'text-red-400'
                 }`}
