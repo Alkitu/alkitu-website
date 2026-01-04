@@ -1,15 +1,12 @@
 "use client";
 import {
-  useTranslations,
   useTranslationContext,
 } from "@/app/context/TranslationContext";
 import Link from "next/link";
 import React from "react";
-import { ContactModalButton } from "@/app/components/molecules/contact-button";
 import Image from "next/image";
 import TailwindGrid from "@/app/components/templates/grid";
 import { usePathname } from "next/navigation";
-import { Logo } from "@/app/components/atoms/logo";
 
 function Footer() {
   const { translations, locale } = useTranslationContext();
@@ -30,11 +27,17 @@ function Footer() {
       >
         {/* Logo */}
         <div className='flex justify-center items-center mb-6'>
-          <Logo locale={locale} size='lg' />
+          <Image
+            src='/logos/Alkitu-Logo-para-Fondos-Oscuros-Eslogan.svg'
+            alt='Alkitu Logo'
+            width={240}
+            height={80}
+            className='h-auto w-60'
+          />
         </div>
 
         {/* Social Icons */}
-        <div className='flex flex-wrap gap-x-2 gap-y-4   2xl:w-2/12   justify-center items-center'>
+        <div className='flex flex-wrap gap-x-2 gap-y-4 justify-center items-center'>
           {footerData.socials?.map(
             (social, index) =>
               social.icon &&
@@ -80,10 +83,12 @@ function Footer() {
             </Link>
           ))}
         </div>
-        <ContactModalButton
+        <Link
+          href={`/${locale}/admin`}
           className='text-center text-black text-base font-bold px-7 py-2 bg-primary rounded-3xl border !border-primary justify-center items-center gap-2.5 inline-flex hover:shadow-primary/50 hover:shadow-md '
-          setModalOpenNavbar={undefined}
-        />
+        >
+          {footerData.adminAccess || "Zona Admin"}
+        </Link>
 
         <div className='w-full h-0 border-zinc-700 dark:border-zinc-300 border-t'></div>
         <p className='text-xs font-light pb-10 capitalize text-white dark:text-white'>

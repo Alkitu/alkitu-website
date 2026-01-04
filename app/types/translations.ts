@@ -28,6 +28,7 @@ export interface Translations {
   footer: {
     website: string;
     rights: string;
+    adminAccess?: string;
     routes: Array<{
       name: string;
       pathname: string;

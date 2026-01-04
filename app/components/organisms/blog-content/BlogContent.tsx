@@ -68,6 +68,7 @@ interface BlogContentProps {
     socialMedia: string;
     marketing: string;
     otrasPublicaciones: string;
+    newsletter: string;
   };
 }
 
@@ -144,12 +145,16 @@ export default function BlogContent({ posts, categories, locale, title, descript
     ...(getCategoryPosts('Desarrollo Web').length > 0 ? [{ id: 'desarrollo-web-section', name: translations.desarrolloWeb }] : []),
     ...(getCategoryPosts('Diseño UX/UI').length > 0 ? [{ id: 'diseno-ux-ui-section', name: 'Diseño UX/UI' }] : []),
     { id: 'otras-publicaciones-section', name: translations.otrasPublicaciones },
-  ] : [];
+    { id: 'newsletter-section', name: translations.newsletter },
+  ] : [
+    { id: 'filtered-section', name: selectedCategory === 'recent' ? translations.recent : getCategoryName(selectedCategory) },
+    { id: 'newsletter-section', name: translations.newsletter },
+  ];
 
   return (
     <TailwindGrid fullSize>
-      {/* Sidebar - only show when viewing all categories */}
-      {selectedCategory === 'all' && sidebarSections.length > 0 && (
+      {/* Sidebar - show for both all and filtered views */}
+      {sidebarSections.length > 0 && (
         <SideBar sections={sidebarSections} />
       )}
 
@@ -304,7 +309,7 @@ export default function BlogContent({ posts, categories, locale, title, descript
         </AnimatePresence>
 
         {/* Newsletter Section */}
-        <div className="w-full mt-20 mb-20">
+        <div id="newsletter-section" className="w-full mt-20">
           <NewsletterSubscribe locale={locale} />
         </div>
       </div>

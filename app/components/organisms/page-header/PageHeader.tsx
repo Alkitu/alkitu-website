@@ -50,7 +50,7 @@ export default function PageHeader({
   const lineClass = isCenter ? 'mx-auto' : 'mx-auto lg:mx-0';
 
   const Content = (
-    <section className={`flex flex-col gap-6 w-full mb-6 col-span-full ${alignClass} ${className} ${!disableGridWrapper ? 'mt-20 md:mt-24 lg:mt-20 md:pt-8' : ''}`}>
+    <section className={`flex flex-col gap-6 w-full mb-6 col-span-full lg:col-start-2 lg:col-end-14 py-12" ${alignClass} ${className} ${!disableGridWrapper ? 'mt-20 md:mt-24 lg:mt-20 md:pt-8' : ''}`}>
       <div className={`flex flex-col gap-2 w-full ${alignClass}`}>
         <motion.h1 
           initial={{ opacity: 0, y: 30 }}

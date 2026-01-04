@@ -77,20 +77,20 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
           </div>
 
           {/* Subtitle */}
-          <p className="header-secondary-alt text-white mb-8 mx-auto">
+          <p className="header-secondary-alt text-white mb-8 mx-auto w-full">
             {t?.subtitle}
           </p>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
+          <form onSubmit={handleSubmit} className="space-y-4 w-full">
+            <div className="flex flex-col md:flex-row gap-4 justify-center items-center w-full">
               {/* Email Input */}
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={t?.placeholder}
-                className="w-full md:w-96 px-4 py-3 bg-white text-black rounded focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-3 bg-white text-black rounded focus:outline-none focus:ring-2 focus:ring-primary"
                 required
                 suppressHydrationWarning
               />
