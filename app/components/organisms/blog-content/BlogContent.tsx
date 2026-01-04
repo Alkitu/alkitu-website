@@ -113,10 +113,11 @@ export default function BlogContent({ posts, categories, locale, title, descript
       'desarrollo-web': 'Desarrollo Web',
       'publicidad': 'Publicidad',
       'diseno-grafico': 'Diseño Gráfico',
-      'diseño-ux/ui': 'Diseño UX/UI',
+      'diseno-ux-ui': 'Diseño UX/UI',
       'social-media': 'Social Media',
+      'redes-sociales': 'Redes Sociales',
       'marketing': 'Marketing',
-      'marketing-digital': 'Marketing Digital', // Add Marketing Digital mapping
+      'marketing-digital': 'Marketing Digital',
       'inteligencia-artificial': 'Inteligencia Artificial',
       'tecnologia': 'Tecnología',
       'negocio': 'Negocio'
@@ -225,6 +226,18 @@ export default function BlogContent({ posts, categories, locale, title, descript
 
           <TailwindGrid>
             <div className="col-span-full lg:col-start-2 lg:col-end-14 py-12">
+              {/* Marketing Digital Section */}
+              {getCategoryPosts('Marketing Digital').length > 0 && (
+                <div className="mb-16">
+                  <BlogGrid
+                    posts={getCategoryPosts('Marketing Digital').slice(0, 8)}
+                    locale={locale}
+                    categoryTitle="Marketing Digital"
+                    columns={4}
+                  />
+                </div>
+              )}
+
               {/* Desarrollo Web Section */}
               {getCategoryPosts('Desarrollo Web').length > 0 && (
                 <div className="mb-16">
@@ -237,49 +250,13 @@ export default function BlogContent({ posts, categories, locale, title, descript
                 </div>
               )}
 
-              {/* Publicidad Section */}
-              {getCategoryPosts('Publicidad').length > 0 && (
+              {/* Diseño UX/UI Section */}
+              {getCategoryPosts('Diseño UX/UI').length > 0 && (
                 <div className="mb-16">
                   <BlogGrid
-                    posts={getCategoryPosts('Publicidad').slice(0, 4)}
+                    posts={getCategoryPosts('Diseño UX/UI').slice(0, 4)}
                     locale={locale}
-                    categoryTitle={translations.publicidad}
-                    columns={4}
-                  />
-                </div>
-              )}
-
-              {/* Diseño Gráfico Section */}
-              {getCategoryPosts('Diseño Gráfico').length > 0 && (
-                <div className="mb-16">
-                  <BlogGrid
-                    posts={getCategoryPosts('Diseño Gráfico').slice(0, 4)}
-                    locale={locale}
-                    categoryTitle={translations.disenoGrafico}
-                    columns={4}
-                  />
-                </div>
-              )}
-
-              {/* Social Media Section */}
-              {getCategoryPosts('Social Media').length > 0 && (
-                <div className="mb-16">
-                  <BlogGrid
-                    posts={getCategoryPosts('Social Media').slice(0, 4)}
-                    locale={locale}
-                    categoryTitle={translations.socialMedia}
-                    columns={4}
-                  />
-                </div>
-              )}
-
-              {/* Marketing Section */}
-              {getCategoryPosts('Marketing').length > 0 && (
-                <div className="mb-16">
-                  <BlogGrid
-                    posts={getCategoryPosts('Marketing').slice(0, 4)}
-                    locale={locale}
-                    categoryTitle={translations.marketing}
+                    categoryTitle="Diseño UX/UI"
                     columns={4}
                   />
                 </div>

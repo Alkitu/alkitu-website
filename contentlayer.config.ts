@@ -57,10 +57,11 @@ export const BlogPost = defineDocumentType(() => ({
         options: [
           'Desarrollo Web',
           'Marketing Digital',
-          'Inteligencia Artificial',
           'Diseño UX/UI',
+          'Emprendimiento',
+          'Redes Sociales',
           'Tecnología',
-          'Negocio',
+          'Inteligencia Artificial',
         ],
       },
       required: true,
@@ -242,7 +243,7 @@ export default makeSource({
   documentTypes: [BlogPost],
   mdx: {
     remarkPlugins: [
-      remarkGfm, // GitHub Flavored Markdown (tables, task lists, strikethrough)
+      // remarkGfm, // GitHub Flavored Markdown (tables, task lists, strikethrough) - TEMPORARILY DISABLED to debug table parsing error
       remarkCustomHeadingId, // Support {#custom-id} syntax for heading IDs
     ],
     rehypePlugins: [

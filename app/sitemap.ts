@@ -53,7 +53,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const uniqueCategories = Array.from(
     new Set(
       allBlogPosts.map((post) =>
-        post.category
+        post.categories[0] // Primary category is the first one
           .toLowerCase()
           .normalize('NFD')
           .replace(/[\u0300-\u036f]/g, '') // Remove accents
