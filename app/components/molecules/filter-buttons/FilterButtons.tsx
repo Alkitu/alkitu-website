@@ -76,7 +76,7 @@ export default function FilterButtons({
         {filters.map((filter, index) => (
           <button
             key={filter.id}
-            className={`${index === 0 ? 'ml-8' : ''} mx-2 last:mr-8 flex items-center ${
+            className={`${index === 0 ? 'ml-8' : ''} mx-2 last:mr-8 flex items-center whitespace-nowrap ${
               activeFilter === filter.value
                 ? "transition-all text-primary border-primary border font-normal tracking-wider rounded-full py-2 px-4 uppercase hover:text-black"
                 : "transition-all hover:text-primary hover:border-primary border-foreground border text-foreground font-normal tracking-wider rounded-full py-2 px-4 uppercase"
