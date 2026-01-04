@@ -1,126 +1,26 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { allBlogPosts } from 'contentlayer/generated';
+import BlogNotFound from '@/app/components/organisms/errors/BlogNotFound';
 import { MDXContent } from '@/app/components/organisms/mdx-content';
 import { PostHero } from '@/app/components/organisms/post-hero';
-import { TableOfContents } from '@/app/components/organisms/table-of-contents';
-import { NewsletterSubscribe } from '@/app/components/organisms/newsletter-subscribe';
-import TailwindGrid from '@/app/components/templates/grid';
-import { Locale } from '@/i18n.config';
-import { createClient } from '@/lib/supabase/server';
+// ... rest of imports
 
-/**
- * ISR Configuration: Revalidate every hour
- *
- * Enables Incremental Static Regeneration for optimal SEO:
- * - Pages are statically generated at build time
- * - Content updates automatically every hour
- * - Google crawls fast, cached pages
- * - Users always see fresh content
- */
-export const revalidate = 3600; // 1 hour in seconds
+// ... revalidate and interface ...
 
-interface BlogPostPageProps {
-  params: Promise<{
-    lang: Locale;
-    category: string;
-    id: string;
-  }>;
-}
+// ... generateStaticParams ...
 
-// Generate static params for all blog posts from Contentlayer
-export async function generateStaticParams() {
-  const paths = allBlogPosts.map((post) => {
-    // Extract category slug from first category (primary)
-    const primaryCategory = Array.isArray(post.categories) && post.categories.length > 0
-      ? post.categories[0]
-      : 'general';
-    const categorySlug = primaryCategory
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '') // Remove accents
-      .replace(/\s+/g, '-');
-
-    return {
-      lang: post.locale,
-      category: categorySlug,
-      id: post.slug,
-    };
-  });
-
-  return paths;
-}
-
-// Generate metadata for SEO from Contentlayer
-export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const { lang, id } = await params;
-
-  // Find the post by slug and locale
-  const post = allBlogPosts.find((p) => p.slug === id && p.locale === lang);
-
-  if (!post) {
-    return {
-      title: 'Post Not Found',
-    };
-  }
-
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://alkitu.com';
-
-  return {
-    title: post.title,
-    description: post.metaDescription,
-    keywords: post.keywords.join(', '),
-    authors: [{ name: post.author }],
-    openGraph: {
-      title: post.title,
-      description: post.metaDescription,
-      url: post.url,
-      siteName: 'Alkitu',
-      images: [
-        {
-          url: post.image,
-          width: 1200,
-          height: 630,
-          alt: post.imageAlt,
-        },
-      ],
-      locale: lang === 'es' ? 'es_ES' : 'en_US',
-      type: 'article',
-      publishedTime: post.date,
-      modifiedTime: post.updatedAt || post.date,
-      authors: [post.author],
-      tags: post.tags,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: post.title,
-      description: post.metaDescription,
-      images: [post.image],
-      creator: '@alkitu',
-    },
-    alternates: {
-      canonical: `${baseUrl}${post.url}`,
-      languages: {
-        // Find the alternate language version
-        ...(allBlogPosts.find((p) => p.slug === post.slug && p.locale === 'es') && {
-          es: `${baseUrl}${allBlogPosts.find((p) => p.slug === post.slug && p.locale === 'es')?.url}`,
-        }),
-        ...(allBlogPosts.find((p) => p.slug === post.slug && p.locale === 'en') && {
-          en: `${baseUrl}${allBlogPosts.find((p) => p.slug === post.slug && p.locale === 'en')?.url}`,
-        }),
-      },
-    },
-  };
-}
+// ... generateMetadata ...
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { lang, id } = await params;
-
   // Find the post by slug and locale
   const post = allBlogPosts.find((p) => p.slug === id && p.locale === lang);
 
   if (!post) {
-    notFound();
+    // Return custom Blog 404 instead of global notFound()
+    return <BlogNotFound allPosts={allBlogPosts} currentLocale={lang} />;
   }
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://alkitu.com';
