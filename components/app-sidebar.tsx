@@ -19,6 +19,7 @@ import {
   Tags,
   User,
   UserCog,
+  Mail,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -71,6 +72,12 @@ const data = {
       title: "Perfiles",
       url: "/admin/profiles",
       icon: UserCog,
+      items: [],
+    },
+    {
+      title: "Mensajes de Contacto",
+      url: "/admin/contact-submissions",
+      icon: Mail,
       items: [],
     },
   ],

@@ -519,6 +519,24 @@
     }
   },
   "portfolio": {
+    "sections": [
+      {
+        "id": "projects-hero",
+        "name": "Inicio"
+      },
+      {
+        "id": "projects-filter",
+        "name": "Filtro"
+      },
+      {
+        "id": "projects-grid",
+        "name": "Proyectos"
+      },
+      {
+        "id": "projects-contact",
+        "name": "Contacto"
+      }
+    ],
     "title": "Proyectos",
     "description": "Más de 10.000 hermosos y modernos trabajos, diseños, ilustraciones y elementos gráficos para iOS",
     "categories": [

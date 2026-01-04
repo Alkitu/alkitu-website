@@ -518,6 +518,24 @@
     }
   },
   "portfolio": {
+    "sections": [
+      {
+        "id": "projects-hero",
+        "name": "Home"
+      },
+      {
+        "id": "projects-filter",
+        "name": "Filter"
+      },
+      {
+        "id": "projects-grid",
+        "name": "Projects"
+      },
+      {
+        "id": "projects-contact",
+        "name": "Contact"
+      }
+    ],
     "title": "Projects",
     "description": "10,000+ beautiful, modern ios work, designs, illustrations, and graphic elements",
     "categories": [
