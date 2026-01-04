@@ -71,7 +71,7 @@ export default function Contact() {
           <section id="contact-form" className="relative w-full bg-black py-12 md:py-20">
             <TailwindGrid alignItems="stretch">
               {/* Left: Contact Form */}
-              <div className="col-start-1 col-end-5 md:col-start-1 md:col-end-9 lg:col-start-2 lg:col-end-7 z-10 mb-12 lg:mb-0">
+              <div className="col-span-4 md:col-start-2 md:col-end-8 lg:col-start-2 lg:col-end-7 z-10 mb-12 lg:mb-0">
                  <div className="bg-white dark:bg-zinc-900 p-6 md:p-8 lg:p-12 rounded-2xl shadow-xl border border-border/50">
                    <h3 className="header-tertiary text-black dark:text-white mb-2 text-center lg:text-left leading-tight">{translations?.contactPage?.form?.title}</h3>
                    <motion.div 
@@ -86,7 +86,7 @@ export default function Contact() {
               </div>
   
               {/* Right: Sticky Image */}
-              <div className="col-start-1 col-end-5 md:col-start-1 md:col-end-9 lg:col-start-8 lg:col-end-12 relative hidden lg:block">
+              <div className="col-span-4 md:col-start-2 md:col-end-8 lg:col-start-8 lg:col-end-13 relative hidden lg:block">
                 <StickyInteractiveImage />
               </div>
             </TailwindGrid>

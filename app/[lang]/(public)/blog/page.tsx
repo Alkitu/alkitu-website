@@ -84,6 +84,7 @@ export default async function BlogPage({
     socialMedia: text.blog?.socialMedia || 'Social Media',
     marketing: text.blog?.marketing || 'Marketing',
     otrasPublicaciones: text.blog?.otrasPublicaciones || (lang === 'es' ? 'Otras Publicaciones' : 'Other Publications'),
+    newsletter: text.newsletterSection?.titleHighlight || (lang === 'es' ? 'Boletín' : 'Newsletter'),
   };
 
   return (

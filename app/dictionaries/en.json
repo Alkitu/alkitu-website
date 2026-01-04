@@ -49,8 +49,9 @@
     ]
   },
   "footer": {
-    "website": "© 2023 Luis Urdaneta",
+    "website": "© 2026 Alkitu",
     "rights": "All rights reserved",
+    "adminAccess": "Admin Area",
     "routes": [
       {
         "name": "Home",
@@ -59,104 +60,62 @@
       {
         "name": "Projects",
         "pathname": "/projects"
+      },
+      {
+        "name": "About",
+        "pathname": "/about"
+      },
+      {
+        "name": "Blog",
+        "pathname": "/blog"
+      },
+      {
+        "name": "Contact",
+        "pathname": "/contact"
       }
     ],
     "socials": [
       {
         "name": "Gmail",
         "icon": "/icons/footer/gmail.svg",
-        "url": "#",
+        "url": "mailto:info@alkitu.com",
         "hidden": false
       },
       {
         "name": "WhatsApp",
         "icon": "/icons/footer/whatsapp.svg",
-        "url": "#",
+        "url": "https://wa.me/34611132050",
         "hidden": false
-      },
-      {
-        "name": "Telegram",
-        "icon": "/icons/footer/telegram.svg",
-        "url": "#",
-        "hidden": true
       },
       {
         "name": "LinkedIn",
         "icon": "/icons/footer/linkedin.svg",
-        "url": "#",
+        "url": "https://www.linkedin.com/company/alkitu",
         "hidden": false
       },
       {
         "name": "Instagram",
         "icon": "/icons/footer/instagram.svg",
-        "url": "#",
+        "url": "https://www.instagram.com/SomosAlkitu",
         "hidden": false
       },
       {
         "name": "YouTube",
         "icon": "/icons/footer/youtube.svg",
-        "url": "#",
+        "url": "https://www.youtube.com/@SomosAlkitu",
         "hidden": false
       },
       {
         "name": "Facebook",
         "icon": "/icons/footer/facebook.svg",
-        "url": "#",
-        "hidden": true
+        "url": "https://www.facebook.com/SomosAlkitu",
+        "hidden": false
       },
       {
         "name": "GitHub",
         "icon": "/icons/footer/github.svg",
-        "url": "#",
+        "url": "https://github.com/alkitu",
         "hidden": false
-      },
-      {
-        "name": "GitLab",
-        "icon": "/icons/footer/gitlab.svg",
-        "url": "#",
-        "hidden": true
-      },
-      {
-        "name": "CodeSandbox",
-        "icon": "/icons/footer/codesandbox.svg",
-        "url": "#",
-        "hidden": false
-      },
-      {
-        "name": "Figma",
-        "icon": "/icons/footer/figma.svg",
-        "url": "#",
-        "hidden": false
-      },
-      {
-        "name": "Alkitu",
-        "icon": "/icons/footer/alkitu.svg",
-        "url": "#",
-        "hidden": false
-      },
-      {
-        "name": "Médium",
-        "icon": "/icons/footer/medium.svg",
-        "url": "#",
-        "hidden": true
-      },
-      {
-        "name": "Dribble",
-        "icon": "/icons/footer/dribble.svg",
-        "url": "#",
-        "hidden": true
-      },
-      {
-        "name": "Behance",
-        "icon": "/icons/footer/behance.svg",
-        "url": "#",
-        "hidden": true
-      },
-      {
-        "name": "Spatial",
-        "icon": "/icons/footer/spatial.svg",
-        "url": "#",
-        "hidden": true
       }
     ]
   },
@@ -217,7 +176,7 @@
       "subtitle": "Your next team of ",
       "titlePrimary": "Services",
       "textScroller": "Our Services",
-      "velocityScroller": -0.2,
+      "velocityScroller": 0.2,
       "carrouselKey": "category",
       "categories": [
         {
@@ -274,7 +233,7 @@
       "title": "Do you need one of",
       "titlePrimary": "our tools?",
       "textScroller": "The best tools",
-      "velocityScroller": -0.2,
+      "velocityScroller": 0.2,
       "firstLine": [
         {
           "name": "Illustrator",
@@ -429,7 +388,7 @@
       "title": "Brands We've",
       "titlePrimary": "Worked With",
       "textScroller": "TRUSTED BY AMAZING BRANDS - ",
-      "velocityScroller": -0.2,
+      "velocityScroller": 0.2,
       "firstLine": [
         {
           "name": "Aircrew Aviation",
@@ -514,7 +473,7 @@
       "artboardName": "Passion",
       "bigQuote": {
         "textScroller": "The Power Of Passion",
-        "velocityScroller": -0.2,
+        "velocityScroller": 0.2,
         "quote": {
           "lineOne": "Web dev is our love",
           "lineTwo": "Digital is our passion"
@@ -523,7 +482,7 @@
     },
     "testimonialsSection": {
       "textScroller": "Listen to our community",
-      "velocityScroller": 0.2,
+      "velocityScroller": -0.2,
       "title": "Client",
       "titlePrimary": "Testimonials",
       "carrouselKey": "testimonials",
@@ -1269,7 +1228,7 @@
       }
     },
     "emailAddressParagraph": "Or send me an email:",
-    "email": "luiseum95@gmail.com",
+    "email": "info@alkitu.com",
     "copied": "Copied 😎!",
     "hero": {
       "title": "Let's Work",

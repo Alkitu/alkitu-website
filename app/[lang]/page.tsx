@@ -11,6 +11,7 @@ import { Skills } from "../components/organisms/skills-section";
 import { Testimonials } from "../components/organisms/testimonials-section";
 import { Brands } from "../components/organisms/brands-section";
 import { HomeContact } from "../components/organisms/home-contact-section";
+import { allBlogPosts } from 'contentlayer/generated';
 
 export default async function Home({
   params,
@@ -19,6 +20,35 @@ export default async function Home({
 }) {
   const { lang } = await params;
   const text = await getDictionary(lang);
+
+  // Get 3 most recent blog posts for current locale
+  const localePosts = allBlogPosts
+    .filter(post => post.locale === lang)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
+
+  // Transform to simplified format for client component
+  const recentPosts = localePosts.map(post => {
+    const primaryCategory = Array.isArray(post.categories) && post.categories.length > 0
+      ? post.categories[0]
+      : 'General';
+    const categorySlug = primaryCategory
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[\s\/]+/g, '-');
+
+    return {
+      title: post.title,
+      slug: post.slug,
+      categorySlug,
+      excerpt: post.excerpt,
+      metaDescription: post.metaDescription,
+      image: post.image,
+      date: post.date,
+      readTime: post.readTime,
+    };
+  });
 
   return (
     <>
@@ -37,9 +67,9 @@ export default async function Home({
           <div id='skills-section'>
             <Skills text={text} />
           </div>
-          {/* <div id="blog-section">
-            <PostPreviews text={text} />
-          </div> */}
+          <div id='blog-section'>
+            <PostPreviews text={text} posts={recentPosts} locale={lang} />
+          </div>
           <div id='passion-section'>
             <Passion text={text} />
           </div>

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslationContext } from '@/app/context/TranslationContext';
+import TailwindGrid from '@/app/components/templates/grid';
 
 interface NewsletterSubscribeProps {
   locale: string;
@@ -51,14 +52,14 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
   };
 
   return (
-    <section className="w-full bg-black py-16 md:py-20">
-      <div className="max-w-4xl mx-auto px-6">
+    <section className="w-full bg-black py-16 md:py-20" id="newsletter-section">
+      <TailwindGrid fullSize>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
-          className="text-center"
+          className="text-center col-span-4 md:col-start-2 md:col-end-8 lg:col-start-5 lg:col-end-10 px-4 md:px-0"
         >
           <div className="flex flex-col items-center gap-2 mb-6">
             <h2 className="header-section text-white tracking-wide leading-tight">
@@ -77,20 +78,20 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
           </div>
 
           {/* Subtitle */}
-          <p className="header-secondary-alt text-white mb-8 mx-auto">
+          <p className="header-secondary-alt text-white mb-8 mx-auto w-full">
             {t?.subtitle}
           </p>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
+          <form onSubmit={handleSubmit} className="space-y-4 w-full">
+            <div className="flex flex-col md:flex-row gap-4 justify-center items-center w-full">
               {/* Email Input */}
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={t?.placeholder}
-                className="w-full md:w-96 px-4 py-3 bg-white text-black rounded focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-3 bg-white text-black rounded focus:outline-none focus:ring-2 focus:ring-primary"
                 required
                 suppressHydrationWarning
               />
@@ -99,7 +100,7 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-8 py-3 border-2 border-white text-white font-semibold rounded hover:bg-white hover:text-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed uppercase"
+                className="px-8 py-3 border-2 border-white text-white font-semibold rounded hover:bg-white hover:text-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed uppercase whitespace-nowrap"
               >
                 {isSubmitting ? '...' : t?.button}
               </button>
@@ -144,7 +145,7 @@ export default function NewsletterSubscribe({ locale }: NewsletterSubscribeProps
             )}
           </form>
         </motion.div>
-      </div>
+      </TailwindGrid>
     </section>
   );
 }

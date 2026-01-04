@@ -25,21 +25,42 @@ type PostsDesktopCardProps = {
 };
 
 function PostsDesktopCard({ container }: PostsDesktopCardProps) {
-  const extractParagraphContent = (description) => {
+  // Extract content - handles both HTML paragraphs and plain text
+  const extractContent = (description: string | undefined) => {
+    if (!description) return "";
+    
+    // Try to extract from <p> tags (Medium RSS format)
     const paragraphRegex = /<p>(.*?)<\/p>/;
     const match = paragraphRegex.exec(description);
     if (match && match[1]) {
       return match[1];
     }
-    return "";
+    
+    // Return plain text as-is (MDX metaDescription format)
+    return description;
+  };
+
+  // Format date to readable format
+  const formatDate = (dateString: string | undefined) => {
+    if (!dateString) return "";
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('es-ES', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    } catch {
+      return dateString;
+    }
   };
 
   return (
     <motion.div
       layout='position'
-      className='max-h-fit w-full justify-between items-center  text-center bg-zinc-900 rounded-xl shadow flex flex-col gap-y-2 mx-auto '
+      className='max-h-fit w-full justify-between items-center text-center bg-card rounded-xl shadow flex flex-col gap-y-2 mx-auto border border-border'
     >
-      <div className='w-full aspect-video bg-zinc-800 rounded-tl-xl rounded-tr-xl justify-center items-center inline-flex'>
+      <div className='w-full aspect-video bg-muted rounded-tl-xl rounded-tr-xl justify-center items-center inline-flex'>
         {container.thumbnail ? (
           <Image
             width={1080}
@@ -49,8 +70,8 @@ function PostsDesktopCard({ container }: PostsDesktopCardProps) {
             alt={container.title || "Post thumbnail"}
           />
         ) : (
-          <div className='w-full aspect-video bg-zinc-700 rounded-tl-xl rounded-tr-xl flex items-center justify-center'>
-            <span className='text-zinc-500 text-sm'>No image available</span>
+          <div className='w-full aspect-video bg-muted/50 rounded-tl-xl rounded-tr-xl flex items-center justify-center'>
+            <span className='text-muted-foreground text-sm'>No image available</span>
           </div>
         )}
       </div>
@@ -59,8 +80,8 @@ function PostsDesktopCard({ container }: PostsDesktopCardProps) {
         <h2 className='text-center  md:text-[1.8vw] lg:text-[1.6vw] 2xl:text-[1.15vw] font-bold '>
           {container.title}
         </h2>
-        <p className='text-zinc-400 text-xs md:text-[1.4vw] lg:text-[1.2vw] 2xl:text-[0.8vw] font-medium'>
-          {container.pubDate}
+        <p className='text-muted-foreground text-xs md:text-[1.4vw] lg:text-[1.2vw] 2xl:text-[0.8vw] font-medium'>
+          {formatDate(container.pubDate)}
         </p>
         <motion.div
           layout='position'
@@ -69,15 +90,15 @@ function PostsDesktopCard({ container }: PostsDesktopCardProps) {
         >
           <ParagrapHTML
             className='max-w-full md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] font-normal text-center tracking-tight '
-            paragraph={extractParagraphContent(container.description)}
+            paragraph={extractContent(container.description)}
             limit={25}
             showFullDescription
           />
           {container.link && (
-            <Link href={container.link} key={container.title} target='_blank'>
+            <Link href={container.link} key={container.title}>
               <div className='mt-4 mb-2 inline-flex'>
                 <Button variant='primary' size='md'>
-                  Go to Medium
+                  Read More
                 </Button>
               </div>
             </Link>

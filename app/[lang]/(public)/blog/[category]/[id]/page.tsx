@@ -5,9 +5,19 @@ import { allBlogPosts } from 'contentlayer/generated';
 import BlogNotFound from '@/app/components/organisms/errors/BlogNotFound';
 import { MDXContent } from '@/app/components/organisms/mdx-content';
 import { PostHero } from '@/app/components/organisms/post-hero';
-// ... rest of imports
+import { createClient } from '@/lib/supabase/server';
+import { Locale } from '@/i18n.config';
+import { NewsletterSubscribe } from '@/app/components/organisms/newsletter-subscribe';
+import { TableOfContents } from '@/app/components/organisms/table-of-contents';
+import TailwindGrid from '@/app/components/templates/grid';
 
-// ... revalidate and interface ...
+interface BlogPostPageProps {
+  params: Promise<{
+    lang: Locale;
+    category: string;
+    id: string;
+  }>;
+}
 
 // ... generateStaticParams ...
 

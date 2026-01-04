@@ -121,15 +121,21 @@ export default function CommunityBanner() {
                 </p>
                 <div className="flex gap-3 flex-wrap justify-center">
                    {/* Simple Social Buttons - High Contrast */}
-                   {['Instagram', 'Facebook', 'Youtube'].map((social) => (
+                   {[
+                     { name: 'Instagram', url: 'https://www.instagram.com/SomosAlkitu' },
+                     { name: 'Facebook', url: 'https://www.facebook.com/SomosAlkitu' },
+                     { name: 'Youtube', url: 'https://www.youtube.com/@SomosAlkitu' }
+                   ].map((social) => (
                      <motion.a
-                       key={social}
-                       href="#"
+                       key={social.name}
+                       href={social.url}
+                       target="_blank"
+                       rel="noopener noreferrer"
                        whileHover={{ y: -2 }}
                        whileTap={{ scale: 0.95 }}
                        className="bg-white text-black px-5 py-2 rounded-md text-xs font-bold uppercase tracking-wider hover:bg-green-500 hover:text-white transition-colors shadow-lg"
                      >
-                       {social}
+                       {social.name}
                      </motion.a>
                    ))}
                 </div>
