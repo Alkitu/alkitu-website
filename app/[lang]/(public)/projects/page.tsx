@@ -6,6 +6,7 @@ import { ProjectCard } from "@/app/components/molecules/card";
 import { ResponsiveList } from "@/app/components/organisms/responsive-list";
 import { Pagination } from "@/app/components/organisms/pagination";
 import { PageHeader } from "@/app/components/organisms/page-header";
+import { HomeContact } from "@/app/components/organisms/home-contact-section";
 import { useSearchParams } from "next/navigation";
 import { useScreenWidth } from "@/app/hooks";
 import TailwindGrid from "@/app/components/templates/grid";
@@ -177,6 +178,11 @@ const Portfolio = () => {
             setCurrentPage={setCurrentPage}
           />
         )}
+      </section>
+
+      {/* Contact Section */}
+      <section className='w-full mt-20 pb-20'>
+        <HomeContact text={translations} />
       </section>
     </>
   );

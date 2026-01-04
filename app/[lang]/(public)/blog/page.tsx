@@ -30,7 +30,7 @@ export default async function BlogPage({
       .toLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
-      .replace(/\s+/g, '-');
+      .replace(/[\s\/]+/g, '-'); // Replace spaces AND forward slashes with hyphens
 
     return {
       id: post.slug,
@@ -63,7 +63,7 @@ export default async function BlogPage({
       .toLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
-      .replace(/\s+/g, '-');
+      .replace(/[\s\/]+/g, '-'); // Replace spaces AND forward slashes with hyphens
 
     return {
       id: slug,

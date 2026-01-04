@@ -6,8 +6,10 @@ import { BlogHero } from '@/app/components/organisms/blog-hero';
 import { BlogList } from '@/app/components/organisms/blog-list';
 import { BlogGrid } from '@/app/components/organisms/blog-grid';
 import { PageHeader } from '@/app/components/organisms/page-header';
+import SideBar from '@/app/components/organisms/sidebar/SideBar';
 import TailwindGrid from '@/app/components/templates/grid';
 import { AnimatePresence } from 'framer-motion';
+import NewsletterSubscribe from '@/app/components/organisms/newsletter-subscribe/NewsletterSubscribe';
 
 interface BlogPostRaw {
   id: string;
@@ -134,149 +136,178 @@ export default function BlogContent({ posts, categories, locale, title, descript
     return filteredPosts.filter(post => post.category === categoryName && !post.featured);
   };
 
+  // Create sidebar sections based on categories with posts
+  const sidebarSections = selectedCategory === 'all' ? [
+    { id: 'hero-section', name: translations.recent },
+    ...(getCategoryPosts('Emprendimiento').length > 0 ? [{ id: 'emprendimiento-section', name: translations.emprendimiento }] : []),
+    ...(getCategoryPosts('Marketing Digital').length > 0 ? [{ id: 'marketing-digital-section', name: 'Marketing Digital' }] : []),
+    ...(getCategoryPosts('Desarrollo Web').length > 0 ? [{ id: 'desarrollo-web-section', name: translations.desarrolloWeb }] : []),
+    ...(getCategoryPosts('Diseño UX/UI').length > 0 ? [{ id: 'diseno-ux-ui-section', name: 'Diseño UX/UI' }] : []),
+    { id: 'otras-publicaciones-section', name: translations.otrasPublicaciones },
+  ] : [];
+
   return (
-    <>
-      {/* Page Header with Title, Description, and Filters */}
-      <PageHeader
-        title={title}
-        subtitle={description}
-        filters={filters}
-        activeFilter={selectedCategory}
-        onFilterChange={setSelectedCategory}
-      />
+    <TailwindGrid fullSize>
+      {/* Sidebar - only show when viewing all categories */}
+      {selectedCategory === 'all' && sidebarSections.length > 0 && (
+        <SideBar sections={sidebarSections} />
+      )}
 
-      {/* Main Content */}
-      <TailwindGrid>
-        <div className="col-span-full lg:col-start-2 lg:col-end-14 py-12">
-          <AnimatePresence mode="wait">
-            {/* Blog Hero - Featured + Recent Posts */}
-            {featuredPost && selectedCategory === 'all' && (
-              <BlogHero
-                key="blog-hero"
-                featuredPost={featuredPost}
-                recentPosts={recentPosts}
-                locale={locale}
-              />
-            )}
-
-            {/* Filtered View - Show only selected category */}
-            {selectedCategory !== 'all' ? (
-              <div key={`filtered-${selectedCategory}`} className="mb-16">
-                <BlogGrid
-                  posts={filteredPosts}
-                  locale={locale}
-                  categoryTitle={selectedCategory === 'recent' ? translations.recent : getCategoryName(selectedCategory)}
-                  columns={4}
-                />
-              </div>
-            ) : (
-              <>
-                {/* All Categories View */}
-
-                {/* Recientes Section */}
-                {localePosts.length > 0 && (
-                  <div key="recientes-section" className="mb-16">
-                    <BlogGrid
-                      posts={[...localePosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0, 8)}
-                      locale={locale}
-                      categoryTitle={translations.recent}
-                      columns={4}
-                    />
-                  </div>
-                )}
-
-                {getCategoryPosts('Emprendimiento').length > 0 && (
-                  <div key="emprendimiento-section" className="mb-16">
-                    <BlogList
-                      posts={getCategoryPosts('Emprendimiento').slice(0, 4)}
-                      locale={locale}
-                      categoryTitle={translations.emprendimiento}
-                    />
-                  </div>
-                )}
-              </>
-            )}
-          </AnimatePresence>
+      {/* Main Content Column */}
+      <div className="col-span-full flex flex-col">
+        {/* Page Header Section */}
+        <div id="blog-header">
+          <PageHeader
+            title={title}
+            subtitle={description}
+            filters={filters}
+            activeFilter={selectedCategory}
+            onFilterChange={setSelectedCategory}
+          />
         </div>
-      </TailwindGrid>
 
-      {selectedCategory === 'all' && (
-        <>
-          {/* Alkitu Logo Full Width */}
-          <div className="w-full bg-zinc-900 dark:bg-zinc-900 py-16 mb-16 flex justify-center items-center">
-            <div className="relative w-full max-w-2xl h-32 md:h-40">
-              {/* Light mode logo */}
-              <Image
-                src="/logos/Alkitu-Logo-para-Fondos-Oscuros-Eslogan.svg"
-                alt="Alkitu - Hazlo a lo grande"
-                fill
-                className="object-contain dark:hidden"
-                priority
-              />
-              {/* Dark mode logo */}
-              <Image
-                src="/logos/Alkitu-Logo-para-Fondos-Oscuros-Eslogan.svg"
-                alt="Alkitu - Hazlo a lo grande"
-                fill
-                className="object-contain hidden dark:block"
-                priority
-              />
-            </div>
-          </div>
-
-          <TailwindGrid>
-            <div className="col-span-full lg:col-start-2 lg:col-end-14 py-12">
-              {/* Marketing Digital Section */}
-              {getCategoryPosts('Marketing Digital').length > 0 && (
-                <div className="mb-16">
+        <AnimatePresence mode="wait">
+          {/* Filtered View - Show only selected category */}
+          {selectedCategory !== 'all' ? (
+            <div key={`filtered-${selectedCategory}`} id="filtered-section" className="mb-16">
+              <TailwindGrid>
+                <div className="col-span-full lg:col-start-2 lg:col-end-14 py-12">
                   <BlogGrid
-                    posts={getCategoryPosts('Marketing Digital').slice(0, 8)}
+                    posts={filteredPosts}
                     locale={locale}
-                    categoryTitle="Marketing Digital"
+                    categoryTitle={selectedCategory === 'recent' ? translations.recent : getCategoryName(selectedCategory)}
                     columns={4}
                   />
+                </div>
+              </TailwindGrid>
+            </div>
+          ) : (
+            <>
+              {/* All Categories View */}
+
+              {/* Recientes Section */}
+              {localePosts.length > 0 && (
+                <div id="hero-section" className="mb-16">
+                  <TailwindGrid>
+                    <div className="col-span-full lg:col-start-2 lg:col-end-14 py-12">
+                      <BlogGrid
+                        posts={[...localePosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0, 8)}
+                        locale={locale}
+                        categoryTitle={translations.recent}
+                        columns={4}
+                      />
+                    </div>
+                  </TailwindGrid>
+                </div>
+              )}
+
+              {/* Emprendimiento Section */}
+              {getCategoryPosts('Emprendimiento').length > 0 && (
+                <div id="emprendimiento-section" className="mb-16">
+                  <TailwindGrid>
+                    <div className="col-span-full lg:col-start-2 lg:col-end-14 py-12">
+                      <BlogList
+                        posts={getCategoryPosts('Emprendimiento').slice(0, 4)}
+                        locale={locale}
+                        categoryTitle={translations.emprendimiento}
+                      />
+                    </div>
+                  </TailwindGrid>
+                </div>
+              )}
+
+              {/* Alkitu Logo Full Width */}
+              <div className="w-full bg-zinc-900 dark:bg-zinc-900 py-16 mb-16 flex justify-center items-center">
+                <div className="relative w-full max-w-2xl h-32 md:h-40">
+                  <Image
+                    src="/logos/Alkitu-Logo-para-Fondos-Oscuros-Eslogan.svg"
+                    alt="Alkitu - Hazlo a lo grande"
+                    fill
+                    className="object-contain dark:hidden"
+                    priority
+                  />
+                  <Image
+                    src="/logos/Alkitu-Logo-para-Fondos-Oscuros-Eslogan.svg"
+                    alt="Alkitu - Hazlo a lo grande"
+                    fill
+                    className="object-contain hidden dark:block"
+                    priority
+                  />
+                </div>
+              </div>
+
+              {/* Marketing Digital Section */}
+              {getCategoryPosts('Marketing Digital').length > 0 && (
+                <div id="marketing-digital-section" className="mb-16">
+                  <TailwindGrid>
+                    <div className="col-span-full lg:col-start-2 lg:col-end-14 py-12">
+                      <BlogGrid
+                        posts={getCategoryPosts('Marketing Digital').slice(0, 8)}
+                        locale={locale}
+                        categoryTitle="Marketing Digital"
+                        columns={4}
+                      />
+                    </div>
+                  </TailwindGrid>
                 </div>
               )}
 
               {/* Desarrollo Web Section */}
               {getCategoryPosts('Desarrollo Web').length > 0 && (
-                <div className="mb-16">
-                  <BlogGrid
-                    posts={getCategoryPosts('Desarrollo Web').slice(0, 8)}
-                    locale={locale}
-                    categoryTitle={translations.desarrolloWeb}
-                    columns={4}
-                  />
+                <div id="desarrollo-web-section" className="mb-16">
+                  <TailwindGrid>
+                    <div className="col-span-full lg:col-start-2 lg:col-end-14 py-12">
+                      <BlogGrid
+                        posts={getCategoryPosts('Desarrollo Web').slice(0, 8)}
+                        locale={locale}
+                        categoryTitle={translations.desarrolloWeb}
+                        columns={4}
+                      />
+                    </div>
+                  </TailwindGrid>
                 </div>
               )}
 
               {/* Diseño UX/UI Section */}
               {getCategoryPosts('Diseño UX/UI').length > 0 && (
-                <div className="mb-16">
-                  <BlogGrid
-                    posts={getCategoryPosts('Diseño UX/UI').slice(0, 4)}
-                    locale={locale}
-                    categoryTitle="Diseño UX/UI"
-                    columns={4}
-                  />
+                <div id="diseno-ux-ui-section" className="mb-16">
+                  <TailwindGrid>
+                    <div className="col-span-full lg:col-start-2 lg:col-end-14 py-12">
+                      <BlogGrid
+                        posts={getCategoryPosts('Diseño UX/UI').slice(0, 4)}
+                        locale={locale}
+                        categoryTitle="Diseño UX/UI"
+                        columns={4}
+                      />
+                    </div>
+                  </TailwindGrid>
                 </div>
               )}
 
-              {/* Otras Publicaciones */}
-              <div className="mb-16">
-                <h2 className="header-section text-foreground mb-8 text-center lg:text-left">
-                  {translations.otrasPublicaciones}
-                </h2>
-                <BlogGrid
-                  posts={localePosts.slice(0, 4)}
-                  locale={locale}
-                  columns={4}
-                />
+              {/* Otras Publicaciones Section */}
+              <div id="otras-publicaciones-section" className="mb-16">
+                <TailwindGrid>
+                  <div className="col-span-full lg:col-start-2 lg:col-end-14 py-12">
+                    <h2 className="header-section text-foreground mb-8 text-center lg:text-left">
+                      {translations.otrasPublicaciones}
+                    </h2>
+                    <BlogGrid
+                      posts={localePosts.slice(0, 4)}
+                      locale={locale}
+                      columns={4}
+                    />
+                  </div>
+                </TailwindGrid>
               </div>
-            </div>
-          </TailwindGrid>
-        </>
-      )}
-    </>
+            </>
+          )}
+        </AnimatePresence>
+
+        {/* Newsletter Section */}
+        <div className="w-full mt-20 mb-20">
+          <NewsletterSubscribe locale={locale} />
+        </div>
+      </div>
+    </TailwindGrid>
   );
 }
