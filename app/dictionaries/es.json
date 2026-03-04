@@ -1337,6 +1337,107 @@
         "success": "Usuario actualizado correctamente",
         "error": "Error al actualizar usuario"
       }
+    },
+    "billing": {
+      "title": "Facturacion",
+      "description": "Gestion de facturas con cumplimiento VeriFACTU",
+      "settings": {
+        "title": "Configuracion",
+        "description": "Datos fiscales y conexion Verifacti",
+        "saved": "Configuracion guardada correctamente",
+        "error": "Error al guardar la configuracion"
+      },
+      "clients": {
+        "title": "Clientes",
+        "description": "Gestion de clientes para facturacion",
+        "newClient": "Nuevo Cliente",
+        "editClient": "Editar Cliente",
+        "deleteClient": "Eliminar Cliente",
+        "noClients": "No hay clientes registrados",
+        "confirmDelete": "¿Estas seguro de que deseas eliminar este cliente?"
+      },
+      "products": {
+        "title": "Productos y Servicios",
+        "description": "Catalogo de productos y servicios",
+        "newProduct": "Nuevo Producto",
+        "editProduct": "Editar Producto",
+        "deleteProduct": "Eliminar Producto",
+        "noProducts": "No hay productos registrados"
+      },
+      "invoices": {
+        "title": "Facturas",
+        "description": "Listado de facturas emitidas",
+        "newInvoice": "Nueva Factura",
+        "editInvoice": "Editar Factura",
+        "noInvoices": "No hay facturas registradas",
+        "draft": "Borrador",
+        "issued": "Emitida",
+        "paid": "Pagada",
+        "voided": "Anulada",
+        "saveDraft": "Guardar borrador",
+        "saveAndSubmit": "Guardar y enviar a VeriFactu",
+        "issue": "Emitir factura",
+        "markPaid": "Marcar como pagada",
+        "void": "Anular factura",
+        "downloadPdf": "Descargar PDF",
+        "sendEmail": "Enviar por email",
+        "checkStatus": "Verificar estado"
+      },
+      "reports": {
+        "title": "Informes",
+        "description": "Informes de ingresos e impuestos",
+        "income": "Ingresos",
+        "tax": "Impuestos (IVA)"
+      },
+      "common": {
+        "name": "Nombre",
+        "nif": "NIF/CIF",
+        "email": "Email",
+        "phone": "Telefono",
+        "address": "Direccion",
+        "city": "Ciudad",
+        "province": "Provincia",
+        "postalCode": "Codigo Postal",
+        "country": "Pais",
+        "notes": "Notas",
+        "save": "Guardar",
+        "cancel": "Cancelar",
+        "delete": "Eliminar",
+        "edit": "Editar",
+        "search": "Buscar",
+        "filter": "Filtrar",
+        "actions": "Acciones",
+        "loading": "Cargando...",
+        "total": "Total",
+        "subtotal": "Subtotal",
+        "tax": "Impuestos",
+        "quantity": "Cantidad",
+        "unitPrice": "Precio unitario",
+        "description": "Descripcion",
+        "date": "Fecha",
+        "status": "Estado",
+        "all": "Todos"
+      }
+    },
+    "sidebar": {
+      "platform": "Plataforma",
+      "dashboard": "Dashboard",
+      "projects": "Proyectos",
+      "categories": "Categorías",
+      "users": "Usuarios",
+      "profiles": "Perfiles",
+      "contactMessages": "Mensajes de Contacto",
+      "newsletterSubscribers": "Suscriptores del Newsletter",
+      "billing": "Facturación",
+      "invoices": "Facturas",
+      "clients": "Clientes",
+      "products": "Productos",
+      "reports": "Informes",
+      "payments": "Pagos",
+      "billingSettings": "Configuración",
+      "settings": "Configuración",
+      "myProfile": "Mi Perfil",
+      "logout": "Cerrar sesión"
     }
   },
   "about": {

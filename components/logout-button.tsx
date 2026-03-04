@@ -3,6 +3,7 @@
 import { LogOut } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { createClient } from "@/lib/supabase/client"
+import { useTranslationContext } from "@/app/context/TranslationContext"
 import {
   SidebarMenu,
   SidebarMenuButton,
@@ -12,6 +13,9 @@ import {
 export function LogoutButton() {
   const router = useRouter()
   const supabase = createClient()
+  const { t } = useTranslationContext()
+
+  const label = t("admin.sidebar.logout")
 
   const handleLogout = async () => {
     await supabase.auth.signOut()
@@ -24,11 +28,11 @@ export function LogoutButton() {
       <SidebarMenuItem>
         <SidebarMenuButton
           onClick={handleLogout}
-          tooltip="Cerrar sesión"
+          tooltip={label}
           className="w-full"
         >
           <LogOut />
-          <span>Cerrar sesión</span>
+          <span>{label}</span>
         </SidebarMenuButton>
       </SidebarMenuItem>
     </SidebarMenu>

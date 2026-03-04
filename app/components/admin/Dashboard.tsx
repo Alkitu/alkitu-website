@@ -7,11 +7,9 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
 } from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
-  SidebarTrigger,
 } from "@/components/ui/sidebar";
 
 interface DashboardProps {
@@ -26,7 +24,7 @@ export default function Dashboard({
   userName,
 }: DashboardProps) {
   return (
-    <SidebarProvider defaultOpen={false}>
+    <SidebarProvider defaultOpen={true}>
       <AppSidebar
         user={{
           name: userName || "Admin",
@@ -36,9 +34,6 @@ export default function Dashboard({
       <SidebarInset>
         {/* Sticky Header - following shadcn/ui insiders pattern */}
         <header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-2 border-b px-4 bg-background">
-          <SidebarTrigger className="-ml-1 md:hidden" />
-          <Separator orientation="vertical" className="mr-2 h-4 md:hidden" />
-
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
