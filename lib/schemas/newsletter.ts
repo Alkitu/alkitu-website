@@ -22,7 +22,7 @@ export const newsletterSubscribeSchema = z.object({
 
   locale: z
     .enum(['en', 'es'], {
-      errorMap: () => ({ message: 'Idioma debe ser "en" o "es" / Locale must be "en" or "es"' }),
+      message: 'Idioma debe ser "en" o "es" / Locale must be "en" or "es"',
     }),
 });
 

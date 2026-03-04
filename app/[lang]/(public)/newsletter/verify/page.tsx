@@ -32,6 +32,8 @@ export default function NewsletterVerifyPage() {
   const token = searchParams.get('token');
 
   useEffect(() => {
+    let timer: ReturnType<typeof setInterval> | null = null;
+
     async function verifySubscription() {
       if (!token) {
         setState('error');
@@ -52,17 +54,15 @@ export default function NewsletterVerifyPage() {
 
           // Start countdown for redirect
           let timeLeft = 3;
-          const timer = setInterval(() => {
+          timer = setInterval(() => {
             timeLeft -= 1;
             setCountdown(timeLeft);
 
             if (timeLeft === 0) {
-              clearInterval(timer);
+              if (timer) clearInterval(timer);
               router.push('/');
             }
           }, 1000);
-
-          return () => clearInterval(timer);
         } else {
           setState('error');
           if (response.status === 404) {
@@ -81,6 +81,10 @@ export default function NewsletterVerifyPage() {
     }
 
     verifySubscription();
+
+    return () => {
+      if (timer) clearInterval(timer);
+    };
   }, [token, t, router]);
 
   return (

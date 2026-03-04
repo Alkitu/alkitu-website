@@ -65,7 +65,7 @@ export async function DELETE(
 
     if (deleteError) {
       console.error('Error deleting subscriber:', deleteError);
-      return ApiError.internalError('Failed to delete subscriber');
+      return ApiError.internal('Failed to delete subscriber');
     }
 
     return ApiSuccess.ok(
@@ -75,6 +75,6 @@ export async function DELETE(
 
   } catch (error) {
     console.error('Delete newsletter subscriber error:', error);
-    return ApiError.internalError('An unexpected error occurred');
+    return ApiError.internal('An unexpected error occurred');
   }
 }

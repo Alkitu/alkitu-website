@@ -40,7 +40,7 @@ export async function GET(request: NextRequest) {
 
     if (error) {
       console.error('Error fetching subscribers for export:', error);
-      return ApiError.internalError('Failed to fetch subscribers');
+      return ApiError.internal('Failed to fetch subscribers');
     }
 
     if (!subscribers || subscribers.length === 0) {
@@ -86,6 +86,6 @@ export async function GET(request: NextRequest) {
 
   } catch (error) {
     console.error('Newsletter subscribers export error:', error);
-    return ApiError.internalError('An unexpected error occurred');
+    return ApiError.internal('An unexpected error occurred');
   }
 }

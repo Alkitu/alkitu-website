@@ -103,7 +103,7 @@ export async function GET(request: NextRequest) {
 
     if (error) {
       console.error('Error fetching subscribers:', error);
-      return ApiError.internalError('Failed to fetch subscribers');
+      return ApiError.internal('Failed to fetch subscribers');
     }
 
     // Calculate pagination metadata
@@ -121,6 +121,6 @@ export async function GET(request: NextRequest) {
 
   } catch (error) {
     console.error('Admin newsletter subscribers list error:', error);
-    return ApiError.internalError('An unexpected error occurred');
+    return ApiError.internal('An unexpected error occurred');
   }
 }
