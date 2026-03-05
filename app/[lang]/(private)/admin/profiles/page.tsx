@@ -65,7 +65,12 @@ async function getAdminsWithoutProfiles() {
 /**
  * All Profiles Page Component
  */
-export default async function AllProfilesPage() {
+export default async function AllProfilesPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
   const supabase = await createClient();
 
   // Get authenticated user
@@ -74,7 +79,7 @@ export default async function AllProfilesPage() {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    redirect('/es/auth/login');
+    redirect(`/${lang}/auth/login`);
   }
 
   // Verify user is super admin
@@ -260,7 +265,7 @@ export default async function AllProfilesPage() {
                 {/* Actions */}
                 <div className="flex gap-2">
                   <Link
-                    href={`/es/profile/${profile.username}`}
+                    href={`/${lang}/profile/${profile.username}`}
                     target="_blank"
                     className="inline-flex items-center gap-1 rounded-md border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground hover:bg-secondary"
                   >

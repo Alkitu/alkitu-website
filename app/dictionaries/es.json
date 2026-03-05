@@ -1640,14 +1640,31 @@
       },
       "sections": {
         "about": "Acerca de",
+        "hardSkills": "Hard Skills",
+        "softSkills": "Soft Skills",
+        "languages": "Idiomas",
         "roles": "Roles",
         "contact": "Contacto",
-        "links": "Enlaces"
+        "links": "Enlaces",
+        "information": "Información"
       },
       "contactTypes": {
         "work": "Trabajo",
         "personal": "Personal"
       },
+      "addressTypes": {
+        "office": "Oficina",
+        "home": "Casa"
+      },
+      "proficiency": {
+        "native": "Nativo",
+        "fluent": "Fluido",
+        "intermediate": "Intermedio",
+        "basic": "Básico"
+      },
+      "remote": "Remoto",
+      "professionalProfile": "Perfil Profesional",
+      "visitPublicProfile": "Visitar perfil público",
       "emptyState": "Este usuario no ha compartido información pública todavía."
     },
     "editor": {

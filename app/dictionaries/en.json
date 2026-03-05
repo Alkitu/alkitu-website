@@ -1703,14 +1703,31 @@
       },
       "sections": {
         "about": "About",
+        "hardSkills": "Hard Skills",
+        "softSkills": "Soft Skills",
+        "languages": "Languages",
         "roles": "Roles",
         "contact": "Contact",
-        "links": "Links"
+        "links": "Links",
+        "information": "Information"
       },
       "contactTypes": {
         "work": "Work",
         "personal": "Personal"
       },
+      "addressTypes": {
+        "office": "Office",
+        "home": "Home"
+      },
+      "proficiency": {
+        "native": "Native",
+        "fluent": "Fluent",
+        "intermediate": "Intermediate",
+        "basic": "Basic"
+      },
+      "remote": "Remote",
+      "professionalProfile": "Professional Profile",
+      "visitPublicProfile": "Visit public profile",
       "emptyState": "This user hasn't shared any public information yet."
     },
     "editor": {

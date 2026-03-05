@@ -9,7 +9,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { Loader2, Save, X as XIcon } from 'lucide-react';
 import { toast } from 'sonner';
 import { PhotoUpload } from './PhotoUpload';
@@ -58,6 +58,8 @@ export function ProfileEditor({
   onCancel,
 }: ProfileEditorProps) {
   const router = useRouter();
+  const pathname = usePathname();
+  const locale = pathname.split('/')[1] || 'es';
   const [activeTab, setActiveTab] = useState<TabId>('basic');
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -287,7 +289,7 @@ export function ProfileEditor({
               <h1 className="ml-2 text-2xl font-bold text-muted-foreground">
                Saludos @{username}
               </h1>            
-              <Link href={`/profile/${username}`} className="ml-2 text-sm font-medium text-primary hover:text-foreground">
+              <Link href={`/${locale}/profile/${username}`} className="ml-2 text-sm font-medium text-primary hover:text-foreground">
                 Visitar perfil público
               </Link>
             </div>

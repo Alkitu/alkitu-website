@@ -4,6 +4,7 @@
  * Displays user profile information based on username.
  * Only shows fields and array items marked as public.
  * Accessible without authentication.
+ * Supports i18n (English and Spanish).
  */
 
 import { Metadata } from 'next';
@@ -17,38 +18,86 @@ import {
   Briefcase,
   Building2,
   MapPin,
-  Calendar,
   Globe,
   Award,
   Languages,
   Home,
   Clock,
 } from 'lucide-react';
-import type { PublicUserProfile } from '@/lib/types/profiles';
+import { createAnalyticsClient } from '@/lib/supabase/analytics';
+import { getDictionary } from '@/lib/dictionary';
+import type { Locale } from '@/i18n.config';
+import type {
+  PublicUserProfile,
+  ProfileUrl,
+  ProfileRole,
+  ProfilePhoneNumber,
+  ProfileEmail,
+  ProfileSkill,
+  ProfileLanguage,
+  ProfileAddress,
+} from '@/lib/types/profiles';
 
 interface ProfilePageProps {
   params: Promise<{
-    lang: string;
+    lang: Locale;
     username: string;
   }>;
 }
 
 /**
- * Fetch public profile from API
+ * Filter array items based on is_public flag
+ */
+function filterPublicItems<T extends { is_public: boolean }>(items: T[]): T[] {
+  return items.filter((item) => item.is_public);
+}
+
+/**
+ * Fetch public profile directly from database
  */
 async function getPublicProfile(username: string): Promise<PublicUserProfile | null> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-    const response = await fetch(`${baseUrl}/api/profiles/${username}`, {
-      cache: 'no-store', // Always fetch fresh data
-    });
+    const supabase = createAnalyticsClient();
 
-    if (!response.ok) {
+    const { data: profile, error } = await supabase
+      .from('user_profiles')
+      .select('*')
+      .eq('username', username)
+      .single();
+
+    if (error || !profile) {
       return null;
     }
 
-    const result = await response.json();
-    return result.success ? result.data : null;
+    // Apply privacy filtering
+    const publicProfile: PublicUserProfile = {
+      username: profile.username,
+      photo_url: profile.photo_url,
+      banner_url: profile.banner_url,
+      first_name: profile.first_name_is_public ? profile.first_name : null,
+      last_name: profile.last_name_is_public ? profile.last_name : null,
+      display_name: profile.display_name,
+      pronouns: profile.pronouns_is_public ? profile.pronouns : null,
+      date_of_birth: profile.date_of_birth_is_public ? profile.date_of_birth : null,
+      bio: profile.bio_is_public ? profile.bio : null,
+      job_title: profile.job_title_is_public ? profile.job_title : null,
+      department: profile.department_is_public ? profile.department : null,
+      location: profile.location_is_public ? profile.location : null,
+      remote_work: profile.remote_work || false,
+      timezone: profile.timezone || 'America/New_York',
+      urls: filterPublicItems<ProfileUrl>(profile.urls || []),
+      roles: filterPublicItems<ProfileRole>(profile.roles || []),
+      phone_numbers: filterPublicItems<ProfilePhoneNumber>(profile.phone_numbers || []),
+      emails: filterPublicItems<ProfileEmail>(profile.emails || []),
+      hard_skills: filterPublicItems<ProfileSkill>(profile.hard_skills || []),
+      soft_skills: filterPublicItems<ProfileSkill>(profile.soft_skills || []),
+      languages: filterPublicItems<ProfileLanguage>(profile.languages || []),
+      addresses: filterPublicItems<ProfileAddress>(profile.addresses || []),
+      profile_color: profile.profile_color || '#00BB31',
+      theme_preference: profile.theme_preference || 'system',
+    };
+
+    return publicProfile;
   } catch (error) {
     console.error('[ProfilePage] Fetch error:', error);
     return null;
@@ -61,18 +110,19 @@ async function getPublicProfile(username: string): Promise<PublicUserProfile | n
 export async function generateMetadata({
   params,
 }: ProfilePageProps): Promise<Metadata> {
-  const { username } = await params;
+  const { lang, username } = await params;
+  const text = await getDictionary(lang);
   const profile = await getPublicProfile(username);
 
   if (!profile) {
     return {
-      title: 'Perfil no encontrado',
-      description: 'Este perfil no existe o no está disponible públicamente.',
+      title: text.profile.public.notFound.title,
+      description: text.profile.public.notFound.description,
     };
   }
 
-  const title = `${username} - Perfil Profesional`;
-  const description = profile.bio || `Perfil profesional de ${username}`;
+  const title = `${username} - ${text.profile.public.professionalProfile}`;
+  const description = profile.bio || `${text.profile.public.professionalProfile} - ${username}`;
 
   return {
     title,
@@ -95,8 +145,10 @@ export async function generateMetadata({
  * Public Profile Page Component
  */
 export default async function ProfilePage({ params }: ProfilePageProps) {
-  const { username } = await params;
+  const { lang, username } = await params;
+  const text = await getDictionary(lang);
   const profile = await getPublicProfile(username);
+  const t = text.profile.public;
 
   if (!profile) {
     notFound();
@@ -160,8 +212,6 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             <div className="flex-1 text-center sm:text-left z-10">
               <h1 className="text-3xl font-bold text-foreground">{displayName}</h1>
 
-
-
               {profile.pronouns && (
                 <p className="mt-1 text-sm text-muted-foreground">({profile.pronouns})</p>
               )}
@@ -181,7 +231,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                       <MapPin className="h-4 w-4" />
                       <span>{profile.location}</span>
                       {profile.remote_work && (
-                        <span className="text-xs">(Remoto)</span>
+                        <span className="text-xs">({t.remote})</span>
                       )}
                     </div>
                   )}
@@ -197,7 +247,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             {/* Bio */}
             {profile.bio && (
               <div className="rounded-lg border border-border bg-card p-6">
-                <h2 className="mb-3 text-lg font-semibold text-foreground">Acerca de</h2>
+                <h2 className="mb-3 text-lg font-semibold text-foreground">{t.sections.about}</h2>
                 <p className="whitespace-pre-wrap text-muted-foreground">{profile.bio}</p>
               </div>
             )}
@@ -207,7 +257,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               <div className="rounded-lg border border-border bg-card p-6">
                 <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
                   <Award className="h-5 w-5" />
-                  Hard Skills
+                  {t.sections.hardSkills}
                 </h2>
                 <div className="flex flex-wrap gap-2">
                   {[...profile.hard_skills]
@@ -229,7 +279,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               <div className="rounded-lg border border-border bg-card p-6">
                 <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
                   <Award className="h-5 w-5" />
-                  Soft Skills
+                  {t.sections.softSkills}
                 </h2>
                 <div className="flex flex-wrap gap-2">
                   {[...profile.soft_skills]
@@ -251,7 +301,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               <div className="rounded-lg border border-border bg-card p-6">
                 <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
                   <Languages className="h-5 w-5" />
-                  Idiomas
+                  {t.sections.languages}
                 </h2>
                 <div className="grid gap-3 sm:grid-cols-2">
                   {[...profile.languages]
@@ -273,13 +323,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                               : 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-400'
                           }`}
                         >
-                          {langItem.proficiency === 'native'
-                            ? 'Nativo'
-                            : langItem.proficiency === 'fluent'
-                            ? 'Fluido'
-                            : langItem.proficiency === 'intermediate'
-                            ? 'Intermedio'
-                            : 'Básico'}
+                          {t.proficiency[langItem.proficiency as keyof typeof t.proficiency]}
                         </span>
                       </div>
                     ))}
@@ -292,7 +336,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               <div className="rounded-lg border border-border bg-card p-6">
                 <h2 className="mb-3 flex items-center gap-2 text-lg font-semibold text-foreground">
                   <Briefcase className="h-5 w-5" />
-                  Roles
+                  {t.sections.roles}
                 </h2>
                 <div className="flex flex-wrap gap-2">
                   {[...profile.roles]
@@ -318,7 +362,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               <div className="rounded-lg border border-border bg-card p-6">
                 <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
                   <Globe className="h-5 w-5" />
-                  Enlaces
+                  {t.sections.links}
                 </h2>
                 <div className="space-y-2">
                   {[...profile.urls]
@@ -350,7 +394,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             {/* Contact Information */}
             {(profile.emails.length > 0 || profile.phone_numbers.length > 0 || profile.addresses.length > 0) && (
               <div className="rounded-lg border border-border bg-card p-6">
-                <h2 className="mb-4 text-lg font-semibold text-foreground">Contacto</h2>
+                <h2 className="mb-4 text-lg font-semibold text-foreground">{t.sections.contact}</h2>
                 <div className="space-y-3">
                   {/* Emails */}
                   {profile.emails.map((emailItem, index) => (
@@ -358,7 +402,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                       <div className="flex items-center gap-2">
                         <Mail className="h-4 w-4 text-muted-foreground" />
                         <span className="text-xs text-muted-foreground">
-                          {emailItem.type === 'work' ? 'Trabajo' : 'Personal'}
+                          {t.contactTypes[emailItem.type as keyof typeof t.contactTypes]}
                         </span>
                       </div>
                       <a
@@ -376,7 +420,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                       <div className="flex items-center gap-2">
                         <Phone className="h-4 w-4 text-muted-foreground" />
                         <span className="text-xs text-muted-foreground">
-                          {phoneItem.type === 'work' ? 'Trabajo' : 'Personal'}
+                          {t.contactTypes[phoneItem.type as keyof typeof t.contactTypes]}
                         </span>
                       </div>
                       <a
@@ -398,7 +442,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                           <Home className="h-4 w-4 text-muted-foreground" />
                         )}
                         <span className="text-xs text-muted-foreground">
-                          {addressItem.type === 'office' ? 'Oficina' : 'Casa'}
+                          {t.addressTypes[addressItem.type as keyof typeof t.addressTypes]}
                         </span>
                       </div>
                       <p className="text-sm text-muted-foreground">
@@ -413,7 +457,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             {/* Additional Info */}
             {(profile.department || profile.timezone) && (
               <div className="rounded-lg border border-border bg-card p-6">
-                <h2 className="mb-4 text-lg font-semibold text-foreground">Información</h2>
+                <h2 className="mb-4 text-lg font-semibold text-foreground">{t.sections.information}</h2>
                 <div className="space-y-3 text-sm">
                   {profile.department && (
                     <div className="flex items-center gap-2 text-muted-foreground">
@@ -447,7 +491,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
           profile.languages.length === 0 && (
             <div className="rounded-lg border border-dashed border-border p-12 text-center">
               <p className="text-muted-foreground">
-                Este usuario no ha compartido información pública todavía.
+                {t.emptyState}
               </p>
             </div>
           )}
