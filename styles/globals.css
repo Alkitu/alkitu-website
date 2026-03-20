@@ -1,4 +1,4 @@
-@import url('https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,301,701,300,501,401,901,400,2&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 
 @plugin 'tailwindcss-animate';
 @plugin '@tailwindcss/typography';
@@ -68,7 +68,7 @@
   /* Variables para tema light - Colores personalizados de Alkitu */
   :root {
     /* Colores base */
-    --background: 255 255 255; /* Blanco */
+    --background: 217 217 217; /* #D9D9D9 */
     --foreground: 15 15 15; /* Negro para texto */
     --card: 250 250 250; /* Gris muy muy claro casi blanco */
     --card-foreground: 15 15 15; /* Negro para texto en tarjetas */
@@ -148,7 +148,7 @@
   }
 
   html {
-    font-family: Satoshi, system-ui, sans-serif;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     background-color: rgb(var(--background));
     color: rgb(var(--foreground));
     overflow-y: scroll;
@@ -174,6 +174,77 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* =============================================
+   View Transitions — Project navigation
+   Direction-aware slide + fade for prev/next
+   ============================================= */
+
+/* Disable default full-page crossfade to avoid double animation */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+/* --- Going NEXT (slide left) --- */
+
+html.vt-next::view-transition-old(project-gallery) {
+  animation: vt-slide-out-left 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+html.vt-next::view-transition-new(project-gallery) {
+  animation: vt-slide-in-right 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+html.vt-next::view-transition-old(project-info) {
+  animation: vt-fade-slide-out-left 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+html.vt-next::view-transition-new(project-info) {
+  animation: vt-fade-slide-in-right 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0.05s both;
+}
+
+/* --- Going PREV (slide right) --- */
+
+html.vt-prev::view-transition-old(project-gallery) {
+  animation: vt-slide-out-right 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+html.vt-prev::view-transition-new(project-gallery) {
+  animation: vt-slide-in-left 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+html.vt-prev::view-transition-old(project-info) {
+  animation: vt-fade-slide-out-right 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+html.vt-prev::view-transition-new(project-info) {
+  animation: vt-fade-slide-in-left 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0.05s both;
+}
+
+/* --- Keyframes --- */
+
+@keyframes vt-slide-out-left {
+  to { opacity: 0; transform: translateX(-8%); }
+}
+@keyframes vt-slide-in-right {
+  from { opacity: 0; transform: translateX(8%); }
+}
+@keyframes vt-slide-out-right {
+  to { opacity: 0; transform: translateX(8%); }
+}
+@keyframes vt-slide-in-left {
+  from { opacity: 0; transform: translateX(-8%); }
+}
+
+@keyframes vt-fade-slide-out-left {
+  to { opacity: 0; transform: translateX(-5%) translateY(2%); }
+}
+@keyframes vt-fade-slide-in-right {
+  from { opacity: 0; transform: translateX(5%) translateY(2%); }
+}
+@keyframes vt-fade-slide-out-right {
+  to { opacity: 0; transform: translateX(5%) translateY(2%); }
+}
+@keyframes vt-fade-slide-in-left {
+  from { opacity: 0; transform: translateX(-5%) translateY(2%); }
 }
 
 @layer components {

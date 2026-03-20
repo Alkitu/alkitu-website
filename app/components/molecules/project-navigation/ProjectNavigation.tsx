@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import { useState, useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useTranslationContext } from "@/app/context/TranslationContext";
 import { motion } from "framer-motion";
@@ -19,6 +19,7 @@ interface ProjectNavigationProps {
 
 export function ProjectNavigation({ projectSlug }: ProjectNavigationProps) {
   const { locale } = useTranslationContext();
+  const router = useRouter();
   const [prev, setPrev] = useState<ProjectNeighbor | null>(null);
   const [next, setNext] = useState<ProjectNeighbor | null>(null);
 
@@ -39,6 +40,31 @@ export function ProjectNavigation({ projectSlug }: ProjectNavigationProps) {
     fetchNeighbors();
   }, [projectSlug]);
 
+  const navigateTo = useCallback(
+    (slug: string, direction: "prev" | "next") => {
+      const href = `/${locale}/projects/${slug}`;
+      const doc = document as Document & {
+        startViewTransition?: (cb: () => void) => { finished: Promise<void> };
+      };
+
+      if (doc.startViewTransition) {
+        // Set direction class for CSS to pick up
+        document.documentElement.classList.add(`vt-${direction}`);
+
+        const transition = doc.startViewTransition(() => {
+          router.push(href);
+        });
+
+        transition.finished.then(() => {
+          document.documentElement.classList.remove(`vt-${direction}`);
+        });
+      } else {
+        router.push(href);
+      }
+    },
+    [locale, router]
+  );
+
   if (!prev && !next) return null;
 
   return (
@@ -46,9 +72,9 @@ export function ProjectNavigation({ projectSlug }: ProjectNavigationProps) {
       {/* Previous project */}
       <div className="flex-1">
         {prev && (
-          <Link
-            href={`/${locale}/projects/${prev.slug}`}
-            className="group inline-flex flex-col items-start gap-1.5"
+          <button
+            onClick={() => navigateTo(prev.slug, "prev")}
+            className="group inline-flex flex-col items-start gap-1.5 cursor-pointer"
           >
             <motion.div
               className="relative w-20 h-14 rounded overflow-hidden border border-zinc-400/50 shadow-sm"
@@ -79,16 +105,16 @@ export function ProjectNavigation({ projectSlug }: ProjectNavigationProps) {
               </svg>
               {locale === "es" ? "Anterior" : "Previous"}
             </span>
-          </Link>
+          </button>
         )}
       </div>
 
       {/* Next project */}
       <div className="flex-1 flex justify-end">
         {next && (
-          <Link
-            href={`/${locale}/projects/${next.slug}`}
-            className="group inline-flex flex-col items-end gap-1.5"
+          <button
+            onClick={() => navigateTo(next.slug, "next")}
+            className="group inline-flex flex-col items-end gap-1.5 cursor-pointer"
           >
             <motion.div
               className="relative w-20 h-14 rounded overflow-hidden border border-zinc-400/50 shadow-sm"
@@ -119,7 +145,7 @@ export function ProjectNavigation({ projectSlug }: ProjectNavigationProps) {
                 <path d="m9 18 6-6-6-6" />
               </svg>
             </span>
-          </Link>
+          </button>
         )}
       </div>
     </nav>

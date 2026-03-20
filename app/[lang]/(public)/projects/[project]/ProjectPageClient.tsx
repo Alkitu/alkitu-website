@@ -80,7 +80,10 @@ function ProjectPageClient() {
 
   return (
     <div className='lg:flex w-screen max-w-full min-h-screen'>
-      <section className='w-full lg:w-[60%] lg:min-h-[50vh] relative overflow-hidden flex justify-center items-center pt-20 pb-[2vw] lg:pt-0 lg:pb-0'>
+      <section
+        className='w-full lg:w-[60%] lg:min-h-[50vh] relative overflow-hidden flex justify-center items-center pt-20 pb-[2vw] lg:pt-0 lg:pb-0'
+        style={{ viewTransitionName: 'project-gallery' }}
+      >
         <motion.div
           className='lg:w-4/5 z-10 w-full'
           initial={{ opacity: 0 }}
@@ -100,7 +103,10 @@ function ProjectPageClient() {
         </motion.div>
         <TextSlider />
       </section>
-      <section className='w-full lg:w-[40%] lg:min-h-dvh bg-zinc-300 text-zinc-800 flex-row justify-center items-center px-11 flex py-14 lg:py-36'>
+      <section
+        className='w-full lg:w-[40%] lg:min-h-dvh bg-zinc-300 text-zinc-800 flex-row justify-center items-center px-11 flex py-14 lg:py-36'
+        style={{ viewTransitionName: 'project-info' }}
+      >
         <motion.div
           className='my-auto w-full'
           initial={{ opacity: 0 }}
