@@ -1,6 +1,7 @@
 "use client";
 import { TextSlider } from "@/app/components/organisms/sliders";
 import { SocialButtons } from "@/app/components/molecules/social-button";
+import { ProjectNavigation } from "@/app/components/molecules/project-navigation";
 import { Carousel } from "@/app/components/organisms/carousel/basic-carousel";
 import { useTranslationContext } from "../../../../context/TranslationContext";
 import { useState, useEffect } from "react";
@@ -106,6 +107,7 @@ function ProjectPageClient() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
         >
+          <ProjectNavigation projectSlug={projectSlug} />
           <div className='border-l px-5 border-zinc-800 flex flex-col '>
             <h1 className='text-stone-900 text-3xl font-black uppercase '>
               {title}
