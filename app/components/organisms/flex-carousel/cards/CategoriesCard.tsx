@@ -1,5 +1,5 @@
 "use client";
-import { RiveAnimation } from "@/app/components/molecules/rive-animation";
+import { BrandingIcon, MarketingIcon, ProductBuildingIcon } from "@/app/components/molecules/animated-icons";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -19,15 +19,14 @@ function CategoriesCard({ container, centerOrder }) {
         className='w-full relative group items-end flex text-center rounded-3xl content-center justify-center mt-7'
       >
         <div
-          className='w-full max-w-full mx-auto relative bg-white dark:bg-zinc-900 rounded-3xl flex-col content-center items-center justify-center cursor-pointer py-11'
+          className='w-full max-w-full mx-auto relative bg-[#D9D9D9] dark:bg-zinc-900 shadow-xl rounded-3xl flex-col content-center items-center justify-center cursor-pointer py-11'
           onMouseDown={() => setHover(true)}
           onMouseUp={() => setHover(false)}
         >
-          <motion.div className='max-h-56 w-full aspect-square mx-auto flex justify-center items-center overflow-hidden'>
-            <RiveAnimation
-              hover={centerOrder === container.order || hover}
-              artboardName={container?.artboardName}
-            />
+          <motion.div className='max-h-56 w-full aspect-square mx-auto flex justify-center items-center overflow-visible p-4'>
+            {container?.artboardName === "Design" && <BrandingIcon hover={centerOrder === container.order || hover} className="w-full h-full max-w-[80%] max-h-[80%]" />}
+            {container?.artboardName === "Marketing" && <MarketingIcon hover={centerOrder === container.order || hover} className="w-full h-full max-w-[80%] max-h-[80%]" />}
+            {container?.artboardName === "Web" && <ProductBuildingIcon hover={centerOrder === container.order || hover} className="w-full h-full max-w-[80%] max-h-[80%]" />}
           </motion.div>
           <motion.div>
             <h3 className='text-center text-xl font-black uppercase m-auto w-full text-foreground'>
@@ -48,10 +47,9 @@ function CategoriesCard({ container, centerOrder }) {
                 mass: 0.1,
                 delay: 0.25,
               }}
-              className='mx-auto text-center mt-5 px-10 max-w-full text-md md:text-[1.4vw] lg:text-[1.2vw] 2xl:text-[0.8vw] font-normal tracking-tight text-foreground'
-            >
-              {container?.summary}
-            </motion.p>
+              className='mx-auto text-center mt-5 px-10 max-w-full text-md md:text-[1.4vw] lg:text-[1.2vw] 2xl:text-[0.8vw] font-normal tracking-tight text-foreground [&>b]:font-bold [&>b]:text-primary [&>a]:font-bold [&>a]:text-primary [&>a]:hover:underline'
+              dangerouslySetInnerHTML={{ __html: container?.summary || "" }}
+            />
           </motion.div>
         </div>
       </motion.div>

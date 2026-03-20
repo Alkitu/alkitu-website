@@ -1,6 +1,5 @@
 "use client";
 import { TextSlider } from "@/app/components/organisms/sliders";
-import { SocialButtons } from "@/app/components/molecules/social-button";
 import { ProjectNavigation } from "@/app/components/molecules/project-navigation";
 import { Carousel } from "@/app/components/organisms/carousel/basic-carousel";
 import { useTranslationContext } from "../../../../context/TranslationContext";
@@ -9,6 +8,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import type { ProjectWithCategories } from "@/lib/types";
+
 
 function ProjectPageClient() {
   const { translations, locale } = useTranslationContext();
@@ -37,6 +37,7 @@ function ProjectPageClient() {
         setError('Failed to load project');
       } finally {
         setLoading(false);
+        window.dispatchEvent(new Event('project-loaded'));
       }
     };
 
@@ -79,16 +80,17 @@ function ProjectPageClient() {
   const description = locale === 'es' ? project.description_es : project.description_en;
 
   return (
-    <div className='lg:flex w-screen max-w-full min-h-screen'>
+    <div className='lg:flex w-screen max-w-full min-h-[calc(100dvh-5rem)]'>
       <section
-        className='w-full lg:w-[60%] lg:min-h-[50vh] relative overflow-hidden flex justify-center items-center pt-20 pb-[2vw] lg:pt-0 lg:pb-0'
+        className='w-full lg:w-[60%] min-h-[calc(100dvh-5rem)] relative overflow-hidden flex justify-center items-center pt-20 pb-[2vw] lg:pt-0 lg:pb-0'
         style={{ viewTransitionName: 'project-gallery' }}
       >
         <motion.div
+          key={`gallery-${projectSlug}`}
           className='lg:w-4/5 z-10 w-full'
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: "spring" as const, damping: 30, stiffness: 200, delay: 0.1 }}
         >
           <Carousel
             numbers={false}
@@ -101,18 +103,24 @@ function ProjectPageClient() {
             projectId={String(project.legacy_id || 0)}
           />
         </motion.div>
-        <TextSlider />
+        <TextSlider>
+          {project.categories.map((c, i) => (
+            <span key={c.id}>
+              <span className="font-black">{locale === 'es' ? c.name_es : c.name_en}</span>
+              <span className="font-light"> | </span>
+            </span>
+          ))}
+        </TextSlider>
       </section>
-      <section
-        className='w-full lg:w-[40%] lg:min-h-dvh bg-zinc-300 text-zinc-800 flex-row justify-center items-center px-11 flex py-14 lg:py-36'
+      <motion.section
+        key={`info-${projectSlug}`}
+        className='w-full lg:w-[40%] lg:h-[calc(100dvh-5rem)] lg:overflow-y-auto scrollbar-thin bg-zinc-300 text-zinc-800 flex-row justify-center items-center px-11 flex py-14 lg:pt-8 lg:pb-14'
         style={{ viewTransitionName: 'project-info' }}
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ type: "spring" as const, damping: 30, stiffness: 200, delay: 0.15 }}
       >
-        <motion.div
-          className='my-auto w-full'
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-        >
+        <div className='my-auto w-full overflow-hidden'>
           <ProjectNavigation projectSlug={projectSlug} />
           <div className='border-l px-5 border-zinc-800 flex flex-col '>
             <h1 className='text-stone-900 text-3xl font-black uppercase '>
@@ -140,36 +148,39 @@ function ProjectPageClient() {
               {description}
             </p>
           </div>
-          {project.urls && project.urls.length > 0 &&
-            project.urls.map((item, index) => (
-              <div
-                className='flex flex-wrap gap-2 items-center align-middle justify-left mb-2'
-                key={item.name}
-              >
-                <p className='text-sm font-bold '>{item.name}</p>
-                {item.active ? (
-                  <>
-                    <Link
-                      href={item.url}
-                      className=' inline-flex items-center rounded-md bg-gray-400/40 px-2 py-1 text-xs font-bold text-gray-600 ring-1 ring-inset ring-gray-500/10'
-                      target='_blank'
-                    >
-                      {item.url}
-                    </Link>
-                    {item.fallback && (
+          {project.urls && project.urls.length > 0 && (
+            <div>
+              {project.urls.map((item) => (
+                <div
+                  className='flex flex-wrap gap-2 items-center align-middle justify-left mb-2'
+                  key={item.name}
+                >
+                  <p className='text-sm font-bold '>{item.name}</p>
+                  {item.active ? (
+                    <>
+                      <Link
+                        href={item.url}
+                        className=' inline-flex items-center rounded-md bg-gray-400/40 px-2 py-1 text-xs font-bold text-gray-600 ring-1 ring-inset ring-gray-500/10'
+                        target='_blank'
+                      >
+                        {item.url}
+                      </Link>
+                      {item.fallback && (
+                        <p className='text-xs text-red-700'>{item.fallback}</p>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <span className=' cursor-default inline-flex items-center rounded-md bg-gray-400/40 px-2 py-1 text-xs font-bold text-gray-600 ring-1 ring-inset ring-gray-500/10'>
+                        {item.url}
+                      </span>
                       <p className='text-xs text-red-700'>{item.fallback}</p>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <span className=' cursor-default inline-flex items-center rounded-md bg-gray-400/40 px-2 py-1 text-xs font-bold text-gray-600 ring-1 ring-inset ring-gray-500/10'>
-                      {item.url}
-                    </span>
-                    <p className='text-xs text-red-700'>{item.fallback}</p>
-                  </>
-                )}
-              </div>
-            ))}
+                    </>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
           <div className='flex flex-wrap gap-2 items-center align-middle justify-left my-'>
             <p className='text-sm font-bold '>Etiquetas:</p>
             {project.tags && project.tags.length > 0 &&
@@ -182,11 +193,30 @@ function ProjectPageClient() {
                 </span>
               ))}
           </div>
-          <div className='mt-5 '>
-            <SocialButtons text={translations as any} />
+          <div className='mt-5 flex flex-col gap-3'>
+            <p className='text-sm font-bold'>{locale === 'es' ? 'Compartir:' : 'Share:'}</p>
+            <button
+              onClick={() => {
+                const url = window.location.href;
+                const shareText = locale === 'es'
+                  ? `Mira el trabajo de Alkitu: ${title}`
+                  : `Check out Alkitu's work: ${title}`;
+                window.open(
+                  `https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`,
+                  '_blank',
+                  'noopener,noreferrer,width=600,height=400'
+                );
+              }}
+              className='w-9 h-9 bg-zinc-800 hover:bg-zinc-900 text-white rounded-full flex items-center justify-center transition-colors'
+              aria-label={locale === 'es' ? 'Compartir en X' : 'Share on X'}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </button>
           </div>
-        </motion.div>
-      </section>
+        </div>
+      </motion.section>
     </div>
   );
 }

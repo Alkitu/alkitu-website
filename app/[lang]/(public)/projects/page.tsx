@@ -6,7 +6,6 @@ import { ProjectCard } from "@/app/components/molecules/card";
 import { ResponsiveList } from "@/app/components/organisms/responsive-list";
 import { Pagination } from "@/app/components/organisms/pagination";
 import { PageHeader } from "@/app/components/organisms/page-header";
-import { HomeContact } from "@/app/components/organisms/home-contact-section";
 import { SideBar } from "@/app/components/organisms/sidebar";
 import { useSearchParams } from "next/navigation";
 import { useScreenWidth } from "@/app/hooks";
@@ -192,10 +191,6 @@ const Portfolio = () => {
               )}
             </section>
 
-            {/* Contact Section */}
-            <section id="projects-contact" className='col-start-1 lg:col-start-2 col-end-5 md:col-end-9 lg:col-end-13 w-full pb-20'>
-              <HomeContact text={translations} />
-            </section>
           </TailwindGrid>
         </div>
       </motion.main>

@@ -8,9 +8,7 @@ import { Hero } from "../components/organisms/hero-section";
 import { Passion } from "../components/organisms/passion-section";
 import { ProjectsPreview } from "../components/organisms/projects-section";
 import { Skills } from "../components/organisms/skills-section";
-import { Testimonials } from "../components/organisms/testimonials-section";
 import { Brands } from "../components/organisms/brands-section";
-import { HomeContact } from "../components/organisms/home-contact-section";
 import { allBlogPosts } from 'contentlayer/generated';
 
 export default async function Home({
@@ -73,13 +71,7 @@ export default async function Home({
           <div id='passion-section'>
             <Passion text={text} />
           </div>
-          <div id='contact-section'>
-            <HomeContact text={text} />
-          </div>
-          <div id='testimonials-section'>
-            <Testimonials text={text} />
-          </div>
-          <div id='brands-section'>
+<div id='brands-section'>
             <Brands text={text} />
           </div>
         </div>

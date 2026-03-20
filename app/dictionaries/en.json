@@ -10,10 +10,24 @@
         "iconDark": "/icons/navbar/Home-dark.svg"
       },
       {
-        "name": "About",
-        "pathname": "/about",
-        "iconLight": "/icons/navbar/About-light.svg",
-        "iconDark": "/icons/navbar/About-dark.svg"
+        "name": "Services",
+        "pathname": "/servicios/branding",
+        "iconLight": "/icons/navbar/Home-light.svg",
+        "iconDark": "/icons/navbar/Home-dark.svg",
+        "submenu": [
+          {
+            "name": "Branding",
+            "pathname": "/servicios/branding"
+          },
+          {
+            "name": "Digital Marketing",
+            "pathname": "/servicios/marketing-digital"
+          },
+          {
+            "name": "Product Building",
+            "pathname": "/servicios/product-building"
+          }
+        ]
       },
       {
         "name": "Projects",
@@ -56,6 +70,10 @@
       {
         "name": "Home",
         "pathname": "/"
+      },
+      {
+        "name": "Services",
+        "pathname": "/servicios/branding"
       },
       {
         "name": "Projects",
@@ -142,28 +160,25 @@
         "name": "Passion"
       },
       {
-        "id": "contact-section",
-        "name": "Contact"
-      },
-      {
-        "id": "testimonials-section",
-        "name": "Testimonials"
-      },
-      {
         "id": "brands-section",
         "name": "Brands"
       }
     ],
     "heroSection": {
       "title": {
-        "part1": "Empowering",
-        "part2": "Your Digital",
-        "part3": "Transformation"
+        "part1": "We create",
+        "part2": "brands and growth",
+        "part3": "strategies.",
+        "rotatingWords": [
+          ["digital", "products"],
+          ["memorable", "brands"],
+          ["digital", "presence"]
+        ]
       },
-      "subtitle": "Development, Automation, and Integrated Creativity",
-      "description": "Application development, responsive websites, intelligent automations and AI with strategic marketing, advertising, branding, and graphic design. We craft smart, personalized solutions to elevate your business in the digital realm.",
+      "subtitle": "Web apps, mobile applications, professional branding and digital marketing",
+      "description": "Designed and developed by a team that masters all three disciplines.",
       "buttons": {
-        "primary": "Contact Us",
+        "primary": "Tell us about your project",
         "secondary": "Projects"
       },
       "files": {
@@ -172,8 +187,8 @@
       }
     },
     "categoriesSection": {
-      "title": "Explore our pillars of innovation and digital expertise, designed to transform your brand and expand your online presence.",
-      "subtitle": "Your next team of ",
+      "title": "Digital products, brands and growth strategies — designed and developed by a team that masters all three disciplines.",
+      "subtitle": "Explore ",
       "titlePrimary": "Services",
       "textScroller": "Our Services",
       "velocityScroller": 0.2,
@@ -181,30 +196,30 @@
       "categories": [
         {
           "order": 1,
-          "name": "DIGITAL DEVELOPMENT & AUTOMATIONS",
-          "shortName": "Developers",
-          "url": "/projects?category=Web_Developer&page=1",
+          "name": "PRODUCT BUILDING",
+          "shortName": "Product Building",
+          "url": "/servicios/product-building",
           "icon": "/icons/web_developer.svg",
           "artboardName": "Web",
-          "summary": "We deliver cutting-edge technological solutions, including custom application development, responsive web design, and smart automations. Leveraging AI where applicable, we optimize processes to boost your business efficiency."
+          "summary": "We design and develop custom <a href=\"/en/servicios/product-building#web-app-custom\">web apps</a>, <a href=\"/en/servicios/product-building#app-ios-nativa\">native iOS applications</a>, <a href=\"/en/servicios/product-building#apps-hibridas\">hybrid apps</a> and <a href=\"/en/servicios/product-building#prototipos-funcionales\">functional prototypes</a>. Management systems, advanced e-commerce, e-learning platforms, dashboards, interactive maps — any digital product your business needs, with the right tech stack for each case."
         },
         {
           "order": 2,
-          "name": "BRANDING & GRAPHIC DESIGN",
-          "shortName": "Designers",
-          "url": "/projects?category=Graphic_Design&page=1",
+          "name": "BRANDING",
+          "shortName": "Branding",
+          "url": "/servicios/branding",
           "icon": "/icons/designer.svg",
           "artboardName": "Design",
-          "summary": "We craft visual identities that resonate. From logo design to comprehensive branding guidelines, our team ensures your brand stands out with consistent, high-quality graphics across all media."
+          "summary": "We design <a href=\"/en/servicios/branding#logo\">logos</a>, <a href=\"/en/servicios/branding#naming\">naming</a>, <a href=\"/en/servicios/branding#guia-de-estilo\">style guides</a>, <a href=\"/en/servicios/branding#guia-de-estilo\">brand manuals</a> and <a href=\"/en/servicios/branding#ingenieria-de-marca\">complete identity systems</a>. We work with a proprietary methodology based on international brand valuation standards, designed so every branding decision has foundation and can be measured."
         },
         {
           "order": 3,
-          "name": "MARKETING & ADVERTISING",
-          "shortName": "Marketers",
-          "url": "/projects?category=Marketing&page=1",
+          "name": "DIGITAL MARKETING",
+          "shortName": "Digital Marketing",
+          "url": "/servicios/marketing-digital",
           "icon": "/icons/marketing.svg",
           "artboardName": "Marketing",
-          "summary": "We implement data-driven marketing strategies to grow your audience. Our advertising solutions are designed to maximize ROI and effectively reach your target market."
+          "summary": "We design commercial websites that convey your brand and generate business. We position them on Google and generative AI search engines with <a href=\"/en/servicios/marketing-digital#seo\">SEO</a>, <a href=\"/en/servicios/marketing-digital#geo\">GEO</a> and <a href=\"/en/servicios/marketing-digital#google-ads\">Google Ads</a> — so the right people find you when they search for what you offer."
         }
       ]
     },
@@ -217,171 +232,73 @@
     "blogSection": {
       "textScroller": "Latest Posts",
       "velocityScroller": -0.2,
-      "title": "From the",
+      "title": "Our",
       "titlePrimary": "Blog",
       "button": "See all posts"
     },
     "bigQuoteSection": {
-      "textScroller": "Think Big, Make it Big",
+      "textScroller": "Three Reflections",
       "velocityScroller": 0.2,
       "quote": {
-        "lineOne": "We develop, automate, and design",
-        "lineTwo": "– all in one place"
+        "lineOne": "A well-built digital product",
+        "lineTwo": "is the best marketing asset that exists."
       }
     },
     "skillsSection": {
-      "title": "Do you need one of",
-      "titlePrimary": "our tools?",
-      "textScroller": "The best tools",
+      "title": "Tools we",
+      "titlePrimary": "work with",
+      "textScroller": "Tools",
       "velocityScroller": 0.2,
       "firstLine": [
-        {
-          "name": "Illustrator",
-          "src": "/icons/skills/Illustrator.svg",
-          "order": 1
-        },
-        {
-          "name": "After Effects",
-          "src": "/icons/skills/AfterEffects.svg",
-          "order": 2
-        },
-        {
-          "name": "Premiere",
-          "src": "/icons/skills/Premiere.svg",
-          "order": 3
-        },
-        {
-          "name": "Search Console",
-          "src": "/icons/skills/SearchConsole.svg",
-          "order": 4
-        },
-        {
-          "name": "Analytics",
-          "src": "/icons/skills/Analytics.svg",
-          "order": 5
-        },
-        {
-          "name": "Tag Manager",
-          "src": "/icons/skills/TagManager.svg",
-          "order": 6
-        },
-        {
-          "name": "Microsoft 365",
-          "src": "/icons/skills/Microsoft365.svg",
-          "order": 7
-        },
-        {
-          "name": "Figma",
-          "src": "/icons/skills/Figma.svg",
-          "order": 8
-        },
-        {
-          "name": "HTML",
-          "src": "/icons/skills/HTML.svg",
-          "order": 9
-        },
-        {
-          "name": "CSS",
-          "src": "/icons/skills/CSS.svg",
-          "order": 10
-        },
-        {
-          "name": "GitHub",
-          "src": "/icons/skills/GitHub.svg",
-          "order": 11
-        },
-        {
-          "name": "Express JS",
-          "src": "/icons/skills/ExpressJS.svg",
-          "order": 12
-        },
-        {
-          "name": "React JS",
-          "src": "/icons/skills/ReactJS.svg",
-          "order": 13
-        },
-        {
-          "name": "Node JS",
-          "src": "/icons/skills/NodeJS.svg",
-          "order": 14
-        }
+        { "name": "Figma", "src": "/icons/skills/Figma.svg", "order": 1 },
+        { "name": "Illustrator", "src": "/icons/skills/Illustrator.svg", "order": 2 },
+        { "name": "After Effects", "src": "/icons/skills/AfterEffects.svg", "order": 3 },
+        { "name": "Affinity", "src": "/icons/skills/Affinity.svg", "order": 4 },
+        { "name": "Storybook", "src": "/icons/skills/Storybook.svg", "order": 5 },
+        { "name": "React", "src": "/icons/skills/ReactJS.svg", "order": 6 },
+        { "name": "TypeScript", "src": "/icons/skills/Typescript.svg", "order": 7 },
+        { "name": "JavaScript", "src": "/icons/skills/JavaScript.svg", "order": 8 },
+        { "name": "Next.js", "src": "/icons/skills/NextJS.svg", "order": 9 },
+        { "name": "Tailwind CSS", "src": "/icons/skills/Tailwind.svg", "order": 10 },
+        { "name": "Framer Motion", "src": "/icons/skills/FramerMotion.svg", "order": 11 },
+        { "name": "Vite", "src": "/icons/skills/Vite.svg", "order": 12 },
+        { "name": "GSAP", "src": "/icons/skills/GSAP.svg", "order": 13 },
+        { "name": "Three.js", "src": "/icons/skills/ThreeJS.svg", "order": 14 },
+        { "name": "Radix UI", "src": "/icons/skills/RadixUI.svg", "order": 15 },
+        { "name": "Lottie", "src": "/icons/skills/Lottie.svg", "order": 16 },
+        { "name": "Remotion", "src": "/icons/skills/Remotion.svg", "order": 17 },
+        { "name": "MapLibre GL", "src": "/icons/skills/MapLibreGL.svg", "order": 18 },
+        { "name": "HTML", "src": "/icons/skills/HTML.svg", "order": 19 },
+        { "name": "CSS", "src": "/icons/skills/CSS.svg", "order": 20 },
+        { "name": "Swift", "src": "/icons/skills/Swift.svg", "order": 21 },
+        { "name": "Expo", "src": "/icons/skills/Expo.svg", "order": 22 },
+        { "name": "Claude Code", "src": "/icons/skills/ClaudeCode.svg", "order": 23 },
+        { "name": "Gemini", "src": "/icons/skills/Gemini.svg", "order": 24 }
       ],
       "secondLine": [
-        {
-          "name": "Tailwind",
-          "src": "/icons/skills/Tailwind.svg",
-          "order": 1
-        },
-        {
-          "name": "Framer Motion",
-          "src": "/icons/skills/FramerMotion.svg",
-          "order": 2
-        },
-        {
-          "name": "Google Ads",
-          "src": "/icons/skills/GoogleAds.svg",
-          "order": 3
-        },
-        {
-          "name": "ESlint",
-          "src": "/icons/skills/ESlint.svg",
-          "order": 4
-        },
-        {
-          "name": "Puppeteer",
-          "src": "/icons/skills/Puppeteer.svg",
-          "order": 5
-        },
-        {
-          "name": "Postman",
-          "src": "/icons/skills/Postman.svg",
-          "order": 6
-        },
-        {
-          "name": "JavaScript",
-          "src": "/icons/skills/JavaScript.svg",
-          "order": 7
-        },
-        {
-          "name": "WordPress",
-          "src": "/icons/skills/WordPress.svg",
-          "order": 8
-        },
-        {
-          "name": "Handlebars",
-          "src": "/icons/skills/Handlebars.svg",
-          "order": 9
-        },
-        {
-          "name": "Bootstrap",
-          "src": "/icons/skills/Bootstrap.svg",
-          "order": 10
-        },
-        {
-          "name": "InDesign",
-          "src": "/icons/skills/InDesign.svg",
-          "order": 11
-        },
-        {
-          "name": "JSX",
-          "src": "/icons/skills/JSX.svg",
-          "order": 12
-        },
-        {
-          "name": "Typescript",
-          "src": "/icons/skills/Typescript.svg",
-          "order": 13
-        },
-        {
-          "name": "MongoDB",
-          "src": "/icons/skills/MongoDB.svg",
-          "order": 14
-        },
-        {
-          "name": "Photoshop",
-          "src": "/icons/skills/Photoshop.svg",
-          "order": 15
-        }
+        { "name": "Arduino", "src": "/icons/skills/Arduino.svg", "order": 1 },
+        { "name": "WordPress", "src": "/icons/skills/WordPress.svg", "order": 2 },
+        { "name": "Shopify", "src": "/icons/skills/Shopify.svg", "order": 4 },
+        { "name": "Elementor", "src": "/icons/skills/Elementor.svg", "order": 5 },
+        { "name": "Liquid", "src": "/icons/skills/Liquid.svg", "order": 6 },
+        { "name": "WooCommerce", "src": "/icons/skills/WooCommerce.svg", "order": 7 },
+        { "name": "Google Ads", "src": "/icons/skills/GoogleAds.svg", "order": 8 },
+        { "name": "Analytics", "src": "/icons/skills/Analytics.svg", "order": 9 },
+        { "name": "Search Console", "src": "/icons/skills/SearchConsole.svg", "order": 10 },
+        { "name": "Tag Manager", "src": "/icons/skills/TagManager.svg", "order": 11 },
+        { "name": "Calvary", "src": "/icons/skills/Calvary.svg", "order": 12 },
+        { "name": "GitHub", "src": "/icons/skills/GitHub.svg", "order": 13 },
+        { "name": "ESLint", "src": "/icons/skills/ESlint.svg", "order": 14 },
+        { "name": "Vitest", "src": "/icons/skills/Vitest.svg", "order": 15 },
+        { "name": "Playwright", "src": "/icons/skills/Playwright.svg", "order": 16 },
+        { "name": "Chromatic", "src": "/icons/skills/Chromatic.svg", "order": 17 },
+        { "name": "XCTest", "src": "/icons/skills/XCTest.svg", "order": 18 },
+        { "name": "pnpm", "src": "/icons/skills/pnpm.svg", "order": 19 },
+        { "name": "Supabase", "src": "/icons/skills/Supabase.svg", "order": 20 },
+        { "name": "PostgreSQL", "src": "/icons/skills/PostgreSQL.svg", "order": 21 },
+        { "name": "Vercel", "src": "/icons/skills/Vercel.svg", "order": 22 },
+        { "name": "Stripe", "src": "/icons/skills/Stripe.svg", "order": 23 },
+        { "name": "Resend", "src": "/icons/skills/Resend.svg", "order": 24 }
       ]
     },
     "brandsSection": {
@@ -467,16 +384,16 @@
       ]
     },
     "passionSection": {
-      "title": "But why ",
-      "titlePrimary": "Video Games?",
-      "description": "Once upon a time, there was a passionate developer named Luis Urdaneta. With a heart full of creativity and a mind brimming with ideas, Luis embarked on a journey into the world of game development. Through dedication and skill, he crafted immersive digital experiences that captivated players and transported them to new realms of excitement.",
+      "title": "Three ",
+      "titlePrimary": "reflections",
+      "description": "An extraordinary digital product with a weak brand competes only on functionality. A powerful brand backed by a solid product competes on preference — and preference generates premium pricing. The best marketing strategy amplifies what the brand already communicates. When identity is clear, every campaign reinforces a coherent message instead of building one from scratch. A well-built digital product is the best marketing asset that exists. A website that loads fast, works well and ranks in search engines generates more business than any isolated campaign.",
       "artboardName": "Passion",
       "bigQuote": {
-        "textScroller": "The Power Of Passion",
+        "textScroller": "Brand · Product · Strategy",
         "velocityScroller": 0.2,
         "quote": {
-          "lineOne": "Web dev is our love",
-          "lineTwo": "Digital is our passion"
+          "lineOne": "Preference generates",
+          "lineTwo": "premium pricing."
         }
       }
     },
@@ -537,51 +454,31 @@
       }
     ],
     "title": "Projects",
-    "description": "10,000+ beautiful, modern ios work, designs, illustrations, and graphic elements",
+    "description": "Branding, digital product and marketing with our own methodology. Every project reflects a brand with substance.",
     "categories": [
-      {
-        "id": "webdevelopment",
-        "name": "Web_Development"
-      },
-      {
-        "id": "webapps",
-        "name": "Web_Apps"
-      },
-      {
-        "id": "webdesign",
-        "name": "Web_Design"
-      },
-      {
-        "id": "videogames",
-        "name": "Video_Games"
-      },
-      {
-        "id": "logos",
-        "name": "Logos"
-      },
       {
         "id": "branding",
         "name": "Branding"
       },
       {
-        "id": "seo",
-        "name": "SEO"
+        "id": "webs-corporativas",
+        "name": "Webs Corporativas"
       },
       {
-        "id": "sem",
-        "name": "SEM"
+        "id": "marketing-digital",
+        "name": "Marketing Digital"
       },
       {
-        "id": "audiovisuals",
-        "name": "Audiovisuals"
+        "id": "web-app",
+        "name": "Web App"
       },
       {
-        "id": "offlinedesigns",
-        "name": "Offline_Designs"
+        "id": "ui-ux-prototyping",
+        "name": "UI/UX Prototyping"
       },
       {
-        "id": "ux/ui",
-        "name": "UX/UI"
+        "id": "audiovisuales",
+        "name": "Audiovisuales"
       }
     ],
     "projects": [
@@ -589,19 +486,18 @@
         "id": 1,
         "title": "Tangle",
         "categories": [
-          "Web_Development",
-          "Web_Apps"
+          "Web App"
         ],
         "description": "After completing the bootcamp at \"Ironhack,\" I had the opportunity to do remote internships in English for 4 months at an innovative startup based in Amsterdam, the Netherlands. My contribution included executing two projects, with the standout being the creation of a website.\n\nThe initial concept for the website was designed in Figma by another team member. My task was to bring this design to life, selecting the most appropriate stack for the company's needs. Given the prevailing familiarity within the team with the MERN stack, I chose to develop the website using NextJS, aiming to improve its indexing on major browsers.\n\nIt is relevant to note that a few months after the project's completion, REACT announced its recommendation to choose one of the popular React-based frameworks in the community, among which NextJS is included. This fact validates the strategic choice made during the project development, reaffirming the quality and relevance of the selected technology.",
         "about": "Tangle is a university social ecosystem that connects students within the same institution, combating loneliness in the cities across the globe.",
         "tags": [
           "GitHub",
-          "NextJS",
-          "NodeJS",
-          "ExpressJS",
-          "TailwindCSS",
-          "Framer_Motion",
-          "ESlint"
+          "Next.js",
+          "Node.js",
+          "Express",
+          "Tailwind CSS",
+          "Framer Motion",
+          "ESLint"
         ],
         "image": "https://lh3.googleusercontent.com/d/1qr-X_JG0VnWBh1ncGPAKT5UOOtv1Ymg8",
         "gallery": [
@@ -630,22 +526,18 @@
         "id": 2,
         "title": "Top Top",
         "categories": [
-          "Web_Development",
-          "Web_Design",
-          "Web_Apps"
+          "Web App"
         ],
         "description": "In my third project during the Ironhack web development bootcamp, I created a mobile web application that served as a social platform for exploring nearby restaurants, adding them to favorites, and accessing their menus and reservations.\n\nThis work expanded the capabilities of my previous project, which focused on CRUD for digital menus and restaurants, by introducing a new reservations service, significantly enhancing its value for users and establishments. This experience reinforced my ability to design more sophisticated web solutions, showcasing my proficiency in using MVC, React, and libraries like Bootstrap and Framer Motion, gradually solidifying my position as a competent and versatile full-stack developer.",
         "about": "Top Top Restaurants is a mobile web application that redefines the dining experience by allowing users to discover nearby restaurants as if it were a social network, and easily manage reservations.          ",
         "tags": [
           "GitHub",
           "MongoDB",
-          "ExpressJS",
-          "ReactJS",
-          "NodeJS",
+          "Express",
+          "React",
+          "Node.js",
           "Bootstrap",
-          "Framer_Motion",
-          "Axios",
-          "Docker"
+          "Framer Motion"
         ],
         "image": "https://lh3.googleusercontent.com/d/1RXElI694I-yzJCrVeOXfZIPO6A29peFc",
         "gallery": [
@@ -673,18 +565,15 @@
         "id": 3,
         "title": "Big Menu",
         "categories": [
-          "Web_Development",
-          "Web_Design",
-          "Web_Apps"
+          "Web App"
         ],
         "description": "My second project in the Ironhack web development bootcamp was the creation of a web application designed for digital menu management in restaurants or restaurant chains. This web app allows CRUD operations (Create, Read, Update, Delete) on menus, making it easy for owners to efficiently update and maintain their culinary offerings in real-time.\n\nFor the backend logic, I implemented the Model-View-Controller (MVC) design pattern, enabling a clear and efficient code structure as well as a separation of responsibilities within the application. This architecture was crucial for keeping the project organized and facilitating its scalability.\n\nThis project not only showcases my ability to integrate various technologies in the development of complex web solutions but also demonstrates my understanding of design patterns like MVC for creating structured and maintainable web applications.",
         "about": "Big Menu is a desktop web application for the efficient management of digital menus in restaurants. It enables owners to update their culinary offerings in real-time with simple operations. The MVC architecture ensures organized code and scalability.",
         "tags": [
           "GitHub",
           "MongoDB",
-          "ExpressJS",
-          "NodeJS",
-          "Handlebars",
+          "Express",
+          "Node.js",
           "Bootstrap"
         ],
         "image": "https://lh3.googleusercontent.com/d/1C_ICEORfRBZdiHL83SSLJ4CU-bmOX_xO",
@@ -716,18 +605,15 @@
         "id": 4,
         "title": "Gousty",
         "categories": [
-          "Web_Development",
-          "Web_Apps",
-          "Web_Design",
-          "Video_Games"
+          "Web App"
         ],
         "description": "In my first project during the web development bootcamp at Ironhack, I took on the challenge of creating a computer game. I used HTML5 and JavaScript to develop the game logic and manipulate objects on the canvas, complemented by CSS3 for the design and layout of the interface. GitHub served as the version control platform, while environment and character graphics were created using Adobe Illustrator. This project not only showcases my ability to combine front-end development with graphic design but also culminates in an interactive game that reflects my competence in integrating web technologies and design tools.\n\nI deeply appreciate Pedro Salazar for his support in the final stage. Together, in just 3 weeks, we fulfilled a childhood dream by creating this video game, while managing other work commitments. Effective task coordination and the ability to work as a team under pressure were crucial in meeting this challenge in such a short time, demonstrating our passion and commitment to the realization of innovative projects.",
         "about": "'Gousty, The Ghost' is a vibrant platformer mini-game set in a dark forest, filled with challenging Slimes. Control Gousty with the keyboard, using his special abilities to confront enemies and overcome levels. An intense adventure awaits you, where strategy and skill are essential.",
         "tags": [
-          "Adobe_Illustrator",
+          "Illustrator",
           "GitHub",
-          "HTML5",
-          "CSS3",
+          "HTML",
+          "CSS",
           "JavaScript"
         ],
         "image": "https://lh3.googleusercontent.com/d/11KXaqoKlk3VYGlavOUXPcLBEk2xJchJA",
@@ -758,21 +644,19 @@
         "id": 5,
         "title": "Desierto Sahara Trips",
         "categories": [
-          "Web_Development",
-          "Web_Design",
-          "Logos",
+          "Webs Corporativas",
           "Branding",
-          "SEO"
+          "Marketing Digital"
         ],
         "description": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
         "about": "",
         "tags": [
-          "HTML5",
-          "CSS3",
+          "HTML",
+          "CSS",
           "JavaScript",
           "WordPress",
           "Elementor",
-          "Adobe_Illustrator"
+          "Illustrator"
         ],
         "image": "https://lh3.googleusercontent.com/d/1adXiKkTYUmuFTlS3Ex6CclMHNW6tSsZg",
         "gallery": [
@@ -795,20 +679,19 @@
         "id": 6,
         "title": "Canastilla",
         "categories": [
-          "Web_Development",
-          "Web_Design",
+          "Webs Corporativas",
           "Branding",
-          "SEO"
+          "Marketing Digital"
         ],
         "description": "Gracias a Valeria Urdaneta por su apoyo en el diseño de la web.",
         "about": "",
         "tags": [
-          "HTML5",
-          "CSS3",
+          "HTML",
+          "CSS",
           "JavaScript",
           "WordPress",
           "Elementor",
-          "Adobe_Illustrator"
+          "Illustrator"
         ],
         "image": "https://lh3.googleusercontent.com/d/1-t-HT1z7AJmNf0S-cympMXkGtAZu37lZ",
         "gallery": [
@@ -831,21 +714,19 @@
         "id": 7,
         "title": "Eleale",
         "categories": [
-          "Web_Development",
-          "Web_Design",
-          "Logos",
+          "Webs Corporativas",
           "Branding",
-          "SEO"
+          "Marketing Digital"
         ],
         "description": "Cleaning company that likes to provide 100% satisfaction to  commercial, residential, business, and more.",
         "about": "",
         "tags": [
-          "HTML5",
-          "CSS3",
+          "HTML",
+          "CSS",
           "JavaScript",
           "WordPress",
           "Elementor",
-          "Adobe_Illustrator"
+          "Illustrator"
         ],
         "image": "https://lh3.googleusercontent.com/d/1ZgGszKCks1OHYZVHK3ZMA3E96cBkfc0m",
         "gallery": [
@@ -866,19 +747,18 @@
         "id": 8,
         "title": "Funda Manía",
         "categories": [
-          "Web_Development",
-          "Web_Design",
-          "SEO"
+          "Webs Corporativas",
+          "Marketing Digital"
         ],
         "description": "description",
         "about": "",
         "tags": [
-          "HTML5",
-          "CSS3",
+          "HTML",
+          "CSS",
           "JavaScript",
           "WordPress",
           "Elementor",
-          "Adobe_Illustrator"
+          "Illustrator"
         ],
         "image": "https://lh3.googleusercontent.com/d/18iIa7Wr2XGKn-gtCXSI_oQQNLAiHUrW2",
         "gallery": [
@@ -901,22 +781,19 @@
         "id": 9,
         "title": "El Mejor Vidente",
         "categories": [
-          "Web_Development",
-          "Web_Design",
-          "Logos",
+          "Webs Corporativas",
           "Branding",
-          "SEO",
-          "SEM"
+          "Marketing Digital"
         ],
         "description": "description",
         "about": "",
         "tags": [
-          "HTML5",
-          "CSS3",
+          "HTML",
+          "CSS",
           "JavaScript",
           "WordPress",
           "Elementor",
-          "Adobe_Illustrator"
+          "Illustrator"
         ],
         "image": "https://lh3.googleusercontent.com/d/1sk_St7kGZ5LS_myymE2PeUrrcocbvEYc",
         "gallery": [
@@ -939,15 +816,14 @@
         "id": 10,
         "title": "Clínica Diseño y Sonrisas",
         "categories": [
-          "Web_Development",
-          "Web_Design",
-          "SEO"
+          "Webs Corporativas",
+          "Marketing Digital"
         ],
         "description": "description",
         "about": "",
         "tags": [
-          "HTML5",
-          "CSS3",
+          "HTML",
+          "CSS",
           "JavaScript",
           "WordPress",
           "Elementor"
@@ -973,23 +849,22 @@
         "id": 11,
         "title": "Tránsito Bar",
         "categories": [
-          "Web_Development",
-          "SEO",
-          "Audiovisuals",
-          "Offline_Designs"
+          "Webs Corporativas",
+          "Branding",
+          "Marketing Digital",
+          "Audiovisuales"
         ],
         "description": "Gracias especiales para Valeria Urdaneta por su colaboracion en el diseño de la web.",
         "about": "",
         "tags": [
-          "HTML5",
-          "CSS3",
+          "HTML",
+          "CSS",
           "JavaScript",
           "WordPress",
           "Elementor",
-          "Adobe_Illustrator",
-          "Adobe_InDesign",
-          "Photography",
-          "Adobe_PhotoShop"
+          "Illustrator",
+          "InDesign",
+          "Photoshop"
         ],
         "image": "https://lh3.googleusercontent.com/d/1VSaQ40emziHCyQPqXlh9l6y7vbtyjoQ9",
         "gallery": [
@@ -1013,21 +888,19 @@
         "id": 12,
         "title": "Aircrew Aviation",
         "categories": [
-          "Web_Development",
-          "Web_Design",
-          "SEO",
-          "SEM"
+          "Webs Corporativas",
+          "Marketing Digital"
         ],
         "description": "Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim.",
         "titleTags": "Tags",
         "about": "",
         "tags": [
-          "HTML5",
-          "CSS3",
+          "HTML",
+          "CSS",
           "JavaScript",
           "WordPress",
           "Elementor",
-          "Adobe_Illustrator"
+          "Illustrator"
         ],
         "image": "https://lh3.googleusercontent.com/d/1XyK6mGS1NHuIlaQ4W9rKNdVYG29kwsjm",
         "gallery": [
@@ -1050,14 +923,14 @@
         "id": 13,
         "title": "Detailcar",
         "categories": [
-          "Web_Development",
-          "SEO"
+          "Webs Corporativas",
+          "Marketing Digital"
         ],
         "description": "description",
         "about": "",
         "tags": [
-          "HTML5",
-          "CSS3",
+          "HTML",
+          "CSS",
           "JavaScript",
           "WordPress",
           "Elementor"
@@ -1083,24 +956,21 @@
         "id": 14,
         "title": "Helayor",
         "categories": [
-          "Web_Development",
-          "Web_Design",
-          "Logos",
+          "Webs Corporativas",
           "Branding",
-          "SEO",
-          "Offline_Designs"
+          "Marketing Digital"
         ],
         "description": "description",
         "about": "",
         "tags": [
-          "HTML5",
-          "CSS3",
+          "HTML",
+          "CSS",
           "JavaScript",
           "WordPress",
           "Elementor",
-          "Adobe_Illustrator",
-          "Adobe_InDesign",
-          "Adobe_PhotoShop"
+          "Illustrator",
+          "InDesign",
+          "Photoshop"
         ],
         "image": "https://lh3.googleusercontent.com/d/1KQmSw20mgfrQ78QyQ7sTq-Yf1bfF3GVd",
         "gallery": [
@@ -1125,15 +995,14 @@
         "id": 15,
         "title": "Ernesto Fuenmayor",
         "categories": [
-          "Logos",
           "Branding",
-          "Audiovisuals"
+          "Audiovisuales"
         ],
         "description": "description",
         "about": "",
         "tags": [
-          "Adobe_Illustrator",
-          "Adobe_After_Effects"
+          "Illustrator",
+          "After Effects"
         ],
         "image": "https://lh3.googleusercontent.com/d/1WNH2TApngkV0ECaMPWWZ6nhQpP664hMW",
         "gallery": [
@@ -1156,14 +1025,13 @@
         "id": 16,
         "title": "Ciutat de las Artes y las Ciencias",
         "categories": [
-          "Web_Design",
-          "UX/UI"
+          "UI/UX Prototyping"
         ],
         "description": "description",
         "about": "",
         "tags": [
           "Figma",
-          "Adobe_Premiere"
+          "Premiere"
         ],
         "image": "https://lh3.googleusercontent.com/d/1vU5JcpdyKIJteUbMQM0K_VRoRqpGx8pI",
         "gallery": [
@@ -1820,6 +1688,463 @@
         "invalidImage": "Only image files are allowed",
         "fileTooLarge": "File must be smaller than",
         "loadError": "Error loading profile"
+      }
+    }
+  },
+  "servicios": {
+    "branding": {
+      "hero": {
+        "title": "Branding",
+        "subtitle": "We build brands with methodology, foundation and system",
+        "description": "Your brand is more than a logo. It is the intangible asset formed in people's minds when they connect with your company through the senses — what they see, read, hear, and experience in your space. A well-built brand can represent up to 60% of an organization's total value. At Alkitu we approach branding with a proprietary framework: Brand Engineering. A system that structures brand building in four pillars — Brand DNA, Verbal Identity, Visual Identity and Spatial Identity — inspired by the international standards ISO 20671 and ISO 10668 for brand valuation.",
+        "cta": "Tell us about your project"
+      },
+      "sections": {
+        "problem": {
+          "title": "The problem of building a brand in pieces",
+          "description": "Most companies build their brand in pieces: one designer for the logo, another for the website, an agency for social media, a consultant for strategy. The result is a fragmented brand where the logo says one thing, the website says another, and social media says a third. That fragmentation confuses the market and erodes the trust that is so hard to build. When the brand is coherent, the effect is felt across every dimension of the business."
+        },
+        "services": {
+          "title": "Branding Services",
+          "items": [
+            {
+              "id": "logo",
+              "name": "Logo",
+              "description": "We design the visual element that identifies and differentiates your business. Each logo starts from a defined conceptual territory and is built with criteria of meaning, structure and real-world application.",
+              "cta": "Request a quote →"
+            },
+            {
+              "id": "naming",
+              "name": "Naming",
+              "description": "We create, validate and protect your brand name. We combine phono-symbolism techniques with legal, linguistic and digital verification so the name sounds right, means what it should, and has an available domain.",
+              "cta": "Request a quote →"
+            },
+            {
+              "id": "buyer-persona",
+              "name": "Buyer Persona",
+              "description": "We define who your ideal customer is with four levels of segmentation: demographic, geographic, psychographic and behavioral. A documented profile that guides all brand, product and communication decisions.",
+              "cta": "Request a quote →"
+            },
+            {
+              "id": "redes-sociales",
+              "name": "Social Media",
+              "description": "We design the visual system and behavior of your brand on digital platforms: templates, avatars, covers, filters and communication parameters. All aligned with your identity.",
+              "cta": "Request a quote →"
+            },
+            {
+              "id": "guia-de-estilo",
+              "name": "Style Guide",
+              "description": "We compile all the visual and verbal usage rules of your brand into a practical manual: colorimetry, typography, stationery, brand language, imagery and applications.",
+              "cta": "Request a quote →"
+            },
+            {
+              "id": "auditoria-de-marca",
+              "name": "Brand Audit",
+              "description": "We analyze and document the strategic pillars of your brand: history, market, buyer persona, value proposition, archetype and personality, manifesto.",
+              "cta": "Request a quote →"
+            },
+            {
+              "id": "ingenieria-de-marca",
+              "name": "Brand Engineering",
+              "description": "The complete system: 26 services, 90 sub-elements, 4 pillars. A comprehensive manual that documents every aspect of your brand with a proprietary and measurable framework.",
+              "cta": "Learn more →",
+              "url": "/servicios/ingenieria-de-marca"
+            }
+          ]
+        }
+      }
+    },
+    "marketingDigital": {
+      "hero": {
+        "title": "Digital Marketing",
+        "subtitle": "Measurable growth engine — from discovery to loyalty",
+        "description": "Digital marketing is more than having an internet presence. It is the set of strategies that allow the right person to find your business, get interested, buy and come back — and make the entire process measurable. Alkitu structures its Digital Marketing service on the Digital Value Cycle — based on Google's See-Think-Do-Care framework.",
+        "cta": "Tell us about your project"
+      },
+      "sections": {
+        "problem": {
+          "title": "The problem",
+          "description": "Many businesses invest in digital marketing without understanding what they are buying. They pay for clicks that don't convert, create content no one sees, or have a website that doesn't appear on Google or AI search engines like ChatGPT, Gemini or Perplexity. The result: money invested with no measurable return. Digital marketing works when every piece is connected: the campaign leads to a website that converts, the website is optimized for search engines, and data from each action informs the next investment."
+        },
+        "webCore": {
+          "title": "The core is the website",
+          "description": "Everything starts with a website. Without a well-designed, optimized and functional website, SEO, GEO and Google Ads campaigns have nowhere to direct users. The website is the center of gravity of the entire digital strategy.",
+          "items": [
+            "Present your services and products with your brand identity",
+            "Capture leads through forms and calls to action",
+            "Rank organically on Google and AI search engines",
+            "Receive paid campaign traffic with pages designed to convert",
+            "Measure every interaction to make better decisions"
+          ]
+        },
+        "positioning": {
+          "title": "Positioning and growth",
+          "description": "We are Google partners. With SEO, GEO and Google Ads we make your business appear where your customers search — both in traditional search engines and generative AI engines."
+        },
+        "services": {
+          "title": "Digital Marketing Services",
+          "items": [
+            {
+              "id": "webs-corporativas",
+              "name": "Corporate Websites",
+              "description": "The foundation of every digital strategy. We design websites that convey your brand identity, present your services and are ready to capture leads and rank in search engines.",
+              "cta": "See Corporate Websites →",
+              "url": "/servicios/webs-corporativas"
+            },
+            {
+              "id": "seo",
+              "name": "SEO",
+              "description": "We position your website in Google's organic results. We work on both the technical side and content to generate sustained traffic that doesn't depend on paying per click.",
+              "cta": "Request a quote →"
+            },
+            {
+              "id": "geo",
+              "name": "GEO",
+              "description": "We optimize your brand's presence in generative AI engines — ChatGPT, Gemini, Perplexity, Copilot. We structure your content so these systems cite you as a source.",
+              "cta": "Request a quote →"
+            },
+            {
+              "id": "google-ads",
+              "name": "Google Ads",
+              "description": "Paid advertising campaigns across all Google formats: Search, Display, Shopping, YouTube, Performance Max and Demand Gen. Every dollar invested is tracked to its return.",
+              "cta": "Request a quote →"
+            }
+          ]
+        }
+      }
+    },
+    "productBuilding": {
+      "hero": {
+        "title": "Product Building",
+        "subtitle": "We design and develop custom digital products",
+        "description": "We create complete digital products: web apps, native iOS applications, hybrid apps, functional prototypes and design systems. From enterprise management systems and e-learning platforms to advanced e-commerce and process automation — with the right tech stack for each case. We work with UI/UX design and usability standards on every project.",
+        "cta": "Tell us about your project"
+      },
+      "sections": {
+        "problem": {
+          "title": "The problem",
+          "description": "Many companies operate with processes that depend on spreadsheets, WhatsApp and generic tools that don't adapt to how the business actually works. Information is scattered, errors repeat, and every manual step consumes time that could be spent growing. When they try to solve it, they encounter freelancers who deliver incomplete products, agencies offering adapted templates, or internal teams without the technical capacity. A well-built digital product breaks that cycle."
+        },
+        "howWeWork": {
+          "title": "How we work",
+          "description": "Every project follows a Spec-Driven Development approach: before writing code, we document exactly what will be built, how it will behave and under what criteria it validates. We design proprietary design systems for each project, ensuring visual consistency, development speed and total control.",
+          "steps": [
+            {
+              "title": "Spec-Driven Development",
+              "description": "We document the complete scope before writing a single line of code. This eliminates ambiguities, reduces rework and gives the client full visibility."
+            },
+            {
+              "title": "Proprietary design systems",
+              "description": "Each visual component is created once, documented, tested and reused throughout the product. Greater consistency and development speed."
+            },
+            {
+              "title": "Complex product experience",
+              "description": "Payment gateway integration, enterprise management software, e-learning platforms and commercial websites with positioning and integrated analytics."
+            }
+          ]
+        },
+        "services": {
+          "title": "Product Building Services",
+          "items": [
+            {
+              "id": "web-app-custom",
+              "name": "Custom Web App",
+              "description": "Custom web platforms: e-learning, ERP, dashboards, interactive maps, client portals, advanced e-commerce. Built with React and Next.js.",
+              "cta": "See Custom Web App →",
+              "url": "/servicios/product-building/web-app-custom"
+            },
+            {
+              "id": "diseno-ui-ux",
+              "name": "UI/UX Design",
+              "description": "We design the complete experience of your digital product before developing it. Research, wireframes, pixel-perfect design and interactive prototype.",
+              "cta": "Request a quote →"
+            },
+            {
+              "id": "prototipos-funcionales",
+              "name": "Functional Prototypes",
+              "description": "High-fidelity navigable simulations in Figma. The lowest-risk way to validate an idea before investing in development.",
+              "cta": "Request a quote →"
+            },
+            {
+              "id": "app-ios-nativa",
+              "name": "Native iOS App",
+              "description": "iPhone and iPad applications with Swift and SwiftUI, making the most of Apple hardware. Computer vision, wearables and on-device processing.",
+              "cta": "Request a quote →"
+            },
+            {
+              "id": "apps-hibridas",
+              "name": "Hybrid Apps",
+              "description": "iOS and Android applications simultaneously with React Native and Expo. A single codebase generating real native components.",
+              "cta": "Request a quote →"
+            },
+            {
+              "id": "design-systems",
+              "name": "Design Systems",
+              "description": "Reusable component libraries that unify visual identity across all your digital products. Living documentation with Storybook and automated testing.",
+              "cta": "Request a quote →"
+            }
+          ]
+        }
+      }
+    },
+    "webAppCustom": {
+      "hero": {
+        "title": "Custom Web App",
+        "subtitle": "Custom digital platforms",
+        "description": "We build custom web platforms with React and Next.js. Each web app is designed, developed and deployed as a real product: with architecture built to scale, maintainable code, automated testing and complete documentation. We work with Spec-Driven Development and proprietary design systems.",
+        "cta": "Tell us about your project"
+      },
+      "sections": {
+        "examples": {
+          "title": "Examples of what we build",
+          "description": "From training platforms to enterprise management systems, each product is custom-built to solve a specific problem.",
+          "items": [
+            {
+              "name": "E-learning",
+              "description": "Training platforms with courses, progress tracking, assessments and certifications"
+            },
+            {
+              "name": "Advanced e-commerce",
+              "description": "Stores with complex business logic and payment gateway integration"
+            },
+            {
+              "name": "Management systems (ERP)",
+              "description": "Internal tools for managing operations, inventory, billing or resources"
+            },
+            {
+              "name": "Map systems",
+              "description": "Indoor and outdoor visualization with MapLibre GL — logistics, tourism, real estate"
+            },
+            {
+              "name": "Dashboards",
+              "description": "Control panels with real-time data visualization"
+            },
+            {
+              "name": "Client portals",
+              "description": "Private areas where your clients manage their services"
+            },
+            {
+              "name": "3D Experiences",
+              "description": "WebGL scenes rendered in the browser, animated backgrounds and visual post-processing"
+            },
+            {
+              "name": "Programmatic video",
+              "description": "Code-generated videos — same template, thousands of variations with different data"
+            }
+          ]
+        },
+        "whatYouGet": {
+          "title": "What you get",
+          "description": "Each project includes everything needed for a professional digital product.",
+          "items": [
+            "Documented technical architecture",
+            "Complete frontend development (React/Next.js)",
+            "Project-specific design system",
+            "Complex forms and data flows",
+            "External API and payment gateway integration",
+            "Responsive and accessible design",
+            "Automated testing (unit + e2e)",
+            "Deployment and documentation",
+            "Training for autonomous management"
+          ]
+        },
+        "process": {
+          "title": "How we do it",
+          "description": "A proven process that guarantees quality and visibility at every stage.",
+          "steps": [
+            {
+              "title": "Discovery",
+              "description": "We understand the business, the user and the real problem"
+            },
+            {
+              "title": "Specification",
+              "description": "We document the scope with Spec-Driven Development"
+            },
+            {
+              "title": "Design",
+              "description": "We create the visual and interaction experience (UI/UX)"
+            },
+            {
+              "title": "Construction",
+              "description": "We develop with production standards and proprietary design system"
+            },
+            {
+              "title": "Testing",
+              "description": "We validate with automated tests"
+            },
+            {
+              "title": "Delivery",
+              "description": "We deploy, train and document"
+            },
+            {
+              "title": "Evolution",
+              "description": "We iterate post-launch according to needs"
+            }
+          ]
+        },
+        "forWhom": {
+          "title": "Who is it for",
+          "description": "Companies that need a digital product that does something — not just informs.",
+          "profiles": [
+            {
+              "name": "Startups",
+              "description": "Launching their first digital product and needing a complete technical team"
+            },
+            {
+              "name": "Growing companies",
+              "description": "Automating processes and needing custom tools"
+            },
+            {
+              "name": "Specialized businesses",
+              "description": "Needing tools that don't exist in the market"
+            }
+          ]
+        }
+      }
+    },
+    "websCorporativas": {
+      "hero": {
+        "title": "Corporate Websites",
+        "subtitle": "Your digital business card",
+        "description": "A corporate website is designed to convey your brand identity, present your products and services clearly, and capture leads and clients continuously. All our websites adapt to mobile devices and are prepared for search engine positioning. We work with three approaches: pure code with React and Next.js, WordPress and Shopify.",
+        "cta": "What type of website do you need? Tell us"
+      },
+      "sections": {
+        "code": {
+          "title": "1. Pure code website (React / Next.js)",
+          "description": "The option with the highest level of customization. Every element is designed and programmed specifically for your project, without relying on templates or CMS limitations. The result is a faster, more flexible website completely aligned with your brand identity. Includes integrated AddOns: web analytics for data from day one, and email and newsletter components to manage audience communication directly.",
+          "tags": [
+            "React",
+            "Next.js",
+            "TypeScript",
+            "Tailwind CSS",
+            "Framer Motion",
+            "GSAP",
+            "Three.js",
+            "Vercel"
+          ]
+        },
+        "wordpress": {
+          "title": "2. WordPress",
+          "description": "The world's most-used content management platform. We start from the WordPress base and develop a custom theme with proprietary design, custom plugins and specific functionalities for your business. You can manage and update your website content autonomously. WordPress allows extending functionality through plugins — from advanced forms to bookings, directories or private areas.",
+          "tags": [
+            "WordPress",
+            "Elementor",
+            "PHP",
+            "CSS",
+            "JavaScript",
+            "GSAP",
+            "Framer Motion"
+          ]
+        },
+        "shopify": {
+          "title": "3. Shopify",
+          "description": "The leading e-commerce platform. We start from Shopify and develop a highly customized theme. Modular sections configurable from the visual editor, transactional emails with your brand identity, and training for autonomous management. The best option when the main goal is selling products online.",
+          "tags": [
+            "Shopify",
+            "Liquid",
+            "HTML",
+            "CSS",
+            "JavaScript"
+          ]
+        },
+        "webAppRedirect": {
+          "title": "Need more than a corporate website?",
+          "description": "If you're looking for a web application with custom functionality — process automation, data management, platforms with business logic — we solve that from Product Building with custom development.",
+          "cta": "See Custom Web App →"
+        }
+      }
+    },
+    "ingenieriaDeMarca": {
+      "hero": {
+        "title": "Brand Engineering",
+        "subtitle": "The comprehensive brand-building framework created by Alkitu",
+        "description": "Brand Engineering is a brand-building framework developed within Alkitu. Its goal is to manualize, document and systematize every aspect of a brand — from its foundational strategy to its manifestation in physical space — into a comprehensive manual. It is inspired by international standards ISO 20671 and ISO 10668, which define five measurable dimensions — legal, perception, market, environment and financial — as KPIs to evaluate the effectiveness of every branding decision.",
+        "cta": "I want to learn about Brand Engineering for my company"
+      },
+      "sections": {
+        "pillars": {
+          "title": "The 4 pillars",
+          "description": "Brand Engineering structures brand building into four complementary pillars. Each covers a specific dimension of the brand.",
+          "items": [
+            {
+              "name": "Pillar 1 — Brand DNA",
+              "description": "The strategic foundation. Here we define who the brand is, who it speaks to, what it promises and how it positions itself in the market.",
+              "includes": [
+                "Brand history",
+                "Market type",
+                "Buyer persona",
+                "Brand promise (Product-Market Fit)",
+                "Archetype and personality",
+                "Manifesto and positioning statement"
+              ]
+            },
+            {
+              "name": "Pillar 2 — Verbal Identity",
+              "description": "How the brand sounds. Everything that can be read, heard or pronounced.",
+              "includes": [
+                "Naming and NICE classification",
+                "Brand language",
+                "Audio branding"
+              ]
+            },
+            {
+              "name": "Pillar 3 — Visual Identity",
+              "description": "How the brand looks. Everything that can be visually perceived.",
+              "includes": [
+                "Logo and planimetry",
+                "Colorimetry",
+                "Typography",
+                "Patterns and iconography",
+                "Imagery",
+                "Stationery",
+                "POP and packaging",
+                "Multimedia"
+              ]
+            },
+            {
+              "name": "Pillar 4 — Spatial Identity",
+              "description": "How the brand is experienced in physical and digital space.",
+              "includes": [
+                "Commercial space and visual merchandising",
+                "Odotype",
+                "Clothing and uniforms",
+                "Vehicles",
+                "Social media",
+                "Web and App UI/UX",
+                "Branding Passport"
+              ]
+            }
+          ]
+        },
+        "documentation": {
+          "title": "Total documentation",
+          "description": "The central focus is documentation. Every decision, every criterion, every rule is recorded in a comprehensive manual. The brand can grow, expand to new markets, add vendors or change teams without losing coherence.",
+          "deliverables": [
+            "26 documented services",
+            "Over 90 registered sub-elements",
+            "4 structured pillars",
+            "5 ISO dimensions as measurement KPIs"
+          ]
+        },
+        "clientResources": {
+          "title": "Client resource system",
+          "description": "Every client who hires Brand Engineering receives access to a custom web app where they can view, download and manage all their brand resources.",
+          "items": [
+            {
+              "name": "Brand files",
+              "description": "Logo in all formats, color palettes, fonts and graphic elements"
+            },
+            {
+              "name": "Guides and manuals",
+              "description": "Usage rules, application guides and complete documentation"
+            },
+            {
+              "name": "Multimedia resources",
+              "description": "Animations, audio, templates and all material generated during the process"
+            }
+          ]
+        }
       }
     }
   }

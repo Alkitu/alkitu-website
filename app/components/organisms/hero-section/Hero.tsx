@@ -1,39 +1,125 @@
 
 "use client";
+import { useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { gsap } from "gsap";
+import { SplitText as GSAPSplitText } from "gsap/SplitText";
 import TailwindGrid from "@/app/components/templates/grid";
 import { Button } from "@/app/components/atoms/button";
 import HeroPhones from "@/app/components/molecules/hero-phones";
 import { useLocalizedPath } from "@/app/hooks";
 import HeroFloatingElements from "./HeroFloatingElements";
+import { SplashCursor } from "@/app/components/atoms/splash-cursor";
+
+gsap.registerPlugin(GSAPSplitText);
+
+function RotatingText({ words }: { words: string[][] }) {
+  const textRef = useRef<HTMLSpanElement>(null);
+  const indexRef = useRef(0);
+  const timelineRef = useRef<gsap.core.Timeline | null>(null);
+  const isMountedRef = useRef(true);
+
+  const cycle = useCallback(() => {
+    if (!textRef.current || !isMountedRef.current || !words.length) return;
+
+    const el = textRef.current;
+    const currentIndex = indexRef.current;
+    const lines = words[currentIndex];
+
+    el.innerHTML = '';
+    lines.forEach((line) => {
+      const div = document.createElement('div');
+      div.textContent = line;
+      el.appendChild(div);
+    });
+
+    const splits = Array.from(el.children).map(
+      (child) => new GSAPSplitText(child as HTMLElement, { type: "chars" })
+    );
+    const allChars = splits.flatMap((s) => s.chars);
+
+    const tl = gsap.timeline({
+      onComplete: () => {
+        splits.forEach((s) => s.revert());
+        if (!isMountedRef.current) return;
+        indexRef.current = (currentIndex + 1) % words.length;
+        cycle();
+      },
+    });
+
+    // Enter: chars animate in
+    tl.fromTo(
+      allChars,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        stagger: 0.04,
+        ease: "power3.out",
+      }
+    );
+
+    // Hold
+    tl.to({}, { duration: 2.2 });
+
+    // Exit: chars animate out
+    tl.to(allChars, {
+      opacity: 0,
+      y: -30,
+      duration: 0.35,
+      stagger: 0.025,
+      ease: "power3.in",
+    });
+
+    timelineRef.current = tl;
+  }, [words]);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+    cycle();
+
+    return () => {
+      isMountedRef.current = false;
+      timelineRef.current?.kill();
+    };
+  }, [cycle]);
+
+  return (
+    <span className="inline-flex relative overflow-hidden align-baseline min-h-[2.2em]">
+      <span ref={textRef} className="text-primary inline-block">
+        {words[0]?.map((line, i) => <div key={i}>{line}</div>)}
+      </span>
+    </span>
+  );
+}
 
 function Hero({ text }) {
   const hero = text.home.heroSection;
   const localizedPath = useLocalizedPath();
+  const heroContainerRef = useRef<HTMLDivElement>(null);
+  const rotatingWords: string[][] = hero.title.rotatingWords || [];
 
   return (
+  <div ref={heroContainerRef} className="relative overflow-hidden min-h-[calc(100dvh-5rem)]">
+  <SplashCursor containerRef={heroContainerRef} />
   <TailwindGrid fullSize >
       <section className='col-start-1 max-w-full w-full col-end-full md:col-start-1 md:col-end-6 lg:col-start-2 lg:col-end-6 pt-[8vw] md:pt-[6vw] lg:pt-[3vw] px-4 md:px-6 lg:px-8 order-2 md:order-1 z-30 col-span-full flex flex-col justify-center'>
         <div className='flex-col justify-start items-start gap-6 inline-flex'>
-          
+
           {/* Main Title */}
-          <h1 className="header-hero flex flex-col items-start leading-tight">
+          <h1 className="header-hero flex flex-col items-start uppercase">
             <span>{hero.title.part1}</span>
-            <span className='text-primary'>{hero.title.part2}</span>
-            <span>{hero.title.part3}</span>
+            <RotatingText words={rotatingWords} />
           </h1>
 
           {/* Subtitle (Development, Automation...) */}
-          <h2 className='font-bold text-2xl md:text-3xl lg:text-[2vw] leading-tight max-w-[90%]'>
+          <h2 className='font-bold text-xl md:text-2xl lg:text-[1.4vw] leading-tight max-w-[90%] text-foreground/80'>
             {hero.subtitle}
           </h2>
 
-          <div className='bg-primary w-20 h-1' />
 
-          {/* Description */}
-          <p className='text-base md:text-lg lg:text-[1.1vw] font-medium text-zinc-600 dark:text-zinc-300 w-full md:w-10/12 lg:w-11/12 leading-relaxed'>
-            {hero.description}
-          </p>
 
           {/* Action Buttons */}
           <div className='flex flex-col md:flex-row gap-4 mt-4 w-full md:w-auto'>
@@ -56,7 +142,7 @@ function Hero({ text }) {
                 {hero.buttons.primary}
               </Button>
             </Link>
-            
+
             <Link
               href={localizedPath("/projects?category=All&page=1")}
               className='w-full md:w-auto'
@@ -81,6 +167,7 @@ function Hero({ text }) {
          </div>
       </section>
     </TailwindGrid>
+  </div>
   );
 }
 
