@@ -1614,13 +1614,13 @@
       "founders": [
         {
           "name": "Luis Urdaneta",
-          "role": "Founder",
+          "role": "Founder & CTO",
           "image": "/images/about/Luis-Urdaneta-Foto-Perfil-Cuadrada-150x150.webp"
         },
         {
           "name": "Leonel Pérez",
-          "role": "Co-founder & Creative Product Designer",
-          "image": "/images/about/Leonel-Perez-Foto-Perfil.jpg"
+          "role": "Co-Founder & Product Builder",
+          "image": "/images/about/Leonel-Perez-Foto-Perfil -2.jpeg"
         }
       ]
     },
@@ -1678,7 +1678,7 @@
         {
           "name": "Leonel Pérez",
           "role": "- The Creator -",
-          "image": "/images/about/Leonel-Perez-Foto-Perfil.jpg"
+          "image": "/images/about/Leonel-Perez-Foto-Perfil -2.jpeg"
         },
         {
           "name": "Valeria Urdaneta",
@@ -1790,6 +1790,10 @@
       "backButton": "Back",
       "submitButton": "Submit Request",
       "submittingButton": "Sending...",
+      "policyCheckbox": "I have read and accept the",
+      "policyPrivacy": "Privacy Policy",
+      "policyAnd": "and the",
+      "policyCookies": "Cookie Policy",
       "successMessage": "Request submitted successfully!",
       "successSubtext": "We will get back to you soon."
     },

@@ -13,7 +13,9 @@ import {
   FUNCTIONALITIES,
   TECH_PROJECT_TYPES,
 } from './contact-form.type';
+import Link from 'next/link';
 import { useTranslationContext } from '@/app/context/TranslationContext';
+import { hasConsent } from '@/lib/cookies/consent';
 
 const TOTAL_STEPS = 6;
 
@@ -24,11 +26,13 @@ const stepVariants = {
 };
 
 export default function ContactForm({ onSuccess, onError }: ContactFormProps) {
-  const { translations } = useTranslationContext();
+  const { translations, locale } = useTranslationContext();
   const t = translations?.contactPage?.form;
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [step, setStep] = useState(1);
   const [direction, setDirection] = useState(1);
+  const [acceptedPolicy, setAcceptedPolicy] = useState(false);
+  const cookiesAlreadyAccepted = typeof window !== 'undefined' && hasConsent();
 
   const {
     formData,
@@ -435,6 +439,29 @@ export default function ContactForm({ onSuccess, onError }: ContactFormProps) {
                   </div>
                 )}
               </div>
+
+              {/* Privacy Policy Checkbox — only if cookies not already accepted */}
+              {!cookiesAlreadyAccepted && (
+                <div className="flex items-start gap-3 mt-2">
+                  <input
+                    id="cf-policy"
+                    type="checkbox"
+                    checked={acceptedPolicy}
+                    onChange={(e) => setAcceptedPolicy(e.target.checked)}
+                    className="mt-1 h-4 w-4 rounded border-border/80 text-primary focus:ring-primary/50 accent-primary cursor-pointer"
+                  />
+                  <label htmlFor="cf-policy" className="text-xs text-foreground/60 leading-relaxed cursor-pointer select-none">
+                    {label('policyCheckbox', 'He leído y acepto la')}{' '}
+                    <Link href={`/${locale}/privacy-policy`} target="_blank" className="text-primary hover:underline font-semibold">
+                      {label('policyPrivacy', 'Política de Privacidad')}
+                    </Link>{' '}
+                    {label('policyAnd', 'y la')}{' '}
+                    <Link href={`/${locale}/cookie-policy`} target="_blank" className="text-primary hover:underline font-semibold">
+                      {label('policyCookies', 'Política de Cookies')}
+                    </Link>
+                  </label>
+                </div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
@@ -512,7 +539,7 @@ export default function ContactForm({ onSuccess, onError }: ContactFormProps) {
               type="submit"
               variant="primary"
               size="lg"
-              disabled={isSubmitting}
+              disabled={isSubmitting || (!cookiesAlreadyAccepted && !acceptedPolicy)}
               className="py-4 px-10 text-sm font-black uppercase tracking-widest rounded-[2rem] shadow-xl shadow-primary/20 hover:shadow-primary/40 transition-all duration-300"
               iconAfter={
                 isSubmitting ? (
