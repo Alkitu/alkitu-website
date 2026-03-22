@@ -40,6 +40,7 @@ export default function ContactForm({ onSuccess, onError }: ContactFormProps) {
     handleFiles,
     removeFile,
     handleSubmit,
+    hasSubmitted,
     isSubmitting,
     isSuccess,
   } = useContactForm();
@@ -352,7 +353,7 @@ export default function ContactForm({ onSuccess, onError }: ContactFormProps) {
                   <label htmlFor="cf-name" className="absolute left-1 -top-5 text-sm font-semibold text-foreground/60 transition-all pointer-events-none">
                     {label('nameLabel', 'Your Name')} *
                   </label>
-                  {errors.name && <p className="text-red-500 text-xs mt-1 absolute -bottom-5 left-1">{errors.name}</p>}
+                  {hasSubmitted && errors.name && <p className="text-red-500 text-xs mt-1 absolute -bottom-5 left-1">{errors.name}</p>}
                 </div>
 
                 <div className="relative group">
@@ -368,7 +369,7 @@ export default function ContactForm({ onSuccess, onError }: ContactFormProps) {
                   <label htmlFor="cf-email" className="absolute left-1 -top-5 text-sm font-semibold text-foreground/60 transition-all pointer-events-none">
                     {label('emailLabel', 'Email')} *
                   </label>
-                  {errors.email && <p className="text-red-500 text-xs mt-1 absolute -bottom-5 left-1">{errors.email}</p>}
+                  {hasSubmitted && errors.email && <p className="text-red-500 text-xs mt-1 absolute -bottom-5 left-1">{errors.email}</p>}
                 </div>
               </div>
 
@@ -385,7 +386,7 @@ export default function ContactForm({ onSuccess, onError }: ContactFormProps) {
                 <label htmlFor="cf-message" className="absolute left-1 -top-5 text-sm font-semibold text-foreground/60 transition-all pointer-events-none">
                   {label('messageLabel', 'Tell us about your project')} *
                 </label>
-                {errors.message && <p className="text-red-500 text-xs mt-1 absolute -bottom-5 left-1">{errors.message}</p>}
+                {hasSubmitted && errors.message && <p className="text-red-500 text-xs mt-1 absolute -bottom-5 left-1">{errors.message}</p>}
               </div>
 
               {/* File Upload */}

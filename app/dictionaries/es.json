@@ -66,6 +66,10 @@
     "website": "© 2026 Alkitu",
     "rights": "Todos los derechos reservados",
     "adminAccess": "Zona Admin",
+    "legal": {
+      "privacyPolicy": "Política de Privacidad",
+      "cookiePolicy": "Política de Cookies"
+    },
     "routes": [
       {
         "name": "Inicio",
@@ -1343,6 +1347,245 @@
     "cookiesButton": "Cookies",
     "header": "Configuración",
     "description": "Administra tus preferencias de cookies y personaliza tu experiencia"
+  },
+  "cookieConsent": {
+    "title": "Usamos cookies",
+    "description": "Usamos cookies para mejorar tu experiencia de navegación, ofrecer contenido personalizado y analizar nuestro tráfico. Puedes elegir qué cookies permites.",
+    "acceptAll": "Aceptar Todas",
+    "rejectAll": "Rechazar Todas",
+    "customize": "Personalizar",
+    "savePreferences": "Guardar Preferencias",
+    "necessary": {
+      "title": "Estrictamente Necesarias",
+      "description": "Estas cookies son esenciales para el correcto funcionamiento del sitio web. No se pueden desactivar."
+    },
+    "analytics": {
+      "title": "Analíticas",
+      "description": "Estas cookies nos ayudan a entender cómo los visitantes interactúan con el sitio web, permitiéndonos mejorar nuestro contenido y servicios."
+    },
+    "marketing": {
+      "title": "Marketing",
+      "description": "Estas cookies se utilizan para mostrar anuncios y campañas de marketing relevantes."
+    },
+    "moreInfo": "Para más información, consulta nuestra",
+    "cookiePolicy": "Política de Cookies",
+    "and": "y",
+    "privacyPolicy": "Política de Privacidad",
+    "alwaysActive": "Siempre activa"
+  },
+  "cookiePolicyPage": {
+    "title": "Política de Cookies",
+    "metaDescription": "Conoce cómo Alkitu utiliza cookies, sus propósitos y cómo gestionar tus preferencias.",
+    "lastUpdated": "Última actualización: Marzo 2026",
+    "intro": "Esta Política de Cookies explica qué son las cookies, cómo Alkitu (\"nosotros\", \"nuestro\") las utiliza en nuestro sitio web alkitu.com (el \"Sitio Web\") y tus opciones respecto a las cookies.",
+    "whatAreCookies": {
+      "title": "¿Qué Son las Cookies?",
+      "description": "Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo cuando visitas un sitio web. Se utilizan ampliamente para que los sitios web funcionen de manera más eficiente y proporcionar información a los propietarios del sitio."
+    },
+    "howWeUse": {
+      "title": "Cómo Usamos las Cookies",
+      "description": "Utilizamos los siguientes tipos de cookies en nuestro Sitio Web:"
+    },
+    "necessaryCookies": {
+      "title": "Cookies Estrictamente Necesarias",
+      "description": "Estas cookies son esenciales para el funcionamiento del Sitio Web. Permiten funcionalidades básicas como la seguridad, las preferencias de idioma y la configuración del tema. No puedes desactivar estas cookies.",
+      "cookies": [
+        {
+          "name": "cookie_consent",
+          "purpose": "Almacena tus preferencias de consentimiento de cookies",
+          "duration": "1 año",
+          "type": "Necesaria"
+        },
+        {
+          "name": "NEXT_LOCALE",
+          "purpose": "Almacena tu preferencia de idioma (Inglés/Español)",
+          "duration": "1 año",
+          "type": "Necesaria"
+        },
+        {
+          "name": "theme",
+          "purpose": "Almacena tu preferencia de tema (modo claro/oscuro)",
+          "duration": "1 año",
+          "type": "Necesaria"
+        }
+      ]
+    },
+    "analyticsCookies": {
+      "title": "Cookies Analíticas",
+      "description": "Estas cookies nos ayudan a entender cómo los visitantes usan el Sitio Web recopilando información de forma anónima. Esto nos permite mejorar el Sitio Web.",
+      "cookies": [
+        {
+          "name": "session_fingerprint",
+          "purpose": "Identificador de sesión anónimo para analíticas de uso",
+          "duration": "1 hora",
+          "type": "Analítica"
+        }
+      ]
+    },
+    "manageCookies": {
+      "title": "Cómo Gestionar las Cookies",
+      "description": "Puedes gestionar tus preferencias de cookies en cualquier momento haciendo clic en el botón de configuración de cookies en nuestro Sitio Web. También puedes configurar tu navegador para bloquear o eliminar cookies. Ten en cuenta que bloquear ciertas cookies puede afectar la funcionalidad del Sitio Web.",
+      "browserSettings": "La mayoría de los navegadores permiten controlar las cookies a través de su configuración. Consulta la documentación de ayuda de tu navegador para obtener instrucciones."
+    },
+    "changes": {
+      "title": "Cambios en Esta Política",
+      "description": "Podemos actualizar esta Política de Cookies de vez en cuando. Los cambios se publicarán en esta página con una fecha actualizada."
+    },
+    "contact": {
+      "title": "Contáctanos",
+      "description": "Si tienes preguntas sobre nuestro uso de cookies, contáctanos en:"
+    },
+    "tableHeaders": {
+      "name": "Cookie",
+      "purpose": "Propósito",
+      "duration": "Duración",
+      "type": "Tipo"
+    }
+  },
+  "privacyPolicyPage": {
+    "title": "Política de Privacidad",
+    "metaDescription": "Conoce cómo Alkitu recopila, usa y protege tus datos personales en cumplimiento con el RGPD.",
+    "lastUpdated": "Última actualización: Marzo 2026",
+    "intro": "En Alkitu, nos comprometemos a proteger tu privacidad. Esta Política de Privacidad explica cómo recopilamos, usamos, almacenamos y protegemos tus datos personales cuando visitas nuestro sitio web alkitu.com (el \"Sitio Web\"), en cumplimiento con el Reglamento General de Protección de Datos (RGPD) y las leyes de protección de datos aplicables.",
+    "dataController": {
+      "title": "Responsable del Tratamiento",
+      "description": "El responsable del tratamiento de tus datos personales es:",
+      "entity": "Alkitu",
+      "email": "info@alkitu.com",
+      "website": "https://alkitu.com"
+    },
+    "dataWeCollect": {
+      "title": "Datos que Recopilamos",
+      "description": "Podemos recopilar los siguientes tipos de datos:",
+      "items": [
+        {
+          "title": "Datos de Navegación",
+          "description": "Información anónima sobre cómo usas nuestro Sitio Web, incluyendo páginas visitadas, tiempo de permanencia y fuentes de referencia. Estos datos se recopilan mediante cookies solo con tu consentimiento."
+        },
+        {
+          "title": "Datos de Contacto",
+          "description": "Cuando usas nuestro formulario de contacto, recopilamos tu nombre, dirección de correo electrónico y cualquier mensaje que nos envíes."
+        },
+        {
+          "title": "Datos de Newsletter",
+          "description": "Si te suscribes a nuestro boletín, recopilamos tu dirección de correo electrónico."
+        },
+        {
+          "title": "Datos Técnicos",
+          "description": "Tipo de navegador, sistema operativo y ubicación geográfica general (país/región). Estos datos son anonimizados y se usan solo con fines analíticos."
+        }
+      ]
+    },
+    "legalBasis": {
+      "title": "Base Legal del Tratamiento",
+      "description": "Tratamos tus datos personales en base a los siguientes fundamentos legales:",
+      "items": [
+        {
+          "basis": "Consentimiento",
+          "description": "Para cookies analíticas y suscripciones al boletín. Puedes retirar tu consentimiento en cualquier momento."
+        },
+        {
+          "basis": "Interés Legítimo",
+          "description": "Para la funcionalidad esencial del sitio web y la seguridad."
+        },
+        {
+          "basis": "Contrato",
+          "description": "Cuando nos contactas para solicitar nuestros servicios."
+        }
+      ]
+    },
+    "howWeUse": {
+      "title": "Cómo Usamos tus Datos",
+      "items": [
+        "Para proporcionar y mantener nuestro Sitio Web",
+        "Para mejorar nuestro Sitio Web y servicios basándonos en analíticas anónimas",
+        "Para responder a tus consultas a través del formulario de contacto",
+        "Para enviar boletines informativos (solo con tu consentimiento explícito)",
+        "Para garantizar la seguridad y el correcto funcionamiento de nuestro Sitio Web"
+      ]
+    },
+    "dataSharing": {
+      "title": "Compartición de Datos",
+      "description": "No vendemos tus datos personales. Podemos compartir datos con los siguientes servicios de terceros que nos ayudan a operar nuestro Sitio Web:",
+      "items": [
+        {
+          "service": "Supabase",
+          "purpose": "Alojamiento de base de datos y autenticación (servidores EU/US con garantías adecuadas)"
+        },
+        {
+          "service": "Vercel",
+          "purpose": "Alojamiento web y entrega de contenido"
+        },
+        {
+          "service": "Resend",
+          "purpose": "Entrega de correos electrónicos para formularios de contacto y boletines"
+        }
+      ]
+    },
+    "dataRetention": {
+      "title": "Retención de Datos",
+      "description": "Conservamos tus datos solo durante el tiempo necesario para los fines descritos en esta política:",
+      "items": [
+        "Datos analíticos: 90 días",
+        "Envíos del formulario de contacto: 12 meses",
+        "Suscripciones al boletín: Hasta que canceles la suscripción",
+        "Preferencias de consentimiento de cookies: 1 año"
+      ]
+    },
+    "yourRights": {
+      "title": "Tus Derechos bajo el RGPD",
+      "description": "Tienes los siguientes derechos respecto a tus datos personales:",
+      "items": [
+        {
+          "right": "Derecho de Acceso",
+          "description": "Puedes solicitar una copia de los datos personales que tenemos sobre ti."
+        },
+        {
+          "right": "Derecho de Rectificación",
+          "description": "Puedes solicitar la corrección de datos inexactos o incompletos."
+        },
+        {
+          "right": "Derecho de Supresión",
+          "description": "Puedes solicitar la eliminación de tus datos personales (\"derecho al olvido\")."
+        },
+        {
+          "right": "Derecho a la Limitación del Tratamiento",
+          "description": "Puedes solicitar que limitemos el tratamiento de tus datos."
+        },
+        {
+          "right": "Derecho a la Portabilidad",
+          "description": "Puedes solicitar tus datos en un formato estructurado y legible por máquina."
+        },
+        {
+          "right": "Derecho de Oposición",
+          "description": "Puedes oponerte al tratamiento de tus datos personales."
+        },
+        {
+          "right": "Derecho a Retirar el Consentimiento",
+          "description": "Puedes retirar tu consentimiento en cualquier momento ajustando la configuración de cookies o contactándonos."
+        }
+      ]
+    },
+    "dataSecurity": {
+      "title": "Seguridad de los Datos",
+      "description": "Implementamos medidas técnicas y organizativas apropiadas para proteger tus datos personales, incluyendo cifrado, controles de acceso y evaluaciones de seguridad regulares."
+    },
+    "children": {
+      "title": "Privacidad de Menores",
+      "description": "Nuestro Sitio Web no está dirigido a menores de 16 años. No recopilamos conscientemente datos personales de menores."
+    },
+    "changes": {
+      "title": "Cambios en Esta Política",
+      "description": "Podemos actualizar esta Política de Privacidad de vez en cuando. Los cambios se publicarán en esta página con una fecha actualizada. Te recomendamos revisar esta política periódicamente."
+    },
+    "contact": {
+      "title": "Contáctanos",
+      "description": "Para ejercer tus derechos o para cualquier pregunta sobre esta Política de Privacidad, contáctanos en:"
+    },
+    "supervisoryAuthority": {
+      "title": "Autoridad de Control",
+      "description": "Si consideras que se han vulnerado tus derechos de protección de datos, tienes derecho a presentar una reclamación ante la autoridad de control de protección de datos de tu país."
+    }
   },
   "navigation": {
     "home": "Inicio",

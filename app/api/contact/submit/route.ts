@@ -80,6 +80,18 @@ export async function POST(request: NextRequest) {
       // Files are silently ignored (no storage configured)
     }
 
+    // Honeypot check — if filled, it's a bot. Return fake success.
+    if (formFields.website) {
+      return NextResponse.json(
+        {
+          success: true,
+          message: 'Form submitted successfully.',
+          data: { status: 'pending', submittedAt: new Date().toISOString() },
+        },
+        { status: 201 }
+      );
+    }
+
     // Validate with Zod
     const validationResult = contactFormSchema.safeParse(formFields);
 
@@ -110,12 +122,64 @@ export async function POST(request: NextRequest) {
         : Array.isArray(formData.functionalities) ? formData.functionalities : [];
     } catch (_) { /* leave empty */ }
 
-    // Auto-generate subject from form fields
-    const subject = [formData.projectType, formData.companySize, formData.budget]
-      .filter(Boolean)
-      .join(' - ') || 'Contact Form Submission';
+    // Human-readable label maps for snake_case form values
+    const companySizeLabels: Record<string, string> = {
+      solo_founder: 'Solo Founder',
+      small_startup: 'Small Startup',
+      medium_company: 'Medium Company',
+      enterprise: 'Enterprise',
+    };
 
-    // Build form_data JSONB object with all rich fields
+    const budgetLabels: Record<string, string> = {
+      under_2k: formData.locale === 'es' ? '< 2.000 €' : '< $2,000',
+      '2k_5k': formData.locale === 'es' ? '2.000 – 5.000 €' : '$2,000 – $5,000',
+      '8k_12k': formData.locale === 'es' ? '8.000 – 12.000 €' : '$8,000 – $12,000',
+      '12k_15k': formData.locale === 'es' ? '12.000 – 15.000 €' : '$12,000 – $15,000',
+      '15k_20k': formData.locale === 'es' ? '15.000 – 20.000 €' : '$15,000 – $20,000',
+      over_20k: formData.locale === 'es' ? '+20.000 €' : '+$20,000',
+    };
+
+    const categoryLabels: Record<string, string> = {
+      saas: 'SaaS',
+      on_demand: 'On-demand',
+      project_management: 'Project Management',
+      ecommerce: 'E-commerce',
+      marketplace: 'Marketplace',
+      social_media: 'Social Media',
+      internal_tool: 'Internal Tool',
+      crm: 'CRM',
+      job_board: 'Job Board',
+      productivity: 'Productivity',
+      marketing_site: 'Marketing Site',
+      data_management: 'Data Management',
+      hospitality_gastronomy: formData.locale === 'es' ? 'Hostelería y Gastronomía' : 'Hospitality & Gastronomy',
+      other: formData.locale === 'es' ? 'Otro' : 'Other',
+    };
+
+    const functionalityLabels: Record<string, string> = {
+      payments: formData.locale === 'es' ? 'Pagos' : 'Payments',
+      memberships: formData.locale === 'es' ? 'Membresías' : 'Memberships',
+      email_delivery: 'Email Delivery',
+      google_maps: 'Google Maps',
+      video: 'Video',
+      social_logins: 'Social Logins',
+      audio: 'Audio',
+      internal_analytics: formData.locale === 'es' ? 'Analítica interna' : 'Internal Analytics',
+      dashboard: 'Dashboard',
+      other: formData.locale === 'es' ? 'Otro' : 'Other',
+    };
+
+    const toLabel = (value: string, map: Record<string, string>) => map[value] || value;
+
+    const readableCompanySize = formData.companySize ? toLabel(formData.companySize, companySizeLabels) : '';
+    const readableBudget = formData.budget ? toLabel(formData.budget, budgetLabels) : '';
+    const readableCategories = productCategories.map((c) => toLabel(c, categoryLabels));
+    const readableFunctionalities = functionalities.map((f) => toLabel(f, functionalityLabels));
+
+    // Auto-generate subject
+    const subject = `Solicitud Alkitu: ${formData.name}${formData.projectType ? `, ${formData.projectType}` : ''}`;
+
+    // Build form_data JSONB object with all rich fields (store raw values)
     const formDataJsonb = {
       projectType: formData.projectType || null,
       companySize: formData.companySize || null,
@@ -181,7 +245,74 @@ export async function POST(request: NextRequest) {
         bccEmails,
       });
 
-      // 1. Send notification email to admin (with project details)
+      // Query session data for visitor info in the email
+      let sessionInfo: {
+        country?: string;
+        city?: string;
+        region?: string;
+        pageCount?: number;
+        pagesVisited?: string[];
+        sessionStart?: string;
+        sessionDuration?: number;
+      } = {};
+
+      try {
+        // Find the most recent session matching this IP
+        const { data: sessionData } = await supabaseAnon
+          .from('sessions')
+          .select('id, country, city, region, created_at, updated_at')
+          .eq('ip_address', ip)
+          .order('created_at', { ascending: false })
+          .limit(1)
+          .single();
+
+        if (sessionData) {
+          sessionInfo.country = sessionData.country || undefined;
+          sessionInfo.city = sessionData.city || undefined;
+          sessionInfo.region = sessionData.region || undefined;
+          sessionInfo.sessionStart = sessionData.created_at;
+
+          // Fetch page views with URLs for this session
+          const { data: pageViews } = await supabaseAnon
+            .from('page_views')
+            .select('page_url, entry_time')
+            .eq('session_id', sessionData.id)
+            .order('entry_time', { ascending: true });
+
+          if (pageViews && pageViews.length > 0) {
+            sessionInfo.pageCount = pageViews.length;
+            // Extract clean paths from full URLs, deduplicate
+            const seen = new Set<string>();
+            sessionInfo.pagesVisited = [];
+            for (const pv of pageViews) {
+              try {
+                const path = new URL(pv.page_url).pathname;
+                if (!seen.has(path)) {
+                  seen.add(path);
+                  sessionInfo.pagesVisited.push(path);
+                }
+              } catch (_) {
+                if (!seen.has(pv.page_url)) {
+                  seen.add(pv.page_url);
+                  sessionInfo.pagesVisited.push(pv.page_url);
+                }
+              }
+            }
+          }
+
+          // Calculate duration from session timestamps
+          if (sessionData.created_at && sessionData.updated_at) {
+            const start = new Date(sessionData.created_at).getTime();
+            const end = new Date(sessionData.updated_at).getTime();
+            const durationSec = Math.round((end - start) / 1000);
+            if (durationSec > 0) {
+              sessionInfo.sessionDuration = durationSec;
+            }
+          }
+        }
+      } catch (_) { /* session lookup is best-effort */ }
+
+      // 1. Send notification email to admin (with project details + session info)
       const adminEmailHtml = await render(
         ContactNotification({
           name: formData.name,
@@ -191,10 +322,12 @@ export async function POST(request: NextRequest) {
           locale: formData.locale,
           submittedAt: new Date().toISOString(),
           projectType: formData.projectType,
-          companySize: formData.companySize,
-          budget: formData.budget,
-          productCategories,
-          functionalities,
+          companySize: readableCompanySize,
+          budget: readableBudget,
+          productCategories: readableCategories,
+          functionalities: readableFunctionalities,
+          formUrl,
+          session: sessionInfo,
         })
       );
 
@@ -203,7 +336,7 @@ export async function POST(request: NextRequest) {
         to: toEmails,
         cc: ccEmails.length > 0 ? ccEmails : undefined,
         bcc: bccEmails.length > 0 ? bccEmails : undefined,
-        subject: `Nuevo mensaje de contacto: ${subject}`,
+        subject,
         html: adminEmailHtml,
         replyTo: formData.email,
       });

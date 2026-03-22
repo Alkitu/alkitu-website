@@ -23,18 +23,23 @@ export function useContactForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [formState, setFormState] = useState<FormState>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const validateForm = (): FormErrors => {
     const newErrors: FormErrors = {};
 
     if (!formData.name.trim()) {
       newErrors.name = locale === 'es' ? 'El nombre es obligatorio' : 'Name is required';
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = locale === 'es' ? 'El nombre debe tener al menos 2 caracteres' : 'Name must be at least 2 characters';
     }
     if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = locale === 'es' ? 'Email válido es obligatorio' : 'Valid email is required';
     }
     if (!formData.message.trim()) {
       newErrors.message = locale === 'es' ? 'Describe tu proyecto' : 'Describe your project';
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = locale === 'es' ? 'El mensaje debe tener al menos 10 caracteres' : 'Message must be at least 10 characters';
     }
 
     return newErrors;
@@ -76,6 +81,7 @@ export function useContactForm() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    setHasSubmitted(true);
     setFormState('validating');
     const validationErrors = validateForm();
 
@@ -100,6 +106,13 @@ export function useContactForm() {
       body.append('functionalities', JSON.stringify(formData.functionalities));
       body.append('message', formData.message);
       body.append('locale', locale);
+
+      // Honeypot field — read from native form element
+      const honeypotValue = (e.currentTarget.elements.namedItem('website') as HTMLInputElement)?.value || '';
+      if (honeypotValue) {
+        body.append('website', honeypotValue);
+      }
+
       formData.files.forEach((file) => body.append('files', file));
 
       const response = await fetch('/api/contact/submit', {
@@ -121,6 +134,18 @@ export function useContactForm() {
       }
 
       if (!response.ok) {
+        // Show specific field errors from Zod validation if available
+        if (data.details && typeof data.details === 'object') {
+          const fieldErrors: FormErrors = {};
+          for (const [key, msgs] of Object.entries(data.details)) {
+            if (Array.isArray(msgs) && msgs.length > 0) {
+              fieldErrors[key] = msgs[0] as string;
+            }
+          }
+          if (Object.keys(fieldErrors).length > 0) {
+            setErrors(fieldErrors);
+          }
+        }
         throw new Error(
           data.error ||
           (locale === 'es' ? 'Error al enviar el formulario' : 'Failed to submit form')
@@ -150,6 +175,7 @@ export function useContactForm() {
     handleFiles,
     removeFile,
     handleSubmit,
+    hasSubmitted,
     isSubmitting: formState === 'submitting',
     isSuccess: formState === 'success',
   };
