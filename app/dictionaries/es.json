@@ -610,7 +610,7 @@
           "order": 1,
           "src": "/images/testimonials-luis/farooq-khader.jpeg",
           "name": "Farooq Khader",
-          "position": "Co-Founder and CTO at Tangle",
+          "position": "Cofundador y CTO en Tangle",
           "description": "Luis es un gran desarrollador web con una increíble atención al detalle. Su afán por la tecnología más innovadora nos impulsó a trasladar nuestro sitio web a una tecnología mejor: NextJS. También se comprometió mucho para que los resultados estuvieran a la altura de la imaginación y satisfacción de nuestro diseñador. Sus técnicas de programación estructurada facilitaron que nuestro equipo interno se hiciera cargo de su trabajo sin problemas. Su paciencia en la colaboración con otros miembros del equipo / freelancers también valió la pena, ahorrando tiempo y esfuerzo para el equipo. Recomiendo encarecidamente a Luis como un gran desarrollador web.",
           "url": "https://www.linkedin.com/in/farooqkhader/",
           "icon": "/icons/footer/linkedin.svg"
@@ -691,7 +691,7 @@
           "Web App"
         ],
         "description": "Después de completar el bootcamp en \"Ironhack,\" tuve la oportunidad de realizar prácticas remotas en inglés durante 4 meses en una innovadora startup con sede en Ámsterdam, Países Bajos. Mi contribución incluyó la ejecución de dos proyectos, destacándose entre ellos la creación de una página web.\n\nLa concepción inicial de la página web fue diseñada en Figma por otro miembro del equipo. Mi tarea consistió en llevar a la realidad este diseño, seleccionando el Stack más apropiado para las necesidades de la empresa. Dada la familiaridad predominante en el equipo con el Stack MERN, opté por desarrollar la página web utilizando NextJS, con el objetivo de mejorar su indexación en los principales navegadores.\n\nEs relevante señalar que unos meses después de la finalización del proyecto, REACT anunció su recomendación de elegir uno de los frameworks basados en React populares en la comunidad, entre los cuales se encuentra NextJS. Este hecho valida la elección estratégica realizada durante el desarrollo del proyecto, reafirmando la calidad y pertinencia de la tecnología seleccionada.",
-        "about": "Tangle is a university social ecosystem that connects students within the same institution, combating loneliness in the cities across the globe.",
+        "about": "Tangle es un ecosistema social universitario que conecta estudiantes dentro de la misma institución, combatiendo la soledad en las ciudades de todo el mundo.",
         "tags": [
           "GitHub",
           "Next.js",
@@ -850,7 +850,7 @@
           "Branding",
           "Marketing Digital"
         ],
-        "description": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "description": "Diseño de identidad visual y desarrollo de sitio web corporativo para una empresa de excursiones y experiencias en el desierto del Sahara. El proyecto incluyó branding, diseño web y estrategia de marketing digital para captar turistas interesados en vivir la aventura del desierto.",
         "about": "",
         "tags": [
           "HTML",
@@ -939,7 +939,7 @@
         ],
         "urls": [
           {
-            "name": "Website:",
+            "name": "Sitio Web:",
             "url": "https://elealecleaning.com"
           }
         ],
@@ -952,7 +952,7 @@
           "Webs Corporativas",
           "Marketing Digital"
         ],
-        "description": "description",
+        "description": "Desarrollo de sitio web corporativo y estrategia de marketing digital para una tienda especializada en fundas y accesorios para dispositivos móviles. El proyecto incluyó diseño web, catálogo de productos y posicionamiento en buscadores.",
         "about": "",
         "tags": [
           "HTML",
@@ -987,7 +987,7 @@
           "Branding",
           "Marketing Digital"
         ],
-        "description": "description",
+        "description": "Creación de identidad de marca y desarrollo de sitio web para un profesional del sector esotérico. El proyecto abarcó branding completo, diseño web corporativo y estrategia de marketing digital orientada a la captación de clientes.",
         "about": "",
         "tags": [
           "HTML",
@@ -1021,7 +1021,7 @@
           "Webs Corporativas",
           "Marketing Digital"
         ],
-        "description": "description",
+        "description": "Desarrollo de sitio web corporativo y estrategia de marketing digital para una clínica dental. El proyecto incluyó diseño web profesional, presentación de servicios odontológicos y optimización para posicionamiento local en buscadores.",
         "about": "",
         "tags": [
           "HTML",
@@ -1093,7 +1093,7 @@
           "Webs Corporativas",
           "Marketing Digital"
         ],
-        "description": "Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim. Elit aute irure tempor cupidatat incididunt sint deserunt ut voluptate aute id deserunt nisi. Sunt qui esse pariatur duis deserunt mollit dolore cillum minim tempor enim.",
+        "description": "Desarrollo de sitio web corporativo y estrategia de marketing digital para una empresa del sector de la aviación. El proyecto incluyó diseño web, presentación de servicios y posicionamiento en buscadores para atraer profesionales del sector aéreo.",
         "titleTags": "Tags",
         "about": "",
         "tags": [
@@ -1128,7 +1128,7 @@
           "Webs Corporativas",
           "Marketing Digital"
         ],
-        "description": "description",
+        "description": "Desarrollo de sitio web corporativo y estrategia de marketing digital para una empresa de detailing y cuidado automotriz. El proyecto incluyó diseño web, catálogo de servicios y posicionamiento en buscadores para captar clientes locales.",
         "about": "",
         "tags": [
           "HTML",
@@ -1162,7 +1162,7 @@
           "Branding",
           "Marketing Digital"
         ],
-        "description": "description",
+        "description": "Creación de identidad de marca y desarrollo de sitio web para una empresa de personalización de productos. El proyecto incluyó branding completo, diseño de materiales gráficos, sitio web corporativo y estrategia de marketing digital.",
         "about": "",
         "tags": [
           "HTML",
@@ -1200,7 +1200,7 @@
           "Branding",
           "Audiovisuales"
         ],
-        "description": "description",
+        "description": "Diseño de identidad visual y producción audiovisual para un profesional. El proyecto incluyó creación de logotipo, elementos gráficos de marca y animación de motion graphics con After Effects.",
         "about": "",
         "tags": [
           "Illustrator",
@@ -1229,7 +1229,7 @@
         "categories": [
           "UI/UX Prototyping"
         ],
-        "description": "description",
+        "description": "Rediseño conceptual de la experiencia digital de la Ciutat de les Arts i les Ciències de Valencia. El proyecto incluyó investigación UX, diseño de interfaz en Figma para versiones móvil y escritorio, prototipos interactivos navegables y un vídeo de presentación del proyecto.",
         "about": "",
         "tags": [
           "Figma",
@@ -1774,12 +1774,12 @@
       "founders": [
         {
           "name": "Luis Urdaneta",
-          "role": "Founder & CTO",
+          "role": "Fundador y CTO",
           "image": "/images/about/Luis-Urdaneta-Foto-Perfil-Cuadrada-150x150.webp"
         },
         {
           "name": "Leonel Pérez",
-          "role": "Co-Founder & Product Builder",
+          "role": "Cofundador y Product Builder",
           "image": "/images/about/Leonel-Perez-Foto-Perfil -2.jpeg"
         }
       ]
@@ -1876,10 +1876,10 @@
       "emailPlaceholder": "juan@ejemplo.com",
       "projectTypeTitle": "Describe tu tipo de proyecto",
       "companySizeTitle": "¿Cuál es el tamaño de tu empresa?",
-      "companySize_solo_founder": "Solo Founder",
-      "companySize_small_startup": "Small Startup",
-      "companySize_medium_company": "Medium Company",
-      "companySize_enterprise": "Enterprise",
+      "companySize_solo_founder": "Fundador Solo",
+      "companySize_small_startup": "Startup Pequeña",
+      "companySize_medium_company": "Empresa Mediana",
+      "companySize_enterprise": "Gran Empresa",
       "budgetTitle": "¿Cuál es tu presupuesto?",
       "budget_under_2k": "< 2.000 €",
       "budget_2k_5k": "2.000 - 5.000 €",
@@ -1891,28 +1891,28 @@
       "categoriesSubtitle": "Selecciona hasta tres opciones.",
       "category_saas": "SaaS",
       "category_on_demand": "On-demand",
-      "category_project_management": "Project Management",
+      "category_project_management": "Gestión de Proyectos",
       "category_ecommerce": "E-commerce",
       "category_marketplace": "Marketplace",
       "category_social_media": "Social Media",
-      "category_internal_tool": "Internal Tool",
+      "category_internal_tool": "Herramienta Interna",
       "category_crm": "CRM",
-      "category_job_board": "Job Board",
-      "category_productivity": "Productivity",
-      "category_marketing_site": "Marketing Site",
-      "category_data_management": "Data Management",
+      "category_job_board": "Bolsa de Trabajo",
+      "category_productivity": "Productividad",
+      "category_marketing_site": "Sitio de Marketing",
+      "category_data_management": "Gestión de Datos",
       "category_hospitality_gastronomy": "Hostelería y Gastronomía",
       "category_other": "Otro",
       "functionalitiesTitle": "¿Qué funcionalidades vas a necesitar?",
       "functionalitiesSubtitle": "Selecciona todas las que apliquen.",
       "func_payments": "Pagos",
       "func_memberships": "Membresías",
-      "func_email_delivery": "Email Delivery",
+      "func_email_delivery": "Envío de Emails",
       "func_google_maps": "Google Maps",
       "func_video": "Video",
-      "func_social_logins": "Social Logins",
+      "func_social_logins": "Inicio de Sesión Social",
       "func_audio": "Audio",
-      "func_internal_analytics": "Analytics Interno",
+      "func_internal_analytics": "Analíticas Internas",
       "func_dashboard": "Dashboard",
       "func_other": "Otro",
       "messageLabel": "Cuéntanos sobre la necesidad de tu proyecto",
