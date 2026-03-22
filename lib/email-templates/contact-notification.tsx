@@ -329,22 +329,22 @@ export default function ContactNotification({
   );
 }
 
-// ── Styles ──
+// ── Styles (Light Mode) ──
 
 const main = {
-  backgroundColor: '#0a0a0a',
+  backgroundColor: '#f4f4f5',
   fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
 };
 
 const container = {
-  backgroundColor: '#111111',
+  backgroundColor: '#ffffff',
   margin: '0 auto',
   padding: '0',
   marginBottom: '64px',
   maxWidth: '600px',
   borderRadius: '12px',
   overflow: 'hidden' as const,
-  border: '1px solid #222222',
+  border: '1px solid #e4e4e7',
 };
 
 const header = {
@@ -354,7 +354,7 @@ const header = {
 };
 
 const headerBadge = {
-  color: 'rgba(255,255,255,0.7)',
+  color: 'rgba(255,255,255,0.8)',
   fontSize: '11px',
   fontWeight: '700',
   textTransform: 'uppercase' as const,
@@ -377,14 +377,14 @@ const headerEmail = {
 };
 
 const headerEmailLink = {
-  color: 'rgba(255,255,255,0.85)',
+  color: 'rgba(255,255,255,0.9)',
   textDecoration: 'none',
 };
 
 const summaryBar = {
   padding: '16px 40px',
-  backgroundColor: '#1a1a1a',
-  borderBottom: '1px solid #222222',
+  backgroundColor: '#f9fafb',
+  borderBottom: '1px solid #e4e4e7',
 };
 
 const summaryItem = {
@@ -393,7 +393,7 @@ const summaryItem = {
 };
 
 const summaryLabel = {
-  color: '#666666',
+  color: '#9ca3af',
   fontSize: '10px',
   fontWeight: '700',
   textTransform: 'uppercase' as const,
@@ -402,7 +402,7 @@ const summaryLabel = {
 };
 
 const summaryValue = {
-  color: '#cccccc',
+  color: '#374151',
   fontSize: '13px',
   fontWeight: '500',
   margin: '0',
@@ -414,13 +414,13 @@ const sectionBlock = {
 
 const sessionSection = {
   padding: '28px 40px 20px',
-  backgroundColor: '#0d0d0d',
-  borderTop: '1px solid #222222',
-  borderBottom: '1px solid #222222',
+  backgroundColor: '#f9fafb',
+  borderTop: '1px solid #e4e4e7',
+  borderBottom: '1px solid #e4e4e7',
 };
 
 const sectionTitle = {
-  color: '#00BB31',
+  color: '#00882a',
   fontSize: '11px',
   fontWeight: '700',
   textTransform: 'uppercase' as const,
@@ -429,15 +429,15 @@ const sectionTitle = {
 };
 
 const messageText = {
-  color: '#e0e0e0',
+  color: '#1f2937',
   fontSize: '15px',
   lineHeight: '1.7',
   margin: '0',
   whiteSpace: 'pre-wrap' as const,
-  backgroundColor: '#1a1a1a',
+  backgroundColor: '#f9fafb',
   padding: '20px',
   borderRadius: '8px',
-  border: '1px solid #2a2a2a',
+  border: '1px solid #e5e7eb',
 };
 
 const detailsTable = {
@@ -446,22 +446,22 @@ const detailsTable = {
 };
 
 const dtCell = {
-  color: '#888888',
+  color: '#6b7280',
   fontSize: '13px',
   fontWeight: '600',
   padding: '8px 12px 8px 0',
   width: '140px',
   verticalAlign: 'top' as const,
-  borderBottom: '1px solid #1a1a1a',
+  borderBottom: '1px solid #f3f4f6',
 };
 
 const ddCell = {
-  color: '#e0e0e0',
+  color: '#1f2937',
   fontSize: '14px',
   fontWeight: '400',
   padding: '8px 0',
   verticalAlign: 'top' as const,
-  borderBottom: '1px solid #1a1a1a',
+  borderBottom: '1px solid #f3f4f6',
 };
 
 const budgetBadge = {
@@ -476,8 +476,8 @@ const budgetBadge = {
 
 const durationBadge = {
   display: 'inline-block',
-  backgroundColor: '#1a3a1a',
-  color: '#00BB31',
+  backgroundColor: '#dcfce7',
+  color: '#166534',
   padding: '3px 10px',
   borderRadius: '4px',
   fontSize: '13px',
@@ -485,7 +485,7 @@ const durationBadge = {
 };
 
 const chipGroupLabel = {
-  color: '#888888',
+  color: '#6b7280',
   fontSize: '12px',
   fontWeight: '600',
   margin: '0 0 8px',
@@ -498,28 +498,28 @@ const chipGroup = {
 
 const chip = {
   display: 'inline-block',
-  backgroundColor: '#1a2e1a',
-  color: '#00BB31',
+  backgroundColor: '#dcfce7',
+  color: '#166534',
   padding: '4px 12px',
   borderRadius: '20px',
   fontSize: '12px',
   fontWeight: '600',
   marginRight: '6px',
   marginBottom: '4px',
-  border: '1px solid #00BB3130',
+  border: '1px solid #bbf7d0',
 };
 
 const chipAlt = {
   display: 'inline-block',
-  backgroundColor: '#1a1a2e',
-  color: '#6B8AFF',
+  backgroundColor: '#dbeafe',
+  color: '#1e40af',
   padding: '4px 12px',
   borderRadius: '20px',
   fontSize: '12px',
   fontWeight: '600',
   marginRight: '6px',
   marginBottom: '4px',
-  border: '1px solid #6B8AFF30',
+  border: '1px solid #bfdbfe',
 };
 
 const originSection = {
@@ -527,18 +527,18 @@ const originSection = {
 };
 
 const originText = {
-  color: '#666666',
+  color: '#9ca3af',
   fontSize: '12px',
   margin: '0',
 };
 
 const originLink = {
-  color: '#888888',
+  color: '#6b7280',
   textDecoration: 'none',
 };
 
 const hr = {
-  borderColor: '#222222',
+  borderColor: '#e5e7eb',
   margin: '0',
 };
 
@@ -557,23 +557,24 @@ const button = {
   textDecoration: 'none',
   textAlign: 'center' as const,
   padding: '14px 36px',
-  boxShadow: '0 4px 12px rgba(0, 187, 49, 0.3)',
+  boxShadow: '0 2px 8px rgba(0, 187, 49, 0.2)',
 };
 
 const footer = {
   padding: '24px 40px',
+  backgroundColor: '#f9fafb',
   textAlign: 'center' as const,
 };
 
 const footerText = {
-  color: '#555555',
+  color: '#9ca3af',
   fontSize: '12px',
   lineHeight: '1.5',
   margin: '4px 0',
 };
 
 const visitorHeader = {
-  color: '#e0e0e0',
+  color: '#1f2937',
   fontSize: '16px',
   fontWeight: '600',
   margin: '0 0 8px',
@@ -600,7 +601,7 @@ const pageCountBadge = {
 };
 
 const visitorUa = {
-  color: '#666666',
+  color: '#9ca3af',
   fontSize: '11px',
   margin: '0 0 6px',
   lineHeight: '1.4',
@@ -608,13 +609,13 @@ const visitorUa = {
 };
 
 const visitorMeta = {
-  color: '#888888',
+  color: '#6b7280',
   fontSize: '13px',
   margin: '0 0 4px',
 };
 
 const pagesTitle = {
-  color: '#cccccc',
+  color: '#374151',
   fontSize: '14px',
   fontWeight: '700',
   margin: '20px 0 12px',
@@ -624,8 +625,8 @@ const pageRow = {
   width: '100%',
   borderCollapse: 'collapse' as const,
   marginBottom: '0',
-  backgroundColor: '#141414',
-  borderLeft: '3px solid #222222',
+  backgroundColor: '#f9fafb',
+  borderLeft: '3px solid #d1d5db',
   marginTop: '6px',
   borderRadius: '0 6px 6px 0',
 };
@@ -655,7 +656,7 @@ const pageDetailCell = {
 };
 
 const pagePathText = {
-  color: '#e0e0e0',
+  color: '#1f2937',
   fontSize: '14px',
   fontWeight: '600',
   fontFamily: 'SFMono-Regular,Consolas,"Liberation Mono",Menlo,monospace',
@@ -663,7 +664,7 @@ const pagePathText = {
 };
 
 const pageMetaText = {
-  color: '#666666',
+  color: '#9ca3af',
   fontSize: '11px',
   margin: '0',
 };
