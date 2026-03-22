@@ -15,7 +15,7 @@ import {
 } from './contact-form.type';
 import Link from 'next/link';
 import { useTranslationContext } from '@/app/context/TranslationContext';
-import { hasConsent } from '@/lib/cookies/consent';
+import { isCategoryAllowed } from '@/lib/cookies/consent';
 
 const TOTAL_STEPS = 6;
 
@@ -32,7 +32,7 @@ export default function ContactForm({ onSuccess, onError }: ContactFormProps) {
   const [step, setStep] = useState(1);
   const [direction, setDirection] = useState(1);
   const [acceptedPolicy, setAcceptedPolicy] = useState(false);
-  const cookiesAlreadyAccepted = typeof window !== 'undefined' && hasConsent();
+  const cookiesAlreadyAccepted = typeof window !== 'undefined' && isCategoryAllowed('analytics');
 
   const {
     formData,
