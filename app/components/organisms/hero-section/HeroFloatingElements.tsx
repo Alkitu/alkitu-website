@@ -513,6 +513,7 @@ function HeroFloatingElements({ debug }: { debug?: boolean }) {
 
   return (
     <motion.div
+      className="overflow-hidden"
       variants={container}
       initial='hidden'
       animate={isInView ? "visible" : "hidden"}

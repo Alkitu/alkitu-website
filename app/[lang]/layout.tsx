@@ -2,7 +2,7 @@ import "../../styles/globals.css";
 import { Locale, i18n } from "@/i18n.config";
 import { NavBar } from "../components/organisms/navbar";
 import { Footer } from "../components/organisms/footer";
-import { CookiesButton } from "../components/molecules/cookies-button";
+import { CookieConsentBanner } from "../components/molecules/cookies-button";
 import { VisitTracker } from "../components/analytics";
 import { ProjectTransition } from "../components/atoms/intro-loader";
 import Providers from "../context/Providers";
@@ -116,11 +116,11 @@ export default async function RootLayout({
           <ProjectTransition />
           <VisitTracker />
           {!isAdminRoute && <NavBar />}
-          <main className={isAdminRoute ? 'w-full h-full' : 'max-w-full mt-20 w-screen flex flex-col items-center justify-center relative overflow-visible'}>
+          <main className={isAdminRoute ? 'w-full h-full' : 'max-w-full mt-20 w-full flex flex-col items-center justify-center relative overflow-x-hidden'}>
             {children}
           </main>
           {!isAdminRoute && <Footer />}
-          {!isAdminRoute && <CookiesButton />}
+          {!isAdminRoute && <CookieConsentBanner />}
         </Providers>
       </body>
     </html>

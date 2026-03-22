@@ -18,7 +18,7 @@ function TailwindGrid({
   return (
     <>
       <section
-        className={`px-4 min-w-[360px]  md:px-6 lg:px-8  w-full bg-red-500/10 -z-50`}
+        className={`px-4 min-w-[360px]  md:px-6 lg:px-8  w-full -z-50`}
       >
         <section className=" gap-4 grid-cols-4  md:gap-6 md:grid-cols-8 lg:gap-6 lg:grid-cols-12 grid relative  w-full -z-50  justify-center">
           {show && (

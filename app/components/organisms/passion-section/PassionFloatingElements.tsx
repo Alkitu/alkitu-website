@@ -41,7 +41,7 @@ function PassionFloatingElements() {
   };
   return (
     <motion.div
-      className='grid grid-cols-3  md:grid-cols-3 gap-x-4  max-w-full overflow-x-hidden min-h-fit px-5'
+      className='grid grid-cols-3  md:grid-cols-3 gap-x-4  max-w-full overflow-hidden min-h-fit px-5'
       variants={container}
       initial='hidden'
       animate={isInView ? "visible" : "hidden"}
