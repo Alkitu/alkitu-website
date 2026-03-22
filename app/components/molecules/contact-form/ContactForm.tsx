@@ -343,8 +343,11 @@ export default function ContactForm({ onSuccess, onError }: ContactFormProps) {
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
             >
               {/* Name and Email side by side */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 mt-2">
-                <div className="relative group">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 mt-2">
+                <div className="relative group pb-5">
+                  <label htmlFor="cf-name" className="text-sm font-semibold text-foreground/60 mb-1 block">
+                    {label('nameLabel', 'Your Name')} *
+                  </label>
                   <input
                     id="cf-name"
                     type="text"
@@ -354,13 +357,13 @@ export default function ContactForm({ onSuccess, onError }: ContactFormProps) {
                     className="w-full bg-transparent border-0 border-b-2 border-border/80 px-1 py-3 text-foreground focus:outline-none focus:ring-0 focus:border-primary transition-colors focus:bg-transparent"
                     placeholder={label('namePlaceholder', 'John Doe')}
                   />
-                  <label htmlFor="cf-name" className="absolute left-1 -top-5 text-sm font-semibold text-foreground/60 transition-all pointer-events-none">
-                    {label('nameLabel', 'Your Name')} *
-                  </label>
-                  {hasSubmitted && errors.name && <p className="text-red-500 text-xs mt-1 absolute -bottom-5 left-1">{errors.name}</p>}
+                  {hasSubmitted && errors.name && <p className="text-red-500 text-xs mt-1 absolute bottom-0 left-0">{errors.name}</p>}
                 </div>
 
-                <div className="relative group">
+                <div className="relative group pb-5">
+                  <label htmlFor="cf-email" className="text-sm font-semibold text-foreground/60 mb-1 block">
+                    {label('emailLabel', 'Email')} *
+                  </label>
                   <input
                     id="cf-email"
                     type="email"
@@ -370,14 +373,14 @@ export default function ContactForm({ onSuccess, onError }: ContactFormProps) {
                     className="w-full bg-transparent border-0 border-b-2 border-border/80 px-1 py-3 text-foreground focus:outline-none focus:ring-0 focus:border-primary transition-colors focus:bg-transparent"
                     placeholder={label('emailPlaceholder', 'hello@example.com')}
                   />
-                  <label htmlFor="cf-email" className="absolute left-1 -top-5 text-sm font-semibold text-foreground/60 transition-all pointer-events-none">
-                    {label('emailLabel', 'Email')} *
-                  </label>
-                  {hasSubmitted && errors.email && <p className="text-red-500 text-xs mt-1 absolute -bottom-5 left-1">{errors.email}</p>}
+                  {hasSubmitted && errors.email && <p className="text-red-500 text-xs mt-1 absolute bottom-0 left-0">{errors.email}</p>}
                 </div>
               </div>
 
-              <div className="relative group mb-8 mt-6">
+              <div className="relative group mb-6 pb-5">
+                <label htmlFor="cf-message" className="text-sm font-semibold text-foreground/60 mb-1 block">
+                  {label('messageLabel', 'Tell us about your project')} *
+                </label>
                 <textarea
                   id="cf-message"
                   value={formData.message}
@@ -387,10 +390,7 @@ export default function ContactForm({ onSuccess, onError }: ContactFormProps) {
                   className="w-full bg-transparent border-0 border-b-2 border-border/80 px-1 py-3 text-foreground focus:outline-none focus:ring-0 focus:border-primary transition-colors resize-none focus:bg-transparent"
                   placeholder={label('messagePlaceholder', 'Describe your project needs...')}
                 />
-                <label htmlFor="cf-message" className="absolute left-1 -top-5 text-sm font-semibold text-foreground/60 transition-all pointer-events-none">
-                  {label('messageLabel', 'Tell us about your project')} *
-                </label>
-                {hasSubmitted && errors.message && <p className="text-red-500 text-xs mt-1 absolute -bottom-5 left-1">{errors.message}</p>}
+                {hasSubmitted && errors.message && <p className="text-red-500 text-xs mt-1 absolute bottom-0 left-0">{errors.message}</p>}
               </div>
 
               {/* File Upload */}
