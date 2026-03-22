@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { Locale } from "@/i18n.config";
 import { SideBar } from "../components/organisms/sidebar";
 import { getDictionary } from "@/lib/dictionary";
@@ -10,6 +11,16 @@ import { ProjectsPreview } from "../components/organisms/projects-section";
 import { Skills } from "../components/organisms/skills-section";
 import { Brands } from "../components/organisms/brands-section";
 import { allBlogPosts } from 'contentlayer/generated';
+
+export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
+  const { lang } = await params;
+  return {
+    title: { absolute: lang === 'es' ? 'Alkitu | Agencia Digital en España' : 'Alkitu | Digital Agency in Spain' },
+    description: lang === 'es'
+      ? 'Agencia digital especializada en branding, marketing digital, desarrollo web y productos digitales a medida'
+      : 'Digital agency specializing in branding, digital marketing, web development and custom digital products',
+  };
+}
 
 export default async function Home({
   params,

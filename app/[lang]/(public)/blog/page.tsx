@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionary";
 import { BlogContent } from "@/app/components/organisms/blog-content";
@@ -8,6 +9,16 @@ import { allBlogPosts } from 'contentlayer/generated';
  * Revalidates every hour to keep content fresh
  */
 export const revalidate = 3600; // 1 hour
+
+export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
+  const { lang } = await params;
+  return {
+    title: 'Blog',
+    description: lang === 'es'
+      ? 'Artículos sobre marketing digital, branding, desarrollo web y emprendimiento'
+      : 'Articles about digital marketing, branding, web development and entrepreneurship',
+  };
+}
 
 export default async function BlogPage({
   params,

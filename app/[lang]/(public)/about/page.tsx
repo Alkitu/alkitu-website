@@ -1,11 +1,22 @@
+import { Metadata } from "next";
 import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionary";
 import TailwindGrid from "@/app/components/templates/grid/TailwindGrid";
 import { AboutHero } from "@/app/components/organisms/about-hero";
-import { AboutOrigin } from "@/app/components/organisms/about-origin"; 
+import { AboutOrigin } from "@/app/components/organisms/about-origin";
 import { AboutPrinciples } from "@/app/components/organisms/about-principles";
 import { AboutTeam } from "@/app/components/organisms/about-team";
 import { SideBar } from "@/app/components/organisms/sidebar";
+
+export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
+  const { lang } = await params;
+  return {
+    title: lang === 'es' ? 'Sobre Nosotros' : 'About Us',
+    description: lang === 'es'
+      ? 'Conoce al equipo detrás de Alkitu, agencia digital en España'
+      : 'Meet the team behind Alkitu, digital agency in Spain',
+  };
+}
 
 export default async function AboutPage({
   params,
