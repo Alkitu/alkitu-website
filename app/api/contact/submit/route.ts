@@ -310,6 +310,19 @@ export async function POST(request: NextRequest) {
               sessionInfo.sessionDuration = durationSec;
             }
           }
+          // Update session label with the contact's name
+          await supabaseAnon
+            .from('sessions')
+            .update({ label: formData.name })
+            .eq('id', sessionData.id);
+
+          // Also update all sessions from the same IP
+          if (sessionData.ip_address) {
+            await supabaseAnon
+              .from('sessions')
+              .update({ label: formData.name })
+              .eq('ip_address', sessionData.ip_address);
+          }
         }
       } catch (_) { /* session lookup is best-effort */ }
 
