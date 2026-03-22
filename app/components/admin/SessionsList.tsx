@@ -21,7 +21,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { ChevronDown, ChevronUp, Search, Filter, X } from "lucide-react";
+import { ChevronDown, ChevronUp, Search, Filter, X, Pencil, Check } from "lucide-react";
 
 interface Session {
   id: string;
@@ -31,7 +31,8 @@ interface Session {
   started_at: string;
   last_activity_at: string;
   total_page_views: number;
-  country?: string; // Added country field
+  country?: string;
+  label?: string | null;
 }
 
 import countriesData from '@/lib/data/countries.json';
@@ -52,6 +53,11 @@ export function SessionsList() {
   const [totalCount, setTotalCount] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
+
+  // Label editing
+  const [editingLabelId, setEditingLabelId] = useState<string | null>(null);
+  const [editingLabelValue, setEditingLabelValue] = useState('');
+  const [savingLabel, setSavingLabel] = useState(false);
 
   // Filters
   const [searchIP, setSearchIP] = useState('');
@@ -117,6 +123,54 @@ export function SessionsList() {
     setSearchIP('');
     setSearchUserAgent('');
     setCurrentPage(1);
+  };
+
+  const startEditingLabel = (e: React.MouseEvent, session: Session) => {
+    e.stopPropagation();
+    setEditingLabelId(session.id);
+    setEditingLabelValue(session.label || '');
+  };
+
+  const cancelEditingLabel = () => {
+    setEditingLabelId(null);
+    setEditingLabelValue('');
+  };
+
+  const saveLabel = async (e: React.MouseEvent | React.FormEvent, sessionId: string) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setSavingLabel(true);
+    try {
+      const trimmed = editingLabelValue.trim() || null;
+      // Update this session's label
+      await supabase
+        .from('sessions')
+        .update({ label: trimmed })
+        .eq('id', sessionId);
+
+      // Also update all sessions with the same IP so the label persists across visits
+      const session = sessions.find((s) => s.id === sessionId);
+      if (session?.ip_address && trimmed) {
+        await supabase
+          .from('sessions')
+          .update({ label: trimmed })
+          .eq('ip_address', session.ip_address);
+      }
+
+      // Update local state
+      setSessions((prev) =>
+        prev.map((s) =>
+          s.id === sessionId || (session?.ip_address && s.ip_address === session.ip_address)
+            ? { ...s, label: trimmed }
+            : s
+        )
+      );
+      setEditingLabelId(null);
+    } catch (error) {
+      console.error('Error saving label:', error);
+    } finally {
+      setSavingLabel(false);
+    }
   };
 
   const hasActiveFilters = searchIP || searchUserAgent;
@@ -304,7 +358,61 @@ export function SessionsList() {
                     <div className="flex items-center gap-3">
                       <span className="font-mono text-sm font-medium flex items-center gap-2">
                         <span>{getCountryEmoji(session.country)}</span>
-                        <span>{session.ip_address || 'IP Desconocida'}</span>
+                        {editingLabelId === session.id ? (
+                          <form
+                            className="flex items-center gap-1"
+                            onSubmit={(e) => saveLabel(e, session.id)}
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <Input
+                              value={editingLabelValue}
+                              onChange={(e) => setEditingLabelValue(e.target.value)}
+                              placeholder={session.ip_address || 'Nombre...'}
+                              className="h-7 w-40 text-sm font-sans"
+                              autoFocus
+                              onKeyDown={(e) => {
+                                if (e.key === 'Escape') cancelEditingLabel();
+                              }}
+                            />
+                            <Button
+                              type="submit"
+                              variant="ghost"
+                              size="sm"
+                              className="h-7 w-7 p-0"
+                              disabled={savingLabel}
+                            >
+                              <Check className="h-3.5 w-3.5 text-primary" />
+                            </Button>
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              className="h-7 w-7 p-0"
+                              onClick={(e) => { e.stopPropagation(); cancelEditingLabel(); }}
+                            >
+                              <X className="h-3.5 w-3.5" />
+                            </Button>
+                          </form>
+                        ) : (
+                          <>
+                            {session.label ? (
+                              <span className="font-sans font-semibold">{session.label}</span>
+                            ) : (
+                              <span>{session.ip_address || 'IP Desconocida'}</span>
+                            )}
+                            {session.label && (
+                              <span className="text-xs text-muted-foreground font-normal">({session.ip_address})</span>
+                            )}
+                            <button
+                              type="button"
+                              onClick={(e) => startEditingLabel(e, session)}
+                              className="p-0.5 rounded hover:bg-accent transition-colors"
+                              title="Editar nombre"
+                            >
+                              <Pencil className="h-3 w-3 text-muted-foreground hover:text-foreground" />
+                            </button>
+                          </>
+                        )}
                       </span>
                       <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
                         {session.total_page_views} páginas
