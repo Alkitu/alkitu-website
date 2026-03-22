@@ -65,7 +65,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full max-w-2xl mx-auto lg:mx-0 bg-background/80 dark:bg-zinc-900/80 p-8 md:p-12 xl:p-14 rounded-[2.5rem] border border-border/80 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] backdrop-blur-2xl"
+            className="w-full md:min-w-[540px] max-w-2xl mx-auto lg:mx-0 bg-background/80 dark:bg-zinc-900/80 p-8 md:p-12 xl:p-14 rounded-[2.5rem] border border-border/80 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] backdrop-blur-2xl"
           >
             <h2 className="text-4xl md:text-5xl font-black mb-10 tracking-tight">
               {translations?.contactPage?.form?.title || "Escríbenos."}
