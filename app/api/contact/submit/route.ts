@@ -250,11 +250,13 @@ export async function POST(request: NextRequest) {
         country?: string;
         city?: string;
         region?: string;
+        ipAddress?: string;
+        userAgent?: string;
         pageCount?: number;
-        pagesVisited?: string[];
+        pages?: { path: string; entryTime: string; durationSec?: number }[];
         sessionStart?: string;
         sessionDuration?: number;
-      } = {};
+      } = { ipAddress: ip, userAgent };
 
       try {
         // Find the most recent session matching this IP
@@ -272,35 +274,27 @@ export async function POST(request: NextRequest) {
           sessionInfo.region = sessionData.region || undefined;
           sessionInfo.sessionStart = sessionData.created_at;
 
-          // Fetch page views with URLs for this session
+          // Fetch page views with URLs, times, and duration for this session
           const { data: pageViews } = await supabaseAnon
             .from('page_views')
-            .select('page_url, entry_time')
+            .select('page_url, entry_time, duration')
             .eq('session_id', sessionData.id)
             .order('entry_time', { ascending: true });
 
           if (pageViews && pageViews.length > 0) {
             sessionInfo.pageCount = pageViews.length;
-            // Extract clean paths from full URLs, deduplicate
-            const seen = new Set<string>();
-            sessionInfo.pagesVisited = [];
-            for (const pv of pageViews) {
-              try {
-                const path = new URL(pv.page_url).pathname;
-                if (!seen.has(path)) {
-                  seen.add(path);
-                  sessionInfo.pagesVisited.push(path);
-                }
-              } catch (_) {
-                if (!seen.has(pv.page_url)) {
-                  seen.add(pv.page_url);
-                  sessionInfo.pagesVisited.push(pv.page_url);
-                }
-              }
-            }
+            sessionInfo.pages = pageViews.map((pv) => {
+              let path = pv.page_url;
+              try { path = new URL(pv.page_url).pathname; } catch (_) {}
+              return {
+                path,
+                entryTime: pv.entry_time,
+                durationSec: pv.duration ?? undefined,
+              };
+            });
           }
 
-          // Calculate duration from session timestamps
+          // Calculate total duration from session timestamps
           if (sessionData.created_at && sessionData.updated_at) {
             const start = new Date(sessionData.created_at).getTime();
             const end = new Date(sessionData.updated_at).getTime();

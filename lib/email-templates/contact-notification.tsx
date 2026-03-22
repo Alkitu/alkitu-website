@@ -14,12 +14,20 @@ import {
   Column,
 } from '@react-email/components';
 
+interface PageVisit {
+  path: string;
+  entryTime: string;
+  durationSec?: number;
+}
+
 interface SessionInfo {
   country?: string;
   city?: string;
   region?: string;
+  ipAddress?: string;
+  userAgent?: string;
   pageCount?: number;
-  pagesVisited?: string[];
+  pages?: PageVisit[];
   sessionStart?: string;
   sessionDuration?: number;
 }
@@ -50,6 +58,18 @@ function formatDuration(seconds: number): string {
   return `${hrs}h ${remainMin} min`;
 }
 
+function formatTime(dateStr: string): string {
+  try {
+    return new Date(dateStr).toLocaleString('es-ES', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    });
+  } catch (_) {
+    return dateStr;
+  }
+}
+
 function formatDate(dateStr: string): string {
   try {
     return new Date(dateStr).toLocaleString('es-ES', {
@@ -59,7 +79,7 @@ function formatDate(dateStr: string): string {
       hour: '2-digit',
       minute: '2-digit',
     });
-  } catch {
+  } catch (_) {
     return dateStr;
   }
 }
@@ -110,7 +130,7 @@ export default function ContactNotification({
   const hasProjectDetails = projectType || companySize || budget;
   const hasCategories = productCategories && productCategories.length > 0;
   const hasFunctionalities = functionalities && functionalities.length > 0;
-  const hasSession = session && (session.country || session.pageCount || session.pagesVisited);
+  const hasSession = session && (session.country || session.pageCount || session.ipAddress);
 
   const location = [session?.city, session?.region, session?.country].filter(Boolean).join(', ');
 
@@ -217,50 +237,59 @@ export default function ContactNotification({
           {/* ── Session / Visitor Info ── */}
           {hasSession && (
             <Section style={sessionSection}>
-              <Text style={sectionTitle}>👤 RECORRIDO DEL VISITANTE</Text>
-              <table style={detailsTable} cellPadding={0} cellSpacing={0}>
-                <tbody>
-                  {location && (
-                    <tr>
-                      <td style={dtCell}>{countryFlag(session!.country)} Ubicación</td>
-                      <td style={ddCell}>{location}</td>
-                    </tr>
-                  )}
-                  {session!.pageCount !== undefined && session!.pageCount > 0 && (
-                    <tr>
-                      <td style={dtCell}>Páginas visitadas</td>
-                      <td style={ddCell}><strong>{session!.pageCount}</strong> páginas</td>
-                    </tr>
-                  )}
-                  {session!.sessionStart && (
-                    <tr>
-                      <td style={dtCell}>Inicio de sesión</td>
-                      <td style={ddCell}>{formatDate(session!.sessionStart)}</td>
-                    </tr>
-                  )}
-                  {session!.sessionDuration !== undefined && session!.sessionDuration > 0 && (
-                    <tr>
-                      <td style={dtCell}>Duración en sitio</td>
-                      <td style={ddCell}>
-                        <span style={durationBadge}>{formatDuration(session!.sessionDuration)}</span>
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-              {session!.pagesVisited && session!.pagesVisited.length > 0 && (
+              <Text style={sectionTitle}>👤 DATOS DEL VISITANTE</Text>
+
+              {/* Header row: flag + IP + page count */}
+              <Text style={visitorHeader}>
+                {session!.country && <span>{countryFlag(session!.country)} </span>}
+                {session!.ipAddress && <span style={visitorIp}>{session!.ipAddress}</span>}
+                {session!.pageCount !== undefined && session!.pageCount > 0 && (
+                  <span style={pageCountBadge}>{session!.pageCount} páginas</span>
+                )}
+              </Text>
+
+              {/* User agent */}
+              {session!.userAgent && (
+                <Text style={visitorUa}>{session!.userAgent}</Text>
+              )}
+
+              {/* Start + duration */}
+              <Text style={visitorMeta}>
+                {session!.sessionStart && (
+                  <span>Inicio: {formatDate(session!.sessionStart)}</span>
+                )}
+                {session!.sessionDuration !== undefined && session!.sessionDuration > 0 && (
+                  <span> &nbsp;•&nbsp; Duración: {formatDuration(session!.sessionDuration)}</span>
+                )}
+              </Text>
+
+              {/* Page journey */}
+              {session!.pages && session!.pages.length > 0 && (
                 <>
-                  <Text style={pagesTitle}>Páginas que visitó:</Text>
-                  <table style={pagesTable} cellPadding={0} cellSpacing={0}>
-                    <tbody>
-                      {session!.pagesVisited.map((page, i) => (
-                        <tr key={page}>
-                          <td style={pageNumber}>{i + 1}</td>
-                          <td style={pagePath}>{page}</td>
+                  <Text style={pagesTitle}>Recorrido del Usuario</Text>
+                  {session!.pages.map((page, i) => (
+                    <table key={`${page.path}-${i}`} style={pageRow} cellPadding={0} cellSpacing={0}>
+                      <tbody>
+                        <tr>
+                          <td style={pageNumberCell}>
+                            <span style={pageNumberCircle}>{i + 1}</span>
+                          </td>
+                          <td style={pageDetailCell}>
+                            <Text style={pagePathText}>{page.path}</Text>
+                            <Text style={pageMetaText}>
+                              Entrada: {formatTime(page.entryTime)}
+                              {page.durationSec !== undefined && page.durationSec > 0 && (
+                                <span> &nbsp;&nbsp; Tiempo: {formatDuration(page.durationSec)}</span>
+                              )}
+                              {page.durationSec === undefined && (
+                                <span> &nbsp;&nbsp; Tiempo: N/A</span>
+                              )}
+                            </Text>
+                          </td>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </tbody>
+                    </table>
+                  ))}
                 </>
               )}
             </Section>
@@ -543,37 +572,100 @@ const footerText = {
   margin: '4px 0',
 };
 
-const pagesTitle = {
-  color: '#888888',
-  fontSize: '12px',
+const visitorHeader = {
+  color: '#e0e0e0',
+  fontSize: '16px',
   fontWeight: '600',
-  margin: '20px 0 10px',
-  textTransform: 'uppercase' as const,
-  letterSpacing: '0.5px',
+  margin: '0 0 8px',
+  lineHeight: '1.6',
 };
 
-const pagesTable = {
-  width: '100%',
-  borderCollapse: 'collapse' as const,
+const visitorIp = {
+  fontFamily: 'SFMono-Regular,Consolas,"Liberation Mono",Menlo,monospace',
+  fontSize: '15px',
+  fontWeight: '700',
+  marginRight: '12px',
 };
 
-const pageNumber = {
-  color: '#00BB31',
+const pageCountBadge = {
+  display: 'inline-block',
+  backgroundColor: '#00BB31',
+  color: '#ffffff',
+  padding: '2px 10px',
+  borderRadius: '4px',
   fontSize: '12px',
   fontWeight: '700',
-  padding: '6px 10px 6px 0',
-  width: '28px',
-  textAlign: 'right' as const,
+  marginLeft: '10px',
+  verticalAlign: 'middle' as const,
+};
+
+const visitorUa = {
+  color: '#666666',
+  fontSize: '11px',
+  margin: '0 0 6px',
+  lineHeight: '1.4',
+  wordBreak: 'break-all' as const,
+};
+
+const visitorMeta = {
+  color: '#888888',
+  fontSize: '13px',
+  margin: '0 0 4px',
+};
+
+const pagesTitle = {
+  color: '#cccccc',
+  fontSize: '14px',
+  fontWeight: '700',
+  margin: '20px 0 12px',
+};
+
+const pageRow = {
+  width: '100%',
+  borderCollapse: 'collapse' as const,
+  marginBottom: '0',
+  backgroundColor: '#141414',
+  borderLeft: '3px solid #222222',
+  marginTop: '6px',
+  borderRadius: '0 6px 6px 0',
+};
+
+const pageNumberCell = {
+  width: '36px',
+  padding: '10px 0 10px 12px',
   verticalAlign: 'top' as const,
 };
 
-const pagePath = {
-  color: '#cccccc',
-  fontSize: '13px',
-  fontFamily: 'SFMono-Regular,Consolas,"Liberation Mono",Menlo,monospace',
-  padding: '6px 0',
-  borderBottom: '1px solid #1a1a1a',
+const pageNumberCircle = {
+  display: 'inline-block',
+  backgroundColor: '#00BB31',
+  color: '#ffffff',
+  width: '22px',
+  height: '22px',
+  lineHeight: '22px',
+  textAlign: 'center' as const,
+  borderRadius: '50%',
+  fontSize: '11px',
+  fontWeight: '700',
+};
+
+const pageDetailCell = {
+  padding: '8px 12px 8px 6px',
   verticalAlign: 'top' as const,
+};
+
+const pagePathText = {
+  color: '#e0e0e0',
+  fontSize: '14px',
+  fontWeight: '600',
+  fontFamily: 'SFMono-Regular,Consolas,"Liberation Mono",Menlo,monospace',
+  margin: '0 0 2px',
+};
+
+const pageMetaText = {
+  color: '#666666',
+  fontSize: '11px',
+  margin: '0',
 };
 
 const footerLink = {
