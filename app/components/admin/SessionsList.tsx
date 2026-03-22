@@ -82,9 +82,9 @@ export function SessionsList() {
           page_views:page_views(count)
         `, { count: 'exact' });
 
-      // Apply filters
+      // Apply filters (search by IP or label)
       if (searchIP) {
-        query = query.ilike('ip_address', `%${searchIP}%`);
+        query = query.or(`ip_address.ilike.%${searchIP}%,label.ilike.%${searchIP}%`);
       }
       if (searchUserAgent) {
         query = query.ilike('user_agent', `%${searchUserAgent}%`);
@@ -249,11 +249,11 @@ export function SessionsList() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
               {/* Search IP */}
               <div className="space-y-2">
-                <label className="text-sm font-medium">Dirección IP</label>
+                <label className="text-sm font-medium">IP o Nombre</label>
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
-                    placeholder="Buscar por IP..."
+                    placeholder="Buscar por IP o nombre..."
                     value={searchIP}
                     onChange={(e) => {
                       setSearchIP(e.target.value);
