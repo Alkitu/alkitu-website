@@ -246,6 +246,9 @@ export async function POST(request: NextRequest) {
       });
 
       // Query session data for visitor info in the email
+      // Use session_fingerprint cookie (most reliable) or fall back to IP
+      const sessionFingerprint = request.cookies.get('session_fingerprint')?.value;
+
       let sessionInfo: {
         country?: string;
         city?: string;
@@ -259,12 +262,19 @@ export async function POST(request: NextRequest) {
       } = { ipAddress: ip, userAgent };
 
       try {
-        // Find the most recent session matching this IP
-        const { data: sessionData } = await supabaseAnon
+        // Find session by fingerprint (exact match) or fall back to IP
+        let sessionQuery = supabaseAnon
           .from('sessions')
-          .select('id, country, city, region, created_at, updated_at')
-          .eq('ip_address', ip)
-          .order('created_at', { ascending: false })
+          .select('id, country, city, region, ip_address, started_at, last_activity_at');
+
+        if (sessionFingerprint) {
+          sessionQuery = sessionQuery.eq('session_fingerprint', sessionFingerprint);
+        } else {
+          sessionQuery = sessionQuery.eq('ip_address', ip);
+        }
+
+        const { data: sessionData } = await sessionQuery
+          .order('started_at', { ascending: false })
           .limit(1)
           .single();
 
@@ -272,32 +282,29 @@ export async function POST(request: NextRequest) {
           sessionInfo.country = sessionData.country || undefined;
           sessionInfo.city = sessionData.city || undefined;
           sessionInfo.region = sessionData.region || undefined;
-          sessionInfo.sessionStart = sessionData.created_at;
+          sessionInfo.ipAddress = sessionData.ip_address || ip;
+          sessionInfo.sessionStart = sessionData.started_at;
 
-          // Fetch page views with URLs, times, and duration for this session
+          // Fetch page views with paths, times, and duration for this session
           const { data: pageViews } = await supabaseAnon
             .from('page_views')
-            .select('page_url, entry_time, duration')
+            .select('page_path, entry_time, time_on_page_seconds')
             .eq('session_id', sessionData.id)
             .order('entry_time', { ascending: true });
 
           if (pageViews && pageViews.length > 0) {
             sessionInfo.pageCount = pageViews.length;
-            sessionInfo.pages = pageViews.map((pv) => {
-              let path = pv.page_url;
-              try { path = new URL(pv.page_url).pathname; } catch (_) {}
-              return {
-                path,
-                entryTime: pv.entry_time,
-                durationSec: pv.duration ?? undefined,
-              };
-            });
+            sessionInfo.pages = pageViews.map((pv) => ({
+              path: pv.page_path,
+              entryTime: pv.entry_time,
+              durationSec: pv.time_on_page_seconds ?? undefined,
+            }));
           }
 
           // Calculate total duration from session timestamps
-          if (sessionData.created_at && sessionData.updated_at) {
-            const start = new Date(sessionData.created_at).getTime();
-            const end = new Date(sessionData.updated_at).getTime();
+          if (sessionData.started_at && sessionData.last_activity_at) {
+            const start = new Date(sessionData.started_at).getTime();
+            const end = new Date(sessionData.last_activity_at).getTime();
             const durationSec = Math.round((end - start) / 1000);
             if (durationSec > 0) {
               sessionInfo.sessionDuration = durationSec;
