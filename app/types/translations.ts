@@ -29,6 +29,10 @@ export interface Translations {
     website: string;
     rights: string;
     adminAccess?: string;
+    legal?: {
+      privacyPolicy: string;
+      cookiePolicy: string;
+    };
     routes: Array<{
       name: string;
       pathname: string;
@@ -64,6 +68,24 @@ export interface Translations {
     [key: string]: any;
   };
   blog: Record<string, any>;
+  cookieConsent: {
+    title: string;
+    description: string;
+    acceptAll: string;
+    rejectAll: string;
+    customize: string;
+    savePreferences: string;
+    necessary: { title: string; description: string };
+    analytics: { title: string; description: string };
+    marketing: { title: string; description: string };
+    moreInfo: string;
+    cookiePolicy: string;
+    and: string;
+    privacyPolicy: string;
+    alwaysActive: string;
+  };
+  cookiePolicyPage: Record<string, any>;
+  privacyPolicyPage: Record<string, any>;
   settings: Record<string, any>;
   navigation: Record<string, any>;
   page: Record<string, any>;

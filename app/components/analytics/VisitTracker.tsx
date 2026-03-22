@@ -2,10 +2,12 @@
 
 import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
+import { isCategoryAllowed } from '@/lib/cookies/consent';
 
 /**
  * VisitTracker component
- * Tracks page views and sessions using RESTful analytics endpoints
+ * Tracks page views and sessions using RESTful analytics endpoints.
+ * Only tracks when user has given cookie consent for analytics.
  */
 export function VisitTracker() {
   const pathname = usePathname();
@@ -16,6 +18,11 @@ export function VisitTracker() {
   useEffect(() => {
     // Skip tracking for admin routes
     if (pathname.startsWith('/admin')) {
+      return;
+    }
+
+    // GDPR: Only track if user has consented to analytics cookies
+    if (!isCategoryAllowed('analytics')) {
       return;
     }
 

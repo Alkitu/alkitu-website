@@ -1,7 +1,7 @@
 import { NextMiddleware, NextResponse } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
 
-const PUBLIC_ADMIN_PATHS = ['/auth/login'];
+const PUBLIC_ADMIN_PATHS = ['/al-login'];
 
 export function withAuthMiddleware(next: NextMiddleware): NextMiddleware {
   return async function middleware(request, event) {
@@ -51,7 +51,7 @@ export function withAuthMiddleware(next: NextMiddleware): NextMiddleware {
     // Redirect to login if not authenticated
     if (!user || error) {
       const locale = request.cookies.get('NEXT_LOCALE')?.value || 'es';
-      const loginUrl = new URL(`/${locale}/auth/login`, request.url);
+      const loginUrl = new URL(`/${locale}/al-login`, request.url);
       loginUrl.searchParams.set('redirectTo', pathname);
       const redirectResponse = NextResponse.redirect(loginUrl);
 
@@ -73,7 +73,7 @@ export function withAuthMiddleware(next: NextMiddleware): NextMiddleware {
     if (!adminUser || adminError) {
       // User is authenticated but not an admin
       const locale = request.cookies.get('NEXT_LOCALE')?.value || 'es';
-      const redirectResponse = NextResponse.redirect(new URL(`/${locale}/auth/login?error=unauthorized`, request.url));
+      const redirectResponse = NextResponse.redirect(new URL(`/${locale}/al-login?error=unauthorized`, request.url));
 
       // Copy Supabase cookies to redirect response
       response.cookies.getAll().forEach((cookie) => {

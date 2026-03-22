@@ -1,5 +1,7 @@
 import { NextMiddleware, NextResponse, NextRequest, NextFetchEvent } from 'next/server';
 
+const CONSENT_COOKIE_NAME = 'cookie_consent';
+
 export function withTrackingMiddleware(next: NextMiddleware): NextMiddleware {
   return async function middleware(request: NextRequest, event: NextFetchEvent) {
     const { pathname } = request.nextUrl;
@@ -14,6 +16,24 @@ export function withTrackingMiddleware(next: NextMiddleware): NextMiddleware {
 
     // Skip static files and Next.js internals
     if (pathname.match(/^\/(?:_next|.*\..*)/) || pathname === '/not-found') {
+      return response;
+    }
+
+    // GDPR: Check if user has consented to analytics cookies
+    const consentCookie = request.cookies.get(CONSENT_COOKIE_NAME)?.value;
+    let analyticsAllowed = false;
+
+    if (consentCookie) {
+      try {
+        const consent = JSON.parse(decodeURIComponent(consentCookie));
+        analyticsAllowed = consent.analytics === true;
+      } catch {
+        analyticsAllowed = false;
+      }
+    }
+
+    // Only set tracking cookie if analytics consent was given
+    if (!analyticsAllowed) {
       return response;
     }
 

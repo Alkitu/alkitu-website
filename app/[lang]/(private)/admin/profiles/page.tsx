@@ -79,7 +79,7 @@ export default async function AllProfilesPage({
   } = await supabase.auth.getUser();
 
   if (!user) {
-    redirect(`/${lang}/auth/login`);
+    redirect(`/${lang}/al-login`);
   }
 
   // Verify user is super admin

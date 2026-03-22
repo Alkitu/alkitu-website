@@ -78,12 +78,23 @@ function Footer() {
             </Link>
           ))}
         </div>
-        <Link
-          href={`/${locale}/admin`}
-          className='text-center text-black text-base font-bold px-7 py-2 bg-primary rounded-3xl border border-primary! justify-center items-center gap-2.5 inline-flex hover:shadow-primary/50 hover:shadow-md '
-        >
-          {footerData.adminAccess || "Zona Admin"}
-        </Link>
+        {/* Legal Links */}
+        {footerData.legal && (
+          <div className='flex flex-wrap gap-x-6 gap-y-2 justify-center items-center'>
+            <Link
+              href={`/${locale}/privacy-policy`}
+              className='text-sm text-zinc-400 hover:text-primary transition-colors'
+            >
+              {footerData.legal.privacyPolicy}
+            </Link>
+            <Link
+              href={`/${locale}/cookie-policy`}
+              className='text-sm text-zinc-400 hover:text-primary transition-colors'
+            >
+              {footerData.legal.cookiePolicy}
+            </Link>
+          </div>
+        )}
 
         <div className='w-full h-0 border-zinc-700 dark:border-zinc-300 border-t'></div>
         <p className='text-xs font-light pb-10 capitalize text-white dark:text-white'>
