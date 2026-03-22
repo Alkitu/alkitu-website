@@ -67,7 +67,7 @@ export default function MainMenu({ isOpen, toggleOpen }: MainMenuProps) {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 400,
         damping: 40,
         staggerChildren: 1 * i,
@@ -79,7 +79,7 @@ export default function MainMenu({ isOpen, toggleOpen }: MainMenuProps) {
       y: 50,
       opacity: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 400,
         damping: 40,
         staggerChildren: 1,

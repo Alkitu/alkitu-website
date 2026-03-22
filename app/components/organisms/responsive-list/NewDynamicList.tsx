@@ -1,6 +1,6 @@
 import { useBoxClick } from "./useBoxClick";
 import { motion } from "framer-motion";
-import { RiveAnimation } from "@/app/components/molecules/rive-animation";
+import { BrandingIcon, MarketingIcon, ProductBuildingIcon } from "@/app/components/molecules/animated-icons";
 import { useState } from "react";
 
 function NewDynamicList({ className, index, category, wordIndex, setIndex }) {
@@ -41,11 +41,9 @@ function NewDynamicList({ className, index, category, wordIndex, setIndex }) {
           layout
           className='h-56 max-h-full max-w-full aspect-square mx-auto'
         >
-          <RiveAnimation
-            hover={hover}
-            artboardName={category.artboardName}
-            key={category.name}
-          />
+          {category.artboardName === "Design" && <BrandingIcon hover={hover} className="w-full h-full max-w-[80%] max-h-[80%]" key={category.name} />}
+          {category.artboardName === "Marketing" && <MarketingIcon hover={hover} className="w-full h-full max-w-[80%] max-h-[80%]" key={category.name} />}
+          {category.artboardName === "Web" && <ProductBuildingIcon hover={hover} className="w-full h-full max-w-[80%] max-h-[80%]" key={category.name} />}
         </motion.div>
         <div>
           <h3 className='text-center h-full text-xl font-black uppercase m-auto w-full '>

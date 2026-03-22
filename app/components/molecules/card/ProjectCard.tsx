@@ -2,8 +2,51 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
-import { Suspense } from "react";
+import { Suspense, useRef, useState, useLayoutEffect } from "react";
 import type { ProjectWithCategories } from "@/lib/types";
+
+function CategoryMarquee({ categories, locale }: { categories: ProjectWithCategories['categories']; locale: string }) {
+  const measureRef = useRef<HTMLSpanElement>(null);
+  const [blockWidth, setBlockWidth] = useState(0);
+
+  useLayoutEffect(() => {
+    if (measureRef.current) {
+      setBlockWidth(measureRef.current.offsetWidth);
+    }
+  }, [categories]);
+
+  if (!categories || categories.length === 0) return null;
+
+  const Block = ({ innerRef }: { innerRef?: React.Ref<HTMLSpanElement> }) => (
+    <span ref={innerRef} className="shrink-0">
+      {categories.map((c, i) => (
+        <span key={i}>
+          <span className="font-bold">{locale === 'es' ? c.name_es : c.name_en}</span>
+          <span className="font-light"> | </span>
+        </span>
+      ))}
+    </span>
+  );
+
+  return (
+    <div className="absolute inset-0 overflow-hidden z-10 pointer-events-none">
+      <div className="absolute bottom-14 -left-[50%] -right-10 rotate-[-25deg] origin-bottom-right bg-white/30 backdrop-blur-sm py-1.5 text-white/60 text-xs">
+        <div className="flex whitespace-nowrap">
+          <motion.div
+            className="flex shrink-0"
+            animate={blockWidth > 0 ? { x: [0, -blockWidth] } : {}}
+            transition={{ ease: "linear", duration: 8, repeat: Infinity, repeatType: "loop" }}
+          >
+            <Block innerRef={measureRef} />
+            <Block />
+            <Block />
+            <Block />
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 interface ProjectCardProps {
   project: ProjectWithCategories;
@@ -30,7 +73,7 @@ export default function ProjectCard({ project, priority = false, locale = 'en' }
       whileInView="show"
       viewport={{ once: true, amount: 0.2 }}
       exit="hidden"
-      transition={{ type: "spring", damping: 30, stiffness: 300 }}
+      transition={{ type: "spring" as const, damping: 30, stiffness: 300 }}
       className="rounded-2xl overflow-hidden dark:bg-gray-700"
     >
       <Link
@@ -65,6 +108,7 @@ export default function ProjectCard({ project, priority = false, locale = 'en' }
             blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA4MCIgaGVpZ2h0PSI3MjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwODAlIiBoZWlnaHQ9IjcyMCIgZmlsbD0iIzMzMyIvPjwvc3ZnPg=="
           />
         </Suspense>
+        <CategoryMarquee categories={project.categories} locale={locale} />
       </Link>
     </motion.div>
   );

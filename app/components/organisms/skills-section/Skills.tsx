@@ -44,7 +44,7 @@ function Skills({ text }) {
         <TailwindGrid fullSize>
           <section className='col-span-12 self-center overflow-hidden max-w-full z-20 mt-9 pointer-events-none'>
             <ParallaxIcon baseVelocity={-0.2}>
-              <div className=' justify-start items-center gap-8  inline-flex '>
+              <div className='justify-start items-center gap-8 inline-flex pt-3 pb-2'>
                 {dataSkills.firstLine &&
                   dataSkills.firstLine.map((skill, index) => (
                     <SkillsItems skill={skill} key={index + skill.name} />
@@ -54,7 +54,7 @@ function Skills({ text }) {
           </section>
           <section className='col-span-12 self-center overflow-hidden max-w-full z-20 mb-[3vw] md:mb-[5vw] mt-[6vw] md:mt-[1vw] pointer-events-none'>
             <ParallaxIcon baseVelocity={0.2}>
-              <div className=' justify-start items-center gap-8 inline-flex  '>
+              <div className='justify-start items-center gap-8 inline-flex pt-3 pb-2'>
                 {dataSkills.secondLine &&
                   dataSkills.secondLine.map((skill, index) => (
                     <SkillsItems skill={skill} key={index + skill.name} />
@@ -72,22 +72,17 @@ export default Skills;
 
 function SkillsItems({ skill }) {
   return (
-    <div className=' group flex-col justify-center items-center gap-2 inline-flex pointer-events-none'>
-      <div className='w-[20vw] h-[20vw] md:w-[16vw] md:h-[16vw] lg:w-[8vw] lg:h-[8vw] relative bg-white dark:bg-stone-950 rounded-xl shadow-xs shadow-zinc-200 dark:shadow-md dark:shadow-black border border-zinc-50 dark:border-transparent flex-col justify-center items-center flex pointer-events-none'>
+    <div className='group flex-col justify-center items-center gap-2 inline-flex pointer-events-auto'>
+      <div className='w-[20vw] h-[20vw] md:w-[16vw] md:h-[16vw] lg:w-[8vw] lg:h-[8vw] relative bg-background rounded-xl flex-col justify-center items-center flex transition-all duration-300 ease-out group-hover:-translate-y-1.5 group-hover:bg-primary group-hover:shadow-md group-hover:shadow-primary/25 dark:group-hover:bg-primary dark:group-hover:shadow-primary/15'>
         <Image
           src={skill.src}
           width={50}
           height={50}
           alt='skill'
-          className='max-w-10/12 object-cover group-hover:scale-125 transition-all duration-200 z-30 pointer-events-none brightness-0 dark:brightness-100'
+          className='max-w-10/12 object-cover transition-all duration-300 ease-out z-30 pointer-events-none brightness-0 dark:invert group-hover:brightness-0 group-hover:invert group-hover:scale-110'
         />
       </div>
-      <p
-        className='text-center text-xs text-[0.60vw] font-bold uppercase tracking-wide group-hover:scale-125 transition-all duration-200 pointer-events-none'
-        style={{
-          color: "rgb(var(--background))",
-        }}
-      >
+      <p className='text-center text-xs text-[0.60vw] font-bold uppercase tracking-wide transition-all duration-300 ease-out group-hover:-translate-y-0.5 group-hover:text-primary pointer-events-none text-background'>
         {skill.name}
       </p>
     </div>

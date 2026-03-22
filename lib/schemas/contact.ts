@@ -3,16 +3,13 @@ import { z } from 'zod';
 /**
  * Zod schema for contact form validation
  *
- * Validates contact form submissions including:
- * - Name (required, 2-100 characters)
- * - Email (required, valid email format)
- * - Subject (required, 5-200 characters)
- * - Message (required, 10-2000 characters)
- * - Locale (optional, defaults to 'es')
+ * Matches the multi-step frontend form that sends FormData with:
+ * - name, email, projectType, companySize, budget (strings)
+ * - productCategories, functionalities (JSON-stringified arrays)
+ * - message, locale (strings)
  *
  * Used by:
  * - POST /api/contact/submit endpoint
- * - Frontend form validation
  */
 export const contactFormSchema = z.object({
   name: z
@@ -29,11 +26,15 @@ export const contactFormSchema = z.object({
     .toLowerCase()
     .trim(),
 
-  subject: z
-    .string()
-    .min(5, 'El asunto debe tener al menos 5 caracteres / Subject must be at least 5 characters')
-    .max(200, 'El asunto no puede exceder 200 caracteres / Subject cannot exceed 200 characters')
-    .trim(),
+  projectType: z.string().optional(),
+
+  companySize: z.string().optional(),
+
+  budget: z.string().optional(),
+
+  productCategories: z.any().optional(),
+
+  functionalities: z.any().optional(),
 
   message: z
     .string()
@@ -49,22 +50,26 @@ export const contactFormSchema = z.object({
 
 /**
  * TypeScript type inferred from the Zod schema
- * Use this type for type-safe form handling
  */
 export type ContactFormData = z.infer<typeof contactFormSchema>;
 
 /**
  * Schema for validating contact submission with metadata
- * This includes additional fields captured by the API (user_agent, ip_address)
  *
  * Used by:
  * - Database insertion
  * - Admin panel display
  */
-export const contactSubmissionSchema = contactFormSchema.extend({
+export const contactSubmissionSchema = z.object({
+  name: z.string(),
+  email: z.string().email(),
+  subject: z.string().optional(),
+  message: z.string(),
+  locale: z.enum(['en', 'es']).default('es'),
   user_agent: z.string().optional(),
   ip_address: z.string().optional(),
   status: z.enum(['pending', 'read', 'replied', 'archived']).default('pending'),
+  form_data: z.record(z.string(), z.unknown()).optional(),
 });
 
 /**

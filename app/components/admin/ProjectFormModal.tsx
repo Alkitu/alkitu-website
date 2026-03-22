@@ -12,6 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import TagManager from './TagManager';
 import URLManager from './URLManager';
 import GalleryManager from './GalleryManager';
+import { createClient } from '@/lib/supabase/client';
 import type { ProjectWithCategories, Category, CreateProjectInput, UpdateProjectInput } from '@/lib/types';
 
 interface ProjectFormModalProps {
@@ -41,11 +42,13 @@ export default function ProjectFormModal({
     gallery: [],
     tags: [],
     urls: [],
+    authors: [],
     is_active: true,
     display_order: 0,
     category_ids: [],
   });
   const [loading, setLoading] = useState(false);
+  const [userProfiles, setUserProfiles] = useState<{ username: string; first_name: string; last_name: string }[]>([]);
 
   useEffect(() => {
     if (project) {
@@ -61,6 +64,7 @@ export default function ProjectFormModal({
         gallery: project.gallery || [],
         tags: project.tags || [],
         urls: project.urls || [],
+        authors: project.authors || [],
         is_active: project.is_active,
         display_order: project.display_order,
         category_ids: project.categories.map((c) => c.id),
@@ -78,6 +82,7 @@ export default function ProjectFormModal({
         gallery: [],
         tags: [],
         urls: [],
+        authors: [],
         is_active: true,
         display_order: 0,
         category_ids: [],
@@ -96,6 +101,27 @@ export default function ProjectFormModal({
     } finally {
       setLoading(false);
     }
+  };
+
+  useEffect(() => {
+    async function fetchUserProfiles() {
+      const supabase = createClient();
+      const { data } = await supabase
+        .from('user_profiles')
+        .select('username, first_name, last_name')
+        .order('username');
+      if (data) setUserProfiles(data);
+    }
+    fetchUserProfiles();
+  }, []);
+
+  const toggleAuthor = (username: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      authors: (prev.authors || []).includes(username)
+        ? (prev.authors || []).filter((u) => u !== username)
+        : [...(prev.authors || []), username],
+    }));
   };
 
   const toggleCategory = (categoryId: string) => {
@@ -287,6 +313,29 @@ export default function ProjectFormModal({
               ))}
             </div>
           </div>
+
+          {/* Authors */}
+          {userProfiles.length > 0 && (
+            <div className="space-y-4">
+              <h3 className="font-semibold text-lg">Authors</h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                {userProfiles.map((user) => (
+                  <label
+                    key={user.username}
+                    className="flex items-center gap-2 px-3 py-2 border border-border rounded-md cursor-pointer hover:bg-muted transition-colors"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={(formData.authors || []).includes(user.username)}
+                      onChange={() => toggleAuthor(user.username)}
+                      className="w-4 h-4"
+                    />
+                    <span className="text-sm">@{user.username} — {user.first_name} {user.last_name}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Tags */}
           <div className="space-y-4">

@@ -10,6 +10,8 @@ import SideBar from '@/app/components/organisms/sidebar/SideBar';
 import TailwindGrid from '@/app/components/templates/grid';
 import { AnimatePresence } from 'framer-motion';
 import NewsletterSubscribe from '@/app/components/organisms/newsletter-subscribe/NewsletterSubscribe';
+import { AlkituLogo } from "@/app/components/atoms/alkitu-logo";
+import { AlkituIcon } from "@/app/components/atoms/alkitu-icon";
 
 interface BlogPostRaw {
   id: string;
@@ -222,22 +224,10 @@ export default function BlogContent({ posts, categories, locale, title, descript
               )}
 
               {/* Alkitu Logo Full Width */}
-              <div className="w-full bg-zinc-900 dark:bg-zinc-900 py-16 mb-16 flex justify-center items-center">
-                <div className="relative w-full max-w-2xl h-32 md:h-40">
-                  <Image
-                    src="/logos/Alkitu-Logo-para-Fondos-Oscuros-Eslogan.svg"
-                    alt="Alkitu - Hazlo a lo grande"
-                    fill
-                    className="object-contain dark:hidden"
-                    priority
-                  />
-                  <Image
-                    src="/logos/Alkitu-Logo-para-Fondos-Oscuros-Eslogan.svg"
-                    alt="Alkitu - Hazlo a lo grande"
-                    fill
-                    className="object-contain hidden dark:block"
-                    priority
-                  />
+              <div className="w-full bg-zinc-900 dark:bg-zinc-900 py-16 mb-16 flex flex-col gap-5 justify-center items-center text-white">
+                <AlkituIcon size={52} className="text-white" />
+                <div className="relative w-full max-w-2xl h-12 md:h-16 flex justify-center">
+                  <AlkituLogo locale={locale} width="80%" className="justify-center" />
                 </div>
               </div>
 

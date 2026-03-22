@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { RiveAnimation } from "@/app/components/molecules/rive-animation";
+import { BrandingIcon, MarketingIcon, ProductBuildingIcon } from "@/app/components/molecules/animated-icons";
 
 function CategoryCard({ category, className, index, wordIndex, setIndex }) {
   const isCenterCard = wordIndex === index;
@@ -57,7 +57,7 @@ function CategoryCard({ category, className, index, wordIndex, setIndex }) {
         } absolute w-full -bottom-2 bg-linear-to-b from-primary to-primary rounded-lg blur transition duration-200 `}
       />
       <div
-        className={`  w-[98%] mx-auto relative  bg-white dark:bg-zinc-900  rounded-3xl flex-col content-center items-center justify-center  cursor-pointer  ${
+        className={`  w-[98%] mx-auto relative bg-[#D9D9D9] dark:bg-zinc-900 shadow-xl rounded-3xl flex-col content-center items-center justify-center  cursor-pointer  ${
           wordIndex === index ? "  py-[3.77rem]" : "h-2/3 py-11"
         }`}
         onMouseEnter={() => {
@@ -68,8 +68,10 @@ function CategoryCard({ category, className, index, wordIndex, setIndex }) {
         }}
         onClick={handleClick}
       >
-        <div className='h-56 max-w-full max-h-full aspect-square mx-auto'>
-          <RiveAnimation hover={hover} artboardName={category.artboardName} />
+        <div className='h-56 max-w-full max-h-full aspect-square mx-auto flex items-center justify-center'>
+          {category.artboardName === "Design" && <BrandingIcon hover={hover} className="w-full h-full max-w-[80%] max-h-[80%]" />}
+          {category.artboardName === "Marketing" && <MarketingIcon hover={hover} className="w-full h-full max-w-[80%] max-h-[80%]" />}
+          {category.artboardName === "Web" && <ProductBuildingIcon hover={hover} className="w-full h-full max-w-[80%] max-h-[80%]" />}
         </div>
         <div>
           <h3 className='text-center h-full text-xl font-black uppercase m-auto w-full text-foreground'>

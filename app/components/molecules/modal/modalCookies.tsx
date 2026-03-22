@@ -22,7 +22,7 @@ const dropIn: Variants = {
   open: {
     y: "0vh",
     transition: {
-      type: "spring",
+      type: "spring" as const,
       damping: 25,
       stiffness: 500,
     },
@@ -30,7 +30,7 @@ const dropIn: Variants = {
   closed: {
     y: "100dvh",
     transition: {
-      type: "spring",
+      type: "spring" as const,
       damping: 25,
       stiffness: 500,
     },

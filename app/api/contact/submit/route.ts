@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createAnalyticsClient } from '@/lib/supabase/analytics';
 import { createClient } from '@/lib/supabase/server';
-import { contactFormSchema, type ContactFormData } from '@/lib/schemas/contact';
+import { contactFormSchema } from '@/lib/schemas/contact';
 import { checkRateLimit } from '@/lib/utils/rate-limiter';
 import { resend, RESEND_CONFIG, getEmailSettings, formatEmailArray } from '@/lib/resend';
 import { render } from '@react-email/render';
@@ -12,53 +12,16 @@ import ContactConfirmationEN from '@/lib/email-templates/contact-confirmation-en
 /**
  * POST /api/contact/submit
  *
- * Handles contact form submissions
+ * Handles contact form submissions from the multi-step form.
+ * Accepts FormData (multipart) — NOT JSON.
  *
  * Features:
- * - Zod validation of form data
+ * - Parses FormData and validates with Zod
+ * - Auto-generates subject from form fields
+ * - Stores rich fields in form_data JSONB column
  * - Rate limiting (3 submissions per hour per IP)
- * - Captures user metadata (IP, user agent)
- * - Stores submission in Supabase
- * - Sends admin notification email via RESEND
+ * - Sends admin notification email with project details
  * - Sends bilingual user confirmation email (ES/EN)
- * - Configurable email recipients via database (to/cc/bcc)
- *
- * @param request - Next.js request object
- * @returns JSON response with submission status
- *
- * @example Success Response (201 Created):
- * ```json
- * {
- *   "success": true,
- *   "message": "Formulario enviado exitosamente",
- *   "data": {
- *     "id": "uuid",
- *     "status": "pending"
- *   }
- * }
- * ```
- *
- * @example Rate Limit Error (429 Too Many Requests):
- * ```json
- * {
- *   "success": false,
- *   "error": "Demasiadas solicitudes",
- *   "details": "Has alcanzado el límite de 3 envíos por hora. Inténtalo de nuevo en 45 minutos.",
- *   "retryAfter": 2700
- * }
- * ```
- *
- * @example Validation Error (400 Bad Request):
- * ```json
- * {
- *   "success": false,
- *   "error": "Datos inválidos",
- *   "details": {
- *     "name": ["El nombre debe tener al menos 2 caracteres"],
- *     "email": ["Formato de email inválido"]
- *   }
- * }
- * ```
  */
 export async function POST(request: NextRequest) {
   try {
@@ -105,9 +68,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Parse and validate request body
-    const body = await request.json();
-    const validationResult = contactFormSchema.safeParse(body);
+    // Parse FormData (frontend sends multipart/form-data, not JSON)
+    const rawFormData = await request.formData();
+
+    // Extract string fields into a plain object for Zod validation
+    const formFields: Record<string, string> = {};
+    for (const [key, value] of rawFormData.entries()) {
+      if (typeof value === 'string') {
+        formFields[key] = value;
+      }
+      // Files are silently ignored (no storage configured)
+    }
+
+    // Validate with Zod
+    const validationResult = contactFormSchema.safeParse(formFields);
 
     if (!validationResult.success) {
       return NextResponse.json(
@@ -120,7 +94,35 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const formData: ContactFormData = validationResult.data;
+    const formData = validationResult.data;
+
+    // Parse JSON-stringified array fields from FormData
+    let productCategories: string[] = [];
+    let functionalities: string[] = [];
+    try {
+      productCategories = typeof formData.productCategories === 'string'
+        ? JSON.parse(formData.productCategories)
+        : Array.isArray(formData.productCategories) ? formData.productCategories : [];
+    } catch (_) { /* leave empty */ }
+    try {
+      functionalities = typeof formData.functionalities === 'string'
+        ? JSON.parse(formData.functionalities)
+        : Array.isArray(formData.functionalities) ? formData.functionalities : [];
+    } catch (_) { /* leave empty */ }
+
+    // Auto-generate subject from form fields
+    const subject = [formData.projectType, formData.companySize, formData.budget]
+      .filter(Boolean)
+      .join(' - ') || 'Contact Form Submission';
+
+    // Build form_data JSONB object with all rich fields
+    const formDataJsonb = {
+      projectType: formData.projectType || null,
+      companySize: formData.companySize || null,
+      budget: formData.budget || null,
+      productCategories,
+      functionalities,
+    };
 
     // Create Supabase client for database operations (using analytics client for anon role)
     const supabaseAnon = createAnalyticsClient();
@@ -129,19 +131,18 @@ export async function POST(request: NextRequest) {
     const formUrl = request.headers.get('referer') || request.headers.get('origin') || 'unknown';
 
     // Insert submission into database
-    // Note: We don't use .select() after insert because anon role doesn't have SELECT permission
-    // This is intentional for security - users don't need to read back their submission
     const { error: dbError } = await supabaseAnon
       .from('contact_submissions')
       .insert({
         name: formData.name,
         email: formData.email,
-        subject: formData.subject,
+        subject,
         message: formData.message,
         locale: formData.locale,
         user_agent: userAgent,
         ip_address: ip,
         form_url: formUrl,
+        form_data: formDataJsonb,
         status: 'pending',
       });
 
@@ -180,15 +181,20 @@ export async function POST(request: NextRequest) {
         bccEmails,
       });
 
-      // 1. Send notification email to admin
+      // 1. Send notification email to admin (with project details)
       const adminEmailHtml = await render(
         ContactNotification({
           name: formData.name,
           email: formData.email,
-          subject: formData.subject,
+          subject,
           message: formData.message,
           locale: formData.locale,
           submittedAt: new Date().toISOString(),
+          projectType: formData.projectType,
+          companySize: formData.companySize,
+          budget: formData.budget,
+          productCategories,
+          functionalities,
         })
       );
 
@@ -197,7 +203,7 @@ export async function POST(request: NextRequest) {
         to: toEmails,
         cc: ccEmails.length > 0 ? ccEmails : undefined,
         bcc: bccEmails.length > 0 ? bccEmails : undefined,
-        subject: `Nuevo mensaje de contacto: ${formData.subject}`,
+        subject: `Nuevo mensaje de contacto: ${subject}`,
         html: adminEmailHtml,
         replyTo: formData.email,
       });

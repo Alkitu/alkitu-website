@@ -19,9 +19,9 @@ function DotFollower() {
 
   return (
     <div className=" ">
-      <motion.div className="h-[3vw] absolute top-0 w-full bg-linear-to-b from-[#FFF] dark:from-[#0F0F0F] to-transparent pointer-events-none mix-blend-color" />
+      <motion.div className="h-[3vw] absolute top-0 w-full bg-linear-to-b from-[#D9D9D9] dark:from-[#0F0F0F] to-transparent pointer-events-none mix-blend-color" />
       <Box />
-      <motion.div className="h-[3vw] absolute bottom-0 w-full bg-linear-to-b from-transparent to-[#FFF] dark:to-[#0F0F0F] pointer-events-none mix-blend-luminosity" />
+      <motion.div className="h-[3vw] absolute bottom-0 w-full bg-linear-to-b from-transparent to-[#D9D9D9] dark:to-[#0F0F0F] pointer-events-none mix-blend-luminosity" />
     </div>
   );
 }

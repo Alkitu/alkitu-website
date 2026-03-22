@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useRef, useLayoutEffect } from "react";
-import { RiveAnimation } from "@/app/components/molecules/rive-animation";
+import { BrandingIcon, MarketingIcon, ProductBuildingIcon } from "@/app/components/molecules/animated-icons";
 
 function DynamicListItem({ category, index, boxPositions, handleClick }) {
   const [hover, setHover] = useState(false);
@@ -46,7 +46,7 @@ function DynamicListItem({ category, index, boxPositions, handleClick }) {
               opacity: hover ? 0.5 : 0,
             }}
             transition={{
-              type: "spring",
+              type: "spring" as const,
               damping: 30,
               stiffness: 300,
               mass: 0.1,
@@ -55,7 +55,7 @@ function DynamicListItem({ category, index, boxPositions, handleClick }) {
           />
 
           <div
-            className={`w-full mx-auto relative bg-white dark:bg-zinc-900 shadow-xs shadow-zinc-200 dark:shadow-md dark:shadow-black border border-zinc-50 dark:border-transparent rounded-3xl flex-col content-center items-center justify-center
+            className={`w-full mx-auto relative bg-[#D9D9D9] dark:bg-zinc-900 shadow-xl border border-transparent rounded-3xl flex-col content-center items-center justify-center
               ${
                 boxPositions[index] === 1
                   ? "lg:min-h-68 py-[3.77rem] px-[2vw]"
@@ -66,15 +66,13 @@ function DynamicListItem({ category, index, boxPositions, handleClick }) {
               layout
               className={
                 boxPositions[index] === 1
-                  ? "h-56 max-h-full max-w-full aspect-square mx-auto "
-                  : "h-32 max-h-full max-w-full aspect-square mx-auto mb-[1vw] "
+                  ? "h-56 max-h-full max-w-full aspect-square mx-auto flex items-center justify-center"
+                  : "h-32 max-h-full max-w-full aspect-square mx-auto mb-[1vw] flex items-center justify-center"
               }
             >
-              <RiveAnimation
-                hover={hover}
-                artboardName={category.artboardName}
-                key={category.name}
-              />
+              {category.artboardName === "Design" && <BrandingIcon hover={hover} className="w-full h-full max-w-[80%] max-h-[80%]" key={category.name} />}
+              {category.artboardName === "Marketing" && <MarketingIcon hover={hover} className="w-full h-full max-w-[80%] max-h-[80%]" key={category.name} />}
+              {category.artboardName === "Web" && <ProductBuildingIcon hover={hover} className="w-full h-full max-w-[80%] max-h-[80%]" key={category.name} />}
             </motion.div>
             <motion.div>
               <h3
@@ -101,10 +99,9 @@ function DynamicListItem({ category, index, boxPositions, handleClick }) {
                     mass: 0.1,
                     delay: 0.25,
                   }}
-                  className='mx-auto text-center mt-5 px-10 max-w-full md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] font-normal tracking-tight text-foreground'
-                >
-                  {category.summary}
-                </motion.p>
+                  className='mx-auto text-center mt-5 px-10 max-w-full md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] font-normal tracking-tight text-foreground [&>b]:font-bold [&>b]:text-primary [&>a]:font-bold [&>a]:text-primary [&>a]:hover:underline'
+                  dangerouslySetInnerHTML={{ __html: category.summary || "" }}
+                />
               )}
             </motion.div>
           </div>

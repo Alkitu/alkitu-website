@@ -167,7 +167,7 @@ export default PassionFloatingElements;
           <motion.div
             className=" md:block absolute  md:bottom-36 md:-left-16 lg:bottom-4 lg:-left-20 z-30"
             exit={{ opacity: 0, left: "-60vw" }}
-            transition={{ type: "spring", duration: 1.25 }}
+            transition={{ type: "spring" as const, duration: 1.25 }}
           >
             <div
               className="relative w-[4.5vw] h-[4.5vw]"

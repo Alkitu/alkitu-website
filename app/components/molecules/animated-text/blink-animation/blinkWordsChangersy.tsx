@@ -85,7 +85,7 @@ export default function BlinkWordsChangers({
         exit="exit"
         transition={{
           duration: 3,
-          type: "spring",
+          type: "spring" as const,
           stiffness: 300,
           damping: 24,
         }}
@@ -100,7 +100,7 @@ export default function BlinkWordsChangers({
           key={currentWord}
           transition={{
             duration: 2,
-            type: "spring",
+            type: "spring" as const,
             stiffness: 500,
             damping: 80,
           }}

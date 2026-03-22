@@ -170,15 +170,24 @@
         "part2": "marcas y estrategias",
         "part3": "de crecimiento.",
         "rotatingWords": [
-          ["productos", "digitales"],
-          ["marcas", "memorables"],
-          ["presencia", "digital"]
+          [
+            "productos",
+            "digitales"
+          ],
+          [
+            "marcas",
+            "memorables"
+          ],
+          [
+            "presencia",
+            "digital"
+          ]
         ]
       },
       "subtitle": "Web apps, aplicaciones móviles, branding profesional y marketing digital",
       "description": "Diseñados y desarrollados por un equipo que domina las tres disciplinas.",
       "buttons": {
-        "primary": "Cuéntanos tu proyecto",
+        "primary": "Solicitar Presupuesto",
         "secondary": "Proyectos"
       },
       "files": {
@@ -241,8 +250,8 @@
       "textScroller": "Tres Reflexiones",
       "velocityScroller": 0.2,
       "quote": {
-        "lineOne": "Un producto digital bien construido",
-        "lineTwo": "es el mejor activo de marketing que existe."
+        "lineOne": "Detrás de cada gran marca",
+        "lineTwo": "hay una estrategia que nadie ve, pero todos sienten."
       }
     },
     "skillsSection": {
@@ -251,55 +260,243 @@
       "textScroller": "Herramientas",
       "velocityScroller": 0.2,
       "firstLine": [
-        { "name": "Figma", "src": "/icons/skills/Figma.svg", "order": 1 },
-        { "name": "Illustrator", "src": "/icons/skills/Illustrator.svg", "order": 2 },
-        { "name": "After Effects", "src": "/icons/skills/AfterEffects.svg", "order": 3 },
-        { "name": "Affinity", "src": "/icons/skills/Affinity.svg", "order": 4 },
-        { "name": "Storybook", "src": "/icons/skills/Storybook.svg", "order": 5 },
-        { "name": "React", "src": "/icons/skills/ReactJS.svg", "order": 6 },
-        { "name": "TypeScript", "src": "/icons/skills/Typescript.svg", "order": 7 },
-        { "name": "JavaScript", "src": "/icons/skills/JavaScript.svg", "order": 8 },
-        { "name": "Next.js", "src": "/icons/skills/NextJS.svg", "order": 9 },
-        { "name": "Tailwind CSS", "src": "/icons/skills/Tailwind.svg", "order": 10 },
-        { "name": "Framer Motion", "src": "/icons/skills/FramerMotion.svg", "order": 11 },
-        { "name": "Vite", "src": "/icons/skills/Vite.svg", "order": 12 },
-        { "name": "GSAP", "src": "/icons/skills/GSAP.svg", "order": 13 },
-        { "name": "Three.js", "src": "/icons/skills/ThreeJS.svg", "order": 14 },
-        { "name": "Radix UI", "src": "/icons/skills/RadixUI.svg", "order": 15 },
-        { "name": "Lottie", "src": "/icons/skills/Lottie.svg", "order": 16 },
-        { "name": "Remotion", "src": "/icons/skills/Remotion.svg", "order": 17 },
-        { "name": "MapLibre GL", "src": "/icons/skills/MapLibreGL.svg", "order": 18 },
-        { "name": "HTML", "src": "/icons/skills/HTML.svg", "order": 19 },
-        { "name": "CSS", "src": "/icons/skills/CSS.svg", "order": 20 },
-        { "name": "Swift", "src": "/icons/skills/Swift.svg", "order": 21 },
-        { "name": "Expo", "src": "/icons/skills/Expo.svg", "order": 22 },
-        { "name": "Claude Code", "src": "/icons/skills/ClaudeCode.svg", "order": 23 },
-        { "name": "Gemini", "src": "/icons/skills/Gemini.svg", "order": 24 }
+        {
+          "name": "Figma",
+          "src": "/icons/skills/Figma.svg",
+          "order": 1
+        },
+        {
+          "name": "Illustrator",
+          "src": "/icons/skills/Illustrator.svg",
+          "order": 2
+        },
+        {
+          "name": "After Effects",
+          "src": "/icons/skills/AfterEffects.svg",
+          "order": 3
+        },
+        {
+          "name": "Affinity",
+          "src": "/icons/skills/Affinity.svg",
+          "order": 4
+        },
+        {
+          "name": "Storybook",
+          "src": "/icons/skills/Storybook.svg",
+          "order": 5
+        },
+        {
+          "name": "React",
+          "src": "/icons/skills/ReactJS.svg",
+          "order": 6
+        },
+        {
+          "name": "TypeScript",
+          "src": "/icons/skills/Typescript.svg",
+          "order": 7
+        },
+        {
+          "name": "JavaScript",
+          "src": "/icons/skills/JavaScript.svg",
+          "order": 8
+        },
+        {
+          "name": "Next.js",
+          "src": "/icons/skills/NextJS.svg",
+          "order": 9
+        },
+        {
+          "name": "Tailwind CSS",
+          "src": "/icons/skills/Tailwind.svg",
+          "order": 10
+        },
+        {
+          "name": "Framer Motion",
+          "src": "/icons/skills/FramerMotion.svg",
+          "order": 11
+        },
+        {
+          "name": "Vite",
+          "src": "/icons/skills/Vite.svg",
+          "order": 12
+        },
+        {
+          "name": "GSAP",
+          "src": "/icons/skills/GSAP.svg",
+          "order": 13
+        },
+        {
+          "name": "Three.js",
+          "src": "/icons/skills/ThreeJS.svg",
+          "order": 14
+        },
+        {
+          "name": "Radix UI",
+          "src": "/icons/skills/RadixUI.svg",
+          "order": 15
+        },
+        {
+          "name": "Lottie",
+          "src": "/icons/skills/Lottie.svg",
+          "order": 16
+        },
+        {
+          "name": "Remotion",
+          "src": "/icons/skills/Remotion.svg",
+          "order": 17
+        },
+        {
+          "name": "MapLibre GL",
+          "src": "/icons/skills/MapLibreGL.svg",
+          "order": 18
+        },
+        {
+          "name": "HTML",
+          "src": "/icons/skills/HTML.svg",
+          "order": 19
+        },
+        {
+          "name": "CSS",
+          "src": "/icons/skills/CSS.svg",
+          "order": 20
+        },
+        {
+          "name": "Swift",
+          "src": "/icons/skills/Swift.svg",
+          "order": 21
+        },
+        {
+          "name": "Expo",
+          "src": "/icons/skills/Expo.svg",
+          "order": 22
+        },
+        {
+          "name": "Claude Code",
+          "src": "/icons/skills/ClaudeCode.svg",
+          "order": 23
+        },
+        {
+          "name": "Gemini",
+          "src": "/icons/skills/Gemini.svg",
+          "order": 24
+        }
       ],
       "secondLine": [
-        { "name": "Arduino", "src": "/icons/skills/Arduino.svg", "order": 1 },
-        { "name": "WordPress", "src": "/icons/skills/WordPress.svg", "order": 2 },
-        { "name": "Shopify", "src": "/icons/skills/Shopify.svg", "order": 4 },
-        { "name": "Elementor", "src": "/icons/skills/Elementor.svg", "order": 5 },
-        { "name": "Liquid", "src": "/icons/skills/Liquid.svg", "order": 6 },
-        { "name": "WooCommerce", "src": "/icons/skills/WooCommerce.svg", "order": 7 },
-        { "name": "Google Ads", "src": "/icons/skills/GoogleAds.svg", "order": 8 },
-        { "name": "Analytics", "src": "/icons/skills/Analytics.svg", "order": 9 },
-        { "name": "Search Console", "src": "/icons/skills/SearchConsole.svg", "order": 10 },
-        { "name": "Tag Manager", "src": "/icons/skills/TagManager.svg", "order": 11 },
-        { "name": "Calvary", "src": "/icons/skills/Calvary.svg", "order": 12 },
-        { "name": "GitHub", "src": "/icons/skills/GitHub.svg", "order": 13 },
-        { "name": "ESLint", "src": "/icons/skills/ESlint.svg", "order": 14 },
-        { "name": "Vitest", "src": "/icons/skills/Vitest.svg", "order": 15 },
-        { "name": "Playwright", "src": "/icons/skills/Playwright.svg", "order": 16 },
-        { "name": "Chromatic", "src": "/icons/skills/Chromatic.svg", "order": 17 },
-        { "name": "XCTest", "src": "/icons/skills/XCTest.svg", "order": 18 },
-        { "name": "pnpm", "src": "/icons/skills/pnpm.svg", "order": 19 },
-        { "name": "Supabase", "src": "/icons/skills/Supabase.svg", "order": 20 },
-        { "name": "PostgreSQL", "src": "/icons/skills/PostgreSQL.svg", "order": 21 },
-        { "name": "Vercel", "src": "/icons/skills/Vercel.svg", "order": 22 },
-        { "name": "Stripe", "src": "/icons/skills/Stripe.svg", "order": 23 },
-        { "name": "Resend", "src": "/icons/skills/Resend.svg", "order": 24 }
+        {
+          "name": "Arduino",
+          "src": "/icons/skills/Arduino.svg",
+          "order": 1
+        },
+        {
+          "name": "WordPress",
+          "src": "/icons/skills/WordPress.svg",
+          "order": 2
+        },
+        {
+          "name": "Shopify",
+          "src": "/icons/skills/Shopify.svg",
+          "order": 4
+        },
+        {
+          "name": "Elementor",
+          "src": "/icons/skills/Elementor.svg",
+          "order": 5
+        },
+        {
+          "name": "Liquid",
+          "src": "/icons/skills/Liquid.svg",
+          "order": 6
+        },
+        {
+          "name": "WooCommerce",
+          "src": "/icons/skills/WooCommerce.svg",
+          "order": 7
+        },
+        {
+          "name": "Google Ads",
+          "src": "/icons/skills/GoogleAds.svg",
+          "order": 8
+        },
+        {
+          "name": "Analytics",
+          "src": "/icons/skills/Analytics.svg",
+          "order": 9
+        },
+        {
+          "name": "Search Console",
+          "src": "/icons/skills/SearchConsole.svg",
+          "order": 10
+        },
+        {
+          "name": "Tag Manager",
+          "src": "/icons/skills/TagManager.svg",
+          "order": 11
+        },
+        {
+          "name": "Calvary",
+          "src": "/icons/skills/Calvary.svg",
+          "order": 12
+        },
+        {
+          "name": "GitHub",
+          "src": "/icons/skills/GitHub.svg",
+          "order": 13
+        },
+        {
+          "name": "ESLint",
+          "src": "/icons/skills/ESlint.svg",
+          "order": 14
+        },
+        {
+          "name": "Vitest",
+          "src": "/icons/skills/Vitest.svg",
+          "order": 15
+        },
+        {
+          "name": "Playwright",
+          "src": "/icons/skills/Playwright.svg",
+          "order": 16
+        },
+        {
+          "name": "Chromatic",
+          "src": "/icons/skills/Chromatic.svg",
+          "order": 17
+        },
+        {
+          "name": "XCTest",
+          "src": "/icons/skills/XCTest.svg",
+          "order": 18
+        },
+        {
+          "name": "pnpm",
+          "src": "/icons/skills/pnpm.svg",
+          "order": 19
+        },
+        {
+          "name": "Supabase",
+          "src": "/icons/skills/Supabase.svg",
+          "order": 20
+        },
+        {
+          "name": "PostgreSQL",
+          "src": "/icons/skills/PostgreSQL.svg",
+          "order": 21
+        },
+        {
+          "name": "Vercel",
+          "src": "/icons/skills/Vercel.svg",
+          "order": 22
+        },
+        {
+          "name": "Stripe",
+          "src": "/icons/skills/Stripe.svg",
+          "order": 23
+        },
+        {
+          "name": "Resend",
+          "src": "/icons/skills/Resend.svg",
+          "order": 24
+        }
       ]
     },
     "brandsSection": {
@@ -310,77 +507,77 @@
       "firstLine": [
         {
           "name": "Aircrew Aviation",
-          "src": "/images/clients/Alkitu-Aircrew-Aviation.png"
+          "src": "/images/clients/Alkitu-Aircrew-Aviation-1.png"
         },
         {
           "name": "Canastilla",
-          "src": "/images/clients/Alkitu-Canastilla-.png"
+          "src": "/images/clients/Alkitu-Canastilla-1.png"
         },
         {
           "name": "Casa Adrian",
-          "src": "/images/clients/Alkitu-Casa-Adriian-1944.png"
+          "src": "/images/clients/Alkitu-Casa-Adriian-1944-1.png"
         },
         {
           "name": "Clinica LUX",
-          "src": "/images/clients/Alkitu-Clinica-LUX.png"
+          "src": "/images/clients/Alkitu-Clinica-LUX-1.png"
         },
         {
           "name": "Clinica Dysdental",
-          "src": "/images/clients/Alkitu-Clinicadysdental.png"
+          "src": "/images/clients/Alkitu-Clinicadysdental-1.png"
         },
         {
           "name": "Detailcar",
-          "src": "/images/clients/Alkitu-Detailcar.png"
+          "src": "/images/clients/Alkitu-Detailcar-1.png"
         },
         {
           "name": "El Mejor Vidente",
-          "src": "/images/clients/Alkitu-El-Mejor-Vidente.png"
+          "src": "/images/clients/Alkitu-El-Mejor-Vidente-1.png"
         },
         {
           "name": "Eleale",
-          "src": "/images/clients/Alkitu-Eleale-Cleaning-Services.png"
+          "src": "/images/clients/Alkitu-Eleale-Cleaning-Services-1.png"
         },
         {
           "name": "Emprendetec",
-          "src": "/images/clients/Alkitu-Emprendetec.png"
+          "src": "/images/clients/Alkitu-Emprendetec-1.png"
         }
       ],
       "secondLine": [
         {
           "name": "Funda Mania",
-          "src": "/images/clients/Alkitu-Funda-Mania.png"
+          "src": "/images/clients/Alkitu-Funda-Mania-1.png"
         },
         {
           "name": "Pura Vida",
-          "src": "/images/clients/Alkitu-Gladys-Berrio-PURAVIDA.png"
+          "src": "/images/clients/Alkitu-Gladys-Berrio-PURAVIDA-1.png"
         },
         {
           "name": "Helayor",
-          "src": "/images/clients/Alkitu-Helayor.png"
+          "src": "/images/clients/Alkitu-Helayor-1.png"
         },
         {
           "name": "La Plataforma",
-          "src": "/images/clients/Alkitu-La-Plataforma-Publicitaria-.png"
+          "src": "/images/clients/Alkitu-La-Plataforma-Publicitaria--1.png"
         },
         {
           "name": "Las Acacias",
-          "src": "/images/clients/Alkitu-Las-Acacias.png"
+          "src": "/images/clients/Alkitu-Las-Acacias-1.png"
         },
         {
           "name": "Natur Masajes",
-          "src": "/images/clients/Alkitu-Natur-Masajes.png"
+          "src": "/images/clients/Alkitu-Natur-Masajes-1.png"
         },
         {
           "name": "Sanjhes",
-          "src": "/images/clients/Alkitu-Sanjhes.png"
+          "src": "/images/clients/Alkitu-Sanjhes-1.png"
         },
         {
           "name": "Transito Bar",
-          "src": "/images/clients/Alkitu-Transito-Bar.png"
+          "src": "/images/clients/Alkitu-Transito-Bar-1.png"
         },
         {
           "name": "Vidente Astral",
-          "src": "/images/clients/Alkitu-Vidente-Astral.png"
+          "src": "/images/clients/Alkitu-Vidente-Astral-1.png"
         }
       ]
     },
@@ -1429,18 +1626,61 @@
       }
     ],
     "form": {
-      "title": "Déjanos tu mensaje:",
+      "title": "Cuéntanos sobre tu proyecto",
       "nameLabel": "Tu Nombre",
       "namePlaceholder": "Juan Pérez",
       "emailLabel": "Correo Electrónico",
       "emailPlaceholder": "juan@ejemplo.com",
-      "subjectLabel": "Asunto",
-      "subjectPlaceholder": "Consulta de Proyecto",
-      "messageLabel": "Mensaje",
-      "messagePlaceholder": "Cuéntame sobre tu proyecto...",
-      "submitButton": "Enviar Mensaje",
+      "projectTypeTitle": "Describe tu tipo de proyecto",
+      "companySizeTitle": "¿Cuál es el tamaño de tu empresa?",
+      "companySize_solo_founder": "Solo Founder",
+      "companySize_small_startup": "Small Startup",
+      "companySize_medium_company": "Medium Company",
+      "companySize_enterprise": "Enterprise",
+      "budgetTitle": "¿Cuál es tu presupuesto?",
+      "budget_under_2k": "< 2.000 €",
+      "budget_2k_5k": "2.000 - 5.000 €",
+      "budget_8k_12k": "8.000 - 12.000 €",
+      "budget_12k_15k": "12.000 - 15.000 €",
+      "budget_15k_20k": "15.000 - 20.000 €",
+      "budget_over_20k": "+20.000 €",
+      "categoriesTitle": "¿Cómo categorizarías tu producto?",
+      "categoriesSubtitle": "Selecciona hasta tres opciones.",
+      "category_saas": "SaaS",
+      "category_on_demand": "On-demand",
+      "category_project_management": "Project Management",
+      "category_ecommerce": "E-commerce",
+      "category_marketplace": "Marketplace",
+      "category_social_media": "Social Media",
+      "category_internal_tool": "Internal Tool",
+      "category_crm": "CRM",
+      "category_job_board": "Job Board",
+      "category_productivity": "Productivity",
+      "category_marketing_site": "Marketing Site",
+      "category_data_management": "Data Management",
+      "category_hospitality_gastronomy": "Hostelería y Gastronomía",
+      "category_other": "Otro",
+      "functionalitiesTitle": "¿Qué funcionalidades vas a necesitar?",
+      "functionalitiesSubtitle": "Selecciona todas las que apliquen.",
+      "func_payments": "Pagos",
+      "func_memberships": "Membresías",
+      "func_email_delivery": "Email Delivery",
+      "func_google_maps": "Google Maps",
+      "func_video": "Video",
+      "func_social_logins": "Social Logins",
+      "func_audio": "Audio",
+      "func_internal_analytics": "Analytics Interno",
+      "func_dashboard": "Dashboard",
+      "func_other": "Otro",
+      "messageLabel": "Cuéntanos sobre la necesidad de tu proyecto",
+      "messagePlaceholder": "Describe qué necesitas, objetivos, plazos...",
+      "filesLabel": "Sube tus referencias",
+      "filesDragText": "Haz clic para subir archivos (imágenes, PDFs, docs)",
+      "nextButton": "Siguiente",
+      "backButton": "Atrás",
+      "submitButton": "Enviar Solicitud",
       "submittingButton": "Enviando...",
-      "successMessage": "¡Mensaje enviado con éxito!",
+      "successMessage": "¡Solicitud enviada con éxito!",
       "successSubtext": "Te responderemos pronto."
     },
     "communityBanner": {
@@ -1631,8 +1871,8 @@
       "hero": {
         "title": "Branding",
         "subtitle": "Construimos marcas con metodología, fundamento y sistema",
-        "description": "Tu marca es más que un logo. Es el activo intangible que se forma en la mente de las personas cuando conectan con tu empresa a través de los sentidos — lo que ven, lo que leen, lo que escuchan, lo que experimentan en tu espacio. Una marca bien hecha puede representar hasta el 60% del valor total de una organización. En Alkitu trabajamos el branding con un framework propio: la Ingeniería de Marca. Un sistema que estructura la construcción de marca en cuatro pilares — ADN de Marca, Identidad Verbal, Identidad Visual e Identidad Espacial — inspirado en las normas internacionales ISO 20671 e ISO 10668 de valoración de marca.",
-        "cta": "Cuéntanos tu proyecto"
+        "description": "Tu marca es más que un logo. Es el activo intangible que se forma en la mente de las personas cuando conectan con tu empresa a través de los sentidos — lo que ven, lo que leen, lo que escuchan, lo que experimentan en tu espacio. Una marca bien hecha puede representar hasta el 60% del valor total de una organización. En Alkitu trabajamos el branding con un framework propio: la Ingeniería de Marca. Un sistema que estructura la construcción de marca en cuatro pilares — ADN de Marca, Identidad Verbal, Identidad Visual e Identidad Espacial — inspirado en la norma internacional ISO 20671 de valoración de marca.",
+        "cta": "Solicitar Presupuesto"
       },
       "sections": {
         "problem": {
@@ -1651,7 +1891,7 @@
             {
               "id": "naming",
               "name": "Naming",
-              "description": "Creamos, validamos y protegemos el nombre de tu marca. Combinamos técnicas de fono-simbolismo con verificación legal, lingüística y digital para que el nombre suene bien, signifique lo que debe y tenga dominio disponible.",
+              "description": "Creamos o buscamos un nombre de marca con alto potencial de registrabilidad. Combinamos técnicas de fono-simbolismo con verificación legal, lingüística y digital para que el nombre suene bien, signifique lo que debe y tenga dominio disponible.",
               "cta": "Solicitar presupuesto →"
             },
             {
@@ -1675,13 +1915,13 @@
             {
               "id": "auditoria-de-marca",
               "name": "Auditoría de Marca",
-              "description": "Analizamos y documentamos los pilares estratégicos de tu marca: historia, mercado, buyer persona, propuesta de valor, arquetipo y personalidad, manifiesto.",
+              "description": "Un análisis estratégico del estado actual de tu marca para identificar fortalezas, debilidades y medir estrategias que se puedan implementar para mejorarla.",
               "cta": "Solicitar presupuesto →"
             },
             {
               "id": "ingenieria-de-marca",
               "name": "Ingeniería de Marca",
-              "description": "El sistema completo: 26 servicios, 90 sub-elementos, 4 pilares. Un manual integral que documenta cada aspecto de tu marca con un framework propio y medible.",
+              "description": "Un sistema integral y a medida que cubre estrategia e identidad en todas las áreas de tu negocio. Incluye archivos, guías, manuales y recursos listos para usar — todo construido específicamente para tu marca.",
               "cta": "Conocer más →",
               "url": "/servicios/ingenieria-de-marca"
             }
@@ -1694,7 +1934,7 @@
         "title": "Marketing Digital",
         "subtitle": "Motor de crecimiento medible — desde el descubrimiento hasta la fidelización",
         "description": "El marketing digital es más que tener presencia en internet. Es el conjunto de estrategias que permiten que la persona correcta encuentre tu negocio, se interese, compre y vuelva — y que todo ese proceso sea medible. Alkitu estructura su servicio de Marketing Digital sobre el Ciclo de Valor Digital — basado en el framework See-Think-Do-Care de Google.",
-        "cta": "Cuéntanos tu proyecto"
+        "cta": "Solicitar Presupuesto"
       },
       "sections": {
         "problem": {
@@ -1753,7 +1993,7 @@
         "title": "Product Building",
         "subtitle": "Diseñamos y desarrollamos productos digitales a medida",
         "description": "Creamos productos digitales completos: web apps, aplicaciones iOS nativas, apps híbridas, prototipos funcionales y design systems. Desde sistemas de gestión empresarial y plataformas de e-learning hasta e-commerce avanzado y automatizaciones de procesos — con el stack tecnológico adecuado para cada caso. Trabajamos con estándares de diseño UI/UX y usabilidad en cada proyecto.",
-        "cta": "Cuéntanos tu proyecto"
+        "cta": "Solicitar Presupuesto"
       },
       "sections": {
         "problem": {
@@ -1827,7 +2067,7 @@
         "title": "Web App Custom",
         "subtitle": "Plataformas digitales a medida",
         "description": "Construimos plataformas web a medida con React y Next.js. Cada web app se diseña, desarrolla y despliega como un producto real: con arquitectura pensada para escalar, código mantenible, testing automatizado y documentación completa. Trabajamos con Spec-Driven Development y sistemas de diseño propios.",
-        "cta": "Cuéntanos tu proyecto"
+        "cta": "Solicitar Presupuesto"
       },
       "sections": {
         "examples": {
@@ -1848,7 +2088,7 @@
             },
             {
               "name": "Sistemas de mapas",
-              "description": "Visualización indoor y outdoor con MapLibre GL — logística, turismo, inmobiliaria"
+              "description": "Visualización indoor y outdoor — logística, turismo, inmobiliaria"
             },
             {
               "name": "Dashboards",
@@ -1860,7 +2100,7 @@
             },
             {
               "name": "Experiencias 3D",
-              "description": "Escenas WebGL renderizadas en el navegador, fondos animados y postprocesado visual"
+              "description": "Escenas 3D renderizadas en el navegador, realidad aumentada, fondos animados y postprocesado visual"
             },
             {
               "name": "Video programático",
@@ -1942,7 +2182,7 @@
         "title": "Webs Corporativas",
         "subtitle": "Tu carta de presentación digital",
         "description": "Una web corporativa está diseñada para transmitir la identidad de tu marca, presentar tus productos y servicios con claridad, y captar leads y clientes de forma continua. Todas nuestras webs se adaptan a dispositivos móviles y se preparan para posicionamiento en buscadores. Trabajamos con tres enfoques: código puro con React y Next.js, WordPress y Shopify.",
-        "cta": "¿Qué tipo de web necesitas? Cuéntanos"
+        "cta": "Solicitar Presupuesto"
       },
       "sections": {
         "code": {
@@ -1994,8 +2234,8 @@
       "hero": {
         "title": "Ingeniería de Marca",
         "subtitle": "El framework integral de construcción de marca creado por Alkitu",
-        "description": "La Ingeniería de Marca es un framework de construcción de marca desarrollado dentro de Alkitu. Su objetivo es manualizar, documentar y sistematizar cada aspecto de una marca — desde su estrategia fundacional hasta su manifestación en el espacio físico — en un manual integral. Está inspirado en las normas internacionales ISO 20671 e ISO 10668, que definen cinco dimensiones medibles — legal, percepción, mercado, entorno y financiera — como KPIs para evaluar la efectividad de cada decisión de branding.",
-        "cta": "Quiero conocer la Ingeniería de Marca para mi empresa"
+        "description": "La Ingeniería de Marca es un framework de construcción de marca desarrollado por nuestro equipo. Su objetivo es manualizar, documentar y sistematizar cada aspecto de una marca — desde su estrategia fundacional hasta su manifestación en el espacio físico — en un sistema integral que permite tener ordenados todos los archivos de marca, guías, manuales y recursos de estrategia de marca. Está inspirado en la norma internacional ISO 20671, que define cinco dimensiones medibles — legal, percepción, mercado, entorno y financiera — como KPIs para evaluar la efectividad de cada decisión de branding.",
+        "cta": "Solicitar Presupuesto"
       },
       "sections": {
         "pillars": {
@@ -2006,48 +2246,120 @@
               "name": "Pilar 1 — ADN de Marca",
               "description": "El fundamento estratégico. Aquí se define quién es la marca, a quién le habla, qué promete y cómo se posiciona en el mercado.",
               "includes": [
-                "Historia de la marca",
-                "Tipo de mercado",
-                "Buyer persona",
-                "Promesa de marca (Product-Market Fit)",
-                "Arquetipo y personalidad",
-                "Manifiesto y declaración de posicionamiento"
+                {
+                  "name": "Historia de la marca",
+                  "description": "Origen, hitos fundacionales clave y visión de futuro de la compañía."
+                },
+                {
+                  "name": "Tipo de mercado",
+                  "description": "Análisis del macro-entorno, nichos de operación y competidores directos."
+                },
+                {
+                  "name": "Buyer persona",
+                  "description": "Perfil analítico del cliente ideal, sus problemas, hábitos y comportamientos de consumo."
+                },
+                {
+                  "name": "Promesa de marca (Product-Market Fit)",
+                  "description": "La propuesta de valor central irreplicable que resuelve la necesidad del mercado."
+                },
+                {
+                  "name": "Arquetipo y personalidad",
+                  "description": "Rasgos psicológicos y humanos que definen cómo actúa y se percibe la marca."
+                },
+                {
+                  "name": "Manifiesto y declaración de posicionamiento",
+                  "description": "Documento rector inspiracional que dicta las creencias inquebrantables de la marca."
+                }
               ]
             },
             {
               "name": "Pilar 2 — Identidad Verbal",
               "description": "Cómo suena la marca. Todo lo que se puede leer, escuchar o pronunciar.",
               "includes": [
-                "Naming y clasificación NIZA",
-                "Lenguaje de marca",
-                "Audiobranding"
+                {
+                  "name": "Naming y clasificación NIZA",
+                  "description": "Creación o búsqueda de un nombre comercial con alto potencial de registrabilidad y clasificación NIZA."
+                },
+                {
+                  "name": "Lenguaje de marca",
+                  "description": "Tono de voz, modismos, vocabulario y palabras clave permitidas en redacción."
+                },
+                {
+                  "name": "Audiobranding",
+                  "description": "Diseño de la firma sonora, jingles auditivos y efectos característicos de la marca."
+                }
               ]
             },
             {
               "name": "Pilar 3 — Identidad Visual",
               "description": "Cómo se ve la marca. Todo lo que se puede percibir visualmente.",
               "includes": [
-                "Logo y planimetría",
-                "Colorimetría",
-                "Tipografía",
-                "Patterns e iconografía",
-                "Imagery",
-                "Papelería",
-                "POP y empaque",
-                "Multimedia"
+                {
+                  "name": "Logo y planimetría",
+                  "description": "Diseño maestro del identificador visual, áreas de respeto y sus grillas constructivas."
+                },
+                {
+                  "name": "Colorimetría",
+                  "description": "Paleta principal y secundaria estandarizada bajo perfiles RGB, CMYK, HEX y Pantone."
+                },
+                {
+                  "name": "Tipografía",
+                  "description": "Selección de fuentes principales, fuentes secundarias y pesos jerárquicos editoriales."
+                },
+                {
+                  "name": "Patterns e iconografía",
+                  "description": "Elementos gráficos de soporte para la composición visual en entornos digitales o físicos."
+                },
+                {
+                  "name": "Imagery",
+                  "description": "Filtros de estilo fotográfico, tratamiento de imágenes y reglas de iluminación."
+                },
+                {
+                  "name": "Papelería",
+                  "description": "Diseño de recursos impresos como tarjetas, hojas membretadas, carpetas y sobres."
+                },
+                {
+                  "name": "POP y empaque",
+                  "description": "Interfaz física envolvente del producto y material publicitario en punto de venta."
+                },
+                {
+                  "name": "Multimedia",
+                  "description": "Reglas para elementos en movimiento, transiciones de video y gráficas animadas."
+                }
               ]
             },
             {
               "name": "Pilar 4 — Identidad Espacial",
               "description": "Cómo se experimenta la marca en el espacio físico y digital.",
               "includes": [
-                "Espacio comercial y visual merchandising",
-                "Odotipo",
-                "Vestimenta y uniformes",
-                "Vehículos",
-                "Redes sociales",
-                "UI/UX Web y App",
-                "Branding Passport"
+                {
+                  "name": "Espacio comercial y visual merchandising",
+                  "description": "Identidad arquitectónica, distribución y disposición de ambientes en tiendas."
+                },
+                {
+                  "name": "Odotipo",
+                  "description": "Diseño de la identidad olfativa para espacios comerciales — una fragancia característica que refuerza la experiencia de marca en tiendas, oficinas y puntos de contacto físicos."
+                },
+                {
+                  "name": "Vestimenta y uniformes",
+                  "description": "Código de vestimenta para empleados, representantes y embajadores de marca."
+                },
+                {
+                  "name": "Vehículos",
+                  "description": "Lineamientos de rotulación y diseño aplicado a la flota de transporte corporativa."
+                },
+                {
+                  "name": "Redes sociales",
+                  "description": "Templates y lineamientos estéticos para cada plataforma social — formatos, encuadres y reglas de composición visual."
+                },
+                {
+                  "name": "UI/UX Web y App",
+                  "description": "Design system con componentes, estilos y reglas de interacción para el entorno digital y de desarrollo."
+                },
+                {
+                  "name": "Branding Passport",
+                  "description": "Adaptación de la marca a diferentes mercados y transcreación de la comunicación para mantener coherencia en cada contexto cultural."
+                }
               ]
             }
           ]

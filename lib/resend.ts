@@ -65,6 +65,11 @@ export interface ContactFormEmailData {
   message: string;
   locale: 'en' | 'es';
   submittedAt: string;
+  projectType?: string;
+  companySize?: string;
+  budget?: string;
+  productCategories?: string[];
+  functionalities?: string[];
 }
 
 /**

@@ -12,18 +12,24 @@ import { usePathname } from "next/navigation";
 import { ThemeToggleButton } from "@/app/components/molecules/theme-toggle";
 import { AlkituLogo } from "@/app/components/atoms/alkitu-logo";
 
+interface SubMenuItem {
+  name: string;
+  pathname: string;
+}
+
 interface Route {
   name: string;
   pathname: string;
   iconLight: string;
   iconDark: string;
+  submenu?: SubMenuItem[];
 }
 
 const sidebarVariants: Variants = {
   open: {
     clipPath: "inset(0% 0% 0% 0%)",
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 40,
       restDelta: 1,
       duration: 5,
@@ -32,7 +38,7 @@ const sidebarVariants: Variants = {
   closed: {
     clipPath: "inset(0% 0% 0% 100%)",
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 40,
       restDelta: 1,
       duration: 5,
@@ -49,6 +55,18 @@ export default function NavBar() {
 
   const [isScrollingDown, setIsScrollingDown] = useState(false);
   const prevScrollY = useRef(0);
+
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnter = (pathname: string) => {
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+    setOpenDropdown(pathname);
+  };
+
+  const handleMouseLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => setOpenDropdown(null), 150);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -87,7 +105,7 @@ export default function NavBar() {
           animate={{ y: 0, opacity: 1 }}
           transition={{
             delay: 0.5,
-            type: "spring",
+            type: "spring" as const,
             stiffness: 100,
             damping: 30,
           }}
@@ -98,7 +116,7 @@ export default function NavBar() {
             <div className='w-full lg:w-11/12 absolute top-0 right-0 col-span-full flex justify-end'>
               <div className='flex h-20 justify-between w-full lg:w-12/12 self-end'>
                 <div className='ml-8 col-span-2 flex justify-center items-center'>
-                  <AlkituLogo locale={locale} height={60} />
+                  <AlkituLogo locale={locale} />
                 </div>
                 <div className='hidden lg:flex items-center'>
                   {routes.map((route: Route) => (
@@ -106,20 +124,72 @@ export default function NavBar() {
                       className='flex justify-center items-center px-4'
                       key={route.pathname}
                     >
-                      <Link
-                        href={
-                          route.pathname === "/projects"
-                            ? `/${locale}/projects?category=All&page=1`
-                            : `/${locale}${route.pathname}`
-                        }
-                        className={
-                          currentPathname === route.pathname
-                            ? "flex items-center text-primary font-bold px-4 h-8 uppercase"
-                            : "flex items-center text-foreground font-bold px-4 h-8 uppercase cursor-pointer hover:scale-105 hover:text-primary active:scale-95 transition-all"
-                        }
-                      >
-                        {route.name}
-                      </Link>
+                      {route.submenu ? (
+                        <div
+                          className='relative'
+                          onMouseEnter={() => handleMouseEnter(route.pathname)}
+                          onMouseLeave={handleMouseLeave}
+                        >
+                          <span
+                            className={
+                              currentPathname.startsWith(`/${locale}/servicios`)
+                                ? "flex items-center gap-1 text-primary font-bold px-4 h-8 uppercase cursor-pointer"
+                                : "flex items-center gap-1 text-foreground font-bold px-4 h-8 uppercase cursor-pointer hover:scale-105 hover:text-primary active:scale-95 transition-all"
+                            }
+                          >
+                            {route.name}
+                            <svg
+                              className={`w-3.5 h-3.5 transition-transform duration-200 ${openDropdown === route.pathname ? 'rotate-180' : ''}`}
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              strokeWidth={2.5}
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </span>
+                          <AnimatePresence>
+                            {openDropdown === route.pathname && (
+                              <motion.div
+                                initial={{ opacity: 0, y: -8 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -8 }}
+                                transition={{ duration: 0.15, ease: 'easeOut' }}
+                                className='absolute top-full left-1/2 -translate-x-1/2 mt-2 min-w-[200px] bg-background/95 backdrop-blur-lg border border-border rounded-lg shadow-lg py-2'
+                              >
+                                {route.submenu.map((item) => (
+                                  <Link
+                                    key={item.pathname}
+                                    href={`/${locale}${item.pathname}`}
+                                    className={
+                                      currentPathname === `/${locale}${item.pathname}`
+                                        ? "block px-4 py-2 text-sm font-semibold text-primary"
+                                        : "block px-4 py-2 text-sm font-semibold text-foreground hover:text-primary hover:bg-primary/5 transition-colors"
+                                    }
+                                  >
+                                    {item.name}
+                                  </Link>
+                                ))}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      ) : (
+                        <Link
+                          href={
+                            route.pathname === "/projects"
+                              ? `/${locale}/projects?category=All&page=1`
+                              : `/${locale}${route.pathname}`
+                          }
+                          className={
+                            currentPathname === `/${locale}${route.pathname}` || (route.pathname === "/" && currentPathname === `/${locale}`)
+                              ? "flex items-center text-primary font-bold px-4 h-8 uppercase"
+                              : "flex items-center text-foreground font-bold px-4 h-8 uppercase cursor-pointer hover:scale-105 hover:text-primary active:scale-95 transition-all"
+                          }
+                        >
+                          {route.name}
+                        </Link>
+                      )}
                     </div>
                   ))}
                   <div className='flex justify-center items-center px-2'>

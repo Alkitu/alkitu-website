@@ -10,7 +10,7 @@ import { Button } from "@/app/components/atoms/button";
 import HeroPhones from "@/app/components/molecules/hero-phones";
 import { useLocalizedPath } from "@/app/hooks";
 import HeroFloatingElements from "./HeroFloatingElements";
-import { SplashCursor } from "@/app/components/atoms/splash-cursor";
+import { Threads } from "@/app/components/atoms/threads";
 
 gsap.registerPlugin(GSAPSplitText);
 
@@ -98,14 +98,18 @@ function RotatingText({ words }: { words: string[][] }) {
 function Hero({ text }) {
   const hero = text.home.heroSection;
   const localizedPath = useLocalizedPath();
-  const heroContainerRef = useRef<HTMLDivElement>(null);
   const rotatingWords: string[][] = hero.title.rotatingWords || [];
 
   return (
-  <div ref={heroContainerRef} className="relative overflow-hidden min-h-[calc(100dvh-5rem)]">
-  <SplashCursor containerRef={heroContainerRef} />
+  <div className="relative overflow-hidden min-h-[calc(100dvh-5rem)] flex flex-col justify-center">
+  <Threads
+    amplitude={1}
+    distance={0}
+    enableMouseInteraction
+    yOffset={-0.3}
+  />
   <TailwindGrid fullSize >
-      <section className='col-start-1 max-w-full w-full col-end-full md:col-start-1 md:col-end-6 lg:col-start-2 lg:col-end-6 pt-[8vw] md:pt-[6vw] lg:pt-[3vw] px-4 md:px-6 lg:px-8 order-2 md:order-1 z-30 col-span-full flex flex-col justify-center'>
+      <section className='col-start-1 max-w-full w-full col-end-full md:col-start-1 md:col-end-6 lg:col-start-2 lg:col-end-6 px-4 md:px-6 lg:px-8 order-2 md:order-1 z-30 col-span-full flex flex-col justify-center'>
         <div className='flex-col justify-start items-start gap-6 inline-flex'>
 
           {/* Main Title */}

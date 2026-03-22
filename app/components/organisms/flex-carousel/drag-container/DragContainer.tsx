@@ -31,7 +31,7 @@ function DragContainer({
       {containerWidth <= 360 ? (
         <motion.section
           ref={parentRef}
-          // transition={{ type: "spring", stiffness: 400, damping: 45, mass: 0.5 }}
+          // transition={{ type: "spring" as const, stiffness: 400, damping: 45, mass: 0.5 }}
           transition={{
             duration: 0.75,
             ease: [0.16, 1, 0.3, 1] as const,
@@ -85,7 +85,7 @@ function DragContainer({
       ) : (
         <motion.section
           ref={parentRef}
-          // transition={{ type: "spring", stiffness: 400, damping: 45, mass: 0.5 }}
+          // transition={{ type: "spring" as const, stiffness: 400, damping: 45, mass: 0.5 }}
           transition={{
             duration: 0.75,
             ease: [0.16, 1, 0.3, 1] as const,

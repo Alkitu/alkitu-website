@@ -3,84 +3,77 @@
 import Image from "next/image";
 import { motion, useSpring } from "framer-motion";
 import { useEffect } from "react";
-import { useTheme } from "@/app/context/ThemeContext";
 
 export default function HeroPhones() {
-
   const { x, y } = useMouseParallax();
-  const { resolvedTheme } = useTheme();
-
-  // Seleccionar la imagen según el tema
-  const heroImageSrc = resolvedTheme === 'dark'
-    ? "/images/hero/alkitu-hero-dark.svg"
-    : "/images/hero/alkitu-hero.svg";
 
   return (
-    <div className="relative w-full h-auto aspect-462/312 mt-[10vw] md:mt-0 ml-[10.5vw] md:ml-0  md:pr-[10vw] pointer-events-none">
-      {/* Layer 1: Background Hero SVG */}
-      <div className="absolute inset-0 z-0 ">
-        <Image
-          src={heroImageSrc}
-          alt="Hero Background"
-          fill
-          className="object-contain"
-          priority
-        />
-      </div>
-
-      {/* Layer 2: Masked Phone (Floating + Mouse Parallax) */}
-      <div className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none">
-        
-        {/* We use an inline SVG to apply the mask path to the PNG image perfectly aligned */}
+    <div className="relative w-full aspect-[918/717] mt-[10vw] md:mt-0 pointer-events-none">
+      {/* Layer 1: LogoContainer (inline SVG, dark mode via currentColor) */}
+      <div className="absolute inset-0 z-0 text-foreground">
         <svg
-          viewBox="0 0 462 312"
+          viewBox="0 0 918 717"
           className="w-full h-full"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          xmlnsXlink="http://www.w3.org/1999/xlink"
         >
-          <defs>
-            <mask id="hero-phone-mask" maskUnits="userSpaceOnUse">
-              {/* The mask path from mask-phones.svg using white to reveal */}
-              {/* This mask stays STATIC */}
-              <path
-                d="M0 312.004H215.605L317.431 -2.02654e-06L0 0.00440466V312.004Z"
-                fill="white"
-              />
-            </mask>
-          </defs>
-
-          {/* The Image masked by the path above - ANIMATED */}
-          {/* We apply the motion here so the CONTENT moves inside the static MASK */}
-          
-          {/* 1. STATIC GROUP defining the Mask Area */}
-          <g mask="url(#hero-phone-mask)">
-            
-            {/* 2. PARALLAX GROUP handling Mouse Interaction */}
-            <motion.g style={{ x, y }}>
-              
-              {/* 3. FLOATING IMAGE handling Loop Animation */}
-              <motion.image
-                href="/images/hero/alkitu-phones.png"
-                width="462"
-                height="312"
-                preserveAspectRatio="xMidYMid meet"
-                
-                // Floating Animation
-                animate={{
-                   y: [0, -10, 0],
-                   x: [0, 5, 0],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  repeatType: "mirror",
-                  ease: "easeInOut",
-                }}
-              />
-            </motion.g>
-          </g>
+          <path
+            d="M521.315 124.723L599.286 241.555C611.948 260.516 630.537 286.413 641.872 305.367C631.353 323.156 617.489 340.43 606.674 358.222C602.868 364.478 597.557 372.235 593.032 377.829C569.762 341.655 544.912 306.002 521.627 269.819L274.117 639.403L241.154 688.976C236.143 696.494 227.971 709.53 222.504 716.206C191.67 715.976 154.952 716.799 124.754 715.531C129.927 709.255 137.46 697.43 142.265 690.304C153.097 674.277 163.848 658.196 174.519 642.061L267.968 502.237L420.265 275.864C453.438 226.761 489.502 174.51 521.315 124.723Z"
+            fill="currentColor"
+          />
+          <path
+            d="M852.926 125.738L853.616 125.865C855.522 128.456 855.923 321.264 855.752 341.521C833.825 327.578 811.994 313.481 790.266 299.234C787.054 306.32 770.067 330.392 765.06 338.003L700.346 435.361L584.9 609.045C561.518 644.371 537.506 681.669 513.369 716.287C508.594 716.058 503.449 716.028 498.645 716.072C471.443 716.317 443.665 714.974 416.512 715.931C418.078 712.897 420.608 709.107 422.482 706.125C446.487 671.659 469.842 634.6 493.308 599.48L662.84 345.214C682.276 316.009 702.482 283.707 722.266 255.169C703.491 243.422 675.599 227.568 658.523 214.933C675.317 205.571 707.927 191.878 726.583 183.37L852.926 125.738Z"
+            fill="#00BB31"
+          />
+          <path
+            d="M739.266 448.238L844.839 606.889L896.965 684.383C903.53 694.358 911.563 705.831 917.557 715.875C886.528 716.045 849.972 716.921 819.187 715.571C813.854 715.852 808.476 715.993 803.135 715.941C776.26 715.689 749.11 716.587 722.264 715.838C712.747 703.019 700.485 683.282 691.539 669.593C675.227 644.432 658.699 619.415 641.957 594.544C658.966 571.412 674.344 545.4 690.931 521.728C700.411 506.685 710.091 491.769 719.972 476.986C725.691 468.303 733.117 456.423 739.266 448.238Z"
+            fill="#00BB31"
+          />
+          <path
+            d="M690.931 521.746C703.296 538.817 717.316 561.969 729.319 579.996L819.187 715.588C813.854 715.87 808.476 716.011 803.135 715.959C776.26 715.707 749.11 716.605 722.264 715.855C712.747 703.037 700.485 683.3 691.539 669.61C675.227 644.45 658.699 619.433 641.957 594.562C658.966 571.429 674.344 545.418 690.931 521.746Z"
+            fill="currentColor"
+          />
+          <path
+            d="M491.845 383.715C495.378 385.618 536.268 448.991 541.186 456.748C532.841 470.941 517.961 491.503 508.189 506.169L443.203 603.818L394.015 677.381C385.942 689.436 376.25 705.075 367.599 716.158L320.116 715.905L270.555 715.95C283.334 694.82 301.287 670.308 315.215 649.212L433.798 471.892L469.695 418.068C476.971 407.098 485.362 395.044 491.845 383.715Z"
+            fill="currentColor"
+          />
         </svg>
+      </div>
+
+      {/* Layer 2: Mask FIJA + Phone que se mueve dentro */}
+      <div
+        className="absolute inset-0 z-10"
+        style={{
+          maskImage: "url(/Hero_phone/ContainerPhone.svg)",
+          WebkitMaskImage: "url(/Hero_phone/ContainerPhone.svg)",
+          maskSize: "100% 100%",
+          WebkitMaskSize: "100% 100%",
+          maskRepeat: "no-repeat",
+          WebkitMaskRepeat: "no-repeat",
+        }}
+      >
+        {/* Parallax — solo el phone se mueve */}
+        <motion.div className="relative w-full h-full" style={{ x, y }}>
+          {/* Floating animation */}
+          <motion.div
+            className="relative w-full h-full"
+            animate={{ y: [0, -10, 0], x: [0, 5, 0] }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              repeatType: "mirror",
+              ease: "easeInOut",
+            }}
+          >
+            <Image
+              src="/Hero_phone/Phone.png"
+              alt="Alkitu App"
+              fill
+              className="object-contain"
+              priority
+            />
+          </motion.div>
+        </motion.div>
       </div>
     </div>
   );
@@ -94,7 +87,7 @@ function useMouseParallax() {
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
       const { innerWidth, innerHeight } = window;
-      const xPos = (event.clientX / innerWidth - 0.5) * 50; // Increased to 50px for visibility
+      const xPos = (event.clientX / innerWidth - 0.5) * 50;
       const yPos = (event.clientY / innerHeight - 0.5) * 50;
       x.set(xPos);
       y.set(yPos);

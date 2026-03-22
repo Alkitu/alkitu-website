@@ -4,6 +4,19 @@ import { motion, AnimatePresence, Variants } from "framer-motion";
 import Image from "next/image";
 import { ArrowButton } from "@/app/components/molecules/arrow-button";
 
+function ImageSkeleton({ className = '' }: { className?: string }) {
+  return (
+    <div className={`absolute inset-0 ${className}`}>
+      <div className="w-full h-full animate-pulse bg-zinc-200 dark:bg-zinc-800" />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <svg className="w-10 h-10 text-zinc-300 dark:text-zinc-700" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
 interface CarouselProps {
   numbers?: boolean;
   bullets?: boolean;
@@ -38,6 +51,7 @@ const variants: Variants = {
 };
 
 const initialIndex = 0;
+const MAX_VISIBLE_THUMBNAILS = 5;
 
 export default function Carousel({
   numbers,
@@ -50,7 +64,18 @@ export default function Carousel({
   projectId,
 }: CarouselProps) {
   const [page, setPage] = useState(initialIndex);
+  const [thumbStart, setThumbStart] = useState(0);
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
+  const [loadedThumbs, setLoadedThumbs] = useState<Set<number>>(new Set());
   const images = immagesArray;
+
+  const handleImageLoaded = useCallback((index: number) => {
+    setLoadedImages(prev => { const next = new Set(prev); next.add(index); return next; });
+  }, []);
+
+  const handleThumbLoaded = useCallback((index: number) => {
+    setLoadedThumbs(prev => { const next = new Set(prev); next.add(index); return next; });
+  }, []);
   const paginationBullets = bullets || false;
   const paginationNumbers = numbers || false;
   const paginationArrows = arrows || false;
@@ -101,6 +126,26 @@ export default function Carousel({
     };
   }, []);
 
+  // Sync thumbnail window when active slide changes
+  useEffect(() => {
+    if (page < thumbStart) {
+      setThumbStart(page);
+    } else if (page >= thumbStart + MAX_VISIBLE_THUMBNAILS) {
+      setThumbStart(page - MAX_VISIBLE_THUMBNAILS + 1);
+    }
+  }, [page, thumbStart]);
+
+  const hasThumbNav = images.length > MAX_VISIBLE_THUMBNAILS;
+  const visibleThumbs = images.slice(thumbStart, thumbStart + MAX_VISIBLE_THUMBNAILS);
+
+  const handleThumbPrev = useCallback(() => {
+    setThumbStart((prev) => Math.max(0, prev - 1));
+  }, []);
+
+  const handleThumbNext = useCallback(() => {
+    setThumbStart((prev) => Math.min(images.length - MAX_VISIBLE_THUMBNAILS, prev + 1));
+  }, [images.length]);
+
   return (
     <div className={`${className} max-w-full flex flex-col`}>
       <div
@@ -129,7 +174,7 @@ export default function Carousel({
                   animate={isCurrent ? "center" : "exit"}
                   exit='exit'
                   transition={{
-                    x: { type: "spring", stiffness: 300, damping: 30 },
+                    x: { type: "spring" as const, stiffness: 300, damping: 30 },
                     opacity: { duration: 0.2 },
                   }}
                   drag='x'
@@ -144,6 +189,9 @@ export default function Carousel({
                   }}
                   whileDrag={{ cursor: "grabbing" }}
                 >
+                  {!loadedImages.has(index) && (
+                    <ImageSkeleton className="rounded-lg md:rounded-xl lg:rounded-3xl" />
+                  )}
                   <Image
                     width={1080}
                     height={720}
@@ -152,7 +200,10 @@ export default function Carousel({
                     src={image}
                     loading={index === 0 ? "eager" : "lazy"}
                     priority={index === 0}
-                    className={`pointer-events-none top-0 h-full w-full ${
+                    onLoad={() => handleImageLoaded(index)}
+                    className={`pointer-events-none top-0 h-full w-full transition-opacity duration-300 ${
+                      loadedImages.has(index) ? "opacity-100" : "opacity-0"
+                    } ${
                       longCard
                         ? "absolute object-scale-down"
                         : "absolute object-cover rounded-lg md:rounded-xl lg:rounded-3xl"
@@ -234,41 +285,54 @@ export default function Carousel({
 
       {paginationThumbnails && (
         <div className='relative flex items-center justify-center'>
-          <div className='flex px-5 self-center justify-self-center place-self-center content-center justify-center my-4 flex-wrap lg:flex-nowrap'>
-            {images.map((image, index) => {
-              const isCurrent = index === page;
+          <div className='flex px-5 self-center justify-self-center place-self-center content-center justify-center my-4 flex-nowrap'>
+            {Array.from({ length: Math.min(images.length, MAX_VISIBLE_THUMBNAILS) }).map((_, localIndex) => {
+              const realIndex = thumbStart + localIndex;
+              const image = images[realIndex];
+              const isCurrent = realIndex === page;
               return (
                 <div
-                  className='mx-2 my-2 cursor-pointer aspect-video flex self-center justify-self-center place-self-center content-center justify-center relative min-w-[10%] lg:min-w-[0%] max-w-[20%] lg:max-w-none'
-                  onClick={() => setPage(index)}
-                  key={index}
+                  className='mx-2 my-2 cursor-pointer aspect-video flex items-center justify-center relative min-w-[10%] lg:min-w-[0%] max-w-[20%] lg:max-w-none w-[20%] overflow-hidden rounded-md md:rounded-lg lg:rounded-xl'
+                  onClick={() => setPage(realIndex)}
+                  key={realIndex}
                 >
-                  <div className='w-full h-full absolute top-0 left-0 animate-pulse opacity-25 bg-gray-700 -z-20' />
-                  <Image
-                    width={300}
-                    height={300}
-                    alt={image}
-                    src={image}
-                    loading="lazy"
-                    className={`w-full h-full rounded lg:rounded-md object-cover border-2 transition-all duration-300 ${
-                      isCurrent
-                        ? "border-primary"
-                        : "border-white/50 hover:border-primary"
-                    }`}
-                  />
+                  {!loadedThumbs.has(realIndex) && (
+                    <div className="absolute inset-0 animate-pulse bg-zinc-200 dark:bg-zinc-800 rounded-md md:rounded-lg lg:rounded-xl" />
+                  )}
+                  {image && (
+                    <Image
+                      width={300}
+                      height={300}
+                      alt={image}
+                      src={image}
+                      loading="lazy"
+                      onLoad={() => handleThumbLoaded(realIndex)}
+                      className={`w-full h-full rounded-md md:rounded-lg lg:rounded-xl object-cover border-2 transition-all duration-300 ${
+                        loadedThumbs.has(realIndex) ? "opacity-100" : "opacity-0"
+                      } ${
+                        isCurrent
+                          ? "border-primary"
+                          : "border-white/50 hover:border-primary"
+                      }`}
+                    />
+                  )}
                 </div>
               );
             })}
           </div>
-          <ArrowButton
-            handleClickBefore={handleClickBefore}
-            handleClickAfter={handleClickAfter}
-          />
-          <ArrowButton
-            left
-            handleClickBefore={handleClickBefore}
-            handleClickAfter={handleClickAfter}
-          />
+          {hasThumbNav && (
+            <>
+              <ArrowButton
+                handleClickBefore={handleClickBefore}
+                handleClickAfter={handleClickAfter}
+              />
+              <ArrowButton
+                left
+                handleClickBefore={handleClickBefore}
+                handleClickAfter={handleClickAfter}
+              />
+            </>
+          )}
         </div>
       )}
 

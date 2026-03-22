@@ -35,6 +35,7 @@ export interface Project {
   // Metadata
   tags: string[];
   urls: ProjectUrl[];
+  authors: string[];
 
   // Status
   is_active: boolean;
@@ -87,6 +88,7 @@ export interface CreateProjectInput {
   gallery?: string[];
   tags?: string[];
   urls?: ProjectUrl[];
+  authors?: string[];
   is_active?: boolean;
   display_order?: number;
   category_ids: string[];
@@ -104,6 +106,7 @@ export interface UpdateProjectInput {
   gallery?: string[];
   tags?: string[];
   urls?: ProjectUrl[];
+  authors?: string[];
   is_active?: boolean;
   display_order?: number;
   category_ids?: string[];

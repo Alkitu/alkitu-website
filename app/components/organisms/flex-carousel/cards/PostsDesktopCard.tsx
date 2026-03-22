@@ -58,7 +58,7 @@ function PostsDesktopCard({ container }: PostsDesktopCardProps) {
   return (
     <motion.div
       layout='position'
-      className='max-h-fit w-full justify-between items-center text-center bg-card rounded-xl shadow flex flex-col gap-y-2 mx-auto border border-border'
+      className='max-h-fit w-full max-w-sm justify-between items-center text-center bg-background dark:bg-zinc-900 rounded-xl shadow-xl flex flex-col gap-y-2 mx-auto overflow-hidden'
     >
       <div className='w-full aspect-video bg-muted rounded-tl-xl rounded-tr-xl justify-center items-center inline-flex'>
         {container.thumbnail ? (
@@ -89,7 +89,7 @@ function PostsDesktopCard({ container }: PostsDesktopCardProps) {
           transition={{ duration: 0.25 }}
         >
           <ParagrapHTML
-            className='max-w-full md:text-[1.6vw] lg:text-[1.4vw] 2xl:text-[1vw] font-normal text-center tracking-tight '
+            className='max-w-full text-xs md:text-sm font-normal text-center tracking-tight '
             paragraph={extractContent(container.description)}
             limit={25}
             showFullDescription

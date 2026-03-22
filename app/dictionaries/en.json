@@ -178,7 +178,7 @@
       "subtitle": "Web apps, mobile applications, professional branding and digital marketing",
       "description": "Designed and developed by a team that masters all three disciplines.",
       "buttons": {
-        "primary": "Tell us about your project",
+        "primary": "Get started",
         "secondary": "Projects"
       },
       "files": {
@@ -240,8 +240,8 @@
       "textScroller": "Three Reflections",
       "velocityScroller": 0.2,
       "quote": {
-        "lineOne": "A well-built digital product",
-        "lineTwo": "is the best marketing asset that exists."
+        "lineOne": "Behind every great brand",
+        "lineTwo": "there's a strategy no one sees, but everyone feels."
       }
     },
     "skillsSection": {
@@ -309,77 +309,77 @@
       "firstLine": [
         {
           "name": "Aircrew Aviation",
-          "src": "/images/clients/Alkitu-Aircrew-Aviation.png"
+          "src": "/images/clients/Alkitu-Aircrew-Aviation-1.png"
         },
         {
           "name": "Canastilla",
-          "src": "/images/clients/Alkitu-Canastilla-.png"
+          "src": "/images/clients/Alkitu-Canastilla-1.png"
         },
         {
           "name": "Casa Adrian",
-          "src": "/images/clients/Alkitu-Casa-Adriian-1944.png"
+          "src": "/images/clients/Alkitu-Casa-Adriian-1944-1.png"
         },
         {
           "name": "Clinica LUX",
-          "src": "/images/clients/Alkitu-Clinica-LUX.png"
+          "src": "/images/clients/Alkitu-Clinica-LUX-1.png"
         },
         {
           "name": "Clinica Dysdental",
-          "src": "/images/clients/Alkitu-Clinicadysdental.png"
+          "src": "/images/clients/Alkitu-Clinicadysdental-1.png"
         },
         {
           "name": "Detailcar",
-          "src": "/images/clients/Alkitu-Detailcar.png"
+          "src": "/images/clients/Alkitu-Detailcar-1.png"
         },
         {
           "name": "El Mejor Vidente",
-          "src": "/images/clients/Alkitu-El-Mejor-Vidente.png"
+          "src": "/images/clients/Alkitu-El-Mejor-Vidente-1.png"
         },
         {
           "name": "Eleale",
-          "src": "/images/clients/Alkitu-Eleale-Cleaning-Services.png"
+          "src": "/images/clients/Alkitu-Eleale-Cleaning-Services-1.png"
         },
         {
           "name": "Emprendetec",
-          "src": "/images/clients/Alkitu-Emprendetec.png"
+          "src": "/images/clients/Alkitu-Emprendetec-1.png"
         }
       ],
       "secondLine": [
         {
           "name": "Funda Mania",
-          "src": "/images/clients/Alkitu-Funda-Mania.png"
+          "src": "/images/clients/Alkitu-Funda-Mania-1.png"
         },
         {
           "name": "Pura Vida",
-          "src": "/images/clients/Alkitu-Gladys-Berrio-PURAVIDA.png"
+          "src": "/images/clients/Alkitu-Gladys-Berrio-PURAVIDA-1.png"
         },
         {
           "name": "Helayor",
-          "src": "/images/clients/Alkitu-Helayor.png"
+          "src": "/images/clients/Alkitu-Helayor-1.png"
         },
         {
           "name": "La Plataforma",
-          "src": "/images/clients/Alkitu-La-Plataforma-Publicitaria-.png"
+          "src": "/images/clients/Alkitu-La-Plataforma-Publicitaria--1.png"
         },
         {
           "name": "Las Acacias",
-          "src": "/images/clients/Alkitu-Las-Acacias.png"
+          "src": "/images/clients/Alkitu-Las-Acacias-1.png"
         },
         {
           "name": "Natur Masajes",
-          "src": "/images/clients/Alkitu-Natur-Masajes.png"
+          "src": "/images/clients/Alkitu-Natur-Masajes-1.png"
         },
         {
           "name": "Sanjhes",
-          "src": "/images/clients/Alkitu-Sanjhes.png"
+          "src": "/images/clients/Alkitu-Sanjhes-1.png"
         },
         {
           "name": "Transito Bar",
-          "src": "/images/clients/Alkitu-Transito-Bar.png"
+          "src": "/images/clients/Alkitu-Transito-Bar-1.png"
         },
         {
           "name": "Vidente Astral",
-          "src": "/images/clients/Alkitu-Vidente-Astral.png"
+          "src": "/images/clients/Alkitu-Vidente-Astral-1.png"
         }
       ]
     },
@@ -1493,19 +1493,62 @@
       }
     ],
     "form": {
-      "title": "Leave us a message:",
+      "title": "Get started",
       "nameLabel": "Your Name",
       "namePlaceholder": "John Doe",
       "emailLabel": "Email Address",
       "emailPlaceholder": "john@example.com",
-      "subjectLabel": "Subject",
-      "subjectPlaceholder": "Project Inquiry",
-      "messageLabel": "Message",
-      "messagePlaceholder": "Tell me about your project...",
-      "submitButton": "Send Message",
+      "projectTypeTitle": "Describe your project type",
+      "companySizeTitle": "What is your company size?",
+      "companySize_solo_founder": "Solo Founder",
+      "companySize_small_startup": "Small Startup",
+      "companySize_medium_company": "Medium Company",
+      "companySize_enterprise": "Enterprise",
+      "budgetTitle": "What is your budget?",
+      "budget_under_2k": "< $2,000",
+      "budget_2k_5k": "$2,000 - $5,000",
+      "budget_8k_12k": "$8,000 - $12,000",
+      "budget_12k_15k": "$12,000 - $15,000",
+      "budget_15k_20k": "$15,000 - $20,000",
+      "budget_over_20k": "+$20,000",
+      "categoriesTitle": "How would you categorize your product?",
+      "categoriesSubtitle": "Select up to three options.",
+      "category_saas": "SaaS",
+      "category_on_demand": "On-demand",
+      "category_project_management": "Project Management",
+      "category_ecommerce": "E-commerce",
+      "category_marketplace": "Marketplace",
+      "category_social_media": "Social Media",
+      "category_internal_tool": "Internal Tool",
+      "category_crm": "CRM",
+      "category_job_board": "Job Board",
+      "category_productivity": "Productivity",
+      "category_marketing_site": "Marketing Site",
+      "category_data_management": "Data Management",
+      "category_hospitality_gastronomy": "Hospitality & Gastronomy",
+      "category_other": "Other",
+      "functionalitiesTitle": "What functionalities are you going to need?",
+      "functionalitiesSubtitle": "Select all that apply.",
+      "func_payments": "Payments",
+      "func_memberships": "Memberships",
+      "func_email_delivery": "Email Delivery",
+      "func_google_maps": "Google Maps",
+      "func_video": "Video",
+      "func_social_logins": "Social Logins",
+      "func_audio": "Audio",
+      "func_internal_analytics": "Internal Analytics",
+      "func_dashboard": "Dashboard",
+      "func_other": "Other",
+      "messageLabel": "Tell us about your project needs",
+      "messagePlaceholder": "Describe what you need, goals, timeline...",
+      "filesLabel": "Upload references",
+      "filesDragText": "Click to upload files (images, PDFs, docs)",
+      "nextButton": "Next",
+      "backButton": "Back",
+      "submitButton": "Submit Request",
       "submittingButton": "Sending...",
-      "successMessage": "Message sent successfully!",
-      "successSubtext": "We will reply to you soon."
+      "successMessage": "Request submitted successfully!",
+      "successSubtext": "We will get back to you soon."
     },
     "communityBanner": {
       "titlePart1": "WANT TO BE PART OF OUR",
@@ -1696,8 +1739,8 @@
       "hero": {
         "title": "Branding",
         "subtitle": "We build brands with methodology, foundation and system",
-        "description": "Your brand is more than a logo. It is the intangible asset formed in people's minds when they connect with your company through the senses — what they see, read, hear, and experience in your space. A well-built brand can represent up to 60% of an organization's total value. At Alkitu we approach branding with a proprietary framework: Brand Engineering. A system that structures brand building in four pillars — Brand DNA, Verbal Identity, Visual Identity and Spatial Identity — inspired by the international standards ISO 20671 and ISO 10668 for brand valuation.",
-        "cta": "Tell us about your project"
+        "description": "Your brand is more than a logo. It is the intangible asset formed in people's minds when they connect with your company through the senses — what they see, read, hear, and experience in your space. A well-built brand can represent up to 60% of an organization's total value. At Alkitu we approach branding with a proprietary framework: Brand Engineering. A system that structures brand building in four pillars — Brand DNA, Verbal Identity, Visual Identity and Spatial Identity — inspired by the international standard ISO 20671 for brand valuation.",
+        "cta": "Get started"
       },
       "sections": {
         "problem": {
@@ -1716,7 +1759,7 @@
             {
               "id": "naming",
               "name": "Naming",
-              "description": "We create, validate and protect your brand name. We combine phono-symbolism techniques with legal, linguistic and digital verification so the name sounds right, means what it should, and has an available domain.",
+              "description": "We create or find a brand name with high registrability potential. We combine phono-symbolism techniques with legal, linguistic and digital verification so the name sounds right, means what it should, and has an available domain.",
               "cta": "Request a quote →"
             },
             {
@@ -1740,13 +1783,13 @@
             {
               "id": "auditoria-de-marca",
               "name": "Brand Audit",
-              "description": "We analyze and document the strategic pillars of your brand: history, market, buyer persona, value proposition, archetype and personality, manifesto.",
+              "description": "A strategic analysis of your brand's current state to identify strengths, weaknesses and measure strategies that can be implemented to improve it.",
               "cta": "Request a quote →"
             },
             {
               "id": "ingenieria-de-marca",
               "name": "Brand Engineering",
-              "description": "The complete system: 26 services, 90 sub-elements, 4 pillars. A comprehensive manual that documents every aspect of your brand with a proprietary and measurable framework.",
+              "description": "A comprehensive, tailor-made system covering strategy and identity across every area of your business. Includes files, guides, manuals and ready-to-use resources — all built specifically for your brand.",
               "cta": "Learn more →",
               "url": "/servicios/ingenieria-de-marca"
             }
@@ -1759,7 +1802,7 @@
         "title": "Digital Marketing",
         "subtitle": "Measurable growth engine — from discovery to loyalty",
         "description": "Digital marketing is more than having an internet presence. It is the set of strategies that allow the right person to find your business, get interested, buy and come back — and make the entire process measurable. Alkitu structures its Digital Marketing service on the Digital Value Cycle — based on Google's See-Think-Do-Care framework.",
-        "cta": "Tell us about your project"
+        "cta": "Get started"
       },
       "sections": {
         "problem": {
@@ -1818,7 +1861,7 @@
         "title": "Product Building",
         "subtitle": "We design and develop custom digital products",
         "description": "We create complete digital products: web apps, native iOS applications, hybrid apps, functional prototypes and design systems. From enterprise management systems and e-learning platforms to advanced e-commerce and process automation — with the right tech stack for each case. We work with UI/UX design and usability standards on every project.",
-        "cta": "Tell us about your project"
+        "cta": "Get started"
       },
       "sections": {
         "problem": {
@@ -1892,7 +1935,7 @@
         "title": "Custom Web App",
         "subtitle": "Custom digital platforms",
         "description": "We build custom web platforms with React and Next.js. Each web app is designed, developed and deployed as a real product: with architecture built to scale, maintainable code, automated testing and complete documentation. We work with Spec-Driven Development and proprietary design systems.",
-        "cta": "Tell us about your project"
+        "cta": "Get started"
       },
       "sections": {
         "examples": {
@@ -1913,7 +1956,7 @@
             },
             {
               "name": "Map systems",
-              "description": "Indoor and outdoor visualization with MapLibre GL — logistics, tourism, real estate"
+              "description": "Indoor and outdoor visualization — logistics, tourism, real estate"
             },
             {
               "name": "Dashboards",
@@ -1925,7 +1968,7 @@
             },
             {
               "name": "3D Experiences",
-              "description": "WebGL scenes rendered in the browser, animated backgrounds and visual post-processing"
+              "description": "3D scenes rendered in the browser, augmented reality, animated backgrounds and visual post-processing"
             },
             {
               "name": "Programmatic video",
@@ -2007,7 +2050,7 @@
         "title": "Corporate Websites",
         "subtitle": "Your digital business card",
         "description": "A corporate website is designed to convey your brand identity, present your products and services clearly, and capture leads and clients continuously. All our websites adapt to mobile devices and are prepared for search engine positioning. We work with three approaches: pure code with React and Next.js, WordPress and Shopify.",
-        "cta": "What type of website do you need? Tell us"
+        "cta": "Get started"
       },
       "sections": {
         "code": {
@@ -2059,8 +2102,8 @@
       "hero": {
         "title": "Brand Engineering",
         "subtitle": "The comprehensive brand-building framework created by Alkitu",
-        "description": "Brand Engineering is a brand-building framework developed within Alkitu. Its goal is to manualize, document and systematize every aspect of a brand — from its foundational strategy to its manifestation in physical space — into a comprehensive manual. It is inspired by international standards ISO 20671 and ISO 10668, which define five measurable dimensions — legal, perception, market, environment and financial — as KPIs to evaluate the effectiveness of every branding decision.",
-        "cta": "I want to learn about Brand Engineering for my company"
+        "description": "Brand Engineering is a brand-building framework developed by our team. Its goal is to manualize, document and systematize every aspect of a brand — from its foundational strategy to its manifestation in physical space — into a comprehensive system that keeps all brand files, guides, manuals and brand strategy resources organized. It is inspired by the international standard ISO 20671, which defines five measurable dimensions — legal, perception, market, environment and financial — as KPIs to evaluate the effectiveness of every branding decision.",
+        "cta": "Get started"
       },
       "sections": {
         "pillars": {

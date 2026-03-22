@@ -37,7 +37,7 @@ function PostsCard({ container }: PostsCardProps) {
   return (
     <motion.div
       layout='position'
-      className=' w-full justify-between items-center  text-center bg-zinc-900 rounded-xl shadow flex flex-col gap-y-2 mt-7 '
+      className=' w-full justify-between items-center  text-center bg-[#D9D9D9] dark:bg-zinc-900 rounded-xl shadow-xl flex flex-col gap-y-2 mt-7 overflow-hidden'
     >
       {container.thumbnail && container.title ? (
         <>

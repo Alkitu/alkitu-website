@@ -3,90 +3,79 @@
 import { useState, FormEvent } from 'react';
 import { useTranslationContext } from '@/app/context/TranslationContext';
 import { ContactFormData, FormErrors, FormState } from './contact-form.type';
-import { contactFormSchema } from '@/lib/schemas/contact';
+
+const INITIAL_FORM: ContactFormData = {
+  name: '',
+  email: '',
+  projectType: '',
+  companySize: '',
+  budget: '',
+  productCategories: [],
+  functionalities: [],
+  message: '',
+  files: [],
+};
 
 export function useContactForm() {
   const { locale } = useTranslationContext();
 
-  const [formData, setFormData] = useState<ContactFormData>({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
-
+  const [formData, setFormData] = useState<ContactFormData>({ ...INITIAL_FORM });
   const [errors, setErrors] = useState<FormErrors>({});
   const [formState, setFormState] = useState<FormState>('idle');
-  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  /**
-   * Validate a single field using Zod schema
-   * Extracts the first error message for the field
-   */
-  const validateField = (name: keyof ContactFormData, value: string): string | undefined => {
-    try {
-      // Create a partial schema for single field validation
-      const fieldValue = { [name]: value, locale };
-      contactFormSchema.pick({ [name]: true } as any).parse(fieldValue);
-      return undefined;
-    } catch (error: any) {
-      if (error?.errors?.[0]?.message) {
-        return error.errors[0].message;
-      }
-      return 'Invalid value';
-    }
-  };
-
-  /**
-   * Validate entire form using Zod schema
-   * Returns errors object compatible with FormErrors type
-   */
   const validateForm = (): FormErrors => {
-    try {
-      contactFormSchema.parse({ ...formData, locale });
-      return {};
-    } catch (error: any) {
-      const newErrors: FormErrors = {};
+    const newErrors: FormErrors = {};
 
-      if (error?.errors) {
-        error.errors.forEach((err: any) => {
-          const fieldName = err.path[0] as string;
-          // Only add errors for form fields, not locale
-          if (fieldName && fieldName !== 'locale' && fieldName in formData) {
-            newErrors[fieldName as keyof ContactFormData] = err.message;
-          }
-        });
-      }
-
-      return newErrors;
+    if (!formData.name.trim()) {
+      newErrors.name = locale === 'es' ? 'El nombre es obligatorio' : 'Name is required';
     }
+    if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = locale === 'es' ? 'Email válido es obligatorio' : 'Valid email is required';
+    }
+    if (!formData.message.trim()) {
+      newErrors.message = locale === 'es' ? 'Describe tu proyecto' : 'Describe your project';
+    }
+
+    return newErrors;
   };
 
-  const handleChange = (name: keyof ContactFormData, value: string) => {
+  const handleChange = (name: keyof ContactFormData, value: any) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
-
-    // Clear error for this field when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
-
-    // Update form state
-    if (formState === 'idle') {
-      setFormState('editing');
-    }
+    if (formState === 'idle') setFormState('editing');
   };
 
-  const handleBlur = (name: keyof ContactFormData) => {
-    const error = validateField(name, formData[name]);
-    if (error) {
-      setErrors((prev) => ({ ...prev, [name]: error }));
+  const toggleArrayItem = (name: 'productCategories' | 'functionalities', item: string, maxItems?: number) => {
+    setFormData((prev) => {
+      const arr = prev[name] as string[];
+      if (arr.includes(item)) {
+        return { ...prev, [name]: arr.filter((i) => i !== item) };
+      }
+      if (maxItems && arr.length >= maxItems) return prev;
+      return { ...prev, [name]: [...arr, item] };
+    });
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
+    if (formState === 'idle') setFormState('editing');
+  };
+
+  const handleFiles = (fileList: FileList | null) => {
+    if (!fileList) return;
+    const newFiles = Array.from(fileList);
+    setFormData((prev) => ({ ...prev, files: [...prev.files, ...newFiles] }));
+  };
+
+  const removeFile = (index: number) => {
+    setFormData((prev) => ({ ...prev, files: prev.files.filter((_, i) => i !== index) }));
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Validate all fields
     setFormState('validating');
     const validationErrors = validateForm();
 
@@ -96,27 +85,30 @@ export function useContactForm() {
       return { success: false, errors: validationErrors };
     }
 
-    // Submit form
     setFormState('submitting');
     setErrors({});
     setErrorMessage('');
 
     try {
-      // Updated endpoint: /api/contact/submit
+      const body = new FormData();
+      body.append('name', formData.name);
+      body.append('email', formData.email);
+      body.append('projectType', formData.projectType);
+      body.append('companySize', formData.companySize);
+      body.append('budget', formData.budget);
+      body.append('productCategories', JSON.stringify(formData.productCategories));
+      body.append('functionalities', JSON.stringify(formData.functionalities));
+      body.append('message', formData.message);
+      body.append('locale', locale);
+      formData.files.forEach((file) => body.append('files', file));
+
       const response = await fetch('/api/contact/submit', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          locale, // Add locale from context
-        }),
+        body,
       });
 
       const data = await response.json();
 
-      // Handle rate limit error (429)
       if (response.status === 429) {
         setFormState('error');
         setErrorMessage(
@@ -128,49 +120,24 @@ export function useContactForm() {
         return { success: false, error: data.details };
       }
 
-      // Handle other errors
       if (!response.ok) {
         throw new Error(
           data.error ||
-          (locale === 'es'
-            ? 'Error al enviar el mensaje'
-            : 'Failed to send message')
+          (locale === 'es' ? 'Error al enviar el formulario' : 'Failed to submit form')
         );
       }
 
       setFormState('success');
-
-      // Reset form after success
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
-      });
-
+      setFormData({ ...INITIAL_FORM });
       return { success: true, data };
     } catch (error) {
       setFormState('error');
       const message = error instanceof Error
         ? error.message
-        : (locale === 'es'
-            ? 'Ocurrió un error inesperado'
-            : 'An unexpected error occurred');
+        : (locale === 'es' ? 'Ocurrió un error inesperado' : 'An unexpected error occurred');
       setErrorMessage(message);
       return { success: false, error: message };
     }
-  };
-
-  const resetForm = () => {
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: '',
-    });
-    setErrors({});
-    setFormState('idle');
-    setErrorMessage('');
   };
 
   return {
@@ -179,11 +146,11 @@ export function useContactForm() {
     formState,
     errorMessage,
     handleChange,
-    handleBlur,
+    toggleArrayItem,
+    handleFiles,
+    removeFile,
     handleSubmit,
-    resetForm,
     isSubmitting: formState === 'submitting',
     isSuccess: formState === 'success',
-    hasErrors: Object.keys(errors).length > 0,
   };
 }

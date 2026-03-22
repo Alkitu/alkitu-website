@@ -19,6 +19,11 @@ interface ContactNotificationProps {
   message: string;
   locale: string;
   submittedAt: string;
+  projectType?: string;
+  companySize?: string;
+  budget?: string;
+  productCategories?: string[];
+  functionalities?: string[];
 }
 
 export default function ContactNotification({
@@ -28,8 +33,15 @@ export default function ContactNotification({
   message,
   locale,
   submittedAt,
+  projectType,
+  companySize,
+  budget,
+  productCategories,
+  functionalities,
 }: ContactNotificationProps) {
   const previewText = `Nuevo mensaje de ${name} - ${subject}`;
+
+  const hasProjectDetails = projectType || companySize || budget;
 
   return (
     <Html>
@@ -65,6 +77,43 @@ export default function ContactNotification({
             <Text style={label}>ASUNTO:</Text>
             <Text style={value}>{subject}</Text>
           </Section>
+
+          {/* Project Details */}
+          {hasProjectDetails && (
+            <Section style={section}>
+              <Text style={label}>DETALLES DEL PROYECTO:</Text>
+              {projectType && (
+                <Text style={detailRow}>
+                  <span style={detailLabel}>Tipo de Proyecto:</span>{' '}
+                  <span style={detailValue}>{projectType}</span>
+                </Text>
+              )}
+              {companySize && (
+                <Text style={detailRow}>
+                  <span style={detailLabel}>Empresa:</span>{' '}
+                  <span style={detailValue}>{companySize}</span>
+                </Text>
+              )}
+              {budget && (
+                <Text style={detailRow}>
+                  <span style={detailLabel}>Presupuesto:</span>{' '}
+                  <span style={detailValue}>{budget}</span>
+                </Text>
+              )}
+              {productCategories && productCategories.length > 0 && (
+                <Text style={detailRow}>
+                  <span style={detailLabel}>Categorías:</span>{' '}
+                  <span style={detailValue}>{productCategories.join(', ')}</span>
+                </Text>
+              )}
+              {functionalities && functionalities.length > 0 && (
+                <Text style={detailRow}>
+                  <span style={detailLabel}>Funcionalidades:</span>{' '}
+                  <span style={detailValue}>{functionalities.join(', ')}</span>
+                </Text>
+              )}
+            </Section>
+          )}
 
           {/* Message */}
           <Section style={section}>
@@ -187,6 +236,23 @@ const emailLink = {
   color: '#00BB31',
   textDecoration: 'none',
   fontWeight: '500',
+};
+
+const detailRow = {
+  color: '#1a1a1a',
+  fontSize: '14px',
+  lineHeight: '1.6',
+  margin: '4px 0',
+};
+
+const detailLabel = {
+  color: '#666666',
+  fontWeight: '600' as const,
+};
+
+const detailValue = {
+  color: '#1a1a1a',
+  fontWeight: '400' as const,
 };
 
 const messageText = {

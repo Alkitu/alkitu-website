@@ -23,7 +23,7 @@ const dropIn: Variants = {
   open: {
     y: "0vh",
     transition: {
-      type: "spring",
+      type: "spring" as const,
       damping: 25,
       stiffness: 500,
     },
@@ -31,7 +31,7 @@ const dropIn: Variants = {
   closed: {
     y: "100dvh",
     transition: {
-      type: "spring",
+      type: "spring" as const,
       damping: 25,
       stiffness: 500,
     },
@@ -157,7 +157,7 @@ function ModalContent({ text, handleClose, variant = 'form', senderName }: Modal
                   className='text-sm text-center text-foreground'
                   transition={{
                     duration: 1,
-                    type: "spring",
+                    type: "spring" as const,
                     damping: 25,
                     stiffness: 500,
                   }}

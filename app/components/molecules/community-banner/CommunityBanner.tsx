@@ -82,7 +82,7 @@ export default function CommunityBanner() {
                   initial={{ scale: 0.8, opacity: 0 }}
                   whileInView={{ scale: 1, opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ type: "spring", stiffness: 100 }}
+                  transition={{ type: "spring" as const, stiffness: 100 }}
                   className="w-40 h-40 md:w-56 md:h-56 bg-white rounded-lg flex items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.1)] relative z-20"
                 >
                   <div className="relative w-24 h-24 md:w-32 md:h-32">

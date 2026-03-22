@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import type { ProjectWithCategories } from "@/lib/types";
+import { createClient } from "@/lib/supabase/client";
 
 
 function ProjectPageClient() {
@@ -19,6 +20,18 @@ function ProjectPageClient() {
   const [project, setProject] = useState<ProjectWithCategories | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [authorProfiles, setAuthorProfiles] = useState<{ username: string; name: string; photo?: string }[]>([]);
+
+  // Check auth status
+  useEffect(() => {
+    const checkAuth = async () => {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      setIsLoggedIn(!!user);
+    };
+    checkAuth();
+  }, []);
 
   // Fetch project from database
   useEffect(() => {
@@ -29,6 +42,29 @@ function ProjectPageClient() {
 
         if (data.success) {
           setProject(data.data.project);
+
+          // Fetch author profiles
+          const authors = data.data.project.authors;
+          if (authors && authors.length > 0) {
+            const profiles = await Promise.all(
+              authors.map(async (username: string) => {
+                try {
+                  const res = await fetch(`/api/profiles/${username}`);
+                  const profileData = await res.json();
+                  if (profileData.success) {
+                    const p = profileData.data.profile;
+                    return {
+                      username,
+                      name: [p.first_name, p.last_name].filter(Boolean).join(' ') || username,
+                      photo: p.photo_url || undefined,
+                    };
+                  }
+                } catch {}
+                return { username, name: username };
+              })
+            );
+            setAuthorProfiles(profiles);
+          }
         } else {
           setError(data.error?.message || 'Project not found');
         }
@@ -79,8 +115,34 @@ function ProjectPageClient() {
   const about = locale === 'es' ? project.about_es : project.about_en;
   const description = locale === 'es' ? project.description_es : project.description_en;
 
+  // JSON-LD structured data for SEO
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": title,
+    "description": about || description,
+    "image": project.image,
+    "url": typeof window !== 'undefined' ? window.location.href : '',
+    "creator": {
+      "@type": "Organization",
+      "name": "Alkitu",
+    },
+    ...(authorProfiles.length > 0 && {
+      "author": authorProfiles.map((a) => ({
+        "@type": "Person",
+        "name": a.name,
+        ...(a.photo && { "image": a.photo }),
+      })),
+    }),
+    "keywords": project.tags?.join(', '),
+  };
+
   return (
     <div className='lg:flex w-screen max-w-full min-h-[calc(100dvh-5rem)]'>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <section
         className='w-full lg:w-[60%] min-h-[calc(100dvh-5rem)] relative overflow-hidden flex justify-center items-center pt-20 pb-[2vw] lg:pt-0 lg:pb-0'
         style={{ viewTransitionName: 'project-gallery' }}
@@ -193,6 +255,19 @@ function ProjectPageClient() {
                 </span>
               ))}
           </div>
+          {isLoggedIn && authorProfiles.length > 0 && (
+            <div className='flex flex-wrap gap-2 items-center align-middle justify-left mt-3'>
+              <p className='text-sm font-bold'>{locale === 'es' ? 'Autores:' : 'Authors:'}</p>
+              {authorProfiles.map((author) => (
+                <span
+                  key={author.username}
+                  className='cursor-default inline-flex items-center rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary ring-1 ring-inset ring-primary/20'
+                >
+                  @{author.username} — {author.name}
+                </span>
+              ))}
+            </div>
+          )}
           <div className='mt-5 flex flex-col gap-3'>
             <p className='text-sm font-bold'>{locale === 'es' ? 'Compartir:' : 'Share:'}</p>
             <button

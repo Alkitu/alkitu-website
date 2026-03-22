@@ -56,7 +56,7 @@ export default function WordsChangers({ words, alternative, setReady }: WordsCha
         exit="exit"
         transition={{
           duration: 3,
-          type: "spring",
+          type: "spring" as const,
           stiffness: 300,
           damping: 24,
         }}
@@ -71,7 +71,7 @@ export default function WordsChangers({ words, alternative, setReady }: WordsCha
           key={currentWord}
           transition={{
             duration: 2,
-            type: "spring",
+            type: "spring" as const,
             stiffness: 500,
             damping: 80,
           }}

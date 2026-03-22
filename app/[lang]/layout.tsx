@@ -4,6 +4,7 @@ import { NavBar } from "../components/organisms/navbar";
 import { Footer } from "../components/organisms/footer";
 import { CookiesButton } from "../components/molecules/cookies-button";
 import { VisitTracker } from "../components/analytics";
+import { ProjectTransition } from "../components/atoms/intro-loader";
 import Providers from "../context/Providers";
 import en from "@/app/dictionaries/en.json";
 import es from "@/app/dictionaries/es.json";
@@ -46,6 +47,9 @@ export const metadata: Metadata = {
     title: 'Alkitu',
     description: 'Soluciones de ingeniería de software y desarrollo web',
     creator: '@alkitu',
+  },
+  icons: {
+    icon: '/icons/Icon_Alkitu.svg',
   },
 };
 
@@ -109,6 +113,7 @@ export default async function RootLayout({
         suppressHydrationWarning
       >
         <Providers locale={lang} initialTranslations={initialTranslations}>
+          <ProjectTransition />
           <VisitTracker />
           {!isAdminRoute && <NavBar />}
           <main className={isAdminRoute ? 'w-full h-full' : 'max-w-full mt-20 w-screen flex flex-col items-center justify-center relative overflow-visible'}>

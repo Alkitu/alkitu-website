@@ -7,6 +7,7 @@ import React from "react";
 import Image from "next/image";
 import TailwindGrid from "@/app/components/templates/grid";
 import { usePathname } from "next/navigation";
+import { AlkituLogo } from "@/app/components/atoms/alkitu-logo";
 
 function Footer() {
   const { translations, locale } = useTranslationContext();
@@ -27,13 +28,7 @@ function Footer() {
       >
         {/* Logo */}
         <div className='flex justify-center items-center mb-6'>
-          <Image
-            src='/logos/Alkitu-Logo-para-Fondos-Oscuros-Eslogan.svg'
-            alt='Alkitu Logo'
-            width={240}
-            height={80}
-            className='h-auto w-60'
-          />
+          <AlkituLogo locale={locale} width={200} />
         </div>
 
         {/* Social Icons */}

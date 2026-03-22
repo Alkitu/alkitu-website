@@ -76,7 +76,7 @@ export default function BlogGrid({ posts, locale, categoryTitle, columns = 4 }: 
           >
             <Link
               href={`/${locale}/blog/${post.categorySlug}/${post.slug}`}
-              className="group block border border-border rounded-lg overflow-hidden hover:shadow-lg hover:border-primary/50"
+              className="group block bg-[#D9D9D9] dark:bg-zinc-900 rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-shadow"
             >
               {/* Post Image */}
               <div className="relative w-full aspect-video overflow-hidden">

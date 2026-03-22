@@ -1,90 +1,69 @@
 "use client";
-import { useEffect, useState, useRef, useLayoutEffect } from "react";
+import { useRef, useState, useLayoutEffect } from "react";
 import { motion } from "framer-motion";
 
-type IconsSliderProps = {
+type TextSliderProps = {
   children?: React.ReactNode;
   velocity?: number;
   reverse?: boolean;
 };
 
-function TextSlider({ children, velocity, reverse }: IconsSliderProps) {
-  const sliderContentRef = useRef<HTMLDivElement>(null);
-  const [sliderWidth, setSliderWidth] = useState(0);
-  const [sliderContentWidth, setSliderContentWidth] = useState(0);
+function TextSlider({ children, velocity, reverse }: TextSliderProps) {
+  const measureRef = useRef<HTMLSpanElement>(null);
+  const [blockWidth, setBlockWidth] = useState(0);
+
+  const content = children ? children : "UX/UI | ";
 
   useLayoutEffect(() => {
-    const sliderContentElement = sliderContentRef.current;
-    if (!sliderContentElement) return;
-    const sliderElement = sliderContentElement.parentNode as HTMLElement;
-    if (!sliderElement) return;
-    const handleResize = () => {
-      setSliderWidth(sliderElement.offsetWidth);
-      setSliderContentWidth(sliderContentElement.offsetWidth);
-    };
+    if (measureRef.current) {
+      setBlockWidth(measureRef.current.offsetWidth);
+    }
+  }, [content]);
 
-    handleResize(); // Set initial sizes
-    window.addEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
-    const sliderContentElement = sliderContentRef.current;
-    const interval = setInterval(() => {
-      if (sliderContentElement && sliderContentWidth > sliderWidth) {
-        sliderContentElement.style.transform = `translateX(-${sliderContentWidth}px)`;
-        sliderContentElement.style.transition = "none";
-
-        setTimeout(() => {
-          if (sliderContentElement) {
-            sliderContentElement.style.transform = "translateX(0px)";
-            sliderContentElement.style.transition = "30s linear";
-          }
-        }, 100);
-      }
-    }, 10000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [sliderContentWidth, sliderWidth]);
-
-  let content = children ? children : "UX/UI - ";
+  const duration = velocity ? velocity : 20;
 
   return (
-    <>
-      <motion.div
-        className="w-full -rotate-90 origin-top-right absolute -left-48 top-0 pointer-events-none"
-        initial={{ opacity: 0, y: 0 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-      >
+    <motion.div
+      className="w-full -rotate-90 origin-top-right absolute -left-48 top-0 pointer-events-none overflow-hidden"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+    >
+      <div className="whitespace-nowrap z-100 w-dvh flex">
         <motion.div
-          className="whitespace-nowrap z-100 w-dvh text flex"
-          ref={sliderContentRef}
-          initial={false}
+          className="flex shrink-0"
           animate={
-            sliderContentWidth > 0
+            blockWidth > 0
               ? {
-                  translateX: [
-                    reverse ? -sliderContentWidth : 0,
-                    reverse ? 0 : -sliderContentWidth * 2,
-                  ],
+                  x: reverse ? [-blockWidth, 0] : [0, -blockWidth],
                 }
               : {}
           }
           transition={{
             ease: "linear",
-            duration: velocity ? velocity : 15,
+            duration,
             repeat: Infinity,
-            repeatType: "reverse",
+            repeatType: "loop",
           }}
         >
-          <p className="text-zinc-800/40 text-[135px] font-black">
-            {new Array(20).fill(0).map((_, i) => content)}
-          </p>
+          <span
+            ref={measureRef}
+            className="text-zinc-800/10 dark:text-zinc-200/15 text-[135px] shrink-0"
+          >
+            {content}
+          </span>
+          <span className="text-zinc-800/10 dark:text-zinc-200/15 text-[135px] shrink-0">
+            {content}
+          </span>
+          <span className="text-zinc-800/10 dark:text-zinc-200/15 text-[135px] shrink-0">
+            {content}
+          </span>
+          <span className="text-zinc-800/10 dark:text-zinc-200/15 text-[135px] shrink-0">
+            {content}
+          </span>
         </motion.div>
-      </motion.div>
-    </>
+      </div>
+    </motion.div>
   );
 }
 

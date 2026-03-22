@@ -53,6 +53,7 @@ export async function GET(
       gallery: data.gallery || [],
       tags: data.tags || [],
       urls: data.urls || [],
+      authors: data.authors || [],
       is_active: data.is_active,
       display_order: data.display_order,
       created_at: data.created_at,

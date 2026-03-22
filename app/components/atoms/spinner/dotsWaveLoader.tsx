@@ -28,7 +28,7 @@ const dotVariants: Variants = {
     opacity: [1, 0.1, 1],
     backgroundColor: ["#00BB31", "#125D26", "#125D26", "#125D26", "#00BB31"],
     transition: {
-      type: "spring",
+      type: "spring" as const,
       duration: 2,
       damping: 300,
       bounce: 0.25,
@@ -82,7 +82,7 @@ export default function DotsWaveLoader({
           height: "450vw",
           width: "450vw",
           transition: {
-            type: "spring",
+            type: "spring" as const,
             duration: 5,
             delay: 2,
             bounce: 0.25,

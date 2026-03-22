@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useTranslationContext } from "@/app/context/TranslationContext";
 import { motion } from "framer-motion";
@@ -17,11 +16,20 @@ interface ProjectNavigationProps {
   projectSlug: string;
 }
 
+function NavSkeleton({ align }: { align: 'start' | 'end' }) {
+  return (
+    <div className={`inline-flex flex-col ${align === 'end' ? 'items-end' : 'items-start'} gap-1.5`}>
+      <div className="w-20 h-14 rounded bg-zinc-400/30 animate-pulse" />
+      <div className="w-14 h-3 rounded bg-zinc-400/20 animate-pulse" />
+    </div>
+  );
+}
+
 export function ProjectNavigation({ projectSlug }: ProjectNavigationProps) {
   const { locale } = useTranslationContext();
-  const router = useRouter();
   const [prev, setPrev] = useState<ProjectNeighbor | null>(null);
   const [next, setNext] = useState<ProjectNeighbor | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchNeighbors = async () => {
@@ -34,6 +42,8 @@ export function ProjectNavigation({ projectSlug }: ProjectNavigationProps) {
         }
       } catch (err) {
         console.error("Error fetching project neighbors:", err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -41,45 +51,30 @@ export function ProjectNavigation({ projectSlug }: ProjectNavigationProps) {
   }, [projectSlug]);
 
   const navigateTo = useCallback(
-    (slug: string, direction: "prev" | "next") => {
+    (slug: string) => {
       const href = `/${locale}/projects/${slug}`;
-      const doc = document as Document & {
-        startViewTransition?: (cb: () => void) => { finished: Promise<void> };
-      };
-
-      if (doc.startViewTransition) {
-        // Set direction class for CSS to pick up
-        document.documentElement.classList.add(`vt-${direction}`);
-
-        const transition = doc.startViewTransition(() => {
-          router.push(href);
-        });
-
-        transition.finished.then(() => {
-          document.documentElement.classList.remove(`vt-${direction}`);
-        });
-      } else {
-        router.push(href);
-      }
+      window.dispatchEvent(
+        new CustomEvent('project-transition', { detail: { href } })
+      );
     },
-    [locale, router]
+    [locale]
   );
 
-  if (!prev && !next) return null;
-
   return (
-    <nav className="flex justify-between items-start w-full mb-6">
+    <nav className="flex justify-between items-start w-full mb-6 min-h-[5.5rem]">
       {/* Previous project */}
       <div className="flex-1">
-        {prev && (
+        {loading ? (
+          <NavSkeleton align="start" />
+        ) : prev && (
           <button
-            onClick={() => navigateTo(prev.slug, "prev")}
+            onClick={() => navigateTo(prev.slug)}
             className="group inline-flex flex-col items-start gap-1.5 cursor-pointer"
           >
             <motion.div
               className="relative w-20 h-14 rounded overflow-hidden border border-zinc-400/50 shadow-sm"
               whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", damping: 20, stiffness: 300 }}
+              transition={{ type: "spring" as const, damping: 20, stiffness: 300 }}
             >
               <Image
                 src={prev.image}
@@ -111,15 +106,17 @@ export function ProjectNavigation({ projectSlug }: ProjectNavigationProps) {
 
       {/* Next project */}
       <div className="flex-1 flex justify-end">
-        {next && (
+        {loading ? (
+          <NavSkeleton align="end" />
+        ) : next && (
           <button
-            onClick={() => navigateTo(next.slug, "next")}
+            onClick={() => navigateTo(next.slug)}
             className="group inline-flex flex-col items-end gap-1.5 cursor-pointer"
           >
             <motion.div
               className="relative w-20 h-14 rounded overflow-hidden border border-zinc-400/50 shadow-sm"
               whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", damping: 20, stiffness: 300 }}
+              transition={{ type: "spring" as const, damping: 20, stiffness: 300 }}
             >
               <Image
                 src={next.image}

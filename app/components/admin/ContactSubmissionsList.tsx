@@ -29,6 +29,14 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Search, Filter, X, Mail, Eye, Calendar } from "lucide-react";
 
+interface ContactSubmissionFormData {
+  projectType?: string;
+  companySize?: string;
+  budget?: string;
+  productCategories?: string[];
+  functionalities?: string[];
+}
+
 interface ContactSubmission {
   id: string;
   name: string;
@@ -40,6 +48,7 @@ interface ContactSubmission {
   user_agent: string | null;
   ip_address: string | null;
   form_url: string | null;
+  form_data: ContactSubmissionFormData | null;
   created_at: string;
   updated_at: string;
 }
@@ -489,6 +498,50 @@ export function ContactSubmissionsList() {
                 <label className="text-sm font-medium text-muted-foreground">Asunto</label>
                 <p className="text-sm mt-1">{selectedSubmission.subject}</p>
               </div>
+
+              {selectedSubmission.form_data && (
+                <div className="p-4 bg-muted/30 rounded-lg space-y-3">
+                  <label className="text-sm font-medium text-muted-foreground">Detalles del Proyecto</label>
+                  {selectedSubmission.form_data.projectType && (
+                    <div>
+                      <span className="text-xs font-medium text-muted-foreground">Tipo de Proyecto: </span>
+                      <span className="text-sm">{selectedSubmission.form_data.projectType}</span>
+                    </div>
+                  )}
+                  {selectedSubmission.form_data.companySize && (
+                    <div>
+                      <span className="text-xs font-medium text-muted-foreground">Empresa: </span>
+                      <span className="text-sm">{selectedSubmission.form_data.companySize}</span>
+                    </div>
+                  )}
+                  {selectedSubmission.form_data.budget && (
+                    <div>
+                      <span className="text-xs font-medium text-muted-foreground">Presupuesto: </span>
+                      <span className="text-sm">{selectedSubmission.form_data.budget}</span>
+                    </div>
+                  )}
+                  {selectedSubmission.form_data.productCategories && selectedSubmission.form_data.productCategories.length > 0 && (
+                    <div>
+                      <span className="text-xs font-medium text-muted-foreground block mb-1">Categorías:</span>
+                      <div className="flex flex-wrap gap-1">
+                        {selectedSubmission.form_data.productCategories.map((cat) => (
+                          <Badge key={cat} variant="secondary" className="text-xs">{cat}</Badge>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {selectedSubmission.form_data.functionalities && selectedSubmission.form_data.functionalities.length > 0 && (
+                    <div>
+                      <span className="text-xs font-medium text-muted-foreground block mb-1">Funcionalidades:</span>
+                      <div className="flex flex-wrap gap-1">
+                        {selectedSubmission.form_data.functionalities.map((fn) => (
+                          <Badge key={fn} variant="outline" className="text-xs">{fn}</Badge>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
 
               <div>
                 <label className="text-sm font-medium text-muted-foreground">Mensaje</label>

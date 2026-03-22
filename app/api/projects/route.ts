@@ -114,6 +114,7 @@ export async function GET(request: NextRequest) {
       gallery: project.gallery || [],
       tags: project.tags || [],
       urls: project.urls || [],
+      authors: project.authors || [],
       is_active: project.is_active,
       display_order: project.display_order,
       created_at: project.created_at,

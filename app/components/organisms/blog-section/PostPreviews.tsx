@@ -4,7 +4,7 @@ import TailwindGrid from "@/app/components/templates/grid";
 import { ResponsiveList } from "@/app/components/organisms/responsive-list";
 import { ParallaxText } from "@/app/components/organisms/sliders";
 import { FlexCarousel } from "@/app/components/organisms/flex-carousel";
-import { Button } from "@/app/components/atoms/button";
+
 import React from "react";
 import PostsDesktopCard from "@/app/components/organisms/flex-carousel/cards/PostsDesktopCard";
 import { useLocalizedPath } from "@/app/hooks";
@@ -108,13 +108,19 @@ function PostPreviews({ text, posts, locale }: PostPreviewsProps) {
       {/* See More Button - same pattern as ProjectsPreview */}
       <TailwindGrid>
         <div className='flex justify-center items-center col-span-full lg:col-start-2 my-auto pt-9'>
-          <Link href={localizedPath("/blog")}>
-            <Button
-              variant='primary'
-              className='text-center text-md py-3 px-5 md:text-[min(2vw,22px)] md:px-[min(3vw,2.5rem)] md:py-[min(0.5vw,2rem)] rounded-full'
+          <Link
+            href={localizedPath("/blog")}
+            className='group inline-flex items-center gap-2 text-foreground uppercase font-bold text-md md:text-lg underline underline-offset-4 decoration-1 hover:decoration-2 transition-all'
+          >
+            {dataBlogSection.button}
+            <svg
+              viewBox='0 0 24 24'
+              fill="none"
+              xmlns='http://www.w3.org/2000/svg'
+              className='w-5 h-5 stroke-current transition-transform group-hover:translate-x-1'
             >
-              {dataBlogSection.button}
-            </Button>
+              <path d="M4 12H20M20 12L14 6M20 12L14 18" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </Link>
         </div>
       </TailwindGrid>
