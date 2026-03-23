@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionary";
-import { getSeoAlternates } from "@/lib/seo";
+import { getSeoAlternates, getServiceSchema, getFaqSchema } from "@/lib/seo";
 import { Breadcrumbs } from "@/app/components/molecules/breadcrumbs";
 import TailwindGrid from "@/app/components/templates/grid/TailwindGrid";
 import { ServiceHero, ServiceSection } from "../components";
@@ -76,6 +76,18 @@ export default async function BrandingPage({
 
   return (
     <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getServiceSchema({
+      name: 'Branding',
+      description: 'Servicio profesional de branding: diseño de logo, naming, guía de estilo, manual de marca e ingeniería de marca. Metodología basada en ISO 20671.',
+      url: 'https://alkitu.com/es/servicios/branding',
+    })) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getFaqSchema([
+      { question: '¿Qué incluye un servicio de branding profesional?', answer: 'Un servicio de branding profesional incluye diseño de logo, naming, guía de estilo visual, manual de marca y estrategia de posicionamiento. En Alkitu seguimos una metodología basada en la norma ISO 20671 de valoración de marca.' },
+      { question: '¿Cuánto tiempo tarda un proyecto de branding?', answer: 'Un proyecto de branding completo tarda entre 4 y 8 semanas dependiendo del alcance. Incluye fases de investigación, conceptualización, diseño y entrega de archivos finales con manual de uso.' },
+      { question: '¿Cuál es la diferencia entre un logo y una marca?', answer: 'Un logo es solo el símbolo gráfico. Una marca es el sistema completo: logo, colores, tipografías, tono de voz, valores y la percepción que genera en el público. Según estudios de Interbrand, una marca bien construida puede representar hasta el 30% del valor bursátil de una empresa.' },
+      { question: '¿Qué es la ingeniería de marca?', answer: 'La ingeniería de marca es el proceso técnico y estratégico de construir una marca desde sus fundamentos: arquitectura de marca, sistema visual, verbal y experiencial. En Alkitu es nuestro framework propietario que va más allá del branding tradicional.' },
+      { question: '¿Por qué es importante invertir en branding?', answer: 'Las empresas con branding coherente generan hasta un 23% más de ingresos según Forbes. Una marca sólida aumenta el reconocimiento, la confianza del cliente y permite cobrar precios premium frente a competidores sin marca definida.' },
+    ])) }} />
     <Breadcrumbs locale={lang} items={[
       { label: lang === 'es' ? 'Inicio' : 'Home', href: '' },
       { label: lang === 'es' ? 'Servicios' : 'Services', href: '/servicios/branding' },

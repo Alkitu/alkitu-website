@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionary";
-import { getSeoAlternates } from "@/lib/seo";
+import { getSeoAlternates, getServiceSchema, getFaqSchema } from "@/lib/seo";
 import TailwindGrid from "@/app/components/templates/grid/TailwindGrid";
 import { ServiceHero, ServiceSection } from "../components";
 import FinalCTA from "../components/FinalCTA";
@@ -75,6 +75,18 @@ export default async function ProductBuildingPage({
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getServiceSchema({
+        name: 'Product Building',
+        description: 'Desarrollo de productos digitales a medida: web apps, aplicaciones iOS nativas, apps híbridas, prototipos funcionales y design systems.',
+        url: 'https://alkitu.com/es/servicios/product-building',
+      })) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getFaqSchema([
+        { question: '¿Qué es el product building?', answer: 'El product building es el proceso completo de diseñar, desarrollar y lanzar un producto digital: desde la investigación de mercado y el prototipado hasta el desarrollo full-stack y el lanzamiento. En Alkitu usamos metodología Spec-Driven Development para garantizar calidad.' },
+        { question: '¿Qué tipos de productos digitales desarrollan?', answer: 'Desarrollamos web apps personalizadas, aplicaciones iOS nativas con Swift/SwiftUI, apps híbridas, plataformas de e-commerce, sistemas de gestión empresarial (ERP/CRM), plataformas de e-learning y automatizaciones de procesos. Cada proyecto usa el stack tecnológico más adecuado.' },
+        { question: '¿Cuánto cuesta desarrollar una aplicación web a medida?', answer: 'El coste depende del alcance y complejidad. Un MVP (Producto Mínimo Viable) puede arrancar desde 5.000€, mientras que una plataforma completa con panel de administración, API y múltiples integraciones puede superar los 30.000€. Ofrecemos presupuesto detallado tras una sesión de discovery.' },
+        { question: '¿Qué tecnologías utilizan para el desarrollo?', answer: 'Trabajamos con Next.js, React, TypeScript, Swift/SwiftUI, Node.js, PostgreSQL (Supabase), Tailwind CSS, Framer Motion y más. Elegimos el stack según las necesidades del proyecto, priorizando rendimiento, escalabilidad y mantenibilidad.' },
+        { question: '¿Incluyen diseño UI/UX en el desarrollo?', answer: 'Sí, cada proyecto incluye diseño de interfaz (UI) y experiencia de usuario (UX) como parte integral del proceso. Creamos wireframes, prototipos interactivos y design systems completos antes de escribir una línea de código.' },
+      ])) }} />
       <Breadcrumbs
         locale={lang}
         items={[

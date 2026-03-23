@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionary";
-import { getSeoAlternates } from "@/lib/seo";
+import { getSeoAlternates, getServiceSchema, getFaqSchema } from "@/lib/seo";
 import TailwindGrid from "@/app/components/templates/grid/TailwindGrid";
 import { ServiceHero, ServiceSection } from "../components";
 import FinalCTA from "../components/FinalCTA";
@@ -77,6 +77,18 @@ export default async function MarketingDigitalPage({
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getServiceSchema({
+        name: 'Marketing Digital',
+        description: 'Servicio de marketing digital: SEO, SEM, redes sociales, email marketing y analítica. Basado en el framework See-Think-Do-Care de Google.',
+        url: 'https://alkitu.com/es/servicios/marketing-digital',
+      })) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getFaqSchema([
+        { question: '¿Qué incluye un servicio de marketing digital?', answer: 'Nuestro servicio incluye SEO (posicionamiento orgánico), SEM (publicidad en buscadores), gestión de redes sociales, email marketing y analítica web. Todo estructurado sobre el Ciclo de Valor Digital basado en el framework See-Think-Do-Care de Google.' },
+        { question: '¿Cuánto tiempo tarda en verse resultados del marketing digital?', answer: 'Los resultados de SEM (publicidad) son inmediatos. El SEO orgánico tarda entre 3 y 6 meses en mostrar resultados significativos. Las estrategias de contenido y redes sociales muestran impacto medible a partir del segundo mes.' },
+        { question: '¿Qué es el SEO y por qué es importante?', answer: 'El SEO (Search Engine Optimization) es el proceso de optimizar un sitio web para aparecer en los primeros resultados de Google. Según estudios de Backlinko, el primer resultado de Google recibe el 27.6% de todos los clics, lo que lo convierte en la fuente de tráfico orgánico más valiosa.' },
+        { question: '¿Cómo se mide el retorno de inversión en marketing digital?', answer: 'Se mide a través de KPIs como coste por adquisición (CPA), retorno sobre inversión publicitaria (ROAS), tasa de conversión, tráfico orgánico y posiciones en buscadores. Todas nuestras campañas incluyen dashboards de analítica en tiempo real.' },
+        { question: '¿Qué es el GEO (Generative Engine Optimization)?', answer: 'El GEO es la optimización para motores de búsqueda generativos como ChatGPT, Perplexity y Google AI Overview. Según un estudio de Princeton (2023), aplicar técnicas GEO puede aumentar la visibilidad de un contenido hasta un 40% en respuestas de IA.' },
+      ])) }} />
       <Breadcrumbs
         locale={lang}
         items={[

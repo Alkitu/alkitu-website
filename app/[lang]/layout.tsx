@@ -83,9 +83,37 @@ export default async function RootLayout({
             "url": "https://alkitu.com",
             "logo": "https://alkitu.com/icons/Icon_Alkitu.svg",
             "description": "Agencia digital especializada en branding, marketing digital, desarrollo web y productos digitales a medida",
+            "foundingDate": "2020",
+            "founders": [
+              { "@type": "Person", "name": "Luis Urdaneta", "jobTitle": "Fundador y CTO" },
+              { "@type": "Person", "name": "Leonel Perez", "jobTitle": "Cofundador y Product Builder" }
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Valencia",
+              "addressRegion": "Comunidad Valenciana",
+              "addressCountry": "ES"
+            },
+            "areaServed": [
+              { "@type": "Country", "name": "Spain" },
+              { "@type": "Country", "name": "United States" }
+            ],
+            "knowsAbout": ["branding", "marketing digital", "desarrollo web", "product building", "diseño UI/UX", "SEO", "GEO", "ingeniería de marca"],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Servicios Digitales",
+              "itemListElement": [
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Branding" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Marketing Digital" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Product Building" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Webs Corporativas" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ingeniería de Marca" } }
+              ]
+            },
             "sameAs": [
               "https://www.instagram.com/alkitu_studio/",
-              "https://www.linkedin.com/company/alkitu/"
+              "https://www.linkedin.com/company/alkitu/",
+              "https://github.com/alkitu"
             ],
             "contactPoint": {
               "@type": "ContactPoint",
@@ -106,6 +134,10 @@ export default async function RootLayout({
             "publisher": {
               "@type": "Organization",
               "name": "Alkitu"
+            },
+            "speakable": {
+              "@type": "SpeakableSpecification",
+              "cssSelector": ["h1", ".hero-description", "[data-speakable]"]
             }
           }) }}
         />
