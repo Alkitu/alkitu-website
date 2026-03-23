@@ -9,22 +9,18 @@ import Providers from "../context/Providers";
 import en from "@/app/dictionaries/en.json";
 import es from "@/app/dictionaries/es.json";
 import { headers } from "next/headers";
-import { Inter } from 'next/font/google';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import type { Metadata } from 'next';
 
 const translations = { en, es };
 
-// Optimize Google Fonts with next/font (eliminates FOUT/FOIT)
-const inter = Inter({
+// Optimize Google Fonts with next/font (eliminates FOUT/FOIT, no render-blocking @import)
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  display: 'swap', // Critical for avoiding font flash
-  variable: '--font-inter',
+  display: 'swap',
+  variable: '--font-plus-jakarta',
   preload: true,
 });
-
-// Force dynamic rendering to ensure middleware executes on every request
-// This is required for analytics tracking to work properly
-export const dynamic = 'force-dynamic';
 
 // SEO: metadataBase is REQUIRED for Open Graph images to resolve correctly
 export const metadata: Metadata = {
@@ -41,12 +37,14 @@ export const metadata: Metadata = {
     siteName: 'Alkitu',
     locale: 'es_ES',
     type: 'website',
+    images: [{ url: '/og-default.jpg', width: 1200, height: 630, alt: 'Alkitu - Agencia Digital' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Alkitu',
     description: 'Soluciones de ingeniería de software y desarrollo web',
     creator: '@alkitu',
+    images: ['/og-default.jpg'],
   },
   icons: {
     icon: '/icons/Icon_Alkitu.svg',
@@ -74,8 +72,43 @@ export default async function RootLayout({
   const isAdminRoute = pathname.includes('/admin');
 
   return (
-    <html lang={lang} suppressHydrationWarning data-scroll-behavior="smooth">
+    <html lang={lang} className={plusJakartaSans.variable} suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Alkitu",
+            "url": "https://alkitu.com",
+            "logo": "https://alkitu.com/icons/Icon_Alkitu.svg",
+            "description": "Agencia digital especializada en branding, marketing digital, desarrollo web y productos digitales a medida",
+            "sameAs": [
+              "https://www.instagram.com/alkitu_studio/",
+              "https://www.linkedin.com/company/alkitu/"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "email": "info@alkitu.com",
+              "contactType": "customer service",
+              "availableLanguage": ["Spanish", "English"]
+            }
+          }) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Alkitu",
+            "url": "https://alkitu.com",
+            "inLanguage": ["es", "en"],
+            "publisher": {
+              "@type": "Organization",
+              "name": "Alkitu"
+            }
+          }) }}
+        />
         <script
           suppressHydrationWarning
           dangerouslySetInnerHTML={{
@@ -113,10 +146,13 @@ export default async function RootLayout({
         suppressHydrationWarning
       >
         <Providers locale={lang} initialTranslations={initialTranslations}>
+          <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-2 focus:left-2 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-md">
+            {lang === 'es' ? 'Saltar al contenido' : 'Skip to content'}
+          </a>
           <ProjectTransition />
           <VisitTracker />
           {!isAdminRoute && <NavBar />}
-          <main className={isAdminRoute ? 'w-full h-full' : 'max-w-full mt-20 w-full flex flex-col items-center justify-center relative overflow-x-hidden'}>
+          <main id="main-content" className={isAdminRoute ? 'w-full h-full' : 'max-w-full mt-20 w-full flex flex-col items-center justify-center relative overflow-x-hidden'}>
             {children}
           </main>
           {!isAdminRoute && <Footer />}

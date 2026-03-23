@@ -20,6 +20,7 @@ function Footer() {
   if (!footerData?.socials) return null;
 
   return (
+    <footer>
     <TailwindGrid fullSize>
       <div
         className={`col-span-full ${
@@ -43,9 +44,12 @@ function Footer() {
                   }`}
                   key={index + social.name}
                 >
-                  <button
-                    className='group bg-transparent cursor-pointer hover:scale-110 active:scale-90 rounded-full transition-all'
-                    onClick={() => window.open(social.url, "_blank")}
+                  <a
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.name}
+                    className='group bg-transparent cursor-pointer hover:scale-110 active:scale-90 rounded-full transition-all inline-flex'
                   >
                     <Image
                       width={40}
@@ -58,7 +62,7 @@ function Footer() {
                           "brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%)",
                       }}
                     />
-                  </button>
+                  </a>
                 </div>
               )
           )}
@@ -102,6 +106,7 @@ function Footer() {
         </p>
       </div>
     </TailwindGrid>
+    </footer>
   );
 }
 

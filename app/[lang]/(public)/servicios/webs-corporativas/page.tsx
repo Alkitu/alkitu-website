@@ -1,11 +1,13 @@
 import { Metadata } from "next";
 import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionary";
+import { getSeoAlternates } from "@/lib/seo";
 import TailwindGrid from "@/app/components/templates/grid/TailwindGrid";
 import Link from "next/link";
 import { ServiceHero, ServiceSection } from "../components";
 import FinalCTA from "../components/FinalCTA";
 import { createClient } from "@/lib/supabase/server";
+import { Breadcrumbs } from "@/app/components/molecules/breadcrumbs";
 import { Code2, MonitorCheck, ShoppingCart, ArrowRight } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
@@ -14,6 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: Loc
   return {
     title: text.servicios.websCorporativas.hero.title,
     description: text.servicios.websCorporativas.hero.subtitle,
+    alternates: getSeoAlternates(lang, '/servicios/webs-corporativas'),
   };
 }
 
@@ -42,7 +45,16 @@ export default async function WebsCorporativasPage({
     .filter(url => url !== null && url !== "") || [];
 
   return (
-    <TailwindGrid fullSize>
+    <>
+      <Breadcrumbs
+        locale={lang}
+        items={[
+          { label: lang === 'es' ? 'Inicio' : 'Home', href: '' },
+          { label: lang === 'es' ? 'Servicios' : 'Services', href: '/servicios/branding' },
+          { label: lang === 'es' ? 'Webs Corporativas' : 'Corporate Websites' },
+        ]}
+      />
+      <TailwindGrid fullSize>
       <div className="col-span-full flex flex-col gap-y-24 md:gap-y-32 lg:gap-y-40 px-6 md:px-12 lg:px-24 xl:px-40 py-24 md:py-32 w-full mx-auto">
         <ServiceHero
           title={content?.hero?.title}
@@ -161,5 +173,6 @@ export default async function WebsCorporativasPage({
         <FinalCTA lang={lang} />
       </div>
     </TailwindGrid>
+    </>
   );
 }

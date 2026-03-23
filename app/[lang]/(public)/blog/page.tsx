@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { Locale } from "@/i18n.config";
+import { getSeoAlternates } from '@/lib/seo';
 import { getDictionary } from "@/lib/dictionary";
 import { BlogContent } from "@/app/components/organisms/blog-content";
 import { allBlogPosts } from 'contentlayer/generated';
@@ -17,6 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: Loc
     description: lang === 'es'
       ? 'Artículos sobre marketing digital, branding, desarrollo web y emprendimiento'
       : 'Articles about digital marketing, branding, web development and entrepreneurship',
+    alternates: getSeoAlternates(lang, '/blog'),
   };
 }
 

@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionary";
+import { getSeoAlternates } from "@/lib/seo";
+import { Breadcrumbs } from "@/app/components/molecules/breadcrumbs";
 import TailwindGrid from "@/app/components/templates/grid/TailwindGrid";
 import { ServiceHero, ServiceSection } from "../components";
 import FinalCTA from "../components/FinalCTA";
@@ -14,6 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: Loc
   return {
     title: text.servicios.branding.hero.title,
     description: text.servicios.branding.hero.subtitle,
+    alternates: getSeoAlternates(lang, '/servicios/branding'),
   };
 }
 
@@ -72,6 +75,12 @@ export default async function BrandingPage({
     .filter((url: string) => url.startsWith('http'));
 
   return (
+    <>
+    <Breadcrumbs locale={lang} items={[
+      { label: lang === 'es' ? 'Inicio' : 'Home', href: '' },
+      { label: lang === 'es' ? 'Servicios' : 'Services', href: '/servicios/branding' },
+      { label: 'Branding' },
+    ]} />
     <TailwindGrid fullSize>
       <div className="col-span-full flex flex-col gap-y-24 md:gap-y-32 lg:gap-y-40 px-6 md:px-12 lg:px-24 xl:px-40 py-24 md:py-32 w-full mx-auto">
         <ServiceHero
@@ -177,5 +186,6 @@ export default async function BrandingPage({
         <FinalCTA lang={lang} />
       </div>
     </TailwindGrid>
+    </>
   );
 }

@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { Locale } from "@/i18n.config";
+import { getSeoAlternates } from '@/lib/seo';
 import { getDictionary } from "@/lib/dictionary";
 import TailwindGrid from "@/app/components/templates/grid/TailwindGrid";
 import Link from "next/link";
@@ -10,6 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: Loc
   return {
     title: text.cookiePolicyPage.title,
     description: text.cookiePolicyPage.metaDescription,
+    alternates: getSeoAlternates(lang, '/cookie-policy'),
   };
 }
 

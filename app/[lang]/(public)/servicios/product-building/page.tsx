@@ -1,12 +1,14 @@
 import { Metadata } from "next";
 import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionary";
+import { getSeoAlternates } from "@/lib/seo";
 import TailwindGrid from "@/app/components/templates/grid/TailwindGrid";
 import { ServiceHero, ServiceSection } from "../components";
 import FinalCTA from "../components/FinalCTA";
 import Link from "next/link";
 import { LayoutTemplate, Smartphone, Layers, Figma, Code } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
+import { Breadcrumbs } from "@/app/components/molecules/breadcrumbs";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -14,6 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: Loc
   return {
     title: text.servicios.productBuilding.hero.title,
     description: text.servicios.productBuilding.hero.subtitle,
+    alternates: getSeoAlternates(lang, '/servicios/product-building'),
   };
 }
 
@@ -71,7 +74,16 @@ export default async function ProductBuildingPage({
     .filter((url: string) => url.startsWith('http'));
 
   return (
-    <TailwindGrid fullSize>
+    <>
+      <Breadcrumbs
+        locale={lang}
+        items={[
+          { label: lang === 'es' ? 'Inicio' : 'Home', href: '' },
+          { label: lang === 'es' ? 'Servicios' : 'Services', href: '/servicios/branding' },
+          { label: 'Product Building' },
+        ]}
+      />
+      <TailwindGrid fullSize>
       <div className="col-span-full flex flex-col gap-y-24 md:gap-y-32 lg:gap-y-40 px-6 md:px-12 lg:px-24 xl:px-40 py-24 md:py-32 w-full mx-auto">
         <ServiceHero
           title={content?.hero?.title}
@@ -183,5 +195,6 @@ export default async function ProductBuildingPage({
         <FinalCTA lang={lang} />
       </div>
     </TailwindGrid>
+    </>
   );
 }

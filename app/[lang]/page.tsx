@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { Locale } from "@/i18n.config";
+import { getSeoAlternates } from '@/lib/seo';
 import { SideBar } from "../components/organisms/sidebar";
 import { getDictionary } from "@/lib/dictionary";
 import TailwindGrid from "@/app/components/templates/grid";
@@ -19,6 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: Loc
     description: lang === 'es'
       ? 'Agencia digital especializada en branding, marketing digital, desarrollo web y productos digitales a medida'
       : 'Digital agency specializing in branding, digital marketing, web development and custom digital products',
+    alternates: getSeoAlternates(lang),
   };
 }
 

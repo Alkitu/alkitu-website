@@ -10,6 +10,8 @@ import { Locale } from '@/i18n.config';
 import { NewsletterSubscribe } from '@/app/components/organisms/newsletter-subscribe';
 import { TableOfContents } from '@/app/components/organisms/table-of-contents';
 import TailwindGrid from '@/app/components/templates/grid';
+import { Breadcrumbs } from '@/app/components/molecules/breadcrumbs';
+import { RelatedPosts } from '@/app/components/molecules/related-posts';
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -19,9 +21,66 @@ interface BlogPostPageProps {
   }>;
 }
 
-// ... generateStaticParams ...
+export async function generateStaticParams() {
+  return allBlogPosts.map((post) => {
+    const primaryCategory = Array.isArray(post.categories) && post.categories.length > 0
+      ? post.categories[0] : 'general';
+    const categorySlug = primaryCategory
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[\s\/]+/g, '-');
+    return {
+      lang: post.locale,
+      category: categorySlug,
+      id: post.slug,
+    };
+  });
+}
 
-// ... generateMetadata ...
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+  const { lang, id } = await params;
+  const post = allBlogPosts.find((p) => p.slug === id && p.locale === lang);
+
+  if (!post) {
+    return { title: 'Post Not Found' };
+  }
+
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://alkitu.com';
+  const primaryCategory = Array.isArray(post.categories) && post.categories.length > 0
+    ? post.categories[0] : 'general';
+  const categorySlug = primaryCategory
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[\s\/]+/g, '-');
+  const postPath = `/blog/${categorySlug}/${post.slug}`;
+
+  return {
+    title: post.title,
+    description: post.metaDescription,
+    keywords: post.keywords,
+    openGraph: {
+      title: post.title,
+      description: post.metaDescription,
+      type: 'article',
+      publishedTime: post.date,
+      modifiedTime: post.updatedAt || post.date,
+      authors: [post.author],
+      images: post.image ? [{ url: post.image, width: 1200, height: 630, alt: post.imageAlt }] : [],
+      locale: lang === 'es' ? 'es_ES' : 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.metaDescription,
+      images: post.image ? [post.image] : [],
+    },
+    alternates: {
+      canonical: `${baseUrl}/${lang}${postPath}`,
+    },
+  };
+}
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { lang, id } = await params;
@@ -64,6 +123,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
+      {/* Breadcrumbs */}
+      <Breadcrumbs
+        locale={lang}
+        items={[
+          { label: lang === 'es' ? 'Inicio' : 'Home', href: '' },
+          { label: 'Blog', href: '/blog' },
+          { label: post.title },
+        ]}
+      />
+
       {/* Post Hero Section */}
       <PostHero
         title={post.title}
@@ -102,14 +171,22 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             {post.tags && post.tags.length > 0 && (
               <div className="mt-12 pt-8 border-t border-border">
                 <div className="flex flex-wrap gap-2">
-                  {post.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 bg-muted text-muted-foreground text-sm rounded-full"
-                    >
-                      #{tag}
-                    </span>
-                  ))}
+                  {post.tags.map((tag) => {
+                    const tagSlug = tag
+                      .toLowerCase()
+                      .normalize('NFD')
+                      .replace(/[\u0300-\u036f]/g, '')
+                      .replace(/\s+/g, '-');
+                    return (
+                      <Link
+                        key={tag}
+                        href={`/${lang}/blog?tag=${tagSlug}`}
+                        className="px-3 py-1 bg-muted text-muted-foreground text-sm rounded-full hover:bg-primary/10 hover:text-primary transition-colors"
+                      >
+                        #{tag}
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
             )}
@@ -132,6 +209,28 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <div className="mt-2 text-xs text-muted-foreground">
               {post.wordCount} {lang === 'es' ? 'palabras' : 'words'}
             </div>
+
+            {/* Related Posts */}
+            <RelatedPosts
+              locale={lang}
+              posts={allBlogPosts
+                .filter((p) => p.slug !== post.slug && p.locale === lang)
+                .filter((p) =>
+                  p.categories.some((c) => post.categories.includes(c)) ||
+                  (p.tags && post.tags && p.tags.some((t) => post.tags.includes(t)))
+                )
+                .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+                .slice(0, 3)
+                .map((p) => ({
+                  title: p.title,
+                  slug: p.slug,
+                  url: p.url,
+                  image: p.image,
+                  excerpt: p.excerpt,
+                  readTime: p.readTime,
+                }))
+              }
+            />
           </div>
         </article>
       </TailwindGrid>

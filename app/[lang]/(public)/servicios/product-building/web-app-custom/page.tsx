@@ -1,11 +1,25 @@
+import { Metadata } from "next";
 import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionary";
+import { getSeoAlternates } from "@/lib/seo";
 import TailwindGrid from "@/app/components/templates/grid/TailwindGrid";
 import Link from "next/link";
 import { ServiceHero, ServiceSection } from "../../components";
 import FinalCTA from "../../components/FinalCTA";
 import { createClient } from "@/lib/supabase/server";
+import { Breadcrumbs } from "@/app/components/molecules/breadcrumbs";
 import { AppWindow, CheckCircle2, Rocket, Users2, Layers, Cpu, ShieldCheck, ArrowRight } from "lucide-react";
+
+export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
+  const { lang } = await params;
+  const text = await getDictionary(lang);
+  const content = text?.servicios?.webAppCustom;
+  return {
+    title: content?.hero?.title || (lang === 'es' ? 'Web App Custom' : 'Custom Web App'),
+    description: content?.hero?.subtitle || content?.hero?.description,
+    alternates: getSeoAlternates(lang, '/servicios/product-building/web-app-custom'),
+  };
+}
 
 export default async function WebAppCustomPage({
   params,
@@ -32,7 +46,17 @@ export default async function WebAppCustomPage({
     .filter(url => url !== null && url !== "") || [];
 
   return (
-    <TailwindGrid fullSize>
+    <>
+      <Breadcrumbs
+        locale={lang}
+        items={[
+          { label: lang === 'es' ? 'Inicio' : 'Home', href: '' },
+          { label: lang === 'es' ? 'Servicios' : 'Services', href: '/servicios/branding' },
+          { label: 'Product Building', href: '/servicios/product-building' },
+          { label: 'Web App Custom' },
+        ]}
+      />
+      <TailwindGrid fullSize>
       <div className="col-span-full flex flex-col gap-y-24 md:gap-y-32 lg:gap-y-40 px-6 md:px-12 lg:px-24 xl:px-40 py-24 md:py-32 w-full mx-auto">
         <ServiceHero
           title={content?.hero?.title}
@@ -182,5 +206,6 @@ export default async function WebAppCustomPage({
         <FinalCTA lang={lang} />
       </div>
     </TailwindGrid>
+    </>
   );
 }

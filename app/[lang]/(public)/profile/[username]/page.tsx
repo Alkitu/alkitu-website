@@ -26,6 +26,7 @@ import {
 } from 'lucide-react';
 import { createAnalyticsClient } from '@/lib/supabase/analytics';
 import { getDictionary } from '@/lib/dictionary';
+import { getSeoAlternates } from '@/lib/seo';
 import type { Locale } from '@/i18n.config';
 import type {
   PublicUserProfile,
@@ -138,6 +139,7 @@ export async function generateMetadata({
       description,
       images: profile.photo_url ? [profile.photo_url] : [],
     },
+    alternates: getSeoAlternates(lang, `/profile/${username}`),
   };
 }
 

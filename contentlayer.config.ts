@@ -243,7 +243,7 @@ export default makeSource({
   documentTypes: [BlogPost],
   mdx: {
     remarkPlugins: [
-      // remarkGfm, // GitHub Flavored Markdown (tables, task lists, strikethrough) - TEMPORARILY DISABLED to debug table parsing error
+      // remarkGfm, // DISABLED: seo-keywords-guide.mdx posts trigger inTable bug in mdast-util-gfm-table. Fix those posts' table syntax before re-enabling.
       remarkCustomHeadingId, // Support {#custom-id} syntax for heading IDs
     ],
     rehypePlugins: [

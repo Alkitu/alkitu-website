@@ -17,6 +17,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/projects',
     '/blog',
     '/contact',
+    '/servicios/branding',
+    '/servicios/marketing-digital',
+    '/servicios/product-building',
+    '/servicios/ingenieria-de-marca',
+    '/servicios/webs-corporativas',
+    '/servicios/product-building/web-app-custom',
+    '/privacy-policy',
+    '/cookie-policy',
   ];
 
   // Generate sitemap entries for all locales
@@ -25,7 +33,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}/${locale}${route}`,
       lastModified: currentDate,
       changeFrequency: 'weekly' as const,
-      priority: route === '' ? 1.0 : 0.8,
+      priority: route === '' ? 1.0 : route.startsWith('/servicios') ? 0.9 : route.startsWith('/privacy') || route.startsWith('/cookie') ? 0.3 : 0.8,
     }))
   );
 

@@ -24,12 +24,14 @@ interface ToggleMenuProps {
 
 export const ToggleMenu = ({ toggle, isOpen }: ToggleMenuProps) => (
   <button
+    aria-label={isOpen ? 'Close menu' : 'Open menu'}
+    aria-expanded={isOpen}
     className={`flex items-center justify-center ${
       isOpen ? 'fixed z-50' : 'fixed z-20 delay-500'
     } top-5 right-9 w-12 h-12 rounded-full bg-transparent`}
     onClick={toggle}
   >
-    <svg width='23' height='23' viewBox='0 0 23 28' className='text-foreground'>
+    <svg aria-hidden="true" width='23' height='23' viewBox='0 0 23 28' className='text-foreground'>
       <Path
         variants={{
           closed: { d: 'M 2 2.5 L 20 2.5', transition: { delay: 0.5 } },

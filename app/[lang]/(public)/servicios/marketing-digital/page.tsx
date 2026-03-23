@@ -1,12 +1,15 @@
 import { Metadata } from "next";
 import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionary";
+import { getSeoAlternates } from "@/lib/seo";
 import TailwindGrid from "@/app/components/templates/grid/TailwindGrid";
 import { ServiceHero, ServiceSection } from "../components";
 import FinalCTA from "../components/FinalCTA";
 import Link from "next/link";
+import Image from "next/image";
 import { Search, MapPin, MousePointerClick, Share2, Mail, Megaphone } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
+import { Breadcrumbs } from "@/app/components/molecules/breadcrumbs";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -14,6 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: Loc
   return {
     title: text.servicios.marketingDigital.hero.title,
     description: text.servicios.marketingDigital.hero.subtitle,
+    alternates: getSeoAlternates(lang, '/servicios/marketing-digital'),
   };
 }
 
@@ -72,7 +76,16 @@ export default async function MarketingDigitalPage({
     .filter((url: string) => url.startsWith('http'));
 
   return (
-    <TailwindGrid fullSize>
+    <>
+      <Breadcrumbs
+        locale={lang}
+        items={[
+          { label: lang === 'es' ? 'Inicio' : 'Home', href: '' },
+          { label: lang === 'es' ? 'Servicios' : 'Services', href: '/servicios/branding' },
+          { label: 'Marketing Digital' },
+        ]}
+      />
+      <TailwindGrid fullSize>
       <div className="col-span-full flex flex-col gap-y-24 md:gap-y-32 lg:gap-y-40 px-6 md:px-12 lg:px-24 xl:px-40 py-24 md:py-32 w-full mx-auto">
         <ServiceHero
           title={content?.hero?.title}
@@ -139,7 +152,7 @@ export default async function MarketingDigitalPage({
                 </p>
               </div>
               <a href="https://www.google.com/partners/agency?id=4986583441" target="_blank" rel="noopener noreferrer" className="flex-shrink-0 self-center">
-                <img src="https://www.gstatic.com/partners/badge/images/2026/PartnerBadgeClickable.svg" alt="Google Partner" className="h-28 md:h-36 lg:h-40" />
+                <Image src="https://www.gstatic.com/partners/badge/images/2026/PartnerBadgeClickable.svg" alt="Google Partner badge" width={160} height={160} className="h-28 md:h-36 lg:h-40 w-auto" unoptimized />
               </a>
             </div>
           </div>
@@ -187,5 +200,6 @@ export default async function MarketingDigitalPage({
         <FinalCTA lang={lang} />
       </div>
     </TailwindGrid>
+    </>
   );
 }

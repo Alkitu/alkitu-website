@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { Locale } from "@/i18n.config";
+import { getSeoAlternates } from '@/lib/seo';
 import { getDictionary } from "@/lib/dictionary";
 import TailwindGrid from "@/app/components/templates/grid/TailwindGrid";
 import { AboutHero } from "@/app/components/organisms/about-hero";
@@ -7,6 +8,7 @@ import { AboutOrigin } from "@/app/components/organisms/about-origin";
 import { AboutPrinciples } from "@/app/components/organisms/about-principles";
 import { AboutTeam } from "@/app/components/organisms/about-team";
 import { SideBar } from "@/app/components/organisms/sidebar";
+import { Breadcrumbs } from '@/app/components/molecules/breadcrumbs';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -15,6 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: Loc
     description: lang === 'es'
       ? 'Conoce al equipo detrás de Alkitu, agencia digital en España'
       : 'Meet the team behind Alkitu, digital agency in Spain',
+    alternates: getSeoAlternates(lang, '/about'),
   };
 }
 
@@ -28,6 +31,13 @@ export default async function AboutPage({
 
   return (
     <>
+      <Breadcrumbs
+        locale={lang}
+        items={[
+          { label: lang === 'es' ? 'Inicio' : 'Home', href: '' },
+          { label: lang === 'es' ? 'Sobre Nosotros' : 'About Us' },
+        ]}
+      />
       <TailwindGrid fullSize>
          <SideBar sections={text?.about?.sections} />
          <div className="col-span-full flex flex-col">

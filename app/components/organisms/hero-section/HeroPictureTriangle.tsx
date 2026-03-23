@@ -45,7 +45,7 @@ function HeroPictureTriangle({ srcBody, srcHead }: HeroPictureTriangleProps) {
           <Image
             fill
             src={srcBody || "/images/cuerpo-completo.webp"}
-            alt="Luis"
+            alt="Equipo Alkitu - Agencia digital"
             sizes="contain"
             className="w-full h-full object-contain "
             priority
@@ -56,7 +56,7 @@ function HeroPictureTriangle({ srcBody, srcHead }: HeroPictureTriangleProps) {
       <Image
         fill
         src={srcHead || "/images/cabeza.webp"}
-        alt="Luis "
+        alt="Alkitu equipo creativo"
         sizes="contain"
         className="w-full h-full object-contain absolute top-0"
         loading="eager"

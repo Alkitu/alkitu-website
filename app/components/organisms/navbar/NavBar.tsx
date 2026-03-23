@@ -101,6 +101,7 @@ export default function NavBar() {
       {!isScrollingDown && (
         <motion.nav
           key='navbar'
+          aria-label="Main navigation"
           initial={{ y: -80, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{
@@ -113,15 +114,15 @@ export default function NavBar() {
           className='h-20 w-full fixed top-0 left-0 z-50 bg-background/40 backdrop-blur-lg shadow-l border-b border-border/50'
         >
           <TailwindGrid fullSize>
-            <div className='w-full lg:w-11/12 absolute top-0 right-0 col-span-full flex justify-end'>
-              <div className='flex h-20 justify-between w-full lg:w-12/12 self-end'>
-                <div className='ml-8 col-span-2 flex justify-center items-center'>
+            <div className='w-full absolute top-0 right-0 col-span-full flex justify-end'>
+              <div className='flex h-20 justify-between w-full self-end'>
+                <div className='ml-4 xl:ml-8 col-span-2 flex flex-shrink-0 justify-center items-center'>
                   <AlkituLogo locale={locale} />
                 </div>
-                <div className='hidden lg:flex items-center'>
+                <div className='hidden lg:flex items-center justify-end'>
                   {routes.map((route: Route) => (
                     <div
-                      className='flex justify-center items-center px-4'
+                      className='flex justify-center items-center lg:px-2 xl:px-4'
                       key={route.pathname}
                     >
                       {route.submenu ? (
@@ -130,15 +131,19 @@ export default function NavBar() {
                           onMouseEnter={() => handleMouseEnter(route.pathname)}
                           onMouseLeave={handleMouseLeave}
                         >
-                          <span
+                          <button
+                            type="button"
+                            aria-haspopup="true"
+                            aria-expanded={openDropdown === route.pathname}
                             className={
                               currentPathname.startsWith(`/${locale}/servicios`)
-                                ? "flex items-center gap-1 text-primary font-bold px-4 h-8 uppercase cursor-pointer"
-                                : "flex items-center gap-1 text-foreground font-bold px-4 h-8 uppercase cursor-pointer hover:scale-105 hover:text-primary active:scale-95 transition-all"
+                                ? "flex items-center gap-1 text-primary font-bold px-4 h-8 uppercase cursor-pointer bg-transparent border-none"
+                                : "flex items-center gap-1 text-foreground font-bold px-4 h-8 uppercase cursor-pointer bg-transparent border-none hover:scale-105 hover:text-primary active:scale-95 transition-all"
                             }
                           >
                             {route.name}
                             <svg
+                              aria-hidden="true"
                               className={`w-3.5 h-3.5 transition-transform duration-200 ${openDropdown === route.pathname ? 'rotate-180' : ''}`}
                               fill="none"
                               viewBox="0 0 24 24"
@@ -147,7 +152,7 @@ export default function NavBar() {
                             >
                               <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                             </svg>
-                          </span>
+                          </button>
                           <AnimatePresence>
                             {openDropdown === route.pathname && (
                               <motion.div
@@ -155,6 +160,7 @@ export default function NavBar() {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -8 }}
                                 transition={{ duration: 0.15, ease: 'easeOut' }}
+                                role="menu"
                                 className='absolute top-full left-1/2 -translate-x-1/2 mt-2 min-w-[200px] bg-background/95 backdrop-blur-lg border border-border rounded-lg shadow-lg py-2'
                               >
                                 {route.submenu.map((item) => (
@@ -195,7 +201,7 @@ export default function NavBar() {
                   <div className='flex justify-center items-center px-2'>
                     <ThemeToggleButton />
                   </div>
-                  <div className='flex justify-center items-center pr-8 pl-2'>
+                  <div className='flex justify-center items-center lg:pr-4 xl:pr-8 pl-2'>
                     <SelectLanguage />
                   </div>
                 </div>
