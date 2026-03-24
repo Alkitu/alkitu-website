@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionary";
-import { getSeoAlternates } from "@/lib/seo";
+import { getSeoAlternates, getServiceSchema, getFaqSchema } from "@/lib/seo";
 import TailwindGrid from "@/app/components/templates/grid/TailwindGrid";
 import Link from "next/link";
 import { ServiceHero, ServiceSection } from "../components";
@@ -46,6 +46,49 @@ export default async function WebsCorporativasPage({
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify(getServiceSchema({
+          name: lang === 'es' ? 'Webs Corporativas' : 'Corporate Websites',
+          description: lang === 'es'
+            ? 'Diseño y desarrollo de webs corporativas profesionales con código custom (Next.js/React), WordPress o Shopify. Sitios rápidos, seguros y optimizados para SEO.'
+            : 'Design and development of professional corporate websites with custom code (Next.js/React), WordPress, or Shopify. Fast, secure, and SEO-optimized sites.',
+          url: `https://alkitu.com/${lang}/servicios/webs-corporativas`,
+        }))
+      }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify(getFaqSchema([
+          {
+            question: lang === 'es' ? '¿Qué tipo de web corporativa necesito: código custom, WordPress o Shopify?' : 'What type of corporate website do I need: custom code, WordPress, or Shopify?',
+            answer: lang === 'es'
+              ? 'Depende de tus necesidades. Código custom (Next.js/React) es ideal para sitios con alta interactividad, rendimiento crítico o funcionalidades únicas. WordPress es perfecto para sitios con mucho contenido que el equipo necesita gestionar frecuentemente. Shopify es la mejor opción si vendes productos online y necesitas una tienda robusta con pasarelas de pago integradas.'
+              : 'It depends on your needs. Custom code (Next.js/React) is ideal for sites with high interactivity, critical performance, or unique functionality. WordPress is perfect for content-heavy sites that the team needs to manage frequently. Shopify is the best option if you sell products online and need a robust store with integrated payment gateways.',
+          },
+          {
+            question: lang === 'es' ? '¿Cuánto cuesta una web corporativa profesional?' : 'How much does a professional corporate website cost?',
+            answer: lang === 'es'
+              ? 'El coste varía según la complejidad y la tecnología elegida. Una web WordPress profesional puede partir desde 3.000€, mientras que un desarrollo custom con Next.js puede ir desde 6.000€ en adelante. Cada proyecto se presupuesta individualmente según funcionalidades, número de páginas, integraciones y requisitos de diseño.'
+              : 'The cost varies depending on complexity and chosen technology. A professional WordPress website can start from $3,500, while a custom Next.js development can start from $7,000 and up. Each project is quoted individually based on features, number of pages, integrations, and design requirements.',
+          },
+          {
+            question: lang === 'es' ? '¿La web estará optimizada para SEO y velocidad?' : 'Will the website be optimized for SEO and speed?',
+            answer: lang === 'es'
+              ? 'Sí. Todas nuestras webs se desarrollan con SEO técnico integrado: estructura semántica, meta etiquetas, schema markup (JSON-LD), sitemap XML, Core Web Vitals optimizados (LCP < 2.5s, CLS < 0.1) y certificado SSL. Además, implementamos GEO (Generative Engine Optimization) para que tu web también aparezca en respuestas de IA como ChatGPT y Perplexity.'
+              : 'Yes. All our websites are developed with integrated technical SEO: semantic structure, meta tags, schema markup (JSON-LD), XML sitemap, optimized Core Web Vitals (LCP < 2.5s, CLS < 0.1), and SSL certificate. We also implement GEO (Generative Engine Optimization) so your website appears in AI responses from ChatGPT and Perplexity.',
+          },
+          {
+            question: lang === 'es' ? '¿Puedo gestionar el contenido de mi web yo mismo?' : 'Can I manage my website content myself?',
+            answer: lang === 'es'
+              ? 'Sí. Las webs WordPress y Shopify incluyen panel de administración intuitivo. Las webs custom con Next.js pueden incluir un CMS headless (como Contentlayer o Sanity) para que tu equipo edite contenido sin necesidad de programar. Proporcionamos formación y documentación para que seas autónomo.'
+              : 'Yes. WordPress and Shopify websites include an intuitive admin panel. Custom Next.js websites can include a headless CMS (like Contentlayer or Sanity) so your team can edit content without coding. We provide training and documentation so you can be self-sufficient.',
+          },
+          {
+            question: lang === 'es' ? '¿Cuánto tiempo tarda en estar lista una web corporativa?' : 'How long does it take to build a corporate website?',
+            answer: lang === 'es'
+              ? 'Una web WordPress profesional se entrega en 4-6 semanas. Un desarrollo custom con Next.js/React toma entre 6 y 12 semanas dependiendo de la complejidad. El proceso incluye diseño UX/UI, desarrollo, revisiones, testing y lanzamiento con soporte post-entrega.'
+              : 'A professional WordPress website is delivered in 4-6 weeks. A custom Next.js/React development takes 6 to 12 weeks depending on complexity. The process includes UX/UI design, development, revisions, testing, and launch with post-delivery support.',
+          },
+        ]))
+      }} />
       <Breadcrumbs
         locale={lang}
         items={[

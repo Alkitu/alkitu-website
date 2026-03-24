@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionary";
-import { getSeoAlternates } from "@/lib/seo";
+import { getSeoAlternates, getServiceSchema, getFaqSchema } from "@/lib/seo";
 import TailwindGrid from "@/app/components/templates/grid/TailwindGrid";
 import Link from "next/link";
 import { ServiceHero, ServiceSection } from "../components";
@@ -47,6 +47,49 @@ export default async function IngenieriaDeMarcaPage({
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify(getServiceSchema({
+          name: lang === 'es' ? 'Ingeniería de Marca' : 'Brand Engineering',
+          description: lang === 'es'
+            ? 'Framework estratégico basado en ISO 20671 para construir marcas coherentes. Cubre ADN de marca, identidad verbal, identidad visual e identidad espacial.'
+            : 'Strategic framework based on ISO 20671 to build coherent brands. Covers brand DNA, verbal identity, visual identity, and spatial identity.',
+          url: `https://alkitu.com/${lang}/servicios/ingenieria-de-marca`,
+        }))
+      }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify(getFaqSchema([
+          {
+            question: lang === 'es' ? '¿Qué es la ingeniería de marca?' : 'What is brand engineering?',
+            answer: lang === 'es'
+              ? 'La ingeniería de marca es un framework estratégico basado en el estándar ISO 20671 que estructura la construcción de marca en cuatro pilares: ADN de marca, identidad verbal, identidad visual e identidad espacial. A diferencia del branding tradicional, aplica metodología sistemática para garantizar coherencia en cada punto de contacto.'
+              : 'Brand engineering is a strategic framework based on the ISO 20671 standard that structures brand building into four pillars: brand DNA, verbal identity, visual identity, and spatial identity. Unlike traditional branding, it applies systematic methodology to ensure coherence at every touchpoint.',
+          },
+          {
+            question: lang === 'es' ? '¿Cuál es la diferencia entre branding e ingeniería de marca?' : 'What is the difference between branding and brand engineering?',
+            answer: lang === 'es'
+              ? 'El branding tradicional se enfoca en elementos visuales como logo y colores. La ingeniería de marca es un proceso integral que abarca estrategia, identidad verbal (tono, naming, mensajes), identidad visual (diseño, tipografía, color) e identidad espacial (cómo se experimenta la marca en entornos físicos y digitales). Según Forbes, las marcas coherentes generan un 23% más de ingresos.'
+              : 'Traditional branding focuses on visual elements like logos and colors. Brand engineering is a comprehensive process covering strategy, verbal identity (tone, naming, messaging), visual identity (design, typography, color), and spatial identity (how the brand is experienced in physical and digital environments). According to Forbes, coherent brands generate 23% more revenue.',
+          },
+          {
+            question: lang === 'es' ? '¿Qué incluye el pilar de ADN de marca?' : 'What does the brand DNA pillar include?',
+            answer: lang === 'es'
+              ? 'El ADN de marca incluye la historia de la marca, definición de buyer persona en cuatro niveles (demográfico, geográfico, psicográfico y conductual), propuesta de valor única, misión, visión, valores corporativos y posicionamiento estratégico en el mercado.'
+              : 'Brand DNA includes brand history, buyer persona definition across four levels (demographic, geographic, psychographic, and behavioral), unique value proposition, mission, vision, corporate values, and strategic market positioning.',
+          },
+          {
+            question: lang === 'es' ? '¿Cuánto tiempo toma un proyecto de ingeniería de marca?' : 'How long does a brand engineering project take?',
+            answer: lang === 'es'
+              ? 'Un proyecto completo de ingeniería de marca toma entre 8 y 16 semanas, dependiendo de la complejidad y el alcance. Incluye investigación, estrategia, diseño de los cuatro pilares y entrega de un sistema de recursos para el cliente con guías de estilo, manuales de marca y activos digitales listos para usar.'
+              : 'A complete brand engineering project takes 8 to 16 weeks, depending on complexity and scope. It includes research, strategy, design of all four pillars, and delivery of a client resource system with style guides, brand manuals, and ready-to-use digital assets.',
+          },
+          {
+            question: lang === 'es' ? '¿Por qué es importante invertir en una marca coherente?' : 'Why is it important to invest in a coherent brand?',
+            answer: lang === 'es'
+              ? 'Según Interbrand, la marca representa hasta el 30% de la capitalización bursátil de una empresa. Una marca coherente genera confianza, diferenciación y lealtad del cliente. Las empresas con marca fragmentada (logo, web y redes sociales desconectados) pierden credibilidad y oportunidades de negocio.'
+              : 'According to Interbrand, the brand represents up to 30% of a company\'s market capitalization. A coherent brand generates trust, differentiation, and customer loyalty. Companies with fragmented brands (disconnected logo, website, and social media) lose credibility and business opportunities.',
+          },
+        ]))
+      }} />
       <Breadcrumbs
         locale={lang}
         items={[
