@@ -12,8 +12,8 @@
       {
         "name": "Services",
         "pathname": "/servicios/branding",
-        "iconLight": "/icons/navbar/Home-light.svg",
-        "iconDark": "/icons/navbar/Home-dark.svg",
+        "iconLight": "/icons/navbar/Services-light.svg",
+        "iconDark": "/icons/navbar/Services-dark.svg",
         "submenu": [
           {
             "name": "Branding",

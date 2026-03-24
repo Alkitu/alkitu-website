@@ -217,7 +217,7 @@ export default function NavBar() {
                         <motion.div
                           className={`fixed h-dvh top-0 right-0 bottom-0 bg-white dark:bg-black ${
                             isOpen && "flex"
-                          } max-w-full min-w-[300px] overflow-hidden`}
+                          } w-[300px] max-w-[85vw] overflow-hidden`}
                           initial='closed'
                           animate='open'
                           exit='closed'

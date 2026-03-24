@@ -1,19 +1,24 @@
 'use client';
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import { useTranslationContext } from "@/app/context/TranslationContext";
-import { useTheme } from "@/app/context/ThemeContext";
 import Link from "next/link.js";
 import { LanguagesSwitch } from "@/app/components/molecules/switch";
 import { usePathname } from "next/navigation";
 import { ThemeToggleButton } from "@/app/components/molecules/theme-toggle";
 import { ReactNode } from "react";
 
+interface SubMenuItem {
+  name: string;
+  pathname: string;
+}
+
 interface Route {
   name: string;
   pathname: string;
   iconLight: string;
   iconDark: string;
+  submenu?: SubMenuItem[];
 }
 
 interface MainMenuProps {
@@ -21,7 +26,15 @@ interface MainMenuProps {
   toggleOpen: () => void;
 }
 
-const getRouteIcon = (pathname: string): ReactNode => {
+const getRouteIcon = (pathname: string, hasSubmenu?: boolean): ReactNode => {
+  if (hasSubmenu || pathname.startsWith('/servicios')) {
+    return (
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 2L12.09 7.26L18 8.27L14 12.14L14.18 18.02L10 15.77L5.82 18.02L6 12.14L2 8.27L7.91 7.26L10 2Z" />
+      </svg>
+    );
+  }
+
   const icons: Record<string, ReactNode> = {
     '/': (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -57,10 +70,10 @@ const getRouteIcon = (pathname: string): ReactNode => {
 
 export default function MainMenu({ isOpen, toggleOpen }: MainMenuProps) {
   const { translations, locale } = useTranslationContext();
-  const { resolvedTheme } = useTheme();
   const ref = useRef(null);
   const routes = translations?.menu?.routes || [];
   const currentPathname = usePathname();
+  const [expandedSubmenu, setExpandedSubmenu] = useState<string | null>(null);
 
   const itemVariants: Variants = {
     open: (i = 1) => ({
@@ -88,6 +101,10 @@ export default function MainMenu({ isOpen, toggleOpen }: MainMenuProps) {
     },
   };
 
+  const toggleSubmenu = (pathname: string) => {
+    setExpandedSubmenu(expandedSubmenu === pathname ? null : pathname);
+  };
+
   return (
     <motion.ul
       variants={itemVariants}
@@ -99,37 +116,109 @@ export default function MainMenu({ isOpen, toggleOpen }: MainMenuProps) {
     >
       <AnimatePresence mode='wait'>
         {isOpen && (
-          <div className='w-full min-w-[300px] h-full bg-white dark:bg-black'>
+          <div className='w-full min-w-[300px] max-w-[100vw] h-full bg-white dark:bg-black overflow-x-hidden overflow-y-auto'>
             <div className='flex flex-col justify-between items-center h-full'>
-              <div className='min-w-[300px] flex flex-col w-full'>
+              <div className='min-w-[300px] max-w-full flex flex-col w-full'>
                 {routes.map((route: Route) => (
-                  <Link
-                    key={route.pathname}
-                    href={
-                      route.pathname === "/projects"
-                        ? `/${locale}/projects?category=All&page=1`
-                        : `/${locale}${route.pathname}`
-                    }
-                    className={`relative items-center tracking-wider rounded-md w-full ${
-                      currentPathname === route.pathname
-                        ? "text-primary"
-                        : "text-foreground hover:scale-105 hover:text-primary transition-all"
-                    }`}
-                  >
-                    <motion.div
-                      className='justify-center hover:bg-muted dark:hover:bg-zinc-800 py-5 w-full'
-                      whileTap={{ scale: 0.9 }}
+                  route.submenu ? (
+                    <div key={route.pathname}>
+                      <button
+                        type="button"
+                        onClick={() => toggleSubmenu(route.pathname)}
+                        className={`relative items-center tracking-wider rounded-md w-full text-left ${
+                          currentPathname.startsWith(`/${locale}/servicios`)
+                            ? "text-primary"
+                            : "text-foreground"
+                        }`}
+                      >
+                        <motion.div
+                          className='justify-center hover:bg-muted dark:hover:bg-zinc-800 py-5 w-full'
+                          whileTap={{ scale: 0.9 }}
+                        >
+                          <div className='w-full flex flex-row gap-5 mx-auto pl-5 items-center'>
+                            <div className='h-6 w-6 flex items-center justify-center text-foreground'>
+                              {getRouteIcon(route.pathname, true)}
+                            </div>
+                            <p className='text-foreground text-xl tracking-wider flex-1'>
+                              {route.name}
+                            </p>
+                            <svg
+                              aria-hidden="true"
+                              className={`w-4 h-4 mr-5 text-foreground transition-transform duration-200 ${expandedSubmenu === route.pathname ? 'rotate-180' : ''}`}
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              strokeWidth={2.5}
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </div>
+                        </motion.div>
+                      </button>
+                      <AnimatePresence>
+                        {expandedSubmenu === route.pathname && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2, ease: 'easeInOut' }}
+                            className='overflow-hidden bg-muted/50 dark:bg-zinc-900/50'
+                          >
+                            {route.submenu.map((item) => (
+                              <Link
+                                key={item.pathname}
+                                href={`/${locale}${item.pathname}`}
+                                onClick={() => toggleOpen()}
+                                className={`block ${
+                                  currentPathname === `/${locale}${item.pathname}`
+                                    ? "text-primary"
+                                    : "text-foreground hover:text-primary transition-colors"
+                                }`}
+                              >
+                                <motion.div
+                                  className='py-3.5 pl-16 pr-5 hover:bg-muted dark:hover:bg-zinc-800'
+                                  whileTap={{ scale: 0.95 }}
+                                >
+                                  <p className='text-lg tracking-wider'>
+                                    {item.name}
+                                  </p>
+                                </motion.div>
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  ) : (
+                    <Link
+                      key={route.pathname}
+                      href={
+                        route.pathname === "/projects"
+                          ? `/${locale}/projects?category=All&page=1`
+                          : `/${locale}${route.pathname}`
+                      }
+                      onClick={() => toggleOpen()}
+                      className={`relative items-center tracking-wider rounded-md w-full ${
+                        currentPathname === `/${locale}${route.pathname}` || (route.pathname === "/" && currentPathname === `/${locale}`)
+                          ? "text-primary"
+                          : "text-foreground hover:scale-105 hover:text-primary transition-all"
+                      }`}
                     >
-                      <div className='w-full flex flex-row gap-5 mx-auto pl-5'>
-                        <div className='h-6 w-6 flex items-center justify-center text-foreground'>
-                          {getRouteIcon(route.pathname)}
+                      <motion.div
+                        className='justify-center hover:bg-muted dark:hover:bg-zinc-800 py-5 w-full'
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        <div className='w-full flex flex-row gap-5 mx-auto pl-5'>
+                          <div className='h-6 w-6 flex items-center justify-center text-foreground'>
+                            {getRouteIcon(route.pathname)}
+                          </div>
+                          <p className='text-foreground text-xl tracking-wider col-span-10 col-start-3 h-full'>
+                            {route.name}
+                          </p>
                         </div>
-                        <p className='text-foreground text-xl tracking-wider col-span-10 col-start-3 h-full'>
-                          {route.name}
-                        </p>
-                      </div>
-                    </motion.div>
-                  </Link>
+                      </motion.div>
+                    </Link>
+                  )
                 ))}
 
                 <div className='grid grid-cols-12 py-5 px-5'>
@@ -152,25 +241,11 @@ export default function MainMenu({ isOpen, toggleOpen }: MainMenuProps) {
                   </div>
                 </div>
 
-                <div className='grid grid-cols-12 py-5 px-5 border-t border-border'>
-                  <div className='col-span-12 flex items-center gap-4'>
-                    <div className='h-6 w-6 flex items-center justify-center text-foreground'>
-                      {resolvedTheme === 'dark' ? (
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      ) : (
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="12" cy="12" r="5" stroke="currentColor" strokeWidth="2"/>
-                          <path d="M12 1v2m0 18v2M23 12h-2M3 12H1m18.36-8.36l-1.42 1.42M6.34 17.66l-1.42 1.42m12.02 0l-1.42-1.42M6.34 6.34L4.92 4.92" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                        </svg>
-                      )}
-                    </div>
-                    <p className='text-foreground text-xl tracking-wider flex-1'>
-                      {translations?.menu?.theme || "Theme"}
-                    </p>
-                    <ThemeToggleButton />
-                  </div>
+                <div className='flex items-center gap-4 py-5 px-5 border-t border-border'>
+                  <p className='text-foreground text-xl tracking-wider flex-1'>
+                    {translations?.menu?.theme || "Theme"}
+                  </p>
+                  <ThemeToggleButton />
                 </div>
               </div>
             </div>
