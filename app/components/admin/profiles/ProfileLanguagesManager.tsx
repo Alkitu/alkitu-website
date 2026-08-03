@@ -24,27 +24,20 @@ const PROFICIENCY_LEVELS: { value: LanguageProficiency; label: string }[] = [
   { value: 'basic', label: 'Básico' },
 ];
 
-const LANGUAGE_SUGGESTIONS = [
-  'Español',
-  'English',
-  'Français',
-  'Deutsch',
-  'Italiano',
-  'Português',
-  '中文',
-  '日本語',
-  '한국어',
-  'العربية',
-  'Русский',
-  'हिन्दी',
-  'Nederlands',
-  'Svenska',
-  'Norsk',
-  'Dansk',
-  'Polski',
-  'Čeština',
-  'Ελληνικά',
-  'עברית',
+const LANGUAGE_SUGGESTIONS: { name: string; code: string }[] = [
+  { name: 'Español', code: 'es' },
+  { name: 'English', code: 'en' },
+  { name: 'Français', code: 'fr' },
+  { name: 'Deutsch', code: 'de' },
+  { name: 'Italiano', code: 'it' },
+  { name: 'Português', code: 'pt' },
+  { name: '中文', code: 'zh' },
+  { name: '日本語', code: 'ja' },
+  { name: '한국어', code: 'ko' },
+  { name: 'العربية', code: 'ar' },
+  { name: 'Русский', code: 'ru' },
+  { name: 'हिन्दी', code: 'hi' },
+  { name: 'Nederlands', code: 'nl' },
 ];
 
 export function ProfileLanguagesManager({
@@ -52,6 +45,7 @@ export function ProfileLanguagesManager({
   onChange,
 }: ProfileLanguagesManagerProps) {
   const [newLanguage, setNewLanguage] = useState('');
+  const [newLanguageCode, setNewLanguageCode] = useState<string | undefined>(undefined);
   const [newProficiency, setNewProficiency] =
     useState<LanguageProficiency>('intermediate');
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -86,6 +80,7 @@ export function ProfileLanguagesManager({
 
     const newLanguageEntry: ProfileLanguage = {
       language: trimmed,
+      language_code: newLanguageCode,
       proficiency: newProficiency,
       display_order: maxOrder + 1,
       is_public: true, // Default to public
@@ -93,6 +88,7 @@ export function ProfileLanguagesManager({
 
     onChange([...languages, newLanguageEntry]);
     setNewLanguage('');
+    setNewLanguageCode(undefined);
     setNewProficiency('intermediate');
     setShowSuggestions(false);
     toast.success('Idioma agregado');
@@ -166,10 +162,21 @@ export function ProfileLanguagesManager({
   };
 
   /**
+   * Update language_code for an existing entry
+   */
+  const handleUpdateCode = (index: number, code: string) => {
+    const updated = sortedLanguages.map((lang, i) =>
+      i === index ? { ...lang, language_code: code || undefined } : lang
+    );
+    onChange(updated);
+  };
+
+  /**
    * Select language from suggestions
    */
-  const handleSelectSuggestion = (suggestion: string) => {
-    setNewLanguage(suggestion);
+  const handleSelectSuggestion = (suggestion: { name: string; code: string }) => {
+    setNewLanguage(suggestion.name);
+    setNewLanguageCode(suggestion.code);
     setShowSuggestions(false);
   };
 
@@ -178,8 +185,8 @@ export function ProfileLanguagesManager({
    */
   const filteredSuggestions = LANGUAGE_SUGGESTIONS.filter(
     (s) =>
-      s.toLowerCase().includes(newLanguage.toLowerCase()) &&
-      !languages.some((lang) => lang.language.toLowerCase() === s.toLowerCase())
+      s.name.toLowerCase().includes(newLanguage.toLowerCase()) &&
+      !languages.some((lang) => lang.language.toLowerCase() === s.name.toLowerCase())
   );
 
   return (
@@ -213,12 +220,12 @@ export function ProfileLanguagesManager({
               <div className="absolute z-10 mt-1 w-full rounded-md border border-border bg-background shadow-lg max-h-48 overflow-auto">
                 {filteredSuggestions.slice(0, 10).map((suggestion) => (
                   <button
-                    key={suggestion}
+                    key={suggestion.code}
                     type="button"
                     onClick={() => handleSelectSuggestion(suggestion)}
                     className="w-full px-3 py-2 text-left text-sm text-foreground hover:bg-secondary transition-colors"
                   >
-                    {suggestion}
+                    {suggestion.name}
                   </button>
                 ))}
               </div>
@@ -299,6 +306,16 @@ export function ProfileLanguagesManager({
                   </option>
                 ))}
               </select>
+
+              {/* ISO code (drives localized display name on the public page) */}
+              <input
+                type="text"
+                value={lang.language_code || ''}
+                onChange={(e) => handleUpdateCode(index, e.target.value.toLowerCase().slice(0, 2))}
+                placeholder="Código ISO (ej. es, en) — opcional"
+                maxLength={2}
+                className="w-full text-xs rounded border border-border bg-background px-2 py-1 text-muted-foreground placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none"
+              />
 
               {/* Actions Row */}
               <div className="flex items-center justify-between gap-2">

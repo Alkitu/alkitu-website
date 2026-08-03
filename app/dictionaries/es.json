@@ -2000,14 +2000,23 @@
         "backButton": "Volver al inicio"
       },
       "sections": {
-        "about": "Acerca de",
-        "hardSkills": "Hard Skills",
+        "about": "Resumen",
+        "experience": "Experiencia",
+        "education": "Educación",
+        "hardSkills": "Habilidades",
         "softSkills": "Soft Skills",
         "languages": "Idiomas",
         "roles": "Roles",
         "contact": "Contacto",
         "links": "Enlaces",
         "information": "Información"
+      },
+      "skillCategories": {
+        "ai_consulting": "IA y Consultoría",
+        "engineering": "Ingeniería",
+        "testing_cicd": "Testing & CI/CD",
+        "design_marketing": "Diseño y Marketing",
+        "other": "Otros"
       },
       "contactTypes": {
         "work": "Trabajo",
@@ -2024,11 +2033,13 @@
         "basic": "Básico"
       },
       "remote": "Remoto",
+      "present": "Presente",
       "professionalProfile": "Perfil Profesional",
       "visitPublicProfile": "Visitar perfil público",
       "emptyState": "Este usuario no ha compartido información pública todavía."
     },
     "editor": {
+      "title": "Editar Perfil",
       "subtitle": "Actualiza tu información personal y controla la privacidad de cada campo.",
       "tabs": {
         "basic": "Información Básica",

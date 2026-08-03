@@ -3,6 +3,8 @@
  *
  * Generic component for managing both hard skills and soft skills
  * Allows adding, editing, removing, and reordering skills with privacy toggles
+ * Each skill has a bilingual label (EN/ES) and a category used to group the
+ * public profile sidebar.
  * No limit on the number of skills
  */
 
@@ -10,7 +12,7 @@
 
 import { Plus, X, Award, ChevronUp, ChevronDown } from 'lucide-react';
 import { PrivacyToggle } from './PrivacyToggle';
-import type { ProfileSkill } from '@/lib/types/profiles';
+import type { ProfileSkill, SkillCategory } from '@/lib/types/profiles';
 
 interface SkillsManagerProps {
   skills: ProfileSkill[];
@@ -18,6 +20,14 @@ interface SkillsManagerProps {
   type: 'hard' | 'soft';
   title: string;
 }
+
+const CATEGORY_OPTIONS: { value: SkillCategory; label: string }[] = [
+  { value: 'ai_consulting', label: 'IA y Consultoría' },
+  { value: 'engineering', label: 'Ingeniería' },
+  { value: 'testing_cicd', label: 'Testing & CI/CD' },
+  { value: 'design_marketing', label: 'Diseño y Marketing' },
+  { value: 'other', label: 'Otros' },
+];
 
 export function SkillsManager({
   skills,
@@ -39,8 +49,9 @@ export function SkillsManager({
       : -1;
 
     const newSkill: ProfileSkill = {
-      skill: '',
+      skill: { en: '', es: '' },
       level: 'intermediate', // Default level
+      category: 'other',
       display_order: maxOrder + 1,
       is_public: true,
     };
@@ -51,10 +62,10 @@ export function SkillsManager({
   /**
    * Update skill at index
    */
-  const handleUpdate = (
+  const handleUpdate = <K extends keyof ProfileSkill>(
     index: number,
-    field: keyof ProfileSkill,
-    value: string | boolean | number
+    field: K,
+    value: ProfileSkill[K]
   ) => {
     const updated = sortedSkills.map((item, i) =>
       i === index ? { ...item, [field]: value } : item
@@ -139,18 +150,50 @@ export function SkillsManager({
               key={skillItem.display_order}
               className="rounded-md border border-border bg-background p-4 space-y-3"
             >
-              {/* Skill Name */}
+              {/* Skill Name (EN/ES) */}
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <div>
+                  <label className="block text-xs font-medium text-muted-foreground mb-1">
+                    Habilidad (EN)
+                  </label>
+                  <input
+                    type="text"
+                    value={skillItem.skill.en}
+                    onChange={(e) => handleUpdate(index, 'skill', { ...skillItem.skill, en: e.target.value })}
+                    placeholder={type === 'hard' ? 'e.g. React, TypeScript, SQL' : 'e.g. Communication, Leadership'}
+                    className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-muted-foreground mb-1">
+                    Habilidad (ES)
+                  </label>
+                  <input
+                    type="text"
+                    value={skillItem.skill.es}
+                    onChange={(e) => handleUpdate(index, 'skill', { ...skillItem.skill, es: e.target.value })}
+                    placeholder={type === 'hard' ? 'ej. React, TypeScript, SQL' : 'ej. Comunicación, Liderazgo'}
+                    className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  />
+                </div>
+              </div>
+
+              {/* Category */}
               <div>
                 <label className="block text-xs font-medium text-muted-foreground mb-1">
-                  Habilidad
+                  Categoría
                 </label>
-                <input
-                  type="text"
-                  value={skillItem.skill}
-                  onChange={(e) => handleUpdate(index, 'skill', e.target.value)}
-                  placeholder={type === 'hard' ? 'ej. React, TypeScript, SQL' : 'ej. Comunicación, Liderazgo, Trabajo en equipo'}
-                  className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-                />
+                <select
+                  value={skillItem.category}
+                  onChange={(e) => handleUpdate(index, 'category', e.target.value as SkillCategory)}
+                  className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                >
+                  {CATEGORY_OPTIONS.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               {/* Actions Row */}

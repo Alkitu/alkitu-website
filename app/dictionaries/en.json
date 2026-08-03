@@ -1867,14 +1867,23 @@
         "backButton": "Back to home"
       },
       "sections": {
-        "about": "About",
-        "hardSkills": "Hard Skills",
+        "about": "Summary",
+        "experience": "Experience",
+        "education": "Education",
+        "hardSkills": "Skills",
         "softSkills": "Soft Skills",
         "languages": "Languages",
         "roles": "Roles",
         "contact": "Contact",
         "links": "Links",
         "information": "Information"
+      },
+      "skillCategories": {
+        "ai_consulting": "AI & Consulting",
+        "engineering": "Engineering",
+        "testing_cicd": "Testing & CI/CD",
+        "design_marketing": "Design & Marketing",
+        "other": "Other"
       },
       "contactTypes": {
         "work": "Work",
@@ -1891,6 +1900,7 @@
         "basic": "Basic"
       },
       "remote": "Remote",
+      "present": "Present",
       "professionalProfile": "Professional Profile",
       "visitPublicProfile": "Visit public profile",
       "emptyState": "This user hasn't shared any public information yet."

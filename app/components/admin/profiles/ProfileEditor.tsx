@@ -23,6 +23,8 @@ import { ProfileEmailManager } from './ProfileEmailManager';
 import { SkillsManager } from './SkillsManager';
 import { ProfileLanguagesManager } from './ProfileLanguagesManager';
 import { AddressesManager } from './AddressesManager';
+import { ExperienceManager } from './ExperienceManager';
+import { EducationManager } from './EducationManager';
 import { ColorPicker } from './ColorPicker';
 import { VisibilitySelector } from './VisibilitySelector';
 import {
@@ -41,13 +43,14 @@ interface ProfileEditorProps {
   onCancel?: () => void;
 }
 
-type TabId = 'basic' | 'personal' | 'professional' | 'social' | 'preferences';
+type TabId = 'basic' | 'personal' | 'professional' | 'social' | 'experience' | 'preferences';
 
 const TABS: { id: TabId; label: string }[] = [
   { id: 'basic', label: 'Información Básica' },
   { id: 'personal', label: 'Personal' },
   { id: 'professional', label: 'Contacto' },
   { id: 'social', label: 'Social y Habilidades' },
+  { id: 'experience', label: 'Experiencia' },
   { id: 'preferences', label: 'Preferencias' },
 ];
 
@@ -71,7 +74,7 @@ export function ProfileEditor({
     banner_url: null,
 
     // Basic Info
-    bio: null,
+    bio: { en: '', es: '' },
     bio_is_public: false,
     department: null,
     department_is_public: false,
@@ -89,7 +92,7 @@ export function ProfileEditor({
     timezone: 'America/New_York',
 
     // Professional Information
-    job_title: null,
+    job_title: { en: '', es: '' },
     job_title_is_public: false,
     location: null,
     location_is_public: false,
@@ -104,6 +107,8 @@ export function ProfileEditor({
     soft_skills: [],
     languages: [],
     addresses: [],
+    experience: [],
+    education: [],
 
     // Preferences
     language_preference: 'es',
@@ -162,7 +167,7 @@ export function ProfileEditor({
       banner_url: profile.banner_url,
 
       // Basic Info
-      bio: profile.bio,
+      bio: profile.bio || { en: '', es: '' },
       bio_is_public: profile.bio_is_public,
       department: profile.department,
       department_is_public: profile.department_is_public,
@@ -180,7 +185,7 @@ export function ProfileEditor({
       timezone: profile.timezone,
 
       // Professional Information
-      job_title: profile.job_title,
+      job_title: profile.job_title || { en: '', es: '' },
       job_title_is_public: profile.job_title_is_public,
       location: profile.location,
       location_is_public: profile.location_is_public,
@@ -195,6 +200,8 @@ export function ProfileEditor({
       soft_skills: profile.soft_skills || [],
       languages: profile.languages || [],
       addresses: profile.addresses || [],
+      experience: profile.experience || [],
+      education: profile.education || [],
 
       // Preferences
       language_preference: profile.language_preference,
@@ -332,11 +339,11 @@ export function ProfileEditor({
               onPhotoChange={(url) => updateField('photo_url', url)}
             />
 
-            {/* Bio */}
+            {/* Bio (bilingual) */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <label className="block text-sm font-medium text-foreground">
-                  Biografía
+                  Biografía / Resumen
                 </label>
                 <PrivacyToggle
                   isPublic={formData.bio_is_public ?? false}
@@ -344,16 +351,30 @@ export function ProfileEditor({
                   size="sm"
                 />
               </div>
-              <textarea
-                value={formData.bio || ''}
-                onChange={(e) => updateField('bio', e.target.value)}
-                placeholder="Cuéntanos sobre ti..."
-                rows={4}
-                className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary resize-none"
-              />
-              <p className="text-xs text-muted-foreground">
-                {formData.bio?.length || 0} caracteres
-              </p>
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <div>
+                  <label className="block text-xs font-medium text-muted-foreground mb-1">EN</label>
+                  <textarea
+                    value={formData.bio?.en || ''}
+                    onChange={(e) => updateField('bio', { en: e.target.value, es: formData.bio?.es || '' })}
+                    placeholder="Tell us about yourself..."
+                    rows={5}
+                    className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary resize-none"
+                  />
+                  <p className="text-xs text-muted-foreground mt-1">{formData.bio?.en?.length || 0} caracteres</p>
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-muted-foreground mb-1">ES</label>
+                  <textarea
+                    value={formData.bio?.es || ''}
+                    onChange={(e) => updateField('bio', { en: formData.bio?.en || '', es: e.target.value })}
+                    placeholder="Cuéntanos sobre ti..."
+                    rows={5}
+                    className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary resize-none"
+                  />
+                  <p className="text-xs text-muted-foreground mt-1">{formData.bio?.es?.length || 0} caracteres</p>
+                </div>
+              </div>
             </div>
 
             {/* Department */}
@@ -517,7 +538,7 @@ export function ProfileEditor({
         {/* Professional Tab */}
         {activeTab === 'professional' && (
           <div className="space-y-6">
-            {/* Job Title */}
+            {/* Job Title (bilingual role tagline) */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <label className="block text-sm font-medium text-foreground">
@@ -529,13 +550,22 @@ export function ProfileEditor({
                   size="sm"
                 />
               </div>
-              <input
-                type="text"
-                value={formData.job_title || ''}
-                onChange={(e) => updateField('job_title', e.target.value)}
-                placeholder="ej. Senior Software Engineer"
-                className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-              />
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <input
+                  type="text"
+                  value={formData.job_title?.en || ''}
+                  onChange={(e) => updateField('job_title', { en: e.target.value, es: formData.job_title?.es || '' })}
+                  placeholder="e.g. Senior Software Engineer (EN)"
+                  className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                />
+                <input
+                  type="text"
+                  value={formData.job_title?.es || ''}
+                  onChange={(e) => updateField('job_title', { en: formData.job_title?.en || '', es: e.target.value })}
+                  placeholder="ej. Ingeniero de Software Senior (ES)"
+                  className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                />
+              </div>
             </div>
 
             {/* Location */}
@@ -629,6 +659,23 @@ export function ProfileEditor({
               languages={formData.languages || []}
               onChange={(languages) => updateField('languages', languages)}
             />
+          </div>
+        )}
+
+        {/* Experience Tab */}
+        {activeTab === 'experience' && (
+          <div className="space-y-8">
+            <ExperienceManager
+              experience={formData.experience || []}
+              onChange={(experience) => updateField('experience', experience)}
+            />
+
+            <div className="border-t border-border pt-6">
+              <EducationManager
+                education={formData.education || []}
+                onChange={(education) => updateField('education', education)}
+              />
+            </div>
           </div>
         )}
 

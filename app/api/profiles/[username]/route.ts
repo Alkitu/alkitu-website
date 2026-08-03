@@ -19,6 +19,8 @@ import type {
   ProfileSkill,
   ProfileLanguage,
   ProfileAddress,
+  ProfileExperience,
+  ProfileEducation,
 } from '@/lib/types/profiles';
 
 /**
@@ -96,11 +98,10 @@ export async function GET(
     const pronouns = profile.pronouns_is_public ? profile.pronouns : null;
     const date_of_birth = profile.date_of_birth_is_public ? profile.date_of_birth : null;
 
-    // Filter bio
-    const bio = profile.bio_is_public ? profile.bio : null;
-
-    // Filter professional information
-    const job_title = profile.job_title_is_public ? profile.job_title : null;
+    // Filter bio / job title (bilingual)
+    const emptyLocalized = { en: '', es: '' };
+    const bio = profile.bio_is_public ? profile.bio || emptyLocalized : emptyLocalized;
+    const job_title = profile.job_title_is_public ? profile.job_title || emptyLocalized : emptyLocalized;
     const department = profile.department_is_public ? profile.department : null;
 
     // Filter location
@@ -115,6 +116,8 @@ export async function GET(
     const soft_skills = filterPublicItems<ProfileSkill>(profile.soft_skills || []);
     const languages = filterPublicItems<ProfileLanguage>(profile.languages || []);
     const addresses = filterPublicItems<ProfileAddress>(profile.addresses || []);
+    const experience = filterPublicItems<ProfileExperience>(profile.experience || []);
+    const education = filterPublicItems<ProfileEducation>(profile.education || []);
 
     // Build public profile (exclude private fields)
     const publicProfile: PublicUserProfile = {
@@ -152,6 +155,8 @@ export async function GET(
       soft_skills,
       languages,
       addresses,
+      experience,
+      education,
 
       // Visual Preferences (always public)
       profile_color: profile.profile_color || '#00BB31',

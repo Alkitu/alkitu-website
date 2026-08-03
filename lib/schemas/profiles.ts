@@ -55,12 +55,17 @@ const usernameSchema = z
   );
 
 /**
- * Bio validator (no character limit)
+ * Bilingual text validator ({ en, es })
  */
-const bioSchema = z
-  .string()
-  .optional()
-  .nullable();
+const localizedTextSchema = z.object({
+  en: z.string().default(''),
+  es: z.string().default(''),
+});
+
+/**
+ * Bio validator (bilingual, no character limit)
+ */
+const bioSchema = localizedTextSchema.optional();
 
 /**
  * Department validator
@@ -136,14 +141,9 @@ const timezoneSchema = z
   .optional();
 
 /**
- * Job title validator
+ * Job title validator (bilingual role tagline)
  */
-const jobTitleSchema = z
-  .string()
-  .min(1, 'Job title is required')
-  .max(100, 'Job title must be less than 100 characters')
-  .optional()
-  .nullable();
+const jobTitleSchema = localizedTextSchema.optional();
 
 /**
  * Location validator
@@ -217,21 +217,35 @@ export const ProfileEmailSchema = z.object({
 });
 
 /**
+ * Skill/experience/education category grouping used by the profile sidebar
+ */
+const skillCategorySchema = z.enum([
+  'ai_consulting',
+  'engineering',
+  'testing_cicd',
+  'design_marketing',
+  'other',
+]);
+
+/**
  * Profile Skill schema
- * Validates: { skill: string, display_order: number, is_public: boolean }
+ * Validates: { skill: {en,es}, level, category, display_order: number, is_public: boolean }
  */
 export const ProfileSkillSchema = z.object({
-  skill: z.string().min(1, 'Skill name is required').max(100, 'Skill name must be less than 100 characters'),
+  skill: localizedTextSchema,
+  level: z.enum(['beginner', 'intermediate', 'advanced', 'expert']).default('intermediate'),
+  category: skillCategorySchema.default('other'),
   display_order: z.number().int().min(0),
   is_public: z.boolean().default(true),
 });
 
 /**
  * Profile Language schema
- * Validates: { language: string, proficiency: 'native' | 'fluent' | 'intermediate' | 'basic', display_order: number, is_public: boolean }
+ * Validates: { language: string, language_code?: string, proficiency: 'native' | 'fluent' | 'intermediate' | 'basic', display_order: number, is_public: boolean }
  */
 export const ProfileLanguageSchema = z.object({
   language: z.string().min(1, 'Language name is required').max(100, 'Language name must be less than 100 characters'),
+  language_code: z.string().length(2, 'Must be a 2-letter language code').optional(),
   proficiency: z.enum(['native', 'fluent', 'intermediate', 'basic']),
   display_order: z.number().int().min(0),
   is_public: z.boolean().default(true),
@@ -245,6 +259,40 @@ export const ProfileAddressSchema = z.object({
   type: z.enum(['office', 'home']),
   address: z.string().min(1, 'Address is required').max(300, 'Address must be less than 300 characters'),
   is_public: z.boolean().default(false),
+});
+
+/**
+ * Profile Experience schema
+ * Validates: { company, role: {en,es}, location, start_date, end_date, is_current, bullets: {en:[],es:[]}, tech, display_order, is_public }
+ */
+export const ProfileExperienceSchema = z.object({
+  company: z.string().min(1, 'Company is required').max(150, 'Company must be less than 150 characters'),
+  role: localizedTextSchema,
+  location: z.string().max(150).optional().nullable(),
+  start_date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Must be a valid date (YYYY-MM-DD)'),
+  end_date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Must be a valid date (YYYY-MM-DD)').optional().nullable(),
+  is_current: z.boolean().default(false),
+  bullets: z.object({
+    en: z.array(z.string()).default([]),
+    es: z.array(z.string()).default([]),
+  }),
+  tech: z.array(z.string()).optional().nullable(),
+  display_order: z.number().int().min(0),
+  is_public: z.boolean().default(true),
+});
+
+/**
+ * Profile Education schema
+ * Validates: { school, degree: {en,es}, location, start_date, end_date, display_order, is_public }
+ */
+export const ProfileEducationSchema = z.object({
+  school: z.string().min(1, 'School is required').max(150, 'School must be less than 150 characters'),
+  degree: localizedTextSchema,
+  location: z.string().max(150).optional().nullable(),
+  start_date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Must be a valid date (YYYY-MM-DD)'),
+  end_date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Must be a valid date (YYYY-MM-DD)').optional().nullable(),
+  display_order: z.number().int().min(0),
+  is_public: z.boolean().default(true),
 });
 
 // =====================================================
@@ -313,6 +361,20 @@ const addressesArraySchema = z
   .max(5, 'Maximum 5 addresses allowed')
   .default([]);
 
+/**
+ * Experience array validator (no limit)
+ */
+const experienceArraySchema = z
+  .array(ProfileExperienceSchema)
+  .default([]);
+
+/**
+ * Education array validator (no limit)
+ */
+const educationArraySchema = z
+  .array(ProfileEducationSchema)
+  .default([]);
+
 // =====================================================
 // Profile CRUD Schemas
 // =====================================================
@@ -378,6 +440,8 @@ export const UpdateProfileSchema = z.object({
   soft_skills: softSkillsArraySchema.optional(),
   languages: languagesArraySchema.optional(),
   addresses: addressesArraySchema.optional(),
+  experience: experienceArraySchema.optional(),
+  education: educationArraySchema.optional(),
 
   // Preferences
   language_preference: languagePreferenceSchema,
@@ -481,12 +545,14 @@ export const ProfileResponseSchema = z.object({
 export const PublicProfileResponseSchema = z.object({
   username: usernameSchema,
   photo_url: z.string().url().nullable(),
-  bio: z.string().nullable(),
+  bio: localizedTextSchema,
   department: z.string().nullable(),
   urls: z.array(ProfileUrlSchema),
   roles: z.array(ProfileRoleSchema),
   phone_numbers: z.array(ProfilePhoneNumberSchema),
   emails: z.array(ProfileEmailSchema),
+  experience: z.array(ProfileExperienceSchema),
+  education: z.array(ProfileEducationSchema),
 });
 
 // =====================================================

@@ -11,7 +11,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { createClient } from '@/lib/supabase/server';
 import { Users, UserPlus, Shield, Building2, Briefcase } from 'lucide-react';
-import type { UserProfile } from '@/lib/types/profiles';
+import { localizeText, type UserProfile } from '@/lib/types/profiles';
 
 export const metadata: Metadata = {
   title: 'Gestión de Perfiles - Super Admin',
@@ -255,9 +255,9 @@ export default async function AllProfilesPage({
                     )}
                   </div>
 
-                  {profile.bio && profile.bio_is_public && (
+                  {profile.bio_is_public && localizeText(profile.bio, lang === 'en' ? 'en' : 'es') && (
                     <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
-                      {profile.bio}
+                      {localizeText(profile.bio, lang === 'en' ? 'en' : 'es')}
                     </p>
                   )}
                 </div>

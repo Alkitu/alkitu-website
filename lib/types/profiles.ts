@@ -44,6 +44,41 @@ export type ProfileVisibility = 'public' | 'private' | 'team_only';
  */
 export type ThemePreference = 'light' | 'dark' | 'system';
 
+/**
+ * Skill / experience / education category grouping used by the profile sidebar
+ */
+export type SkillCategory =
+  | 'ai_consulting'
+  | 'engineering'
+  | 'testing_cicd'
+  | 'design_marketing'
+  | 'other';
+
+// =====================================================
+// Bilingual text
+// =====================================================
+
+/**
+ * Bilingual free text, EN/ES
+ * Example: { en: "AI Consultant", es: "Consultor de IA" }
+ */
+export interface LocalizedText {
+  en: string;
+  es: string;
+}
+
+/**
+ * Resolve a LocalizedText for a given locale, falling back to the other locale
+ * or an empty string.
+ */
+export function localizeText(
+  text: LocalizedText | null | undefined,
+  locale: 'en' | 'es'
+): string {
+  if (!text) return '';
+  return text[locale] || text.en || text.es || '';
+}
+
 // =====================================================
 // JSONB Array Item Interfaces
 // =====================================================
@@ -93,21 +128,25 @@ export interface ProfileEmail {
 
 /**
  * Skill entry with display order and privacy toggle
- * Example: { skill: "React", level: "advanced", display_order: 0, is_public: true }
+ * Example: { skill: {en:"React",es:"React"}, level: "advanced", category: "engineering", display_order: 0, is_public: true }
  */
 export interface ProfileSkill {
-  skill: string;
+  skill: LocalizedText;
   level: SkillLevel;
+  category: SkillCategory;
   display_order: number;
   is_public: boolean;
 }
 
 /**
  * Language entry with proficiency, display order, and privacy toggle
- * Example: { language: "Spanish", proficiency: "native", display_order: 0, is_public: true }
+ * `language_code` (ISO 639-1) drives localized display via Intl.DisplayNames; `language`
+ * is the free-text fallback for languages without a code.
+ * Example: { language: "Spanish", language_code: "es", proficiency: "native", display_order: 0, is_public: true }
  */
 export interface ProfileLanguage {
   language: string;
+  language_code?: string;
   proficiency: LanguageProficiency;
   display_order: number;
   is_public: boolean;
@@ -120,6 +159,40 @@ export interface ProfileLanguage {
 export interface ProfileAddress {
   type: AddressType;
   address: string;
+  display_order: number;
+  is_public: boolean;
+}
+
+/**
+ * Work experience entry
+ * Example: { company: "Acme", role: {en:"Engineer",es:"Ingeniero"}, location: "Madrid", start_date: "2020-01-01", end_date: null, is_current: true, bullets: {en:[...],es:[...]}, tech: ["React"], display_order: 0, is_public: true }
+ */
+export interface ProfileExperience {
+  company: string;
+  role: LocalizedText;
+  location: string | null;
+  start_date: string; // ISO date string
+  end_date: string | null; // null = current
+  is_current: boolean;
+  bullets: {
+    en: string[];
+    es: string[];
+  };
+  tech: string[] | null;
+  display_order: number;
+  is_public: boolean;
+}
+
+/**
+ * Education entry
+ * Example: { school: "MIT", degree: {en:"CS",es:"CS"}, location: "Boston", start_date: "2018-09-01", end_date: "2022-06-01", display_order: 0, is_public: true }
+ */
+export interface ProfileEducation {
+  school: string;
+  degree: LocalizedText;
+  location: string | null;
+  start_date: string;
+  end_date: string | null;
   display_order: number;
   is_public: boolean;
 }
@@ -152,11 +225,11 @@ export interface UserProfile {
   date_of_birth_is_public: boolean;
 
   // Bio
-  bio: string | null;
+  bio: LocalizedText;
   bio_is_public: boolean;
 
   // Professional Information
-  job_title: string | null;
+  job_title: LocalizedText;
   job_title_is_public: boolean;
   department: string | null;
   department_is_public: boolean;
@@ -176,6 +249,8 @@ export interface UserProfile {
   soft_skills: ProfileSkill[];
   languages: ProfileLanguage[];
   addresses: ProfileAddress[];
+  experience: ProfileExperience[];
+  education: ProfileEducation[];
 
   // Preferences
   language_preference: string;
@@ -214,10 +289,10 @@ export interface PublicUserProfile {
   date_of_birth: string | null;
 
   // Bio
-  bio: string | null;
+  bio: LocalizedText;
 
   // Professional Information (privacy-filtered)
-  job_title: string | null;
+  job_title: LocalizedText;
   department: string | null;
 
   // Location (privacy-filtered)
@@ -234,6 +309,8 @@ export interface PublicUserProfile {
   soft_skills: ProfileSkill[];
   languages: ProfileLanguage[];
   addresses: ProfileAddress[];
+  experience: ProfileExperience[];
+  education: ProfileEducation[];
 
   // Visual Preferences (always public)
   profile_color: string;
@@ -250,7 +327,7 @@ export interface PublicUserProfile {
  */
 export interface CreateProfileInput {
   photo_url?: string | null;
-  bio?: string | null;
+  bio?: LocalizedText;
   bio_is_public?: boolean;
   department?: string | null;
   department_is_public?: boolean;
@@ -281,11 +358,11 @@ export interface UpdateProfileInput {
   date_of_birth_is_public?: boolean;
 
   // Bio
-  bio?: string | null;
+  bio?: LocalizedText;
   bio_is_public?: boolean;
 
   // Professional Information
-  job_title?: string | null;
+  job_title?: LocalizedText;
   job_title_is_public?: boolean;
   department?: string | null;
   department_is_public?: boolean;
@@ -305,6 +382,8 @@ export interface UpdateProfileInput {
   soft_skills?: ProfileSkill[];
   languages?: ProfileLanguage[];
   addresses?: ProfileAddress[];
+  experience?: ProfileExperience[];
+  education?: ProfileEducation[];
 
   // Preferences
   language_preference?: string;
