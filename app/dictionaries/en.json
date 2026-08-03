@@ -1754,6 +1754,13 @@
       "budget_12k_15k": "$12,000 - $15,000",
       "budget_15k_20k": "$15,000 - $20,000",
       "budget_over_20k": "+$20,000",
+      "timelineTitle": "When do you need the project ready?",
+      "timelineSubtitle": "Select one option.",
+      "timeline_1_week": "1 Week",
+      "timeline_1_month": "1 Month",
+      "timeline_2_months": "2 Months",
+      "timeline_3_months": "3 Months",
+      "timeline_flexible": "No rush, whatever it takes",
       "categoriesTitle": "How would you categorize your product?",
       "categoriesSubtitle": "Select up to three options.",
       "category_saas": "SaaS",
@@ -2436,6 +2443,191 @@
           ]
         }
       }
+    }
+  },
+  "landingWebDesign": {
+    "meta": {
+      "title": "Custom Web Design from $599 — Delivered in 4 Weeks | Alkitu",
+      "description": "Custom small business websites from $599 to $1,799. Hosting and domain included, 3 revision rounds, delivery in 20 business days. 100+ projects shipped, 10 years of experience."
+    },
+    "hero": {
+      "eyebrow": "Custom web design for U.S. small business",
+      "title": "Your professional website, live in 4 weeks.",
+      "highlight": "From $599.",
+      "subtitle": "We design and build custom websites that actually convert — for solo founders, small teams and growing local businesses. Hosting, domain and support included.",
+      "priceFrom": "Starting at",
+      "priceLow": "$599",
+      "priceTo": "up to",
+      "priceHigh": "$1,799",
+      "cta": "Get my free quote",
+      "ctaSecondary": "See what's included",
+      "trustBadges": [
+        { "value": "100+", "label": "websites shipped" },
+        { "value": "10 years", "label": "in business" },
+        { "value": "20 days", "label": "delivery" }
+      ]
+    },
+    "problem": {
+      "title": "75 % of your customers judge you by your website before they ever speak to you.",
+      "description": "If your site looks dated, loads slowly or breaks on mobile, prospects are walking away — and you'll never know it happened. Meanwhile, your competitor closed the deal."
+    },
+    "whatsIncluded": {
+      "title": "What's included",
+      "subtitle": "No surprises. No fine print.",
+      "items": [
+        {
+          "title": "1 to 5 custom pages",
+          "description": "From a one-page site to a full 5-page website. We help you decide what you actually need — we won't pad pages just to fill a budget."
+        },
+        {
+          "title": "100 % custom design",
+          "description": "No cookie-cutter templates. Built around your brand and engineered to convert your visitors into customers."
+        },
+        {
+          "title": "Hosting and domain included",
+          "description": "First year covered. We handle the technical setup so you don't have to."
+        },
+        {
+          "title": "3 rounds of revisions",
+          "description": "Three opportunities to fine-tune the design before we go live."
+        },
+        {
+          "title": "Mobile-first & SEO-ready",
+          "description": "Fast load times, fully responsive, and built on the technical SEO foundation Google rewards."
+        },
+        {
+          "title": "Optional maintenance from $99/year",
+          "description": "Want peace of mind? Hosting, domain, backups and email support for just $99 a year."
+        }
+      ]
+    },
+    "whyAlkitu": {
+      "title": "Why work with Alkitu",
+      "items": [
+        {
+          "title": "10 years building websites that sell",
+          "description": "We're not freelancers winging it. A decade of building sites that hit real business goals."
+        },
+        {
+          "title": "100+ projects delivered",
+          "description": "Restaurants, clinics, e-commerce, professional services… we know what works in your industry."
+        },
+        {
+          "title": "Certified Google Partner",
+          "description": "We build to Google's official standards, which means a site that's ready for SEO and Google Ads from day one."
+        },
+        {
+          "title": "Direct line, deadlines kept",
+          "description": "You'll talk to the person designing your site — no call centers. Delivered in 20 business days. No excuses."
+        }
+      ]
+    },
+    "howItWorks": {
+      "title": "How it works",
+      "subtitle": "A simple, transparent process. No surprises.",
+      "steps": [
+        {
+          "number": "01",
+          "title": "Briefing",
+          "description": "A 30-minute call: your business, your customer, your goals. No commitment."
+        },
+        {
+          "number": "02",
+          "title": "Design mockup",
+          "description": "We deliver a visual design within 5 business days. If you don't love it, we iterate until you do."
+        },
+        {
+          "number": "03",
+          "title": "Development",
+          "description": "We build your site with clean code, optimized for mobile and Google."
+        },
+        {
+          "number": "04",
+          "title": "Launch & training",
+          "description": "We push your site live, train you on how to update it, and hand over credentials within 20 business days."
+        }
+      ]
+    },
+    "portfolio": {
+      "title": "Some of our work",
+      "subtitle": "100+ projects across hospitality, healthcare, e-commerce, professional services, and education."
+    },
+    "guarantee": {
+      "title": "How we protect your investment",
+      "items": [
+        {
+          "title": "3 revision rounds",
+          "description": "Three opportunities to refine the design until it's exactly what you want."
+        },
+        {
+          "title": "Hard deadline: 20 business days",
+          "description": "If we miss it on our end, we eat the cost."
+        },
+        {
+          "title": "Phased, secure payment",
+          "description": "You pay a deposit upfront, the rest only after the design is approved. Zero risk."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "items": [
+        {
+          "question": "Why is it so affordable? What's the catch?",
+          "answer": "There's no catch. The $599-$1,799 range is for small business websites of 1 to 5 pages with a defined scope. It does not include advanced e-commerce, member portals, or fully custom apps — those are different services. We charge for our time, not for things you don't need."
+        },
+        {
+          "question": "What if I need more than 5 pages?",
+          "answer": "No problem — we'll quote it separately. But before we add pages, we'll help you decide if you actually need them. Three sharp pages convert better than ten mediocre ones, every time."
+        },
+        {
+          "question": "Do you write the copy?",
+          "answer": "We help with structure and key messaging, but final copy is either yours or written by us as an add-on service. We figure that out during the briefing call."
+        },
+        {
+          "question": "What if I don't like the first design?",
+          "answer": "You get 3 revision rounds included. We iterate with you until the result fits your brand and your strategy."
+        },
+        {
+          "question": "What happens after the first year of hosting?",
+          "answer": "You can either renew with our $99/year maintenance plan (hosting, domain, backups, support) or move the site to your own provider. Your call."
+        },
+        {
+          "question": "Are you a real agency?",
+          "answer": "Yes. We are Alkitu, a digital agency based in Spain with 100+ projects shipped and 10 years of experience. We're a certified Google Partner."
+        }
+      ]
+    },
+    "finalCta": {
+      "eyebrow": "Tell us about your project",
+      "title": "Get your free quote.",
+      "subtitle": "We'll get back to you within 24 hours with a clear plan: what we can build in your range and exactly what it costs."
+    },
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "you@company.com",
+      "projectType": "What kind of website do you need?",
+      "projectOnePage": "One-page (1 page)",
+      "projectSmall": "Basic site (2-3 pages)",
+      "projectFull": "Full site (4-5 pages)",
+      "projectNotSure": "Not sure yet / Need guidance",
+      "currentUrl": "Do you have an existing site? (optional)",
+      "currentUrlPlaceholder": "https://yoursite.com",
+      "message": "Tell us briefly about your project",
+      "messagePlaceholder": "What you do, what your goal is for the website, your timeline...",
+      "privacyAccept": "I have read and accept the",
+      "privacyLink": "privacy policy",
+      "submit": "Send my request",
+      "submitting": "Sending...",
+      "successTitle": "Got it!",
+      "successText": "We'll be back in touch within 24 hours with a tailored plan.",
+      "errorText": "Something went wrong. Please try again or email us at info@alkitu.com.",
+      "errorRequired": "This field is required",
+      "errorEmail": "Please enter a valid email",
+      "errorMessage": "Message must be at least 10 characters",
+      "errorPolicy": "You must accept the privacy policy"
     }
   }
 }

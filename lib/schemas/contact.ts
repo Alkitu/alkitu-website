@@ -32,6 +32,8 @@ export const contactFormSchema = z.object({
 
   budget: z.string().optional(),
 
+  timeline: z.string().optional(),
+
   productCategories: z.any().optional(),
 
   functionalities: z.any().optional(),
@@ -46,6 +48,18 @@ export const contactFormSchema = z.object({
     .enum(['en', 'es'])
     .optional()
     .default('es'),
+
+  source: z
+    .string()
+    .max(80)
+    .trim()
+    .optional(),
+
+  currentUrl: z
+    .string()
+    .max(255)
+    .trim()
+    .optional(),
 });
 
 /**

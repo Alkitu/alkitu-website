@@ -4,6 +4,7 @@ export interface ContactFormData {
   projectType: string;
   companySize: string;
   budget: string;
+  timeline: string;
   productCategories: string[];
   functionalities: string[];
   message: string;
@@ -42,6 +43,14 @@ export const BUDGETS = [
   '12k_15k',
   '15k_20k',
   'over_20k',
+] as const;
+
+export const TIMELINES = [
+  '1_week',
+  '1_month',
+  '2_months',
+  '3_months',
+  'flexible',
 ] as const;
 
 export const PRODUCT_CATEGORIES = [

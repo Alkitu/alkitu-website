@@ -9,6 +9,7 @@ import {
   PROJECT_TYPES,
   COMPANY_SIZES,
   BUDGETS,
+  TIMELINES,
   PRODUCT_CATEGORIES,
   FUNCTIONALITIES,
   TECH_PROJECT_TYPES,
@@ -17,7 +18,7 @@ import Link from 'next/link';
 import { useTranslationContext } from '@/app/context/TranslationContext';
 import { isCategoryAllowed } from '@/lib/cookies/consent';
 
-const TOTAL_STEPS = 6;
+const TOTAL_STEPS = 7;
 
 const stepVariants = {
   enter: (dir: number) => ({ x: dir > 0 ? 60 : -60, opacity: 0 }),
@@ -60,7 +61,7 @@ export default function ContactForm({ onSuccess, onError }: ContactFormProps) {
 
   // Actual steps (skip functionalities if not a tech project)
   const getEffectiveStep = (s: number) => {
-    if (!showFunctionalities && s >= 5) return s + 1;
+    if (!showFunctionalities && s >= 6) return s + 1;
     return s;
   };
 
@@ -90,8 +91,9 @@ export default function ContactForm({ onSuccess, onError }: ContactFormProps) {
       case 1: return !!formData.projectType;
       case 2: return !!formData.companySize;
       case 3: return !!formData.budget;
-      case 4: return categories.length > 0;
-      case 5: return true; // functionalities are optional
+      case 4: return !!formData.timeline;
+      case 5: return categories.length > 0;
+      case 6: return true; // functionalities are optional
       default: return true;
     }
   };
@@ -243,8 +245,46 @@ export default function ContactForm({ onSuccess, onError }: ContactFormProps) {
             </motion.div>
           )}
 
-          {/* Step 4: Product Categories */}
+          {/* Step 4: Timeline */}
           {effectiveStep === 4 && (
+            <motion.div
+              key="step-4"
+              custom={direction}
+              variants={stepVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            >
+              <h3 className="text-lg font-black text-foreground mb-1">
+                {label('timelineTitle', 'When do you need the project ready?')}
+              </h3>
+              <p className="text-sm text-foreground/50 mb-6">
+                {label('timelineSubtitle', 'Select one option.')}
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {TIMELINES.map((tl) => (
+                  <motion.button
+                    key={tl}
+                    type="button"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => handleChange('timeline', tl)}
+                    className={`px-5 py-2.5 rounded-full border text-sm font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
+                      formData.timeline === tl
+                        ? 'border-primary text-primary bg-primary/10'
+                        : 'border-foreground/20 text-foreground/70 hover:border-primary/50 hover:text-primary'
+                    }`}
+                  >
+                    {label(`timeline_${tl}`, tl)}
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+          {/* Step 5: Product Categories */}
+          {effectiveStep === 5 && (
             <motion.div
               key="step-4"
               custom={direction}
@@ -290,10 +330,10 @@ export default function ContactForm({ onSuccess, onError }: ContactFormProps) {
             </motion.div>
           )}
 
-          {/* Step 5: Functionalities (conditional) */}
-          {effectiveStep === 5 && showFunctionalities && (
+          {/* Step 6: Functionalities (conditional) */}
+          {effectiveStep === 6 && showFunctionalities && (
             <motion.div
-              key="step-5"
+              key="step-6"
               custom={direction}
               variants={stepVariants}
               initial="enter"
@@ -331,10 +371,10 @@ export default function ContactForm({ onSuccess, onError }: ContactFormProps) {
             </motion.div>
           )}
 
-          {/* Step 6: Contact Details + Message + Files */}
-          {effectiveStep === 6 && (
+          {/* Step 7: Contact Details + Message + Files */}
+          {effectiveStep === 7 && (
             <motion.div
-              key="step-6"
+              key="step-7"
               custom={direction}
               variants={stepVariants}
               initial="enter"
@@ -518,7 +558,7 @@ export default function ContactForm({ onSuccess, onError }: ContactFormProps) {
           )}
 
           {/* Next or Submit */}
-          {effectiveStep < 6 ? (
+          {effectiveStep < 7 ? (
             <Button
               type="button"
               variant="primary"

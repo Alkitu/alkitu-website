@@ -1887,6 +1887,13 @@
       "budget_12k_15k": "12.000 - 15.000 €",
       "budget_15k_20k": "15.000 - 20.000 €",
       "budget_over_20k": "+20.000 €",
+      "timelineTitle": "¿En cuanto tiempo necesitas el proyecto?",
+      "timelineSubtitle": "Selecciona una opcion.",
+      "timeline_1_week": "1 Semana",
+      "timeline_1_month": "1 Mes",
+      "timeline_2_months": "2 Meses",
+      "timeline_3_months": "3 Meses",
+      "timeline_flexible": "Sin prisa, lo que se requiera",
       "categoriesTitle": "¿Cómo categorizarías tu producto?",
       "categoriesSubtitle": "Selecciona hasta tres opciones.",
       "category_saas": "SaaS",
@@ -2640,6 +2647,191 @@
           ]
         }
       }
+    }
+  },
+  "landingWebDesign": {
+    "meta": {
+      "title": "Diseño Web Profesional desde 500 € — Entrega en 20 días | Alkitu",
+      "description": "Webs a medida desde 500 € hasta 1.500 €. Hosting y dominio incluidos, 3 revisiones, entrega en 20 días hábiles. Más de 100 webs entregadas y 10 años de experiencia."
+    },
+    "hero": {
+      "eyebrow": "Diseño web profesional para España",
+      "title": "Tu web profesional, lista en 20 días.",
+      "highlight": "Desde 500 €.",
+      "subtitle": "Diseñamos y desarrollamos webs a medida para autónomos, pymes y proyectos que quieren transmitir profesionalidad sin pagar de más. Hosting, dominio y soporte incluidos.",
+      "priceFrom": "Desde",
+      "priceLow": "500 €",
+      "priceTo": "hasta",
+      "priceHigh": "1.500 €",
+      "cta": "Pedir presupuesto gratis",
+      "ctaSecondary": "Ver lo que incluye",
+      "trustBadges": [
+        { "value": "+100", "label": "webs entregadas" },
+        { "value": "10 años", "label": "de experiencia" },
+        { "value": "20 días", "label": "de entrega" }
+      ]
+    },
+    "problem": {
+      "title": "El 75 % de tus clientes te juzga por tu web antes de hablar contigo.",
+      "description": "Si tu web parece de hace diez años, no carga rápido o no se ve bien en el móvil, te están descartando sin que te enteres. Y mientras, tu competencia se queda con el cliente."
+    },
+    "whatsIncluded": {
+      "title": "Lo que está incluido",
+      "subtitle": "Sin sorpresas, sin letra pequeña.",
+      "items": [
+        {
+          "title": "De 1 a 5 páginas a medida",
+          "description": "Desde una one-page para presentar tu negocio hasta una web completa con 5 secciones. Lo decidimos contigo según tu objetivo, no por llenar páginas."
+        },
+        {
+          "title": "Diseño 100 % personalizado",
+          "description": "Nada de plantillas genéricas. Tu web, con tu identidad y pensada para que tu cliente convierta."
+        },
+        {
+          "title": "Hosting y dominio incluidos",
+          "description": "El primer año está cubierto. Te ayudamos con la configuración técnica para que no te preocupes de nada."
+        },
+        {
+          "title": "3 rondas de revisiones",
+          "description": "Tres oportunidades para ajustar lo que necesites antes de subir tu web a producción."
+        },
+        {
+          "title": "Optimizada para móvil y SEO básico",
+          "description": "Carga rápida, responsive y con la base SEO técnica que Google exige hoy."
+        },
+        {
+          "title": "Mantenimiento opcional desde 100 €/año",
+          "description": "Si quieres dormir tranquilo: actualizaciones, copias de seguridad y soporte por solo 100 € al año."
+        }
+      ]
+    },
+    "whyAlkitu": {
+      "title": "Por qué elegir Alkitu",
+      "items": [
+        {
+          "title": "10 años haciendo webs que venden",
+          "description": "No somos freelancers improvisando. Llevamos una década construyendo webs que cumplen objetivos reales de negocio."
+        },
+        {
+          "title": "Más de 100 proyectos entregados",
+          "description": "Restaurantes, clínicas, e-commerce, despachos profesionales… sabemos lo que funciona en cada sector."
+        },
+        {
+          "title": "Google Partner certificado",
+          "description": "Trabajamos con los estándares oficiales de Google, lo que garantiza una web compatible con sus criterios de calidad."
+        },
+        {
+          "title": "Trato cercano, plazos cumplidos",
+          "description": "Hablas con la persona que diseña tu web, no con un call-center. Entrega en 20 días hábiles, sin excusas."
+        }
+      ]
+    },
+    "howItWorks": {
+      "title": "Cómo trabajamos",
+      "subtitle": "Un proceso simple, claro y sin sorpresas.",
+      "steps": [
+        {
+          "number": "01",
+          "title": "Briefing",
+          "description": "Hablamos contigo 30 minutos: tu negocio, tu cliente, tus objetivos. Sin compromiso."
+        },
+        {
+          "number": "02",
+          "title": "Diseño y mockup",
+          "description": "Te presentamos un diseño visual en 5 días hábiles. Si no te gusta, lo iteramos hasta que sí."
+        },
+        {
+          "number": "03",
+          "title": "Desarrollo",
+          "description": "Construimos tu web con código limpio, optimizada para móvil y para Google."
+        },
+        {
+          "number": "04",
+          "title": "Entrega y formación",
+          "description": "Subimos tu web, te enseñamos a actualizarla y te entregamos credenciales en 20 días hábiles."
+        }
+      ]
+    },
+    "portfolio": {
+      "title": "Algunos de nuestros trabajos",
+      "subtitle": "Más de 100 proyectos en sectores como hostelería, salud, e-commerce, servicios profesionales y formación."
+    },
+    "guarantee": {
+      "title": "Garantías que te protegen",
+      "items": [
+        {
+          "title": "3 rondas de revisiones",
+          "description": "Tres oportunidades de ajustar el diseño hasta que esté como tú quieres."
+        },
+        {
+          "title": "Plazo cerrado: 20 días hábiles",
+          "description": "Si nos retrasamos por nuestra parte, asumimos el coste."
+        },
+        {
+          "title": "Pago seguro y por fases",
+          "description": "Pagas un anticipo y el resto al recibir el diseño aprobado. Sin riesgo."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "items": [
+        {
+          "question": "¿Por qué tan barato? ¿Dónde está el truco?",
+          "answer": "No hay truco. El rango de 500 € a 1.500 € corresponde a webs de 1 a 5 páginas con un alcance acotado. No incluye e-commerce avanzado, áreas privadas o desarrollos a medida — para esos casos tenemos otros servicios. Lo que cobramos cubre nuestro tiempo, no infla el presupuesto con cosas que no necesitas."
+        },
+        {
+          "question": "¿Qué pasa si necesito más de 5 páginas?",
+          "answer": "No hay problema, lo presupuestamos aparte. Pero antes de añadir páginas te ayudamos a decidir si realmente las necesitas: muchas veces 3 páginas bien hechas convierten mejor que 10 páginas mediocres."
+        },
+        {
+          "question": "¿Incluye el copy (los textos)?",
+          "answer": "Te asesoramos con la estructura y los textos clave, pero el contenido final lo aportas tú o te lo redactamos como servicio adicional. Lo decidimos en el briefing."
+        },
+        {
+          "question": "¿Y si no me gusta el primer diseño?",
+          "answer": "Tienes 3 rondas de revisiones incluidas. Iteramos contigo hasta que el resultado encaje con tu marca y tu estrategia."
+        },
+        {
+          "question": "¿Qué pasa después del primer año con el hosting?",
+          "answer": "Puedes contratar nuestro mantenimiento por 100 €/año (incluye hosting, dominio, copias de seguridad y soporte) o llevarte la web a tu propio proveedor. Tú decides."
+        },
+        {
+          "question": "¿Sois una agencia real?",
+          "answer": "Sí. Somos Alkitu, agencia digital con sede en Valencia, +100 proyectos entregados y 10 años de experiencia. Estamos certificados como Google Partner."
+        }
+      ]
+    },
+    "finalCta": {
+      "eyebrow": "Cuéntanos sobre tu proyecto",
+      "title": "Pide tu presupuesto sin compromiso.",
+      "subtitle": "Te respondemos en menos de 24 horas con un plan claro: qué se puede hacer en tu rango y cuánto costaría exactamente."
+    },
+    "form": {
+      "name": "Nombre",
+      "namePlaceholder": "Tu nombre",
+      "email": "Email",
+      "emailPlaceholder": "tunombre@empresa.com",
+      "projectType": "¿Qué tipo de web necesitas?",
+      "projectOnePage": "One-page (1 página)",
+      "projectSmall": "Web básica (2-3 páginas)",
+      "projectFull": "Web completa (4-5 páginas)",
+      "projectNotSure": "No estoy seguro / Necesito asesoramiento",
+      "currentUrl": "¿Tienes web actual? (opcional)",
+      "currentUrlPlaceholder": "https://tuweb.com",
+      "message": "Cuéntanos brevemente sobre tu proyecto",
+      "messagePlaceholder": "A qué te dedicas, qué objetivo tienes con la web, plazo deseado...",
+      "privacyAccept": "He leído y acepto la",
+      "privacyLink": "política de privacidad",
+      "submit": "Enviar solicitud",
+      "submitting": "Enviando...",
+      "successTitle": "¡Recibido!",
+      "successText": "Te responderemos en menos de 24 horas con un plan a medida.",
+      "errorText": "Ha ocurrido un error. Por favor, vuelve a intentarlo o escríbenos a info@alkitu.com.",
+      "errorRequired": "Este campo es obligatorio",
+      "errorEmail": "Introduce un email válido",
+      "errorMessage": "El mensaje debe tener al menos 10 caracteres",
+      "errorPolicy": "Debes aceptar la política de privacidad"
     }
   }
 }

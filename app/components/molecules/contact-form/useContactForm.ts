@@ -10,6 +10,7 @@ const INITIAL_FORM: ContactFormData = {
   projectType: '',
   companySize: '',
   budget: '',
+  timeline: '',
   productCategories: [],
   functionalities: [],
   message: '',
@@ -102,6 +103,7 @@ export function useContactForm() {
       body.append('projectType', formData.projectType);
       body.append('companySize', formData.companySize);
       body.append('budget', formData.budget);
+      body.append('timeline', formData.timeline);
       body.append('productCategories', JSON.stringify(formData.productCategories));
       body.append('functionalities', JSON.stringify(formData.functionalities));
       body.append('message', formData.message);

@@ -42,10 +42,23 @@ interface ContactNotificationProps {
   projectType?: string;
   companySize?: string;
   budget?: string;
+  timeline?: string;
   productCategories?: string[];
   functionalities?: string[];
   formUrl?: string;
+  source?: string;
+  currentUrl?: string;
   session?: SessionInfo;
+}
+
+function formatSourceLabel(source?: string): string | undefined {
+  if (!source) return undefined;
+  if (source === 'landing-web-design') return '🚀 Landing — Diseño Web (Ads)';
+  if (source.startsWith('landing-')) {
+    const rest = source.replace('landing-', '').replace(/-/g, ' ');
+    return `🚀 Landing — ${rest}`;
+  }
+  return source;
 }
 
 function formatDuration(seconds: number): string {
@@ -121,16 +134,20 @@ export default function ContactNotification({
   projectType,
   companySize,
   budget,
+  timeline,
   productCategories,
   functionalities,
   formUrl,
+  source,
+  currentUrl,
   session,
 }: ContactNotificationProps) {
   const previewText = `Nuevo mensaje de ${name} — ${subject}`;
-  const hasProjectDetails = projectType || companySize || budget;
+  const hasProjectDetails = projectType || companySize || budget || timeline || currentUrl;
   const hasCategories = productCategories && productCategories.length > 0;
   const hasFunctionalities = functionalities && functionalities.length > 0;
   const hasSession = session && (session.country || session.pageCount || session.ipAddress);
+  const sourceLabel = formatSourceLabel(source);
 
   const location = [session?.city, session?.region, session?.country].filter(Boolean).join(', ');
 
@@ -148,6 +165,9 @@ export default function ContactNotification({
             <Text style={headerEmail}>
               <Link href={`mailto:${email}`} style={headerEmailLink}>{email}</Link>
             </Text>
+            {sourceLabel && (
+              <Text style={sourceBadge}>{sourceLabel}</Text>
+            )}
           </Section>
 
           {/* ── Quick Summary Bar ── */}
@@ -199,6 +219,22 @@ export default function ContactNotification({
                       <td style={dtCell}>Presupuesto</td>
                       <td style={ddCell}>
                         <span style={budgetBadge}>{budget}</span>
+                      </td>
+                    </tr>
+                  )}
+                  {timeline && (
+                    <tr>
+                      <td style={dtCell}>Plazo</td>
+                      <td style={ddCell}>{timeline}</td>
+                    </tr>
+                  )}
+                  {currentUrl && (
+                    <tr>
+                      <td style={dtCell}>Web actual</td>
+                      <td style={ddCell}>
+                        <Link href={currentUrl.startsWith('http') ? currentUrl : `https://${currentUrl}`} style={originLink}>
+                          {currentUrl}
+                        </Link>
                       </td>
                     </tr>
                   )}
@@ -379,6 +415,18 @@ const headerEmail = {
 const headerEmailLink = {
   color: 'rgba(255,255,255,0.9)',
   textDecoration: 'none',
+};
+
+const sourceBadge = {
+  display: 'inline-block',
+  marginTop: '14px',
+  padding: '6px 14px',
+  backgroundColor: 'rgba(0,0,0,0.18)',
+  color: '#ffffff',
+  borderRadius: '999px',
+  fontSize: '12px',
+  fontWeight: '700',
+  letterSpacing: '0.5px',
 };
 
 const summaryBar = {

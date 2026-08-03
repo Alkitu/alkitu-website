@@ -15,15 +15,15 @@ export const BrandingIcon = ({ hover, className }: { hover: boolean; className?:
       strokeLinejoin="round"
       className={className}
     >
-      {/* Outer black 4-point magic star */}
+      {/* Outer white 4-point magic star */}
       <motion.path
         d="M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0 Z"
-        stroke="black"
-        fill={hover ? "transparent" : "black"}
+        stroke="white"
+        fill={hover ? "transparent" : "white"}
         animate={{
           rotate: hover ? 180 : 0,
           scale: hover ? 1.05 : 1,
-          fill: hover ? "transparent" : "black"
+          fill: hover ? "transparent" : "white"
         }}
         transition={{ duration: 2, repeat: hover ? Infinity : 0, ease: "easeInOut" }}
         style={{ transformOrigin: "12px 12px" }}
@@ -55,12 +55,12 @@ export const BrandingIcon = ({ hover, className }: { hover: boolean; className?:
         animate={hover ? { opacity: [0, 1, 0], scale: [0, 1.5, 0], y: 3 } : { opacity: 0, scale: 0 }}
         transition={{ duration: 1.5, repeat: hover ? Infinity : 0, delay: 0.8 }}
       />
-      <motion.circle cx="22" cy="4" r="1.5" fill="black" stroke="none"
+      <motion.circle cx="22" cy="4" r="1.5" fill="white" stroke="none"
         initial={{ opacity: 0, scale: 0 }}
         animate={hover ? { opacity: [0, 1, 0], scale: [0, 1.5, 0], x: 3 } : { opacity: 0, scale: 0 }}
         transition={{ duration: 1.5, repeat: hover ? Infinity : 0, delay: 0.5 }}
       />
-      <motion.circle cx="2" cy="22" r="1.5" fill="black" stroke="none"
+      <motion.circle cx="2" cy="22" r="1.5" fill="white" stroke="none"
         initial={{ opacity: 0, scale: 0 }}
         animate={hover ? { opacity: [0, 1, 0], scale: [0, 1.5, 0], x: -3 } : { opacity: 0, scale: 0 }}
         transition={{ duration: 1.5, repeat: hover ? Infinity : 0, delay: 1.1 }}

@@ -15,28 +15,28 @@ export const MarketingIcon = ({ hover, className }: { hover: boolean; className?
       strokeLinejoin="round"
       className={className}
     >
-      <motion.circle 
-        cx="12" 
-        cy="12" 
-        r="10" 
-        stroke="black"
+      <motion.circle
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="white"
         animate={{
           scale: hover ? 1.05 : 1,
         }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
       />
-      <motion.circle 
-        cx="12" 
-        cy="12" 
-        r="6" 
-        stroke="black"
+      <motion.circle
+        cx="12"
+        cy="12"
+        r="6"
+        stroke="white"
       />
-      <motion.circle 
-        cx="12" 
-        cy="12" 
-        r="2" 
-        fill={hover ? "#2FB24B" : "black"}
-        stroke={hover ? "#2FB24B" : "black"}
+      <motion.circle
+        cx="12"
+        cy="12"
+        r="2"
+        fill={hover ? "#2FB24B" : "white"}
+        stroke={hover ? "#2FB24B" : "white"}
         animate={{
           scale: hover ? [1, 1.5, 1] : 1,
         }}

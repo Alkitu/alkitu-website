@@ -139,6 +139,14 @@ export async function POST(request: NextRequest) {
       over_20k: formData.locale === 'es' ? '+20.000 €' : '+$20,000',
     };
 
+    const timelineLabels: Record<string, string> = {
+      '1_week': formData.locale === 'es' ? '1 Semana' : '1 Week',
+      '1_month': formData.locale === 'es' ? '1 Mes' : '1 Month',
+      '2_months': formData.locale === 'es' ? '2 Meses' : '2 Months',
+      '3_months': formData.locale === 'es' ? '3 Meses' : '3 Months',
+      'flexible': formData.locale === 'es' ? 'Sin prisa, lo que se requiera' : 'No rush, whatever it takes',
+    };
+
     const categoryLabels: Record<string, string> = {
       saas: 'SaaS',
       on_demand: 'On-demand',
@@ -173,19 +181,26 @@ export async function POST(request: NextRequest) {
 
     const readableCompanySize = formData.companySize ? toLabel(formData.companySize, companySizeLabels) : '';
     const readableBudget = formData.budget ? toLabel(formData.budget, budgetLabels) : '';
+    const readableTimeline = formData.timeline ? toLabel(formData.timeline, timelineLabels) : '';
     const readableCategories = productCategories.map((c) => toLabel(c, categoryLabels));
     const readableFunctionalities = functionalities.map((f) => toLabel(f, functionalityLabels));
 
-    // Auto-generate subject
-    const subject = `Solicitud Alkitu: ${formData.name}${formData.projectType ? `, ${formData.projectType}` : ''}`;
+    // Auto-generate subject (prefix with [LANDING] when source is a paid landing)
+    const sourcePrefix = formData.source?.startsWith('landing-')
+      ? `[LANDING ${formData.source.replace('landing-', '').toUpperCase()}] `
+      : '';
+    const subject = `${sourcePrefix}Solicitud Alkitu: ${formData.name}${formData.projectType ? `, ${formData.projectType}` : ''}`;
 
     // Build form_data JSONB object with all rich fields (store raw values)
     const formDataJsonb = {
       projectType: formData.projectType || null,
       companySize: formData.companySize || null,
       budget: formData.budget || null,
+      timeline: formData.timeline || null,
       productCategories,
       functionalities,
+      source: formData.source || null,
+      currentUrl: formData.currentUrl || null,
     };
 
     // Create Supabase client for database operations (using analytics client for anon role)
@@ -338,9 +353,12 @@ export async function POST(request: NextRequest) {
           projectType: formData.projectType,
           companySize: readableCompanySize,
           budget: readableBudget,
+          timeline: readableTimeline,
           productCategories: readableCategories,
           functionalities: readableFunctionalities,
           formUrl,
+          source: formData.source,
+          currentUrl: formData.currentUrl,
           session: sessionInfo,
         })
       );
