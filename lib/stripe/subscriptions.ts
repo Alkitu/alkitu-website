@@ -6,7 +6,7 @@
  */
 
 import type Stripe from 'stripe';
-import { createClient } from '@/lib/supabase/server';
+import { createServiceClient } from '@/lib/supabase/service';
 
 /**
  * Handle subscription created event.
@@ -14,7 +14,7 @@ import { createClient } from '@/lib/supabase/server';
 export async function handleSubscriptionCreated(
   subscription: Stripe.Subscription
 ): Promise<void> {
-  const supabase = await createClient();
+  const supabase = createServiceClient();
 
   const customerId =
     typeof subscription.customer === 'string'
@@ -54,7 +54,7 @@ export async function handleSubscriptionCreated(
 export async function handleSubscriptionUpdated(
   subscription: Stripe.Subscription
 ): Promise<void> {
-  const supabase = await createClient();
+  const supabase = createServiceClient();
 
   await supabase
     .from('stripe_subscriptions')
@@ -80,7 +80,7 @@ export async function handleSubscriptionUpdated(
 export async function handleSubscriptionDeleted(
   subscription: Stripe.Subscription
 ): Promise<void> {
-  const supabase = await createClient();
+  const supabase = createServiceClient();
 
   await supabase
     .from('stripe_subscriptions')

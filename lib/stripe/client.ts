@@ -10,7 +10,7 @@
  */
 
 import Stripe from 'stripe';
-import { createClient } from '@/lib/supabase/server';
+import { createServiceClient } from '@/lib/supabase/service';
 
 let stripeInstance: Stripe | null = null;
 let stripeInstanceKey: string | null = null;
@@ -46,7 +46,7 @@ export function getStripe(key?: string): Stripe {
  */
 export async function getStripeKey(): Promise<string | null> {
   try {
-    const supabase = await createClient();
+    const supabase = createServiceClient();
     const { data } = await supabase
       .from('billing_settings')
       .select('stripe_secret_key')
@@ -69,7 +69,7 @@ export async function getStripeKey(): Promise<string | null> {
  */
 export async function getWebhookSecret(): Promise<string | null> {
   try {
-    const supabase = await createClient();
+    const supabase = createServiceClient();
     const { data } = await supabase
       .from('billing_settings')
       .select('stripe_webhook_secret')

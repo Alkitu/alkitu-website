@@ -9,7 +9,7 @@
 
 import type Stripe from 'stripe';
 import { getStripeWithDbKey, fromCents } from './client';
-import { createClient } from '@/lib/supabase/server';
+import { createServiceClient } from '@/lib/supabase/service';
 import type { InvoiceType } from '@/lib/types/billing';
 
 /**
@@ -45,7 +45,7 @@ export function determineInvoiceType(totalCents: number): InvoiceType {
 export async function resolveOrCreateClient(
   stripeCustomer: Stripe.Customer
 ): Promise<string> {
-  const supabase = await createClient();
+  const supabase = createServiceClient();
 
   // Check if we already have a client with this stripe_customer_id
   const { data: existing } = await supabase
@@ -104,7 +104,7 @@ export async function resolveOrCreateClient(
  * Get the next invoice number and increment it atomically.
  */
 async function getNextInvoiceNumber(): Promise<{ series: string; number: number }> {
-  const supabase = await createClient();
+  const supabase = createServiceClient();
 
   const { data: settings, error } = await supabase
     .from('billing_settings')
@@ -136,7 +136,7 @@ export async function createInvoiceFromCheckoutSession(
   session: Stripe.Checkout.Session
 ): Promise<string> {
   const stripe = await getStripeWithDbKey();
-  const supabase = await createClient();
+  const supabase = createServiceClient();
 
   // Expand line items from the session
   const lineItems = await stripe.checkout.sessions.listLineItems(session.id, {
@@ -227,7 +227,7 @@ export async function createInvoiceFromStripeInvoice(
   stripeInvoice: Stripe.Invoice
 ): Promise<string> {
   const stripe = await getStripeWithDbKey();
-  const supabase = await createClient();
+  const supabase = createServiceClient();
 
   // Resolve client
   let clientId: string | null = null;
@@ -318,7 +318,7 @@ export async function createInvoiceFromStripeInvoice(
  * Reuses the existing issue endpoint logic.
  */
 export async function autoIssueToVerifacti(invoiceId: string): Promise<void> {
-  const supabase = await createClient();
+  const supabase = createServiceClient();
 
   // Check settings
   const { data: settings } = await supabase

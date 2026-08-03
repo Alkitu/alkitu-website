@@ -10,7 +10,7 @@
 
 import type Stripe from 'stripe';
 import { getStripe, getWebhookSecret } from './client';
-import { createClient } from '@/lib/supabase/server';
+import { createServiceClient } from '@/lib/supabase/service';
 
 /**
  * Verify Stripe webhook signature and parse event.
@@ -34,7 +34,7 @@ export async function verifyAndParseEvent(
  * Check if an event has already been processed (idempotency).
  */
 export async function isEventProcessed(stripeEventId: string): Promise<boolean> {
-  const supabase = await createClient();
+  const supabase = createServiceClient();
   const { data } = await supabase
     .from('stripe_events')
     .select('id, processed')
@@ -48,7 +48,7 @@ export async function isEventProcessed(stripeEventId: string): Promise<boolean> 
  * Record a new Stripe event for idempotency tracking.
  */
 export async function recordEvent(event: Stripe.Event): Promise<void> {
-  const supabase = await createClient();
+  const supabase = createServiceClient();
   await supabase.from('stripe_events').upsert(
     {
       stripe_event_id: event.id,
@@ -67,7 +67,7 @@ export async function markEventProcessed(
   stripeEventId: string,
   result: { success: boolean; error?: string; data?: Record<string, unknown> }
 ): Promise<void> {
-  const supabase = await createClient();
+  const supabase = createServiceClient();
   await supabase
     .from('stripe_events')
     .update({

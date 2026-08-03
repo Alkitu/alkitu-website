@@ -7,7 +7,7 @@
  */
 
 import type Stripe from 'stripe';
-import { createClient } from '@/lib/supabase/server';
+import { createServiceClient } from '@/lib/supabase/service';
 import { fromCents } from './client';
 import type { BillingInvoiceLine } from '@/lib/types/billing';
 
@@ -17,7 +17,7 @@ import type { BillingInvoiceLine } from '@/lib/types/billing';
  * a rectificativa R1 with negative amounts.
  */
 export async function handleRefund(charge: Stripe.Charge): Promise<string | null> {
-  const supabase = await createClient();
+  const supabase = createServiceClient();
 
   if (!charge.payment_intent) {
     console.error('Refund: charge has no payment_intent');
