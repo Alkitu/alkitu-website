@@ -11,6 +11,7 @@
  */
 
 import { getAllPosts } from '@/lib/blog/queries';
+import { getTerms } from '@/lib/blog/wiki';
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
@@ -23,7 +24,7 @@ function trunc(text: string, max: number): string {
 }
 
 export async function GET() {
-  const posts = await getAllPosts();
+  const [posts, terms] = await Promise.all([getAllPosts(), getTerms()]);
 
   const es = posts.filter((p) => p.locale === 'es');
   const en = posts.filter((p) => p.locale === 'en');
@@ -52,6 +53,7 @@ export async function GET() {
 - [Sobre nosotros](${BASE}/es/about): Quiénes somos y cómo trabajamos.
 - [Proyectos](${BASE}/es/projects): Casos de trabajo realizados.
 - [Blog](${BASE}/es/blog): Artículos sobre marketing, diseño y desarrollo.
+- [Glosario](${BASE}/es/wiki): Definiciones canónicas de los conceptos que usamos.
 - [Contacto](${BASE}/es/contact): Formulario de contacto.
 
 ## Temáticas del blog
@@ -59,7 +61,17 @@ export async function GET() {
 ${categories.map((c) => `- ${c}`).join('\n')}
 
 ${section('Blog (español)', es)}
-${section('Blog (English)', en)}`;
+${section('Blog (English)', en)}
+${
+  terms.length
+    ? `## Glosario\n\n${terms
+        .map(
+          (t) =>
+            `- [${t.titulo}](${BASE}/es/wiki/${t.slug}): ${trunc(t.geoRespuestaCorta ?? t.definicion, 140)}`
+        )
+        .join('\n')}\n`
+    : ''
+}`;
 
   return new Response(body.trim() + '\n', {
     headers: {

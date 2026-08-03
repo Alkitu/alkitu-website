@@ -4,6 +4,7 @@ import {
   generateProjectSitemapEntries,
 } from '@/lib/sitemap-utils';
 import { getAllPosts } from '@/lib/blog/queries';
+import { getTermSlugs } from '@/lib/blog/wiki';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://alkitu.com';
@@ -88,11 +89,29 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }))
   );
 
+  // Glossary: index + one page per published term, in both locales.
+  const termSlugs = await getTermSlugs();
+  const wikiRoutes = locales.flatMap((locale) => [
+    {
+      url: `${baseUrl}/${locale}/wiki`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    },
+    ...termSlugs.map((slug) => ({
+      url: `${baseUrl}/${locale}/wiki/${slug}`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    })),
+  ]);
+
   return [
     rootRoute,
     ...localeRoutes,
     ...projectRoutes,
     ...blogCategoryRoutes,
     ...blogPostRoutes,
+    ...wikiRoutes,
   ];
 }

@@ -1,10 +1,17 @@
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { MediaCarousel } from '@/app/components/organisms/carousel/media-carousel';
-import { mdxOptions } from '@/lib/blog/mdx';
+import { buildMdxOptions } from '@/lib/blog/mdx';
+import { getTerms } from '@/lib/blog/wiki';
 
 interface MDXContentProps {
   /** Raw MDX source (from `blog_posts.body_mdx`). */
   source: string;
+  /** Locale used for glossary interlinking. */
+  lang?: 'es' | 'en';
+  /** Slug of the entity being rendered, so it never links to itself. */
+  selfSlug?: string;
+  /** Set to false to render without glossary auto-linking. */
+  interlink?: boolean;
 }
 
 /**
@@ -15,10 +22,21 @@ interface MDXContentProps {
  * Client components passed in `components` (MediaCarousel) still work — they
  * become client boundaries inside the server-rendered tree.
  *
+ * When the glossary has published terms, the first mention of each is linked to
+ * `/{lang}/wiki/<slug>`; with an empty glossary the plugin is a no-op.
+ *
  * Components available in MDX:
  * - MediaCarousel: Carousel for images and YouTube videos
  */
-export function MDXContent({ source }: MDXContentProps) {
+export async function MDXContent({
+  source,
+  lang = 'es',
+  selfSlug,
+  interlink = true,
+}: MDXContentProps) {
+  const terms = interlink ? await getTerms() : [];
+  const options = buildMdxOptions({ terms, lang, selfSlug });
+
   const components = {
     MediaCarousel,
   };
@@ -43,7 +61,7 @@ export function MDXContent({ source }: MDXContentProps) {
       prose-pre:bg-muted prose-pre:p-4 prose-pre:rounded-lg prose-pre:overflow-x-auto
       prose-img:rounded-lg prose-img:shadow-md
     ">
-      <MDXRemote source={source} components={components} options={mdxOptions} />
+      <MDXRemote source={source} components={components} options={options} />
     </div>
   );
 }

@@ -174,9 +174,18 @@
         "part2": "brands and growth",
         "part3": "strategies.",
         "rotatingWords": [
-          ["digital", "products"],
-          ["memorable", "brands"],
-          ["digital", "presence"]
+          [
+            "digital",
+            "products"
+          ],
+          [
+            "memorable",
+            "brands"
+          ],
+          [
+            "digital",
+            "presence"
+          ]
         ]
       },
       "subtitle": "Web apps, mobile applications, professional branding and digital marketing",
@@ -254,55 +263,243 @@
       "textScroller": "Tools",
       "velocityScroller": 0.2,
       "firstLine": [
-        { "name": "Figma", "src": "/icons/skills/Figma.svg", "order": 1 },
-        { "name": "Illustrator", "src": "/icons/skills/Illustrator.svg", "order": 2 },
-        { "name": "After Effects", "src": "/icons/skills/AfterEffects.svg", "order": 3 },
-        { "name": "Affinity", "src": "/icons/skills/Affinity.svg", "order": 4 },
-        { "name": "Storybook", "src": "/icons/skills/Storybook.svg", "order": 5 },
-        { "name": "React", "src": "/icons/skills/ReactJS.svg", "order": 6 },
-        { "name": "TypeScript", "src": "/icons/skills/Typescript.svg", "order": 7 },
-        { "name": "JavaScript", "src": "/icons/skills/JavaScript.svg", "order": 8 },
-        { "name": "Next.js", "src": "/icons/skills/NextJS.svg", "order": 9 },
-        { "name": "Tailwind CSS", "src": "/icons/skills/Tailwind.svg", "order": 10 },
-        { "name": "Framer Motion", "src": "/icons/skills/FramerMotion.svg", "order": 11 },
-        { "name": "Vite", "src": "/icons/skills/Vite.svg", "order": 12 },
-        { "name": "GSAP", "src": "/icons/skills/GSAP.svg", "order": 13 },
-        { "name": "Three.js", "src": "/icons/skills/ThreeJS.svg", "order": 14 },
-        { "name": "Radix UI", "src": "/icons/skills/RadixUI.svg", "order": 15 },
-        { "name": "Lottie", "src": "/icons/skills/Lottie.svg", "order": 16 },
-        { "name": "Remotion", "src": "/icons/skills/Remotion.svg", "order": 17 },
-        { "name": "MapLibre GL", "src": "/icons/skills/MapLibreGL.svg", "order": 18 },
-        { "name": "HTML", "src": "/icons/skills/HTML.svg", "order": 19 },
-        { "name": "CSS", "src": "/icons/skills/CSS.svg", "order": 20 },
-        { "name": "Swift", "src": "/icons/skills/Swift.svg", "order": 21 },
-        { "name": "Expo", "src": "/icons/skills/Expo.svg", "order": 22 },
-        { "name": "Claude Code", "src": "/icons/skills/ClaudeCode.svg", "order": 23 },
-        { "name": "Gemini", "src": "/icons/skills/Gemini.svg", "order": 24 }
+        {
+          "name": "Figma",
+          "src": "/icons/skills/Figma.svg",
+          "order": 1
+        },
+        {
+          "name": "Illustrator",
+          "src": "/icons/skills/Illustrator.svg",
+          "order": 2
+        },
+        {
+          "name": "After Effects",
+          "src": "/icons/skills/AfterEffects.svg",
+          "order": 3
+        },
+        {
+          "name": "Affinity",
+          "src": "/icons/skills/Affinity.svg",
+          "order": 4
+        },
+        {
+          "name": "Storybook",
+          "src": "/icons/skills/Storybook.svg",
+          "order": 5
+        },
+        {
+          "name": "React",
+          "src": "/icons/skills/ReactJS.svg",
+          "order": 6
+        },
+        {
+          "name": "TypeScript",
+          "src": "/icons/skills/Typescript.svg",
+          "order": 7
+        },
+        {
+          "name": "JavaScript",
+          "src": "/icons/skills/JavaScript.svg",
+          "order": 8
+        },
+        {
+          "name": "Next.js",
+          "src": "/icons/skills/NextJS.svg",
+          "order": 9
+        },
+        {
+          "name": "Tailwind CSS",
+          "src": "/icons/skills/Tailwind.svg",
+          "order": 10
+        },
+        {
+          "name": "Framer Motion",
+          "src": "/icons/skills/FramerMotion.svg",
+          "order": 11
+        },
+        {
+          "name": "Vite",
+          "src": "/icons/skills/Vite.svg",
+          "order": 12
+        },
+        {
+          "name": "GSAP",
+          "src": "/icons/skills/GSAP.svg",
+          "order": 13
+        },
+        {
+          "name": "Three.js",
+          "src": "/icons/skills/ThreeJS.svg",
+          "order": 14
+        },
+        {
+          "name": "Radix UI",
+          "src": "/icons/skills/RadixUI.svg",
+          "order": 15
+        },
+        {
+          "name": "Lottie",
+          "src": "/icons/skills/Lottie.svg",
+          "order": 16
+        },
+        {
+          "name": "Remotion",
+          "src": "/icons/skills/Remotion.svg",
+          "order": 17
+        },
+        {
+          "name": "MapLibre GL",
+          "src": "/icons/skills/MapLibreGL.svg",
+          "order": 18
+        },
+        {
+          "name": "HTML",
+          "src": "/icons/skills/HTML.svg",
+          "order": 19
+        },
+        {
+          "name": "CSS",
+          "src": "/icons/skills/CSS.svg",
+          "order": 20
+        },
+        {
+          "name": "Swift",
+          "src": "/icons/skills/Swift.svg",
+          "order": 21
+        },
+        {
+          "name": "Expo",
+          "src": "/icons/skills/Expo.svg",
+          "order": 22
+        },
+        {
+          "name": "Claude Code",
+          "src": "/icons/skills/ClaudeCode.svg",
+          "order": 23
+        },
+        {
+          "name": "Gemini",
+          "src": "/icons/skills/Gemini.svg",
+          "order": 24
+        }
       ],
       "secondLine": [
-        { "name": "Arduino", "src": "/icons/skills/Arduino.svg", "order": 1 },
-        { "name": "WordPress", "src": "/icons/skills/WordPress.svg", "order": 2 },
-        { "name": "Shopify", "src": "/icons/skills/Shopify.svg", "order": 4 },
-        { "name": "Elementor", "src": "/icons/skills/Elementor.svg", "order": 5 },
-        { "name": "Liquid", "src": "/icons/skills/Liquid.svg", "order": 6 },
-        { "name": "WooCommerce", "src": "/icons/skills/WooCommerce.svg", "order": 7 },
-        { "name": "Google Ads", "src": "/icons/skills/GoogleAds.svg", "order": 8 },
-        { "name": "Analytics", "src": "/icons/skills/Analytics.svg", "order": 9 },
-        { "name": "Search Console", "src": "/icons/skills/SearchConsole.svg", "order": 10 },
-        { "name": "Tag Manager", "src": "/icons/skills/TagManager.svg", "order": 11 },
-        { "name": "Calvary", "src": "/icons/skills/Calvary.svg", "order": 12 },
-        { "name": "GitHub", "src": "/icons/skills/GitHub.svg", "order": 13 },
-        { "name": "ESLint", "src": "/icons/skills/ESlint.svg", "order": 14 },
-        { "name": "Vitest", "src": "/icons/skills/Vitest.svg", "order": 15 },
-        { "name": "Playwright", "src": "/icons/skills/Playwright.svg", "order": 16 },
-        { "name": "Chromatic", "src": "/icons/skills/Chromatic.svg", "order": 17 },
-        { "name": "XCTest", "src": "/icons/skills/XCTest.svg", "order": 18 },
-        { "name": "pnpm", "src": "/icons/skills/pnpm.svg", "order": 19 },
-        { "name": "Supabase", "src": "/icons/skills/Supabase.svg", "order": 20 },
-        { "name": "PostgreSQL", "src": "/icons/skills/PostgreSQL.svg", "order": 21 },
-        { "name": "Vercel", "src": "/icons/skills/Vercel.svg", "order": 22 },
-        { "name": "Stripe", "src": "/icons/skills/Stripe.svg", "order": 23 },
-        { "name": "Resend", "src": "/icons/skills/Resend.svg", "order": 24 }
+        {
+          "name": "Arduino",
+          "src": "/icons/skills/Arduino.svg",
+          "order": 1
+        },
+        {
+          "name": "WordPress",
+          "src": "/icons/skills/WordPress.svg",
+          "order": 2
+        },
+        {
+          "name": "Shopify",
+          "src": "/icons/skills/Shopify.svg",
+          "order": 4
+        },
+        {
+          "name": "Elementor",
+          "src": "/icons/skills/Elementor.svg",
+          "order": 5
+        },
+        {
+          "name": "Liquid",
+          "src": "/icons/skills/Liquid.svg",
+          "order": 6
+        },
+        {
+          "name": "WooCommerce",
+          "src": "/icons/skills/WooCommerce.svg",
+          "order": 7
+        },
+        {
+          "name": "Google Ads",
+          "src": "/icons/skills/GoogleAds.svg",
+          "order": 8
+        },
+        {
+          "name": "Analytics",
+          "src": "/icons/skills/Analytics.svg",
+          "order": 9
+        },
+        {
+          "name": "Search Console",
+          "src": "/icons/skills/SearchConsole.svg",
+          "order": 10
+        },
+        {
+          "name": "Tag Manager",
+          "src": "/icons/skills/TagManager.svg",
+          "order": 11
+        },
+        {
+          "name": "Calvary",
+          "src": "/icons/skills/Calvary.svg",
+          "order": 12
+        },
+        {
+          "name": "GitHub",
+          "src": "/icons/skills/GitHub.svg",
+          "order": 13
+        },
+        {
+          "name": "ESLint",
+          "src": "/icons/skills/ESlint.svg",
+          "order": 14
+        },
+        {
+          "name": "Vitest",
+          "src": "/icons/skills/Vitest.svg",
+          "order": 15
+        },
+        {
+          "name": "Playwright",
+          "src": "/icons/skills/Playwright.svg",
+          "order": 16
+        },
+        {
+          "name": "Chromatic",
+          "src": "/icons/skills/Chromatic.svg",
+          "order": 17
+        },
+        {
+          "name": "XCTest",
+          "src": "/icons/skills/XCTest.svg",
+          "order": 18
+        },
+        {
+          "name": "pnpm",
+          "src": "/icons/skills/pnpm.svg",
+          "order": 19
+        },
+        {
+          "name": "Supabase",
+          "src": "/icons/skills/Supabase.svg",
+          "order": 20
+        },
+        {
+          "name": "PostgreSQL",
+          "src": "/icons/skills/PostgreSQL.svg",
+          "order": 21
+        },
+        {
+          "name": "Vercel",
+          "src": "/icons/skills/Vercel.svg",
+          "order": 22
+        },
+        {
+          "name": "Stripe",
+          "src": "/icons/skills/Stripe.svg",
+          "order": 23
+        },
+        {
+          "name": "Resend",
+          "src": "/icons/skills/Resend.svg",
+          "order": 24
+        }
       ]
     },
     "brandsSection": {
@@ -1569,6 +1766,8 @@
     "sidebar": {
       "platform": "Platform",
       "dashboard": "Dashboard",
+      "blog": "Blog",
+      "glossary": "Glossary",
       "projects": "Projects",
       "categories": "Categories",
       "users": "Users",
@@ -2472,9 +2671,18 @@
       "cta": "Get my free quote",
       "ctaSecondary": "See what's included",
       "trustBadges": [
-        { "value": "100+", "label": "websites shipped" },
-        { "value": "10 years", "label": "in business" },
-        { "value": "20 days", "label": "delivery" }
+        {
+          "value": "100+",
+          "label": "websites shipped"
+        },
+        {
+          "value": "10 years",
+          "label": "in business"
+        },
+        {
+          "value": "20 days",
+          "label": "delivery"
+        }
       ]
     },
     "problem": {

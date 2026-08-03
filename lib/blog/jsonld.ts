@@ -81,29 +81,13 @@ export function faqLd(post: BlogPost) {
 }
 
 /**
- * BreadcrumbList schema mirroring the visible breadcrumb trail.
- */
-export function breadcrumbLd(
-  items: Array<{ name: string; path?: string }>
-) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: items.map((item, i) => ({
-      '@type': 'ListItem',
-      position: i + 1,
-      name: item.name,
-      ...(item.path ? { item: `${SITE}${item.path}` } : {}),
-    })),
-  };
-}
-
-/**
  * Every schema a post page should emit, already filtered.
  */
-export function postSchemas(
-  post: BlogPost,
-  breadcrumb: Array<{ name: string; path?: string }>
-) {
-  return [articleLd(post), faqLd(post), breadcrumbLd(breadcrumb)].filter(Boolean);
+/**
+ * No BreadcrumbList here on purpose: the shared `Breadcrumbs` component already
+ * emits one from the trail it renders. Emitting a second one from the page made
+ * every post ship two conflicting BreadcrumbLists.
+ */
+export function postSchemas(post: BlogPost) {
+  return [articleLd(post), faqLd(post)].filter(Boolean);
 }

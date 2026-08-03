@@ -1729,6 +1729,8 @@
     "sidebar": {
       "platform": "Plataforma",
       "dashboard": "Dashboard",
+      "blog": "Blog",
+      "glossary": "Glosario",
       "projects": "Proyectos",
       "categories": "Categorías",
       "users": "Usuarios",
@@ -2677,9 +2679,18 @@
       "cta": "Pedir presupuesto gratis",
       "ctaSecondary": "Ver lo que incluye",
       "trustBadges": [
-        { "value": "+100", "label": "webs entregadas" },
-        { "value": "10 años", "label": "de experiencia" },
-        { "value": "20 días", "label": "de entrega" }
+        {
+          "value": "+100",
+          "label": "webs entregadas"
+        },
+        {
+          "value": "10 años",
+          "label": "de experiencia"
+        },
+        {
+          "value": "20 días",
+          "label": "de entrega"
+        }
       ]
     },
     "problem": {

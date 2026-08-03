@@ -12,6 +12,8 @@ import {
   Mail,
   Megaphone,
   FileText,
+  Newspaper,
+  BookMarked,
 } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { useTranslationContext } from "@/app/context/TranslationContext"
@@ -47,6 +49,20 @@ export function AppSidebar({ user: _user, ...props }: AppSidebarProps) {
       url: "/admin/dashboard",
       icon: LayoutDashboard,
       isActive: pathname.includes("/admin/dashboard"),
+      items: [],
+    },
+    {
+      title: t("admin.sidebar.blog"),
+      url: "/admin/blog",
+      icon: Newspaper,
+      isActive: pathname.includes("/admin/blog"),
+      items: [],
+    },
+    {
+      title: t("admin.sidebar.glossary"),
+      url: "/admin/glossary",
+      icon: BookMarked,
+      isActive: pathname.includes("/admin/glossary"),
       items: [],
     },
     {

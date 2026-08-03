@@ -111,12 +111,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     getRelatedPosts(post),
   ]);
 
-  const schemas = postSchemas(post, [
-    { name: lang === 'es' ? 'Inicio' : 'Home', path: `/${lang}` },
-    { name: 'Blog', path: `/${lang}/blog` },
-    { name: post.categories[0], path: `/${lang}/blog/${post.categorySlug}` },
-    { name: post.title },
-  ]);
+  const schemas = postSchemas(post);
 
   return (
     <>
@@ -133,6 +128,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         items={[
           { label: lang === 'es' ? 'Inicio' : 'Home', href: '' },
           { label: 'Blog', href: '/blog' },
+          { label: post.categories[0], href: `/blog/${post.categorySlug}` },
           { label: post.title },
         ]}
       />
@@ -165,7 +161,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
             {post.sections.length > 0 && <TableOfContents locale={lang} />}
 
-            <MDXContent source={post.body} />
+            <MDXContent source={post.body} lang={lang as BlogLocale} />
 
             {post.tags.length > 0 && (
               <div className="mt-12 pt-8 border-t border-border">
