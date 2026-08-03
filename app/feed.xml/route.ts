@@ -1,22 +1,23 @@
-import { allBlogPosts } from 'contentlayer/generated';
+import { getAllPosts } from '@/lib/blog/queries';
 
 const BASE_URL = 'https://alkitu.com';
 
 export async function GET() {
-  const posts = allBlogPosts
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  // Already ordered newest-first by the query; `post.url` uses the stored
+  // category slug, so feed links match the canonical URLs.
+  const posts = await getAllPosts();
 
   const itemsXml = posts
     .map((post) => {
-      const pubDate = new Date(post.date).toUTCString();
+      const pubDate = new Date(post.date ?? Date.now()).toUTCString();
       return `    <item>
       <title><![CDATA[${post.title}]]></title>
       <link>${BASE_URL}${post.url}</link>
       <guid isPermaLink="true">${BASE_URL}${post.url}</guid>
-      <description><![CDATA[${post.metaDescription}]]></description>
+      <description><![CDATA[${post.metaDescription ?? post.excerpt ?? ''}]]></description>
       <pubDate>${pubDate}</pubDate>
       <category>${post.categories[0] || 'General'}</category>
-      <dc:creator>${post.author}</dc:creator>
+      <dc:creator>${post.author ?? 'Alkitu'}</dc:creator>
       ${post.image ? `<enclosure url="${post.image}" type="image/jpeg" />` : ''}
     </item>`;
     })

@@ -1,23 +1,24 @@
-'use client';
-
-import { useMDXComponent } from 'next-contentlayer/hooks';
+import { MDXRemote } from 'next-mdx-remote/rsc';
 import { MediaCarousel } from '@/app/components/organisms/carousel/media-carousel';
+import { mdxOptions } from '@/lib/blog/mdx';
 
 interface MDXContentProps {
-  code: string;
+  /** Raw MDX source (from `blog_posts.body_mdx`). */
+  source: string;
 }
 
 /**
- * Client Component for rendering MDX content
- * Separated from Server Component to allow use of React hooks
+ * Renders a post body.
+ *
+ * Server Component: MDX is compiled during the render pass via
+ * `next-mdx-remote/rsc`, replacing the previous build-time Contentlayer step.
+ * Client components passed in `components` (MediaCarousel) still work — they
+ * become client boundaries inside the server-rendered tree.
  *
  * Components available in MDX:
  * - MediaCarousel: Carousel for images and YouTube videos
  */
-export function MDXContent({ code }: MDXContentProps) {
-  const Component = useMDXComponent(code);
-
-  // Make custom components available to MDX
+export function MDXContent({ source }: MDXContentProps) {
   const components = {
     MediaCarousel,
   };
@@ -42,7 +43,7 @@ export function MDXContent({ code }: MDXContentProps) {
       prose-pre:bg-muted prose-pre:p-4 prose-pre:rounded-lg prose-pre:overflow-x-auto
       prose-img:rounded-lg prose-img:shadow-md
     ">
-      <Component components={components} />
+      <MDXRemote source={source} components={components} options={mdxOptions} />
     </div>
   );
 }

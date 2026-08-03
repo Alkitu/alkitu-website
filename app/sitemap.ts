@@ -3,7 +3,7 @@ import {
   getProjectsForSitemap,
   generateProjectSitemapEntries,
 } from '@/lib/sitemap-utils';
-import { allBlogPosts } from 'contentlayer/generated';
+import { getAllPosts } from '@/lib/blog/queries';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://alkitu.com';
@@ -49,34 +49,43 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const projects = await getProjectsForSitemap();
   const projectRoutes = generateProjectSitemapEntries(projects, baseUrl, locales);
 
-  // Generate blog post sitemap entries from Contentlayer
-  const blogPostRoutes = allBlogPosts.map((post) => ({
+  // Blog posts.
+  //
+  // `post.url` is built from the stored `categoria_slug`, so the sitemap now
+  // agrees with the canonical tag and the on-page links. Previously this file
+  // derived the category slug with its own regex (`/\s+/`, missing slashes),
+  // which is why it published `/blog/diseno-ux/ui` and `/blog/general/...`
+  // URLs that contradicted every canonical on the site.
+  const blogPosts = await getAllPosts();
+
+  const blogPostRoutes = blogPosts.map((post) => ({
     url: `${baseUrl}${post.url}`,
-    lastModified: post.updatedAt ? new Date(post.updatedAt) : new Date(post.date),
+    lastModified: post.updatedAt
+      ? new Date(post.updatedAt)
+      : post.date
+        ? new Date(post.date)
+        : currentDate,
     changeFrequency: 'monthly' as const,
-    priority: post.featured ? 0.9 : 0.7,
+    priority: post.featured ? 0.9 : post.prioridad,
   }));
 
-  // Generate blog category pages (extract unique categories from all posts)
-  const uniqueCategories = Array.from(
-    new Set(
-      allBlogPosts.map((post) =>
-        post.categories[0] // Primary category is the first one
-          .toLowerCase()
-          .normalize('NFD')
-          .replace(/[\u0300-\u036f]/g, '') // Remove accents
-          .replace(/\s+/g, '-')
-      )
-    )
-  );
+  // Category listings \u2014 these are real pages now (app/[lang]/blog/[category]),
+  // so the entries below resolve instead of 404ing.
+  const categoriesByLocale = new Map<string, Set<string>>();
+  for (const post of blogPosts) {
+    const set = categoriesByLocale.get(post.locale) ?? new Set<string>();
+    set.add(post.categorySlug);
+    categoriesByLocale.set(post.locale, set);
+  }
 
-  const blogCategoryRoutes = uniqueCategories.flatMap((category) =>
-    locales.map((locale) => ({
-      url: `${baseUrl}/${locale}/blog/${category}`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    }))
+  const blogCategoryRoutes = [...categoriesByLocale.entries()].flatMap(
+    ([locale, slugs]) =>
+      [...slugs].map((category) => ({
+        url: `${baseUrl}/${locale}/blog/${category}`,
+        lastModified: currentDate,
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
+      }))
   );
 
   return [

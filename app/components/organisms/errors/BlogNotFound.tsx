@@ -34,11 +34,14 @@ export default function BlogNotFound({ allPosts, currentLocale }: BlogNotFoundPr
         if (filterLang === 'all') return true;
         return post.locale === filterLang;
     }).map(post => ({
-        // Map Contentlayer post to BlogGrid expected format
-        id: post._id,
+        // Map post to BlogGrid expected format
+        id: post.id ?? post.slug,
         title: post.title,
         slug: post.slug,
-        categorySlug: post.categories?.[0]?.toLowerCase() || 'general',
+        // Use the stored category slug. This used to be `categories[0].toLowerCase()`,
+        // which left accents and slashes intact ("Diseño UX/UI" -> "diseño ux/ui")
+        // and produced links that could never resolve.
+        categorySlug: post.categorySlug ?? 'general',
         excerpt: post.excerpt,
         image: post.image,
         category: post.categories?.[0] || 'General',

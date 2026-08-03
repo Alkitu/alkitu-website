@@ -39,3 +39,7 @@ yarn-error.log*
 
 # generated artifacts
 /export
+.env*
+
+# Supabase CLI local state (project ref, cached versions, pooler URL)
+supabase/.temp/

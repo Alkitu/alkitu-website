@@ -1,16 +1,27 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { allBlogPosts } from 'contentlayer/generated';
+import { permanentRedirect } from 'next/navigation';
 import BlogNotFound from '@/app/components/organisms/errors/BlogNotFound';
 import { MDXContent } from '@/app/components/organisms/mdx-content';
 import { PostHero } from '@/app/components/organisms/post-hero';
-import { createClient } from '@/lib/supabase/server';
 import { Locale } from '@/i18n.config';
 import { NewsletterSubscribe } from '@/app/components/organisms/newsletter-subscribe';
 import { TableOfContents } from '@/app/components/organisms/table-of-contents';
 import TailwindGrid from '@/app/components/templates/grid';
 import { Breadcrumbs } from '@/app/components/molecules/breadcrumbs';
 import { RelatedPosts } from '@/app/components/molecules/related-posts';
+import {
+  getPost,
+  getPosts,
+  getPostRoutes,
+  getRelatedPosts,
+  getTranslation,
+  getAuthorPhoto,
+} from '@/lib/blog/queries';
+import { postSchemas } from '@/lib/blog/jsonld';
+import type { BlogLocale } from '@/lib/types/blog';
+
+export const revalidate = 3600;
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -21,108 +32,102 @@ interface BlogPostPageProps {
 }
 
 export async function generateStaticParams() {
-  return allBlogPosts.map((post) => {
-    const primaryCategory = Array.isArray(post.categories) && post.categories.length > 0
-      ? post.categories[0] : 'general';
-    const categorySlug = primaryCategory
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[\s\/]+/g, '-');
-    return {
-      lang: post.locale,
-      category: categorySlug,
-      id: post.slug,
-    };
-  });
+  return getPostRoutes();
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { lang, id } = await params;
-  const post = allBlogPosts.find((p) => p.slug === id && p.locale === lang);
+  const post = await getPost(lang as BlogLocale, id);
 
   if (!post) {
     return { title: 'Post Not Found' };
   }
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://alkitu.com';
-  const primaryCategory = Array.isArray(post.categories) && post.categories.length > 0
-    ? post.categories[0] : 'general';
-  const categorySlug = primaryCategory
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[\s\/]+/g, '-');
-  const postPath = `/blog/${categorySlug}/${post.slug}`;
+
+  // hreflang resolves through translation_group_id, not by matching slugs, so
+  // pairs whose slugs diverge across locales are still linked correctly.
+  const otherLocale: BlogLocale = post.locale === 'es' ? 'en' : 'es';
+  const twin = await getTranslation(post.translationGroupId, otherLocale);
+
+  const languages: Record<string, string> = {
+    [post.locale]: `${baseUrl}${post.url}`,
+  };
+  if (twin) {
+    languages[twin.locale] = `${baseUrl}${twin.url}`;
+    languages['x-default'] = `${baseUrl}${post.locale === 'es' ? post.url : twin.url}`;
+  }
 
   return {
     title: post.title,
-    description: post.metaDescription,
+    description: post.metaDescription ?? undefined,
     keywords: post.keywords,
     openGraph: {
       title: post.title,
-      description: post.metaDescription,
+      description: post.metaDescription ?? undefined,
       type: 'article',
-      publishedTime: post.date,
-      modifiedTime: post.updatedAt || post.date,
-      authors: [post.author],
-      images: post.image ? [{ url: post.image, width: 1200, height: 630, alt: post.imageAlt }] : [],
+      publishedTime: post.date ?? undefined,
+      modifiedTime: post.updatedAt ?? post.date ?? undefined,
+      authors: post.author ? [post.author] : undefined,
+      images: post.image
+        ? [{ url: post.image, width: 1200, height: 630, alt: post.imageAlt ?? post.title }]
+        : [],
       locale: lang === 'es' ? 'es_ES' : 'en_US',
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
-      description: post.metaDescription,
+      description: post.metaDescription ?? undefined,
       images: post.image ? [post.image] : [],
     },
     alternates: {
-      canonical: `${baseUrl}/${lang}${postPath}`,
+      canonical: `${baseUrl}${post.url}`,
+      languages,
     },
   };
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { lang, id } = await params;
-  // Find the post by slug and locale
-  const post = allBlogPosts.find((p) => p.slug === id && p.locale === lang);
+  const { lang, category, id } = await params;
+  const post = await getPost(lang as BlogLocale, id);
 
   if (!post) {
-    // Return custom Blog 404 instead of global notFound()
-    return <BlogNotFound allPosts={allBlogPosts} currentLocale={lang} />;
+    const allPosts = await getPosts(lang as BlogLocale);
+    return <BlogNotFound allPosts={allPosts} currentLocale={lang} />;
+  }
+
+  // The category segment used to be decorative: any value resolved the post,
+  // so every article was reachable at unlimited URLs. Send wrong segments to
+  // the canonical one instead of serving duplicate content.
+  if (category !== post.categorySlug) {
+    permanentRedirect(post.url);
   }
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://alkitu.com';
   const shareUrl = `${baseUrl}${post.url}`;
 
-  // Get author profile photo if authorUsername exists (direct Supabase fetch)
-  let authorPhotoUrl: string | null = null;
-  if (post.authorUsername) {
-    try {
-      const supabase = await createClient();
-      const { data: profile } = await supabase
-        .from('user_profiles')
-        .select('photo_url')
-        .eq('username', post.authorUsername)
-        .single();
+  const [authorPhotoUrl, related] = await Promise.all([
+    getAuthorPhoto(post.authorUsername),
+    getRelatedPosts(post),
+  ]);
 
-      authorPhotoUrl = profile?.photo_url || null;
-    } catch (error) {
-      console.error('[BlogPost] Error fetching author photo:', error);
-    }
-  }
-
-  // Use the Contentlayer-generated structured data
-  const jsonLd = post.structuredData;
+  const schemas = postSchemas(post, [
+    { name: lang === 'es' ? 'Inicio' : 'Home', path: `/${lang}` },
+    { name: 'Blog', path: `/${lang}/blog` },
+    { name: post.categories[0], path: `/${lang}/blog/${post.categorySlug}` },
+    { name: post.title },
+  ]);
 
   return (
     <>
-      {/* JSON-LD Schema Markup (Auto-generated by Contentlayer) */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      {schemas.map((schema, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
 
-      {/* Breadcrumbs */}
       <Breadcrumbs
         locale={lang}
         items={[
@@ -132,49 +137,44 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         ]}
       />
 
-      {/* Post Hero Section */}
       <PostHero
         title={post.title}
-        author={post.author}
-        authorUsername={post.authorUsername}
+        author={post.author ?? ''}
+        authorUsername={post.authorUsername ?? undefined}
         authorPhotoUrl={authorPhotoUrl}
-        date={post.date}
+        date={post.date ?? ''}
         categories={post.categories}
         tags={post.tags}
-        image={post.image}
-        imageCredit={post.imageCredit}
+        image={post.image ?? ''}
+        imageCredit={post.imageCredit ?? undefined}
         shareUrl={shareUrl}
         locale={lang}
       />
 
-      {/* Post Content Section */}
       <TailwindGrid>
         <article className="col-span-full py-12">
           <div className="max-w-4xl mx-auto px-6">
             {/* Introduction Box */}
-            <div className="bg-muted/30 border border-border rounded-lg p-8 mb-12">
-              <p className="text-foreground/80 text-base lg:text-lg leading-relaxed italic">
-                {post.excerpt}
-              </p>
-            </div>
-
-            {/* Table of Contents - only show if we have sections */}
-            {post.sections && post.sections.length > 0 && (
-              <TableOfContents locale={lang} />
+            {post.excerpt && (
+              <div className="bg-muted/30 border border-border rounded-lg p-8 mb-12">
+                <p className="text-foreground/80 text-base lg:text-lg leading-relaxed italic">
+                  {post.excerpt}
+                </p>
+              </div>
             )}
 
-            {/* Main Content - MDX with proper styling */}
-            <MDXContent code={post.body.code} />
+            {post.sections.length > 0 && <TableOfContents locale={lang} />}
 
-            {/* Tags Section */}
-            {post.tags && post.tags.length > 0 && (
+            <MDXContent source={post.body} />
+
+            {post.tags.length > 0 && (
               <div className="mt-12 pt-8 border-t border-border">
                 <div className="flex flex-wrap gap-2">
                   {post.tags.map((tag) => {
                     const tagSlug = tag
                       .toLowerCase()
                       .normalize('NFD')
-                      .replace(/[\u0300-\u036f]/g, '')
+                      .replace(/[̀-ͯ]/g, '')
                       .replace(/\s+/g, '-');
                     return (
                       <Link
@@ -190,7 +190,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </div>
             )}
 
-            {/* Read Time and Date Info */}
             <div className="mt-8 flex items-center gap-4 text-sm text-muted-foreground">
               <span>{post.readTime}</span>
               {post.updatedAt && post.updatedAt !== post.date && (
@@ -204,37 +203,25 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               )}
             </div>
 
-            {/* Word Count (optional - useful for SEO) */}
             <div className="mt-2 text-xs text-muted-foreground">
               {post.wordCount} {lang === 'es' ? 'palabras' : 'words'}
             </div>
 
-            {/* Related Posts */}
             <RelatedPosts
               locale={lang}
-              posts={allBlogPosts
-                .filter((p) => p.slug !== post.slug && p.locale === lang)
-                .filter((p) =>
-                  p.categories.some((c) => post.categories.includes(c)) ||
-                  (p.tags && post.tags && p.tags.some((t) => post.tags.includes(t)))
-                )
-                .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-                .slice(0, 3)
-                .map((p) => ({
-                  title: p.title,
-                  slug: p.slug,
-                  url: p.url,
-                  image: p.image,
-                  excerpt: p.excerpt,
-                  readTime: p.readTime,
-                }))
-              }
+              posts={related.map((p) => ({
+                title: p.title,
+                slug: p.slug,
+                url: p.url,
+                image: p.image ?? '',
+                excerpt: p.excerpt ?? '',
+                readTime: p.readTime ?? '',
+              }))}
             />
           </div>
         </article>
       </TailwindGrid>
 
-      {/* Newsletter Subscription */}
       <NewsletterSubscribe locale={lang} />
     </>
   );

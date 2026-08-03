@@ -3,7 +3,8 @@ import { Locale } from "@/i18n.config";
 import { getSeoAlternates } from '@/lib/seo';
 import { getDictionary } from "@/lib/dictionary";
 import { BlogContent } from "@/app/components/organisms/blog-content";
-import { allBlogPosts } from 'contentlayer/generated';
+import { getPosts, getCategories } from '@/lib/blog/queries';
+import type { BlogLocale } from '@/lib/types/blog';
 
 /**
  * Blog Index Page - ISR enabled for optimal SEO
@@ -30,63 +31,40 @@ export default async function BlogPage({
   const { lang } = await params;
   const text = await getDictionary(lang);
 
-  // Filter posts by current locale
-  const localePosts = allBlogPosts.filter(post => post.locale === lang);
+  const [posts, categories] = await Promise.all([
+    getPosts(lang as BlogLocale),
+    getCategories(lang as BlogLocale),
+  ]);
 
-  // Transform Contentlayer posts to BlogContent format
-  const transformedPosts = localePosts.map(post => {
-    // Extract primary category (first one) for routing
-    const primaryCategory = Array.isArray(post.categories) && post.categories.length > 0
-      ? post.categories[0]
-      : 'General';
-    const categorySlug = primaryCategory
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[\s\/]+/g, '-'); // Replace spaces AND forward slashes with hyphens
-
-    return {
-      id: post.slug,
-      slug: post.slug,
-      categorySlug: categorySlug, // Add category slug for URL generation
-      translations: {
-        [post.locale]: {
-          title: post.title,
-          excerpt: post.excerpt,
-        }
+  // Shape expected by <BlogContent>. `categorySlug` comes straight from the
+  // stored column, so listing links, canonical tags and the sitemap can no
+  // longer drift apart the way they did under the old dual-slugify logic.
+  const transformedPosts = posts.map((post) => ({
+    id: post.slug,
+    slug: post.slug,
+    categorySlug: post.categorySlug,
+    translations: {
+      [post.locale]: {
+        title: post.title,
+        excerpt: post.excerpt ?? '',
       },
-      image: post.image,
-      category: primaryCategory, // Use primary category for display
-      date: post.date,
-      readTime: post.readTime,
-      author: post.author,
-      featured: post.featured,
-      lang: [post.locale],
-    };
-  });
+    },
+    image: post.image ?? '',
+    category: post.categories[0] ?? 'General',
+    date: post.date ?? '',
+    readTime: post.readTime ?? '',
+    author: post.author ?? '',
+    featured: post.featured,
+    lang: [post.locale],
+  }));
 
-  // Extract unique categories from all post categories
-  const allCategories = localePosts.flatMap(post =>
-    Array.isArray(post.categories) ? post.categories : []
-  );
-  const uniqueCategories = Array.from(new Set(allCategories));
+  const categoryOptions = categories.map(({ name, slug }) => ({
+    id: slug,
+    name,
+    slug,
+    description: '',
+  }));
 
-  const categories = uniqueCategories.map(categoryName => {
-    const slug = categoryName
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[\s\/]+/g, '-'); // Replace spaces AND forward slashes with hyphens
-
-    return {
-      id: slug,
-      name: categoryName,
-      slug: slug,
-      description: '',
-    };
-  });
-
-  // Prepare translations for BlogContent
   const translations = {
     all: text.blog?.all || (lang === 'es' ? 'Todos' : 'All'),
     recent: text.blog?.recent || (lang === 'es' ? 'Recientes' : 'Recent'),
@@ -103,7 +81,7 @@ export default async function BlogPage({
   return (
     <BlogContent
       posts={transformedPosts}
-      categories={categories}
+      categories={categoryOptions}
       locale={lang}
       title={text.blog?.title || (lang === 'es' ? 'BLOG' : 'BLOG')}
       description={text.blog?.description}

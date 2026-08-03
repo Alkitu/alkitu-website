@@ -10,7 +10,8 @@
     "sync:projects": "node lib/projects/sync-to-dictionaries.js",
     "migrate:blog": "node scripts/migrate-blog-to-mdx.js",
     "migrate:blog:dry-run": "node scripts/migrate-blog-to-mdx.js --dry-run",
-    "generate:brochure": "tsx scripts/generate-brochure.tsx"
+    "generate:brochure": "tsx scripts/generate-brochure.tsx",
+    "blog:import": "tsx scripts/blog-import.ts"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.4.0",
@@ -40,15 +41,15 @@
     "@vercel/blob": "^2.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "contentlayer": "^0.3.4",
     "cookies-next": "^6.1.1",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.23.26",
+    "gray-matter": "^4.0.3",
     "gsap": "^3.14.2",
     "lucide-react": "^0.561.0",
     "negotiator": "^1.0.0",
     "next": "^16.0.10",
-    "next-contentlayer": "^0.3.4",
+    "next-mdx-remote": "^6.0.0",
     "ogl": "^1.0.11",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",

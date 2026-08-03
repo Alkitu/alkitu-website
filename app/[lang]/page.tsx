@@ -11,7 +11,8 @@ import { Passion } from "../components/organisms/passion-section";
 import { ProjectsPreview } from "../components/organisms/projects-section";
 import { Skills } from "../components/organisms/skills-section";
 import { Brands } from "../components/organisms/brands-section";
-import { allBlogPosts } from 'contentlayer/generated';
+import { getPosts } from '@/lib/blog/queries';
+import type { BlogLocale } from '@/lib/types/blog';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -32,34 +33,17 @@ export default async function Home({
   const { lang } = await params;
   const text = await getDictionary(lang);
 
-  // Get 3 most recent blog posts for current locale
-  const localePosts = allBlogPosts
-    .filter(post => post.locale === lang)
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 3);
-
-  // Transform to simplified format for client component
-  const recentPosts = localePosts.map(post => {
-    const primaryCategory = Array.isArray(post.categories) && post.categories.length > 0
-      ? post.categories[0]
-      : 'General';
-    const categorySlug = primaryCategory
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[\s\/]+/g, '-');
-
-    return {
-      title: post.title,
-      slug: post.slug,
-      categorySlug,
-      excerpt: post.excerpt,
-      metaDescription: post.metaDescription,
-      image: post.image,
-      date: post.date,
-      readTime: post.readTime,
-    };
-  });
+  // 3 most recent posts for the current locale (query returns newest-first)
+  const recentPosts = (await getPosts(lang as BlogLocale)).slice(0, 3).map((post) => ({
+    title: post.title,
+    slug: post.slug,
+    categorySlug: post.categorySlug,
+    excerpt: post.excerpt ?? '',
+    metaDescription: post.metaDescription ?? '',
+    image: post.image ?? '',
+    date: post.date ?? '',
+    readTime: post.readTime ?? '',
+  }));
 
   return (
     <>

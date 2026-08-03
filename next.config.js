@@ -1,5 +1,3 @@
-const { withContentlayer } = require('next-contentlayer');
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true, // Recommended for the `pages` directory, default in `app`.
@@ -48,6 +46,24 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      // Duplicate of marketing-4-0-evolution; imported unpublished for review,
+      // so without this it would render the blog 404 instead of passing its
+      // link equity to the surviving article.
+      //
+      // Note there is deliberately no rule for the old `/blog/general/:slug`
+      // URLs (the previous pipeline resolved every post to that path and the
+      // sitemap published them for months). A static rule cannot know a post's
+      // real category; the post page resolves it instead and issues a 301 to
+      // the canonical URL whenever the category segment does not match.
+      {
+        source: '/:lang(en|es)/blog/:category/marketing-4-0-evolucion',
+        destination: '/:lang/blog/marketing-digital/marketing-4-0-evolution',
+        permanent: true,
+      },
+    ];
+  },
   webpack: (config) => {
     // Add support for .riv files as assets
     config.module.rules.push({
@@ -71,4 +87,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withContentlayer(nextConfig);
+module.exports = nextConfig;

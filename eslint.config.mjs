@@ -6,7 +6,6 @@ export default [
   {
     ignores: [
       '.next/**',
-      '.contentlayer/**',
       'node_modules/**',
       'export/**',
       'knowledge-brain-kit/**',
