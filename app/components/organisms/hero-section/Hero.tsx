@@ -2,7 +2,6 @@
 "use client";
 import { useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { SplitText as GSAPSplitText } from "gsap/SplitText";
 import TailwindGrid from "@/app/components/templates/grid";

@@ -1,6 +1,5 @@
 'use client';
 import { motion, Variants } from 'framer-motion';
-import { ReactNode } from 'react';
 
 interface WordsAnimationProps {
   text: string;

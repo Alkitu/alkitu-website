@@ -6,7 +6,7 @@ export interface PageParams {
   lang: Locale;
 }
 
-export interface PageProps<T = {}> {
+export interface PageProps<T = object> {
   params: Promise<PageParams & T>;
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }

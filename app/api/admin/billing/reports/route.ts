@@ -44,20 +44,16 @@ export async function GET(request: Request) {
 }
 
 async function getIncomeReport(supabase: Awaited<ReturnType<typeof createClient>>, year: number, period: string) {
-  let groupBy: string;
   let dateFormat: string;
 
   switch (period) {
     case 'quarterly':
-      groupBy = `EXTRACT(QUARTER FROM issue_date::date)`;
       dateFormat = 'quarter';
       break;
     case 'yearly':
-      groupBy = `EXTRACT(YEAR FROM issue_date::date)`;
       dateFormat = 'year';
       break;
     default: // monthly
-      groupBy = `EXTRACT(MONTH FROM issue_date::date)`;
       dateFormat = 'month';
       break;
   }

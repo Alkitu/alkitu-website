@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
 import { allBlogPosts } from 'contentlayer/generated';
 import BlogNotFound from '@/app/components/organisms/errors/BlogNotFound';
 import { MDXContent } from '@/app/components/organisms/mdx-content';

@@ -18,7 +18,7 @@ type DotsLoaderProps = {
   setLoading: (loading: boolean) => void;
 };
 
-const DotsLoader = ({ count = 5, className, setLoading }: DotsLoaderProps) => {
+const DotsLoader = ({ count: _count = 5, className, setLoading }: DotsLoaderProps) => {
   return (
     <motion.div
       variants={containerVariants}

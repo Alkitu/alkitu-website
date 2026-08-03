@@ -12,7 +12,7 @@ import { createClient } from "@/lib/supabase/client";
 
 
 function ProjectPageClient() {
-  const { translations, locale } = useTranslationContext();
+  const { translations: _translations, locale } = useTranslationContext();
   const params = useParams();
   const projectSlug = params.project as string;
 
@@ -166,7 +166,7 @@ function ProjectPageClient() {
           />
         </motion.div>
         <TextSlider>
-          {project.categories.map((c, i) => (
+          {project.categories.map((c, _i) => (
             <span key={c.id}>
               <span className="font-black">{locale === 'es' ? c.name_es : c.name_en}</span>
               <span className="font-light"> | </span>

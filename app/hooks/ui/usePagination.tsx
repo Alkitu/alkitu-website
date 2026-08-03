@@ -15,16 +15,12 @@ type PaginationResult = {
 
 
 export function usePagination(initialData: Item[]): PaginationResult {
-  // Guard against null/undefined data
-  if (!initialData || !Array.isArray(initialData)) {
-    return {
-      data: [],
-      centerOrder: 0,
-      paginate: () => {},
-    };
-  }
+  // Guard against null/undefined data. Normalized up front rather than
+  // returning early, so the hooks below always run in the same order.
+  const isValid = Boolean(initialData) && Array.isArray(initialData);
+  const safeData = isValid ? initialData : [];
 
-  const processedData = initialData.map((item, index) => ({
+  const processedData = safeData.map((item, index) => ({
     ...item,
     order: typeof item.order !== "undefined" ? item.order : index + 1,
   }));
@@ -79,6 +75,14 @@ export function usePagination(initialData: Item[]): PaginationResult {
     const newCenterOrder = Math.floor(data.length / 2);
     setCenterOrder(newCenterOrder);
   };
+
+  if (!isValid) {
+    return {
+      data: [],
+      centerOrder: 0,
+      paginate: () => {},
+    };
+  }
 
   return {
     data,

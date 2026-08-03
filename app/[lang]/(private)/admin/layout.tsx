@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Dashboard from '@/app/components/admin/Dashboard';
 import { UpdateLastLogin } from '@/app/components/admin';
 import { createClient } from '@/lib/supabase/server';
-import { redirect } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: 'Admin Dashboard - Alkitu Portfolio',

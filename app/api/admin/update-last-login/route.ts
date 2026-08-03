@@ -2,7 +2,7 @@ import { NextRequest } from 'next/server';
 import { ApiSuccess, ApiError } from '@/lib/api/response';
 import { createClient } from '@/lib/supabase/server';
 
-export async function POST(request: NextRequest) {
+export async function POST(_request: NextRequest) {
   try {
     // Check authentication
     const supabase = await createClient();

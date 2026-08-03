@@ -25,14 +25,14 @@ async function applySeedMigration() {
   console.log('⚡ Executing migration...');
 
   // Execute the SQL migration
-  const { data, error } = await supabase.rpc('exec_sql', { sql_query: sql });
+  const { data: _data, error } = await supabase.rpc('exec_sql', { sql_query: sql });
 
   if (error) {
     console.error('❌ Migration failed:', error);
 
     // Try direct execution via REST API as fallback
     console.log('🔄 Trying direct SQL execution...');
-    const { data: result, error: execError } = await supabase
+    const { data: _result, error: execError } = await supabase
       .from('_sql_migrations')
       .insert({ query: sql });
 

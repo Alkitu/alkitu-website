@@ -3,12 +3,11 @@ import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionary";
 import { getSeoAlternates, getServiceSchema, getFaqSchema } from "@/lib/seo";
 import TailwindGrid from "@/app/components/templates/grid/TailwindGrid";
-import Link from "next/link";
 import { ServiceHero, ServiceSection } from "../../components";
 import FinalCTA from "../../components/FinalCTA";
 import { createClient } from "@/lib/supabase/server";
 import { Breadcrumbs } from "@/app/components/molecules/breadcrumbs";
-import { AppWindow, CheckCircle2, Rocket, Users2, Layers, Cpu, ShieldCheck, ArrowRight } from "lucide-react";
+import { AppWindow, CheckCircle2, Rocket, Users2, Layers, Cpu, ShieldCheck } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
   const { lang } = await params;

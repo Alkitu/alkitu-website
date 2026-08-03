@@ -2,7 +2,7 @@
 
 import Script from 'next/script';
 import { useEffect, useState } from 'react';
-import { CONSENT_CHANGE_EVENT, isCategoryAllowed, type CookieConsent } from '@/lib/cookies/consent';
+import { CONSENT_CHANGE_EVENT, isCategoryAllowed } from '@/lib/cookies/consent';
 import { ANALYTICS_CONFIG } from '@/lib/analytics/events';
 
 /**

@@ -8,7 +8,6 @@
 
 'use client';
 
-import { useState } from 'react';
 import { Plus, X, Mail, ChevronUp, ChevronDown } from 'lucide-react';
 import { PrivacyToggle } from './PrivacyToggle';
 import type { ProfileEmail, ContactType } from '@/lib/types/profiles';

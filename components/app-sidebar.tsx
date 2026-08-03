@@ -37,7 +37,7 @@ interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
   }
 }
 
-export function AppSidebar({ user, ...props }: AppSidebarProps) {
+export function AppSidebar({ user: _user, ...props }: AppSidebarProps) {
   const { t } = useTranslationContext()
   const pathname = usePathname()
 

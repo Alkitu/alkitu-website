@@ -4,12 +4,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useMousePosition } from "@/app/hooks";
 
 function DotFollower() {
-  const [isHovered, setIsHovered] = useState(false);
+  const [_isHovered, _setIsHovered] = useState(false);
   const { x, y } = useMousePosition();
   const size = 400;
-  const [isComplete, setIsComplete] = useState(false);
+  const [_isComplete, _setIsComplete] = useState(false);
 
-  const maskStyle = {
+  const _maskStyle = {
     WebkitMaskImage: "url('../../public/mask.svg')",
     WebkitMaskRepeat: "no-repeat",
     WebkitMaskPosition: `${(x ?? 0) - size / 2}px ${(y ?? 0) - size / 2}px`,

@@ -3,12 +3,11 @@ import { Locale } from "@/i18n.config";
 import { getDictionary } from "@/lib/dictionary";
 import { getSeoAlternates, getServiceSchema, getFaqSchema } from "@/lib/seo";
 import TailwindGrid from "@/app/components/templates/grid/TailwindGrid";
-import Link from "next/link";
 import { ServiceHero, ServiceSection } from "../components";
 import FinalCTA from "../components/FinalCTA";
 import { createClient } from "@/lib/supabase/server";
 import { Breadcrumbs } from "@/app/components/molecules/breadcrumbs";
-import { Target, MessageSquare, Eye, Box, ArrowRight, Zap, Star, ShieldCheck, Lightbulb, Rocket, Compass, Sparkles } from "lucide-react";
+import { Target, MessageSquare, Eye, Box, Zap, Star, ShieldCheck, Lightbulb, Rocket, Compass, Sparkles } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: Locale }> }): Promise<Metadata> {
   const { lang } = await params;

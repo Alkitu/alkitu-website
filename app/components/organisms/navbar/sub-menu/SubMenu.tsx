@@ -97,9 +97,11 @@ export default function SubMenu({
                     : "text-zinc-100"
                 } text-left border-b-2 hover:text-primary font-normal mt-5 flex-row w-full content-center justify-center`}
                 onClick={() => {
-                  setLanguageCookie && deleteCookie("language");
-                  setLanguageCookie && setCookie("language", category.pathname);
-                  setLanguageCookie && setLanguageCookie(category.pathname);
+                  if (setLanguageCookie) {
+                    deleteCookie("language");
+                    setCookie("language", category.pathname);
+                    setLanguageCookie(category.pathname);
+                  }
                   setTimeout(() => {
                     toggleOpen();
                   }, 300);

@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
-import { BlogHero } from '@/app/components/organisms/blog-hero';
 import { BlogList } from '@/app/components/organisms/blog-list';
 import { BlogGrid } from '@/app/components/organisms/blog-grid';
 import { PageHeader } from '@/app/components/organisms/page-header';
@@ -131,8 +129,8 @@ export default function BlogContent({ posts, categories, locale, title, descript
   }
 
   // Get featured and recent posts
-  const featuredPost = filteredPosts.find(post => post.featured);
-  const recentPosts = filteredPosts.filter(post => !post.featured).slice(0, 3);
+  const _featuredPost = filteredPosts.find(post => post.featured);
+  const _recentPosts = filteredPosts.filter(post => !post.featured).slice(0, 3);
 
   // Get posts by category for filtered view
   const getCategoryPosts = (categoryName: string) => {

@@ -176,7 +176,7 @@ export function getRateLimitStatus(
   identifier: string,
   config: RateLimitConfig = {}
 ): RateLimitResult | null {
-  const { maxRequests = 3, windowMs = 3600000 } = config;
+  const { maxRequests = 3, windowMs: _windowMs = 3600000 } = config;
 
   const now = Date.now();
   const entry = store.get(identifier);

@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
 
     // Find existing session (within last hour)
     console.log('[Sessions API] Checking for existing session');
-    let { data: session } = await supabase
+    const { data: session } = await supabase
       .from('sessions')
       .select('id, session_fingerprint, started_at, last_activity_at')
       .eq('session_fingerprint', sessionFingerprint)

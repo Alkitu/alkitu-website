@@ -7,7 +7,7 @@ import { Home, ArrowLeft, Search } from 'lucide-react';
 import { BlogGrid } from '@/app/components/organisms/blog-grid';
 import TailwindGrid from '@/app/components/templates/grid';
 
-interface BlogPostRaw {
+interface _BlogPostRaw {
     _id: string;
     title: string;
     slug: string;

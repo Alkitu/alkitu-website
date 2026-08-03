@@ -71,7 +71,7 @@ function formatSqlValue(value) {
  * Generate INSERT statement for a project
  */
 function generateProjectInsert(project, locale) {
-  const isEnglish = locale === 'en';
+  const _isEnglish = locale === 'en';
 
   // Extract data
   const legacyId = project.id;

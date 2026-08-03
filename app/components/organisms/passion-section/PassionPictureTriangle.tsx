@@ -11,9 +11,9 @@ type PassionPictureTriangleProps = {
 };
 
 function PassionPictureTriangle({
-  srcBody,
-  srcHead,
-  artboardName,
+  srcBody: _srcBody,
+  srcHead: _srcHead,
+  artboardName: _artboardName,
 }: PassionPictureTriangleProps) {
   return (
     <>

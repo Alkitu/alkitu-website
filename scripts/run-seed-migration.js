@@ -35,7 +35,7 @@ async function runMigration() {
 
   try {
     // Execute SQL via rpc if available, otherwise use execute_sql
-    const { data, error } = await supabase.rpc('exec', { sql });
+    const { data: _data, error } = await supabase.rpc('exec', { sql });
 
     if (error) {
       console.error('❌ Migration execution failed:', error.message);

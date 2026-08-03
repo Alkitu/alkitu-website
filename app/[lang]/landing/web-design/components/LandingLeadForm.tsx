@@ -111,7 +111,7 @@ export default function LandingLeadForm() {
         currency: locale === 'en' ? 'USD' : 'EUR',
       });
       setData(INITIAL);
-    } catch (err) {
+    } catch (_err) {
       setErrorMsg(t?.errorText || 'Error');
     } finally {
       setSubmitting(false);

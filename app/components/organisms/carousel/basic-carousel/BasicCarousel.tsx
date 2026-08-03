@@ -76,7 +76,7 @@ export default function BasicCarousel({ slides, className = '' }: BasicCarouselP
                   drag="x"
                   dragConstraints={{ left: 0, right: 0 }}
                   dragElastic={1}
-                  onDragEnd={(e, { offset, velocity }) => {
+                  onDragEnd={(e, { offset, velocity: _velocity }) => {
                     if (offset.x > 50) {
                       handleClickAfter();
                     } else if (offset.x < -50) {

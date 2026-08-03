@@ -54,7 +54,7 @@ function Callout({ variant = 'info', content }: CalloutProps) {
   );
 }
 
-function renderSection(section: BlogSection, index: number): React.ReactNode {
+function renderSection(section: BlogSection, _index: number): React.ReactNode {
   switch (section.type) {
     case 'heading':
       const level = section.level || 2;
@@ -161,7 +161,7 @@ function renderSection(section: BlogSection, index: number): React.ReactNode {
   }
 }
 
-export default function BlogSectionRenderer({ sections, locale }: BlogSectionRendererProps) {
+export default function BlogSectionRenderer({ sections, locale: _locale }: BlogSectionRendererProps) {
   return (
     <div className="blog-content">
       {sections.map((section, index) => renderSection(section, index))}

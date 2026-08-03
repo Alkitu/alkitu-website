@@ -8,7 +8,6 @@
 
 'use client';
 
-import { useState } from 'react';
 import { Plus, X, Phone, ChevronUp, ChevronDown } from 'lucide-react';
 import { PrivacyToggle } from './PrivacyToggle';
 import type { ProfilePhoneNumber, ContactType } from '@/lib/types/profiles';

@@ -6,7 +6,6 @@
  */
 
 import { Metadata } from 'next';
-import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { ProfileEditor } from '@/app/components/admin/profiles/ProfileEditor';
 import { AlertCircle } from 'lucide-react';

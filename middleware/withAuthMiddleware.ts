@@ -21,7 +21,7 @@ export function withAuthMiddleware(next: NextMiddleware): NextMiddleware {
     }
 
     // Create response to hold cookies
-    let response = NextResponse.next({
+    const response = NextResponse.next({
       request: {
         headers: request.headers,
       },

@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useCallback, useMemo } from 'react';
-import { useTranslations } from '@/app/context/TranslationContext';
 import { DashboardRoutes, DashboardRoute, ProcessedNavItem, Locale } from '@/app/types/dashboard';
 import { dashboardRoutesData } from '@/app/routes/dashboard-routes';
 import {

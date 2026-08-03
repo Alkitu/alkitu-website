@@ -1,3 +1,6 @@
+// Ported WebGL fluid simulation: the shader plumbing uses loose runtime types
+// that aren't worth modelling. Kept unchecked deliberately.
+/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 'use client';
 import React, { useEffect, useRef } from 'react';
@@ -78,7 +81,7 @@ export default function SplashCursor({
     if (!canvas) return;
 
     let animationFrameId: number;
-    let pointers: Pointer[] = [pointerPrototype()];
+    const pointers: Pointer[] = [pointerPrototype()];
 
     const config = {
       SIM_RESOLUTION,
@@ -1137,7 +1140,7 @@ export default function SplashCursor({
       return { r: 0.15, g: 0.15, b: 0.15 };
     }
 
-    function HSVtoRGB(h: number, s: number, v: number): ColorRGB {
+    function _HSVtoRGB(h: number, s: number, v: number): ColorRGB {
       let r = 0,
         g = 0,
         b = 0;

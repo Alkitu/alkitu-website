@@ -149,7 +149,7 @@ export default function ContactNotification({
   const hasSession = session && (session.country || session.pageCount || session.ipAddress);
   const sourceLabel = formatSourceLabel(source);
 
-  const location = [session?.city, session?.region, session?.country].filter(Boolean).join(', ');
+  const _location = [session?.city, session?.region, session?.country].filter(Boolean).join(', ');
 
   return (
     <Html>
@@ -522,7 +522,7 @@ const budgetBadge = {
   fontWeight: '700',
 };
 
-const durationBadge = {
+const _durationBadge = {
   display: 'inline-block',
   backgroundColor: '#dcfce7',
   color: '#166534',

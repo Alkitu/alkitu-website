@@ -41,7 +41,7 @@ function formatDate(dateString) {
 }
 
 // Helper: Convert sections array to MDX content
-function sectionsToMDX(sections, locale) {
+function sectionsToMDX(sections, _locale) {
   if (!sections || sections.length === 0) {
     return '';
   }
@@ -83,7 +83,7 @@ function sectionsToMDX(sections, locale) {
 
 // Helper: Generate MDX frontmatter
 function generateFrontmatter(post, translation, locale) {
-  const categorySlug = normalizeSlug(post.category);
+  const _categorySlug = normalizeSlug(post.category);
   const slug = post.slug || normalizeSlug(translation.title);
 
   // Build frontmatter object

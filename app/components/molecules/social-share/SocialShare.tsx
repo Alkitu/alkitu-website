@@ -48,7 +48,7 @@ export default function SocialShare({ url, title, description, className = "" }:
           text: description,
           url,
         });
-      } catch (error) {
+      } catch (_error) {
         console.log('Share cancelled or failed');
       }
     }

@@ -14,7 +14,7 @@ type LuisItemCarouselProps = {
   className?: string;
 };
 
-function ImagesCard({ container, index }: LuisItemCarouselProps) {
+function ImagesCard({ container, index: _index }: LuisItemCarouselProps) {
   return (
     <>
       {container.src && (

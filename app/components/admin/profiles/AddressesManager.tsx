@@ -8,7 +8,6 @@
 
 'use client';
 
-import { useState } from 'react';
 import { Plus, X, MapPin, ChevronUp, ChevronDown } from 'lucide-react';
 import { PrivacyToggle } from './PrivacyToggle';
 import type { ProfileAddress, AddressType } from '@/lib/types/profiles';

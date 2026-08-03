@@ -27,7 +27,7 @@ export default function NewsletterUnsubscribePage() {
 
   const [state, setState] = useState<UnsubscribeState>('idle');
   const [message, setMessage] = useState('');
-  const [entryTime] = useState(new Date().toISOString());
+  const [_entryTime] = useState(new Date().toISOString());
 
   const token = searchParams.get('token');
 

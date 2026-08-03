@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Plus, Pencil, Trash2, Search, Filter } from 'lucide-react';
+import { Plus, Pencil, Trash2, Search } from 'lucide-react';
 import ProjectFormModal from './ProjectFormModal';
 import type { ProjectWithCategories, Category, CreateProjectInput, UpdateProjectInput } from '@/lib/types';
 

@@ -78,7 +78,7 @@ export function getPaginatedProjects(
   totalPages: number;
   currentPage: number;
 } {
-  let allProjects = category && category !== 'All'
+  const allProjects = category && category !== 'All'
     ? getProjectsByCategory(category, locale)
     : getProjects(locale);
 

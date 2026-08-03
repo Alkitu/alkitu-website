@@ -129,7 +129,7 @@ export function SkillsManager({
         <div className="rounded-md border border-dashed border-border p-8 text-center">
           <Award className="mx-auto h-8 w-8 text-muted-foreground" />
           <p className="mt-2 text-sm text-muted-foreground">
-            No hay {type === 'hard' ? 'hard skills' : 'soft skills'} agregadas. Haz clic en "Agregar" para comenzar.
+            No hay {type === 'hard' ? 'hard skills' : 'soft skills'} agregadas. Haz clic en &quot;Agregar&quot; para comenzar.
           </p>
         </div>
       ) : (

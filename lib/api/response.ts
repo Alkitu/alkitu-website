@@ -15,14 +15,14 @@ export interface ApiResponse<T = unknown> {
   success: boolean;
   message?: string;
   data?: T;
-  error?: ApiError;
+  error?: ApiErrorPayload;
   meta?: ApiMeta;
 }
 
 /**
  * Error details structure
  */
-export interface ApiError {
+export interface ApiErrorPayload {
   code: string;
   message: string;
   details?: ValidationError[] | Record<string, unknown>;

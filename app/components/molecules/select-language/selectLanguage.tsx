@@ -6,13 +6,13 @@ import { useDropdown } from '@/app/context/DropdownContext';
 import { usePathname, useRouter } from 'next/navigation';
 import { Locale } from '@/i18n.config';
 
-interface LanguageOption {
+interface _LanguageOption {
   name: string;
   pathname: string;
 }
 
 const itemVariants: Variants = {
-  open: (i = 1) => ({
+  open: (_i = 1) => ({
     opacity: 1,
     y: 0,
     transition: {
@@ -65,7 +65,7 @@ const mobileNavbar: Variants = {
 };
 
 export default function SelectLanguage() {
-  const { translations, setLocale, locale } = useTranslationContext();
+  const { translations, setLocale: _setLocale, locale } = useTranslationContext();
   const { activeDropdown, toggleDropdown } = useDropdown();
   const pathname = usePathname();
   const router = useRouter();

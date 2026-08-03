@@ -16,7 +16,7 @@ export default function BlinkWordsChangers({
   setSafeRemove,
   setBlink,
   blink,
-  alternative,
+  alternative: _alternative,
 }: BlinkWordsChangersProps) {
   const [index, setIndex] = useState(0);
   const [count, setCount] = useState(0);

@@ -264,7 +264,7 @@ export async function POST(request: NextRequest) {
       // Use session_fingerprint cookie (most reliable) or fall back to IP
       const sessionFingerprint = request.cookies.get('session_fingerprint')?.value;
 
-      let sessionInfo: {
+      const sessionInfo: {
         country?: string;
         city?: string;
         region?: string;

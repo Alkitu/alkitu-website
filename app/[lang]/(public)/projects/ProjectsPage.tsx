@@ -17,7 +17,7 @@ import type { ProjectWithCategories, Category } from "@/lib/types";
 // will be rendered in place of the search bar in the initial HTML.
 // When the value is available during React hydration the fallback
 // will be replaced with the `<SearchBar>` component.
-function SearchBarFallback() {
+function _SearchBarFallback() {
   return <>placeholder</>;
 }
 
@@ -39,7 +39,7 @@ const Portfolio = () => {
     Number(searchParams.get("page")) || 1
   );
   const [totalPages, setTotalPages] = useState(1);
-  const [total, setTotal] = useState(0);
+  const [_total, setTotal] = useState(0);
 
   const itemsPerPage = 6;
 

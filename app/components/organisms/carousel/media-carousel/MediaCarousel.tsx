@@ -67,7 +67,7 @@ export default function MediaCarousel({
   className = '',
   mediaArray,
   longCard,
-  projectId,
+  projectId: _projectId,
 }: MediaCarouselProps) {
   const [page, setPage] = useState(initialIndex);
   const media = mediaArray;

@@ -65,7 +65,7 @@ function LoginForm() {
 
       router.push(redirectTo);
       router.refresh();
-    } catch (err) {
+    } catch (_err) {
       setError('Ocurrió un error inesperado');
       setLoading(false);
     }

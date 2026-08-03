@@ -16,7 +16,7 @@ function DragContainer({
   index,
   width,
   children,
-  itemWidth,
+  itemWidth: _itemWidth,
   containerWidth,
   handleCategoryWord,
 }) {

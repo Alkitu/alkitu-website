@@ -8,7 +8,6 @@
 
 'use client';
 
-import { useState } from 'react';
 import { Plus, X, Briefcase, ChevronUp, ChevronDown } from 'lucide-react';
 import { PrivacyToggle } from './PrivacyToggle';
 import { AutocompleteInput } from './AutocompleteInput';

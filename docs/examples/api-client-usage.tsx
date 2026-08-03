@@ -360,7 +360,7 @@ export function MultiStepForm() {
       const toastId = toast.loading('Creating your account...');
 
       try {
-        const result = await api.post(
+        const _result = await api.post(
           '/api/register',
           {
             ...data.step1,

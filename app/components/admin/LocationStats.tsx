@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Globe, MapPin } from "lucide-react";
 import countriesData from '@/lib/data/countries.json';
 
-interface LocationData {
+interface _LocationData {
   country: string;
   region: string;
   count: number;
@@ -25,7 +25,7 @@ const getCountryEmoji = (code: string) => {
 const getCountryName = (code: string) => {
   try {
     return new Intl.DisplayNames(['es'], { type: 'region' }).of(code) || code;
-  } catch (e) {
+  } catch (_e) {
     return code;
   }
 };

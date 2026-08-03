@@ -61,7 +61,7 @@ export default function Carousel({
   className = '',
   immagesArray,
   longCard,
-  projectId,
+  projectId: _projectId,
 }: CarouselProps) {
   const [page, setPage] = useState(initialIndex);
   const [thumbStart, setThumbStart] = useState(0);
@@ -136,13 +136,13 @@ export default function Carousel({
   }, [page, thumbStart]);
 
   const hasThumbNav = images.length > MAX_VISIBLE_THUMBNAILS;
-  const visibleThumbs = images.slice(thumbStart, thumbStart + MAX_VISIBLE_THUMBNAILS);
+  const _visibleThumbs = images.slice(thumbStart, thumbStart + MAX_VISIBLE_THUMBNAILS);
 
-  const handleThumbPrev = useCallback(() => {
+  const _handleThumbPrev = useCallback(() => {
     setThumbStart((prev) => Math.max(0, prev - 1));
   }, []);
 
-  const handleThumbNext = useCallback(() => {
+  const _handleThumbNext = useCallback(() => {
     setThumbStart((prev) => Math.min(images.length - MAX_VISIBLE_THUMBNAILS, prev + 1));
   }, [images.length]);
 
@@ -180,7 +180,7 @@ export default function Carousel({
                   drag='x'
                   dragConstraints={{ left: 0, right: 0 }}
                   dragElastic={1}
-                  onDragEnd={(e, { offset, velocity }) => {
+                  onDragEnd={(e, { offset, velocity: _velocity }) => {
                     if (offset.x > 50) {
                       handleClickAfter();
                     } else if (offset.x < -50) {

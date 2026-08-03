@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 // always remember to make stop the propagation inside the childrens, add the next code to the main container onClick={(e) => e.stopPropagation()}
 
 const BackdropLeftToRigth = ({ children, onClick }) => {
-  const dropLeft = {
+  const _dropLeft = {
     closed: {
       x: "100%",
       opacity: 0,
@@ -32,7 +32,7 @@ const BackdropLeftToRigth = ({ children, onClick }) => {
     },
   };
 
-  const sidebar = {
+  const _sidebar = {
     open: {
       clipPath: "inset(0 0 0 0%)",
       transition: {

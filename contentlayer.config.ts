@@ -2,7 +2,6 @@ import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
-import remarkGfm from 'remark-gfm';
 import remarkCustomHeadingId from 'remark-custom-heading-id';
 
 /**

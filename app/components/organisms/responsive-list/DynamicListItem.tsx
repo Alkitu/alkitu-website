@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState, useRef, useLayoutEffect } from "react";
+import { useState } from "react";
 import { BrandingIcon, MarketingIcon, ProductBuildingIcon } from "@/app/components/molecules/animated-icons";
 
 function DynamicListItem({ category, index, boxPositions, handleClick }) {

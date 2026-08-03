@@ -22,9 +22,9 @@ type TestimonialsDesktopCardProps = {
 
 function TestimonialsDesktopCard({
   container,
-  centerOrder,
-  children,
-  index,
+  centerOrder: _centerOrder,
+  children: _children,
+  index: _index,
   className,
 }: TestimonialsDesktopCardProps) {
   const [showFullDescription, setShowFullDescription] = useState(false);

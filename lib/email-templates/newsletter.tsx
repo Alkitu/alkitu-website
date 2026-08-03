@@ -38,7 +38,7 @@ export function EnglishVerificationEmail({ verificationUrl }: VerificationEmailP
           <Section style={header}>
             <Heading style={h1}>📬 Confirm Your Subscription</Heading>
             <Text style={headerSubtitle}>
-              You're almost there! Just one more step
+              You&apos;re almost there! Just one more step
             </Text>
           </Section>
 
@@ -49,7 +49,7 @@ export function EnglishVerificationEmail({ verificationUrl }: VerificationEmailP
             <Text style={greeting}>Hello!</Text>
 
             <Text style={paragraph}>
-              Thank you for subscribing to the <strong>Alkitu newsletter</strong>. We're excited to share our latest projects, insights, and updates with you!
+              Thank you for subscribing to the <strong>Alkitu newsletter</strong>. We&apos;re excited to share our latest projects, insights, and updates with you!
             </Text>
 
             <Text style={paragraph}>
@@ -73,7 +73,7 @@ export function EnglishVerificationEmail({ verificationUrl }: VerificationEmailP
             </Text>
 
             <Text style={warningText}>
-              <strong>Note:</strong> If you didn't subscribe to our newsletter, you can safely ignore this email.
+              <strong>Note:</strong> If you didn&apos;t subscribe to our newsletter, you can safely ignore this email.
             </Text>
           </Section>
 
@@ -199,11 +199,11 @@ export function EnglishWelcomeEmail() {
             <Text style={greeting}>Welcome aboard!</Text>
 
             <Text style={paragraph}>
-              Thank you for confirming your subscription to the <strong>Alkitu newsletter</strong>. We're thrilled to have you as part of our community!
+              Thank you for confirming your subscription to the <strong>Alkitu newsletter</strong>. We&apos;re thrilled to have you as part of our community!
             </Text>
 
             <Text style={paragraph}>
-              You'll now receive regular updates about:
+              You&apos;ll now receive regular updates about:
             </Text>
 
             <ul style={list}>
@@ -214,7 +214,7 @@ export function EnglishWelcomeEmail() {
             </ul>
 
             <Text style={paragraph}>
-              In the meantime, explore what we're working on:
+              In the meantime, explore what we&apos;re working on:
             </Text>
           </Section>
 
@@ -346,7 +346,7 @@ export function EnglishGoodbyeEmail() {
           <Section style={header}>
             <Heading style={h1}>👋 Sorry to See You Go</Heading>
             <Text style={headerSubtitle}>
-              You've been unsubscribed from our newsletter
+              You&apos;ve been unsubscribed from our newsletter
             </Text>
           </Section>
 
@@ -361,7 +361,7 @@ export function EnglishGoodbyeEmail() {
             </Text>
 
             <Text style={paragraph}>
-              We're sorry to see you go! If you unsubscribed by mistake or change your mind in the future, you can always subscribe again through our website.
+              We&apos;re sorry to see you go! If you unsubscribed by mistake or change your mind in the future, you can always subscribe again through our website.
             </Text>
 
             <Text style={paragraph}>

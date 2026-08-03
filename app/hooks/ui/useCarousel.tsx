@@ -9,7 +9,7 @@ export function useCarousel(dataConteiners: any[], reduceGap = 2) {
   const [itemWidth, setItemWidth] = useState<number | null>(null);
   const screenWidth = useScreenWidth();
   const { data, centerOrder, paginate } = usePagination(dataConteiners);
-  const [isPending, startTransition] = useTransition();
+  const [_isPending, startTransition] = useTransition();
 
   useEffect(() => {
     if (containerRef.current) {

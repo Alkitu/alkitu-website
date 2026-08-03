@@ -6,7 +6,7 @@ import { useTheme, Theme } from '@/app/context/ThemeContext';
 import { useDropdown } from '@/app/context/DropdownContext';
 
 const itemVariants = {
-  open: (i = 1) => ({
+  open: (_i = 1) => ({
     opacity: 1,
     y: 0,
     transition: {
@@ -65,11 +65,11 @@ const themeOptions = [
 ];
 
 function SelectThemeContent() {
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme: _resolvedTheme } = useTheme();
   const { activeDropdown, toggleDropdown } = useDropdown();
   const isOpen = activeDropdown === 'theme';
 
-  const getCurrentThemeLabel = () => {
+  const _getCurrentThemeLabel = () => {
     const current = themeOptions.find(opt => opt.value === theme);
     return current?.name || 'Theme';
   };
@@ -190,7 +190,7 @@ function SelectThemeContent() {
               pointerEvents: isOpen ? 'auto' : 'none'
             }}
           >
-            {themeOptions.map((option, index) => (
+            {themeOptions.map((option, _index) => (
               <motion.li
                 key={option.value}
                 className="text-center text-md last:border-b-0 border-b-2 font-medium first:pb-2 last:pt-2 flex-row w-full content-center cursor-pointer flex items-center justify-between gap-2 px-2"

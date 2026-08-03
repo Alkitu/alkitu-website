@@ -10,7 +10,7 @@ import { ApiError } from '@/lib/api/response';
  * Returns:
  * - CSV file download with filename: newsletter-subscribers-YYYY-MM-DD.csv
  */
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   try {
     const supabase = await createClient();
 

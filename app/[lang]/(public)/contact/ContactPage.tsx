@@ -43,7 +43,7 @@ export default function ContactPage() {
           >
             <div>
               <h1 className="text-[14vw] md:text-[10vw] lg:text-[5.5vw] xl:text-[5vw] font-black uppercase text-foreground leading-[0.85] tracking-tighter mb-8 max-w-[15ch]">
-                Let's <br/> Create <br/> <span className="text-primary">Magic.</span>
+                Let&apos;s <br/> Create <br/> <span className="text-primary">Magic.</span>
               </h1>
               <p className="text-lg md:text-xl xl:text-2xl text-foreground/60 font-medium max-w-lg mb-12">
                 {translations?.contactPage?.header?.subtitle || "Cuéntanos sobre tu visión y la convertiremos en un producto digital inolvidable."}

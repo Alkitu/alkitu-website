@@ -1,4 +1,4 @@
-export default function Head ({ params }) {
+export default function Head ({ params: _params }) {
   return (
     <>
       <title>Luis Urdaneta - Blog</title>

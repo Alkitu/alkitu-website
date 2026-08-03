@@ -2,8 +2,6 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { ContactInfo } from '@/app/components/molecules/contact-info';
-import { SocialButtons } from '@/app/components/molecules/social-button';
 import { useTranslationContext } from '@/app/context/TranslationContext';
 import TailwindGrid from '@/app/components/templates/grid';
 

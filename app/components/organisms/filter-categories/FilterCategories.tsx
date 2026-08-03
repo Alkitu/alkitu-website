@@ -23,7 +23,7 @@ export default function FilterCategories({
   categories = [],
   locale: localeProp,
 }: FilterCategories_Props) {
-  const { translations } = useTranslationContext();
+  const { translations: _translations } = useTranslationContext();
   const locale = localeProp;
   const categoriesRef = useRef(null);
   const screenWidth = useScreenWidth();

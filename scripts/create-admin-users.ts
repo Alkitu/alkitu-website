@@ -60,7 +60,7 @@ async function createAdminUsers() {
         console.log(`✓ Usuario ${user.email} ya existe`)
 
         // Intentar obtener el ID del usuario existente mediante login
-        const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
+        const { data: signInData, error: _signInError } = await supabase.auth.signInWithPassword({
           email: user.email,
           password: user.password
         })

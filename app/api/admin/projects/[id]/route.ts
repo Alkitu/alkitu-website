@@ -179,7 +179,7 @@ export async function PATCH(
     const { category_ids, ...projectData } = updateData;
 
     // Update project
-    const { data: updatedProject, error: updateError } = await supabase
+    const { data: _updatedProject, error: updateError } = await supabase
       .from('projects')
       .update(projectData)
       .eq('id', id)
