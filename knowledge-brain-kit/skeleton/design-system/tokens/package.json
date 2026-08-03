@@ -1,0 +1,12 @@
+{
+  "name": "@brain/design-tokens",
+  "version": "0.1.0",
+  "private": true,
+  "description": "[Brand] Design Tokens - Shared design primitives for web and mobile",
+  "main": "./index.css",
+  "exports": {
+    ".": "./index.css",
+    "./primitives": "./primitives/colors.css",
+    "./brands/*": "./brands/*"
+  }
+}

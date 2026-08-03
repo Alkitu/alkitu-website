@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "skills": {
+    "figma-create-new-file": {
+      "source": "figma/mcp-server-guide",
+      "sourceType": "github",
+      "computedHash": "e696ed4b3b883040b61aeb57a6803ce0952f2b848f74851e6ea42333e30afa18"
+    },
+    "figma-implement-design": {
+      "source": "figma/mcp-server-guide",
+      "sourceType": "github",
+      "computedHash": "3a73f35eaa52cba221f5f237097b6e2e4c193c558bf88aa4ab32dec736ad0ffe"
+    },
+    "figma-use": {
+      "source": "figma/mcp-server-guide",
+      "sourceType": "github",
+      "computedHash": "a38fa3f605e5929bdd99e484d5abfd84c510f06b10492a5bae6e5c640616c4e0"
+    }
+  }
+}

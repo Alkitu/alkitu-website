@@ -1,0 +1,40 @@
+/* ===========================================
+   DEFAULT BRAND — LIGHT (PLACEHOLDER)
+   Marca de arranque del knowledge-brain-kit. Color firma PLACEHOLDER (ramp azul).
+   Override de tokens semánticos sobre la base neutral del DS; los valores
+   alias-an a las primitivas (primitives/colors.css). Al instanciar el concepto,
+   cambia la ramp --brand-primary o duplica este archivo para tu marca.
+   Activación: vía tokens/index.css (importado por apps/web tras el globals del DS).
+   =========================================== */
+:root {
+  /* ── Superficie / tinta ── */
+  --background: var(--lk-fondo);            /* #f4f4f2 */
+  --foreground: var(--lk-tinta);            /* #2b2b2b */
+  --card: var(--lk-blanco);
+  --card-foreground: var(--lk-tinta);
+  --popover: var(--lk-blanco);
+  --popover-foreground: var(--lk-tinta);
+
+  /* ── Marca / acción primaria = primario ── */
+  --brand: var(--brand-primary);              /* placeholder */
+  --brand-foreground: var(--lk-blanco);
+  --primary: var(--brand-primary);
+  --primary-foreground: var(--lk-blanco);  /* blanco sobre primario · contraste AA */
+
+  /* ── Foco / anillos ── */
+  --ring: var(--brand-primary);
+
+  /* ── Acento sutil teñido de marca (fondos suaves / hovers) ── */
+  --accent: var(--brand-primary-050);
+  --accent-foreground: var(--brand-primary);
+
+  /* ── Bordes / inputs / texto atenuado ── */
+  --border: var(--lk-neutral-300);         /* #d4d4d4 */
+  --input: var(--lk-neutral-300);
+  --muted-foreground: var(--lk-neutral-600); /* #525252 */
+
+  /* ── Sidebar (solo si el patrón sidebar-app se usa) ── */
+  --sidebar-primary: var(--brand-primary);
+  --sidebar-primary-foreground: var(--lk-blanco);
+  --sidebar-ring: var(--brand-primary);
+}

@@ -1,0 +1,9 @@
+# esbuild necesita ejecutar su postinstall para bajar el binario nativo que
+# corresponde a su versión (vitest/vite lo usan para transformar TS en los tests).
+onlyBuiltDependencies:
+  - esbuild
+
+packages:
+  - 'apps/*'
+  - 'design-system/web'
+  - 'design-system/tokens'

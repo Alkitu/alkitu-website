@@ -1,0 +1,77 @@
+/* Unlayered to ensure override over globals.css :root */
+
+/* Slate Theme */
+html.theme-slate {
+    --color-neutral-50: var(--color-slate-50);
+    --color-neutral-100: var(--color-slate-100);
+    --color-neutral-200: var(--color-slate-200);
+    --color-neutral-300: var(--color-slate-300);
+    --color-neutral-400: var(--color-slate-400);
+    --color-neutral-500: var(--color-slate-500);
+    --color-neutral-600: var(--color-slate-600);
+    --color-neutral-700: var(--color-slate-700);
+    --color-neutral-800: var(--color-slate-800);
+    --color-neutral-900: var(--color-slate-900);
+    --color-neutral-950: var(--color-slate-950);
+}
+
+/* Gray Theme */
+html.theme-gray {
+    --color-neutral-50: var(--color-gray-50);
+    --color-neutral-100: var(--color-gray-100);
+    --color-neutral-200: var(--color-gray-200);
+    --color-neutral-300: var(--color-gray-300);
+    --color-neutral-400: var(--color-gray-400);
+    --color-neutral-500: var(--color-gray-500);
+    --color-neutral-600: var(--color-gray-600);
+    --color-neutral-700: var(--color-gray-700);
+    --color-neutral-800: var(--color-gray-800);
+    --color-neutral-900: var(--color-gray-900);
+    --color-neutral-950: var(--color-gray-950);
+}
+
+/* Zinc Theme (Default) - explicitly defined for switching back */
+html.theme-zinc,
+html.theme-neutral {
+    --color-neutral-50: var(--color-zinc-50);
+    --color-neutral-100: var(--color-zinc-100);
+    --color-neutral-200: var(--color-zinc-200);
+    --color-neutral-300: var(--color-zinc-300);
+    --color-neutral-400: var(--color-zinc-400);
+    --color-neutral-500: var(--color-zinc-500);
+    --color-neutral-600: var(--color-zinc-600);
+    --color-neutral-700: var(--color-zinc-700);
+    --color-neutral-800: var(--color-zinc-800);
+    --color-neutral-900: var(--color-zinc-900);
+    --color-neutral-950: var(--color-zinc-950);
+}
+
+/* Stone Theme */
+html.theme-stone {
+    --color-neutral-50: var(--color-stone-50);
+    --color-neutral-100: var(--color-stone-100);
+    --color-neutral-200: var(--color-stone-200);
+    --color-neutral-300: var(--color-stone-300);
+    --color-neutral-400: var(--color-stone-400);
+    --color-neutral-500: var(--color-stone-500);
+    --color-neutral-600: var(--color-stone-600);
+    --color-neutral-700: var(--color-stone-700);
+    --color-neutral-800: var(--color-stone-800);
+    --color-neutral-900: var(--color-stone-900);
+    --color-neutral-950: var(--color-stone-950);
+}
+
+/* Black Theme (pure black — highest contrast) */
+html.theme-black {
+    --color-neutral-50: var(--color-black-50);
+    --color-neutral-100: var(--color-black-100);
+    --color-neutral-200: var(--color-black-200);
+    --color-neutral-300: var(--color-black-300);
+    --color-neutral-400: var(--color-black-400);
+    --color-neutral-500: var(--color-black-500);
+    --color-neutral-600: var(--color-black-600);
+    --color-neutral-700: var(--color-black-700);
+    --color-neutral-800: var(--color-black-800);
+    --color-neutral-900: var(--color-black-900);
+    --color-neutral-950: var(--color-black-950);
+}

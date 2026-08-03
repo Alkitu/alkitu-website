@@ -1,0 +1,1020 @@
+@import "tailwindcss";
+@import "./themes.css";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* ============================================
+   MOTION — utilidades de duración semánticas (duration-press … duration-slow)
+   Tailwind v4 no expone un namespace --duration-*; las declaramos como
+   utilidades. Fijan --tw-duration (que consume tw-animate-css / animate-in)
+   Y transition-duration (transiciones CSS), así sirven a ambos mundos.
+   Valores: @brain/design-tokens primitives/motion.css.
+   ============================================ */
+@utility duration-press {
+  --tw-duration: var(--lk-duration-press, 150ms);
+  transition-duration: var(--lk-duration-press, 150ms);
+}
+@utility duration-tooltip {
+  --tw-duration: var(--lk-duration-tooltip, 150ms);
+  transition-duration: var(--lk-duration-tooltip, 150ms);
+}
+@utility duration-dropdown {
+  --tw-duration: var(--lk-duration-dropdown, 200ms);
+  transition-duration: var(--lk-duration-dropdown, 200ms);
+}
+@utility duration-modal {
+  --tw-duration: var(--lk-duration-modal, 300ms);
+  transition-duration: var(--lk-duration-modal, 300ms);
+}
+@utility duration-slow {
+  --tw-duration: var(--lk-duration-slow, 500ms);
+  transition-duration: var(--lk-duration-slow, 500ms);
+}
+
+/* ============================================
+   DESIGN SYSTEM TOKENS — Tailwind v4 CSS-first
+   ============================================ */
+
+/* --- Dark mode variant (class-based) --- */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* --- Theme: Semantic Color Tokens --- */
+@theme inline {
+  /* Font families (from Geist loaded in layout.tsx) */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* ── Editorial tuconcepto: contenedores ──
+     Cubren los anchos reales de la web (max-w-page / max-w-lectura). */
+  --container-page: 1500px;      /* ancho máximo de página */
+  --container-lectura: 1100px;   /* ancho de lectura (prosa ancha) */
+
+  /* ── Editorial tuconcepto: escala tipográfica ──
+     Tamaños de cuerpo/UI reales de la web (→ text-body, text-small…). */
+  --text-nano: 10px;
+  --text-caption: 11px;
+  --text-small: 13px;
+  --text-body: 15px;             /* cuerpo base de la web */
+
+  /* Display fluido (heros) más frecuentes; los clamps únicos por página son
+     tuning editorial y pueden seguir como valor puntual documentado. */
+  --text-display: clamp(2.6rem, 8vw, 7rem);
+  --text-display-sm: clamp(2.6rem, 8vw, 6rem);
+
+  /* ── Editorial tuconcepto: interlineado / tracking de titulares ── */
+  --leading-display: 0.95;
+  --tracking-display: -0.035em;
+  --tracking-display-sm: -0.03em;
+
+  /* Semantic Color Tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-subtle: var(--destructive-subtle);
+  --color-destructive-border: var(--destructive-border);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  /* Overlay (modal/dialog backdrops) */
+  --color-overlay: var(--overlay);
+
+  /* Scrollbar Tokens */
+  --color-scrollbar-track: var(--scrollbar-track);
+  --color-scrollbar-thumb: var(--scrollbar-thumb);
+  --color-scrollbar-thumb-hover: var(--scrollbar-thumb-hover);
+
+  /* Radius Tokens */
+  --radius-xs: var(--radius-xs-val);
+  --radius-sm: var(--radius-sm-val);
+  --radius-md: var(--radius-md-val);
+  --radius-lg: var(--radius-lg-val);
+  --radius-xl: var(--radius-xl-val);
+  --radius-2xl: var(--radius-2xl-val);
+  --radius-3xl: var(--radius-3xl-val);
+  --radius-full: 9999px;
+
+  /* Shadow Tokens */
+  --shadow-2xs: 0 1px 0 0 rgba(0, 0, 0, 0.05);
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --shadow-2xl: 0 25px 50px 12px rgba(0, 0, 0, 0.25);
+
+  /* Motion — Easing Tokens (curvas fuertes; fuente: @brain/design-tokens
+     primitives/motion.css). Generan las utilidades ease-out-strong,
+     ease-in-out-strong, ease-drawer, ease-hover — que además fijan --tw-ease,
+     así que también gobiernan las animaciones de tw-animate-css (animate-in). */
+  --ease-out-strong: var(--lk-ease-out-strong, cubic-bezier(0.23, 1, 0.32, 1));
+  --ease-in-out-strong: var(--lk-ease-in-out-strong, cubic-bezier(0.77, 0, 0.175, 1));
+  --ease-drawer: var(--lk-ease-drawer, cubic-bezier(0.32, 0.72, 0, 1));
+  --ease-hover: var(--lk-ease-hover, ease);
+
+  /* Animation Tokens — tokenizados sobre motion.css (duración + curva fuerte).
+     fade-out/slide-out mantienen la salida más rápida que la entrada (asimetría). */
+  --animate-fade-in: fade-in var(--lk-duration-dropdown, 200ms) var(--lk-ease-out-strong, cubic-bezier(0.23, 1, 0.32, 1));
+  --animate-fade-out: fade-out var(--lk-duration-tooltip, 150ms) var(--lk-ease-out-strong, cubic-bezier(0.23, 1, 0.32, 1));
+  --animate-slide-in: slide-in var(--lk-duration-modal, 300ms) var(--lk-ease-out-strong, cubic-bezier(0.23, 1, 0.32, 1));
+  --animate-slide-out: slide-out var(--lk-duration-dropdown, 200ms) var(--lk-ease-out-strong, cubic-bezier(0.23, 1, 0.32, 1));
+  --animate-spin: spin var(--lk-duration-spin, 1s) linear infinite;
+  --animate-spin-slow: spin var(--lk-duration-spin-slow, 3s) linear infinite;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+
+  /* Status Tokens */
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes slide-in {
+    from {
+      transform: translateY(-0.5rem);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-out {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    to {
+      transform: translateY(-0.5rem);
+      opacity: 0;
+    }
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  --radius-4xl: calc(var(--radius) + 16px);
+}
+
+/* Typography utility classes — used by DS primitives (Button, Sidebar, Tabs, etc.)
+ * These read from --typography-{tag}-* CSS variables set by ThemeProvider/ThemeEditor.
+ * Defined here (not in @layer) so they have higher specificity than Tailwind utilities. */
+.text-btn,
+[data-slot="button"] {
+  font-size: var(--typography-btn-text-font-size);
+  line-height: var(--typography-btn-text-line-height);
+  font-weight: var(--typography-btn-text-font-weight);
+  letter-spacing: var(--typography-btn-text-letter-spacing);
+  font-family: var(--typography-btn-text-font-family);
+}
+.text-nav-item {
+  font-size: var(--typography-nav-item-font-size);
+  line-height: var(--typography-nav-item-line-height);
+  font-weight: var(--typography-nav-item-font-weight);
+  letter-spacing: var(--typography-nav-item-letter-spacing);
+  font-family: var(--typography-nav-item-font-family);
+}
+.text-overline {
+  font-size: var(--typography-overline-font-size);
+  line-height: var(--typography-overline-line-height);
+  font-weight: var(--typography-overline-font-weight);
+  letter-spacing: var(--typography-overline-letter-spacing);
+  font-family: var(--typography-overline-font-family);
+  text-transform: uppercase;
+}
+.text-caption {
+  font-size: var(--typography-caption-font-size);
+  line-height: var(--typography-caption-line-height);
+  font-weight: var(--typography-caption-font-weight);
+  letter-spacing: var(--typography-caption-letter-spacing);
+  font-family: var(--typography-caption-font-family);
+}
+.text-label {
+  font-size: var(--typography-label-font-size);
+  line-height: var(--typography-label-line-height);
+  font-weight: var(--typography-label-font-weight);
+  letter-spacing: var(--typography-label-letter-spacing);
+  font-family: var(--typography-label-font-family);
+}
+.text-lead {
+  font-size: var(--typography-lead-font-size);
+  line-height: var(--typography-lead-line-height);
+  font-weight: var(--typography-lead-font-weight);
+  letter-spacing: var(--typography-lead-letter-spacing);
+  font-family: var(--typography-lead-font-family);
+}
+
+/* ============================================
+   LIGHT THEME (default)
+   ============================================ */
+:root {
+  /* Raw Color Primitives */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Black scale (pure black tones — higher contrast than neutral) */
+  --color-black-50: #f8f8f8;
+  --color-black-100: #f0f0f0;
+  --color-black-200: #d9d9d9;
+  --color-black-300: #bfbfbf;
+  --color-black-400: #8c8c8c;
+  --color-black-500: #595959;
+  --color-black-600: #404040;
+  --color-black-700: #2e2e2e;
+  --color-black-800: #1a1a1a;
+  --color-black-900: #0d0d0d;
+  --color-black-950: #050505;
+
+  /* Neutral scale */
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
+  --color-neutral-950: #0a0a0a;
+
+  /* Red scale */
+  --color-red-50: #fef2f2;
+  --color-red-100: #fee2e2;
+  --color-red-200: #fecaca;
+  --color-red-300: #fca5a5;
+  --color-red-400: #f87171;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  --color-red-700: #b91c1c;
+  --color-red-800: #991b1b;
+  --color-red-900: #7f1d1d;
+  --color-red-950: #450a0a;
+
+  /* Blue scale */
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-200: #bfdbfe;
+  --color-blue-300: #93c5fd;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+  --color-blue-800: #1e40af;
+  --color-blue-900: #1e3a8a;
+  --color-blue-950: #172554;
+
+  /* Slate scale */
+  --color-slate-50: #F8FAFC;
+  --color-slate-100: #F1F5F9;
+  --color-slate-200: #E2E8F0;
+  --color-slate-300: #CBD5E1;
+  --color-slate-400: #94A3B8;
+  --color-slate-500: #64748B;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1E293B;
+  --color-slate-900: #0F172A;
+  --color-slate-950: #020617;
+
+  /* Gray scale */
+  --color-gray-50: #F9FAFB;
+  --color-gray-100: #F3F4F6;
+  --color-gray-200: #E5E7EB;
+  --color-gray-300: #D1D5DB;
+  --color-gray-400: #9CA3AF;
+  --color-gray-500: #6B7280;
+  --color-gray-600: #4B5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1F2937;
+  --color-gray-900: #111827;
+  --color-gray-950: #030712;
+
+  /* Zinc scale */
+  --color-zinc-50: #FAFAFA;
+  --color-zinc-100: #F4F4F5;
+  --color-zinc-200: #E4E4E7;
+  --color-zinc-300: #D4D4D8;
+  --color-zinc-400: #A1A1AA;
+  --color-zinc-500: #71717A;
+  --color-zinc-600: #52525B;
+  --color-zinc-700: #3F3F46;
+  --color-zinc-800: #27272A;
+  --color-zinc-900: #18181B;
+  --color-zinc-950: #09090B;
+
+  /* Stone scale */
+  --color-stone-50: #FAFAF9;
+  --color-stone-100: #F5F5F4;
+  --color-stone-200: #E7E5E4;
+  --color-stone-300: #D6D3D1;
+  --color-stone-400: #A8A29E;
+  --color-stone-500: #78716C;
+  --color-stone-600: #57534E;
+  --color-stone-700: #44403C;
+  --color-stone-800: #292524;
+  --color-stone-900: #1C1917;
+  --color-stone-950: #0C0A09;
+
+  /* Orange scale */
+  --color-orange-50: #FFF7ED;
+  --color-orange-100: #FFEDD5;
+  --color-orange-200: #FED7AA;
+  --color-orange-300: #FDBA74;
+  --color-orange-400: #FB923C;
+  --color-orange-500: #F97316;
+  --color-orange-600: #EA580C;
+  --color-orange-700: #C2410C;
+  --color-orange-800: #9A3412;
+  --color-orange-900: #7C2D12;
+  --color-orange-950: #431407;
+
+  /* Amber scale */
+  --color-amber-50: #FFFBEB;
+  --color-amber-100: #FEF3C7;
+  --color-amber-200: #FDE68A;
+  --color-amber-300: #FCD34D;
+  --color-amber-400: #FBBF24;
+  --color-amber-500: #F59E0B;
+  --color-amber-600: #D97706;
+  --color-amber-700: #B45309;
+  --color-amber-800: #92400E;
+  --color-amber-900: #78350F;
+  --color-amber-950: #451A03;
+
+  /* Yellow scale */
+  --color-yellow-50: #FEFCE8;
+  --color-yellow-100: #FEF9C3;
+  --color-yellow-200: #FEF08A;
+  --color-yellow-300: #FDE047;
+  --color-yellow-400: #FACC15;
+  --color-yellow-500: #EAB308;
+  --color-yellow-600: #CA8A04;
+  --color-yellow-700: #A16207;
+  --color-yellow-800: #854D0E;
+  --color-yellow-900: #713F12;
+  --color-yellow-950: #422006;
+
+  /* Lime scale */
+  --color-lime-50: #F7FEE7;
+  --color-lime-100: #ECFCCB;
+  --color-lime-200: #D9F99D;
+  --color-lime-300: #BEF264;
+  --color-lime-400: #A3E635;
+  --color-lime-500: #84CC16;
+  --color-lime-600: #65A30D;
+  --color-lime-700: #4D7C0F;
+  --color-lime-800: #3F6212;
+  --color-lime-900: #365314;
+  --color-lime-950: #1A2E05;
+
+  /* Green scale */
+  --color-green-50: #F0FDF4;
+  --color-green-100: #DCFCE7;
+  --color-green-200: #BBF7D0;
+  --color-green-300: #86EFAC;
+  --color-green-400: #4ADE80;
+  --color-green-500: #22C55E;
+  --color-green-600: #16A34A;
+  --color-green-700: #15803D;
+  --color-green-800: #166534;
+  --color-green-900: #14532D;
+  --color-green-950: #052E16;
+
+  /* Emerald scale */
+  --color-emerald-50: #ECFDF5;
+  --color-emerald-100: #D1FAE5;
+  --color-emerald-200: #A7F3D0;
+  --color-emerald-300: #6EE7B7;
+  --color-emerald-400: #34D399;
+  --color-emerald-500: #10B981;
+  --color-emerald-600: #059669;
+  --color-emerald-700: #047857;
+  --color-emerald-800: #065F46;
+  --color-emerald-900: #064E3B;
+  --color-emerald-950: #022C22;
+
+  /* Teal scale */
+  --color-teal-50: #F0FDFA;
+  --color-teal-100: #CCFBF1;
+  --color-teal-200: #99F6E4;
+  --color-teal-300: #5EEAD4;
+  --color-teal-400: #2DD4BF;
+  --color-teal-500: #14B8A6;
+  --color-teal-600: #0D9488;
+  --color-teal-700: #0F766E;
+  --color-teal-800: #115E59;
+  --color-teal-900: #134E4A;
+  --color-teal-950: #042F2E;
+
+  /* Cyan scale */
+  --color-cyan-50: #ECFEFF;
+  --color-cyan-100: #CFFAFE;
+  --color-cyan-200: #A5F3FC;
+  --color-cyan-300: #67E8F9;
+  --color-cyan-400: #22D3EE;
+  --color-cyan-500: #06B6D4;
+  --color-cyan-600: #0891B2;
+  --color-cyan-700: #0E7490;
+  --color-cyan-800: #155E75;
+  --color-cyan-900: #164E63;
+  --color-cyan-950: #083344;
+
+  /* Sky scale */
+  --color-sky-50: #F0F9FF;
+  --color-sky-100: #E0F2FE;
+  --color-sky-200: #BAE6FD;
+  --color-sky-300: #7DD3FC;
+  --color-sky-400: #38BDF8;
+  --color-sky-500: #0EA5E9;
+  --color-sky-600: #0284C7;
+  --color-sky-700: #0369A1;
+  --color-sky-800: #075985;
+  --color-sky-900: #0C4A6E;
+  --color-sky-950: #082F49;
+
+  /* Indigo scale */
+  --color-indigo-50: #EEF2FF;
+  --color-indigo-100: #E0E7FF;
+  --color-indigo-200: #C7D2FE;
+  --color-indigo-300: #A5B4FC;
+  --color-indigo-400: #818CF8;
+  --color-indigo-500: #6366F1;
+  --color-indigo-600: #4F46E5;
+  --color-indigo-700: #4338CA;
+  --color-indigo-800: #3730A3;
+  --color-indigo-900: #312E81;
+  --color-indigo-950: #1E1B4B;
+
+  /* Violet scale */
+  --color-violet-50: #F5F3FF;
+  --color-violet-100: #EDE9FE;
+  --color-violet-200: #DDD6FE;
+  --color-violet-300: #C4B5FD;
+  --color-violet-400: #A78BFA;
+  --color-violet-500: #8B5CF6;
+  --color-violet-600: #7C3AED;
+  --color-violet-700: #6D28D9;
+  --color-violet-800: #5B21B6;
+  --color-violet-900: #4C1D95;
+  --color-violet-950: #2E1065;
+
+  /* Purple scale */
+  --color-purple-50: #FAF5FF;
+  --color-purple-100: #F3E8FF;
+  --color-purple-200: #E9D5FF;
+  --color-purple-300: #D8B4FE;
+  --color-purple-400: #C084FC;
+  --color-purple-500: #A855F7;
+  --color-purple-600: #9333EA;
+  --color-purple-700: #7E22CE;
+  --color-purple-800: #6B21A8;
+  --color-purple-900: #581C87;
+  --color-purple-950: #3B0764;
+
+  /* Fuchsia scale */
+  --color-fuchsia-50: #FDF4FF;
+  --color-fuchsia-100: #FAE8FF;
+  --color-fuchsia-200: #F5D0FE;
+  --color-fuchsia-300: #F0ABFC;
+  --color-fuchsia-400: #E879F9;
+  --color-fuchsia-500: #D946EF;
+  --color-fuchsia-600: #C026D3;
+  --color-fuchsia-700: #A21CAF;
+  --color-fuchsia-800: #86198F;
+  --color-fuchsia-900: #701A75;
+  --color-fuchsia-950: #4A044E;
+
+  /* Pink scale */
+  --color-pink-50: #FDF2F8;
+  --color-pink-100: #FCE7F3;
+  --color-pink-200: #FBCFE8;
+  --color-pink-300: #F9A8D4;
+  --color-pink-400: #F472B6;
+  --color-pink-500: #EC4899;
+  --color-pink-600: #DB2777;
+  --color-pink-700: #BE185D;
+  --color-pink-800: #9D174D;
+  --color-pink-900: #831843;
+  --color-pink-950: #500724;
+
+  /* Rose scale */
+  --color-rose-50: #FFF1F2;
+  --color-rose-100: #FFE4E6;
+  --color-rose-200: #FECDD3;
+  --color-rose-300: #FDA4AF;
+  --color-rose-400: #FB7185;
+  --color-rose-500: #F43F5E;
+  --color-rose-600: #E11D48;
+  --color-rose-700: #BE123C;
+  --color-rose-800: #9F1239;
+  --color-rose-900: #881337;
+  --color-rose-950: #4C0519;
+
+  /* ================================================
+     SEMANTIC TOKENS — LIGHT MODE
+     Base (B) = --color-neutral-* (swapped by themes.css)
+     Theme (T) = defaults to neutral (overridden by JS)
+     Error (E) = always Red
+     ================================================ */
+
+  /* --- STRUCTURE (Base palette) --- */
+  --card: oklch(1 0 0);
+  /* White */
+  --card-foreground: oklch(0.145 0 0);
+  /* B-950 */
+
+  --popover: oklch(1 0 0);
+  /* White */
+  --popover-foreground: oklch(0.145 0 0);
+  /* B-950 */
+
+  --border: oklch(0.922 0 0);
+  /* B-200 */
+  --input: oklch(0.922 0 0);
+  /* B-200 */
+
+  /* --- BRAND / INTERACTIVITY (Theme palette — neutral default) --- */
+  /* NOTE: If Theme is a color (e.g. Blue), JS overrides these to T-600 */
+  --primary: oklch(0.205 0 0);
+  /* B-900 (monochromatic) */
+  --primary-foreground: oklch(0.985 0 0);
+  /* B-50 */
+  --ring: oklch(0.708 0 0);
+  /* B-900 */
+
+  /* --- SECONDARY ELEMENTS (Base palette) --- */
+  --secondary: oklch(0.97 0 0);
+  /* B-100 */
+  --secondary-foreground: oklch(0.205 0 0);
+  /* B-900 */
+
+  --muted: oklch(0.97 0 0);
+  /* B-100 */
+  --muted-foreground: oklch(0.556 0 0);
+  /* B-500 */
+
+  --accent: oklch(0.97 0 0);
+  /* B-100 */
+  --accent-foreground: oklch(0.205 0 0);
+  /* B-900 */
+
+  /* --- DESTRUCTIVE (Red — fixed) --- */
+  --destructive: oklch(0.577 0.245 27.325);
+  /* E-600 */
+  --destructive-foreground: var(--color-white);
+  /* White */
+  --destructive-subtle: var(--color-red-50);
+  /* E-50 */
+  --destructive-border: var(--color-red-200);
+  /* E-200 */
+
+  /* --- SCROLLBAR (Base palette) --- */
+  --scrollbar-track: transparent;
+  --scrollbar-thumb: var(--color-neutral-300);
+  /* B-300 */
+  --scrollbar-thumb-hover: var(--color-neutral-400);
+  /* B-400 */
+
+  /* Radius values */
+  --radius-xs-val: 2px;
+  --radius-sm-val: 4px;
+  --radius-md-val: 6px;
+  --radius-lg-val: 8px;
+  --radius-xl-val: 12px;
+  --radius-2xl-val: 16px;
+  --radius-3xl-val: 24px;
+  --radius: 0.625rem;
+
+  /* Derived component tokens (controlled by theme engine) */
+  --radius-card: calc(var(--radius-lg-val) + 4px);
+  --shadow-card: var(--shadow-md);
+  --shadow-card-hover: var(--shadow-lg);
+  --spacing-lg: 1.5rem;
+  /* Tokens de transición de componente — sobre motion.css (curva fuerte).
+     Muchos primitives los consumen vía var(--transition-base/fast/slow, …);
+     tokenizarlos aquí eleva TODO el DS sin tocar cada archivo.
+     (El theme engine re-emite --transition-base en runtime: ver
+     lib/theme-css-generator.ts, alineado a la misma curva.) */
+  --transition-fast: var(--lk-duration-press, 150ms) var(--lk-ease-out-strong, cubic-bezier(0.23, 1, 0.32, 1));
+  --transition-base: var(--lk-duration-dropdown, 200ms) var(--lk-ease-out-strong, cubic-bezier(0.23, 1, 0.32, 1));
+  --transition-slow: var(--lk-duration-modal, 300ms) var(--lk-ease-drawer, cubic-bezier(0.32, 0.72, 0, 1));
+  --shadow-dropdown: var(--shadow-lg);
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+
+  /* Component-specific radius tokens (controlled by theme engine) */
+  --radius-input: var(--radius-md-val);
+  --radius-dropdown: var(--radius-md-val);
+
+  /* Status color tokens */
+  --success: oklch(0.59 0.2 145);
+  --success-foreground: oklch(0.985 0 0);
+  --color-success: var(--success);
+  --warning: oklch(0.75 0.18 85);
+  --warning-foreground: oklch(0.145 0 0);
+  --color-warning: var(--warning);
+  --info: oklch(0.55 0.2 250);
+  --info-foreground: oklch(0.985 0 0);
+
+  /* Overlay */
+  --overlay: rgba(0, 0, 0, 0.5);
+
+  /* Typography scale (Tailwind-aligned) */
+  --text-sm: 0.875rem;
+  --leading-normal: 1.5;
+
+  /* Typography Tokens — Source of truth for all text elements */
+  --typography-h1-font-size: 48px;
+  --typography-h1-line-height: 48px;
+  --typography-h1-font-weight: 600;
+  --typography-h1-letter-spacing: -1.5px;
+  --typography-h1-font-family: inherit;
+
+  --typography-h2-font-size: 30px;
+  --typography-h2-line-height: 30px;
+  --typography-h2-font-weight: 600;
+  --typography-h2-letter-spacing: -1px;
+  --typography-h2-font-family: inherit;
+
+  --typography-h3-font-size: 24px;
+  --typography-h3-line-height: 28.8px;
+  --typography-h3-font-weight: 600;
+  --typography-h3-letter-spacing: -1px;
+  --typography-h3-font-family: inherit;
+
+  --typography-h4-font-size: 20px;
+  --typography-h4-line-height: 24px;
+  --typography-h4-font-weight: 600;
+  --typography-h4-letter-spacing: 0;
+  --typography-h4-font-family: inherit;
+
+  --typography-p-font-size: 16px;
+  --typography-p-line-height: 24px;
+  --typography-p-font-weight: 400;
+  --typography-p-letter-spacing: 0;
+  --typography-p-font-family: inherit;
+
+  --typography-p-medium-font-size: 16px;
+  --typography-p-medium-line-height: 24px;
+  --typography-p-medium-font-weight: 500;
+  --typography-p-medium-letter-spacing: 0;
+  --typography-p-medium-font-family: inherit;
+
+  --typography-p-bold-font-size: 16px;
+  --typography-p-bold-line-height: 24px;
+  --typography-p-bold-font-weight: 600;
+  --typography-p-bold-letter-spacing: 0;
+  --typography-p-bold-font-family: inherit;
+
+  --typography-small-font-size: 14px;
+  --typography-small-line-height: 21px;
+  --typography-small-font-weight: 400;
+  --typography-small-letter-spacing: 0;
+  --typography-small-font-family: inherit;
+
+  --typography-mini-font-size: 12px;
+  --typography-mini-line-height: 16px;
+  --typography-mini-font-weight: 400;
+  --typography-mini-letter-spacing: 0;
+  --typography-mini-font-family: inherit;
+
+  --typography-mono-font-size: 16px;
+  --typography-mono-line-height: 24px;
+  --typography-mono-font-weight: 400;
+  --typography-mono-letter-spacing: 0;
+
+  /* Aliases used by DS primitives (Badge, Avatar, Radio, Progress, Select, Breadcrumb, Toggle Switch) */
+  --typography-emphasis-font-size: 14px;
+  --typography-emphasis-line-height: 21px;
+  --typography-emphasis-font-weight: 500;
+  --typography-emphasis-letter-spacing: 0;
+  --typography-emphasis-font-family: inherit;
+
+  --typography-paragraph-font-size: 16px;
+  --typography-paragraph-line-height: 24px;
+  --typography-paragraph-font-weight: 400;
+  --typography-paragraph-letter-spacing: 0;
+  --typography-paragraph-font-family: inherit;
+  --typography-mono-font-family: var(--font-mono, monospace);
+
+  /* New semantic tags (label, caption, overline, nav-item, btn-text, lead) */
+  --typography-label-font-size: 14px;
+  --typography-label-line-height: 20px;
+  --typography-label-font-weight: 500;
+  --typography-label-letter-spacing: 0;
+  --typography-label-font-family: inherit;
+
+  --typography-caption-font-size: 12px;
+  --typography-caption-line-height: 16px;
+  --typography-caption-font-weight: 400;
+  --typography-caption-letter-spacing: 0;
+  --typography-caption-font-family: inherit;
+
+  --typography-overline-font-size: 11px;
+  --typography-overline-line-height: 16px;
+  --typography-overline-font-weight: 600;
+  --typography-overline-letter-spacing: 0.05em;
+  --typography-overline-font-family: inherit;
+
+  --typography-nav-item-font-size: 14px;
+  --typography-nav-item-line-height: 20px;
+  --typography-nav-item-font-weight: 500;
+  --typography-nav-item-letter-spacing: 0;
+  --typography-nav-item-font-family: inherit;
+
+  --typography-btn-text-font-size: 14px;
+  --typography-btn-text-line-height: 20px;
+  --typography-btn-text-font-weight: 500;
+  --typography-btn-text-letter-spacing: 0.01em;
+  --typography-btn-text-font-family: inherit;
+
+  --typography-lead-font-size: 18px;
+  --typography-lead-line-height: 28px;
+  --typography-lead-font-weight: 400;
+  --typography-lead-letter-spacing: 0;
+  --typography-lead-font-family: inherit;
+
+  /* Image upload sizing */
+  --size-image-upload-width: 120px;
+  --size-image-upload-height: 120px;
+
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+/* ============================================
+   DARK THEME
+   ============================================ */
+.dark {
+  --overlay: rgba(0, 0, 0, 0.7);
+
+  /* ================================================
+     SEMANTIC TOKENS — DARK MODE
+     Inverted luminosity. Fondos oscuros, textos claros.
+     ================================================ */
+
+  /* --- STRUCTURE (Base palette) --- */
+  --background: oklch(0.145 0 0);
+  /* B-950 */
+  --foreground: oklch(0.985 0 0);
+  /* B-50 */
+
+  --card: oklch(0.205 0 0);
+  /* B-950 */
+  --card-foreground: oklch(0.985 0 0);
+  /* B-50 */
+
+  --popover: oklch(0.205 0 0);
+  /* B-950 */
+  --popover-foreground: oklch(0.985 0 0);
+  /* B-50 */
+
+  --border: oklch(1 0 0 / 10%);
+  /* B-800 */
+  --input: oklch(1 0 0 / 15%);
+  /* B-800 */
+
+  /* --- BRAND / INTERACTIVITY (neutral default — JS overrides for colors) --- */
+  --primary: oklch(0.922 0 0);
+  /* B-50 (monochromatic) */
+  --primary-foreground: oklch(0.205 0 0);
+  /* B-950 */
+  --ring: oklch(0.556 0 0);
+  /* B-50 */
+
+  /* --- SECONDARY ELEMENTS (Base palette) --- */
+  --secondary: oklch(0.269 0 0);
+  /* B-800 */
+  --secondary-foreground: oklch(0.985 0 0);
+  /* B-50 */
+
+  --muted: oklch(0.269 0 0);
+  /* B-800 */
+  --muted-foreground: oklch(0.708 0 0);
+  /* B-400 */
+
+  --accent: oklch(0.269 0 0);
+  /* B-800 */
+  --accent-foreground: oklch(0.985 0 0);
+  /* B-50 */
+
+  /* --- DESTRUCTIVE (Red — fixed) --- */
+  --destructive: oklch(0.704 0.191 22.216);
+  /* E-900 */
+  --destructive-foreground: var(--color-red-50);
+  /* E-50 */
+  --destructive-subtle: var(--color-red-950);
+  /* E-950 */
+  --destructive-border: var(--color-red-800);
+  /* E-800 */
+
+  /* --- SCROLLBAR (Base palette) --- */
+  --scrollbar-track: transparent;
+  --scrollbar-thumb: var(--color-neutral-700);
+  /* B-700 */
+  --scrollbar-thumb-hover: var(--color-neutral-600);
+  /* B-600 */
+
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+
+  /* Status color tokens — dark mode */
+  --success: oklch(0.65 0.2 145);
+  --success-foreground: oklch(0.145 0 0);
+  --color-success: var(--success);
+  --warning: oklch(0.8 0.18 85);
+  --warning-foreground: oklch(0.145 0 0);
+  --color-warning: var(--warning);
+  --info: oklch(0.65 0.2 250);
+  --info-foreground: oklch(0.145 0 0);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+@layer base {
+  * {
+    @apply border-border;
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-background text-foreground;
+  }
+
+  /* Scrollbar Styling */
+  html {
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    scrollbar-width: thin;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover);
+  }
+
+  /* ============================================================
+   * MapLibre GL — Popup Design System Overrides
+   * Applies design system tokens to all MapCN / MapLibre popups
+   * ============================================================ */
+
+  /* Strip MapLibre's own popup box styles */
+  .maplibregl-popup-content {
+    background: transparent !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    border: none !important;
+    max-width: none !important;
+  }
+
+  /* The MapCN inner content div — scope our DS styles here */
+  .maplibregl-popup-content>div {
+    background-color: var(--card) !important;
+    color: var(--card-foreground) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-lg) !important;
+    font-family: inherit !important;
+    font-size: var(--text-sm) !important;
+    line-height: var(--leading-normal) !important;
+  }
+
+  /* Arrow tip — match card background */
+  .maplibregl-popup-tip {
+    border-top-color: var(--card) !important;
+    border-bottom-color: var(--card) !important;
+  }
+
+  /* Remove the default MapLibre popup close button (MapCN handles it) */
+  .maplibregl-popup-close-button {
+    display: none !important;
+  }
+}
+/* ============================================
+   ACCESIBILIDAD — prefers-reduced-motion (global)
+   Baseline: cuando el SO pide menos movimiento, colapsamos duraciones y
+   frenamos los bucles infinitos (spinners → una vuelta). Es el reset a11y
+   ampliamente aceptado. El criterio Emil (conservar opacity/color, quitar solo
+   el movimiento translate/scale) se afina por componente en la revisión E3.
+   Ref: nodo Context/03-Wiki/metodo/Motion System.es.md
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

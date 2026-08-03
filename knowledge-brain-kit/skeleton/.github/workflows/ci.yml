@@ -1,0 +1,77 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  quality:
+    name: Build · Typecheck · Context · Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Sin `version`: la toma de package.json (packageManager: pnpm@9.0.0).
+      # Especificar ambos hace que pnpm/action-setup@v4 aborte con error.
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      # ── Gates duros: fallan en rojo ──
+      - name: Build
+        run: pnpm build
+        # Valores DUMMY: el build solo comprueba que las variables EXISTEN
+        # (no conecta). Los secretos reales viven en Vercel, no en CI.
+        env:
+          MONGODB_URI: mongodb://localhost:27017/ci-dummy
+          AUTH_SECRET: ci-dummy-auth-secret-not-used-at-runtime
+          NEXTAUTH_URL: http://localhost:3000
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Validate Context (blueprint ↔ código)
+        run: pnpm validate:context
+
+      # ── Gates blandos: deuda PRE-EXISTENTE (hex fuera de token en blog/registry;
+      #    6 enlaces EN internos 404). Informativos hasta saldar la deuda; no
+      #    bloquean el deploy (Vercel solo corre build, que sí es verde). ──
+      - name: Guard de tokens (informativo)
+        run: pnpm check:tokens || true
+
+      - name: Check de enlaces internos (informativo)
+        run: pnpm check:links || true
+
+      - name: Tests (unit)
+        run: pnpm test
+
+      # ── Gate blando: deuda de lint preexistente (react-hooks, <img>).
+      #    Se endurece a bloqueante al cerrar la Épica 2 (guard de tokens FR-35). ──
+      - name: Lint (informativo)
+        run: pnpm lint || true
+
+  # Suite de paridad visual + a11y. Separada del gate rápido: pesada (navegador)
+  # y se ejecuta por historia de UI en la Épica 2+. Manual por ahora.
+  visual:
+    name: Paridad visual + a11y (manual)
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @brain/web exec playwright install --with-deps chromium
+      - run: pnpm --filter @brain/web run test:visual
+      - run: pnpm --filter @brain/web run test:e2e

@@ -1,0 +1,21 @@
+/* ===========================================
+   SHADCN BRAND — DARK MODE
+   Semantic token values for the shadcn brand.
+   =========================================== */
+
+/* Active in V1. Values defined in app/globals.css .dark */
+/* This file serves as reference for brand separation. */
+
+/*
+  --background: black
+  --foreground: neutral-50
+  --primary: neutral-100
+  --primary-foreground: neutral-950
+  --secondary: neutral-800
+  --muted: neutral-900
+  --accent: neutral-900
+  --destructive: #9e4042
+  --border: neutral-700
+  --card: neutral-900
+  --popover: white
+*/

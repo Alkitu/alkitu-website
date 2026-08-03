@@ -1,0 +1,30 @@
+{
+  "name": "knowledge-brain-monorepo",
+  "private": true,
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @brain/web dev",
+    "build": "pnpm --filter @brain/web build",
+    "typecheck": "pnpm --filter @brain/web typecheck",
+    "lint": "pnpm --filter @brain/web lint",
+    "test": "pnpm --filter @brain/web test && pnpm --filter @brain/design-system-web test",
+    "ds:storybook": "pnpm --filter @brain/design-system-web storybook",
+    "validate:context": "node scripts/validate-context.mjs",
+    "check:tokens": "node scripts/check-tokens.mjs",
+    "check:links": "node scripts/check-links.mjs",
+    "glosario:build": "python3 scripts/build-glosario.py",
+    "graph": "bash scripts/graph.sh",
+    "preflight": "node scripts/preflight.mjs",
+    "audit:node": "pnpm --filter @brain/web exec tsx scripts/agent/audit.ts",
+    "radar": "pnpm --filter @brain/web exec tsx scripts/agent/radar.ts",
+    "interlink": "pnpm --filter @brain/web exec tsx scripts/agent/interlink.ts"
+  },
+  "devDependencies": {
+    "@react-pdf/renderer": "^4.5.1",
+    "react": "^19.2.7"
+  }
+}

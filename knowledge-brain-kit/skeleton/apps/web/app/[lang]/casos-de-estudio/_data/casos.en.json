@@ -1,0 +1,74 @@
+{
+  "plantilla-caso": {
+    "titulo": "[Concept]",
+    "subtitulo": "A short one- or two-sentence description of the case study: what problem [concept] solves, for whom, and what the outcome was.",
+    "tags": [
+      "[Tag 1]",
+      "[Tag 2]",
+      "[Tag 3]"
+    ],
+    "secciones": [
+      {
+        "titulo": "Context",
+        "parrafos": [
+          "Describe the starting point: what need or situation gives rise to the case and why it deserved attention.",
+          "Provide the frame: who was involved, what the brief was, and what constraints existed from the outset."
+        ]
+      },
+      {
+        "titulo": "Problem",
+        "parrafos": [
+          "State the core problem precisely: what needed solving and what made it hard.",
+          "Add the evidence that backs it up (research, data, signals) to justify the approach."
+        ]
+      },
+      {
+        "titulo": "Process",
+        "parrafos": [
+          "Explain how you tackled the work, step by step, and what decisions you made along the way.",
+          "Use the gallery to show process artifacts (sketches, screens, diagrams)."
+        ],
+        "imagenesAlt": [
+          "Accessible description of the first process image.",
+          "Accessible description of the second process image."
+        ]
+      },
+      {
+        "titulo": "Decisions",
+        "parrafos": [
+          "Summarize the key decisions and the reasoning behind each: which alternative you chose and what you discarded."
+        ],
+        "tarjetas": [
+          {
+            "etiqueta": "Decision",
+            "titulo": "[Decision title]",
+            "texto": "Brief explanation of the decision and its impact."
+          },
+          {
+            "etiqueta": "Decision",
+            "titulo": "[Another decision]",
+            "texto": "Brief explanation of the second decision."
+          },
+          {
+            "etiqueta": "Decision",
+            "titulo": "[Third decision]",
+            "texto": "Brief explanation of the third decision."
+          }
+        ]
+      },
+      {
+        "titulo": "Result",
+        "parrafos": [
+          "Describe the final outcome and its scope: what was delivered and what changed as a result."
+        ],
+        "metricaLabel": "A noteworthy metric of the result"
+      },
+      {
+        "titulo": "Learnings",
+        "parrafos": [
+          "Close with what you learned: what you take away from this case and what you would do the same or differently next time."
+        ]
+      }
+    ]
+  }
+}

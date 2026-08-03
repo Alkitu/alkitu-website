@@ -1,0 +1,21 @@
+{
+  "name": "@brain/design-system",
+  "version": "0.1.0",
+  "private": true,
+  "description": "[Brand] Design System - Unified component library for web and mobile",
+  "author": "[Brand] Team",
+  "license": "MIT",
+  "scripts": {
+    "dev": "pnpm --filter @brain/design-system-web run dev",
+    "storybook": "pnpm --filter @brain/design-system-web run storybook",
+    "storybook:mobile": "pnpm --filter @brain/design-system-mobile run storybook",
+    "build": "pnpm --filter @brain/design-system-web run build",
+    "build-storybook": "pnpm --filter @brain/design-system-web run build-storybook",
+    "lint": "pnpm -r run lint",
+    "test": "pnpm -r run test"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=9.0.0"
+  }
+}

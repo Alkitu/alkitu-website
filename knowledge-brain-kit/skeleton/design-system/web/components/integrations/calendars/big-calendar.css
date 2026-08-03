@@ -1,0 +1,266 @@
+/**
+ * big-calendar.css
+ * 
+ * Overrides react-big-calendar default styles using shadcn/ui CSS variables.
+ * Copy this into your project and import it in your calendar component.
+ * Works automatically in light AND dark mode — no JS needed.
+ */
+
+/* Import react-big-calendar base styles */
+@import "react-big-calendar/lib/css/react-big-calendar.css";
+
+/* ============================================================
+ * Layout & Container
+ * ============================================================ */
+.rbc-calendar {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: inherit;
+    font-size: 0.875rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    overflow: hidden;
+}
+
+/* ============================================================
+ * Header Row (day names: Mon, Tue, etc.)
+ * ============================================================ */
+.rbc-header {
+    background-color: var(--muted);
+    color: var(--muted-foreground);
+    border-bottom: 1px solid var(--border) !important;
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+    padding: 8px 4px;
+}
+
+.rbc-header+.rbc-header {
+    border-left: 1px solid var(--border) !important;
+}
+
+/* ============================================================
+ * Month View — Days & Cells
+ * ============================================================ */
+.rbc-month-view {
+    border: none !important;
+    border-radius: 0;
+}
+
+.rbc-month-row {
+    border-top: 1px solid var(--border);
+    overflow: visible;
+}
+
+.rbc-day-bg {
+    background-color: var(--background);
+    transition: background-color 150ms ease;
+}
+
+.rbc-day-bg:hover {
+    background-color: var(--muted);
+}
+
+.rbc-day-bg+.rbc-day-bg {
+    border-left: 1px solid var(--border);
+}
+
+.rbc-off-range-bg {
+    background-color: var(--muted) !important;
+    opacity: 0.5;
+}
+
+.rbc-off-range {
+    color: var(--muted-foreground);
+}
+
+/* Today cell highlight */
+.rbc-today {
+    background-color: color-mix(in oklch, var(--primary) 8%, transparent) !important;
+}
+
+/* Day number */
+.rbc-date-cell {
+    padding: 4px 8px;
+    font-size: 0.8125rem;
+    color: var(--foreground);
+    text-align: right;
+}
+
+.rbc-date-cell>a,
+.rbc-date-cell>a:active,
+.rbc-date-cell>a:visited {
+    color: var(--foreground);
+    text-decoration: none;
+}
+
+/* Today date number — circular badge */
+.rbc-now .rbc-button-link {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+/* ============================================================
+ * Events
+ * ============================================================ */
+.rbc-event {
+    background-color: var(--primary) !important;
+    color: var(--primary-foreground) !important;
+    border: none !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 2px 6px !important;
+    font-size: 0.75rem !important;
+    font-weight: 500 !important;
+    cursor: pointer;
+    transition: filter 150ms ease, transform 100ms ease;
+}
+
+.rbc-event:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+.rbc-event:focus,
+.rbc-event.rbc-selected {
+    box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring) !important;
+    outline: none !important;
+}
+
+.rbc-event-label {
+    font-size: 0.7rem;
+    opacity: 0.85;
+}
+
+.rbc-event-content {
+    font-size: 0.75rem;
+}
+
+/* "show more" link */
+.rbc-show-more {
+    color: var(--primary) !important;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* ============================================================
+ * Time Grid (Week / Day views)
+ * ============================================================ */
+.rbc-time-view {
+    border: none !important;
+}
+
+.rbc-time-header {
+    border-bottom: 1px solid var(--border) !important;
+}
+
+.rbc-time-header-content {
+    border-left: 1px solid var(--border) !important;
+}
+
+.rbc-time-content {
+    border-top: none !important;
+}
+
+.rbc-time-content>*+*>* {
+    border-left: 1px solid var(--border) !important;
+}
+
+.rbc-timeslot-group {
+    border-bottom: 1px solid var(--border) !important;
+    min-height: 40px;
+}
+
+.rbc-time-slot {
+    color: var(--muted-foreground);
+    font-size: 0.7rem;
+}
+
+.rbc-label {
+    color: var(--muted-foreground);
+    font-size: 0.7rem;
+    padding: 0 8px;
+}
+
+.rbc-current-time-indicator {
+    background-color: var(--primary) !important;
+    height: 2px !important;
+}
+
+.rbc-current-time-indicator::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: -4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--primary);
+}
+
+/* ============================================================
+ * Agenda View
+ * ============================================================ */
+.rbc-agenda-view {
+    border: none !important;
+}
+
+.rbc-agenda-table {
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.rbc-agenda-table th {
+    background-color: var(--muted);
+    color: var(--muted-foreground);
+    font-weight: 500;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    border-bottom: 1px solid var(--border) !important;
+}
+
+.rbc-agenda-date-cell,
+.rbc-agenda-time-cell {
+    color: var(--muted-foreground);
+    font-size: 0.8rem;
+    border-right: 1px solid var(--border) !important;
+}
+
+.rbc-agenda-event-cell {
+    color: var(--foreground);
+}
+
+.rbc-agenda-table tr:hover {
+    background-color: var(--muted);
+}
+
+.rbc-agenda-table tbody>tr>td {
+    border-top: 1px solid var(--border) !important;
+}
+
+/* ============================================================
+ * Scrollbar (time grid)
+ * ============================================================ */
+.rbc-time-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.rbc-time-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.rbc-time-content::-webkit-scrollbar-thumb {
+    background-color: var(--border);
+    border-radius: 3px;
+}

@@ -1,0 +1,21 @@
+/* ===========================================
+   SHADCN BRAND — LIGHT MODE
+   Semantic token values for the shadcn brand.
+   =========================================== */
+
+/* Active in V1. Values defined in app/globals.css :root */
+/* This file serves as reference for brand separation. */
+
+/*
+  --background: white
+  --foreground: neutral-950
+  --primary: neutral-900
+  --primary-foreground: neutral-50
+  --secondary: neutral-100
+  --muted: neutral-100
+  --accent: neutral-100
+  --destructive: red-600
+  --border: neutral-200
+  --card: white
+  --popover: black
+*/

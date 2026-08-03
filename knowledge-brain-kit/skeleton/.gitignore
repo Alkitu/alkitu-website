@@ -1,0 +1,66 @@
+# dependencies
+node_modules/
+**/node_modules/
+.pnp.*
+
+# build outputs
+.next/
+out/
+dist/
+build/
+.turbo/
+*.tsbuildinfo
+
+# graphify: ignore cache + temp. El grafo unificado de la raíz es grande (~7MB) y
+# regenerable con `pnpm graph`, así que tampoco se versiona. El del Context (pequeño) sí.
+**/graphify-out/cache/
+**/graphify-out/.graphify_*
+/graphify-out/graph.json
+/graphify-out/graph.html
+/graphify-out/GRAPH_REPORT.md
+
+# env / misc
+.env*.local
+.DS_Store
+*.log
+next-env.d.ts
+
+# skills externas instaladas con `npx skills add` (no son fuente del proyecto;
+# se reinstalan desde skills-lock.json). Las skills propias (.claude/skills/<propia>) sí se versionan.
+.agents/
+.claude/skills/skill-creator
+
+# grafos regenerables (también el del Context)
+**/graphify-out/graph.json
+**/graphify-out/graph.html
+**/graphify-out/GRAPH_REPORT.md
+**/graphify-out/manifest.json
+**/graphify-out/cost.json
+
+# ── BMad Method: framework externo (motor + skills), reinstalable, no es fuente del proyecto ──
+# Los OUTPUTS de planificación (_bmad-output/: PRD, épicas, sprint) SÍ se versionan.
+# Skills propias del proyecto (naming, grill-me) SÍ se versionan.
+_bmad/
+.claude/skills/bmad-*
+.claude/skills/gds-*
+.claude/skills/wds-*
+.claude/skills/memory
+.claude/skills/sync
+
+# Playwright: outputs transitorios (los baselines *-snapshots/ SÍ se versionan)
+**/test-results/
+**/playwright-report/
+**/blob-report/
+**/.playwright/
+
+# ── Tooling local / basura: no versionar ──
+# impeccable: estado local de crítica/live (no es fuente del proyecto)
+.impeccable/
+apps/web/.impeccable/
+apps/web/.gitignore
+# basura de un script que escribió en la ruta "undefined"
+apps/web/undefined/
+# skills locales de diseño/animación (symlinks a .agents/, no son fuente del proyecto)
+.claude/skills/animation-vocabulary
+.claude/skills/emil-design-eng
+.claude/skills/review-animations

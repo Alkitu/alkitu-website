@@ -1,0 +1,22 @@
+{
+  "plantilla-review": {
+    "titulo": "[Concept]",
+    "descripcion": "Grid card line: what [concept] is and why you recommend it, in one sentence.",
+    "resumen": "Detail intro: introduce [concept] and who it is useful for.",
+    "cuerpo": [
+      "First body paragraph: what problem [concept] solves and in what context you use it.",
+      "Second paragraph: what makes it good and how it compares to the alternatives.",
+      "Third paragraph: nuances, limits, and who you would or would not recommend it to."
+    ],
+    "pros": [
+      "First point in favor",
+      "Second point in favor",
+      "Third point in favor"
+    ],
+    "contras": [
+      "First point against",
+      "Second point against"
+    ],
+    "cta": "View [concept]"
+  }
+}

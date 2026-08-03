@@ -1,0 +1,16 @@
+/* ===========================================
+   TOKEN ENTRY POINT — punto de entrada activo de los tokens.
+   Orden: primitivas crudas → brand semántico. Se importa DESPUÉS del globals.css
+   del DS (que aporta @theme + base neutral); el brand sobreescribe los semánticos.
+   Marca activa: default (color PLACEHOLDER). Al instanciar el concepto, cambia
+   la ramp de marca en primitives/colors.css o duplica brands/default a tu marca.
+   =========================================== */
+
+/* 1) Primitivas crudas (la verdad de color y de motion) */
+@import "./primitives/colors.css";
+@import "./primitives/motion.css";
+
+/* 2) Brand activo: default — light */
+@import "./brands/default/light.css";
+
+/* Dark disponible en brands/default/dark.css — impórtalo si activas modo oscuro */

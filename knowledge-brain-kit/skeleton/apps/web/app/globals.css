@@ -1,0 +1,101 @@
+/* Estilos del design system + tokens de marca del proyecto.
+   El DS aporta tokens, theme engine y utilidades Tailwind v4;
+   la marca sobreescribe los semánticos (--primary/--ring/--accent). */
+@import "@brain/design-system-web/globals.css";
+/* Tokens de marca vía el entry point único; dark deshabilitado. */
+@import "@brain/design-tokens";
+
+/* Tailwind v4 escanea por defecto solo apps/web. El DS vive fuera del paquete
+   (sibling, no node_modules), así que hay que añadir sus fuentes a mano para
+   que genere las utilidades que usan sus componentes (bg-primary, etc.). */
+@source "../../../design-system/web/components";
+@source "../../../design-system/web/lib";
+
+/* ── Modo ET (🛸) ──────────────────────────────────────────────────────────
+   Tercer "idioma" del selector: no traduce, cambia la tipografía del sitio
+   (español) a la fuente Eari en minúscula. Eari se descarga solo cuando ET
+   está activo (font-display: swap → carga perezosa). El script anti-flash
+   (apps/web/lib/typeface.ts) fija [data-typeface="eari"] en <html> antes del
+   primer paint; el toggle vive en el selector del header. */
+@font-face {
+  font-family: "Eari";
+  src: url("/fonts/Eari-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-eari: "Eari", system-ui, sans-serif;
+}
+
+/* ── Humane (display) ───────────────────────────────────────────────────────
+   Tipografía condensada de titular (Rajesh Rajput, licencia de uso comercial
+   ilimitado; el archivo se sirve sin modificar). Solo se usa en el titular del
+   hero de la home vía la clase .font-humane (prop titleClassName de RevealHero).
+   Humane es todo mayúsculas → forzamos uppercase sobre el texto en capitalización
+   normal. font-display: swap para no bloquear el primer paint. */
+@font-face {
+  font-family: "Humane";
+  src: url("/fonts/Humane-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-humane {
+  font-family: "Humane", system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 0.82;
+  /* Humane es ultra-condensada: a igual em ocupa mucho menos, así que se veía
+     diminuta. La escalamos para que el titular llene casi todo el ancho (≈3× el
+     tamaño anterior en desktop). El divisor ≈ ratio ancho/em de la línea más
+     larga ("procesos y marcas."), y restamos el padding lateral del hero para
+     que no desborde ni se recorte en móvil. Cap a 18rem en pantallas enormes. */
+  font-size: clamp(2.25rem, calc((100vw - 3.5rem) / 6.2), 17rem);
+}
+
+/* En móvil el divisor de desktop dejaba el titular pequeño (~58% del ancho
+   libre): con la fuente ya renderizada, la línea más larga mide ≈4.2× el em,
+   así que dividimos por 4.5 para llenar el ancho con un pequeño margen. */
+@media (max-width: 767px) {
+  .font-humane {
+    font-size: clamp(2.25rem, calc((100vw - 3rem) / 4.5), 17rem);
+  }
+}
+
+/* En modo ET (🛸) el hero también adopta Eari: ET reemplaza TODAS las fuentes,
+   Humane incluida. Sin esto quedaba un híbrido (Humane + lowercase), porque la
+   regla ET pone Eari solo en <body> por herencia y .font-humane fija su propia
+   font-family en el <h1>. Revertimos además el tamaño/tracking propios de Humane
+   al del título base (el clamp de Humane asume una fuente ultra-condensada; con
+   Eari desbordaría). El lowercase ya lo aplica [data-typeface="eari"] body *. */
+[data-typeface="eari"] .font-humane {
+  font-family: var(--font-eari);
+  font-size: clamp(2.6rem, 9vw, 7rem);
+  letter-spacing: normal;
+  line-height: 0.9;
+}
+
+/* Las tipografías del DS son `inherit`, así que el override en <body> cascada
+   a titulares y cuerpo. Eari no tiene mayúsculas → forzamos minúscula. */
+[data-typeface="eari"] body {
+  font-family: var(--font-eari);
+}
+[data-typeface="eari"] body,
+[data-typeface="eari"] body * {
+  text-transform: lowercase;
+}
+
+/* Preserva legibilidad donde Eari rompería: código en mono, y campos de
+   formulario en la fuente base (el `lowercase` solo afecta al render, no al
+   valor, pero evitamos confundir al usuario que escribe). */
+[data-typeface="eari"] body :is(code, pre, kbd, samp) {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  text-transform: none;
+}
+[data-typeface="eari"] body :is(input, textarea, select, [contenteditable]) {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  text-transform: none;
+}

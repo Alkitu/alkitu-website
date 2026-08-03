@@ -39,6 +39,3 @@ yarn-error.log*
 
 # generated artifacts
 /export
-
-# standalone sub-project (own repo)
-/knowledge-brain-kit

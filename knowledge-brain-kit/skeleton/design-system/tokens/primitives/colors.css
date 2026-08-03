@@ -1,0 +1,32 @@
+/* ===========================================
+   PRIMITIVAS DE COLOR — marca default
+   Valores crudos (la "verdad" de color). Los tokens semánticos del brand
+   (light.css) alias-an a estas variables; la web nunca debe usar un hex suelto,
+   solo clases-token (bg-primary, text-foreground…) que derivan de aquí.
+   Fuente: valores reales de la web aprobada (auditoría 2026-07-03).
+   =========================================== */
+:root {
+  /* ── Superficie ── */
+  --lk-fondo: #f4f4f2;        /* fondo editorial (background) */
+  --lk-fondo-alt: #f9f9f7;    /* off-white para bloques suaves */
+  --lk-blanco: #ffffff;       /* cartas / superficies elevadas */
+
+  /* ── Tinta (texto) ── */
+  --lk-tinta: #2b2b2b;        /* negro suavizado (foreground) */
+
+  /* ── Marca (PLACEHOLDER) — reemplaza por el color del concepto ──
+     Ramp neutro azul de arranque; cámbialo por la marca real al instanciar. */
+  --brand-primary: #2563eb;      /* color firma (primary/ring/brand) */
+  --brand-primary-claro: #3b82f6; /* variante clara (acentos) */
+  --brand-primary-050: #eff6ff;  /* tinte muy suave (fondos/hover accent) */
+  --brand-primary-oscuro: #1e3a8a; /* variante oscura */
+  --brand-primary-950: #172554;  /* casi negro */
+
+  /* ── Escala neutral (subset usado por la web) ── */
+  --lk-neutral-100: #e5e7eb;
+  --lk-neutral-300: #d4d4d4;  /* bordes (border/input) */
+  --lk-neutral-400: #a3a3a3;
+  --lk-neutral-500: #737373;
+  --lk-neutral-600: #525252;  /* texto atenuado (muted-foreground) */
+
+}

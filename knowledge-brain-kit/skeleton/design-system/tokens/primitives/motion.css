@@ -1,0 +1,33 @@
+/* ===========================================
+   PRIMITIVAS DE MOTION — marca default
+   Valores crudos (la "verdad" del movimiento), hermanos de colors.css.
+   El DS los alias-a como utilidades Tailwind (ease-*, duration-*) y como
+   tokens de componente (--transition-base/fast/slow); la web nunca escribe
+   una curva o duración suelta, solo utilidades-token que derivan de aquí.
+
+   Personalidad de movimiento: crisp-editorial (sobria, contenida; no bouncy).
+   Fundamento: filosofía de motion de Emil Kowalski (animations.dev) —
+   curvas fuertes (las nativas de CSS son débiles) y UI < 300ms.
+   Ver nodo: Context/03-Wiki/metodo/Motion System.es.md
+   =========================================== */
+:root {
+  /* ── Easings (curvas fuertes; nunca ease-in en UI) ──
+     Las nativas de CSS carecen de "punch"; estas dan intención al movimiento. */
+  --lk-ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);      /* entradas/salidas UI */
+  --lk-ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);  /* movimiento/morph en pantalla */
+  --lk-ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);          /* drawers/sheets estilo iOS */
+  --lk-ease-hover: ease;                                     /* hover / cambio de color */
+
+  /* ── Duraciones de transición UI (presupuestos Emil; todo < 300ms) ──
+     Semánticas por tipo de elemento, no números sueltos. */
+  --lk-duration-press: 150ms;     /* feedback de botón (100–160) */
+  --lk-duration-tooltip: 150ms;   /* tooltips, popovers pequeños (125–200) */
+  --lk-duration-dropdown: 200ms;  /* dropdowns, selects, popovers (150–250) */
+  --lk-duration-modal: 300ms;     /* modales, drawers, sheets (200–500, tope UI) */
+  --lk-duration-slow: 500ms;      /* entrada de drawer grande / marketing — nunca UI de alta frecuencia */
+
+  /* ── Duraciones de bucle (movimiento constante: spinners, marquees) ──
+     Fuera de la escala UI: un bucle infinito no es una transición. */
+  --lk-duration-spin: 1s;         /* spinner estándar */
+  --lk-duration-spin-slow: 3s;    /* spinner lento decorativo */
+}

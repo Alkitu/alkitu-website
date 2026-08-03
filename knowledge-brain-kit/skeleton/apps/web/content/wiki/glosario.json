@@ -1,0 +1,21 @@
+{
+  "fuente": "REEMPLAZAR: origen de ingesta del concepto (vault/DB/API)",
+  "total": 1,
+  "terminos": [
+    {
+      "slug": "termino-ejemplo",
+      "titulo": "Término de ejemplo",
+      "dominio": "Concepto",
+      "dominios": ["Concepto"],
+      "pilar": "",
+      "aliases": ["Sinónimo", "Variante"],
+      "campoSemantico": ["tema", "subtema"],
+      "definicion": "Definición extraíble en 1-3 frases (lo que un LLM cita). Regla GEO: respuesta primero. Reemplaza estos términos por los del concepto real vía el adaptador de ingesta (ver SETUP.md paso 4).",
+      "hiperonimos": [{ "nombre": "Nodo padre", "slug": "nodo-padre" }],
+      "hiponimos": [],
+      "relacionados": [],
+      "tituloEn": "Example term",
+      "definicionEn": "Extractable definition in 1-3 sentences (what an LLM cites)."
+    }
+  ]
+}
