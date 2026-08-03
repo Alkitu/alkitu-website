@@ -6,7 +6,7 @@
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "sync:projects": "node lib/projects/sync-to-dictionaries.js",
     "migrate:blog": "node scripts/migrate-blog-to-mdx.js",
     "migrate:blog:dry-run": "node scripts/migrate-blog-to-mdx.js --dry-run",
