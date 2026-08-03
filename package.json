@@ -9,7 +9,8 @@
     "lint": "next lint",
     "sync:projects": "node lib/projects/sync-to-dictionaries.js",
     "migrate:blog": "node scripts/migrate-blog-to-mdx.js",
-    "migrate:blog:dry-run": "node scripts/migrate-blog-to-mdx.js --dry-run"
+    "migrate:blog:dry-run": "node scripts/migrate-blog-to-mdx.js --dry-run",
+    "generate:brochure": "tsx scripts/generate-brochure.tsx"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.4.0",

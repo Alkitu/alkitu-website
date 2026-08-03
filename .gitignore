@@ -36,3 +36,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# generated artifacts
+/export
+
+# standalone sub-project (own repo)
+/knowledge-brain-kit
