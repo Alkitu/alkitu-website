@@ -4,6 +4,7 @@ import { NavBar } from "../components/organisms/navbar";
 import { Footer } from "../components/organisms/footer";
 import { CookieConsentBanner } from "../components/molecules/cookies-button";
 import { VisitTracker } from "../components/analytics";
+import { GoogleAnalytics, MetaPixel } from "../components/atoms/analytics";
 import { ProjectTransition } from "../components/atoms/intro-loader";
 import Providers from "../context/Providers";
 import en from "@/app/dictionaries/en.json";
@@ -189,6 +190,8 @@ export default async function RootLayout({
           </main>
           {!isAdminRoute && <Footer />}
           {!isAdminRoute && <CookieConsentBanner />}
+          {!isAdminRoute && <GoogleAnalytics />}
+          {!isAdminRoute && <MetaPixel />}
         </Providers>
       </body>
     </html>

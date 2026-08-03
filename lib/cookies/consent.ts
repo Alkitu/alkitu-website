@@ -48,19 +48,31 @@ export function getConsent(): CookieConsent | null {
 }
 
 /**
+ * Custom event name dispatched on the window when consent changes.
+ * Listeners (analytics loaders, etc.) use this to react without a reload.
+ */
+export const CONSENT_CHANGE_EVENT = 'cookie-consent-change';
+
+/**
  * Save cookie consent preferences to a cookie.
  * The consent cookie itself is classified as "necessary" (strictly required for GDPR).
  */
 export function setConsent(consent: CookieConsent): void {
   if (typeof document === 'undefined') return;
 
-  const value = encodeURIComponent(JSON.stringify({
+  const finalConsent: CookieConsent = {
     ...consent,
     necessary: true, // Always true
     timestamp: new Date().toISOString(),
-  }));
+  };
+
+  const value = encodeURIComponent(JSON.stringify(finalConsent));
 
   document.cookie = `${CONSENT_COOKIE_NAME}=${value}; path=/; max-age=${CONSENT_COOKIE_MAX_AGE}; SameSite=Lax`;
+
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent<CookieConsent>(CONSENT_CHANGE_EVENT, { detail: finalConsent }));
+  }
 }
 
 /**
