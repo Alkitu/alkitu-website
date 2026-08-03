@@ -16,6 +16,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
+  useSidebar,
 } from "@/components/ui/sidebar"
 
 export function NavMain({
@@ -34,16 +35,21 @@ export function NavMain({
   }[]
   groupLabel?: string
 }) {
+  const { state } = useSidebar()
+  const isCollapsed = state === "collapsed"
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>{groupLabel}</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => {
-          // If item has no subitems, render as direct link
-          if (!item.items || item.items.length === 0) {
+          const hasSubItems = item.items && item.items.length > 0
+
+          // When collapsed OR no subitems → render as simple icon link
+          if (!hasSubItems || isCollapsed) {
             return (
               <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton tooltip={item.title} asChild>
+                <SidebarMenuButton tooltip={item.title} asChild isActive={item.isActive}>
                   <a href={item.url}>
                     {item.icon && <item.icon />}
                     <span>{item.title}</span>
@@ -53,7 +59,7 @@ export function NavMain({
             )
           }
 
-          // If item has subitems, render as collapsible
+          // Expanded with subitems → render as collapsible
           return (
             <Collapsible
               key={item.title}
@@ -63,7 +69,7 @@ export function NavMain({
             >
               <SidebarMenuItem>
                 <CollapsibleTrigger asChild>
-                  <SidebarMenuButton tooltip={item.title}>
+                  <SidebarMenuButton tooltip={item.title} isActive={item.isActive}>
                     {item.icon && <item.icon />}
                     <span>{item.title}</span>
                     <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
