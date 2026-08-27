@@ -8,7 +8,7 @@ export default function HeroPhones() {
   const { x, y } = useMouseParallax();
 
   return (
-    <div className="relative w-full h-auto aspect-[462/312] mt-[10vw] md:mt-0 ml-[10.5vw] md:ml-0 md:pr-[10vw] pointer-events-none">
+    <div className="relative w-full h-auto aspect-[780/631] mt-[10vw] md:mt-0 ml-[10.5vw] md:ml-0 md:pr-[10vw] pointer-events-none">
       {/* Layer 1: Background Hero SVG */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -30,16 +30,19 @@ export default function HeroPhones() {
       {/* Layer 2: Masked Phone (Floating + Mouse Parallax) */}
       <div className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none">
         <svg
-          viewBox="0 0 462 312"
+          viewBox="0 0 780.15 630.584"
           className="w-full h-full"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           xmlnsXlink="http://www.w3.org/1999/xlink"
         >
           <defs>
+            {/* Recorte anclado al icono: la diagonal larga es la pierna izquierda
+                de la A, por eso icono y mascara leen como una sola pieza. */}
             <mask id="hero-phone-mask" maskUnits="userSpaceOnUse">
               <path
-                d="M0 312.004H215.605L317.431 -2.02654e-06L0 0.00440466V312.004Z"
+                transform="translate(-31 0)"
+                d="M504.36 152.15L348.829 630.584H0V0H424.904V40.5731L504.36 152.15Z"
                 fill="white"
               />
             </mask>
@@ -52,8 +55,10 @@ export default function HeroPhones() {
               {/* 3. FLOATING IMAGE handling Loop Animation */}
               <motion.image
                 href="/images/hero/alkitu-phones.png"
-                width="462"
-                height="312"
+                x="-31.14"
+                y="-0.42"
+                width="504.5"
+                height="631"
                 preserveAspectRatio="xMidYMid meet"
                 animate={{
                   y: [0, -10, 0],

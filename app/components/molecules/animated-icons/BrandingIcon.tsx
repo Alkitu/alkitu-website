@@ -21,12 +21,9 @@ export const BrandingIcon = ({ hover, className }: { hover: boolean; className?:
       <motion.path
         d="M12 0 Q12 12 24 12 Q12 12 12 24 Q12 12 0 12 Q12 12 12 0 Z"
         stroke="currentColor"
-        fill="currentColor"
-        initial={{ fillOpacity: 1 }}
         animate={{
           rotate: hover ? 180 : 0,
           scale: hover ? 1.05 : 1,
-          fillOpacity: hover ? 0 : 1,
         }}
         transition={{ duration: 2, repeat: hover ? Infinity : 0, ease: "easeInOut" }}
         style={{ transformOrigin: "12px 12px" }}

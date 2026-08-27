@@ -37,8 +37,8 @@ export const MarketingIcon = ({ hover, className }: { hover: boolean; className?
         cx="12"
         cy="12"
         r="2"
-        fill={hover ? "#2FB24B" : "currentColor"}
-        stroke={hover ? "#2FB24B" : "currentColor"}
+        fill="#2FB24B"
+        stroke="#2FB24B"
         animate={{
           scale: hover ? [1, 1.5, 1] : 1,
         }}
