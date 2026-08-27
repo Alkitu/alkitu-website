@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 
+import { cn } from "@/lib/utils";
+
 export const MarketingIcon = ({ hover, className }: { hover: boolean; className?: string }) => {
   return (
     <motion.svg
@@ -13,13 +15,13 @@ export const MarketingIcon = ({ hover, className }: { hover: boolean; className?
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className={className}
+      className={cn("text-black dark:text-white", className)}
     >
       <motion.circle
         cx="12"
         cy="12"
         r="10"
-        stroke="white"
+        stroke="currentColor"
         animate={{
           scale: hover ? 1.05 : 1,
         }}
@@ -29,14 +31,14 @@ export const MarketingIcon = ({ hover, className }: { hover: boolean; className?
         cx="12"
         cy="12"
         r="6"
-        stroke="white"
+        stroke="currentColor"
       />
       <motion.circle
         cx="12"
         cy="12"
         r="2"
-        fill={hover ? "#2FB24B" : "white"}
-        stroke={hover ? "#2FB24B" : "white"}
+        fill={hover ? "#2FB24B" : "currentColor"}
+        stroke={hover ? "#2FB24B" : "currentColor"}
         animate={{
           scale: hover ? [1, 1.5, 1] : 1,
         }}

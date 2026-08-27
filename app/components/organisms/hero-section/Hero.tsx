@@ -30,6 +30,7 @@ function RotatingText({ words }: { words: string[][] }) {
     lines.forEach((line) => {
       const div = document.createElement('div');
       div.textContent = line;
+      div.className = 'whitespace-nowrap';
       el.appendChild(div);
     });
 
@@ -88,7 +89,7 @@ function RotatingText({ words }: { words: string[][] }) {
   return (
     <span className="inline-flex relative overflow-hidden align-baseline min-h-[2.2em]">
       <span ref={textRef} className="text-primary inline-block">
-        {words[0]?.map((line, i) => <div key={i}>{line}</div>)}
+        {words[0]?.map((line, i) => <div key={i} className="whitespace-nowrap">{line}</div>)}
       </span>
     </span>
   );
@@ -108,7 +109,7 @@ function Hero({ text }) {
     yOffset={-0.3}
   />
   <TailwindGrid fullSize >
-      <section className='col-start-1 max-w-full w-full col-end-full md:col-start-1 md:col-end-6 lg:col-start-2 lg:col-end-6 px-4 md:px-6 lg:px-8 order-2 md:order-1 z-30 col-span-full flex flex-col justify-center'>
+      <section className='col-span-full md:col-start-1 md:col-end-6 lg:col-start-2 lg:col-end-7 max-w-full w-full px-4 md:px-6 lg:px-8 order-2 md:order-1 z-30 flex flex-col justify-center'>
         <div className='flex-col justify-start items-start gap-6 inline-flex'>
 
           {/* Main Title */}
