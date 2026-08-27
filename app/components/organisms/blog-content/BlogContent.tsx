@@ -225,7 +225,7 @@ export default function BlogContent({ posts, categories, locale, title, descript
               <div className="w-full bg-zinc-900 dark:bg-zinc-900 py-16 mb-16 flex flex-col gap-5 justify-center items-center text-white">
                 <AlkituIcon size={52} className="text-white" />
                 <div className="relative w-full max-w-2xl h-12 md:h-16 flex justify-center">
-                  <AlkituLogo locale={locale} width="80%" className="justify-center" />
+                  <AlkituLogo locale={locale} width={260} variant="dark" className="justify-center" />
                 </div>
               </div>
 

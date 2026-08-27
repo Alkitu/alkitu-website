@@ -29,7 +29,7 @@ function Footer() {
       >
         {/* Logo */}
         <div className='flex justify-center items-center mb-6'>
-          <AlkituLogo locale={locale} width={200} />
+          <AlkituLogo locale={locale} width={200} variant="dark" />
         </div>
 
         {/* Social Icons */}
