@@ -1,5 +1,4 @@
 import next from 'eslint-config-next'
-import reactHooks from 'eslint-plugin-react-hooks'
 import tseslint from 'typescript-eslint'
 
 export default [
@@ -17,7 +16,7 @@ export default [
   ...next,
   ...tseslint.configs.recommended,
   {
-    plugins: { 'react-hooks': reactHooks },
+    // react-hooks lo registra ya eslint-config-next (16.4+); registrarlo aquí otra vez rompía la config.
     rules: {
       '@typescript-eslint/no-unused-vars': [
         'error',
